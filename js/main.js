@@ -728,6 +728,14 @@
  link.addEventListener('click', () => YZA.analytics?.track('yza_girls_shop_look_click', { handle: link.dataset.shopLook || '', source: 'girls_page' }));
  });
 
+ // Track every image already shown so nothing repeats further down the page.
+ const used = new Set(publicGirls.map((girl) => girl.src));
+ const pickImages = (images, n) => {
+ const out = [];
+ (images || []).filter(isPublicMedia).forEach((src) => { if (out.length < n && !used.has(src)) { used.add(src); out.push(src); } });
+ return out;
+ };
+
  const storyMap = $('#girlsProductMap');
  if (storyMap) {
  const keys = ['jaune', 'violet', 'noir', 'rouge', 'bags', 'charms', 'rtw'];
@@ -744,16 +752,17 @@
  <a class="link-underline" href="${story.cta || 'collections.html'}">${T().t('cta.shop')}</a>
  </div>
  <div class="girls-product-story__images">
- ${(story.images || []).filter(isPublicMedia).slice(0, 3).map((src) => `<span>${mediaImg(src, title, 'width="560" height="720"')}</span>`).join('')}
+ ${pickImages(story.images, 3).map((src) => `<span>${mediaImg(src, title, 'width="560" height="720"')}</span>`).join('')}
  </div>
  </article>`;
  }).join('');
  }
 
- renderArchiveWall();
+ renderArchiveWall(used);
  }
 
- async function renderArchiveWall() {
+ async function renderArchiveWall(used) {
+ used = used instanceof Set ? used : new Set();
  const el = $('#girlsArchiveWall');
  if (!el || el.dataset.loaded) return;
  el.dataset.loaded = 'loading';
@@ -771,7 +780,7 @@
  const bl = await fetch('data/archive-blocklist-public.json').then((r) => (r.ok ? r.json() : []));
  blocked = new Set((bl || []).map(norm));
  } catch (e) { /* no blocklist available -> fall back to pattern filter only */ }
- const blockedArchive = /postcard|family-tree|mastercard|visa|payment|favicon|logo|brand|map|waze|google|apple|whatsapp|charte|template|reference|intro-cafe|yza-lookbook-page-6[1-4]|p6[1-4]_img\d+_xref14/i;
+ const blockedArchive = /postcard|family-tree|mastercard|visa|payment|favicon|logo|brand|map|waze|google|apple|whatsapp|charte|template|reference|intro-cafe|yza-lookbook-page-\d|p6[1-4]_img\d+_xref14/i;
  const entries = (data.entries || [])
  .filter((entry) => entry.kind === 'image')
  .filter((entry) => {
@@ -787,6 +796,7 @@
  return ['lookbook', 'yza-girls'].includes(group) || entry.usage === 'public-yza-editorial' || entry.usage === 'public-yza-product';
  })
  .filter((entry) => entry.href || entry.publicPath)
+ .filter((entry) => { const s = entry.href || entry.publicPath; if (!s || used.has(s)) return false; used.add(s); return true; })
  .slice(0, 220);
  el.innerHTML = entries.map((entry, index) => {
  const src = entry.href || entry.publicPath;
