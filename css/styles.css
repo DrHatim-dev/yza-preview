@@ -3041,7 +3041,7 @@ body.has-cart-drawer .lead-chat { display: none; }
   .product--cg .gallery__main { grid-column: 1; }
   .product--cg .gallery__thumbs { grid-column: 1; flex-direction: row; overflow-x: auto; padding-bottom: var(--space-2); }
   .product--cg .gallery__thumb { width: 64px; flex: 0 0 64px; }
-  .product--cg .product-info h1 { font-size: clamp(2.9rem, 16vw, 4.4rem); max-width: 9ch; }
+  .product--cg .product-info h1 { font-size: clamp(1.6rem, 5.5vw, 2.4rem); max-width: 100%; overflow-wrap: break-word; hyphens: auto; }
   .product-tabs { justify-content: flex-start; overflow-x: auto; gap: var(--space-8); }
 }
 
