@@ -637,7 +637,7 @@
  const tg = $('#testimonialsGrid');
  if (tg) {
  tg.setAttribute('data-placeholder', 'reviews');
- tg.innerHTML = YZA.testimonials.map(r => `<figure class="testimonial">
+ tg.innerHTML = (YZA.reviewStats?.real ? YZA.testimonials : []).map(r => `<figure class="testimonial">
  ${stars(r.rating, `${t.t('social.ratingOf')} ${r.rating}/5`)}
  <blockquote>${t.pick(r.text)}</blockquote>
  <figcaption>${r.name} · ${t.pick(r.place)}</figcaption>
@@ -892,6 +892,7 @@
  collState.cat = b.dataset.cat;
  history.replaceState(null, '', 'collections.html' + (collState.cat !== 'all' ? '?cat=' + collState.cat : ''));
  collState.q = ''; const si = $('#collSearch'); if (si) si.value = '';
+ YZA.analytics?.track('category_filter', { category: collState.cat });
  renderCollections();
  }));
  const sort = $('#sortSelect');
@@ -1737,6 +1738,20 @@
  }
 
  const gal = productGallery(p);
+      // Product JSON-LD + per-product social tags (rich results). Product names stay original.
+      try {
+        const abs = (u) => (u && String(u).indexOf('http') === 0) ? u : ('https://yza-shop.com/' + String(u || '').replace(/^\//, ''));
+        const schemaDesc = (t.pick(p.short || p.displayShort || p.description || {}) || '').toString().replace(/\s+/g, ' ').trim().slice(0, 320);
+        const ld = { '@context': 'https://schema.org', '@type': 'Product', name: pageName, image: gal.slice(0, 4).map(abs), brand: { '@type': 'Brand', name: 'YZA' }, category: p.category || undefined, offers: { '@type': 'Offer', price: Number((((p.price || 0)) / 100).toFixed(2)), priceCurrency: 'MAD', availability: 'https://schema.org/InStock', url: 'https://yza-shop.com/produit.html?handle=' + encodeURIComponent(p.handle) } };
+        if (schemaDesc) ld.description = schemaDesc;
+        let tag = document.getElementById('productSchema');
+        if (!tag) { tag = document.createElement('script'); tag.type = 'application/ld+json'; tag.id = 'productSchema'; document.head.appendChild(tag); }
+        tag.textContent = JSON.stringify(ld);
+        const setMeta = (sel, c) => { const el = document.querySelector(sel); if (el && c) el.setAttribute('content', c); };
+        setMeta('meta[property="og:title"]', pageName + ' — YZA');
+        if (schemaDesc) setMeta('meta[property="og:description"]', schemaDesc);
+        setMeta('meta[property="og:image"]', abs(gal[0]));
+      } catch (e) {}
  const lifestyleVid = p.lifestyleVideo || null;
  $('#galMain').innerHTML = `<img id="galMainImg" src="${gal[0]}" alt="${pageName} - YZA" fetchpriority="high" width="900" height="1180" decoding="async">`;
  const imgThumbs = gal.map((src, i) =>

@@ -649,9 +649,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
@@ -1061,9 +1061,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
@@ -1676,9 +1676,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
@@ -2091,9 +2091,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
@@ -2506,9 +2506,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
@@ -2921,9 +2921,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
@@ -3336,9 +3336,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
@@ -3751,9 +3751,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
@@ -4001,9 +4001,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
@@ -4349,9 +4349,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
@@ -4748,9 +4748,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
@@ -5147,9 +5147,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
@@ -5518,9 +5518,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
@@ -5889,9 +5889,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
@@ -6260,9 +6260,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
@@ -6667,9 +6667,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -7023,9 +7023,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -7374,9 +7374,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -7724,9 +7724,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -8074,9 +8074,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -8424,9 +8424,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -8774,9 +8774,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -9123,9 +9123,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -9475,9 +9475,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -9814,9 +9814,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -10063,9 +10063,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -10307,9 +10307,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -10555,9 +10555,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -10801,9 +10801,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -11054,9 +11054,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -11305,9 +11305,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -11552,9 +11552,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -11801,9 +11801,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -12049,9 +12049,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -12299,9 +12299,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -12551,9 +12551,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -12805,9 +12805,9 @@ const PRODUCTS = [
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "14-day guarantee if the piece has not been worn.",
- "tr": "14-day guarantee if the piece has not been worn.",
- "ar": "14-day guarantee if the piece has not been worn."
+ "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
+ "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
+ "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
@@ -16215,7 +16215,7 @@ SCULPT_SIZE_COPY.forEach((s) => {
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d'origine.",
- "en": "14-day guarantee: the piece comes back unworn, in its original condition."
+ "en": "30-day guarantee: the piece comes back unworn, in its original condition."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
