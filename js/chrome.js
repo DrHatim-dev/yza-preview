@@ -355,6 +355,20 @@ YZA.chrome = {
  // clip the header and it would scroll away instead of staying pinned.
  document.body.prepend(...Array.from(head.children));
 
+ // a11y: skip link as the first focusable element + a #main landmark target.
+ (function () {
+ const mainEl = document.querySelector('main');
+ if (mainEl && !mainEl.id) mainEl.id = 'main';
+ if (!document.querySelector('.skip-link')) {
+ const skip = document.createElement('a');
+ skip.className = 'skip-link';
+ skip.href = '#main';
+ skip.setAttribute('data-i18n', 'a.skip');
+ skip.textContent = (window.YZA && YZA.i18n && YZA.i18n.t) ? YZA.i18n.t('a.skip') : 'Aller au contenu';
+ document.body.prepend(skip);
+ }
+ })();
+
  const drawers = document.createElement('div');
  drawers.innerHTML = `
  <div class="overlay" id="navOverlay"></div>

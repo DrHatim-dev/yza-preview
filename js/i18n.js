@@ -274,6 +274,7 @@ const LANG_FLAGS = {
 const LANG_LABELS = { fr: 'FR', en: 'EN', es: 'ES', tr: 'TR', ar: 'AR' };
 
 const EXTRA = {
+  'a.skip': { fr: 'Aller au contenu', en: 'Skip to content', es: 'Saltar al contenido', tr: 'İçeriğe geç', ar: 'تخطَّ إلى المحتوى' },
   // Per-page <title> / meta description (localised by i18n.applyHead from document.body.dataset.page).
   'meta.home.title': { fr: 'YZA — Vêtements, charms & sacs faits main à Marrakech', en: 'YZA — Handmade clothing, charms & bags from Marrakech', es: 'YZA — Ropa, charms y bolsos hechos a mano en Marrakech', tr: "YZA — Marrakech'te el yapımı giysiler, charm'lar ve çantalar", ar: 'YZA — ملابس وتمائم وحقائب مصنوعة يدويًا في مراكش' },
   'meta.home.desc': { fr: 'Sacs, prêt-à-porter et accessoires faits main à Marrakech — raphia, doum, feuille de palmier et notre tissu Jawhara. Atelier 100 % féminin de Guéliz.', en: 'Bags, ready-to-wear and accessories handmade in Marrakech — raffia, doum, palm leaf and our Jawhara fabric. 100% women-run atelier in Guéliz.', es: 'Bolsos, prêt-à-porter y accesorios hechos a mano en Marrakech — rafia, doum, hoja de palmera y nuestro tejido Jawhara. Atelier 100 % femenino en Guéliz.', tr: "Marrakech'te el yapımı çantalar, hazır giyim ve aksesuarlar — rafya, doum, palmiye yaprağı ve Jawhara kumaşımız. Guéliz'de %100 kadın atölyesi.", ar: 'حقائب وملابس جاهزة وإكسسوارات مصنوعة يدويًا في مراكش — رافيا ودوم وسعف النخيل وقماش Jawhara. أتيليه نسائي بالكامل في Guéliz.' },

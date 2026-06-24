@@ -46,6 +46,7 @@
  --color-border: rgba(46, 32, 18, 0.18);
  --color-border-strong: rgba(58, 40, 22, 0.30); /* defined warm hairline for card frames */
  --color-accent: var(--brand-orange);
+ --color-accent-text: var(--terre-cuite); /* a11y: terracotta TEXT on light bg (#a94c28 ~5.3:1 on cream); buttons/large fills keep --brand-orange */
  --color-accent-fg: var(--black); /* encre on terracotta - best contrast (~5.3:1) */
  --color-accent-2: var(--saffron); /* muted saffron; violet stays deliberate via --violet */
  --color-dark: var(--ink);

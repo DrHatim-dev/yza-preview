@@ -23,6 +23,8 @@ a { color: inherit; text-decoration: none; }
 button { font: inherit; cursor: pointer; border: none; background: none; color: inherit; }
 ul { list-style: none; padding: 0; }
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 1px; }
+.skip-link { position: absolute; left: -9999px; top: 0; z-index: 200; background: var(--color-fg); color: var(--cream); padding: 0.7rem 1.1rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
+.skip-link:focus { left: 8px; top: 8px; outline: 2px solid var(--color-accent); outline-offset: 2px; }
 ::selection { background: var(--terracotta); color: var(--cream); }
 
 /* Hermès editorial signature: EB Garamond, italic, medium weight (~440). */
@@ -54,7 +56,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; font-style:
 .section-head { max-width: 60ch; margin-bottom: var(--space-12); }
 .section-head--center { text-align: center; margin-inline: auto; }
 .section-head h2 { font-size: var(--fs-2xl); margin-top: var(--space-3); text-wrap: balance; }
-.eyebrow { font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent); }
+.eyebrow { font-family: var(--font-mono); font-size: var(--fs-xs); font-weight: 400; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent-text); }
 .section--ink .eyebrow { color: var(--color-accent-2); }
 .lede { font-size: var(--fs-md); color: var(--color-muted); max-width: 56ch; }
 
@@ -68,8 +70,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; font-style:
 }
 .btn--solid { background: var(--color-fg); color: var(--white); border-color: var(--color-fg); }
 .btn--solid:hover { background: transparent; color: var(--color-fg); }
-.btn--accent { background: transparent; color: var(--terracotta); border-color: var(--terracotta); }
-.btn--accent:hover { background: var(--terracotta); color: var(--white); }
+.btn--accent { background: transparent; color: var(--color-accent-text); border-color: var(--color-accent-text); }
+.btn--accent:hover { background: var(--color-accent-text); color: var(--white); }
 .btn--outline { background: transparent; border-color: currentColor; }
 .btn--outline:hover { background: var(--color-fg); color: var(--white); border-color: var(--color-fg); }
 .btn--light { background: transparent; color: var(--white); border-color: var(--white); }
@@ -253,7 +255,7 @@ a, button, .btn, .icon-btn, [role="button"], summary, label { touch-action: mani
 .drawer__lang { order: -1; margin: 0 0 var(--space-4); font-size: var(--fs-sm); }
 .drawer__group { display: flex; flex-direction: column; gap: var(--space-1); }
 .drawer__group + .drawer__group { margin-top: var(--space-4); }
-.drawer__title { font-family: var(--font-body); font-size: 0.72rem; font-weight: 700; font-style: normal; text-transform: uppercase; letter-spacing: 0.18em; color: var(--terracotta); opacity: 1; margin: var(--space-2) 0 var(--space-2); }
+.drawer__title { font-family: var(--font-body); font-size: 0.72rem; font-weight: 700; font-style: normal; text-transform: uppercase; letter-spacing: 0.18em; color: var(--color-accent-text); opacity: 1; margin: var(--space-2) 0 var(--space-2); }
 .overlay { position: fixed; inset: 0; z-index: 80; background: rgba(0,0,0,0.45); opacity: 0; visibility: hidden; pointer-events: none; transition: var(--transition); }
 .overlay.is-open { opacity: 1; visibility: visible; pointer-events: auto; }
 
@@ -404,7 +406,7 @@ body.has-search-overlay { overflow: hidden; }
   font-size: 0.78rem; letter-spacing: 0.09em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .product-card__price { font-family: var(--font-mono); font-size: 0.78rem; color: var(--color-fg); white-space: nowrap; }
-.product-card__limited { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--terracotta); }
+.product-card__limited { font-family: var(--font-mono); font-size: 0.62rem; letter-spacing: 0.11em; text-transform: uppercase; color: var(--color-accent-text); }
 .product-card__stock,
 .product-card__sold {
   position: absolute; right: 0.62rem; bottom: 0.62rem; z-index: 4;
@@ -642,9 +644,9 @@ body.has-search-overlay { overflow: hidden; }
 .print-story { display: grid; grid-template-columns: 0.82fr 1fr; gap: clamp(2rem, 5vw, var(--space-20)); align-items: center; }
 .print-story__text { max-width: 46ch; }
 .print-story__text .eyebrow { margin-bottom: var(--space-4); }
-.print-story__text h2 { font-size: var(--fs-2xl); color: var(--color-accent); margin-bottom: var(--space-5); }
+.print-story__text h2 { font-size: var(--fs-2xl); color: var(--color-accent-text); margin-bottom: var(--space-5); }
 .print-story__text p { color: var(--color-fg); margin-bottom: var(--space-6); }
-.print-story__text .link-underline { color: var(--color-accent); }
+.print-story__text .link-underline { color: var(--color-accent-text); }
 .print-story__collage { position: relative; min-height: clamp(420px, 44vw, 620px); }
 .print-story__toile { position: absolute; inset: 0 16% 0 0; background-size: cover; background-position: center; border-radius: var(--radius); }
 .print-story__photo { position: absolute; overflow: hidden; background: var(--color-surface-2); border: 6px solid var(--white); box-shadow: var(--shadow); }
@@ -1160,7 +1162,7 @@ body.has-search-overlay { overflow: hidden; }
 .newsletter__form { display: flex; gap: var(--space-2); max-width: 480px; margin-inline: auto; }
 .newsletter__form input { flex: 1; padding: var(--space-4) var(--space-5); border: 1px solid var(--color-border); background: var(--color-bg); border-radius: var(--radius); font: inherit; }
 .newsletter__form input:focus { outline: none; border-color: var(--color-fg); }
-.form-msg { margin-top: var(--space-4); font-size: var(--fs-sm); color: var(--terracotta); }
+.form-msg { margin-top: var(--space-4); font-size: var(--fs-sm); color: var(--color-accent-text); }
 
 /* ============================================================
  FOOTER
@@ -1218,7 +1220,7 @@ body.has-search-overlay { overflow: hidden; }
  text-transform: uppercase;
 }
 .footer__facts strong { font-size: var(--fs-xs); font-weight: 500; line-height: 1.35; }
-.footer h4 { font-size: var(--fs-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; margin-bottom: var(--space-5); color: var(--terracotta); font-family: var(--font-body); font-weight: 700; font-style: normal; }
+.footer h4 { font-size: var(--fs-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; margin-bottom: var(--space-5); color: var(--color-accent-text); font-family: var(--font-body); font-weight: 700; font-style: normal; }
 .footer li { margin-bottom: var(--space-3); }
 .footer__col a { font-size: var(--fs-sm); color: var(--color-fg); }
 .footer__col a:hover { color: var(--terracotta); }
@@ -1606,7 +1608,7 @@ body.has-search-overlay { overflow: hidden; }
 .archive-card__body { display: grid; gap: var(--space-1); padding: var(--space-4); }
 .archive-card__body strong { font-size: var(--fs-sm); font-weight: 500; line-height: 1.35; }
 .archive-card__body span:last-child { font-size: var(--fs-xs); color: var(--color-muted); }
-.archive-card__group { font-size: 0.62rem; letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--terracotta); }
+.archive-card__group { font-size: 0.62rem; letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--color-accent-text); }
 .archive-docs { display: grid; gap: var(--space-3); }
 .archive-doc {
  display: flex; justify-content: space-between; gap: var(--space-4); align-items: center;
