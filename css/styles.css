@@ -103,7 +103,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; font-style:
 /* ============================================================
  ANNONCE
  ============================================================ */
-.announcement { background: var(--color-bg); color: var(--color-fg); border-bottom: 1px solid var(--color-border); }
+.announcement { position: relative; z-index: 49; background: var(--color-bg); color: var(--color-fg); border-bottom: 1px solid var(--color-border); }
 .announcement__inner {
  min-height: 38px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--space-4);
  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.035em; text-transform: uppercase;
