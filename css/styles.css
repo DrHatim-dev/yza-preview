@@ -103,7 +103,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; font-style:
 /* ============================================================
  ANNONCE
  ============================================================ */
-.announcement { position: relative; z-index: 49; background: var(--color-bg); color: var(--color-fg); border-bottom: 1px solid var(--color-border); }
+.announcement { position: relative; z-index: 49; background: var(--color-bg); color: var(--color-fg); border-bottom: 2px solid var(--color-border); }
 .announcement__inner {
  min-height: 38px; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: var(--space-4);
  font-size: 0.72rem; font-weight: 600; letter-spacing: 0.035em; text-transform: uppercase;
@@ -137,9 +137,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; font-style:
  ============================================================ */
 .header {
  position: sticky; top: 0; z-index: 50;
- background: rgba(252, 247, 241, 0.7);
- -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
- border-bottom: 1px solid var(--color-border); transition: box-shadow var(--transition);
+ background: var(--color-bg);
+ border-bottom: 2px solid var(--color-border); transition: box-shadow var(--transition);
 }
 .header.is-stuck { box-shadow: 0 1px 20px -12px rgba(58, 38, 18, 0.45); }
 .header__inner { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; height: var(--header-h); gap: clamp(0.75rem, 1.6vw, var(--space-8)); }
