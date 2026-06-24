@@ -15563,6 +15563,12 @@ LNV_COLORS.forEach((c) => {
 
 // La Sculpture: each colour-row size card uses its size-specific still (XS/S/M differ via fruit-scale references).
 const SCULPT_COLOR_FILE = { noir: 'black-olive', rouge: 'hot-red', violet: 'deep-violet' };
+// Real angle + situation shots per colourway, appended after the size card on the product page.
+const SCULPT_ANGLES = {
+ noir: ['assets/products/bag-sculpture-black.jpg', 'assets/products/bag-sculpture-black-detail.jpg', 'assets/products/bag-sculpture-black-still.jpg'],
+ rouge: ['assets/products/bag-sculpture-red.jpg', 'assets/products/bag-sculpture-red-seated.jpg', 'assets/products/bag-sculpture-red-detail.jpg', 'assets/products/bag-sculpture-red-still.jpg'],
+ violet: ['assets/products/bag-sculpture-violet.jpg', 'assets/products/bag-sculpture-violet-stack.jpg'],
+};
 const SCULPT_LAUNCH_DIR = 'assets/products/launch-shop-ref/';
 const sculptLaunchImg = (color, size) => `${SCULPT_LAUNCH_DIR}la-sculpture-${String(size).toLowerCase()}-${color}.jpg`;
 BAG_ROWS.forEach((row) => {
@@ -15572,7 +15578,7 @@ BAG_ROWS.forEach((row) => {
  (row.items || []).forEach((it) => {
  const sz = String(it.size || '').toLowerCase();
  const img = sculptLaunchImg(cf, sz);
- it.img = img; it.gallery = [img];
+ it.img = img; it.gallery = [img, ...(SCULPT_ANGLES[row.colorSlug] || [])];
  });
  row.img = sculptLaunchImg(cf, 's');
  row.gallery = [row.img];
@@ -15604,7 +15610,10 @@ SCULPT_SIZE_COPY.forEach((s) => {
  'La Sculpture ' + s.size + ' : ' + s.fr + ' de nos paniers sculpturaux, tissé main à Marrakech en feuilles de bananier, raphia, cuir et perles. Disponible en Hot Red, Deep Violet et Black Olive.',
  'La Sculpture ' + s.size + ': ' + s.en + ' of our sculptural baskets, handwoven in Marrakech from banana leaves, raffia, leather and beads. Available in Hot Red, Deep Violet and Black Olive.'
  );
- const gallery = ['hot-red', 'deep-violet', 'black-olive'].map((color) => sculptLaunchImg(color, s.size));
+ // Size-comparison cards first (XS/S/M to scale), then real angle + situation shots
+ // of La Sculpture so the product page shows the bag from several views, not just the cards.
+ const gallery = ['hot-red', 'deep-violet', 'black-olive'].map((color) => sculptLaunchImg(color, s.size))
+ .concat(['assets/products/bag-sculpture-violet-stack.jpg', 'assets/products/bag-sculpture-black-detail.jpg', 'assets/products/bag-sculpture-red-seated.jpg', 'assets/products/bag-sculpture-group.jpg']);
  p.gallery = gallery;
  p.img = s.size === 'S' ? gallery[1] : s.size === 'M' ? gallery[2] : gallery[0];
 });
