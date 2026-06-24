@@ -811,6 +811,21 @@ YZA.chrome = {
  onScroll();
  window.addEventListener('scroll', onScroll, { passive: true });
 
+ // Home only: measure the announcement + header so the hero video can tuck up
+ // behind a transparent header (white logo/nav over the video, solid on scroll).
+ if (document.body.dataset.page === 'home') {
+ const setBarsH = () => {
+ if (document.body.classList.contains('is-scrolled')) return;
+ const a = document.querySelector('.announcement');
+ const h = document.getElementById('header');
+ const total = (a ? a.offsetHeight : 0) + (h ? h.offsetHeight : 0);
+ if (total) document.documentElement.style.setProperty('--yza-bars-h', total + 'px');
+ };
+ setBarsH();
+ window.addEventListener('resize', setBarsH);
+ window.addEventListener('load', setBarsH);
+ }
+
  const so = document.getElementById('searchOverlay');
  const searchInput = document.getElementById('searchInput');
  const searchResults = document.getElementById('searchResults');

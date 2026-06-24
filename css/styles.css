@@ -149,6 +149,23 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; font-style:
 .announcement { overflow: hidden; max-height: 4rem; transition: max-height var(--transition), opacity var(--transition); }
 .is-scrolled .announcement { max-height: 0; opacity: 0; border-bottom-color: transparent; }
 
+/* ===== Transparent header over the home hero video — solid once scrolled ===== */
+.header, .announcement { transition: background-color var(--transition), color var(--transition), border-color var(--transition), backdrop-filter var(--transition), box-shadow var(--transition); }
+/* tuck the full-bleed hero up behind the (sticky) bars so the video sits under them */
+body[data-page="home"] main { margin-top: calc(-1 * var(--yza-bars-h, 7.5rem)); }
+/* top scrim keeps white chrome legible over any bright frame of the video */
+body[data-page="home"] .hero--video::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 240px; background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0)); z-index: 1; pointer-events: none; }
+body[data-page="home"]:not(.is-scrolled) .announcement,
+body[data-page="home"]:not(.is-scrolled) .header { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: transparent; color: #fff; }
+body[data-page="home"]:not(.is-scrolled) .header .nav-item > a,
+body[data-page="home"]:not(.is-scrolled) .header .nav-trigger,
+body[data-page="home"]:not(.is-scrolled) .header .header-search,
+body[data-page="home"]:not(.is-scrolled) .header .icon-btn,
+body[data-page="home"]:not(.is-scrolled) .header .lang-select__button,
+body[data-page="home"]:not(.is-scrolled) .announcement,
+body[data-page="home"]:not(.is-scrolled) .announcement a { color: #fff; }
+body[data-page="home"]:not(.is-scrolled) .header .logo__img { filter: brightness(0) invert(1); }
+
 /* Desktop keeps the condensed nav when stuck; hamburger stays mobile-only */
 .header__actions .burger { order: 99; }
 .header__left { grid-column: 1; display: flex; align-items: center; gap: var(--space-5); min-width: 0; }
