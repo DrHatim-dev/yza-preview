@@ -155,16 +155,16 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; font-style:
 body[data-page="home"] main { margin-top: calc(-1 * var(--yza-bars-h, 7.5rem)); }
 /* top scrim keeps white chrome legible over any bright frame of the video */
 body[data-page="home"] .hero--video::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 240px; background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0)); z-index: 1; pointer-events: none; }
-body[data-page="home"]:not(.is-scrolled) .announcement,
-body[data-page="home"]:not(.is-scrolled) .header { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: transparent; color: #fff; }
-body[data-page="home"]:not(.is-scrolled) .header .nav-item > a,
-body[data-page="home"]:not(.is-scrolled) .header .nav-trigger,
-body[data-page="home"]:not(.is-scrolled) .header .header-search,
-body[data-page="home"]:not(.is-scrolled) .header .icon-btn,
-body[data-page="home"]:not(.is-scrolled) .header .lang-select__button,
-body[data-page="home"]:not(.is-scrolled) .announcement,
-body[data-page="home"]:not(.is-scrolled) .announcement a { color: #fff; }
-body[data-page="home"]:not(.is-scrolled) .header .logo__img { filter: brightness(0) invert(1); }
+body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .announcement,
+body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: transparent; color: #fff; }
+body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .nav-item > a,
+body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .nav-trigger,
+body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .header-search,
+body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .icon-btn,
+body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .lang-select__button,
+body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .announcement,
+body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .announcement a { color: #fff; }
+body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .logo__img { filter: brightness(0) invert(1); }
 
 /* Desktop keeps the condensed nav when stuck; hamburger stays mobile-only */
 .header__actions .burger { order: 99; }
@@ -2932,9 +2932,9 @@ body[data-page="home"] .header.is-stuck { background: rgba(252, 247, 241, 0.7); 
 }
 .product-info__breadcrumb a:hover { color: var(--terracotta); }
 .product--cg .product-info h1 {
-  font-size: clamp(3rem, 7vw, 6.6rem);
-  line-height: 0.88; text-transform: uppercase; font-style: normal; letter-spacing: 0;
-  margin: 0 0 var(--space-5); max-width: 8.5ch;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.05; text-transform: uppercase; font-style: normal; letter-spacing: 0;
+  margin: 0 0 var(--space-5); max-width: 100%; overflow-wrap: break-word; hyphens: auto;
 }
 .product--cg .product-info__price {
   font-family: var(--font-mono); font-size: 0.86rem; letter-spacing: 0; text-transform: uppercase;

@@ -811,6 +811,15 @@ YZA.chrome = {
  onScroll();
  window.addEventListener('scroll', onScroll, { passive: true });
 
+ // Header turns solid on hover/focus too (not just on scroll), so the nav stays readable.
+ if (header) {
+ const setHover = (on) => document.body.classList.toggle('is-header-hover', on);
+ header.addEventListener('mouseenter', () => setHover(true));
+ header.addEventListener('mouseleave', () => setHover(false));
+ header.addEventListener('focusin', () => setHover(true));
+ header.addEventListener('focusout', () => setHover(false));
+ }
+
  // Home only: measure the announcement + header so the hero video can tuck up
  // behind a transparent header (white logo/nav over the video, solid on scroll).
  if (document.body.dataset.page === 'home') {
