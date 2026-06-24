@@ -156,7 +156,7 @@ body[data-page="home"] main { margin-top: calc(-1 * var(--yza-bars-h, 7.5rem)); 
 /* top scrim keeps white chrome legible over any bright frame of the video */
 body[data-page="home"] .hero--video::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 240px; background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0)); z-index: 1; pointer-events: none; }
 body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .announcement,
-body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: transparent; color: #fff; }
+body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: rgba(255,255,255,0.22); color: #fff; }
 body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .nav-item > a,
 body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .nav-trigger,
 body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .header-search,
