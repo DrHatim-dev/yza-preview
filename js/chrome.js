@@ -811,13 +811,23 @@ YZA.chrome = {
  onScroll();
  window.addEventListener('scroll', onScroll, { passive: true });
 
- // Header turns solid on hover/focus too (not just on scroll), so the nav stays readable.
- if (header) {
- const setHover = (on) => document.body.classList.toggle('is-header-hover', on);
- header.addEventListener('mouseenter', () => setHover(true));
- header.addEventListener('mouseleave', () => setHover(false));
- header.addEventListener('focusin', () => setHover(true));
- header.addEventListener('focusout', () => setHover(false));
+ // Both the announcement bar and the header go transparent over the hero — both
+ // should become solid when the user hovers either. relatedTarget check prevents
+ // a flicker when the mouse moves between the two adjacent elements.
+ const announcement = document.querySelector('.announcement');
+ const bars = [announcement, header].filter(Boolean);
+ if (bars.length) {
+ const isInBars = (el) => bars.some((b) => b.contains(el));
+ const setHover = (on, rel) => {
+ if (!on && isInBars(rel)) return;
+ document.body.classList.toggle('is-header-hover', on);
+ };
+ bars.forEach((el) => {
+ el.addEventListener('mouseenter', () => setHover(true));
+ el.addEventListener('mouseleave', (e) => setHover(false, e.relatedTarget));
+ el.addEventListener('focusin', () => setHover(true));
+ el.addEventListener('focusout', (e) => setHover(false, e.relatedTarget));
+ });
  }
 
  // Home only: measure the announcement + header so the hero video can tuck up
