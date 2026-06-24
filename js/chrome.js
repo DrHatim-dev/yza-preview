@@ -124,7 +124,7 @@ const navMega = (active) => {
  li('nav.lookbook', 'lookbook.html'),
  li('nav.journal', 'blogs/journal/'),
  ]),
-    feature('studio.html', 'assets/atelier/atelier-wide.jpg', 'nav.studio', 'mega.feat.studio', 2016, 1344),
+    feature('studio.html', 'assets/editorial/dataset/artisanes-atelier-raffia.jpg', 'nav.studio', 'mega.feat.studio', 1200, 800),
  ], 3);
 
  const aide = trigger('footer.help', [
@@ -134,7 +134,7 @@ const navMega = (active) => {
  li('pp.acc.ship', 'faq.html#livraison'),
  ]),
  `<div class="mega__col"><p class="mega__eyebrow" data-i18n="nav.studio">${t.t('nav.studio')}</p><address class="mega__studio">${YZA.brand.address}<br>${t.pick(YZA.brand.hours)}</address><a class="mega__studio-link link-underline" href="studio.html" data-i18n="cta.discoverAtelier">${t.t('cta.discoverAtelier')}</a></div>`,
-    feature('contact.html', 'assets/story/nawal-bag-atelier.jpg', 'nav.contact', 'mega.feat.contact', 1600, 893),
+    feature('contact.html', 'assets/yza-girls/girls-fanny-look.jpg', 'nav.contact', 'mega.feat.contact', 800, 1066),
  ], 3);
 
  return boutique + maison + navLink('nav.b2b', 'b2b.html') + aide;

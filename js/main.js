@@ -504,9 +504,9 @@
  if (mediaBreaks.length) return mediaBreakHTML(mediaBreaks[setIndex % mediaBreaks.length]);
  const c = storyCopy();
  const duoSets = [
- ['assets/lifestyle/look-1.jpg', 'assets/lifestyle/look-2.jpg'],
+ ['assets/yza-girls/girls-rin-look-1.jpg', 'assets/yza-girls/girls-rin-look-2.jpg'],
  ['assets/products/bag-sculpture-red-seated.jpg', 'assets/products/charms-on-bag.jpg'],
- ['assets/lifestyle/look-3.jpg', 'assets/products/bag-sculpture-group.jpg'],
+ ['assets/yza-girls/girls-rin-look-3.jpg', 'assets/products/bag-sculpture-group.jpg'],
  ];
  if (setIndex % 3 === 1) {
  const full = ['assets/lifestyle/hero.jpg', 'assets/lifestyle/editorial-grapes.jpg'][setIndex % 2];

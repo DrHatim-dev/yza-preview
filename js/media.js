@@ -325,7 +325,7 @@ YZA.media = {
  en: 'Every Jawhara piece adjusts to your body. Hand-crafted golden bead tassels and Berber signs by Lala Fatima - worn alone or as a set.',
  },
  label: { fr: 'tailles libres / fait à l\'atelier', en: 'free sizes / atelier-made' },
- images: ['assets/lifestyle/look-3.jpg', 'assets/products/rtw-scarf-top.jpg', 'assets/products/rtw-palazzo-pants.jpg'],
+ images: ['assets/yza-girls/girls-rin-look-3.jpg', 'assets/products/rtw-scarf-top.jpg', 'assets/products/rtw-palazzo-pants.jpg'],
  cta: 'collections.html?cat=rtw',
  },
  },
@@ -444,7 +444,7 @@ YZA.media.bagsEditorialBreaks = [
  layout: 'wide',
  kicker: { fr: "L'atelier, Marrakech", en: 'The atelier, Marrakech' },
  title: { fr: 'Là où chaque panier commence.', en: 'Where every basket begins.' },
- images: ['assets/atelier/atelier-wide.jpg'],
+ images: ['assets/editorial/dataset/artisanes-atelier-raffia.jpg'],
  },
  {
  layout: 'duo',
