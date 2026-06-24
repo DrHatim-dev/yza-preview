@@ -424,7 +424,7 @@ body.has-search-overlay { overflow: hidden; }
 .product-card__meta span:first-child, .product-card__meta span:last-child { background: transparent; }
 
 /* Image hover-swap + quick-view bar + pill badge (landing carousel style) */
-.product-card__img--hover { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s var(--ease-out); }
+.product-card__media .product-card__img--hover { position: absolute; inset: 0; opacity: 0; transition: opacity 0.6s var(--ease-out); }
 .product-card:hover .product-card__img--hover { opacity: 1; }
 .product-card__quick {
  position: absolute; left: 0; right: 0; bottom: 0; z-index: 3;
