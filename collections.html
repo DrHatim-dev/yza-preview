@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Collections - YZA</title>
+ <meta name="description" content="Tous les charms, sacs Sculpture et pièces prêt-à-porter YZA SS26. Filtrez par catégorie et trouvez votre pièce." />
+ <link rel="canonical" href="https://yza-shop.com/collections.html" />
+ <meta property="og:title" content="Collections - YZA" />
+ <meta property="og:description" content="Charms et sacs en raphia faits main à Marrakech." />
+ <meta property="og:image" content="https://yza-shop.com/assets/products/charms-cluster.jpg" />
+ <meta name="twitter:card" content="summary_large_image" />
+ <meta name="theme-color" content="#fcf7f1" />
+ <link rel="icon" href="assets/brand/yza-favicon.png" type="image/png" />
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Overpass+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="css/tokens.css" />
+ <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="collections">
+<main>
+ <div class="container-wide">
+ <nav class="breadcrumb"><a href="index.html" data-i18n="breadcrumb.home">Accueil</a><span>/</span><span data-i18n="col.all">Toute la boutique</span></nav>
+
+ <header class="collection-head">
+ <p class="eyebrow">YZA</p>
+ <h1 id="collectionTitle" data-i18n="col.all">Toute la boutique</h1>
+ <p id="collectionDesc" data-i18n="col.desc.all">Charms, prêt-à-porter Jawhara et sacs Sculpture SS26.</p>
+ <p><em id="searchEcho"></em></p>
+ </header>
+
+ <div class="toolbar">
+ <div class="filter-chips" role="group" aria-label="Catégories">
+ <button data-cat="all" data-i18n="col.all">Toute la boutique</button>
+ <button data-cat="charms" data-i18n="col.charms">Charms en raphia</button>
+ <button data-cat="accessories" data-i18n="col.accessories">Accessoires</button>
+ <button data-cat="bags" data-i18n="col.bags">Paniers & sacs</button>
+ <button data-cat="rtw" data-i18n="col.rtw">Prêt-à-porter</button>
+ </div>
+ <div class="toolbar__right">
+ <span class="results-count" id="resultCount"></span>
+ <label class="sr-only" for="sortSelect" data-i18n="col.sort">Trier</label>
+ <select id="sortSelect" aria-label="Trier">
+ <option value="feat" data-i18n="col.sort.feat">En vedette</option>
+ <option value="asc" data-i18n="col.sort.asc">Prix croissant</option>
+ <option value="desc" data-i18n="col.sort.desc">Prix décroissant</option>
+ </select>
+ </div>
+ </div>
+
+ <div class="product-grid" id="collectionGrid"></div>
+
+ <section class="charm-styling" id="charmStyling" hidden aria-label="Styling"></section>
+ </div>
+</main>
+
+ <script defer src="js/products.js"></script>
+ <script defer src="js/media.js"></script>
+ <script defer src="js/i18n.js"></script>
+ <script defer src="js/cart.js"></script>
+ <script defer src="js/chrome.js"></script>
+ <script defer src="js/main.js"></script>
+</body>
+</html>

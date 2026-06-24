@@ -1,0 +1,28 @@
+# B2B wholesale prices - never expose publicly
+js/b2b-data.js
+
+# Internal working files - not part of the public site
+data/*
+!data/
+!data/archive-blocklist-public.json
+!data/media-ledger-public.json
+content/
+reports/
+scripts/
+_AUDIT.md
+_CHANGELOG.md
+_QUESTIONS.md
+_TODO.md
+
+# Private recap and pricing source imagery - keep local only
+assets/lookbook-ss26-27/pages/yza-lookbook-page-6[1-4].jpg
+assets/lookbook-ss26-27/embedded/p6[1-4]_img*
+
+# Backups
+*.bak
+*_BACKUP*/
+_backup/
+
+# OS noise
+.DS_Store
+Thumbs.db

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produit - YZA</title>
+  <meta name="description" content="Piece YZA faite main a Marrakech, avec details atelier, livraison, retours et checkout WhatsApp." />
+  <link rel="canonical" href="https://yza-shop.com/produit.html" />
+  <meta property="og:type" content="product" />
+  <meta property="og:title" content="Produit - YZA" />
+  <meta property="og:description" content="Piece YZA faite main a Marrakech, avec details atelier et livraison." />
+  <meta property="og:image" content="https://yza-shop.com/assets/products/charms-cluster.jpg" />
+  <meta property="og:url" content="https://yza-shop.com/produit.html" />
+  <meta property="og:locale" content="fr_MA" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Produit - YZA" />
+  <meta name="twitter:description" content="Piece YZA faite main a Marrakech, avec details atelier et livraison." />
+  <meta name="twitter:image" content="https://yza-shop.com/assets/products/charms-cluster.jpg" />
+  <meta name="theme-color" content="#fcf7f1" />
+  <link rel="icon" href="assets/brand/yza-favicon.png" type="image/png" />
+  <link rel="alternate" hreflang="fr" href="https://yza-shop.com/produit.html" />
+  <link rel="alternate" hreflang="en" href="https://yza-shop.com/produit.html?lang=en" />
+  <link rel="alternate" hreflang="es" href="https://yza-shop.com/produit.html?lang=es" />
+  <link rel="alternate" hreflang="tr" href="https://yza-shop.com/produit.html?lang=tr" />
+  <link rel="alternate" hreflang="ar" href="https://yza-shop.com/produit.html?lang=ar" />
+  <link rel="alternate" hreflang="x-default" href="https://yza-shop.com/produit.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Overpass+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="product">
+<main>
+  <div class="container-wide" id="productRoot">
+    <div class="product product--cg">
+      <section class="product-info" aria-label="Product details">
+        <nav class="product-info__breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html" data-i18n="breadcrumb.home">Accueil</a><span>/</span>
+          <a id="pBreadcrumbCat" href="collections.html?cat=charms" data-i18n="nav.charms">Boutique</a><span>/</span>
+          <span id="pBreadcrumbName">YZA</span>
+        </nav>
+        <h1 id="pName">YZA</h1>
+        <div class="product-info__price" id="pPrice">0 dh</div>
+        <p class="product-info__short" id="pShort"></p>
+        <ul class="product-info__bullets" id="pBullets"></ul>
+        <div class="product-info__divider" aria-hidden="true"></div>
+
+        <div class="option product-color" id="pColorWrap" hidden>
+          <div class="option__label"><span id="pColorLabel">Color</span> <strong id="pColorName"></strong></div>
+          <div class="product-color__swatches" id="pColorSwatches"></div>
+        </div>
+
+        <div class="option" id="pFinish" hidden>
+          <div class="option__label" data-i18n="pp.finish">Finition</div>
+          <div class="chips" id="pFinishOpts"></div>
+        </div>
+
+        <div class="option option--add">
+          <input id="pQty" type="hidden" min="1" value="1" aria-label="Quantite">
+          <button class="btn btn--solid btn--block product-add-main" id="pAdd" data-i18n="pp.add">Ajouter au panier</button>
+          <div class="product-info__links">
+            <button type="button" class="link-underline" id="sameDayDelivery">Livraison le jour meme</button>
+            <button type="button" class="link-underline" id="dropHint">Envoyer un indice</button>
+          </div>
+        </div>
+
+        <div class="product-trust-chips" id="pTrustChips" aria-label="Services YZA"></div>
+        <div class="bundle-panel" id="pBundle" hidden></div>
+
+        <div class="accordion product-accordions" id="accordion">
+          <div class="accordion__item is-open">
+            <button class="accordion__btn" aria-expanded="true"><span id="accSizeFitLabel">SIZE & FIT NOTES</span><span class="plus">+</span></button>
+            <div class="accordion__panel" style="max-height:none"><div class="accordion__panel-inner" id="accDetails"></div></div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__btn" aria-expanded="false"><span id="accCareLabel">COMPOSITION AND CARE</span><span class="plus">+</span></button>
+            <div class="accordion__panel"><div class="accordion__panel-inner" id="accCare"></div></div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__btn" aria-expanded="false"><span id="accDeliveryLabel">DELIVERY, EXCHANGES AND RETURNS</span><span class="plus">+</span></button>
+            <div class="accordion__panel"><div class="accordion__panel-inner" id="accShip"></div></div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__btn" aria-expanded="false"><span id="accQuestionsLabel">QUESTIONS</span><span class="plus">+</span></button>
+            <div class="accordion__panel"><div class="accordion__panel-inner" id="accQuestions"></div></div>
+          </div>
+          <div class="accordion__item">
+            <button class="accordion__btn" aria-expanded="false"><span id="accShareLabel">SHARE</span><span class="plus">+</span></button>
+            <div class="accordion__panel"><div class="accordion__panel-inner" id="accShare"></div></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="gallery" aria-label="Product media">
+        <div class="gallery__main" id="galMain"></div>
+        <div class="gallery__thumbs" id="galThumbs"></div>
+      </section>
+    </div>
+
+    <section class="product-rail-section section" style="padding-top:0">
+      <div class="product-rail-block">
+        <div class="product-tabs" role="tablist" aria-label="Product recommendations">
+          <button type="button" class="product-tabs__tab is-active" id="productRailSimilarLabel" data-product-tab="similar">SIMILAR PRODUCTS</button>
+          <button type="button" class="product-tabs__tab" id="productRailAlsoLabel" data-product-tab="also">YOU MAY ALSO LIKE</button>
+        </div>
+        <div class="yza-swiper swiper" id="similarRail"></div>
+      </div>
+    </section>
+
+    <section class="product-support" id="productSupport"></section>
+  </div>
+</main>
+
+<div class="product-mobile-bar" id="mobileProductBar" hidden>
+  <span id="mobileProductBarName">YZA</span>
+  <button class="btn btn--solid" id="mobileProductAdd" type="button">ADD TO BAG</button>
+</div>
+
+  <script defer src="js/products.js"></script>
+  <script defer src="js/media.js"></script>
+  <script defer src="js/i18n.js"></script>
+  <script defer src="js/cart.js"></script>
+  <script defer src="js/chrome.js"></script>
+  <script defer src="js/main.js"></script>
+</body>
+</html>

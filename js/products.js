@@ -1,0 +1,17880 @@
+/* ============================================================
+ YZA - CATALOGUE SS26/27
+ Public product catalogue.
+ ============================================================ */
+window.YZA = window.YZA || {};
+
+YZA.analytics = YZA.analytics || {
+ _queue: [],
+ _eventKey: 'yza_events',
+ _counterKey: 'yza_counters',
+ _sessionKey: 'yza_session_id',
+ _sessionSeenKey: 'yza_session_seen',
+
+ _sessionId() {
+ try {
+ let id = sessionStorage.getItem(this._sessionKey);
+ if (!id) {
+ id = 'sess_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 8);
+ sessionStorage.setItem(this._sessionKey, id);
+ }
+ return id;
+ } catch (err) { return 'session_unavailable'; }
+ },
+
+ _read(key, fallback) {
+ try { return JSON.parse(localStorage.getItem(key)) || fallback; } catch (err) { return fallback; }
+ },
+
+ _write(key, value) {
+ try { localStorage.setItem(key, JSON.stringify(value)); } catch (err) {}
+ },
+
+ _emptyCounters() {
+ return {
+ views_by_handle: {},
+ cart_adds_by_handle: {},
+ most_viewed: [],
+ most_added_to_cart: [],
+ total_sessions: 0,
+ total_page_views: 0,
+ first_seen: '',
+ last_seen: '',
+ sessions: {},
+ funnel_by_handle: {},
+ };
+ },
+
+ _top(obj) {
+ return Object.entries(obj || {})
+ .sort((a, b) => b[1] - a[1])
+ .slice(0, 10)
+ .map(([handle, count]) => ({ handle, count }));
+ },
+
+ _bumpFunnel(counters, handle, field, amount = 1) {
+ if (!handle) return;
+ counters.funnel_by_handle[handle] = counters.funnel_by_handle[handle] || { views: 0, cart_adds: 0, checkouts: 0 };
+ counters.funnel_by_handle[handle][field] = (counters.funnel_by_handle[handle][field] || 0) + amount;
+ },
+
+ _persist(eventName, eventPayload) {
+ const now = eventPayload.timestamp || new Date().toISOString();
+ const events = this._read(this._eventKey, []);
+ events.push({ event: eventName, ...eventPayload, timestamp: now });
+ while (events.length > 5000) events.shift();
+ this._write(this._eventKey, events);
+
+ const counters = { ...this._emptyCounters(), ...this._read(this._counterKey, {}) };
+ counters.views_by_handle = counters.views_by_handle || {};
+ counters.cart_adds_by_handle = counters.cart_adds_by_handle || {};
+ counters.sessions = counters.sessions || {};
+ counters.funnel_by_handle = counters.funnel_by_handle || {};
+ counters.first_seen = counters.first_seen || now;
+ counters.last_seen = now;
+
+ const sid = eventPayload.session_id || this._sessionId();
+ if (!counters.sessions[sid]) {
+ counters.sessions[sid] = { first_seen: now, last_seen: now, page_views: 0, events: 0 };
+ counters.total_sessions = Object.keys(counters.sessions).length;
+ }
+ counters.sessions[sid].last_seen = now;
+ counters.sessions[sid].events = (counters.sessions[sid].events || 0) + 1;
+
+ if (eventName === 'page_view') {
+ counters.total_page_views = (counters.total_page_views || 0) + 1;
+ counters.sessions[sid].page_views = (counters.sessions[sid].page_views || 0) + 1;
+ }
+ if (eventName === 'product_view' && eventPayload.handle) {
+ counters.views_by_handle[eventPayload.handle] = (counters.views_by_handle[eventPayload.handle] || 0) + 1;
+ this._bumpFunnel(counters, eventPayload.handle, 'views');
+ }
+ if (eventName === 'add_to_cart' && eventPayload.handle) {
+ const qty = Number(eventPayload.qty) || 1;
+ counters.cart_adds_by_handle[eventPayload.handle] = (counters.cart_adds_by_handle[eventPayload.handle] || 0) + qty;
+ this._bumpFunnel(counters, eventPayload.handle, 'cart_adds', qty);
+ }
+ if (eventName === 'checkout_initiated' && Array.isArray(eventPayload.items)) {
+ eventPayload.items.forEach((item) => this._bumpFunnel(counters, item.handle, 'checkouts', Number(item.qty) || 1));
+ }
+ counters.most_viewed = this._top(counters.views_by_handle);
+ counters.most_added_to_cart = this._top(counters.cart_adds_by_handle);
+ this._write(this._counterKey, counters);
+ },
+
+ _send(eventName, eventPayload) {
+ try {
+ if (typeof window.plausible === 'function') {
+ window.plausible(eventName, { props: eventPayload });
+ }
+ } catch (err) {}
+ },
+
+ track(eventName, payload = {}) {
+ try {
+ const bodyPage = typeof document !== 'undefined' ? document.body?.dataset?.page : '';
+ const path = typeof location !== 'undefined' ? location.pathname : '';
+ const eventPayload = {
+ page: bodyPage || '',
+ path: path || '',
+ language: YZA.i18n?.lang || document?.documentElement?.lang || 'fr',
+ referrer: typeof document !== 'undefined' ? document.referrer || '' : '',
+ session_id: this._sessionId(),
+ timestamp: new Date().toISOString(),
+ ...payload,
+ };
+ if (typeof document !== 'undefined' && document.prerendering) {
+ this._queue.push([eventName, eventPayload]);
+ return;
+ }
+ this._persist(eventName, eventPayload);
+ this._send(eventName, eventPayload);
+ } catch (err) {}
+ },
+};
+if (typeof document !== 'undefined' && document.prerendering) {
+ document.addEventListener('prerenderingchange', () => {
+ YZA.analytics._queue.splice(0).forEach(([n, p]) => YZA.analytics._send(n, p));
+ }, { once: true });
+}
+
+YZA.brand = {
+ email: 'contact@yza-shop.com',
+ whatsapp: '+212693296630',
+ whatsappDisplay: '+212 693 296 630',
+ instagram: 'yzahandmade',
+ instagramUrl: 'https://instagram.com/yzahandmade',
+ city: 'Marrakech',
+ address: '66 rue Yougoslavie, Guéliz, Marrakech, Maroc',
+ addressShort: '66 rue Yougoslavie, Guéliz',
+ mapsQuery: 'YZA Studio, 66 rue Yougoslavie, Guéliz, Marrakech, Maroc',
+ hours: { fr: 'Lundi 12 h - 16 h · mardi fermé · mercredi - dimanche 12 h - 20 h', en: 'Monday 12 - 4pm · Tuesday closed · Wednesday - Sunday 12 - 8pm' },
+ pickup: { fr: 'Retrait au studio à Guéliz, sur confirmation.', en: 'Studio pickup in Guéliz, on confirmation.' },
+ masterIdea: 'Modern Marrakech wear™',
+};
+
+YZA.servicePolicy = {
+ returnsDays: 30,
+ freeShippingDh: 150000,
+ freeShippingAccessoriesDh: 50000,
+ b2bMoqBags: 10,
+ shipping: { fr: 'Expédition suivie sous 2 à 5 jours ouvrés. Livraison Maroc offerte dès 500 DH (accessoires) ou 1 500 DH (sacs & prêt-à-porter).', en: 'Tracked shipping in 2 to 5 business days. Free Morocco delivery from 500 DH (accessories) or 1,500 DH (bags & ready-to-wear).' },
+ packaging: { fr: "Emballage prêt à offrir, avec étiquette YZA et mot de l\"atelier.", en: "Gift-ready packaging with YZA tag and atelier note." },
+ guarantee: { fr: "Garantie 30 jours : remboursement si la pièce revient non portée, dans son état d\"origine.", en: "30-day guarantee: money back when the unworn piece returns in original condition." },
+ repairs: { fr: "Réparations à vie offertes à l\"atelier de Guéliz. À distance, seuls les frais d\"envoi peuvent s\"appliquer.", en: "Lifetime repairs are free at the Guéliz atelier. For remote repairs, shipping may apply." },
+};
+
+YZA.serviceIcons = {
+ returns: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 8v30"/><path d="m21 27 11 11 11-11"/><path d="M16 14v13M48 14v13"/><path d="M12 46c5.5 5.4 12.5 8 20 8s14.5-2.6 20-8"/><path d="M19 40 12 46l7 6"/><path d="M45 40l7 6-7 6"/></svg>',
+ payment: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 8v48M18 19h28M16 31h32M18 45h28"/><path d="M24 12 12 24M40 12l12 12M24 52 12 40M40 52l12-12"/><path d="M32 28v8"/></svg>',
+ limited: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 8v48M8 32h48"/><path d="m18 18 28 28M46 18 18 46"/><path d="M22 10h20M22 54h20M10 22v20M54 22v20"/><circle cx="32" cy="32" r="5"/></svg>',
+ shipping: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M10 24h30v22H10z"/><path d="M40 31h8l6 7v8H40z"/><circle cx="22" cy="49" r="4"/><circle cx="48" cy="49" r="4"/><path d="M16 18h18M13 31h16"/></svg>',
+ international: '<svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22"/><path d="M10 32h44M32 10c7 6.5 10 14 10 22s-3 15.5-10 22M32 10c-7 6.5-10 14-10 22s3 15.5 10 22"/><path d="M16 21c5 3 10 4 16 4s11-1 16-4M16 43c5-3 10-4 16-4s11 1 16 4"/></svg>',
+ repair: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M19 45 45 19"/><path d="m39 13 12 12"/><path d="m14 50 12-3-9-9z"/><path d="M43 43c5 1 9 4 9 8 0 5-8 8-20 8s-20-3-20-8c0-4 4-7 9-8"/></svg>',
+};
+
+YZA.serviceFeatures = [
+ {
+ key: 'returns',
+ icon: 'returns',
+ title: { fr: "Garantie 30 jours", en: "30-day guarantee", es: "Garantia 30 dias", tr: "30 gun garanti", ar: "ضمان 30 يوما" },
+ text: { fr: "Remboursement si la pièce revient non portée, dans son état d'origine.", en: "Money-back guarantee when the unworn piece returns in original condition.", es: "Reembolso si la pieza vuelve sin usar y en estado original.", tr: "Kullanilmamis parca orijinal durumda donerse para iadesi.", ar: "استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية." },
+ short: { fr: "Retour 30 jours", en: "30-day return", es: "30 dias", tr: "30 gun", ar: "30 يوما" },
+ },
+ {
+ key: 'payment',
+ icon: 'payment',
+ title: { fr: 'Paiement sécurisé', en: 'Secure payment', es: 'Pago seguro', tr: 'Guvenli odeme', ar: 'دفع آمن' },
+ text: { fr: 'Carte bancaire sécurisée ou paiement à la livraison selon disponibilité.', en: 'Secure card payment or cash on delivery where available.', es: 'Tarjeta segura o pago contra entrega segun disponibilidad.', tr: 'Guvenli kart odemesi veya uygun yerlerde kapida odeme.', ar: 'دفع آمن بالبطاقة أو عند الاستلام حسب التوفر.' },
+ short: { fr: 'Paiement sécurisé', en: 'Secure payment', es: 'Pago seguro', tr: 'Guvenli odeme', ar: 'دفع آمن' },
+ },
+ {
+ key: 'limited',
+ icon: 'limited',
+ title: { fr: 'Éditions limitées', en: 'Limited editions', es: 'Ediciones limitadas', tr: 'Sinirli seri', ar: 'إصدارات محدودة' },
+ text: { fr: "Faites lentement à l'atelier. Aucun réassort garanti.", en: 'Made slowly at the atelier. No guaranteed restock.', es: 'Series pequenas hechas lentamente en el atelier. Sin reposicion garantizada.', tr: 'Atolyede yavas uretilen kucuk seriler. Stok yenileme garantisi yok.', ar: 'دفعات صغيرة تصنع ببطء في الأتولييه. لا يوجد إعادة إنتاج مضمونة.' },
+ short: { fr: 'Édition limitée', en: 'Limited edition', es: 'Serie limitada', tr: 'Sinirli', ar: 'محدود' },
+ },
+ {
+ key: 'morocco-delivery',
+ icon: 'shipping',
+ title: { fr: 'Livraison Maroc offerte', en: 'Free Morocco delivery', es: 'Envio Marruecos gratis', tr: 'Fas ici ucretsiz teslimat', ar: 'توصيل مجاني في المغرب' },
+ text: { fr: 'Livraison suivie offerte au Maroc dès 500 DH (accessoires) ou 1 500 DH (sacs & prêt-à-porter). Retrait au studio possible à Guéliz.', en: 'Tracked Morocco delivery is free from 500 DH (accessories) or 1,500 DH (bags & ready-to-wear). Studio pickup available in Guéliz.', es: 'Envio con seguimiento en Marruecos gratis desde 500 DH (accesorios) o 1.500 DH (bolsos y ropa). Retiro en Guéliz.', tr: 'Fas ici takipli teslimat aksesuar icin 500 DH, canta ve giysi icin 1.500 DH uzeri ucretsiz. Guéliz studyo teslimi var.', ar: 'توصيل متتبع مجاني داخل المغرب من 500 درهم (إكسسوارات) أو 1,500 درهم (حقائب وملابس). يمكن الاستلام من كليز.' },
+ short: { fr: 'Offert dès 500 DH', en: 'Free from 500 DH', es: 'Gratis desde 500 DH', tr: '500 DH uzeri', ar: 'من 500 درهم' },
+ },
+ {
+ key: 'international',
+ icon: 'international',
+ title: { fr: 'Expédition internationale', en: 'International shipping', es: 'Envio internacional', tr: 'Uluslararasi teslimat', ar: 'شحن دولي' },
+ text: { fr: 'Envoi suivi depuis Marrakech. Droits et taxes peuvent varier selon le pays.', en: 'Tracked shipping from Marrakech. Duties and taxes may vary by country.', es: 'Envio con seguimiento desde Marrakech. Impuestos pueden variar.', tr: 'Marakes ten takipli gonderim. Vergiler ulkeye gore degisebilir.', ar: 'شحن متتبع من مراكش. الرسوم والضرائب تختلف حسب البلد.' },
+ short: { fr: 'Suivi monde', en: 'Tracked worldwide', es: 'Seguimiento', tr: 'Takipli', ar: 'متتبع' },
+ },
+ {
+ key: 'repairs',
+ icon: 'repair',
+ title: { fr: 'Réparations à vie', en: 'Lifetime repairs', es: 'Reparaciones de por vida', tr: 'Omur boyu tamir', ar: 'تصليحات مدى الحياة' },
+ text: { fr: "À l’atelier, les réparations YZA sont offertes. À distance, seuls les frais d’envoi peuvent s’appliquer.", en: "YZA repairs are free at the atelier. For remote repairs, shipping may apply.", es: 'Las reparaciones YZA son gratis en el atelier. A distancia puede aplicar envio.', tr: 'YZA tamirleri atolyede ucretsizdir. Uzaktan gonderim ucreti uygulanabilir.', ar: 'تصليحات YZA مجانية في الأتولييه. عن بعد قد تطبق مصاريف الشحن.' },
+ short: { fr: 'Réparations à vie', en: 'Lifetime repairs', es: 'Reparaciones', tr: 'Omur boyu tamir', ar: 'تصليحات مدى الحياة' },
+ },
+];
+
+YZA.serviceFeature = (key) => (YZA.serviceFeatures || []).find((item) => item.key === key);
+
+YZA.pickText = (value) => {
+ if (!value) return '';
+ if (typeof value === 'string') return value;
+ if (YZA.i18n && typeof YZA.i18n.pick === 'function') return YZA.i18n.pick(value);
+ return value.fr || value.en || Object.values(value)[0] || '';
+};
+
+// Berber/Amazigh symbol set (hand-keyed PNGs matching the brand-values strip), one per service.
+YZA.serviceIconFiles = { returns: 'svc-returns', payment: 'svc-payment', limited: 'svc-limited', shipping: 'svc-delivery', international: 'svc-international', repair: 'svc-repair' };
+YZA.serviceIcon = (name, className = 'service-symbol') => {
+ const file = YZA.serviceIconFiles[name] || 'svc-limited';
+ return `<img aria-hidden="true" class="${className}" src="assets/brand/icons/${file}.png" alt="" width="88" height="88" loading="lazy" decoding="async">`;
+};
+
+YZA.serviceCard = (key, className = 'service-card') => {
+ const item = YZA.serviceFeature(key);
+ if (!item) return '';
+ const classes = Array.from(new Set(['service-card', ...String(className).split(/\s+/).filter(Boolean)])).join(' ');
+ const iconSvg = YZA.serviceIcons[item.icon] || YZA.serviceIcons.limited || '';
+ return `<article class="${classes}" data-service-card="${item.key}">
+ <span class="service-card__icon">${iconSvg}</span>
+ <h3>${YZA.pickText(item.title)}</h3>
+ <p>${YZA.pickText(item.text)}</p>
+ </article>`;
+};
+
+YZA.serviceChip = (key) => {
+ const item = YZA.serviceFeature(key);
+ if (!item) return '';
+ return `<span class="product-trust-chip" data-service-chip="${item.key}">
+ ${YZA.serviceIcon(item.icon, 'product-trust-chip__icon')}
+ <span>${YZA.pickText(item.short || item.title)}</span>
+ </span>`;
+};
+
+YZA.serviceLongText = () => {
+ const parts = ['morocco-delivery', 'international', 'returns', 'repairs'].map((key) => {
+ const item = YZA.serviceFeature(key);
+ return item ? `<p><strong>${YZA.pickText(item.title)}.</strong> ${YZA.pickText(item.text)}</p>` : '';
+ }).filter(Boolean);
+ return `<div class="service-long-copy">${parts.join('')}</div>`;
+};
+
+const PRODUCTS = [
+ {
+ "handle": "yza-scarf-top-jawhara-ss26",
+ "legacyHandles": [],
+ "sku": "T-FL-JWP-BL",
+ "name": {
+ "fr": "Top foulard Jawhara",
+ "en": "YZA Scarf Top",
+ "es": "YZA Scarf Top",
+ "tr": "YZA Scarf Top",
+ "ar": "YZA Scarf Top"
+ },
+ "displayName": {
+ "fr": "Top foulard Jawhara",
+ "en": "YZA Scarf Top",
+ "es": "YZA Scarf Top",
+ "tr": "YZA Scarf Top",
+ "ar": "YZA Scarf Top"
+ },
+ "short": {
+ "fr": "Top foulard Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "en": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels.",
+ "es": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels.",
+ "tr": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels.",
+ "ar": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels."
+ },
+ "displayShort": {
+ "fr": "Top foulard Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "en": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels.",
+ "es": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels.",
+ "tr": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels.",
+ "ar": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels."
+ },
+ "desc": {
+ "fr": "Top foulard Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "en": "The YZA Scarf Top is part of the Resort Marrakesh Wear line: a modern Marrakchi wardrobe designed from Jawhara, a striped textile associated with eastern formalwear and reimagined for summer movement. Pair it with the pareo skirt, palazzo pants, wrap pants or basket bags.",
+ "es": "The YZA Scarf Top is part of the Resort Marrakesh Wear line: a modern Marrakchi wardrobe designed from Jawhara, a striped textile associated with eastern formalwear and reimagined for summer movement. Pair it with the pareo skirt, palazzo pants, wrap pants or basket bags.",
+ "tr": "The YZA Scarf Top is part of the Resort Marrakesh Wear line: a modern Marrakchi wardrobe designed from Jawhara, a striped textile associated with eastern formalwear and reimagined for summer movement. Pair it with the pareo skirt, palazzo pants, wrap pants or basket bags.",
+ "ar": "The YZA Scarf Top is part of the Resort Marrakesh Wear line: a modern Marrakchi wardrobe designed from Jawhara, a striped textile associated with eastern formalwear and reimagined for summer movement. Pair it with the pareo skirt, palazzo pants, wrap pants or basket bags."
+ },
+ "price": 36000,
+ "currency": "MAD",
+ "category": "tops",
+ "sourceCategory": "Pairing Tops",
+ "categoryLabel": {
+ "fr": "Tops",
+ "en": "Tops",
+ "es": "Tops",
+ "tr": "Tops",
+ "ar": "Tops"
+ },
+ "group": "rtw",
+ "collection": {
+ "fr": "Resort Marrakech Wear",
+ "en": "Resort Marrakech Wear",
+ "es": "Resort Marrakech Wear",
+ "tr": "Resort Marrakech Wear",
+ "ar": "Resort Marrakech Wear"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/lookbook-ss26-27/embedded/p30_img02_xref1220_f762d6e64853.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p30_img02_xref1220_f762d6e64853.jpeg",
+ "assets/lookbook-ss26-27/embedded/p31_img02_xref1227_829199726349.jpeg",
+ "assets/lookbook-ss26-27/embedded/p32_img04_xref1239_3935f6e23a7c.jpeg"
+ ],
+ "familyHandle": "jawhara-tops",
+ "familyOrder": 1,
+ "variantLabel": {
+ "fr": "Foulard",
+ "en": "Scarf",
+ "es": "Scarf",
+ "tr": "Scarf",
+ "ar": "Scarf"
+ },
+ "availableColors": [
+ {
+ "fr": "Blanc",
+ "en": "Blanc",
+ "es": "Blanc",
+ "tr": "Blanc",
+ "ar": "Blanc"
+ },
+ {
+ "fr": "Noir",
+ "en": "Noir",
+ "es": "Noir",
+ "tr": "Noir",
+ "ar": "Noir"
+ },
+ {
+ "fr": "Jaune moutarde",
+ "en": "Jaune moutarde",
+ "es": "Jaune moutarde",
+ "tr": "Jaune moutarde",
+ "ar": "Jaune moutarde"
+ },
+ {
+ "fr": "Vert",
+ "en": "Vert",
+ "es": "Vert",
+ "tr": "Vert",
+ "ar": "Vert"
+ },
+ {
+ "fr": "Rose vieux",
+ "en": "Rose vieux",
+ "es": "Rose vieux",
+ "tr": "Rose vieux",
+ "ar": "Rose vieux"
+ },
+ {
+ "fr": "Rouge",
+ "en": "Rouge",
+ "es": "Rouge",
+ "tr": "Rouge",
+ "ar": "Rouge"
+ },
+ {
+ "fr": "Bordeaux",
+ "en": "Bordeaux",
+ "es": "Bordeaux",
+ "tr": "Bordeaux",
+ "ar": "Bordeaux"
+ },
+ {
+ "fr": "Bleu majorelle",
+ "en": "Bleu majorelle",
+ "es": "Bleu majorelle",
+ "tr": "Bleu majorelle",
+ "ar": "Bleu majorelle"
+ },
+ {
+ "fr": "Vert profond",
+ "en": "Vert profond",
+ "es": "Vert profond",
+ "tr": "Vert profond",
+ "ar": "Vert profond"
+ }
+ ],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-BL",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-NR",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-JM",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-VR",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-RV",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-RG",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-BD",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-BLU",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-VP",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ }
+ ],
+ "variantCount": 9,
+ "variant_count_from_xlsx_catalog": 9,
+ "tags": [
+ "SS26",
+ "Resort Wear",
+ "Jawhara",
+ "Scarf top",
+ "Handmade detail",
+ "Marrakech"
+ ],
+ "seoTitle": "YZA Scarf Top - Jawhara Resort Wear Handmade in Marrakech",
+ "seoKeywords": [
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Resort Marrakesh Wear",
+ "Top foulard Jawhara",
+ "YZA",
+ "YZA Scarf Top",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pareo",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "tops",
+ "wear",
+ "yza-scarf-top-jawhara-ss26"
+ ],
+ "languageSearchTerms": [
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Resort Marrakesh Wear",
+ "Top foulard Jawhara",
+ "YZA",
+ "YZA Scarf Top",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pareo",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "tops",
+ "wear",
+ "yza-scarf-top-jawhara-ss26"
+ ],
+ "material": {
+ "fr": "Jawhara poly & silk, details faits main",
+ "en": "Jawhara poly & silk with handmade details",
+ "es": "Jawhara poly & silk with handmade details",
+ "tr": "Jawhara poly & silk with handmade details",
+ "ar": "Jawhara poly & silk with handmade details"
+ },
+ "fabric": {
+ "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ },
+ "color": null,
+ "size": {
+ "fr": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
+ "en": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
+ "es": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
+ "tr": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
+ "ar": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements"
+ },
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
+ "en": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
+ "es": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
+ "tr": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
+ "ar": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements"
+ },
+ "whatFits": null,
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "en": "Cut, finishing and Jawhara details checked by hand.",
+ "es": "Cut, finishing and Jawhara details checked by hand.",
+ "tr": "Cut, finishing and Jawhara details checked by hand.",
+ "ar": "Cut, finishing and Jawhara details checked by hand."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ },
+ "care": {
+ "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "edition": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "badge": "limited",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "raffia-cherries-charm-ss26",
+ "yza-pareo-skirt-short-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "yza-bateau-top-jawhara-ss26",
+ "legacyHandles": [],
+ "sku": "T-CB-JWP-BL",
+ "name": {
+ "fr": "Top bateau Jawhara",
+ "en": "YZA Bateau Top",
+ "es": "YZA Bateau Top",
+ "tr": "YZA Bateau Top",
+ "ar": "YZA Bateau Top"
+ },
+ "displayName": {
+ "fr": "Top bateau Jawhara",
+ "en": "YZA Bateau Top",
+ "es": "YZA Bateau Top",
+ "tr": "YZA Bateau Top",
+ "ar": "YZA Bateau Top"
+ },
+ "short": {
+ "fr": "Top bateau Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "en": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading.",
+ "es": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading.",
+ "tr": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading.",
+ "ar": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading."
+ },
+ "displayShort": {
+ "fr": "Top bateau Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "en": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading.",
+ "es": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading.",
+ "tr": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading.",
+ "ar": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading."
+ },
+ "desc": {
+ "fr": "Top bateau Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "en": "The YZA Bateau Top is part of the Resort Marrakesh Wear line. Made in Jawhara, a striped textile traditionally associated with formalwear, it translates local wardrobe codes into a modern, size-flexible summer piece.",
+ "es": "The YZA Bateau Top is part of the Resort Marrakesh Wear line. Made in Jawhara, a striped textile traditionally associated with formalwear, it translates local wardrobe codes into a modern, size-flexible summer piece.",
+ "tr": "The YZA Bateau Top is part of the Resort Marrakesh Wear line. Made in Jawhara, a striped textile traditionally associated with formalwear, it translates local wardrobe codes into a modern, size-flexible summer piece.",
+ "ar": "The YZA Bateau Top is part of the Resort Marrakesh Wear line. Made in Jawhara, a striped textile traditionally associated with formalwear, it translates local wardrobe codes into a modern, size-flexible summer piece."
+ },
+ "price": 55000,
+ "currency": "MAD",
+ "category": "tops",
+ "sourceCategory": "Pairing Tops",
+ "categoryLabel": {
+ "fr": "Tops",
+ "en": "Tops",
+ "es": "Tops",
+ "tr": "Tops",
+ "ar": "Tops"
+ },
+ "group": "rtw",
+ "collection": {
+ "fr": "Resort Marrakech Wear",
+ "en": "Resort Marrakech Wear",
+ "es": "Resort Marrakech Wear",
+ "tr": "Resort Marrakech Wear",
+ "ar": "Resort Marrakech Wear"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/lookbook-ss26-27/embedded/p29_img04_xref1215_ea0a78123e7b.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p29_img04_xref1215_ea0a78123e7b.jpeg",
+ "assets/lookbook-ss26-27/embedded/p29_img03_xref1214_6b93fb974a48.jpeg"
+ ],
+ "familyHandle": "jawhara-tops",
+ "familyOrder": 2,
+ "variantLabel": {
+ "fr": "Bateau",
+ "en": "Bateau",
+ "es": "Bateau",
+ "tr": "Bateau",
+ "ar": "Bateau"
+ },
+ "availableColors": [
+ {
+ "fr": "Blanc",
+ "en": "Blanc",
+ "es": "Blanc",
+ "tr": "Blanc",
+ "ar": "Blanc"
+ },
+ {
+ "fr": "Noir",
+ "en": "Noir",
+ "es": "Noir",
+ "tr": "Noir",
+ "ar": "Noir"
+ },
+ {
+ "fr": "Jaune moutarde",
+ "en": "Jaune moutarde",
+ "es": "Jaune moutarde",
+ "tr": "Jaune moutarde",
+ "ar": "Jaune moutarde"
+ },
+ {
+ "fr": "Vert",
+ "en": "Vert",
+ "es": "Vert",
+ "tr": "Vert",
+ "ar": "Vert"
+ },
+ {
+ "fr": "Rose vieux",
+ "en": "Rose vieux",
+ "es": "Rose vieux",
+ "tr": "Rose vieux",
+ "ar": "Rose vieux"
+ },
+ {
+ "fr": "Rouge",
+ "en": "Rouge",
+ "es": "Rouge",
+ "tr": "Rouge",
+ "ar": "Rouge"
+ },
+ {
+ "fr": "Bordeaux",
+ "en": "Bordeaux",
+ "es": "Bordeaux",
+ "tr": "Bordeaux",
+ "ar": "Bordeaux"
+ },
+ {
+ "fr": "Bleu majorelle",
+ "en": "Bleu majorelle",
+ "es": "Bleu majorelle",
+ "tr": "Bleu majorelle",
+ "ar": "Bleu majorelle"
+ },
+ {
+ "fr": "Vert profond",
+ "en": "Vert profond",
+ "es": "Vert profond",
+ "tr": "Vert profond",
+ "ar": "Vert profond"
+ }
+ ],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-BL",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-NR",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-JM",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-VR",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-RV",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-RG",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-BD",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-BLU",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-VP",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ }
+ ],
+ "variantCount": 9,
+ "variant_count_from_xlsx_catalog": 9,
+ "tags": [
+ "SS26",
+ "Resort Wear",
+ "Jawhara",
+ "Bateau top",
+ "Amazigh beading",
+ "Marrakech"
+ ],
+ "seoTitle": "YZA Bateau Top - Jawhara Resort Wear Handmade in Marrakech",
+ "seoKeywords": [
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Resort Marrakesh Wear",
+ "Top bateau Jawhara",
+ "YZA",
+ "YZA Bateau Top",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pareo",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "tops",
+ "wear",
+ "yza-bateau-top-jawhara-ss26"
+ ],
+ "languageSearchTerms": [
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Resort Marrakesh Wear",
+ "Top bateau Jawhara",
+ "YZA",
+ "YZA Bateau Top",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pareo",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "tops",
+ "wear",
+ "yza-bateau-top-jawhara-ss26"
+ ],
+ "material": {
+ "fr": "Jawhara poly & silk, details faits main",
+ "en": "Jawhara poly & silk with handmade details",
+ "es": "Jawhara poly & silk with handmade details",
+ "tr": "Jawhara poly & silk with handmade details",
+ "ar": "Jawhara poly & silk with handmade details"
+ },
+ "fabric": {
+ "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ },
+ "color": null,
+ "size": {
+ "fr": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
+ "en": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
+ "es": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
+ "tr": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
+ "ar": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements"
+ },
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
+ "en": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
+ "es": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
+ "tr": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
+ "ar": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements"
+ },
+ "whatFits": null,
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "en": "Cut, finishing and Jawhara details checked by hand.",
+ "es": "Cut, finishing and Jawhara details checked by hand.",
+ "tr": "Cut, finishing and Jawhara details checked by hand.",
+ "ar": "Cut, finishing and Jawhara details checked by hand."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ },
+ "care": {
+ "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "edition": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "badge": "limited",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "raffia-cherries-charm-ss26",
+ "yza-pareo-skirt-short-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "yza-button-up-shirt-jawhara-ss26",
+ "legacyHandles": [],
+ "sku": "T-CH-S-JWP-BL",
+ "name": {
+ "fr": "Chemise Jawhara",
+ "en": "YZA Button-Up Shirt",
+ "es": "YZA Button-Up Shirt",
+ "tr": "YZA Button-Up Shirt",
+ "ar": "YZA Button-Up Shirt"
+ },
+ "displayName": {
+ "fr": "Chemise Jawhara",
+ "en": "YZA Button-Up Shirt",
+ "es": "YZA Button-Up Shirt",
+ "tr": "YZA Button-Up Shirt",
+ "ar": "YZA Button-Up Shirt"
+ },
+ "short": {
+ "fr": "Chemise Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "en": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading.",
+ "es": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading.",
+ "tr": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading.",
+ "ar": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading."
+ },
+ "displayShort": {
+ "fr": "Chemise Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "en": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading.",
+ "es": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading.",
+ "tr": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading.",
+ "ar": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading."
+ },
+ "desc": {
+ "fr": "Chemise Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "en": "The YZA Button-Up Shirt reworks Jawhara fabric into a modern Marrakchi wardrobe staple. It belongs to the Resort Marrakesh Wear family and is designed to pair with YZA pareo skirts, palazzo pants, wrap pants and basket bags.",
+ "es": "The YZA Button-Up Shirt reworks Jawhara fabric into a modern Marrakchi wardrobe staple. It belongs to the Resort Marrakesh Wear family and is designed to pair with YZA pareo skirts, palazzo pants, wrap pants and basket bags.",
+ "tr": "The YZA Button-Up Shirt reworks Jawhara fabric into a modern Marrakchi wardrobe staple. It belongs to the Resort Marrakesh Wear family and is designed to pair with YZA pareo skirts, palazzo pants, wrap pants and basket bags.",
+ "ar": "The YZA Button-Up Shirt reworks Jawhara fabric into a modern Marrakchi wardrobe staple. It belongs to the Resort Marrakesh Wear family and is designed to pair with YZA pareo skirts, palazzo pants, wrap pants and basket bags."
+ },
+ "price": 88000,
+ "currency": "MAD",
+ "category": "tops",
+ "sourceCategory": "Pairing Tops",
+ "categoryLabel": {
+ "fr": "Tops",
+ "en": "Tops",
+ "es": "Tops",
+ "tr": "Tops",
+ "ar": "Tops"
+ },
+ "group": "rtw",
+ "collection": {
+ "fr": "Resort Marrakech Wear",
+ "en": "Resort Marrakech Wear",
+ "es": "Resort Marrakech Wear",
+ "tr": "Resort Marrakech Wear",
+ "ar": "Resort Marrakech Wear"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/lookbook-ss26-27/embedded/p30_img03_xref1221_6a80517bd62a.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p30_img03_xref1221_6a80517bd62a.jpeg",
+ "assets/lookbook-ss26-27/embedded/p30_img01_xref1219_8b2d1136309d.jpeg",
+ "assets/lookbook-ss26-27/embedded/p29_img01_xref1212_d56a9ef89119.jpeg"
+ ],
+ "familyHandle": "jawhara-tops",
+ "familyOrder": 3,
+ "variantLabel": {
+ "fr": "Chemise S/M/L",
+ "en": "Shirt S/M/L",
+ "es": "Shirt S/M/L",
+ "tr": "Shirt S/M/L",
+ "ar": "Shirt S/M/L"
+ },
+ "availableColors": [
+ {
+ "fr": "Blanc",
+ "en": "Blanc",
+ "es": "Blanc",
+ "tr": "Blanc",
+ "ar": "Blanc"
+ },
+ {
+ "fr": "Noir",
+ "en": "Noir",
+ "es": "Noir",
+ "tr": "Noir",
+ "ar": "Noir"
+ },
+ {
+ "fr": "Jaune moutarde",
+ "en": "Jaune moutarde",
+ "es": "Jaune moutarde",
+ "tr": "Jaune moutarde",
+ "ar": "Jaune moutarde"
+ },
+ {
+ "fr": "Vert",
+ "en": "Vert",
+ "es": "Vert",
+ "tr": "Vert",
+ "ar": "Vert"
+ },
+ {
+ "fr": "Rose vieux",
+ "en": "Rose vieux",
+ "es": "Rose vieux",
+ "tr": "Rose vieux",
+ "ar": "Rose vieux"
+ },
+ {
+ "fr": "Rouge",
+ "en": "Rouge",
+ "es": "Rouge",
+ "tr": "Rouge",
+ "ar": "Rouge"
+ },
+ {
+ "fr": "Bordeaux",
+ "en": "Bordeaux",
+ "es": "Bordeaux",
+ "tr": "Bordeaux",
+ "ar": "Bordeaux"
+ },
+ {
+ "fr": "Bleu majorelle",
+ "en": "Bleu majorelle",
+ "es": "Bleu majorelle",
+ "tr": "Bleu majorelle",
+ "ar": "Bleu majorelle"
+ },
+ {
+ "fr": "Vert profond",
+ "en": "Vert profond",
+ "es": "Vert profond",
+ "tr": "Vert profond",
+ "ar": "Vert profond"
+ }
+ ],
+ "availableSizes": [
+ "S",
+ "M",
+ "L"
+ ],
+ "variants": [
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-BL",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-BL",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-BL",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-NR",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-NR",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-NR",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-JM",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-JM",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-JM",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-VR",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-VR",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-VR",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-RV",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-RV",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-RV",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-RG",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-RG",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-RG",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-BD",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-BD",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-BD",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-BLU",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-BLU",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-BLU",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-VP",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-VP",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-VP",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ }
+ ],
+ "variantCount": 27,
+ "variant_count_from_xlsx_catalog": 27,
+ "tags": [
+ "SS26",
+ "Resort Wear",
+ "Jawhara",
+ "Button up shirt",
+ "Amazigh beading",
+ "Marrakech"
+ ],
+ "seoTitle": "YZA Button-Up Shirt - Jawhara Resort Wear Handmade in Marrakech",
+ "seoKeywords": [
+ "Chemise Jawhara",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Resort Marrakesh Wear",
+ "YZA",
+ "YZA Button-Up Shirt",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pareo",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "tops",
+ "wear",
+ "yza-button-up-shirt-jawhara-ss26"
+ ],
+ "languageSearchTerms": [
+ "Chemise Jawhara",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Resort Marrakesh Wear",
+ "YZA",
+ "YZA Button-Up Shirt",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pareo",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "tops",
+ "wear",
+ "yza-button-up-shirt-jawhara-ss26"
+ ],
+ "material": {
+ "fr": "Jawhara poly & silk, details faits main",
+ "en": "Jawhara poly & silk with handmade details",
+ "es": "Jawhara poly & silk with handmade details",
+ "tr": "Jawhara poly & silk with handmade details",
+ "ar": "Jawhara poly & silk with handmade details"
+ },
+ "fabric": {
+ "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ },
+ "color": null,
+ "size": {
+ "fr": "S / M / L",
+ "en": "S / M / L",
+ "es": "S / M / L",
+ "tr": "S / M / L",
+ "ar": "S / M / L"
+ },
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "S / M / L",
+ "en": "S / M / L",
+ "es": "S / M / L",
+ "tr": "S / M / L",
+ "ar": "S / M / L"
+ },
+ "whatFits": null,
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "en": "Cut, finishing and Jawhara details checked by hand.",
+ "es": "Cut, finishing and Jawhara details checked by hand.",
+ "tr": "Cut, finishing and Jawhara details checked by hand.",
+ "ar": "Cut, finishing and Jawhara details checked by hand."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ },
+ "care": {
+ "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "edition": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "badge": "limited",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "raffia-cherries-charm-ss26",
+ "yza-pareo-skirt-short-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "legacyHandles": [
+ "pareo-short"
+ ],
+ "sku": "B-JPC-JWP-BL",
+ "name": {
+ "fr": "Jupe pareo courte Jawhara",
+ "en": "YZA Pareo Skirt - Short",
+ "es": "YZA Pareo Skirt - Short",
+ "tr": "YZA Pareo Skirt - Short",
+ "ar": "YZA Pareo Skirt - Short"
+ },
+ "displayName": {
+ "fr": "Jupe pareo courte Jawhara",
+ "en": "YZA Pareo Skirt - Short",
+ "es": "YZA Pareo Skirt - Short",
+ "tr": "YZA Pareo Skirt - Short",
+ "ar": "YZA Pareo Skirt - Short"
+ },
+ "short": {
+ "fr": "Jupe pareo courte Jawhara, taille libre XS a XXL.",
+ "en": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "es": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "tr": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "ar": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ },
+ "displayShort": {
+ "fr": "Jupe pareo courte Jawhara, taille libre XS a XXL.",
+ "en": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "es": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "tr": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "ar": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ },
+ "desc": {
+ "fr": "Jupe pareo courte Jawhara, taille libre XS a XXL.",
+ "en": "The YZA Pareo Skirt is a size-free Resort Marrakesh Wear piece made in Jawhara, a striped textile traditionally used in formalwear. The short length is designed for movement from seaside days to summer nights out.",
+ "es": "The YZA Pareo Skirt is a size-free Resort Marrakesh Wear piece made in Jawhara, a striped textile traditionally used in formalwear. The short length is designed for movement from seaside days to summer nights out.",
+ "tr": "The YZA Pareo Skirt is a size-free Resort Marrakesh Wear piece made in Jawhara, a striped textile traditionally used in formalwear. The short length is designed for movement from seaside days to summer nights out.",
+ "ar": "The YZA Pareo Skirt is a size-free Resort Marrakesh Wear piece made in Jawhara, a striped textile traditionally used in formalwear. The short length is designed for movement from seaside days to summer nights out."
+ },
+ "price": 44000,
+ "currency": "MAD",
+ "category": "pareos",
+ "sourceCategory": "Pareo Skirts",
+ "categoryLabel": {
+ "fr": "Pareos",
+ "en": "Pareos",
+ "es": "Pareos",
+ "tr": "Pareos",
+ "ar": "Pareos"
+ },
+ "group": "rtw",
+ "collection": {
+ "fr": "Resort Marrakech Wear",
+ "en": "Resort Marrakech Wear",
+ "es": "Resort Marrakech Wear",
+ "tr": "Resort Marrakech Wear",
+ "ar": "Resort Marrakech Wear"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/lookbook-ss26-27/embedded/p30_img01_xref1219_8b2d1136309d.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p30_img01_xref1219_8b2d1136309d.jpeg",
+ "assets/lookbook-ss26-27/embedded/p29_img04_xref1215_ea0a78123e7b.jpeg"
+ ],
+ "familyHandle": "jawhara-pareos",
+ "familyOrder": 1,
+ "variantLabel": {
+ "fr": "Courte",
+ "en": "Short",
+ "es": "Short",
+ "tr": "Short",
+ "ar": "Short"
+ },
+ "availableColors": [
+ {
+ "fr": "Blanc",
+ "en": "Blanc",
+ "es": "Blanc",
+ "tr": "Blanc",
+ "ar": "Blanc"
+ },
+ {
+ "fr": "Noir",
+ "en": "Noir",
+ "es": "Noir",
+ "tr": "Noir",
+ "ar": "Noir"
+ },
+ {
+ "fr": "Jaune moutarde",
+ "en": "Jaune moutarde",
+ "es": "Jaune moutarde",
+ "tr": "Jaune moutarde",
+ "ar": "Jaune moutarde"
+ },
+ {
+ "fr": "Vert",
+ "en": "Vert",
+ "es": "Vert",
+ "tr": "Vert",
+ "ar": "Vert"
+ },
+ {
+ "fr": "Rose vieux",
+ "en": "Rose vieux",
+ "es": "Rose vieux",
+ "tr": "Rose vieux",
+ "ar": "Rose vieux"
+ },
+ {
+ "fr": "Rouge",
+ "en": "Rouge",
+ "es": "Rouge",
+ "tr": "Rouge",
+ "ar": "Rouge"
+ },
+ {
+ "fr": "Bordeaux",
+ "en": "Bordeaux",
+ "es": "Bordeaux",
+ "tr": "Bordeaux",
+ "ar": "Bordeaux"
+ },
+ {
+ "fr": "Bleu majorelle",
+ "en": "Bleu majorelle",
+ "es": "Bleu majorelle",
+ "tr": "Bleu majorelle",
+ "ar": "Bleu majorelle"
+ },
+ {
+ "fr": "Vert profond",
+ "en": "Vert profond",
+ "es": "Vert profond",
+ "tr": "Vert profond",
+ "ar": "Vert profond"
+ }
+ ],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-BL",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-NR",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-JM",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-VR",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-RV",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-RG",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-BD",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-BLU",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-VP",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ }
+ ],
+ "variantCount": 9,
+ "variant_count_from_xlsx_catalog": 9,
+ "tags": [
+ "SS26",
+ "Resort Wear",
+ "Jawhara",
+ "Pareo skirt",
+ "Short",
+ "Size free",
+ "Amazigh beading"
+ ],
+ "seoTitle": "YZA Pareo Skirt Short - Jawhara Resort Wear Handmade in Marrakech",
+ "seoKeywords": [
+ "Guéliz",
+ "Guéliz",
+ "Jupe pareo courte Jawhara",
+ "Marrakech",
+ "Marrakesh",
+ "Resort Marrakesh Wear",
+ "YZA",
+ "YZA Pareo Skirt - Short",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pareo",
+ "pareos",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "wear",
+ "yza-pareo-skirt-short-jawhara-ss26"
+ ],
+ "languageSearchTerms": [
+ "Guéliz",
+ "Guéliz",
+ "Jupe pareo courte Jawhara",
+ "Marrakech",
+ "Marrakesh",
+ "Resort Marrakesh Wear",
+ "YZA",
+ "YZA Pareo Skirt - Short",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pareo",
+ "pareos",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "wear",
+ "yza-pareo-skirt-short-jawhara-ss26"
+ ],
+ "material": {
+ "fr": "Jawhara poly & silk, details faits main",
+ "en": "Jawhara poly & silk with handmade details",
+ "es": "Jawhara poly & silk with handmade details",
+ "tr": "Jawhara poly & silk with handmade details",
+ "ar": "Jawhara poly & silk with handmade details"
+ },
+ "fabric": {
+ "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ },
+ "color": null,
+ "size": {
+ "fr": "Size free, fits XS to XXL",
+ "en": "Size free, fits XS to XXL",
+ "es": "Size free, fits XS to XXL",
+ "tr": "Size free, fits XS to XXL",
+ "ar": "Size free, fits XS to XXL"
+ },
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Size free, fits XS to XXL",
+ "en": "Size free, fits XS to XXL",
+ "es": "Size free, fits XS to XXL",
+ "tr": "Size free, fits XS to XXL",
+ "ar": "Size free, fits XS to XXL"
+ },
+ "whatFits": null,
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "en": "Cut, finishing and Jawhara details checked by hand.",
+ "es": "Cut, finishing and Jawhara details checked by hand.",
+ "tr": "Cut, finishing and Jawhara details checked by hand.",
+ "ar": "Cut, finishing and Jawhara details checked by hand."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ },
+ "care": {
+ "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "edition": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "badge": "limited",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "raffia-cherries-charm-ss26",
+ "yza-scarf-top-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "legacyHandles": [
+ "pareo-midi"
+ ],
+ "sku": "B-JPM-JWP-BL",
+ "name": {
+ "fr": "Jupe pareo midi Jawhara",
+ "en": "YZA Pareo Skirt - Midi",
+ "es": "YZA Pareo Skirt - Midi",
+ "tr": "YZA Pareo Skirt - Midi",
+ "ar": "YZA Pareo Skirt - Midi"
+ },
+ "displayName": {
+ "fr": "Jupe pareo midi Jawhara",
+ "en": "YZA Pareo Skirt - Midi",
+ "es": "YZA Pareo Skirt - Midi",
+ "tr": "YZA Pareo Skirt - Midi",
+ "ar": "YZA Pareo Skirt - Midi"
+ },
+ "short": {
+ "fr": "Jupe pareo midi Jawhara, taille libre XS a XXL.",
+ "en": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "es": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "tr": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "ar": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ },
+ "displayShort": {
+ "fr": "Jupe pareo midi Jawhara, taille libre XS a XXL.",
+ "en": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "es": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "tr": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "ar": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ },
+ "desc": {
+ "fr": "Jupe pareo midi Jawhara, taille libre XS a XXL.",
+ "en": "The YZA Pareo Skirt in midi length is part of the Resort Marrakesh Wear wardrobe: modular, timeless and designed to move through life with you. Made in Jawhara and finished with handmade Amazigh letter beading.",
+ "es": "The YZA Pareo Skirt in midi length is part of the Resort Marrakesh Wear wardrobe: modular, timeless and designed to move through life with you. Made in Jawhara and finished with handmade Amazigh letter beading.",
+ "tr": "The YZA Pareo Skirt in midi length is part of the Resort Marrakesh Wear wardrobe: modular, timeless and designed to move through life with you. Made in Jawhara and finished with handmade Amazigh letter beading.",
+ "ar": "The YZA Pareo Skirt in midi length is part of the Resort Marrakesh Wear wardrobe: modular, timeless and designed to move through life with you. Made in Jawhara and finished with handmade Amazigh letter beading."
+ },
+ "price": 51000,
+ "currency": "MAD",
+ "category": "pareos",
+ "sourceCategory": "Pareo Skirts",
+ "categoryLabel": {
+ "fr": "Pareos",
+ "en": "Pareos",
+ "es": "Pareos",
+ "tr": "Pareos",
+ "ar": "Pareos"
+ },
+ "group": "rtw",
+ "collection": {
+ "fr": "Resort Marrakech Wear",
+ "en": "Resort Marrakech Wear",
+ "es": "Resort Marrakech Wear",
+ "tr": "Resort Marrakech Wear",
+ "ar": "Resort Marrakech Wear"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/lookbook-ss26-27/embedded/p29_img01_xref1212_d56a9ef89119.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p29_img01_xref1212_d56a9ef89119.jpeg",
+ "assets/lookbook-ss26-27/embedded/p29_img04_xref1215_ea0a78123e7b.jpeg"
+ ],
+ "familyHandle": "jawhara-pareos",
+ "familyOrder": 2,
+ "variantLabel": {
+ "fr": "Midi",
+ "en": "Midi",
+ "es": "Midi",
+ "tr": "Midi",
+ "ar": "Midi"
+ },
+ "availableColors": [
+ {
+ "fr": "Blanc",
+ "en": "Blanc",
+ "es": "Blanc",
+ "tr": "Blanc",
+ "ar": "Blanc"
+ },
+ {
+ "fr": "Noir",
+ "en": "Noir",
+ "es": "Noir",
+ "tr": "Noir",
+ "ar": "Noir"
+ },
+ {
+ "fr": "Jaune moutarde",
+ "en": "Jaune moutarde",
+ "es": "Jaune moutarde",
+ "tr": "Jaune moutarde",
+ "ar": "Jaune moutarde"
+ },
+ {
+ "fr": "Vert",
+ "en": "Vert",
+ "es": "Vert",
+ "tr": "Vert",
+ "ar": "Vert"
+ },
+ {
+ "fr": "Rose vieux",
+ "en": "Rose vieux",
+ "es": "Rose vieux",
+ "tr": "Rose vieux",
+ "ar": "Rose vieux"
+ },
+ {
+ "fr": "Rouge",
+ "en": "Rouge",
+ "es": "Rouge",
+ "tr": "Rouge",
+ "ar": "Rouge"
+ },
+ {
+ "fr": "Bordeaux",
+ "en": "Bordeaux",
+ "es": "Bordeaux",
+ "tr": "Bordeaux",
+ "ar": "Bordeaux"
+ },
+ {
+ "fr": "Bleu majorelle",
+ "en": "Bleu majorelle",
+ "es": "Bleu majorelle",
+ "tr": "Bleu majorelle",
+ "ar": "Bleu majorelle"
+ },
+ {
+ "fr": "Vert profond",
+ "en": "Vert profond",
+ "es": "Vert profond",
+ "tr": "Vert profond",
+ "ar": "Vert profond"
+ }
+ ],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-BL",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-NR",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-JM",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-VR",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-RV",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-RG",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-BD",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-BLU",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-VP",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ }
+ ],
+ "variantCount": 9,
+ "variant_count_from_xlsx_catalog": 9,
+ "tags": [
+ "SS26",
+ "Resort Wear",
+ "Jawhara",
+ "Pareo skirt",
+ "Midi",
+ "Size free",
+ "Amazigh beading"
+ ],
+ "seoTitle": "YZA Pareo Skirt Midi - Jawhara Resort Wear Handmade in Marrakech",
+ "seoKeywords": [
+ "Guéliz",
+ "Guéliz",
+ "Jupe pareo midi Jawhara",
+ "Marrakech",
+ "Marrakesh",
+ "Resort Marrakesh Wear",
+ "YZA",
+ "YZA Pareo Skirt - Midi",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pareo",
+ "pareos",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "wear",
+ "yza-pareo-skirt-midi-jawhara-ss26"
+ ],
+ "languageSearchTerms": [
+ "Guéliz",
+ "Guéliz",
+ "Jupe pareo midi Jawhara",
+ "Marrakech",
+ "Marrakesh",
+ "Resort Marrakesh Wear",
+ "YZA",
+ "YZA Pareo Skirt - Midi",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pareo",
+ "pareos",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "wear",
+ "yza-pareo-skirt-midi-jawhara-ss26"
+ ],
+ "material": {
+ "fr": "Jawhara poly & silk, details faits main",
+ "en": "Jawhara poly & silk with handmade details",
+ "es": "Jawhara poly & silk with handmade details",
+ "tr": "Jawhara poly & silk with handmade details",
+ "ar": "Jawhara poly & silk with handmade details"
+ },
+ "fabric": {
+ "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ },
+ "color": null,
+ "size": {
+ "fr": "Size free, fits XS to XXL",
+ "en": "Size free, fits XS to XXL",
+ "es": "Size free, fits XS to XXL",
+ "tr": "Size free, fits XS to XXL",
+ "ar": "Size free, fits XS to XXL"
+ },
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Size free, fits XS to XXL",
+ "en": "Size free, fits XS to XXL",
+ "es": "Size free, fits XS to XXL",
+ "tr": "Size free, fits XS to XXL",
+ "ar": "Size free, fits XS to XXL"
+ },
+ "whatFits": null,
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "en": "Cut, finishing and Jawhara details checked by hand.",
+ "es": "Cut, finishing and Jawhara details checked by hand.",
+ "tr": "Cut, finishing and Jawhara details checked by hand.",
+ "ar": "Cut, finishing and Jawhara details checked by hand."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ },
+ "care": {
+ "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "edition": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "badge": "bestseller",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "raffia-cherries-charm-ss26",
+ "yza-scarf-top-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "legacyHandles": [
+ "pareo-long"
+ ],
+ "sku": "B-JPL-JWP-BL",
+ "name": {
+ "fr": "Jupe pareo longue Jawhara",
+ "en": "YZA Pareo Skirt - Long",
+ "es": "YZA Pareo Skirt - Long",
+ "tr": "YZA Pareo Skirt - Long",
+ "ar": "YZA Pareo Skirt - Long"
+ },
+ "displayName": {
+ "fr": "Jupe pareo longue Jawhara",
+ "en": "YZA Pareo Skirt - Long",
+ "es": "YZA Pareo Skirt - Long",
+ "tr": "YZA Pareo Skirt - Long",
+ "ar": "YZA Pareo Skirt - Long"
+ },
+ "short": {
+ "fr": "Jupe pareo longue Jawhara, taille libre XS a XXL.",
+ "en": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "es": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "tr": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "ar": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ },
+ "displayShort": {
+ "fr": "Jupe pareo longue Jawhara, taille libre XS a XXL.",
+ "en": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "es": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "tr": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "ar": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ },
+ "desc": {
+ "fr": "Jupe pareo longue Jawhara, taille libre XS a XXL.",
+ "en": "The long YZA Pareo Skirt brings the Resort Marrakesh Wear silhouette into a fluid, full-length piece made for summer lunches, seaside movement and evening dressing.",
+ "es": "The long YZA Pareo Skirt brings the Resort Marrakesh Wear silhouette into a fluid, full-length piece made for summer lunches, seaside movement and evening dressing.",
+ "tr": "The long YZA Pareo Skirt brings the Resort Marrakesh Wear silhouette into a fluid, full-length piece made for summer lunches, seaside movement and evening dressing.",
+ "ar": "The long YZA Pareo Skirt brings the Resort Marrakesh Wear silhouette into a fluid, full-length piece made for summer lunches, seaside movement and evening dressing."
+ },
+ "price": 59000,
+ "currency": "MAD",
+ "category": "pareos",
+ "sourceCategory": "Pareo Skirts",
+ "categoryLabel": {
+ "fr": "Pareos",
+ "en": "Pareos",
+ "es": "Pareos",
+ "tr": "Pareos",
+ "ar": "Pareos"
+ },
+ "group": "rtw",
+ "collection": {
+ "fr": "Resort Marrakech Wear",
+ "en": "Resort Marrakech Wear",
+ "es": "Resort Marrakech Wear",
+ "tr": "Resort Marrakech Wear",
+ "ar": "Resort Marrakech Wear"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/lookbook-ss26-27/embedded/p29_img03_xref1214_6b93fb974a48.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p29_img03_xref1214_6b93fb974a48.jpeg",
+ "assets/lookbook-ss26-27/embedded/p30_img03_xref1221_6a80517bd62a.jpeg"
+ ],
+ "familyHandle": "jawhara-pareos",
+ "familyOrder": 3,
+ "variantLabel": {
+ "fr": "Longue",
+ "en": "Long",
+ "es": "Long",
+ "tr": "Long",
+ "ar": "Long"
+ },
+ "availableColors": [
+ {
+ "fr": "Blanc",
+ "en": "Blanc",
+ "es": "Blanc",
+ "tr": "Blanc",
+ "ar": "Blanc"
+ },
+ {
+ "fr": "Noir",
+ "en": "Noir",
+ "es": "Noir",
+ "tr": "Noir",
+ "ar": "Noir"
+ },
+ {
+ "fr": "Jaune moutarde",
+ "en": "Jaune moutarde",
+ "es": "Jaune moutarde",
+ "tr": "Jaune moutarde",
+ "ar": "Jaune moutarde"
+ },
+ {
+ "fr": "Vert",
+ "en": "Vert",
+ "es": "Vert",
+ "tr": "Vert",
+ "ar": "Vert"
+ },
+ {
+ "fr": "Rose vieux",
+ "en": "Rose vieux",
+ "es": "Rose vieux",
+ "tr": "Rose vieux",
+ "ar": "Rose vieux"
+ },
+ {
+ "fr": "Rouge",
+ "en": "Rouge",
+ "es": "Rouge",
+ "tr": "Rouge",
+ "ar": "Rouge"
+ },
+ {
+ "fr": "Bordeaux",
+ "en": "Bordeaux",
+ "es": "Bordeaux",
+ "tr": "Bordeaux",
+ "ar": "Bordeaux"
+ },
+ {
+ "fr": "Bleu majorelle",
+ "en": "Bleu majorelle",
+ "es": "Bleu majorelle",
+ "tr": "Bleu majorelle",
+ "ar": "Bleu majorelle"
+ },
+ {
+ "fr": "Vert profond",
+ "en": "Vert profond",
+ "es": "Vert profond",
+ "tr": "Vert profond",
+ "ar": "Vert profond"
+ }
+ ],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-BL",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-NR",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-JM",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-VR",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-RV",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-RG",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-BD",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-BLU",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-VP",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ }
+ ],
+ "variantCount": 9,
+ "variant_count_from_xlsx_catalog": 9,
+ "tags": [
+ "SS26",
+ "Resort Wear",
+ "Jawhara",
+ "Pareo skirt",
+ "Long",
+ "Size free",
+ "Amazigh beading"
+ ],
+ "seoTitle": "YZA Pareo Skirt Long - Jawhara Resort Wear Handmade in Marrakech",
+ "seoKeywords": [
+ "Guéliz",
+ "Guéliz",
+ "Jupe pareo longue Jawhara",
+ "Marrakech",
+ "Marrakesh",
+ "Resort Marrakesh Wear",
+ "YZA",
+ "YZA Pareo Skirt - Long",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pareo",
+ "pareos",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "wear",
+ "yza-pareo-skirt-long-jawhara-ss26"
+ ],
+ "languageSearchTerms": [
+ "Guéliz",
+ "Guéliz",
+ "Jupe pareo longue Jawhara",
+ "Marrakech",
+ "Marrakesh",
+ "Resort Marrakesh Wear",
+ "YZA",
+ "YZA Pareo Skirt - Long",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pareo",
+ "pareos",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "wear",
+ "yza-pareo-skirt-long-jawhara-ss26"
+ ],
+ "material": {
+ "fr": "Jawhara poly & silk, details faits main",
+ "en": "Jawhara poly & silk with handmade details",
+ "es": "Jawhara poly & silk with handmade details",
+ "tr": "Jawhara poly & silk with handmade details",
+ "ar": "Jawhara poly & silk with handmade details"
+ },
+ "fabric": {
+ "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ },
+ "color": null,
+ "size": {
+ "fr": "Size free, fits XS to XXL",
+ "en": "Size free, fits XS to XXL",
+ "es": "Size free, fits XS to XXL",
+ "tr": "Size free, fits XS to XXL",
+ "ar": "Size free, fits XS to XXL"
+ },
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Size free, fits XS to XXL",
+ "en": "Size free, fits XS to XXL",
+ "es": "Size free, fits XS to XXL",
+ "tr": "Size free, fits XS to XXL",
+ "ar": "Size free, fits XS to XXL"
+ },
+ "whatFits": null,
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "en": "Cut, finishing and Jawhara details checked by hand.",
+ "es": "Cut, finishing and Jawhara details checked by hand.",
+ "tr": "Cut, finishing and Jawhara details checked by hand.",
+ "ar": "Cut, finishing and Jawhara details checked by hand."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ },
+ "care": {
+ "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "edition": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "badge": "limited",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "raffia-cherries-charm-ss26",
+ "yza-scarf-top-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "legacyHandles": [
+ "pareo-xlong"
+ ],
+ "sku": "B-JPLP-JWP-BL",
+ "name": {
+ "fr": "Jupe pareo extra longue Jawhara",
+ "en": "YZA Pareo Skirt - X Long",
+ "es": "YZA Pareo Skirt - X Long",
+ "tr": "YZA Pareo Skirt - X Long",
+ "ar": "YZA Pareo Skirt - X Long"
+ },
+ "displayName": {
+ "fr": "Jupe pareo extra longue Jawhara",
+ "en": "YZA Pareo Skirt - X Long",
+ "es": "YZA Pareo Skirt - X Long",
+ "tr": "YZA Pareo Skirt - X Long",
+ "ar": "YZA Pareo Skirt - X Long"
+ },
+ "short": {
+ "fr": "Jupe pareo extra longue Jawhara, taille libre XS a XXL.",
+ "en": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "es": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "tr": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "ar": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ },
+ "displayShort": {
+ "fr": "Jupe pareo extra longue Jawhara, taille libre XS a XXL.",
+ "en": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "es": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "tr": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
+ "ar": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ },
+ "desc": {
+ "fr": "Jupe pareo extra longue Jawhara, taille libre XS a XXL.",
+ "en": "The X Long YZA Pareo Skirt is the most dramatic length in the pareo skirt family: a fluid Jawhara piece built for movement and finished by hand.",
+ "es": "The X Long YZA Pareo Skirt is the most dramatic length in the pareo skirt family: a fluid Jawhara piece built for movement and finished by hand.",
+ "tr": "The X Long YZA Pareo Skirt is the most dramatic length in the pareo skirt family: a fluid Jawhara piece built for movement and finished by hand.",
+ "ar": "The X Long YZA Pareo Skirt is the most dramatic length in the pareo skirt family: a fluid Jawhara piece built for movement and finished by hand."
+ },
+ "price": 59000,
+ "currency": "MAD",
+ "category": "pareos",
+ "sourceCategory": "Pareo Skirts",
+ "categoryLabel": {
+ "fr": "Pareos",
+ "en": "Pareos",
+ "es": "Pareos",
+ "tr": "Pareos",
+ "ar": "Pareos"
+ },
+ "group": "rtw",
+ "collection": {
+ "fr": "Resort Marrakech Wear",
+ "en": "Resort Marrakech Wear",
+ "es": "Resort Marrakech Wear",
+ "tr": "Resort Marrakech Wear",
+ "ar": "Resort Marrakech Wear"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/lookbook-ss26-27/embedded/p29_img02_xref1213_fe747a323e9f.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p29_img02_xref1213_fe747a323e9f.jpeg",
+ "assets/lookbook-ss26-27/embedded/p29_img03_xref1214_6b93fb974a48.jpeg"
+ ],
+ "familyHandle": "jawhara-pareos",
+ "familyOrder": 4,
+ "variantLabel": {
+ "fr": "Extra longue",
+ "en": "Extra long",
+ "es": "Extra long",
+ "tr": "Extra long",
+ "ar": "Extra long"
+ },
+ "availableColors": [
+ {
+ "fr": "Blanc",
+ "en": "Blanc",
+ "es": "Blanc",
+ "tr": "Blanc",
+ "ar": "Blanc"
+ },
+ {
+ "fr": "Noir",
+ "en": "Noir",
+ "es": "Noir",
+ "tr": "Noir",
+ "ar": "Noir"
+ },
+ {
+ "fr": "Jaune moutarde",
+ "en": "Jaune moutarde",
+ "es": "Jaune moutarde",
+ "tr": "Jaune moutarde",
+ "ar": "Jaune moutarde"
+ },
+ {
+ "fr": "Vert",
+ "en": "Vert",
+ "es": "Vert",
+ "tr": "Vert",
+ "ar": "Vert"
+ },
+ {
+ "fr": "Rose vieux",
+ "en": "Rose vieux",
+ "es": "Rose vieux",
+ "tr": "Rose vieux",
+ "ar": "Rose vieux"
+ },
+ {
+ "fr": "Rouge",
+ "en": "Rouge",
+ "es": "Rouge",
+ "tr": "Rouge",
+ "ar": "Rouge"
+ },
+ {
+ "fr": "Bordeaux",
+ "en": "Bordeaux",
+ "es": "Bordeaux",
+ "tr": "Bordeaux",
+ "ar": "Bordeaux"
+ },
+ {
+ "fr": "Bleu majorelle",
+ "en": "Bleu majorelle",
+ "es": "Bleu majorelle",
+ "tr": "Bleu majorelle",
+ "ar": "Bleu majorelle"
+ },
+ {
+ "fr": "Vert profond",
+ "en": "Vert profond",
+ "es": "Vert profond",
+ "tr": "Vert profond",
+ "ar": "Vert profond"
+ }
+ ],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-BL",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-NR",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-JM",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-VR",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-RV",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-RG",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-BD",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-BLU",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-VP",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ }
+ ],
+ "variantCount": 9,
+ "variant_count_from_xlsx_catalog": 9,
+ "tags": [
+ "SS26",
+ "Resort Wear",
+ "Jawhara",
+ "Pareo skirt",
+ "X Long",
+ "Size free",
+ "Amazigh beading"
+ ],
+ "seoTitle": "YZA Pareo Skirt X Long - Jawhara Resort Wear Handmade in Marrakech",
+ "seoKeywords": [
+ "Guéliz",
+ "Guéliz",
+ "Jupe pareo extra longue Jawhara",
+ "Marrakech",
+ "Marrakesh",
+ "Resort Marrakesh Wear",
+ "YZA",
+ "YZA Pareo Skirt - X Long",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pareo",
+ "pareos",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "wear",
+ "yza-pareo-skirt-x-long-jawhara-ss26"
+ ],
+ "languageSearchTerms": [
+ "Guéliz",
+ "Guéliz",
+ "Jupe pareo extra longue Jawhara",
+ "Marrakech",
+ "Marrakesh",
+ "Resort Marrakesh Wear",
+ "YZA",
+ "YZA Pareo Skirt - X Long",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pareo",
+ "pareos",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "wear",
+ "yza-pareo-skirt-x-long-jawhara-ss26"
+ ],
+ "material": {
+ "fr": "Jawhara poly & silk, details faits main",
+ "en": "Jawhara poly & silk with handmade details",
+ "es": "Jawhara poly & silk with handmade details",
+ "tr": "Jawhara poly & silk with handmade details",
+ "ar": "Jawhara poly & silk with handmade details"
+ },
+ "fabric": {
+ "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ },
+ "color": null,
+ "size": {
+ "fr": "Size free, fits XS to XXL",
+ "en": "Size free, fits XS to XXL",
+ "es": "Size free, fits XS to XXL",
+ "tr": "Size free, fits XS to XXL",
+ "ar": "Size free, fits XS to XXL"
+ },
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Size free, fits XS to XXL",
+ "en": "Size free, fits XS to XXL",
+ "es": "Size free, fits XS to XXL",
+ "tr": "Size free, fits XS to XXL",
+ "ar": "Size free, fits XS to XXL"
+ },
+ "whatFits": null,
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "en": "Cut, finishing and Jawhara details checked by hand.",
+ "es": "Cut, finishing and Jawhara details checked by hand.",
+ "tr": "Cut, finishing and Jawhara details checked by hand.",
+ "ar": "Cut, finishing and Jawhara details checked by hand."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ },
+ "care": {
+ "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "edition": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "badge": "limited",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "raffia-cherries-charm-ss26",
+ "yza-scarf-top-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "yza-palazzo-pants-jawhara-ss26",
+ "legacyHandles": [
+ "palazzo-pants"
+ ],
+ "sku": "B-PT-JWP-BL",
+ "name": {
+ "fr": "Pantalon palazzo Jawhara",
+ "en": "YZA Palazzo Pants",
+ "es": "YZA Palazzo Pants",
+ "tr": "YZA Palazzo Pants",
+ "ar": "YZA Palazzo Pants"
+ },
+ "displayName": {
+ "fr": "Pantalon palazzo Jawhara",
+ "en": "YZA Palazzo Pants",
+ "es": "YZA Palazzo Pants",
+ "tr": "YZA Palazzo Pants",
+ "ar": "YZA Palazzo Pants"
+ },
+ "short": {
+ "fr": "Pantalon palazzo Jawhara, taille libre XS a XXL.",
+ "en": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details.",
+ "es": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details.",
+ "tr": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details.",
+ "ar": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details."
+ },
+ "displayShort": {
+ "fr": "Pantalon palazzo Jawhara, taille libre XS a XXL.",
+ "en": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details.",
+ "es": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details.",
+ "tr": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details.",
+ "ar": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details."
+ },
+ "desc": {
+ "fr": "Pantalon palazzo Jawhara, taille libre XS a XXL.",
+ "en": "The YZA Palazzo Pants are part of the Resort Marrakesh Wear wardrobe. Made in Jawhara and cut as a size-free silhouette, they are designed to be ultra long, easily tailored and practical with big pockets.",
+ "es": "The YZA Palazzo Pants are part of the Resort Marrakesh Wear wardrobe. Made in Jawhara and cut as a size-free silhouette, they are designed to be ultra long, easily tailored and practical with big pockets.",
+ "tr": "The YZA Palazzo Pants are part of the Resort Marrakesh Wear wardrobe. Made in Jawhara and cut as a size-free silhouette, they are designed to be ultra long, easily tailored and practical with big pockets.",
+ "ar": "The YZA Palazzo Pants are part of the Resort Marrakesh Wear wardrobe. Made in Jawhara and cut as a size-free silhouette, they are designed to be ultra long, easily tailored and practical with big pockets."
+ },
+ "price": 76000,
+ "currency": "MAD",
+ "category": "pants",
+ "sourceCategory": "Pants",
+ "categoryLabel": {
+ "fr": "Pantalons",
+ "en": "Pants",
+ "es": "Pants",
+ "tr": "Pants",
+ "ar": "Pants"
+ },
+ "group": "rtw",
+ "collection": {
+ "fr": "Resort Marrakech Wear",
+ "en": "Resort Marrakech Wear",
+ "es": "Resort Marrakech Wear",
+ "tr": "Resort Marrakech Wear",
+ "ar": "Resort Marrakech Wear"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/lookbook-ss26-27/embedded/p31_img02_xref1227_829199726349.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p31_img02_xref1227_829199726349.jpeg",
+ "assets/lookbook-ss26-27/embedded/p32_img04_xref1239_3935f6e23a7c.jpeg"
+ ],
+ "familyHandle": "jawhara-pants",
+ "familyOrder": 1,
+ "variantLabel": {
+ "fr": "Palazzo",
+ "en": "Palazzo",
+ "es": "Palazzo",
+ "tr": "Palazzo",
+ "ar": "Palazzo"
+ },
+ "availableColors": [
+ {
+ "fr": "Blanc",
+ "en": "Blanc",
+ "es": "Blanc",
+ "tr": "Blanc",
+ "ar": "Blanc"
+ },
+ {
+ "fr": "Noir",
+ "en": "Noir",
+ "es": "Noir",
+ "tr": "Noir",
+ "ar": "Noir"
+ },
+ {
+ "fr": "Jaune moutarde",
+ "en": "Jaune moutarde",
+ "es": "Jaune moutarde",
+ "tr": "Jaune moutarde",
+ "ar": "Jaune moutarde"
+ },
+ {
+ "fr": "Vert",
+ "en": "Vert",
+ "es": "Vert",
+ "tr": "Vert",
+ "ar": "Vert"
+ },
+ {
+ "fr": "Rose vieux",
+ "en": "Rose vieux",
+ "es": "Rose vieux",
+ "tr": "Rose vieux",
+ "ar": "Rose vieux"
+ },
+ {
+ "fr": "Rouge",
+ "en": "Rouge",
+ "es": "Rouge",
+ "tr": "Rouge",
+ "ar": "Rouge"
+ },
+ {
+ "fr": "Bordeaux",
+ "en": "Bordeaux",
+ "es": "Bordeaux",
+ "tr": "Bordeaux",
+ "ar": "Bordeaux"
+ },
+ {
+ "fr": "Bleu majorelle",
+ "en": "Bleu majorelle",
+ "es": "Bleu majorelle",
+ "tr": "Bleu majorelle",
+ "ar": "Bleu majorelle"
+ },
+ {
+ "fr": "Vert profond",
+ "en": "Vert profond",
+ "es": "Vert profond",
+ "tr": "Vert profond",
+ "ar": "Vert profond"
+ }
+ ],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-BL",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-NR",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-JM",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-VR",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-RV",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-RG",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-BD",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-BLU",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-VP",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ }
+ ],
+ "variantCount": 9,
+ "variant_count_from_xlsx_catalog": 9,
+ "tags": [
+ "SS26",
+ "Resort Wear",
+ "Jawhara",
+ "Palazzo pants",
+ "Size free",
+ "Shoushia",
+ "Big pockets"
+ ],
+ "seoTitle": "YZA Palazzo Pants - Jawhara Resort Wear Handmade in Marrakech",
+ "seoKeywords": [
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Pantalon palazzo Jawhara",
+ "Resort Marrakesh Wear",
+ "YZA",
+ "YZA Palazzo Pants",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pants",
+ "pareo",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "wear",
+ "yza-palazzo-pants-jawhara-ss26"
+ ],
+ "languageSearchTerms": [
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Pantalon palazzo Jawhara",
+ "Resort Marrakesh Wear",
+ "YZA",
+ "YZA Palazzo Pants",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pants",
+ "pareo",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "wear",
+ "yza-palazzo-pants-jawhara-ss26"
+ ],
+ "material": {
+ "fr": "Jawhara poly & silk, details faits main",
+ "en": "Jawhara poly & silk with handmade details",
+ "es": "Jawhara poly & silk with handmade details",
+ "tr": "Jawhara poly & silk with handmade details",
+ "ar": "Jawhara poly & silk with handmade details"
+ },
+ "fabric": {
+ "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ },
+ "color": null,
+ "size": {
+ "fr": "Size free, fits XS to XXL; ultra long and easily tailored",
+ "en": "Size free, fits XS to XXL; ultra long and easily tailored",
+ "es": "Size free, fits XS to XXL; ultra long and easily tailored",
+ "tr": "Size free, fits XS to XXL; ultra long and easily tailored",
+ "ar": "Size free, fits XS to XXL; ultra long and easily tailored"
+ },
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Size free, fits XS to XXL; ultra long and easily tailored",
+ "en": "Size free, fits XS to XXL; ultra long and easily tailored",
+ "es": "Size free, fits XS to XXL; ultra long and easily tailored",
+ "tr": "Size free, fits XS to XXL; ultra long and easily tailored",
+ "ar": "Size free, fits XS to XXL; ultra long and easily tailored"
+ },
+ "whatFits": null,
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "en": "Cut, finishing and Jawhara details checked by hand.",
+ "es": "Cut, finishing and Jawhara details checked by hand.",
+ "tr": "Cut, finishing and Jawhara details checked by hand.",
+ "ar": "Cut, finishing and Jawhara details checked by hand."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ },
+ "care": {
+ "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "edition": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "badge": "limited",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "raffia-cherries-charm-ss26",
+ "yza-scarf-top-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "yza-wrap-pants-jawhara-ss26",
+ "legacyHandles": [
+ "wrap-pants"
+ ],
+ "sku": null,
+ "name": {
+ "fr": "Pantalon wrap Jawhara",
+ "en": "YZA Wrap Pants",
+ "es": "YZA Wrap Pants",
+ "tr": "YZA Wrap Pants",
+ "ar": "YZA Wrap Pants"
+ },
+ "displayName": {
+ "fr": "Pantalon wrap Jawhara",
+ "en": "YZA Wrap Pants",
+ "es": "YZA Wrap Pants",
+ "tr": "YZA Wrap Pants",
+ "ar": "YZA Wrap Pants"
+ },
+ "short": {
+ "fr": "Pantalon wrap Jawhara, taille libre XS a XXL.",
+ "en": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading.",
+ "es": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading.",
+ "tr": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading.",
+ "ar": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading."
+ },
+ "displayShort": {
+ "fr": "Pantalon wrap Jawhara, taille libre XS a XXL.",
+ "en": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading.",
+ "es": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading.",
+ "tr": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading.",
+ "ar": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading."
+ },
+ "desc": {
+ "fr": "Pantalon wrap Jawhara, taille libre XS a XXL.",
+ "en": "The YZA Wrap Pants are a modern play on an iconic local style. Made in Jawhara and designed to fit XS to XXL, they translate Marrakchi ease into a resortwear silhouette.",
+ "es": "The YZA Wrap Pants are a modern play on an iconic local style. Made in Jawhara and designed to fit XS to XXL, they translate Marrakchi ease into a resortwear silhouette.",
+ "tr": "The YZA Wrap Pants are a modern play on an iconic local style. Made in Jawhara and designed to fit XS to XXL, they translate Marrakchi ease into a resortwear silhouette.",
+ "ar": "The YZA Wrap Pants are a modern play on an iconic local style. Made in Jawhara and designed to fit XS to XXL, they translate Marrakchi ease into a resortwear silhouette."
+ },
+ "price": 98000,
+ "currency": "MAD",
+ "category": "pants",
+ "sourceCategory": "Pants",
+ "categoryLabel": {
+ "fr": "Pantalons",
+ "en": "Pants",
+ "es": "Pants",
+ "tr": "Pants",
+ "ar": "Pants"
+ },
+ "group": "rtw",
+ "collection": {
+ "fr": "Resort Marrakech Wear",
+ "en": "Resort Marrakech Wear",
+ "es": "Resort Marrakech Wear",
+ "tr": "Resort Marrakech Wear",
+ "ar": "Resort Marrakech Wear"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/lookbook-ss26-27/embedded/p38_img01_xref1287_56cb4d596aa0.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p38_img01_xref1287_56cb4d596aa0.jpeg",
+ "assets/lookbook-ss26-27/embedded/p38_img04_xref1290_050054976c5b.jpeg"
+ ],
+ "familyHandle": "jawhara-pants",
+ "familyOrder": 2,
+ "variantLabel": {
+ "fr": "Wrap",
+ "en": "Wrap",
+ "es": "Wrap",
+ "tr": "Wrap",
+ "ar": "Wrap"
+ },
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [],
+ "variantCount": 0,
+ "variant_count_from_xlsx_catalog": null,
+ "tags": [
+ "SS26",
+ "Resort Wear",
+ "Jawhara",
+ "Wrap pants",
+ "Size free",
+ "Amazigh beading"
+ ],
+ "seoTitle": "YZA Wrap Pants - Jawhara Resort Wear Handmade in Marrakech",
+ "seoKeywords": [
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Pantalon wrap Jawhara",
+ "Resort Marrakesh Wear",
+ "YZA",
+ "YZA Wrap Pants",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pants",
+ "pareo",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "wear",
+ "yza-wrap-pants-jawhara-ss26"
+ ],
+ "languageSearchTerms": [
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Pantalon wrap Jawhara",
+ "Resort Marrakesh Wear",
+ "YZA",
+ "YZA Wrap Pants",
+ "a",
+ "crochet",
+ "fait main",
+ "handmade",
+ "jawhara",
+ "jupe",
+ "pantalon",
+ "pants",
+ "pareo",
+ "porter",
+ "pret",
+ "ready",
+ "resort",
+ "rtw",
+ "to",
+ "top",
+ "wear",
+ "yza-wrap-pants-jawhara-ss26"
+ ],
+ "material": {
+ "fr": "Jawhara poly & silk, details faits main",
+ "en": "Jawhara poly & silk with handmade details",
+ "es": "Jawhara poly & silk with handmade details",
+ "tr": "Jawhara poly & silk with handmade details",
+ "ar": "Jawhara poly & silk with handmade details"
+ },
+ "fabric": {
+ "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ },
+ "color": null,
+ "size": {
+ "fr": "Size free, fits XS to XXL",
+ "en": "Size free, fits XS to XXL",
+ "es": "Size free, fits XS to XXL",
+ "tr": "Size free, fits XS to XXL",
+ "ar": "Size free, fits XS to XXL"
+ },
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Size free, fits XS to XXL",
+ "en": "Size free, fits XS to XXL",
+ "es": "Size free, fits XS to XXL",
+ "tr": "Size free, fits XS to XXL",
+ "ar": "Size free, fits XS to XXL"
+ },
+ "whatFits": null,
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "en": "Cut, finishing and Jawhara details checked by hand.",
+ "es": "Cut, finishing and Jawhara details checked by hand.",
+ "tr": "Cut, finishing and Jawhara details checked by hand.",
+ "ar": "Cut, finishing and Jawhara details checked by hand."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
+ "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ },
+ "care": {
+ "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
+ "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "edition": {
+ "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "es": "Small Jawhara batch; fabrics may change depending on availability.",
+ "tr": "Small Jawhara batch; fabrics may change depending on availability.",
+ "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ },
+ "badge": "limited",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "raffia-cherries-charm-ss26",
+ "yza-scarf-top-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "la-sculpture-xs-basket-bag-ss26",
+ "legacyHandles": [
+ "sculpture-xs-noir",
+ "sculpture-xs-rouge",
+ "sculpture-xs-violet"
+ ],
+ "sku": null,
+ "name": {
+ "fr": "La Sculpture XS - Rouge",
+ "en": "La Sculpture XS - Red",
+ "es": "La Sculpture XS - Red",
+ "tr": "La Sculpture XS - Red",
+ "ar": "La Sculpture XS - Red"
+ },
+ "displayName": {
+ "fr": "La Sculpture XS - Rouge",
+ "en": "La Sculpture XS - Red",
+ "es": "La Sculpture XS - Red",
+ "tr": "La Sculpture XS - Red",
+ "ar": "La Sculpture XS - Red"
+ },
+ "short": {
+ "fr": "Format XS, couleur rouge, feuilles de bananier, raphia, cuir et perles.",
+ "en": "XS scale, red finish, banana leaves, raffia, leather and beads.",
+ "es": "XS scale, red finish, banana leaves, raffia, leather and beads.",
+ "tr": "XS scale, red finish, banana leaves, raffia, leather and beads.",
+ "ar": "XS scale, red finish, banana leaves, raffia, leather and beads."
+ },
+ "displayShort": {
+ "fr": "Format XS, couleur rouge, feuilles de bananier, raphia, cuir et perles.",
+ "en": "XS scale, red finish, banana leaves, raffia, leather and beads.",
+ "es": "XS scale, red finish, banana leaves, raffia, leather and beads.",
+ "tr": "XS scale, red finish, banana leaves, raffia, leather and beads.",
+ "ar": "XS scale, red finish, banana leaves, raffia, leather and beads."
+ },
+ "desc": {
+ "fr": "La Sculpture XS - Rouge: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur rouge et le format XS, pour comprendre la taille, la couleur et les details reels de la piece.",
+ "en": "La Sculpture XS - Red: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the red finish and XS scale, so the size, colour and real details stay clear.",
+ "es": "La Sculpture XS - Red: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the red finish and XS scale, so the size, colour and real details stay clear.",
+ "tr": "La Sculpture XS - Red: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the red finish and XS scale, so the size, colour and real details stay clear.",
+ "ar": "La Sculpture XS - Red: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the red finish and XS scale, so the size, colour and real details stay clear."
+ },
+ "price": 80000,
+ "currency": "MAD",
+ "category": "bags",
+ "sourceCategory": "Basket Bags",
+ "categoryLabel": {
+ "fr": "Paniers & sacs",
+ "en": "Bags",
+ "es": "Bags",
+ "tr": "Bags",
+ "ar": "Bags"
+ },
+ "group": "bags",
+ "collection": {
+ "fr": "Paniers iconiques",
+ "en": "Iconic basket bags",
+ "es": "Iconic basket bags",
+ "tr": "Iconic basket bags",
+ "ar": "Iconic basket bags"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/lookbook-ss26-27/embedded/p40_img01_xref1305_5ae097cc9e5a.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p40_img01_xref1305_5ae097cc9e5a.jpeg",
+ "assets/lookbook-ss26-27/embedded/p42_img01_xref1321_1a08834f9d69.jpeg",
+ "assets/lookbook-ss26-27/embedded/p43_img01_xref1325_6be88260cccd.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img01_xref1345_c06ef6230440.jpeg"
+ ],
+ "familyHandle": "la-sculpture",
+ "familyOrder": 1,
+ "variantLabel": {
+ "fr": "XS / Rouge",
+ "en": "XS / Red",
+ "es": "XS / Red",
+ "tr": "XS / Red",
+ "ar": "XS / Red"
+ },
+ "availableColors": [
+ {
+ "fr": "Rouge",
+ "en": "Red",
+ "es": "Red",
+ "tr": "Red",
+ "ar": "Red"
+ }
+ ],
+ "availableSizes": [
+ "XS"
+ ],
+ "variants": [
+ {
+ "product_handle": "la-sculpture-xs-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Noir",
+ "size": "Mini",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 5
+ },
+ {
+ "product_handle": "la-sculpture-xs-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Rouge",
+ "size": "Mini",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 8
+ },
+ {
+ "product_handle": "la-sculpture-xs-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Violet",
+ "size": "Mini",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 11
+ }
+ ],
+ "variantCount": 3,
+ "variant_count_from_xlsx_catalog": 3,
+ "tags": [
+ "SS26",
+ "Basket bag",
+ "La Sculpture",
+ "Banana leaves",
+ "Raffia",
+ "Beads",
+ "Marrakech"
+ ],
+ "seoTitle": "La Sculpture XS Basket Bag - Handmade in Marrakech",
+ "seoKeywords": [
+ "Guéliz",
+ "Guéliz",
+ "Iconic Basket Bags",
+ "La Sculpture XS",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "bag",
+ "bags",
+ "basket",
+ "bolsa",
+ "canta",
+ "crochet",
+ "fait main",
+ "fits",
+ "handmade",
+ "la-sculpture-xs-basket-bag-ss26",
+ "m",
+ "panier",
+ "s",
+ "sac",
+ "what",
+ "xs",
+ "حقيبة",
+ "La Sculpture",
+ "La Sculpture",
+ "XS",
+ "Rouge",
+ "Red",
+ "La Sculpture XS",
+ "La Sculpture XS"
+ ],
+ "languageSearchTerms": [
+ "Guéliz",
+ "Guéliz",
+ "Iconic Basket Bags",
+ "La Sculpture XS",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "bag",
+ "bags",
+ "basket",
+ "bolsa",
+ "canta",
+ "crochet",
+ "fait main",
+ "fits",
+ "handmade",
+ "la-sculpture-xs-basket-bag-ss26",
+ "m",
+ "panier",
+ "s",
+ "sac",
+ "what",
+ "xs",
+ "حقيبة",
+ "La Sculpture",
+ "La Sculpture",
+ "XS",
+ "Rouge",
+ "Red",
+ "La Sculpture XS",
+ "La Sculpture XS"
+ ],
+ "material": {
+ "fr": "Feuilles de bananier, Raffia, Perles",
+ "en": "Banana leaves, Raffia, Beads",
+ "es": "Banana leaves, Raffia, Beads",
+ "tr": "Banana leaves, Raffia, Beads",
+ "ar": "Banana leaves, Raffia, Beads"
+ },
+ "fabric": {
+ "fr": "Banana leaves, raffia & beads; 3 colors in stock",
+ "en": "Banana leaves, raffia & beads; 3 colors in stock",
+ "es": "Banana leaves, raffia & beads; 3 colors in stock",
+ "tr": "Banana leaves, raffia & beads; 3 colors in stock",
+ "ar": "Banana leaves, raffia & beads; 3 colors in stock"
+ },
+ "color": {
+ "fr": "Rouge",
+ "en": "Red",
+ "es": "Red",
+ "tr": "Red",
+ "ar": "Red"
+ },
+ "size": {
+ "fr": "XS",
+ "en": "XS",
+ "es": "XS",
+ "tr": "XS",
+ "ar": "XS"
+ },
+ "visualSize": "XS",
+ "visualColor": {
+ "fr": "Rouge",
+ "en": "Red",
+ "es": "Red",
+ "tr": "Red",
+ "ar": "Red"
+ },
+ "bagFamilyTitle": {
+ "fr": "La Sculpture",
+ "en": "La Sculpture",
+ "es": "La Sculpture",
+ "tr": "La Sculpture",
+ "ar": "La Sculpture"
+ },
+ "bagFamilyEyebrow": {
+ "fr": "Collection Sculpture",
+ "en": "Collection Sculpture",
+ "es": "Collection Sculpture",
+ "tr": "Collection Sculpture",
+ "ar": "Collection Sculpture"
+ },
+ "bagFamilyText": {
+ "fr": "Trois formats, trois lectures couleur. Chaque sac garde sa propre page, ses propres images et son propre rythme d'atelier.",
+ "en": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
+ "es": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
+ "tr": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
+ "ar": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm."
+ },
+ "bagFamilyOrder": 1,
+ "dimensions": {
+ "fr": "Format XS: mini panier main ou epaule courte.",
+ "en": "XS scale: mini hand or short-shoulder basket.",
+ "es": "XS scale: mini hand or short-shoulder basket.",
+ "tr": "XS scale: mini hand or short-shoulder basket.",
+ "ar": "XS scale: mini hand or short-shoulder basket."
+ },
+ "whatFits": {
+ "fr": "Telephone, porte-cartes, cles, rouge a levres.",
+ "en": "Phone, card holder, keys and lipstick.",
+ "es": "Phone, card holder, keys and lipstick.",
+ "tr": "Phone, card holder, keys and lipstick.",
+ "ar": "Phone, card holder, keys and lipstick."
+ },
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
+ "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "es": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "tr": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "ar": "Hand assembly: weaving, handle wrapping, beadwork and final check."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
+ "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "es": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "tr": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "ar": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier."
+ },
+ "care": {
+ "fr": "Depoussierer doucement. Eviter l humidite, la pluie et le poids excessif. Ranger rempli pour garder la forme.",
+ "en": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "es": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "tr": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "ar": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
+ "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ },
+ "edition": {
+ "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
+ "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ },
+ "badge": "bestseller",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "sizeComparison": [
+ {
+ "label": {
+ "fr": "XS / Rouge",
+ "en": "XS / Red",
+ "es": "XS / Red",
+ "tr": "XS / Red",
+ "ar": "XS / Red"
+ },
+ "price": 80000,
+ "whatFits": {
+ "fr": "Telephone, porte-cartes, cles, rouge a levres.",
+ "en": "Phone, card holder, keys and lipstick.",
+ "es": "Phone, card holder, keys and lipstick.",
+ "tr": "Phone, card holder, keys and lipstick.",
+ "ar": "Phone, card holder, keys and lipstick."
+ }
+ },
+ {
+ "label": {
+ "fr": "S / Violet",
+ "en": "S / Violet",
+ "es": "S / Violet",
+ "tr": "S / Violet",
+ "ar": "S / Violet"
+ },
+ "price": 93000,
+ "whatFits": {
+ "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
+ "en": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "es": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ }
+ },
+ {
+ "label": {
+ "fr": "M / Noir",
+ "en": "M / Black",
+ "es": "M / Black",
+ "tr": "M / Black",
+ "ar": "M / Black"
+ },
+ "price": 100000,
+ "whatFits": {
+ "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
+ "en": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "es": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ }
+ }
+ ],
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "yza-pareo-skirt-short-jawhara-ss26",
+ "yza-scarf-top-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "la-sculpture-s-basket-bag-ss26",
+ "legacyHandles": [
+ "sculpture-s-rouge",
+ "sculpture-s-violet"
+ ],
+ "sku": null,
+ "name": {
+ "fr": "La Sculpture S - Violet",
+ "en": "La Sculpture S - Violet",
+ "es": "La Sculpture S - Violet",
+ "tr": "La Sculpture S - Violet",
+ "ar": "La Sculpture S - Violet"
+ },
+ "displayName": {
+ "fr": "La Sculpture S - Violet",
+ "en": "La Sculpture S - Violet",
+ "es": "La Sculpture S - Violet",
+ "tr": "La Sculpture S - Violet",
+ "ar": "La Sculpture S - Violet"
+ },
+ "short": {
+ "fr": "Format S, couleur violet, feuilles de bananier, raphia, cuir et perles.",
+ "en": "S scale, violet finish, banana leaves, raffia, leather and beads.",
+ "es": "S scale, violet finish, banana leaves, raffia, leather and beads.",
+ "tr": "S scale, violet finish, banana leaves, raffia, leather and beads.",
+ "ar": "S scale, violet finish, banana leaves, raffia, leather and beads."
+ },
+ "displayShort": {
+ "fr": "Format S, couleur violet, feuilles de bananier, raphia, cuir et perles.",
+ "en": "S scale, violet finish, banana leaves, raffia, leather and beads.",
+ "es": "S scale, violet finish, banana leaves, raffia, leather and beads.",
+ "tr": "S scale, violet finish, banana leaves, raffia, leather and beads.",
+ "ar": "S scale, violet finish, banana leaves, raffia, leather and beads."
+ },
+ "desc": {
+ "fr": "La Sculpture S - Violet: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur violet et le format S, pour comprendre la taille, la couleur et les details reels de la piece.",
+ "en": "La Sculpture S - Violet: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the violet finish and S scale, so the size, colour and real details stay clear.",
+ "es": "La Sculpture S - Violet: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the violet finish and S scale, so the size, colour and real details stay clear.",
+ "tr": "La Sculpture S - Violet: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the violet finish and S scale, so the size, colour and real details stay clear.",
+ "ar": "La Sculpture S - Violet: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the violet finish and S scale, so the size, colour and real details stay clear."
+ },
+ "price": 93000,
+ "currency": "MAD",
+ "category": "bags",
+ "sourceCategory": "Basket Bags",
+ "categoryLabel": {
+ "fr": "Paniers & sacs",
+ "en": "Bags",
+ "es": "Bags",
+ "tr": "Bags",
+ "ar": "Bags"
+ },
+ "group": "bags",
+ "collection": {
+ "fr": "Paniers iconiques",
+ "en": "Iconic basket bags",
+ "es": "Iconic basket bags",
+ "tr": "Iconic basket bags",
+ "ar": "Iconic basket bags"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/products/bag-sculpture-violet-solo.webp",
+ "gallery": [
+ "assets/products/bag-sculpture-violet-solo.webp",
+ "assets/lookbook-ss26-27/embedded/p45_img01_xref1333_caaad580c061.jpeg",
+ "assets/lookbook-ss26-27/embedded/p41_img03_xref1315_841b5b884798.jpeg"
+ ],
+ "familyHandle": "la-sculpture",
+ "familyOrder": 2,
+ "variantLabel": {
+ "fr": "S / Violet",
+ "en": "S / Violet",
+ "es": "S / Violet",
+ "tr": "S / Violet",
+ "ar": "S / Violet"
+ },
+ "availableColors": [
+ {
+ "fr": "Violet",
+ "en": "Violet",
+ "es": "Violet",
+ "tr": "Violet",
+ "ar": "Violet"
+ }
+ ],
+ "availableSizes": [
+ "S"
+ ],
+ "variants": [
+ {
+ "product_handle": "la-sculpture-s-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Noir",
+ "size": "Moyen",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 6
+ },
+ {
+ "product_handle": "la-sculpture-s-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Rouge",
+ "size": "Moyen",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 9
+ },
+ {
+ "product_handle": "la-sculpture-s-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Violet",
+ "size": "Moyen",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 12
+ }
+ ],
+ "variantCount": 3,
+ "variant_count_from_xlsx_catalog": 3,
+ "tags": [
+ "SS26",
+ "Basket bag",
+ "La Sculpture",
+ "Banana leaves",
+ "Raffia",
+ "Beads",
+ "Marrakech"
+ ],
+ "seoTitle": "La Sculpture S Basket Bag - Handmade in Marrakech",
+ "seoKeywords": [
+ "Guéliz",
+ "Guéliz",
+ "Iconic Basket Bags",
+ "La Sculpture S",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "bag",
+ "bags",
+ "basket",
+ "bolsa",
+ "canta",
+ "crochet",
+ "fait main",
+ "fits",
+ "handmade",
+ "la-sculpture-s-basket-bag-ss26",
+ "m",
+ "panier",
+ "s",
+ "sac",
+ "what",
+ "xs",
+ "حقيبة",
+ "La Sculpture",
+ "La Sculpture",
+ "S",
+ "Violet",
+ "Violet",
+ "La Sculpture S",
+ "La Sculpture S"
+ ],
+ "languageSearchTerms": [
+ "Guéliz",
+ "Guéliz",
+ "Iconic Basket Bags",
+ "La Sculpture S",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "bag",
+ "bags",
+ "basket",
+ "bolsa",
+ "canta",
+ "crochet",
+ "fait main",
+ "fits",
+ "handmade",
+ "la-sculpture-s-basket-bag-ss26",
+ "m",
+ "panier",
+ "s",
+ "sac",
+ "what",
+ "xs",
+ "حقيبة",
+ "La Sculpture",
+ "La Sculpture",
+ "S",
+ "Violet",
+ "Violet",
+ "La Sculpture S",
+ "La Sculpture S"
+ ],
+ "material": {
+ "fr": "Feuilles de bananier, Raffia, Perles",
+ "en": "Banana leaves, Raffia, Beads",
+ "es": "Banana leaves, Raffia, Beads",
+ "tr": "Banana leaves, Raffia, Beads",
+ "ar": "Banana leaves, Raffia, Beads"
+ },
+ "fabric": {
+ "fr": "Banana leaves, raffia & beads; 3 colors in stock",
+ "en": "Banana leaves, raffia & beads; 3 colors in stock",
+ "es": "Banana leaves, raffia & beads; 3 colors in stock",
+ "tr": "Banana leaves, raffia & beads; 3 colors in stock",
+ "ar": "Banana leaves, raffia & beads; 3 colors in stock"
+ },
+ "color": {
+ "fr": "Violet",
+ "en": "Violet",
+ "es": "Violet",
+ "tr": "Violet",
+ "ar": "Violet"
+ },
+ "size": {
+ "fr": "S",
+ "en": "S",
+ "es": "S",
+ "tr": "S",
+ "ar": "S"
+ },
+ "visualSize": "S",
+ "visualColor": {
+ "fr": "Violet",
+ "en": "Violet",
+ "es": "Violet",
+ "tr": "Violet",
+ "ar": "Violet"
+ },
+ "bagFamilyTitle": {
+ "fr": "La Sculpture",
+ "en": "La Sculpture",
+ "es": "La Sculpture",
+ "tr": "La Sculpture",
+ "ar": "La Sculpture"
+ },
+ "bagFamilyEyebrow": {
+ "fr": "Collection Sculpture",
+ "en": "Collection Sculpture",
+ "es": "Collection Sculpture",
+ "tr": "Collection Sculpture",
+ "ar": "Collection Sculpture"
+ },
+ "bagFamilyText": {
+ "fr": "Trois formats, trois lectures couleur. Chaque sac garde sa propre page, ses propres images et son propre rythme d'atelier.",
+ "en": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
+ "es": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
+ "tr": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
+ "ar": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm."
+ },
+ "bagFamilyOrder": 1,
+ "dimensions": {
+ "fr": "Format S: panier journee compact.",
+ "en": "S scale: compact day basket.",
+ "es": "S scale: compact day basket.",
+ "tr": "S scale: compact day basket.",
+ "ar": "S scale: compact day basket."
+ },
+ "whatFits": {
+ "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
+ "en": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "es": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ },
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
+ "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "es": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "tr": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "ar": "Hand assembly: weaving, handle wrapping, beadwork and final check."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
+ "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "es": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "tr": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "ar": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier."
+ },
+ "care": {
+ "fr": "Depoussierer doucement. Eviter l humidite, la pluie et le poids excessif. Ranger rempli pour garder la forme.",
+ "en": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "es": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "tr": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "ar": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
+ "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ },
+ "edition": {
+ "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
+ "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ },
+ "badge": "limited",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "sizeComparison": [
+ {
+ "label": {
+ "fr": "XS / Rouge",
+ "en": "XS / Red",
+ "es": "XS / Red",
+ "tr": "XS / Red",
+ "ar": "XS / Red"
+ },
+ "price": 80000,
+ "whatFits": {
+ "fr": "Telephone, porte-cartes, cles, rouge a levres.",
+ "en": "Phone, card holder, keys and lipstick.",
+ "es": "Phone, card holder, keys and lipstick.",
+ "tr": "Phone, card holder, keys and lipstick.",
+ "ar": "Phone, card holder, keys and lipstick."
+ }
+ },
+ {
+ "label": {
+ "fr": "S / Violet",
+ "en": "S / Violet",
+ "es": "S / Violet",
+ "tr": "S / Violet",
+ "ar": "S / Violet"
+ },
+ "price": 93000,
+ "whatFits": {
+ "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
+ "en": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "es": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ }
+ },
+ {
+ "label": {
+ "fr": "M / Noir",
+ "en": "M / Black",
+ "es": "M / Black",
+ "tr": "M / Black",
+ "ar": "M / Black"
+ },
+ "price": 100000,
+ "whatFits": {
+ "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
+ "en": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "es": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ }
+ }
+ ],
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "yza-pareo-skirt-short-jawhara-ss26",
+ "yza-scarf-top-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "la-sculpture-m-basket-bag-ss26",
+ "legacyHandles": [
+ "sculpture-m-noir"
+ ],
+ "sku": null,
+ "name": {
+ "fr": "La Sculpture M - Noir",
+ "en": "La Sculpture M - Black",
+ "es": "La Sculpture M - Black",
+ "tr": "La Sculpture M - Black",
+ "ar": "La Sculpture M - Black"
+ },
+ "displayName": {
+ "fr": "La Sculpture M - Noir",
+ "en": "La Sculpture M - Black",
+ "es": "La Sculpture M - Black",
+ "tr": "La Sculpture M - Black",
+ "ar": "La Sculpture M - Black"
+ },
+ "short": {
+ "fr": "Format M, couleur noir, feuilles de bananier, raphia, cuir et perles.",
+ "en": "M scale, black finish, banana leaves, raffia, leather and beads.",
+ "es": "M scale, black finish, banana leaves, raffia, leather and beads.",
+ "tr": "M scale, black finish, banana leaves, raffia, leather and beads.",
+ "ar": "M scale, black finish, banana leaves, raffia, leather and beads."
+ },
+ "displayShort": {
+ "fr": "Format M, couleur noir, feuilles de bananier, raphia, cuir et perles.",
+ "en": "M scale, black finish, banana leaves, raffia, leather and beads.",
+ "es": "M scale, black finish, banana leaves, raffia, leather and beads.",
+ "tr": "M scale, black finish, banana leaves, raffia, leather and beads.",
+ "ar": "M scale, black finish, banana leaves, raffia, leather and beads."
+ },
+ "desc": {
+ "fr": "La Sculpture M - Noir: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur noir et le format M, pour comprendre la taille, la couleur et les details reels de la piece.",
+ "en": "La Sculpture M - Black: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the black finish and M scale, so the size, colour and real details stay clear.",
+ "es": "La Sculpture M - Black: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the black finish and M scale, so the size, colour and real details stay clear.",
+ "tr": "La Sculpture M - Black: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the black finish and M scale, so the size, colour and real details stay clear.",
+ "ar": "La Sculpture M - Black: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the black finish and M scale, so the size, colour and real details stay clear."
+ },
+ "price": 100000,
+ "currency": "MAD",
+ "category": "bags",
+ "sourceCategory": "Basket Bags",
+ "categoryLabel": {
+ "fr": "Paniers & sacs",
+ "en": "Bags",
+ "es": "Bags",
+ "tr": "Bags",
+ "ar": "Bags"
+ },
+ "group": "bags",
+ "collection": {
+ "fr": "Paniers iconiques",
+ "en": "Iconic basket bags",
+ "es": "Iconic basket bags",
+ "tr": "Iconic basket bags",
+ "ar": "Iconic basket bags"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/lookbook-ss26-27/embedded/p46_img01_xref1337_7dae31225680.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p46_img01_xref1337_7dae31225680.jpeg",
+ "assets/lookbook-ss26-27/embedded/p47_img01_xref1341_0932d247e77e.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img02_xref1346_42bfdc1a3e34.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img03_xref1347_e6608af984d1.jpeg"
+ ],
+ "familyHandle": "la-sculpture",
+ "familyOrder": 3,
+ "variantLabel": {
+ "fr": "M / Noir",
+ "en": "M / Black",
+ "es": "M / Black",
+ "tr": "M / Black",
+ "ar": "M / Black"
+ },
+ "availableColors": [
+ {
+ "fr": "Noir",
+ "en": "Black",
+ "es": "Black",
+ "tr": "Black",
+ "ar": "Black"
+ }
+ ],
+ "availableSizes": [
+ "M"
+ ],
+ "variants": [
+ {
+ "product_handle": "la-sculpture-m-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Noir",
+ "size": "Grand",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 7
+ },
+ {
+ "product_handle": "la-sculpture-m-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Rouge",
+ "size": "Grand",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 10
+ },
+ {
+ "product_handle": "la-sculpture-m-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Violet",
+ "size": "Grand",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 13
+ }
+ ],
+ "variantCount": 3,
+ "variant_count_from_xlsx_catalog": 3,
+ "tags": [
+ "SS26",
+ "Basket bag",
+ "La Sculpture",
+ "Banana leaves",
+ "Raffia",
+ "Beads",
+ "Marrakech"
+ ],
+ "seoTitle": "La Sculpture M Basket Bag - Handmade in Marrakech",
+ "seoKeywords": [
+ "Guéliz",
+ "Guéliz",
+ "Iconic Basket Bags",
+ "La Sculpture M",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "bag",
+ "bags",
+ "basket",
+ "bolsa",
+ "canta",
+ "crochet",
+ "fait main",
+ "fits",
+ "handmade",
+ "la-sculpture-m-basket-bag-ss26",
+ "m",
+ "panier",
+ "s",
+ "sac",
+ "what",
+ "xs",
+ "حقيبة",
+ "La Sculpture",
+ "La Sculpture",
+ "M",
+ "Noir",
+ "Black",
+ "La Sculpture M",
+ "La Sculpture M"
+ ],
+ "languageSearchTerms": [
+ "Guéliz",
+ "Guéliz",
+ "Iconic Basket Bags",
+ "La Sculpture M",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "bag",
+ "bags",
+ "basket",
+ "bolsa",
+ "canta",
+ "crochet",
+ "fait main",
+ "fits",
+ "handmade",
+ "la-sculpture-m-basket-bag-ss26",
+ "m",
+ "panier",
+ "s",
+ "sac",
+ "what",
+ "xs",
+ "حقيبة",
+ "La Sculpture",
+ "La Sculpture",
+ "M",
+ "Noir",
+ "Black",
+ "La Sculpture M",
+ "La Sculpture M"
+ ],
+ "material": {
+ "fr": "Feuilles de bananier, Raffia, Perles",
+ "en": "Banana leaves, Raffia, Beads",
+ "es": "Banana leaves, Raffia, Beads",
+ "tr": "Banana leaves, Raffia, Beads",
+ "ar": "Banana leaves, Raffia, Beads"
+ },
+ "fabric": {
+ "fr": "Banana leaves, raffia & beads; 3 colors in stock",
+ "en": "Banana leaves, raffia & beads; 3 colors in stock",
+ "es": "Banana leaves, raffia & beads; 3 colors in stock",
+ "tr": "Banana leaves, raffia & beads; 3 colors in stock",
+ "ar": "Banana leaves, raffia & beads; 3 colors in stock"
+ },
+ "color": {
+ "fr": "Noir",
+ "en": "Black",
+ "es": "Black",
+ "tr": "Black",
+ "ar": "Black"
+ },
+ "size": {
+ "fr": "M",
+ "en": "M",
+ "es": "M",
+ "tr": "M",
+ "ar": "M"
+ },
+ "visualSize": "M",
+ "visualColor": {
+ "fr": "Noir",
+ "en": "Black",
+ "es": "Black",
+ "tr": "Black",
+ "ar": "Black"
+ },
+ "bagFamilyTitle": {
+ "fr": "La Sculpture",
+ "en": "La Sculpture",
+ "es": "La Sculpture",
+ "tr": "La Sculpture",
+ "ar": "La Sculpture"
+ },
+ "bagFamilyEyebrow": {
+ "fr": "Collection Sculpture",
+ "en": "Collection Sculpture",
+ "es": "Collection Sculpture",
+ "tr": "Collection Sculpture",
+ "ar": "Collection Sculpture"
+ },
+ "bagFamilyText": {
+ "fr": "Trois formats, trois lectures couleur. Chaque sac garde sa propre page, ses propres images et son propre rythme d'atelier.",
+ "en": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
+ "es": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
+ "tr": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
+ "ar": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm."
+ },
+ "bagFamilyOrder": 1,
+ "dimensions": {
+ "fr": "Format M: panier statement avec plus de volume.",
+ "en": "M scale: statement basket with more volume.",
+ "es": "M scale: statement basket with more volume.",
+ "tr": "M scale: statement basket with more volume.",
+ "ar": "M scale: statement basket with more volume."
+ },
+ "whatFits": {
+ "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
+ "en": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "es": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ },
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
+ "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "es": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "tr": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "ar": "Hand assembly: weaving, handle wrapping, beadwork and final check."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
+ "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "es": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "tr": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "ar": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier."
+ },
+ "care": {
+ "fr": "Depoussierer doucement. Eviter l humidite, la pluie et le poids excessif. Ranger rempli pour garder la forme.",
+ "en": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "es": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "tr": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "ar": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
+ "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ },
+ "edition": {
+ "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
+ "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ },
+ "badge": "limited",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "sizeComparison": [
+ {
+ "label": {
+ "fr": "XS / Rouge",
+ "en": "XS / Red",
+ "es": "XS / Red",
+ "tr": "XS / Red",
+ "ar": "XS / Red"
+ },
+ "price": 80000,
+ "whatFits": {
+ "fr": "Telephone, porte-cartes, cles, rouge a levres.",
+ "en": "Phone, card holder, keys and lipstick.",
+ "es": "Phone, card holder, keys and lipstick.",
+ "tr": "Phone, card holder, keys and lipstick.",
+ "ar": "Phone, card holder, keys and lipstick."
+ }
+ },
+ {
+ "label": {
+ "fr": "S / Violet",
+ "en": "S / Violet",
+ "es": "S / Violet",
+ "tr": "S / Violet",
+ "ar": "S / Violet"
+ },
+ "price": 93000,
+ "whatFits": {
+ "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
+ "en": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "es": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ }
+ },
+ {
+ "label": {
+ "fr": "M / Noir",
+ "en": "M / Black",
+ "es": "M / Black",
+ "tr": "M / Black",
+ "ar": "M / Black"
+ },
+ "price": 100000,
+ "whatFits": {
+ "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
+ "en": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "es": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ }
+ }
+ ],
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "yza-pareo-skirt-short-jawhara-ss26",
+ "yza-scarf-top-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "la-nouvelle-vague-xs-basket-bag-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "La Nouvelle Vague XS - Bleu",
+ "en": "New Edition Bag XS - Blue",
+ "es": "New Edition Bag XS - Blue",
+ "tr": "New Edition Bag XS - Blue",
+ "ar": "New Edition Bag XS - Blue"
+ },
+ "displayName": {
+ "fr": "La Nouvelle Vague XS - Bleu",
+ "en": "New Edition Bag XS - Blue",
+ "es": "New Edition Bag XS - Blue",
+ "tr": "New Edition Bag XS - Blue",
+ "ar": "New Edition Bag XS - Blue"
+ },
+ "short": {
+ "fr": "Format XS, couleur bleu, feuilles de bananier, raphia, cuir et perles.",
+ "en": "XS scale, blue finish, banana leaves, raffia, leather and beads.",
+ "es": "XS scale, blue finish, banana leaves, raffia, leather and beads.",
+ "tr": "XS scale, blue finish, banana leaves, raffia, leather and beads.",
+ "ar": "XS scale, blue finish, banana leaves, raffia, leather and beads."
+ },
+ "displayShort": {
+ "fr": "Format XS, couleur bleu, feuilles de bananier, raphia, cuir et perles.",
+ "en": "XS scale, blue finish, banana leaves, raffia, leather and beads.",
+ "es": "XS scale, blue finish, banana leaves, raffia, leather and beads.",
+ "tr": "XS scale, blue finish, banana leaves, raffia, leather and beads.",
+ "ar": "XS scale, blue finish, banana leaves, raffia, leather and beads."
+ },
+ "desc": {
+ "fr": "La Nouvelle Vague XS - Bleu: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur bleu et le format XS, pour comprendre la taille, la couleur et les details reels de la piece.",
+ "en": "New Edition Bag XS - Blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the blue finish and XS scale, so the size, colour and real details stay clear.",
+ "es": "New Edition Bag XS - Blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the blue finish and XS scale, so the size, colour and real details stay clear.",
+ "tr": "New Edition Bag XS - Blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the blue finish and XS scale, so the size, colour and real details stay clear.",
+ "ar": "New Edition Bag XS - Blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the blue finish and XS scale, so the size, colour and real details stay clear."
+ },
+ "price": 49000,
+ "currency": "MAD",
+ "category": "bags",
+ "sourceCategory": "Basket Bags",
+ "categoryLabel": {
+ "fr": "Paniers & sacs",
+ "en": "Bags",
+ "es": "Bags",
+ "tr": "Bags",
+ "ar": "Bags"
+ },
+ "group": "bags",
+ "collection": {
+ "fr": "Paniers iconiques",
+ "en": "Iconic basket bags",
+ "es": "Iconic basket bags",
+ "tr": "Iconic basket bags",
+ "ar": "Iconic basket bags"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/products/bag-nouvelle-vague-still.webp",
+ "gallery": [
+ "assets/products/bag-nouvelle-vague-still.webp",
+ "assets/lookbook-ss26-27/embedded/p50_img01_xref1362_b250c91a59d1.jpeg"
+ ],
+ "familyHandle": "la-nouvelle-vague",
+ "familyOrder": 1,
+ "variantLabel": {
+ "fr": "XS / Bleu",
+ "en": "XS / Blue",
+ "es": "XS / Blue",
+ "tr": "XS / Blue",
+ "ar": "XS / Blue"
+ },
+ "availableColors": [
+ {
+ "fr": "Bleu",
+ "en": "Blue",
+ "es": "Blue",
+ "tr": "Blue",
+ "ar": "Blue"
+ }
+ ],
+ "availableSizes": [
+ "XS"
+ ],
+ "variants": [
+ {
+ "product_handle": "la-nouvelle-vague-xs-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Market",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": null,
+ "size": "Mini",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 21
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Basket bag",
+ "La Nouvelle Vague",
+ "Banana leaves",
+ "Leather",
+ "Beads",
+ "Marrakech"
+ ],
+ "seoTitle": "La Nouvelle Vague XS Basket Bag - Handmade in Marrakech",
+ "seoKeywords": [
+ "Guéliz",
+ "Guéliz",
+ "Iconic Basket Bags",
+ "La Nouvelle Vague XS",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "bag",
+ "bags",
+ "basket",
+ "bolsa",
+ "canta",
+ "crochet",
+ "fait main",
+ "fits",
+ "handmade",
+ "la-nouvelle-vague-xs-basket-bag-ss26",
+ "m",
+ "panier",
+ "s",
+ "sac",
+ "what",
+ "xs",
+ "حقيبة",
+ "La Nouvelle Vague",
+ "New Edition Bag",
+ "XS",
+ "Bleu",
+ "Blue",
+ "La Nouvelle Vague XS",
+ "New Edition Bag XS"
+ ],
+ "languageSearchTerms": [
+ "Guéliz",
+ "Guéliz",
+ "Iconic Basket Bags",
+ "La Nouvelle Vague XS",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "bag",
+ "bags",
+ "basket",
+ "bolsa",
+ "canta",
+ "crochet",
+ "fait main",
+ "fits",
+ "handmade",
+ "la-nouvelle-vague-xs-basket-bag-ss26",
+ "m",
+ "panier",
+ "s",
+ "sac",
+ "what",
+ "xs",
+ "حقيبة",
+ "La Nouvelle Vague",
+ "New Edition Bag",
+ "XS",
+ "Bleu",
+ "Blue",
+ "La Nouvelle Vague XS",
+ "New Edition Bag XS"
+ ],
+ "material": {
+ "fr": "Feuilles de bananier, Cuir, Perles",
+ "en": "Banana leaves, Leather, Beads",
+ "es": "Banana leaves, Leather, Beads",
+ "tr": "Banana leaves, Leather, Beads",
+ "ar": "Banana leaves, Leather, Beads"
+ },
+ "fabric": {
+ "fr": "Banana leaves, leather & beads; 3 sizes x 3 colors",
+ "en": "Banana leaves, leather & beads; 3 sizes x 3 colors",
+ "es": "Banana leaves, leather & beads; 3 sizes x 3 colors",
+ "tr": "Banana leaves, leather & beads; 3 sizes x 3 colors",
+ "ar": "Banana leaves, leather & beads; 3 sizes x 3 colors"
+ },
+ "color": {
+ "fr": "Bleu",
+ "en": "Blue",
+ "es": "Blue",
+ "tr": "Blue",
+ "ar": "Blue"
+ },
+ "size": {
+ "fr": "XS",
+ "en": "XS",
+ "es": "XS",
+ "tr": "XS",
+ "ar": "XS"
+ },
+ "visualSize": "XS",
+ "visualColor": {
+ "fr": "Bleu",
+ "en": "Blue",
+ "es": "Blue",
+ "tr": "Blue",
+ "ar": "Blue"
+ },
+ "bagFamilyTitle": {
+ "fr": "La Nouvelle Vague",
+ "en": "New Edition Bag",
+ "es": "New Edition Bag",
+ "tr": "New Edition Bag",
+ "ar": "New Edition Bag"
+ },
+ "bagFamilyEyebrow": {
+ "fr": "New edition bag",
+ "en": "New edition bag",
+ "es": "New edition bag",
+ "tr": "New edition bag",
+ "ar": "New edition bag"
+ },
+ "bagFamilyText": {
+ "fr": "La ligne plus souple et solaire: anses bijou, foulard et formats faciles a porter en ville ou en vacances.",
+ "en": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
+ "es": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
+ "tr": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
+ "ar": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays."
+ },
+ "bagFamilyOrder": 2,
+ "dimensions": {
+ "fr": "Format XS: mini panier main ou epaule courte.",
+ "en": "XS scale: mini hand or short-shoulder basket.",
+ "es": "XS scale: mini hand or short-shoulder basket.",
+ "tr": "XS scale: mini hand or short-shoulder basket.",
+ "ar": "XS scale: mini hand or short-shoulder basket."
+ },
+ "whatFits": {
+ "fr": "Telephone, porte-cartes, cles, rouge a levres.",
+ "en": "Phone, card holder, keys and lipstick.",
+ "es": "Phone, card holder, keys and lipstick.",
+ "tr": "Phone, card holder, keys and lipstick.",
+ "ar": "Phone, card holder, keys and lipstick."
+ },
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
+ "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "es": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "tr": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "ar": "Hand assembly: weaving, handle wrapping, beadwork and final check."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
+ "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "es": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "tr": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "ar": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier."
+ },
+ "care": {
+ "fr": "Depoussierer doucement. Eviter l humidite, la pluie et le poids excessif. Ranger rempli pour garder la forme.",
+ "en": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "es": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "tr": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "ar": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
+ "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ },
+ "edition": {
+ "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
+ "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ },
+ "badge": "limited",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "sizeComparison": [
+ {
+ "label": {
+ "fr": "XS / Bleu",
+ "en": "XS / Blue",
+ "es": "XS / Blue",
+ "tr": "XS / Blue",
+ "ar": "XS / Blue"
+ },
+ "price": 49000,
+ "whatFits": {
+ "fr": "Telephone, porte-cartes, cles, rouge a levres.",
+ "en": "Phone, card holder, keys and lipstick.",
+ "es": "Phone, card holder, keys and lipstick.",
+ "tr": "Phone, card holder, keys and lipstick.",
+ "ar": "Phone, card holder, keys and lipstick."
+ }
+ },
+ {
+ "label": {
+ "fr": "S / Rose",
+ "en": "S / Pink",
+ "es": "S / Pink",
+ "tr": "S / Pink",
+ "ar": "S / Pink"
+ },
+ "price": 60000,
+ "whatFits": {
+ "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
+ "en": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "es": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ }
+ },
+ {
+ "label": {
+ "fr": "M / Bleu ciel",
+ "en": "M / Sky blue",
+ "es": "M / Sky blue",
+ "tr": "M / Sky blue",
+ "ar": "M / Sky blue"
+ },
+ "price": 66000,
+ "whatFits": {
+ "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
+ "en": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "es": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ }
+ }
+ ],
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "yza-pareo-skirt-short-jawhara-ss26",
+ "yza-scarf-top-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "la-nouvelle-vague-s-basket-bag-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "La Nouvelle Vague S - Rose",
+ "en": "New Edition Bag S - Pink",
+ "es": "New Edition Bag S - Pink",
+ "tr": "New Edition Bag S - Pink",
+ "ar": "New Edition Bag S - Pink"
+ },
+ "displayName": {
+ "fr": "La Nouvelle Vague S - Rose",
+ "en": "New Edition Bag S - Pink",
+ "es": "New Edition Bag S - Pink",
+ "tr": "New Edition Bag S - Pink",
+ "ar": "New Edition Bag S - Pink"
+ },
+ "short": {
+ "fr": "Format S, finition rose, feuilles de bananier, raphia, cuir et perles.",
+ "en": "S scale, pink finish, banana leaves, raffia, leather and beads.",
+ "es": "S scale, pink finish, banana leaves, raffia, leather and beads.",
+ "tr": "S scale, pink finish, banana leaves, raffia, leather and beads.",
+ "ar": "S scale, pink finish, banana leaves, raffia, leather and beads."
+ },
+ "displayShort": {
+ "fr": "Format S, finition rose, feuilles de bananier, raphia, cuir et perles.",
+ "en": "S scale, pink finish, banana leaves, raffia, leather and beads.",
+ "es": "S scale, pink finish, banana leaves, raffia, leather and beads.",
+ "tr": "S scale, pink finish, banana leaves, raffia, leather and beads.",
+ "ar": "S scale, pink finish, banana leaves, raffia, leather and beads."
+ },
+ "desc": {
+ "fr": "La Nouvelle Vague S - Rose: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la finition rose et le format S, pour comprendre la taille, la couleur et les details reels de la piece.",
+ "en": "New Edition Bag S - Pink: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the pink finish and S scale, so the size, colour and real details stay clear.",
+ "es": "New Edition Bag S - Pink: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the pink finish and S scale, so the size, colour and real details stay clear.",
+ "tr": "New Edition Bag S - Pink: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the pink finish and S scale, so the size, colour and real details stay clear.",
+ "ar": "New Edition Bag S - Pink: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the pink finish and S scale, so the size, colour and real details stay clear."
+ },
+ "price": 60000,
+ "currency": "MAD",
+ "category": "bags",
+ "sourceCategory": "Basket Bags",
+ "categoryLabel": {
+ "fr": "Paniers & sacs",
+ "en": "Bags",
+ "es": "Bags",
+ "tr": "Bags",
+ "ar": "Bags"
+ },
+ "group": "bags",
+ "collection": {
+ "fr": "Paniers iconiques",
+ "en": "Iconic basket bags",
+ "es": "Iconic basket bags",
+ "tr": "Iconic basket bags",
+ "ar": "Iconic basket bags"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/products/bag-nouvelle-vague-still-pink.webp",
+ "gallery": [
+ "assets/products/bag-nouvelle-vague-still-pink.webp",
+ "assets/lookbook-ss26-27/embedded/p50_img01_xref1362_b250c91a59d1.jpeg"
+ ],
+ "familyHandle": "la-nouvelle-vague",
+ "familyOrder": 2,
+ "variantLabel": {
+ "fr": "S / Rose",
+ "en": "S / Pink",
+ "es": "S / Pink",
+ "tr": "S / Pink",
+ "ar": "S / Pink"
+ },
+ "availableColors": [
+ {
+ "fr": "Rose",
+ "en": "Pink",
+ "es": "Pink",
+ "tr": "Pink",
+ "ar": "Pink"
+ }
+ ],
+ "availableSizes": [
+ "S"
+ ],
+ "variants": [
+ {
+ "product_handle": "la-nouvelle-vague-s-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Market",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": null,
+ "size": "Moyen",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 22
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Basket bag",
+ "La Nouvelle Vague",
+ "Banana leaves",
+ "Leather",
+ "Beads",
+ "Marrakech"
+ ],
+ "seoTitle": "La Nouvelle Vague S Basket Bag - Handmade in Marrakech",
+ "seoKeywords": [
+ "Guéliz",
+ "Guéliz",
+ "Iconic Basket Bags",
+ "La Nouvelle Vague S",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "bag",
+ "bags",
+ "basket",
+ "bolsa",
+ "canta",
+ "crochet",
+ "fait main",
+ "fits",
+ "handmade",
+ "la-nouvelle-vague-s-basket-bag-ss26",
+ "m",
+ "panier",
+ "s",
+ "sac",
+ "what",
+ "xs",
+ "حقيبة",
+ "La Nouvelle Vague",
+ "New Edition Bag",
+ "S",
+ "Rose",
+ "Pink",
+ "La Nouvelle Vague S",
+ "New Edition Bag S"
+ ],
+ "languageSearchTerms": [
+ "Guéliz",
+ "Guéliz",
+ "Iconic Basket Bags",
+ "La Nouvelle Vague S",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "bag",
+ "bags",
+ "basket",
+ "bolsa",
+ "canta",
+ "crochet",
+ "fait main",
+ "fits",
+ "handmade",
+ "la-nouvelle-vague-s-basket-bag-ss26",
+ "m",
+ "panier",
+ "s",
+ "sac",
+ "what",
+ "xs",
+ "حقيبة",
+ "La Nouvelle Vague",
+ "New Edition Bag",
+ "S",
+ "Rose",
+ "Pink",
+ "La Nouvelle Vague S",
+ "New Edition Bag S"
+ ],
+ "material": {
+ "fr": "Feuilles de bananier, Cuir, Perles",
+ "en": "Banana leaves, Leather, Beads",
+ "es": "Banana leaves, Leather, Beads",
+ "tr": "Banana leaves, Leather, Beads",
+ "ar": "Banana leaves, Leather, Beads"
+ },
+ "fabric": {
+ "fr": "Banana leaves, leather & beads; 3 sizes x 3 colors",
+ "en": "Banana leaves, leather & beads; 3 sizes x 3 colors",
+ "es": "Banana leaves, leather & beads; 3 sizes x 3 colors",
+ "tr": "Banana leaves, leather & beads; 3 sizes x 3 colors",
+ "ar": "Banana leaves, leather & beads; 3 sizes x 3 colors"
+ },
+ "color": {
+ "fr": "Rose",
+ "en": "Pink",
+ "es": "Pink",
+ "tr": "Pink",
+ "ar": "Pink"
+ },
+ "size": {
+ "fr": "S",
+ "en": "S",
+ "es": "S",
+ "tr": "S",
+ "ar": "S"
+ },
+ "visualSize": "S",
+ "visualColor": {
+ "fr": "Rose",
+ "en": "Pink",
+ "es": "Pink",
+ "tr": "Pink",
+ "ar": "Pink"
+ },
+ "bagFamilyTitle": {
+ "fr": "La Nouvelle Vague",
+ "en": "New Edition Bag",
+ "es": "New Edition Bag",
+ "tr": "New Edition Bag",
+ "ar": "New Edition Bag"
+ },
+ "bagFamilyEyebrow": {
+ "fr": "New edition bag",
+ "en": "New edition bag",
+ "es": "New edition bag",
+ "tr": "New edition bag",
+ "ar": "New edition bag"
+ },
+ "bagFamilyText": {
+ "fr": "La ligne plus souple et solaire: anses bijou, foulard et formats faciles a porter en ville ou en vacances.",
+ "en": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
+ "es": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
+ "tr": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
+ "ar": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays."
+ },
+ "bagFamilyOrder": 2,
+ "dimensions": {
+ "fr": "Format S: panier journee compact.",
+ "en": "S scale: compact day basket.",
+ "es": "S scale: compact day basket.",
+ "tr": "S scale: compact day basket.",
+ "ar": "S scale: compact day basket."
+ },
+ "whatFits": {
+ "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
+ "en": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "es": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ },
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
+ "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "es": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "tr": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "ar": "Hand assembly: weaving, handle wrapping, beadwork and final check."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
+ "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "es": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "tr": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "ar": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier."
+ },
+ "care": {
+ "fr": "Depoussierer doucement. Eviter l humidite, la pluie et le poids excessif. Ranger rempli pour garder la forme.",
+ "en": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "es": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "tr": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "ar": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
+ "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ },
+ "edition": {
+ "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
+ "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ },
+ "badge": "limited",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "sizeComparison": [
+ {
+ "label": {
+ "fr": "XS / Bleu",
+ "en": "XS / Blue",
+ "es": "XS / Blue",
+ "tr": "XS / Blue",
+ "ar": "XS / Blue"
+ },
+ "price": 49000,
+ "whatFits": {
+ "fr": "Telephone, porte-cartes, cles, rouge a levres.",
+ "en": "Phone, card holder, keys and lipstick.",
+ "es": "Phone, card holder, keys and lipstick.",
+ "tr": "Phone, card holder, keys and lipstick.",
+ "ar": "Phone, card holder, keys and lipstick."
+ }
+ },
+ {
+ "label": {
+ "fr": "S / Rose",
+ "en": "S / Pink",
+ "es": "S / Pink",
+ "tr": "S / Pink",
+ "ar": "S / Pink"
+ },
+ "price": 60000,
+ "whatFits": {
+ "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
+ "en": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "es": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ }
+ },
+ {
+ "label": {
+ "fr": "M / Bleu ciel",
+ "en": "M / Sky blue",
+ "es": "M / Sky blue",
+ "tr": "M / Sky blue",
+ "ar": "M / Sky blue"
+ },
+ "price": 66000,
+ "whatFits": {
+ "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
+ "en": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "es": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ }
+ }
+ ],
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "yza-pareo-skirt-short-jawhara-ss26",
+ "yza-scarf-top-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "la-nouvelle-vague-m-basket-bag-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "La Nouvelle Vague M - Bleu ciel",
+ "en": "New Edition Bag M - Sky blue",
+ "es": "New Edition Bag M - Sky blue",
+ "tr": "New Edition Bag M - Sky blue",
+ "ar": "New Edition Bag M - Sky blue"
+ },
+ "displayName": {
+ "fr": "La Nouvelle Vague M - Bleu ciel",
+ "en": "New Edition Bag M - Sky blue",
+ "es": "New Edition Bag M - Sky blue",
+ "tr": "New Edition Bag M - Sky blue",
+ "ar": "New Edition Bag M - Sky blue"
+ },
+ "short": {
+ "fr": "Format M, couleur bleu ciel, feuilles de bananier, raphia, cuir et perles.",
+ "en": "M scale, sky blue finish, banana leaves, raffia, leather and beads.",
+ "es": "M scale, sky blue finish, banana leaves, raffia, leather and beads.",
+ "tr": "M scale, sky blue finish, banana leaves, raffia, leather and beads.",
+ "ar": "M scale, sky blue finish, banana leaves, raffia, leather and beads."
+ },
+ "displayShort": {
+ "fr": "Format M, couleur bleu ciel, feuilles de bananier, raphia, cuir et perles.",
+ "en": "M scale, sky blue finish, banana leaves, raffia, leather and beads.",
+ "es": "M scale, sky blue finish, banana leaves, raffia, leather and beads.",
+ "tr": "M scale, sky blue finish, banana leaves, raffia, leather and beads.",
+ "ar": "M scale, sky blue finish, banana leaves, raffia, leather and beads."
+ },
+ "desc": {
+ "fr": "La Nouvelle Vague M - Bleu ciel: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur bleu ciel et le format M, pour comprendre la taille, la couleur et les details reels de la piece.",
+ "en": "New Edition Bag M - Sky blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the sky blue finish and M scale, so the size, colour and real details stay clear.",
+ "es": "New Edition Bag M - Sky blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the sky blue finish and M scale, so the size, colour and real details stay clear.",
+ "tr": "New Edition Bag M - Sky blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the sky blue finish and M scale, so the size, colour and real details stay clear.",
+ "ar": "New Edition Bag M - Sky blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the sky blue finish and M scale, so the size, colour and real details stay clear."
+ },
+ "price": 66000,
+ "currency": "MAD",
+ "category": "bags",
+ "sourceCategory": "Basket Bags",
+ "categoryLabel": {
+ "fr": "Paniers & sacs",
+ "en": "Bags",
+ "es": "Bags",
+ "tr": "Bags",
+ "ar": "Bags"
+ },
+ "group": "bags",
+ "collection": {
+ "fr": "Paniers iconiques",
+ "en": "Iconic basket bags",
+ "es": "Iconic basket bags",
+ "tr": "Iconic basket bags",
+ "ar": "Iconic basket bags"
+ },
+ "season": "All Seasons 2026",
+ "img": "assets/products/bag-nouvelle-vague-still-2.webp",
+ "gallery": [
+ "assets/products/bag-nouvelle-vague-still-2.webp",
+ "assets/lookbook-ss26-27/embedded/p50_img01_xref1362_b250c91a59d1.jpeg"
+ ],
+ "familyHandle": "la-nouvelle-vague",
+ "familyOrder": 3,
+ "variantLabel": {
+ "fr": "M / Bleu ciel",
+ "en": "M / Sky blue",
+ "es": "M / Sky blue",
+ "tr": "M / Sky blue",
+ "ar": "M / Sky blue"
+ },
+ "availableColors": [
+ {
+ "fr": "Bleu ciel",
+ "en": "Sky blue",
+ "es": "Sky blue",
+ "tr": "Sky blue",
+ "ar": "Sky blue"
+ }
+ ],
+ "availableSizes": [
+ "M"
+ ],
+ "variants": [
+ {
+ "product_handle": "la-nouvelle-vague-m-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Market",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": null,
+ "size": "Grand",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 23
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Basket bag",
+ "La Nouvelle Vague",
+ "Banana leaves",
+ "Leather",
+ "Beads",
+ "Marrakech"
+ ],
+ "seoTitle": "La Nouvelle Vague M Basket Bag - Handmade in Marrakech",
+ "seoKeywords": [
+ "Guéliz",
+ "Guéliz",
+ "Iconic Basket Bags",
+ "La Nouvelle Vague M",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "bag",
+ "bags",
+ "basket",
+ "bolsa",
+ "canta",
+ "crochet",
+ "fait main",
+ "fits",
+ "handmade",
+ "la-nouvelle-vague-m-basket-bag-ss26",
+ "m",
+ "panier",
+ "s",
+ "sac",
+ "what",
+ "xs",
+ "حقيبة",
+ "La Nouvelle Vague",
+ "New Edition Bag",
+ "M",
+ "Bleu ciel",
+ "Sky blue",
+ "La Nouvelle Vague M",
+ "New Edition Bag M"
+ ],
+ "languageSearchTerms": [
+ "Guéliz",
+ "Guéliz",
+ "Iconic Basket Bags",
+ "La Nouvelle Vague M",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "bag",
+ "bags",
+ "basket",
+ "bolsa",
+ "canta",
+ "crochet",
+ "fait main",
+ "fits",
+ "handmade",
+ "la-nouvelle-vague-m-basket-bag-ss26",
+ "m",
+ "panier",
+ "s",
+ "sac",
+ "what",
+ "xs",
+ "حقيبة",
+ "La Nouvelle Vague",
+ "New Edition Bag",
+ "M",
+ "Bleu ciel",
+ "Sky blue",
+ "La Nouvelle Vague M",
+ "New Edition Bag M"
+ ],
+ "material": {
+ "fr": "Feuilles de bananier, Cuir, Perles",
+ "en": "Banana leaves, Leather, Beads",
+ "es": "Banana leaves, Leather, Beads",
+ "tr": "Banana leaves, Leather, Beads",
+ "ar": "Banana leaves, Leather, Beads"
+ },
+ "fabric": {
+ "fr": "Banana leaves, leather & beads; 3 sizes x 3 colors",
+ "en": "Banana leaves, leather & beads; 3 sizes x 3 colors",
+ "es": "Banana leaves, leather & beads; 3 sizes x 3 colors",
+ "tr": "Banana leaves, leather & beads; 3 sizes x 3 colors",
+ "ar": "Banana leaves, leather & beads; 3 sizes x 3 colors"
+ },
+ "color": {
+ "fr": "Bleu ciel",
+ "en": "Sky blue",
+ "es": "Sky blue",
+ "tr": "Sky blue",
+ "ar": "Sky blue"
+ },
+ "size": {
+ "fr": "M",
+ "en": "M",
+ "es": "M",
+ "tr": "M",
+ "ar": "M"
+ },
+ "visualSize": "M",
+ "visualColor": {
+ "fr": "Bleu ciel",
+ "en": "Sky blue",
+ "es": "Sky blue",
+ "tr": "Sky blue",
+ "ar": "Sky blue"
+ },
+ "bagFamilyTitle": {
+ "fr": "La Nouvelle Vague",
+ "en": "New Edition Bag",
+ "es": "New Edition Bag",
+ "tr": "New Edition Bag",
+ "ar": "New Edition Bag"
+ },
+ "bagFamilyEyebrow": {
+ "fr": "New edition bag",
+ "en": "New edition bag",
+ "es": "New edition bag",
+ "tr": "New edition bag",
+ "ar": "New edition bag"
+ },
+ "bagFamilyText": {
+ "fr": "La ligne plus souple et solaire: anses bijou, foulard et formats faciles a porter en ville ou en vacances.",
+ "en": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
+ "es": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
+ "tr": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
+ "ar": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays."
+ },
+ "bagFamilyOrder": 2,
+ "dimensions": {
+ "fr": "Format M: panier statement avec plus de volume.",
+ "en": "M scale: statement basket with more volume.",
+ "es": "M scale: statement basket with more volume.",
+ "tr": "M scale: statement basket with more volume.",
+ "ar": "M scale: statement basket with more volume."
+ },
+ "whatFits": {
+ "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
+ "en": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "es": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ },
+ "attachment": null,
+ "handworkTime": {
+ "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
+ "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "es": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "tr": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
+ "ar": "Hand assembly: weaving, handle wrapping, beadwork and final check."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
+ "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "es": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "tr": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
+ "ar": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier."
+ },
+ "care": {
+ "fr": "Depoussierer doucement. Eviter l humidite, la pluie et le poids excessif. Ranger rempli pour garder la forme.",
+ "en": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "es": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "tr": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
+ "ar": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape."
+ },
+ "packaging": {
+ "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
+ "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
+ "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
+ "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ },
+ "edition": {
+ "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
+ "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
+ "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ },
+ "badge": "limited",
+ "hours": null,
+ "giftable": false,
+ "publicVisible": true,
+ "sizeComparison": [
+ {
+ "label": {
+ "fr": "XS / Bleu",
+ "en": "XS / Blue",
+ "es": "XS / Blue",
+ "tr": "XS / Blue",
+ "ar": "XS / Blue"
+ },
+ "price": 49000,
+ "whatFits": {
+ "fr": "Telephone, porte-cartes, cles, rouge a levres.",
+ "en": "Phone, card holder, keys and lipstick.",
+ "es": "Phone, card holder, keys and lipstick.",
+ "tr": "Phone, card holder, keys and lipstick.",
+ "ar": "Phone, card holder, keys and lipstick."
+ }
+ },
+ {
+ "label": {
+ "fr": "S / Rose",
+ "en": "S / Pink",
+ "es": "S / Pink",
+ "tr": "S / Pink",
+ "ar": "S / Pink"
+ },
+ "price": 60000,
+ "whatFits": {
+ "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
+ "en": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "es": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
+ "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ }
+ },
+ {
+ "label": {
+ "fr": "M / Bleu ciel",
+ "en": "M / Sky blue",
+ "es": "M / Sky blue",
+ "tr": "M / Sky blue",
+ "ar": "M / Sky blue"
+ },
+ "price": 66000,
+ "whatFits": {
+ "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
+ "en": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "es": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
+ "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ }
+ }
+ ],
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "yza-pareo-skirt-short-jawhara-ss26",
+ "yza-scarf-top-jawhara-ss26"
+ ]
+ },
+ {
+ "handle": "raffia-cherries-charm-ss26",
+ "legacyHandles": [
+ "cerises"
+ ],
+ "sku": null,
+ "name": {
+ "fr": "Charm cerises en raphia",
+ "en": "Raffia Cherries Charm",
+ "es": "Raffia Cherries Charm",
+ "tr": "Raffia Cherries Charm",
+ "ar": "Raffia Cherries Charm"
+ },
+ "displayName": {
+ "fr": "Charm cerises en raphia",
+ "en": "Raffia Cherries Charm",
+ "es": "Raffia Cherries Charm",
+ "tr": "Raffia Cherries Charm",
+ "ar": "Raffia Cherries Charm"
+ },
+ "short": {
+ "fr": "Charm cerises en raffia, crocheté main avec anneau doré 2 cm.",
+ "en": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "es": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "tr": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "ar": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag."
+ },
+ "displayShort": {
+ "fr": "Charm cerises en raffia, crocheté main avec anneau doré 2 cm.",
+ "en": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "es": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "tr": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "ar": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag."
+ },
+ "desc": {
+ "fr": "Deux petites cerises qui bougent ensemble: legeres, joueuses, un peu romantiques. Parfaites sur mini sac, pochette ou porte-clés.",
+ "en": "Two small cherries swinging together, light, playful and a little romantic. Perfect for mini bags, clutches or as a fun accent on your keys.",
+ "es": "Two small cherries swinging together, light, playful and a little romantic. Perfect for mini bags, clutches or as a fun accent on your keys.",
+ "tr": "Two small cherries swinging together, light, playful and a little romantic. Perfect for mini bags, clutches or as a fun accent on your keys.",
+ "ar": "Two small cherries swinging together, light, playful and a little romantic. Perfect for mini bags, clutches or as a fun accent on your keys."
+ },
+ "price": 10000,
+ "currency": "MAD",
+ "category": "charms",
+ "sourceCategory": "Fruit Charms",
+ "categoryLabel": {
+ "fr": "Charms",
+ "en": "Charms",
+ "es": "Charms",
+ "tr": "Charms",
+ "ar": "Charms"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/original-shop/charms/raffia-cherries-charm-ss26-01.png",
+ "gallery": [
+ "assets/original-shop/charms/raffia-cherries-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-cherries-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-cherries-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-cherries-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-cherries-charm-ss26-08.jpg",
+ "assets/original-shop/charms/raffia-cherries-charm-ss26-10.webp",
+ "assets/products/accessories-clean/cherries-accessory-clean.png",
+ "assets/lookbook-ss26-27/embedded/p58_img02_xref1416_b7482fc1dffb.jpeg",
+ "assets/lookbook-ss26-27/embedded/p59_img01_xref1426_ab1030bf5e96.jpeg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-58.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-59.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "raffia-cherries-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "cerises",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 13
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit charm",
+ "Cherries",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Raffia Cherries Charm - Handmade Fruit Charm in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Charm cerises en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Cherries Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "cereza",
+ "cerise",
+ "cerises",
+ "charm",
+ "charms",
+ "cherries",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "porte",
+ "raffia-cherries-charm-ss26",
+ "كرز"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Charm cerises en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Cherries Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "cereza",
+ "cerise",
+ "cerises",
+ "charm",
+ "charms",
+ "cherries",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "porte",
+ "raffia-cherries-charm-ss26",
+ "كرز"
+ ],
+ "material": {
+ "fr": "raphia crochete main et aiguille raffia",
+ "en": "hand-crocheted and needle-crocheted raffia",
+ "es": "hand-crocheted and needle-crocheted raffia",
+ "tr": "hand-crocheted and needle-crocheted raffia",
+ "ar": "hand-crocheted and needle-crocheted raffia"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Environ 8 cm (chaque piece peut legerement varier).",
+ "en": "Approx. 8 cm (each piece may vary slightly).",
+ "es": "Approx. 8 cm (each piece may vary slightly).",
+ "tr": "Approx. 8 cm (each piece may vary slightly).",
+ "ar": "Approx. 8 cm (each piece may vary slightly)."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
+ "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ },
+ "handworkTime": {
+ "fr": "1,5 h de crochet main pour ce fruit.",
+ "en": "1.5 hours of hand crochet for this fruit.",
+ "es": "1.5 hours of hand crochet for this fruit.",
+ "tr": "1.5 hours of hand crochet for this fruit.",
+ "ar": "1.5 hours of hand crochet for this fruit."
+ },
+ "howToWear": {
+ "title": {
+ "fr": "Comment le porter",
+ "en": "How to wear it",
+ "es": "How to wear it",
+ "tr": "How to wear it",
+ "ar": "How to wear it"
+ },
+ "intro": {
+ "fr": "Utilisez ce Fruit Charm sur:",
+ "en": "Use this Fruit Charm on:",
+ "es": "Use this Fruit Charm on:",
+ "tr": "Use this Fruit Charm on:",
+ "ar": "Use this Fruit Charm on:"
+ },
+ "items": [
+ {
+ "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
+ "en": "YZA bags, La Vague and other YZA baskets.",
+ "es": "YZA bags, La Vague and other YZA baskets.",
+ "tr": "YZA bags, La Vague and other YZA baskets.",
+ "ar": "YZA bags, La Vague and other YZA baskets."
+ },
+ {
+ "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
+ "en": "Leather bags to add personality and colour.",
+ "es": "Leather bags to add personality and colour.",
+ "tr": "Leather bags to add personality and colour.",
+ "ar": "Leather bags to add personality and colour."
+ },
+ {
+ "fr": "Paniers en paille, market totes et sacs de plage.",
+ "en": "Straw baskets, market totes and beach bags.",
+ "es": "Straw baskets, market totes and beach bags.",
+ "tr": "Straw baskets, market totes and beach bags.",
+ "ar": "Straw baskets, market totes and beach bags."
+ },
+ {
+ "fr": "Clés, porte-clés et pochettes.",
+ "en": "Keys, keychains and pouches.",
+ "es": "Keys, keychains and pouches.",
+ "tr": "Keys, keychains and pouches.",
+ "ar": "Keys, keychains and pouches."
+ }
+ ],
+ "styleTip": {
+ "fr": "Best on mini bags, black leather, keys and evening clutches. Keep them alone so the movement stays clean.",
+ "en": "Best on mini bags, black leather, keys and evening clutches. Keep them alone so the movement stays clean.",
+ "es": "Best on mini bags, black leather, keys and evening clutches. Keep them alone so the movement stays clean.",
+ "tr": "Best on mini bags, black leather, keys and evening clutches. Keep them alone so the movement stays clean.",
+ "ar": "Best on mini bags, black leather, keys and evening clutches. Keep them alone so the movement stays clean."
+ },
+ "note": {
+ "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ }
+ },
+ "fruitStory": {
+ "title": {
+ "fr": "Cherries: the flirt of the market.",
+ "en": "Cherries: the flirt of the market.",
+ "es": "Cherries: the flirt of the market.",
+ "tr": "Cherries: the flirt of the market.",
+ "ar": "Cherries: the flirt of the market."
+ },
+ "body": {
+ "fr": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail.",
+ "en": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail.",
+ "es": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail.",
+ "tr": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail.",
+ "ar": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail."
+ },
+ "collectionTitle": {
+ "fr": "Fruit Market : inspiré des marchés de Marrakech",
+ "en": "Fruit Market: inspired by the Marrakesh markets",
+ "es": "Fruit Market: inspired by the Marrakesh markets",
+ "tr": "Fruit Market: inspired by the Marrakesh markets",
+ "ar": "Fruit Market: inspired by the Marrakesh markets"
+ },
+ "collectionBody": {
+ "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
+ "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ },
+ "liveUrl": "https://yza-shop.com/products/cherry-raffia-bag-charm"
+ },
+ "making": {
+ "fr": "Chaque pièce est crochetée à la main dans l’atelier de Guéliz, fibre par fibre, puis contrôlée avant la pose de l’étiquette YZA.",
+ "en": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "es": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "tr": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "ar": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 1.5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "raffia-grapes-charm-ss26",
+ "legacyHandles": [
+ "raisin",
+ "raisins"
+ ],
+ "sku": null,
+ "name": {
+ "fr": "Charm raisins en raphia",
+ "en": "Raffia Grapes Charm",
+ "es": "Raffia Grapes Charm",
+ "tr": "Raffia Grapes Charm",
+ "ar": "Raffia Grapes Charm"
+ },
+ "displayName": {
+ "fr": "Charm raisins en raphia",
+ "en": "Raffia Grapes Charm",
+ "es": "Raffia Grapes Charm",
+ "tr": "Raffia Grapes Charm",
+ "ar": "Raffia Grapes Charm"
+ },
+ "short": {
+ "fr": "Charm raisins en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "es": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "tr": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "ar": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag."
+ },
+ "displayShort": {
+ "fr": "Charm raisins en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "es": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "tr": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "ar": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag."
+ },
+ "desc": {
+ "fr": "Une petite grappe comme un bijou textile: volume, mouvement et plusieurs grains crochetes un par un.",
+ "en": "A tiny bunch of grapes, almost like textile jewellery. One of the most intricate designs, with multiple crocheted grapes creating volume and movement.",
+ "es": "A tiny bunch of grapes, almost like textile jewellery. One of the most intricate designs, with multiple crocheted grapes creating volume and movement.",
+ "tr": "A tiny bunch of grapes, almost like textile jewellery. One of the most intricate designs, with multiple crocheted grapes creating volume and movement.",
+ "ar": "A tiny bunch of grapes, almost like textile jewellery. One of the most intricate designs, with multiple crocheted grapes creating volume and movement."
+ },
+ "price": 19000,
+ "currency": "MAD",
+ "category": "charms",
+ "sourceCategory": "Fruit Charms",
+ "categoryLabel": {
+ "fr": "Charms",
+ "en": "Charms",
+ "es": "Charms",
+ "tr": "Charms",
+ "ar": "Charms"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/original-shop/charms/raffia-grapes-charm-ss26-01.png",
+ "gallery": [
+ "assets/original-shop/charms/raffia-grapes-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-grapes-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-grapes-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-grapes-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-grapes-charm-ss26-08.jpg",
+ "assets/original-shop/charms/raffia-grapes-charm-ss26-10.webp",
+ "assets/products/accessories-clean/grapes-accessory-clean.png",
+ "assets/lookbook-ss26-27/embedded/p59_img01_xref1426_ab1030bf5e96.jpeg",
+ "assets/lookbook-ss26-27/embedded/p57_img04_xref1411_21775b2a985c.jpeg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-58.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-59.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg",
+ "assets/lifestyle/charms/grapes-therow.webp"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "raffia-grapes-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "grapes",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 12
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit charm",
+ "Grapes",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Raffia Grapes Charm - Handmade Fruit Charm in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Charm raisins en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Grapes Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "grapes",
+ "handmade",
+ "porte",
+ "raffia-grapes-charm-ss26",
+ "raisin",
+ "raisins",
+ "uvas",
+ "عنب"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Charm raisins en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Grapes Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "grapes",
+ "handmade",
+ "porte",
+ "raffia-grapes-charm-ss26",
+ "raisin",
+ "raisins",
+ "uvas",
+ "عنب"
+ ],
+ "material": {
+ "fr": "raphia crochete main et aiguille raffia",
+ "en": "hand-crocheted and needle-crocheted raffia",
+ "es": "hand-crocheted and needle-crocheted raffia",
+ "tr": "hand-crocheted and needle-crocheted raffia",
+ "ar": "hand-crocheted and needle-crocheted raffia"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Environ 8 x 4 cm (chaque piece peut legerement varier).",
+ "en": "Approx. 8 x 4 cm (each piece may vary slightly).",
+ "es": "Approx. 8 x 4 cm (each piece may vary slightly).",
+ "tr": "Approx. 8 x 4 cm (each piece may vary slightly).",
+ "ar": "Approx. 8 x 4 cm (each piece may vary slightly)."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
+ "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ },
+ "handworkTime": {
+ "fr": "4 h de crochet main pour ce fruit.",
+ "en": "4 hours of hand crochet for this fruit.",
+ "es": "4 hours of hand crochet for this fruit.",
+ "tr": "4 hours of hand crochet for this fruit.",
+ "ar": "4 hours of hand crochet for this fruit."
+ },
+ "howToWear": {
+ "title": {
+ "fr": "Comment le porter",
+ "en": "How to wear it",
+ "es": "How to wear it",
+ "tr": "How to wear it",
+ "ar": "How to wear it"
+ },
+ "intro": {
+ "fr": "Utilisez ce Fruit Charm sur:",
+ "en": "Use this Fruit Charm on:",
+ "es": "Use this Fruit Charm on:",
+ "tr": "Use this Fruit Charm on:",
+ "ar": "Use this Fruit Charm on:"
+ },
+ "items": [
+ {
+ "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
+ "en": "YZA bags, La Vague and other YZA baskets.",
+ "es": "YZA bags, La Vague and other YZA baskets.",
+ "tr": "YZA bags, La Vague and other YZA baskets.",
+ "ar": "YZA bags, La Vague and other YZA baskets."
+ },
+ {
+ "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
+ "en": "Leather bags to add personality and colour.",
+ "es": "Leather bags to add personality and colour.",
+ "tr": "Leather bags to add personality and colour.",
+ "ar": "Leather bags to add personality and colour."
+ },
+ {
+ "fr": "Paniers en paille, market totes et sacs de plage.",
+ "en": "Straw baskets, market totes and beach bags.",
+ "es": "Straw baskets, market totes and beach bags.",
+ "tr": "Straw baskets, market totes and beach bags.",
+ "ar": "Straw baskets, market totes and beach bags."
+ },
+ {
+ "fr": "Clés, porte-clés et pochettes.",
+ "en": "Keys, keychains and pouches.",
+ "es": "Keys, keychains and pouches.",
+ "tr": "Keys, keychains and pouches.",
+ "ar": "Keys, keychains and pouches."
+ }
+ ],
+ "styleTip": {
+ "fr": "Best on clean handles and evening baskets. Let the volume hang freely rather than crowding it with too many charms.",
+ "en": "Best on clean handles and evening baskets. Let the volume hang freely rather than crowding it with too many charms.",
+ "es": "Best on clean handles and evening baskets. Let the volume hang freely rather than crowding it with too many charms.",
+ "tr": "Best on clean handles and evening baskets. Let the volume hang freely rather than crowding it with too many charms.",
+ "ar": "Best on clean handles and evening baskets. Let the volume hang freely rather than crowding it with too many charms."
+ },
+ "note": {
+ "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ }
+ },
+ "fruitStory": {
+ "title": {
+ "fr": "Grapes: the most sculptural charm.",
+ "en": "Grapes: the most sculptural charm.",
+ "es": "Grapes: the most sculptural charm.",
+ "tr": "Grapes: the most sculptural charm.",
+ "ar": "Grapes: the most sculptural charm."
+ },
+ "body": {
+ "fr": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory.",
+ "en": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory.",
+ "es": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory.",
+ "tr": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory.",
+ "ar": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory."
+ },
+ "collectionTitle": {
+ "fr": "Fruit Market : inspiré des marchés de Marrakech",
+ "en": "Fruit Market: inspired by the Marrakesh markets",
+ "es": "Fruit Market: inspired by the Marrakesh markets",
+ "tr": "Fruit Market: inspired by the Marrakesh markets",
+ "ar": "Fruit Market: inspired by the Marrakesh markets"
+ },
+ "collectionBody": {
+ "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
+ "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ },
+ "liveUrl": "https://yza-shop.com/products/grapes-raffia-bag-charm"
+ },
+ "making": {
+ "fr": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "en": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "es": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "tr": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "ar": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 4,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "raffia-whole-lemon-charm-ss26",
+ "legacyHandles": [
+ "citron"
+ ],
+ "sku": null,
+ "name": {
+ "fr": "Charm citron entier en raphia",
+ "en": "Raffia Whole Lemon Charm",
+ "es": "Raffia Whole Lemon Charm",
+ "tr": "Raffia Whole Lemon Charm",
+ "ar": "Raffia Whole Lemon Charm"
+ },
+ "displayName": {
+ "fr": "Charm citron entier en raphia",
+ "en": "Raffia Whole Lemon Charm",
+ "es": "Raffia Whole Lemon Charm",
+ "tr": "Raffia Whole Lemon Charm",
+ "ar": "Raffia Whole Lemon Charm"
+ },
+ "short": {
+ "fr": "Charm citron entier en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring.",
+ "es": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring.",
+ "tr": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring.",
+ "ar": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring."
+ },
+ "displayShort": {
+ "fr": "Charm citron entier en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring.",
+ "es": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring.",
+ "tr": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring.",
+ "ar": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring."
+ },
+ "desc": {
+ "fr": "Un citron de marche en raphia: vif, graphique, plein d energie. Beau sur cuir noir, denim et paille naturelle.",
+ "en": "A juicy lemon from the market, in raffia form: bright, cheeky and full of energy. Works beautifully on dark leather, denim and natural straw.",
+ "es": "A juicy lemon from the market, in raffia form: bright, cheeky and full of energy. Works beautifully on dark leather, denim and natural straw.",
+ "tr": "A juicy lemon from the market, in raffia form: bright, cheeky and full of energy. Works beautifully on dark leather, denim and natural straw.",
+ "ar": "A juicy lemon from the market, in raffia form: bright, cheeky and full of energy. Works beautifully on dark leather, denim and natural straw."
+ },
+ "price": 23000,
+ "currency": "MAD",
+ "category": "charms",
+ "sourceCategory": "Fruit Charms",
+ "categoryLabel": {
+ "fr": "Charms",
+ "en": "Charms",
+ "es": "Charms",
+ "tr": "Charms",
+ "ar": "Charms"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/original-shop/charms/raffia-whole-lemon-charm-ss26-01.png",
+ "gallery": [
+ "assets/original-shop/charms/raffia-whole-lemon-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-whole-lemon-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-whole-lemon-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-whole-lemon-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-whole-lemon-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-whole-lemon-charm-ss26-09.webp",
+ "assets/products/accessories-clean/lemon-raffia-earrings-clean.webp",
+ "assets/lookbook-ss26-27/embedded/p53_img01_xref1380_788fc851111b.jpeg",
+ "assets/lookbook-ss26-27/embedded/p59_img01_xref1426_ab1030bf5e96.jpeg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-58.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-59.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg",
+ "assets/lifestyle/charms/lemon-bottega.webp"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "raffia-whole-lemon-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "lemon",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 8
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit charm",
+ "Lemon",
+ "Whole fruit",
+ "Raffia"
+ ],
+ "seoTitle": "Whole Lemon Raffia Charm - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Charm citron entier en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Whole Lemon Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "citron",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "limon",
+ "porte",
+ "raffia-whole-lemon-charm-ss26",
+ "ليمون"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Charm citron entier en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Whole Lemon Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "citron",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "limon",
+ "porte",
+ "raffia-whole-lemon-charm-ss26",
+ "ليمون"
+ ],
+ "material": {
+ "fr": "raphia crochete main raffia",
+ "en": "hand-crocheted raffia",
+ "es": "hand-crocheted raffia",
+ "tr": "hand-crocheted raffia",
+ "ar": "hand-crocheted raffia"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Environ 4.5 cm diameter (chaque piece peut legerement varier).",
+ "en": "Approx. 4.5 cm diameter (each piece may vary slightly).",
+ "es": "Approx. 4.5 cm diameter (each piece may vary slightly).",
+ "tr": "Approx. 4.5 cm diameter (each piece may vary slightly).",
+ "ar": "Approx. 4.5 cm diameter (each piece may vary slightly)."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
+ "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ },
+ "handworkTime": {
+ "fr": "3 h de crochet main pour ce fruit.",
+ "en": "3 hours of hand crochet for this fruit.",
+ "es": "3 hours of hand crochet for this fruit.",
+ "tr": "3 hours of hand crochet for this fruit.",
+ "ar": "3 hours of hand crochet for this fruit."
+ },
+ "howToWear": {
+ "title": {
+ "fr": "Comment le porter",
+ "en": "How to wear it",
+ "es": "How to wear it",
+ "tr": "How to wear it",
+ "ar": "How to wear it"
+ },
+ "intro": {
+ "fr": "Utilisez ce Fruit Charm sur:",
+ "en": "Use this Fruit Charm on:",
+ "es": "Use this Fruit Charm on:",
+ "tr": "Use this Fruit Charm on:",
+ "ar": "Use this Fruit Charm on:"
+ },
+ "items": [
+ {
+ "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
+ "en": "YZA bags, La Vague and other YZA baskets.",
+ "es": "YZA bags, La Vague and other YZA baskets.",
+ "tr": "YZA bags, La Vague and other YZA baskets.",
+ "ar": "YZA bags, La Vague and other YZA baskets."
+ },
+ {
+ "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
+ "en": "Leather bags to add personality and colour.",
+ "es": "Leather bags to add personality and colour.",
+ "tr": "Leather bags to add personality and colour.",
+ "ar": "Leather bags to add personality and colour."
+ },
+ {
+ "fr": "Paniers en paille, market totes et sacs de plage.",
+ "en": "Straw baskets, market totes and beach bags.",
+ "es": "Straw baskets, market totes and beach bags.",
+ "tr": "Straw baskets, market totes and beach bags.",
+ "ar": "Straw baskets, market totes and beach bags."
+ },
+ {
+ "fr": "Clés, porte-clés et pochettes.",
+ "en": "Keys, keychains and pouches.",
+ "es": "Keys, keychains and pouches.",
+ "tr": "Keys, keychains and pouches.",
+ "ar": "Keys, keychains and pouches."
+ }
+ ],
+ "styleTip": {
+ "fr": "Best on dark leather, denim, natural straw and black handles. Wear alone for one sharp colour note.",
+ "en": "Best on dark leather, denim, natural straw and black handles. Wear alone for one sharp colour note.",
+ "es": "Best on dark leather, denim, natural straw and black handles. Wear alone for one sharp colour note.",
+ "tr": "Best on dark leather, denim, natural straw and black handles. Wear alone for one sharp colour note.",
+ "ar": "Best on dark leather, denim, natural straw and black handles. Wear alone for one sharp colour note."
+ },
+ "note": {
+ "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ }
+ },
+ "fruitStory": {
+ "title": {
+ "fr": "Lemon: the clean pop.",
+ "en": "Lemon: the clean pop.",
+ "es": "Lemon: the clean pop.",
+ "tr": "Lemon: the clean pop.",
+ "ar": "Lemon: the clean pop."
+ },
+ "body": {
+ "fr": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud.",
+ "en": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud.",
+ "es": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud.",
+ "tr": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud.",
+ "ar": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud."
+ },
+ "collectionTitle": {
+ "fr": "Fruit Market : inspiré des marchés de Marrakech",
+ "en": "Fruit Market: inspired by the Marrakesh markets",
+ "es": "Fruit Market: inspired by the Marrakesh markets",
+ "tr": "Fruit Market: inspired by the Marrakesh markets",
+ "ar": "Fruit Market: inspired by the Marrakesh markets"
+ },
+ "collectionBody": {
+ "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
+ "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ },
+ "liveUrl": "https://yza-shop.com/products/lemon-raffia-bag-charm"
+ },
+ "making": {
+ "fr": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "en": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "es": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "tr": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "ar": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 3,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "raffia-whole-orange-charm-ss26",
+ "legacyHandles": [
+ "orange"
+ ],
+ "sku": null,
+ "name": {
+ "fr": "Charm orange entiere en raphia",
+ "en": "Raffia Whole Orange Charm",
+ "es": "Raffia Whole Orange Charm",
+ "tr": "Raffia Whole Orange Charm",
+ "ar": "Raffia Whole Orange Charm"
+ },
+ "displayName": {
+ "fr": "Charm orange entiere en raphia",
+ "en": "Raffia Whole Orange Charm",
+ "es": "Raffia Whole Orange Charm",
+ "tr": "Raffia Whole Orange Charm",
+ "ar": "Raffia Whole Orange Charm"
+ },
+ "short": {
+ "fr": "Charm orange entiere en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring.",
+ "es": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring.",
+ "tr": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring.",
+ "ar": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring."
+ },
+ "displayShort": {
+ "fr": "Charm orange entiere en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring.",
+ "es": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring.",
+ "tr": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring.",
+ "ar": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring."
+ },
+ "desc": {
+ "fr": "Une petite orange ronde comme un soleil sur la anse: chaleur, couleur et presence graphique sur cuir ou panier.",
+ "en": "A small, round orange turned into a charm, like a little sun on your handle. Brings warmth and colour to both leather bags and straw baskets.",
+ "es": "A small, round orange turned into a charm, like a little sun on your handle. Brings warmth and colour to both leather bags and straw baskets.",
+ "tr": "A small, round orange turned into a charm, like a little sun on your handle. Brings warmth and colour to both leather bags and straw baskets.",
+ "ar": "A small, round orange turned into a charm, like a little sun on your handle. Brings warmth and colour to both leather bags and straw baskets."
+ },
+ "price": 23000,
+ "currency": "MAD",
+ "category": "charms",
+ "sourceCategory": "Fruit Charms",
+ "categoryLabel": {
+ "fr": "Charms",
+ "en": "Charms",
+ "es": "Charms",
+ "tr": "Charms",
+ "ar": "Charms"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/original-shop/charms/raffia-whole-orange-charm-ss26-01.png",
+ "gallery": [
+ "assets/original-shop/charms/raffia-whole-orange-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-whole-orange-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-whole-orange-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-whole-orange-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-whole-orange-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-whole-orange-charm-ss26-09.webp",
+ "assets/products/accessories-clean/orange-raffia-earrings-clean.webp",
+ "assets/lookbook-ss26-27/embedded/p59_img01_xref1426_ab1030bf5e96.jpeg",
+ "assets/lookbook-ss26-27/embedded/p58_img02_xref1416_b7482fc1dffb.jpeg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-58.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-59.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "raffia-whole-orange-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "orange",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 6
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit charm",
+ "Orange",
+ "Whole fruit",
+ "Raffia"
+ ],
+ "seoTitle": "Whole Orange Raffia Charm - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Charm orange entiere en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Whole Orange Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "naranja",
+ "orange",
+ "porte",
+ "raffia-whole-orange-charm-ss26",
+ "برتقال"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Charm orange entiere en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Whole Orange Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "naranja",
+ "orange",
+ "porte",
+ "raffia-whole-orange-charm-ss26",
+ "برتقال"
+ ],
+ "material": {
+ "fr": "raphia crochete main raffia",
+ "en": "hand-crocheted raffia",
+ "es": "hand-crocheted raffia",
+ "tr": "hand-crocheted raffia",
+ "ar": "hand-crocheted raffia"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Environ 4.5 cm diameter (chaque piece peut legerement varier).",
+ "en": "Approx. 4.5 cm diameter (each piece may vary slightly).",
+ "es": "Approx. 4.5 cm diameter (each piece may vary slightly).",
+ "tr": "Approx. 4.5 cm diameter (each piece may vary slightly).",
+ "ar": "Approx. 4.5 cm diameter (each piece may vary slightly)."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
+ "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ },
+ "handworkTime": {
+ "fr": "3 h de crochet main pour ce fruit.",
+ "en": "3 hours of hand crochet for this fruit.",
+ "es": "3 hours of hand crochet for this fruit.",
+ "tr": "3 hours of hand crochet for this fruit.",
+ "ar": "3 hours of hand crochet for this fruit."
+ },
+ "howToWear": {
+ "title": {
+ "fr": "Comment le porter",
+ "en": "How to wear it",
+ "es": "How to wear it",
+ "tr": "How to wear it",
+ "ar": "How to wear it"
+ },
+ "intro": {
+ "fr": "Utilisez ce Fruit Charm sur:",
+ "en": "Use this Fruit Charm on:",
+ "es": "Use this Fruit Charm on:",
+ "tr": "Use this Fruit Charm on:",
+ "ar": "Use this Fruit Charm on:"
+ },
+ "items": [
+ {
+ "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
+ "en": "YZA bags, La Vague and other YZA baskets.",
+ "es": "YZA bags, La Vague and other YZA baskets.",
+ "tr": "YZA bags, La Vague and other YZA baskets.",
+ "ar": "YZA bags, La Vague and other YZA baskets."
+ },
+ {
+ "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
+ "en": "Leather bags to add personality and colour.",
+ "es": "Leather bags to add personality and colour.",
+ "tr": "Leather bags to add personality and colour.",
+ "ar": "Leather bags to add personality and colour."
+ },
+ {
+ "fr": "Paniers en paille, market totes et sacs de plage.",
+ "en": "Straw baskets, market totes and beach bags.",
+ "es": "Straw baskets, market totes and beach bags.",
+ "tr": "Straw baskets, market totes and beach bags.",
+ "ar": "Straw baskets, market totes and beach bags."
+ },
+ {
+ "fr": "Clés, porte-clés et pochettes.",
+ "en": "Keys, keychains and pouches.",
+ "es": "Keys, keychains and pouches.",
+ "tr": "Keys, keychains and pouches.",
+ "ar": "Keys, keychains and pouches."
+ }
+ ],
+ "styleTip": {
+ "fr": "Best alone for a graphic touch, or mixed with lemon and tomato for a warm market story.",
+ "en": "Best alone for a graphic touch, or mixed with lemon and tomato for a warm market story.",
+ "es": "Best alone for a graphic touch, or mixed with lemon and tomato for a warm market story.",
+ "tr": "Best alone for a graphic touch, or mixed with lemon and tomato for a warm market story.",
+ "ar": "Best alone for a graphic touch, or mixed with lemon and tomato for a warm market story."
+ },
+ "note": {
+ "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ }
+ },
+ "fruitStory": {
+ "title": {
+ "fr": "Orange: the little sun.",
+ "en": "Orange: the little sun.",
+ "es": "Orange: the little sun.",
+ "tr": "Orange: the little sun.",
+ "ar": "Orange: the little sun."
+ },
+ "body": {
+ "fr": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close.",
+ "en": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close.",
+ "es": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close.",
+ "tr": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close.",
+ "ar": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close."
+ },
+ "collectionTitle": {
+ "fr": "Fruit Market : inspiré des marchés de Marrakech",
+ "en": "Fruit Market: inspired by the Marrakesh markets",
+ "es": "Fruit Market: inspired by the Marrakesh markets",
+ "tr": "Fruit Market: inspired by the Marrakesh markets",
+ "ar": "Fruit Market: inspired by the Marrakesh markets"
+ },
+ "collectionBody": {
+ "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
+ "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ },
+ "liveUrl": "https://yza-shop.com/products/orange-raffia-bag-charm"
+ },
+ "making": {
+ "fr": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "en": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "es": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "tr": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "ar": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 3,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "raffia-tomato-charm-ss26",
+ "legacyHandles": [
+ "tomate"
+ ],
+ "sku": null,
+ "name": {
+ "fr": "Charm tomate en raphia",
+ "en": "Raffia Tomato Charm",
+ "es": "Raffia Tomato Charm",
+ "tr": "Raffia Tomato Charm",
+ "ar": "Raffia Tomato Charm"
+ },
+ "displayName": {
+ "fr": "Charm tomate en raphia",
+ "en": "Raffia Tomato Charm",
+ "es": "Raffia Tomato Charm",
+ "tr": "Raffia Tomato Charm",
+ "ar": "Raffia Tomato Charm"
+ },
+ "short": {
+ "fr": "Charm tomate en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring.",
+ "es": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring.",
+ "tr": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring.",
+ "ar": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring."
+ },
+ "displayShort": {
+ "fr": "Charm tomate en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring.",
+ "es": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring.",
+ "tr": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring.",
+ "ar": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring."
+ },
+ "desc": {
+ "fr": "Une mini tomate de marche a Guéliz: rouge profond, petit vert, graphique et porte-bonheur du quotidien.",
+ "en": "A tiny tomato straight from a Guéliz market. Deep red with a small green top, cute and graphic. Clip it as a small everyday good-luck talisman.",
+ "es": "A tiny tomato straight from a Guéliz market. Deep red with a small green top, cute and graphic. Clip it as a small everyday good-luck talisman.",
+ "tr": "A tiny tomato straight from a Guéliz market. Deep red with a small green top, cute and graphic. Clip it as a small everyday good-luck talisman.",
+ "ar": "A tiny tomato straight from a Guéliz market. Deep red with a small green top, cute and graphic. Clip it as a small everyday good-luck talisman."
+ },
+ "price": 23000,
+ "currency": "MAD",
+ "category": "charms",
+ "sourceCategory": "Fruit Charms",
+ "categoryLabel": {
+ "fr": "Charms",
+ "en": "Charms",
+ "es": "Charms",
+ "tr": "Charms",
+ "ar": "Charms"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/original-shop/charms/raffia-tomato-charm-ss26-01.png",
+ "gallery": [
+ "assets/original-shop/charms/raffia-tomato-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-tomato-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-tomato-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-tomato-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-tomato-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-tomato-charm-ss26-09.webp",
+ "assets/products/accessories-clean/tomatoes-earrings-clean.webp",
+ "assets/lookbook-ss26-27/embedded/p58_img02_xref1416_b7482fc1dffb.jpeg",
+ "assets/lookbook-ss26-27/embedded/p59_img01_xref1426_ab1030bf5e96.jpeg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-58.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-59.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "raffia-tomato-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "tomate",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 9
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit charm",
+ "Tomato",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Tomato Raffia Charm - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Charm tomate en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Tomato Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "porte",
+ "raffia-tomato-charm-ss26",
+ "tomate",
+ "tomato",
+ "طماطم"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Charm tomate en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Tomato Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "porte",
+ "raffia-tomato-charm-ss26",
+ "tomate",
+ "tomato",
+ "طماطم"
+ ],
+ "material": {
+ "fr": "raphia crochete main raffia",
+ "en": "hand-crocheted raffia",
+ "es": "hand-crocheted raffia",
+ "tr": "hand-crocheted raffia",
+ "ar": "hand-crocheted raffia"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Environ 4.5 cm diameter (chaque piece peut legerement varier).",
+ "en": "Approx. 4.5 cm diameter (each piece may vary slightly).",
+ "es": "Approx. 4.5 cm diameter (each piece may vary slightly).",
+ "tr": "Approx. 4.5 cm diameter (each piece may vary slightly).",
+ "ar": "Approx. 4.5 cm diameter (each piece may vary slightly)."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
+ "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ },
+ "handworkTime": {
+ "fr": "3 h de crochet main pour ce fruit.",
+ "en": "3 hours of hand crochet for this fruit.",
+ "es": "3 hours of hand crochet for this fruit.",
+ "tr": "3 hours of hand crochet for this fruit.",
+ "ar": "3 hours of hand crochet for this fruit."
+ },
+ "howToWear": {
+ "title": {
+ "fr": "Comment le porter",
+ "en": "How to wear it",
+ "es": "How to wear it",
+ "tr": "How to wear it",
+ "ar": "How to wear it"
+ },
+ "intro": {
+ "fr": "Utilisez ce Fruit Charm sur:",
+ "en": "Use this Fruit Charm on:",
+ "es": "Use this Fruit Charm on:",
+ "tr": "Use this Fruit Charm on:",
+ "ar": "Use this Fruit Charm on:"
+ },
+ "items": [
+ {
+ "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
+ "en": "YZA bags, La Vague and other YZA baskets.",
+ "es": "YZA bags, La Vague and other YZA baskets.",
+ "tr": "YZA bags, La Vague and other YZA baskets.",
+ "ar": "YZA bags, La Vague and other YZA baskets."
+ },
+ {
+ "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
+ "en": "Leather bags to add personality and colour.",
+ "es": "Leather bags to add personality and colour.",
+ "tr": "Leather bags to add personality and colour.",
+ "ar": "Leather bags to add personality and colour."
+ },
+ {
+ "fr": "Paniers en paille, market totes et sacs de plage.",
+ "en": "Straw baskets, market totes and beach bags.",
+ "es": "Straw baskets, market totes and beach bags.",
+ "tr": "Straw baskets, market totes and beach bags.",
+ "ar": "Straw baskets, market totes and beach bags."
+ },
+ {
+ "fr": "Clés, porte-clés et pochettes.",
+ "en": "Keys, keychains and pouches.",
+ "es": "Keys, keychains and pouches.",
+ "tr": "Keys, keychains and pouches.",
+ "ar": "Keys, keychains and pouches."
+ }
+ ],
+ "styleTip": {
+ "fr": "Best on straw, denim and black bags. Pair with watermelon when the look needs more red.",
+ "en": "Best on straw, denim and black bags. Pair with watermelon when the look needs more red.",
+ "es": "Best on straw, denim and black bags. Pair with watermelon when the look needs more red.",
+ "tr": "Best on straw, denim and black bags. Pair with watermelon when the look needs more red.",
+ "ar": "Best on straw, denim and black bags. Pair with watermelon when the look needs more red."
+ },
+ "note": {
+ "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ }
+ },
+ "fruitStory": {
+ "title": {
+ "fr": "Tomato: the market talisman.",
+ "en": "Tomato: the market talisman.",
+ "es": "Tomato: the market talisman.",
+ "tr": "Tomato: the market talisman.",
+ "ar": "Tomato: the market talisman."
+ },
+ "body": {
+ "fr": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA.",
+ "en": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA.",
+ "es": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA.",
+ "tr": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA.",
+ "ar": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA."
+ },
+ "collectionTitle": {
+ "fr": "Fruit Market : inspiré des marchés de Marrakech",
+ "en": "Fruit Market: inspired by the Marrakesh markets",
+ "es": "Fruit Market: inspired by the Marrakesh markets",
+ "tr": "Fruit Market: inspired by the Marrakesh markets",
+ "ar": "Fruit Market: inspired by the Marrakesh markets"
+ },
+ "collectionBody": {
+ "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
+ "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ },
+ "liveUrl": "https://yza-shop.com/products/tomato-raffia-bag-charm"
+ },
+ "making": {
+ "fr": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "en": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "es": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "tr": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "ar": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 3,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "raffia-lemon-slice-charm-ss26",
+ "legacyHandles": [
+ "tranche-citron"
+ ],
+ "sku": null,
+ "name": {
+ "fr": "Charm tranche de citron en raphia",
+ "en": "Raffia Lemon Slice Charm",
+ "es": "Raffia Lemon Slice Charm",
+ "tr": "Raffia Lemon Slice Charm",
+ "ar": "Raffia Lemon Slice Charm"
+ },
+ "displayName": {
+ "fr": "Charm tranche de citron en raphia",
+ "en": "Raffia Lemon Slice Charm",
+ "es": "Raffia Lemon Slice Charm",
+ "tr": "Raffia Lemon Slice Charm",
+ "ar": "Raffia Lemon Slice Charm"
+ },
+ "short": {
+ "fr": "Charm tranche de citron en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring.",
+ "es": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring.",
+ "tr": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring.",
+ "ar": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring."
+ },
+ "displayShort": {
+ "fr": "Charm tranche de citron en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring.",
+ "es": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring.",
+ "tr": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring.",
+ "ar": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring."
+ },
+ "desc": {
+ "fr": "Frais, vif, presque citronnade: une touche jaune nette pour reveiller sac noir, nude ou panier.",
+ "en": "Bright, zesty and super fresh. The Lemon Slice charm wakes up black, nude or straw bags with a clean pop of yellow.",
+ "es": "Bright, zesty and super fresh. The Lemon Slice charm wakes up black, nude or straw bags with a clean pop of yellow.",
+ "tr": "Bright, zesty and super fresh. The Lemon Slice charm wakes up black, nude or straw bags with a clean pop of yellow.",
+ "ar": "Bright, zesty and super fresh. The Lemon Slice charm wakes up black, nude or straw bags with a clean pop of yellow."
+ },
+ "price": 19000,
+ "currency": "MAD",
+ "category": "charms",
+ "sourceCategory": "Fruit Charms",
+ "categoryLabel": {
+ "fr": "Charms",
+ "en": "Charms",
+ "es": "Charms",
+ "tr": "Charms",
+ "ar": "Charms"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/original-shop/charms/raffia-lemon-slice-charm-ss26-01.png",
+ "gallery": [
+ "assets/original-shop/charms/raffia-lemon-slice-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-lemon-slice-charm-ss26-02.jpg",
+ "assets/original-shop/charms/raffia-lemon-slice-charm-ss26-03.webp",
+ "assets/original-shop/charms/raffia-lemon-slice-charm-ss26-06.webp",
+ "assets/original-shop/charms/raffia-lemon-slice-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-lemon-slice-charm-ss26-08.webp",
+ "assets/products/accessories-clean/lemon-slice-necklace-clean.webp",
+ "assets/lookbook-ss26-27/embedded/p58_img02_xref1416_b7482fc1dffb.jpeg",
+ "assets/lookbook-ss26-27/embedded/p59_img01_xref1426_ab1030bf5e96.jpeg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-58.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-59.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "raffia-lemon-slice-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "lemon slice",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 7
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit charm",
+ "Lemon slice",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Lemon Slice Raffia Charm - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Charm tranche de citron en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Lemon Slice Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "citron",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "limon",
+ "porte",
+ "raffia-lemon-slice-charm-ss26",
+ "ليمون"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Charm tranche de citron en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Lemon Slice Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "citron",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "limon",
+ "porte",
+ "raffia-lemon-slice-charm-ss26",
+ "ليمون"
+ ],
+ "material": {
+ "fr": "raphia crochete main raffia",
+ "en": "hand-crocheted raffia",
+ "es": "hand-crocheted raffia",
+ "tr": "hand-crocheted raffia",
+ "ar": "hand-crocheted raffia"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Environ 6 x 4 cm (chaque piece peut legerement varier).",
+ "en": "Approx. 6 x 4 cm (each piece may vary slightly).",
+ "es": "Approx. 6 x 4 cm (each piece may vary slightly).",
+ "tr": "Approx. 6 x 4 cm (each piece may vary slightly).",
+ "ar": "Approx. 6 x 4 cm (each piece may vary slightly)."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
+ "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ },
+ "handworkTime": {
+ "fr": "1 h de crochet main pour ce fruit.",
+ "en": "1 hours of hand crochet for this fruit.",
+ "es": "1 hours of hand crochet for this fruit.",
+ "tr": "1 hours of hand crochet for this fruit.",
+ "ar": "1 hours of hand crochet for this fruit."
+ },
+ "howToWear": {
+ "title": {
+ "fr": "Comment le porter",
+ "en": "How to wear it",
+ "es": "How to wear it",
+ "tr": "How to wear it",
+ "ar": "How to wear it"
+ },
+ "intro": {
+ "fr": "Utilisez ce Fruit Charm sur:",
+ "en": "Use this Fruit Charm on:",
+ "es": "Use this Fruit Charm on:",
+ "tr": "Use this Fruit Charm on:",
+ "ar": "Use this Fruit Charm on:"
+ },
+ "items": [
+ {
+ "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
+ "en": "YZA bags, La Vague and other YZA baskets.",
+ "es": "YZA bags, La Vague and other YZA baskets.",
+ "tr": "YZA bags, La Vague and other YZA baskets.",
+ "ar": "YZA bags, La Vague and other YZA baskets."
+ },
+ {
+ "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
+ "en": "Leather bags to add personality and colour.",
+ "es": "Leather bags to add personality and colour.",
+ "tr": "Leather bags to add personality and colour.",
+ "ar": "Leather bags to add personality and colour."
+ },
+ {
+ "fr": "Paniers en paille, market totes et sacs de plage.",
+ "en": "Straw baskets, market totes and beach bags.",
+ "es": "Straw baskets, market totes and beach bags.",
+ "tr": "Straw baskets, market totes and beach bags.",
+ "ar": "Straw baskets, market totes and beach bags."
+ },
+ {
+ "fr": "Clés, porte-clés et pochettes.",
+ "en": "Keys, keychains and pouches.",
+ "es": "Keys, keychains and pouches.",
+ "tr": "Keys, keychains and pouches.",
+ "ar": "Keys, keychains and pouches."
+ }
+ ],
+ "styleTip": {
+ "fr": "Best on black, nude, straw and beach totes. Add orange slice for the bold citrus duo.",
+ "en": "Best on black, nude, straw and beach totes. Add orange slice for the bold citrus duo.",
+ "es": "Best on black, nude, straw and beach totes. Add orange slice for the bold citrus duo.",
+ "tr": "Best on black, nude, straw and beach totes. Add orange slice for the bold citrus duo.",
+ "ar": "Best on black, nude, straw and beach totes. Add orange slice for the bold citrus duo."
+ },
+ "note": {
+ "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ }
+ },
+ "fruitStory": {
+ "title": {
+ "fr": "Lemon slice: Marrakesh lemonade.",
+ "en": "Lemon slice: Marrakesh lemonade.",
+ "es": "Lemon slice: Marrakesh lemonade.",
+ "tr": "Lemon slice: Marrakesh lemonade.",
+ "ar": "Lemon slice: Marrakesh lemonade."
+ },
+ "body": {
+ "fr": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm.",
+ "en": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm.",
+ "es": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm.",
+ "tr": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm.",
+ "ar": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm."
+ },
+ "collectionTitle": {
+ "fr": "Fruit Market : inspiré des marchés de Marrakech",
+ "en": "Fruit Market: inspired by the Marrakesh markets",
+ "es": "Fruit Market: inspired by the Marrakesh markets",
+ "tr": "Fruit Market: inspired by the Marrakesh markets",
+ "ar": "Fruit Market: inspired by the Marrakesh markets"
+ },
+ "collectionBody": {
+ "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
+ "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ },
+ "liveUrl": "https://yza-shop.com/products/lemon-slice-raphia-bag-charm"
+ },
+ "making": {
+ "fr": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "en": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "es": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "tr": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "ar": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 1,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "raffia-orange-slice-charm-ss26",
+ "legacyHandles": [
+ "tranche-orange"
+ ],
+ "sku": null,
+ "name": {
+ "fr": "Charm tranche d orange en raphia",
+ "en": "Raffia Orange Slice Charm",
+ "es": "Raffia Orange Slice Charm",
+ "tr": "Raffia Orange Slice Charm",
+ "ar": "Raffia Orange Slice Charm"
+ },
+ "displayName": {
+ "fr": "Charm tranche d orange en raphia",
+ "en": "Raffia Orange Slice Charm",
+ "es": "Raffia Orange Slice Charm",
+ "tr": "Raffia Orange Slice Charm",
+ "ar": "Raffia Orange Slice Charm"
+ },
+ "short": {
+ "fr": "Charm tranche d orange en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A crocheted raffia orange slice charm with a 2.5 cm gold ring.",
+ "es": "A crocheted raffia orange slice charm with a 2.5 cm gold ring.",
+ "tr": "A crocheted raffia orange slice charm with a 2.5 cm gold ring.",
+ "ar": "A crocheted raffia orange slice charm with a 2.5 cm gold ring."
+ },
+ "displayShort": {
+ "fr": "Charm tranche d orange en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A crocheted raffia orange slice charm with a 2.5 cm gold ring.",
+ "es": "A crocheted raffia orange slice charm with a 2.5 cm gold ring.",
+ "tr": "A crocheted raffia orange slice charm with a 2.5 cm gold ring.",
+ "ar": "A crocheted raffia orange slice charm with a 2.5 cm gold ring."
+ },
+ "desc": {
+ "fr": "Inspiree des stands de jus d orange: une tranche solaire pour panier, tote de plage ou sac cuir minimal.",
+ "en": "Inspired by orange juice stalls, this crocheted Orange Slice brings a soft, sunny glow to baskets, beach totes and simple leather bags.",
+ "es": "Inspired by orange juice stalls, this crocheted Orange Slice brings a soft, sunny glow to baskets, beach totes and simple leather bags.",
+ "tr": "Inspired by orange juice stalls, this crocheted Orange Slice brings a soft, sunny glow to baskets, beach totes and simple leather bags.",
+ "ar": "Inspired by orange juice stalls, this crocheted Orange Slice brings a soft, sunny glow to baskets, beach totes and simple leather bags."
+ },
+ "price": 19000,
+ "currency": "MAD",
+ "category": "charms",
+ "sourceCategory": "Fruit Charms",
+ "categoryLabel": {
+ "fr": "Charms",
+ "en": "Charms",
+ "es": "Charms",
+ "tr": "Charms",
+ "ar": "Charms"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/original-shop/charms/raffia-orange-slice-charm-ss26-01.png",
+ "gallery": [
+ "assets/original-shop/charms/raffia-orange-slice-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-orange-slice-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-orange-slice-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-orange-slice-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-orange-slice-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-orange-slice-charm-ss26-09.webp",
+ "assets/products/accessories-clean/orange-slice-necklace-clean.webp",
+ "assets/lookbook-ss26-27/embedded/p58_img02_xref1416_b7482fc1dffb.jpeg",
+ "assets/lookbook-ss26-27/embedded/p59_img01_xref1426_ab1030bf5e96.jpeg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-58.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-59.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "raffia-orange-slice-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "orange slice",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 5
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit charm",
+ "Orange slice",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Orange Slice Raffia Charm - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Charm tranche d orange en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Orange Slice Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "naranja",
+ "orange",
+ "porte",
+ "raffia-orange-slice-charm-ss26",
+ "برتقال"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Charm tranche d orange en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Orange Slice Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "naranja",
+ "orange",
+ "porte",
+ "raffia-orange-slice-charm-ss26",
+ "برتقال"
+ ],
+ "material": {
+ "fr": "raphia crochete main raffia",
+ "en": "hand-crocheted raffia",
+ "es": "hand-crocheted raffia",
+ "tr": "hand-crocheted raffia",
+ "ar": "hand-crocheted raffia"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Environ 6 x 4 cm (chaque piece peut legerement varier).",
+ "en": "Approx. 6 x 4 cm (each piece may vary slightly).",
+ "es": "Approx. 6 x 4 cm (each piece may vary slightly).",
+ "tr": "Approx. 6 x 4 cm (each piece may vary slightly).",
+ "ar": "Approx. 6 x 4 cm (each piece may vary slightly)."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
+ "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ },
+ "handworkTime": {
+ "fr": "1 h de crochet main pour ce fruit.",
+ "en": "1 hours of hand crochet for this fruit.",
+ "es": "1 hours of hand crochet for this fruit.",
+ "tr": "1 hours of hand crochet for this fruit.",
+ "ar": "1 hours of hand crochet for this fruit."
+ },
+ "howToWear": {
+ "title": {
+ "fr": "Comment le porter",
+ "en": "How to wear it",
+ "es": "How to wear it",
+ "tr": "How to wear it",
+ "ar": "How to wear it"
+ },
+ "intro": {
+ "fr": "Utilisez ce Fruit Charm sur:",
+ "en": "Use this Fruit Charm on:",
+ "es": "Use this Fruit Charm on:",
+ "tr": "Use this Fruit Charm on:",
+ "ar": "Use this Fruit Charm on:"
+ },
+ "items": [
+ {
+ "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
+ "en": "YZA bags, La Vague and other YZA baskets.",
+ "es": "YZA bags, La Vague and other YZA baskets.",
+ "tr": "YZA bags, La Vague and other YZA baskets.",
+ "ar": "YZA bags, La Vague and other YZA baskets."
+ },
+ {
+ "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
+ "en": "Leather bags to add personality and colour.",
+ "es": "Leather bags to add personality and colour.",
+ "tr": "Leather bags to add personality and colour.",
+ "ar": "Leather bags to add personality and colour."
+ },
+ {
+ "fr": "Paniers en paille, market totes et sacs de plage.",
+ "en": "Straw baskets, market totes and beach bags.",
+ "es": "Straw baskets, market totes and beach bags.",
+ "tr": "Straw baskets, market totes and beach bags.",
+ "ar": "Straw baskets, market totes and beach bags."
+ },
+ {
+ "fr": "Clés, porte-clés et pochettes.",
+ "en": "Keys, keychains and pouches.",
+ "es": "Keys, keychains and pouches.",
+ "tr": "Keys, keychains and pouches.",
+ "ar": "Keys, keychains and pouches."
+ }
+ ],
+ "styleTip": {
+ "fr": "Best on baskets, market totes and simple leather bags. Mix with avocado and lemon slice for a fresh trio.",
+ "en": "Best on baskets, market totes and simple leather bags. Mix with avocado and lemon slice for a fresh trio.",
+ "es": "Best on baskets, market totes and simple leather bags. Mix with avocado and lemon slice for a fresh trio.",
+ "tr": "Best on baskets, market totes and simple leather bags. Mix with avocado and lemon slice for a fresh trio.",
+ "ar": "Best on baskets, market totes and simple leather bags. Mix with avocado and lemon slice for a fresh trio."
+ },
+ "note": {
+ "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ }
+ },
+ "fruitStory": {
+ "title": {
+ "fr": "Orange slice: juice stall energy.",
+ "en": "Orange slice: juice stall energy.",
+ "es": "Orange slice: juice stall energy.",
+ "tr": "Orange slice: juice stall energy.",
+ "ar": "Orange slice: juice stall energy."
+ },
+ "body": {
+ "fr": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings.",
+ "en": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings.",
+ "es": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings.",
+ "tr": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings.",
+ "ar": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings."
+ },
+ "collectionTitle": {
+ "fr": "Fruit Market : inspiré des marchés de Marrakech",
+ "en": "Fruit Market: inspired by the Marrakesh markets",
+ "es": "Fruit Market: inspired by the Marrakesh markets",
+ "tr": "Fruit Market: inspired by the Marrakesh markets",
+ "ar": "Fruit Market: inspired by the Marrakesh markets"
+ },
+ "collectionBody": {
+ "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
+ "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ },
+ "liveUrl": "https://yza-shop.com/products/orange-slice-raffia-crochet-bag-charm"
+ },
+ "making": {
+ "fr": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "en": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "es": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "tr": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "ar": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "bestseller",
+ "hours": 1,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "raffia-kiwi-slice-charm-ss26",
+ "legacyHandles": [
+ "kiwi"
+ ],
+ "sku": null,
+ "name": {
+ "fr": "Charm tranche de kiwi en raphia",
+ "en": "Raffia Kiwi Slice Charm",
+ "es": "Raffia Kiwi Slice Charm",
+ "tr": "Raffia Kiwi Slice Charm",
+ "ar": "Raffia Kiwi Slice Charm"
+ },
+ "displayName": {
+ "fr": "Charm tranche de kiwi en raphia",
+ "en": "Raffia Kiwi Slice Charm",
+ "es": "Raffia Kiwi Slice Charm",
+ "tr": "Raffia Kiwi Slice Charm",
+ "ar": "Raffia Kiwi Slice Charm"
+ },
+ "short": {
+ "fr": "Charm tranche de kiwi en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring.",
+ "es": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring.",
+ "tr": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring.",
+ "ar": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring."
+ },
+ "displayShort": {
+ "fr": "Charm tranche de kiwi en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring.",
+ "es": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring.",
+ "tr": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring.",
+ "ar": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring."
+ },
+ "desc": {
+ "fr": "Discretement drole et inattendu: vert doux, petits points contrastes et crochet main pour un accent chic.",
+ "en": "Quietly fun and a little unexpected. The Kiwi Slice mixes soft greens with tiny contrasting seeds, hand-crocheted in raffia for a subtle, chic accent.",
+ "es": "Quietly fun and a little unexpected. The Kiwi Slice mixes soft greens with tiny contrasting seeds, hand-crocheted in raffia for a subtle, chic accent.",
+ "tr": "Quietly fun and a little unexpected. The Kiwi Slice mixes soft greens with tiny contrasting seeds, hand-crocheted in raffia for a subtle, chic accent.",
+ "ar": "Quietly fun and a little unexpected. The Kiwi Slice mixes soft greens with tiny contrasting seeds, hand-crocheted in raffia for a subtle, chic accent."
+ },
+ "price": 19000,
+ "currency": "MAD",
+ "category": "charms",
+ "sourceCategory": "Fruit Charms",
+ "categoryLabel": {
+ "fr": "Charms",
+ "en": "Charms",
+ "es": "Charms",
+ "tr": "Charms",
+ "ar": "Charms"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/original-shop/charms/raffia-kiwi-slice-charm-ss26-01.png",
+ "gallery": [
+ "assets/original-shop/charms/raffia-kiwi-slice-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-kiwi-slice-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-kiwi-slice-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-kiwi-slice-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-kiwi-slice-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-kiwi-slice-charm-ss26-09.webp",
+ "assets/products/accessories-clean/kiwi-raffia-earrings-clean.png",
+ "assets/lookbook-ss26-27/embedded/p59_img01_xref1426_ab1030bf5e96.jpeg",
+ "assets/products/accessories-clean/watermelon-slice-accessory-clean.webp",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-58.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-59.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg",
+ "assets/lifestyle/charms/kiwi-jacquemus.webp"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "raffia-kiwi-slice-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "kiwi slice",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 11
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit charm",
+ "Kiwi slice",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Kiwi Slice Raffia Charm - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Charm tranche de kiwi en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Kiwi Slice Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "kiwi",
+ "porte",
+ "raffia-kiwi-slice-charm-ss26",
+ "كيوي"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Charm tranche de kiwi en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Kiwi Slice Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "kiwi",
+ "porte",
+ "raffia-kiwi-slice-charm-ss26",
+ "كيوي"
+ ],
+ "material": {
+ "fr": "raphia crochete main raffia",
+ "en": "hand-crocheted raffia",
+ "es": "hand-crocheted raffia",
+ "tr": "hand-crocheted raffia",
+ "ar": "hand-crocheted raffia"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Environ 6 x 4 cm (chaque piece peut legerement varier).",
+ "en": "Approx. 6 x 4 cm (each piece may vary slightly).",
+ "es": "Approx. 6 x 4 cm (each piece may vary slightly).",
+ "tr": "Approx. 6 x 4 cm (each piece may vary slightly).",
+ "ar": "Approx. 6 x 4 cm (each piece may vary slightly)."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
+ "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ },
+ "handworkTime": {
+ "fr": "1,5 h de crochet main pour ce fruit.",
+ "en": "1.5 hours of hand crochet for this fruit.",
+ "es": "1.5 hours of hand crochet for this fruit.",
+ "tr": "1.5 hours of hand crochet for this fruit.",
+ "ar": "1.5 hours of hand crochet for this fruit."
+ },
+ "howToWear": {
+ "title": {
+ "fr": "Comment le porter",
+ "en": "How to wear it",
+ "es": "How to wear it",
+ "tr": "How to wear it",
+ "ar": "How to wear it"
+ },
+ "intro": {
+ "fr": "Utilisez ce Fruit Charm sur:",
+ "en": "Use this Fruit Charm on:",
+ "es": "Use this Fruit Charm on:",
+ "tr": "Use this Fruit Charm on:",
+ "ar": "Use this Fruit Charm on:"
+ },
+ "items": [
+ {
+ "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
+ "en": "YZA bags, La Vague and other YZA baskets.",
+ "es": "YZA bags, La Vague and other YZA baskets.",
+ "tr": "YZA bags, La Vague and other YZA baskets.",
+ "ar": "YZA bags, La Vague and other YZA baskets."
+ },
+ {
+ "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
+ "en": "Leather bags to add personality and colour.",
+ "es": "Leather bags to add personality and colour.",
+ "tr": "Leather bags to add personality and colour.",
+ "ar": "Leather bags to add personality and colour."
+ },
+ {
+ "fr": "Paniers en paille, market totes et sacs de plage.",
+ "en": "Straw baskets, market totes and beach bags.",
+ "es": "Straw baskets, market totes and beach bags.",
+ "tr": "Straw baskets, market totes and beach bags.",
+ "ar": "Straw baskets, market totes and beach bags."
+ },
+ {
+ "fr": "Clés, porte-clés et pochettes.",
+ "en": "Keys, keychains and pouches.",
+ "es": "Keys, keychains and pouches.",
+ "tr": "Keys, keychains and pouches.",
+ "ar": "Keys, keychains and pouches."
+ }
+ ],
+ "styleTip": {
+ "fr": "Best on beige, cream, tan and straw. Pair with grapes when you want a cooler green-purple story.",
+ "en": "Best on beige, cream, tan and straw. Pair with grapes when you want a cooler green-purple story.",
+ "es": "Best on beige, cream, tan and straw. Pair with grapes when you want a cooler green-purple story.",
+ "tr": "Best on beige, cream, tan and straw. Pair with grapes when you want a cooler green-purple story.",
+ "ar": "Best on beige, cream, tan and straw. Pair with grapes when you want a cooler green-purple story."
+ },
+ "note": {
+ "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ }
+ },
+ "fruitStory": {
+ "title": {
+ "fr": "Kiwi: the unexpected green.",
+ "en": "Kiwi: the unexpected green.",
+ "es": "Kiwi: the unexpected green.",
+ "tr": "Kiwi: the unexpected green.",
+ "ar": "Kiwi: the unexpected green."
+ },
+ "body": {
+ "fr": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer.",
+ "en": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer.",
+ "es": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer.",
+ "tr": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer.",
+ "ar": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer."
+ },
+ "collectionTitle": {
+ "fr": "Fruit Market : inspiré des marchés de Marrakech",
+ "en": "Fruit Market: inspired by the Marrakesh markets",
+ "es": "Fruit Market: inspired by the Marrakesh markets",
+ "tr": "Fruit Market: inspired by the Marrakesh markets",
+ "ar": "Fruit Market: inspired by the Marrakesh markets"
+ },
+ "collectionBody": {
+ "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
+ "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ },
+ "liveUrl": "https://yza-shop.com/products/kiwi-raffia-crochet-bag-charm"
+ },
+ "making": {
+ "fr": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "en": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "es": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "tr": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "ar": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 1.5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "raffia-watermelon-slice-charm-ss26",
+ "legacyHandles": [
+ "pasteque"
+ ],
+ "sku": null,
+ "name": {
+ "fr": "Charm tranche de pasteque en raphia",
+ "en": "Raffia Watermelon Slice Charm",
+ "es": "Raffia Watermelon Slice Charm",
+ "tr": "Raffia Watermelon Slice Charm",
+ "ar": "Raffia Watermelon Slice Charm"
+ },
+ "displayName": {
+ "fr": "Charm tranche de pasteque en raphia",
+ "en": "Raffia Watermelon Slice Charm",
+ "es": "Raffia Watermelon Slice Charm",
+ "tr": "Raffia Watermelon Slice Charm",
+ "ar": "Raffia Watermelon Slice Charm"
+ },
+ "short": {
+ "fr": "Charm tranche de pasteque en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring.",
+ "es": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring.",
+ "tr": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring.",
+ "ar": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring."
+ },
+ "displayShort": {
+ "fr": "Charm tranche de pasteque en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring.",
+ "es": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring.",
+ "tr": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring.",
+ "ar": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring."
+ },
+ "desc": {
+ "fr": "Une petite tranche d ete marrakchi: rose, vert, fraiche et joyeuse sur sac ou panier.",
+ "en": "A tiny slice of Marrakesh summer. This hand-crocheted watermelon charm adds a playful pop of pink and green to any bag or basket.",
+ "es": "A tiny slice of Marrakesh summer. This hand-crocheted watermelon charm adds a playful pop of pink and green to any bag or basket.",
+ "tr": "A tiny slice of Marrakesh summer. This hand-crocheted watermelon charm adds a playful pop of pink and green to any bag or basket.",
+ "ar": "A tiny slice of Marrakesh summer. This hand-crocheted watermelon charm adds a playful pop of pink and green to any bag or basket."
+ },
+ "price": 19000,
+ "currency": "MAD",
+ "category": "charms",
+ "sourceCategory": "Fruit Charms",
+ "categoryLabel": {
+ "fr": "Charms",
+ "en": "Charms",
+ "es": "Charms",
+ "tr": "Charms",
+ "ar": "Charms"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-01.png",
+ "gallery": [
+ "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-02.jpg",
+ "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-03.webp",
+ "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-09.webp",
+ "assets/products/accessories-clean/watermelon-slice-accessory-clean.webp",
+ "assets/lookbook-ss26-27/embedded/p58_img02_xref1416_b7482fc1dffb.jpeg",
+ "assets/lookbook-ss26-27/embedded/p59_img01_xref1426_ab1030bf5e96.jpeg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-58.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-59.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "raffia-watermelon-slice-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "pasteque slice",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 10
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit charm",
+ "Watermelon slice",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Watermelon Slice Raffia Charm - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Charm tranche de pasteque en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Watermelon Slice Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "pasteque",
+ "porte",
+ "raffia-watermelon-slice-charm-ss26",
+ "sandia",
+ "watermelon",
+ "بطيخ"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Charm tranche de pasteque en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Watermelon Slice Charm",
+ "YZA",
+ "accessories",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "pasteque",
+ "porte",
+ "raffia-watermelon-slice-charm-ss26",
+ "sandia",
+ "watermelon",
+ "بطيخ"
+ ],
+ "material": {
+ "fr": "raphia crochete main raffia",
+ "en": "hand-crocheted raffia",
+ "es": "hand-crocheted raffia",
+ "tr": "hand-crocheted raffia",
+ "ar": "hand-crocheted raffia"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Environ 6 x 4 cm (chaque piece peut legerement varier).",
+ "en": "Approx. 6 x 4 cm (each piece may vary slightly).",
+ "es": "Approx. 6 x 4 cm (each piece may vary slightly).",
+ "tr": "Approx. 6 x 4 cm (each piece may vary slightly).",
+ "ar": "Approx. 6 x 4 cm (each piece may vary slightly)."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
+ "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ },
+ "handworkTime": {
+ "fr": "1,5 h de crochet main pour ce fruit.",
+ "en": "1.5 hours of hand crochet for this fruit.",
+ "es": "1.5 hours of hand crochet for this fruit.",
+ "tr": "1.5 hours of hand crochet for this fruit.",
+ "ar": "1.5 hours of hand crochet for this fruit."
+ },
+ "howToWear": {
+ "title": {
+ "fr": "Comment le porter",
+ "en": "How to wear it",
+ "es": "How to wear it",
+ "tr": "How to wear it",
+ "ar": "How to wear it"
+ },
+ "intro": {
+ "fr": "Utilisez ce Fruit Charm sur:",
+ "en": "Use this Fruit Charm on:",
+ "es": "Use this Fruit Charm on:",
+ "tr": "Use this Fruit Charm on:",
+ "ar": "Use this Fruit Charm on:"
+ },
+ "items": [
+ {
+ "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
+ "en": "YZA bags, La Vague and other YZA baskets.",
+ "es": "YZA bags, La Vague and other YZA baskets.",
+ "tr": "YZA bags, La Vague and other YZA baskets.",
+ "ar": "YZA bags, La Vague and other YZA baskets."
+ },
+ {
+ "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
+ "en": "Leather bags to add personality and colour.",
+ "es": "Leather bags to add personality and colour.",
+ "tr": "Leather bags to add personality and colour.",
+ "ar": "Leather bags to add personality and colour."
+ },
+ {
+ "fr": "Paniers en paille, market totes et sacs de plage.",
+ "en": "Straw baskets, market totes and beach bags.",
+ "es": "Straw baskets, market totes and beach bags.",
+ "tr": "Straw baskets, market totes and beach bags.",
+ "ar": "Straw baskets, market totes and beach bags."
+ },
+ {
+ "fr": "Clés, porte-clés et pochettes.",
+ "en": "Keys, keychains and pouches.",
+ "es": "Keys, keychains and pouches.",
+ "tr": "Keys, keychains and pouches.",
+ "ar": "Keys, keychains and pouches."
+ }
+ ],
+ "styleTip": {
+ "fr": "Best on beach totes, white baskets and holiday bags. Add tomato for a red Fruit Market moment.",
+ "en": "Best on beach totes, white baskets and holiday bags. Add tomato for a red Fruit Market moment.",
+ "es": "Best on beach totes, white baskets and holiday bags. Add tomato for a red Fruit Market moment.",
+ "tr": "Best on beach totes, white baskets and holiday bags. Add tomato for a red Fruit Market moment.",
+ "ar": "Best on beach totes, white baskets and holiday bags. Add tomato for a red Fruit Market moment."
+ },
+ "note": {
+ "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ }
+ },
+ "fruitStory": {
+ "title": {
+ "fr": "Watermelon: summer in one slice.",
+ "en": "Watermelon: summer in one slice.",
+ "es": "Watermelon: summer in one slice.",
+ "tr": "Watermelon: summer in one slice.",
+ "ar": "Watermelon: summer in one slice."
+ },
+ "body": {
+ "fr": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel.",
+ "en": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel.",
+ "es": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel.",
+ "tr": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel.",
+ "ar": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel."
+ },
+ "collectionTitle": {
+ "fr": "Fruit Market : inspiré des marchés de Marrakech",
+ "en": "Fruit Market: inspired by the Marrakesh markets",
+ "es": "Fruit Market: inspired by the Marrakesh markets",
+ "tr": "Fruit Market: inspired by the Marrakesh markets",
+ "ar": "Fruit Market: inspired by the Marrakesh markets"
+ },
+ "collectionBody": {
+ "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
+ "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ },
+ "liveUrl": "https://yza-shop.com/products/watermelon-raffia-bag-charm"
+ },
+ "making": {
+ "fr": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "en": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "es": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "tr": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "ar": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 1.5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "raffia-avocado-half-charm-ss26",
+ "legacyHandles": [
+ "avocat",
+ "avocado"
+ ],
+ "sku": null,
+ "name": {
+ "fr": "Charm demi avocat en raphia",
+ "en": "Raffia Avocado Half Charm",
+ "es": "Raffia Avocado Half Charm",
+ "tr": "Raffia Avocado Half Charm",
+ "ar": "Raffia Avocado Half Charm"
+ },
+ "displayName": {
+ "fr": "Charm demi avocat en raphia",
+ "en": "Raffia Avocado Half Charm",
+ "es": "Raffia Avocado Half Charm",
+ "tr": "Raffia Avocado Half Charm",
+ "ar": "Raffia Avocado Half Charm"
+ },
+ "short": {
+ "fr": "Charm demi avocat en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing.",
+ "es": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing.",
+ "tr": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing.",
+ "ar": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing."
+ },
+ "displayShort": {
+ "fr": "Charm demi avocat en raphia, crochete main avec anneau dore 2,5 cm.",
+ "en": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing.",
+ "es": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing.",
+ "tr": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing.",
+ "ar": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing."
+ },
+ "desc": {
+ "fr": "Un clin d oeil aux rooftops au soleil: avocat vert doux, noyau contraste et crochet main en raphia. A porter sur panier, tote ou sac de ville.",
+ "en": "A nod to brunches and rooftops in the sun. The Avocado charm mixes soft greens with a contrasting pit, all hand-crocheted in raffia. Looks great on straw baskets and canvas totes.",
+ "es": "A nod to brunches and rooftops in the sun. The Avocado charm mixes soft greens with a contrasting pit, all hand-crocheted in raffia. Looks great on straw baskets and canvas totes.",
+ "tr": "A nod to brunches and rooftops in the sun. The Avocado charm mixes soft greens with a contrasting pit, all hand-crocheted in raffia. Looks great on straw baskets and canvas totes.",
+ "ar": "A nod to brunches and rooftops in the sun. The Avocado charm mixes soft greens with a contrasting pit, all hand-crocheted in raffia. Looks great on straw baskets and canvas totes."
+ },
+ "price": 19000,
+ "currency": "MAD",
+ "category": "charms",
+ "sourceCategory": "Fruit Charms",
+ "categoryLabel": {
+ "fr": "Charms",
+ "en": "Charms",
+ "es": "Charms",
+ "tr": "Charms",
+ "ar": "Charms"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/original-shop/charms/raffia-avocado-half-charm-ss26-01.png",
+ "gallery": [
+ "assets/original-shop/charms/raffia-avocado-half-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-avocado-half-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-avocado-half-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-avocado-half-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-avocado-half-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-avocado-half-charm-ss26-09.webp",
+ "assets/lookbook-ss26-27/embedded/p60_img01_xref2285_8f75334c5653.webp",
+ "assets/lookbook-ss26-27/embedded/p59_img01_xref1426_ab1030bf5e96.jpeg",
+ "assets/lookbook-ss26-27/embedded/p58_img02_xref1416_b7482fc1dffb.jpeg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg",
+ "assets/lifestyle/charms/avocado-puzzle.jpg"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [],
+ "variantCount": 0,
+ "variant_count_from_xlsx_catalog": null,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit charm",
+ "Avocado",
+ "Raffia",
+ "TBC"
+ ],
+ "seoTitle": "Avocado Raffia Charm - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Charm demi avocat en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Avocado Half Charm",
+ "YZA",
+ "accessories",
+ "aguacate",
+ "avocado",
+ "avocat",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "porte",
+ "raffia-avocado-half-charm-ss26",
+ "افوكادو"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Charm demi avocat en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Raffia Avocado Half Charm",
+ "YZA",
+ "accessories",
+ "aguacate",
+ "avocado",
+ "avocat",
+ "bag",
+ "cadeau",
+ "charm",
+ "charms",
+ "cle",
+ "crochet",
+ "fait main",
+ "gift",
+ "handmade",
+ "porte",
+ "raffia-avocado-half-charm-ss26",
+ "افوكادو"
+ ],
+ "material": {
+ "fr": "raphia crochete main raffia",
+ "en": "hand-crocheted raffia",
+ "es": "hand-crocheted raffia",
+ "tr": "hand-crocheted raffia",
+ "ar": "hand-crocheted raffia"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Environ 6 x 3 cm (chaque piece peut legerement varier).",
+ "en": "Approx. 6 x 3 cm (each piece may vary slightly).",
+ "es": "Approx. 6 x 3 cm (each piece may vary slightly).",
+ "tr": "Approx. 6 x 3 cm (each piece may vary slightly).",
+ "ar": "Approx. 6 x 3 cm (each piece may vary slightly)."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
+ "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
+ "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ },
+ "handworkTime": {
+ "fr": "2 h de crochet main pour ce fruit.",
+ "en": "2 hours of hand crochet for this fruit.",
+ "es": "2 hours of hand crochet for this fruit.",
+ "tr": "2 hours of hand crochet for this fruit.",
+ "ar": "2 hours of hand crochet for this fruit."
+ },
+ "howToWear": {
+ "title": {
+ "fr": "Comment le porter",
+ "en": "How to wear it",
+ "es": "How to wear it",
+ "tr": "How to wear it",
+ "ar": "How to wear it"
+ },
+ "intro": {
+ "fr": "Utilisez ce Fruit Charm sur:",
+ "en": "Use this Fruit Charm on:",
+ "es": "Use this Fruit Charm on:",
+ "tr": "Use this Fruit Charm on:",
+ "ar": "Use this Fruit Charm on:"
+ },
+ "items": [
+ {
+ "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
+ "en": "YZA bags, La Vague and other YZA baskets.",
+ "es": "YZA bags, La Vague and other YZA baskets.",
+ "tr": "YZA bags, La Vague and other YZA baskets.",
+ "ar": "YZA bags, La Vague and other YZA baskets."
+ },
+ {
+ "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
+ "en": "Leather bags to add personality and colour.",
+ "es": "Leather bags to add personality and colour.",
+ "tr": "Leather bags to add personality and colour.",
+ "ar": "Leather bags to add personality and colour."
+ },
+ {
+ "fr": "Paniers en paille, market totes et sacs de plage.",
+ "en": "Straw baskets, market totes and beach bags.",
+ "es": "Straw baskets, market totes and beach bags.",
+ "tr": "Straw baskets, market totes and beach bags.",
+ "ar": "Straw baskets, market totes and beach bags."
+ },
+ {
+ "fr": "Clés, porte-clés et pochettes.",
+ "en": "Keys, keychains and pouches.",
+ "es": "Keys, keychains and pouches.",
+ "tr": "Keys, keychains and pouches.",
+ "ar": "Keys, keychains and pouches."
+ }
+ ],
+ "styleTip": {
+ "fr": "Best on natural straw, canvas totes and cream leather. Mix with lemon slice for a fresh market set.",
+ "en": "Best on natural straw, canvas totes and cream leather. Mix with lemon slice for a fresh market set.",
+ "es": "Best on natural straw, canvas totes and cream leather. Mix with lemon slice for a fresh market set.",
+ "tr": "Best on natural straw, canvas totes and cream leather. Mix with lemon slice for a fresh market set.",
+ "ar": "Best on natural straw, canvas totes and cream leather. Mix with lemon slice for a fresh market set."
+ },
+ "note": {
+ "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
+ "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ }
+ },
+ "fruitStory": {
+ "title": {
+ "fr": "Avocado: soft green, city sun.",
+ "en": "Avocado: soft green, city sun.",
+ "es": "Avocado: soft green, city sun.",
+ "tr": "Avocado: soft green, city sun.",
+ "ar": "Avocado: soft green, city sun."
+ },
+ "body": {
+ "fr": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature.",
+ "en": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature.",
+ "es": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature.",
+ "tr": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature.",
+ "ar": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature."
+ },
+ "collectionTitle": {
+ "fr": "Fruit Market : inspiré des marchés de Marrakech",
+ "en": "Fruit Market: inspired by the Marrakesh markets",
+ "es": "Fruit Market: inspired by the Marrakesh markets",
+ "tr": "Fruit Market: inspired by the Marrakesh markets",
+ "ar": "Fruit Market: inspired by the Marrakesh markets"
+ },
+ "collectionBody": {
+ "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
+ "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
+ "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ },
+ "liveUrl": "https://yza-shop.com/products/avocado-raffia-bag-charm"
+ },
+ "making": {
+ "fr": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "en": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "es": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "tr": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
+ "ar": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 2,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "watermelon-raffia-earrings-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "Boucles pasteque en raphia",
+ "en": "Watermelon Raffia Earrings",
+ "es": "Watermelon Raffia Earrings",
+ "tr": "Watermelon Raffia Earrings",
+ "ar": "Watermelon Raffia Earrings"
+ },
+ "displayName": {
+ "fr": "Boucles pasteque en raphia",
+ "en": "Watermelon Raffia Earrings",
+ "es": "Watermelon Raffia Earrings",
+ "tr": "Watermelon Raffia Earrings",
+ "ar": "Watermelon Raffia Earrings"
+ },
+ "short": {
+ "fr": "Boucles pasteque en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "es": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "tr": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "ar": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ },
+ "displayShort": {
+ "fr": "Boucles pasteque en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "es": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "tr": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "ar": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ },
+ "desc": {
+ "fr": "Boucles pasteque en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh.",
+ "es": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh.",
+ "tr": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh.",
+ "ar": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh."
+ },
+ "price": 43000,
+ "currency": "MAD",
+ "category": "earrings",
+ "sourceCategory": "Fruit Earrings",
+ "categoryLabel": {
+ "fr": "Boucles",
+ "en": "Earrings",
+ "es": "Earrings",
+ "tr": "Earrings",
+ "ar": "Earrings"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/products/accessories-clean/watermelon-slice-accessory-clean.webp",
+ "gallery": [
+ "assets/products/accessories-clean/watermelon-slice-accessory-clean.webp",
+ "assets/lookbook-ss26-27/embedded/p56_img02_xref1402_2ffff76a0151.jpeg"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "watermelon-raffia-earrings-ss26",
+ "sku": null,
+ "category": "BO",
+ "source_type": "pastéques x2",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 15
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit earrings",
+ "Watermelon",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Watermelon Raffia Earrings - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Boucles pasteque en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Watermelon Raffia Earrings",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "boucles",
+ "crochet",
+ "earrings",
+ "fait main",
+ "handmade",
+ "kupe",
+ "pasteque",
+ "pendientes",
+ "sandia",
+ "watermelon",
+ "watermelon-raffia-earrings-ss26",
+ "اقراط",
+ "بطيخ"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Boucles pasteque en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Watermelon Raffia Earrings",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "boucles",
+ "crochet",
+ "earrings",
+ "fait main",
+ "handmade",
+ "kupe",
+ "pasteque",
+ "pendientes",
+ "sandia",
+ "watermelon",
+ "watermelon-raffia-earrings-ss26",
+ "اقراط",
+ "بطيخ"
+ ],
+ "material": {
+ "fr": "Raffia, Creoles dorees",
+ "en": "Raffia, Gold earrings",
+ "es": "Raffia, Gold earrings",
+ "tr": "Raffia, Gold earrings",
+ "ar": "Raffia, Gold earrings"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Petit format bijou textile, leger et visible.",
+ "en": "Small textile-jewellery scale, light and visible.",
+ "es": "Small textile-jewellery scale, light and visible.",
+ "tr": "Small textile-jewellery scale, light and visible.",
+ "ar": "Small textile-jewellery scale, light and visible."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Creole doree 1,5 cm.",
+ "en": "1.5 cm gold earring.",
+ "es": "1.5 cm gold earring.",
+ "tr": "1.5 cm gold earring.",
+ "ar": "1.5 cm gold earring."
+ },
+ "handworkTime": {
+ "fr": "Crochet main et montage bijou, piece par piece.",
+ "en": "Hand crochet and jewellery assembly, piece by piece.",
+ "es": "Hand crochet and jewellery assembly, piece by piece.",
+ "tr": "Hand crochet and jewellery assembly, piece by piece.",
+ "ar": "Hand crochet and jewellery assembly, piece by piece."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Fruit crochete main puis monte sur creole doree legere.",
+ "en": "Hand-crocheted fruit mounted on a light golden earring.",
+ "es": "Hand-crocheted fruit mounted on a light golden earring.",
+ "tr": "Hand-crocheted fruit mounted on a light golden earring.",
+ "ar": "Hand-crocheted fruit mounted on a light golden earring."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "la-sculpture-xs-basket-bag-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "kiwi-raffia-earrings-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "Boucles kiwi en raphia",
+ "en": "Kiwi Raffia Earrings",
+ "es": "Kiwi Raffia Earrings",
+ "tr": "Kiwi Raffia Earrings",
+ "ar": "Kiwi Raffia Earrings"
+ },
+ "displayName": {
+ "fr": "Boucles kiwi en raphia",
+ "en": "Kiwi Raffia Earrings",
+ "es": "Kiwi Raffia Earrings",
+ "tr": "Kiwi Raffia Earrings",
+ "ar": "Kiwi Raffia Earrings"
+ },
+ "short": {
+ "fr": "Boucles kiwi en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "es": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "tr": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "ar": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ },
+ "displayShort": {
+ "fr": "Boucles kiwi en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "es": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "tr": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "ar": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ },
+ "desc": {
+ "fr": "Boucles kiwi en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh.",
+ "es": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh.",
+ "tr": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh.",
+ "ar": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh."
+ },
+ "price": 43000,
+ "currency": "MAD",
+ "category": "earrings",
+ "sourceCategory": "Fruit Earrings",
+ "categoryLabel": {
+ "fr": "Boucles",
+ "en": "Earrings",
+ "es": "Earrings",
+ "tr": "Earrings",
+ "ar": "Earrings"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/products/accessories-clean/kiwi-raffia-earrings-clean.png",
+ "gallery": [
+ "assets/products/accessories-clean/kiwi-raffia-earrings-clean.png"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "kiwi-raffia-earrings-ss26",
+ "sku": null,
+ "category": "BO",
+ "source_type": "kiwi slice x2",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 18
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit earrings",
+ "Kiwi",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Kiwi Raffia Earrings - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Boucles kiwi en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Kiwi Raffia Earrings",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "boucles",
+ "crochet",
+ "earrings",
+ "fait main",
+ "handmade",
+ "kiwi",
+ "kiwi-raffia-earrings-ss26",
+ "kupe",
+ "pendientes",
+ "اقراط",
+ "كيوي"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Boucles kiwi en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Kiwi Raffia Earrings",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "boucles",
+ "crochet",
+ "earrings",
+ "fait main",
+ "handmade",
+ "kiwi",
+ "kiwi-raffia-earrings-ss26",
+ "kupe",
+ "pendientes",
+ "اقراط",
+ "كيوي"
+ ],
+ "material": {
+ "fr": "Raffia, Creoles dorees",
+ "en": "Raffia, Gold earrings",
+ "es": "Raffia, Gold earrings",
+ "tr": "Raffia, Gold earrings",
+ "ar": "Raffia, Gold earrings"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Petit format bijou textile, leger et visible.",
+ "en": "Small textile-jewellery scale, light and visible.",
+ "es": "Small textile-jewellery scale, light and visible.",
+ "tr": "Small textile-jewellery scale, light and visible.",
+ "ar": "Small textile-jewellery scale, light and visible."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Creole doree 1,5 cm.",
+ "en": "1.5 cm gold earring.",
+ "es": "1.5 cm gold earring.",
+ "tr": "1.5 cm gold earring.",
+ "ar": "1.5 cm gold earring."
+ },
+ "handworkTime": {
+ "fr": "Crochet main et montage bijou, piece par piece.",
+ "en": "Hand crochet and jewellery assembly, piece by piece.",
+ "es": "Hand crochet and jewellery assembly, piece by piece.",
+ "tr": "Hand crochet and jewellery assembly, piece by piece.",
+ "ar": "Hand crochet and jewellery assembly, piece by piece."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Fruit crochete main puis monte sur creole doree legere.",
+ "en": "Hand-crocheted fruit mounted on a light golden earring.",
+ "es": "Hand-crocheted fruit mounted on a light golden earring.",
+ "tr": "Hand-crocheted fruit mounted on a light golden earring.",
+ "ar": "Hand-crocheted fruit mounted on a light golden earring."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "la-sculpture-xs-basket-bag-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "lemon-raffia-earrings-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "Boucles citron en raphia",
+ "en": "Lemon Raffia Earrings",
+ "es": "Lemon Raffia Earrings",
+ "tr": "Lemon Raffia Earrings",
+ "ar": "Lemon Raffia Earrings"
+ },
+ "displayName": {
+ "fr": "Boucles citron en raphia",
+ "en": "Lemon Raffia Earrings",
+ "es": "Lemon Raffia Earrings",
+ "tr": "Lemon Raffia Earrings",
+ "ar": "Lemon Raffia Earrings"
+ },
+ "short": {
+ "fr": "Boucles citron en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "es": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "tr": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "ar": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ },
+ "displayShort": {
+ "fr": "Boucles citron en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "es": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "tr": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "ar": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ },
+ "desc": {
+ "fr": "Boucles citron en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "es": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "tr": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "ar": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family."
+ },
+ "price": 46000,
+ "currency": "MAD",
+ "category": "earrings",
+ "sourceCategory": "Fruit Earrings",
+ "categoryLabel": {
+ "fr": "Boucles",
+ "en": "Earrings",
+ "es": "Earrings",
+ "tr": "Earrings",
+ "ar": "Earrings"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/products/accessories-clean/lemon-raffia-earrings-clean.webp",
+ "lifestyleVideo": "assets/lifestyle/accessories/lemon-earrings.mp4",
+ "gallery": [
+ "assets/products/accessories-clean/lemon-raffia-earrings-clean.webp",
+ "assets/lifestyle/accessories/lemon-earrings-cafe.webp"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "lemon-raffia-earrings-ss26",
+ "sku": null,
+ "category": "BO",
+ "source_type": "lemon",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 16
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit earrings",
+ "Lemon",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Lemon Raffia Earrings - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Boucles citron en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Lemon Raffia Earrings",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "boucles",
+ "citron",
+ "crochet",
+ "earrings",
+ "fait main",
+ "handmade",
+ "kupe",
+ "lemon-raffia-earrings-ss26",
+ "limon",
+ "pendientes",
+ "اقراط",
+ "ليمون"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Boucles citron en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Lemon Raffia Earrings",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "boucles",
+ "citron",
+ "crochet",
+ "earrings",
+ "fait main",
+ "handmade",
+ "kupe",
+ "lemon-raffia-earrings-ss26",
+ "limon",
+ "pendientes",
+ "اقراط",
+ "ليمون"
+ ],
+ "material": {
+ "fr": "Raffia, Creoles dorees",
+ "en": "Raffia, Gold earrings",
+ "es": "Raffia, Gold earrings",
+ "tr": "Raffia, Gold earrings",
+ "ar": "Raffia, Gold earrings"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Petit format bijou textile, leger et visible.",
+ "en": "Small textile-jewellery scale, light and visible.",
+ "es": "Small textile-jewellery scale, light and visible.",
+ "tr": "Small textile-jewellery scale, light and visible.",
+ "ar": "Small textile-jewellery scale, light and visible."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Creole doree 1,5 cm.",
+ "en": "1.5 cm gold earring.",
+ "es": "1.5 cm gold earring.",
+ "tr": "1.5 cm gold earring.",
+ "ar": "1.5 cm gold earring."
+ },
+ "handworkTime": {
+ "fr": "Crochet main et montage bijou, piece par piece.",
+ "en": "Hand crochet and jewellery assembly, piece by piece.",
+ "es": "Hand crochet and jewellery assembly, piece by piece.",
+ "tr": "Hand crochet and jewellery assembly, piece by piece.",
+ "ar": "Hand crochet and jewellery assembly, piece by piece."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Fruit crochete main puis monte sur creole doree legere.",
+ "en": "Hand-crocheted fruit mounted on a light golden earring.",
+ "es": "Hand-crocheted fruit mounted on a light golden earring.",
+ "tr": "Hand-crocheted fruit mounted on a light golden earring.",
+ "ar": "Hand-crocheted fruit mounted on a light golden earring."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "bestseller",
+ "hours": 5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "la-sculpture-xs-basket-bag-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "orange-raffia-earrings-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "Boucles orange en raphia",
+ "en": "Orange Raffia Earrings",
+ "es": "Orange Raffia Earrings",
+ "tr": "Orange Raffia Earrings",
+ "ar": "Orange Raffia Earrings"
+ },
+ "displayName": {
+ "fr": "Boucles orange en raphia",
+ "en": "Orange Raffia Earrings",
+ "es": "Orange Raffia Earrings",
+ "tr": "Orange Raffia Earrings",
+ "ar": "Orange Raffia Earrings"
+ },
+ "short": {
+ "fr": "Boucles orange en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "es": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "tr": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "ar": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ },
+ "displayShort": {
+ "fr": "Boucles orange en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "es": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "tr": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "ar": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ },
+ "desc": {
+ "fr": "Boucles orange en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "es": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "tr": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "ar": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family."
+ },
+ "price": 46000,
+ "currency": "MAD",
+ "category": "earrings",
+ "sourceCategory": "Fruit Earrings",
+ "categoryLabel": {
+ "fr": "Boucles",
+ "en": "Earrings",
+ "es": "Earrings",
+ "tr": "Earrings",
+ "ar": "Earrings"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/products/accessories-clean/orange-raffia-earrings-clean.webp",
+ "gallery": [
+ "assets/products/accessories-clean/orange-raffia-earrings-clean.webp"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "orange-raffia-earrings-ss26",
+ "sku": null,
+ "category": "BO",
+ "source_type": "oranges",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 14
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit earrings",
+ "Orange",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Orange Raffia Earrings - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Boucles orange en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Orange Raffia Earrings",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "boucles",
+ "crochet",
+ "earrings",
+ "fait main",
+ "handmade",
+ "kupe",
+ "naranja",
+ "orange",
+ "orange-raffia-earrings-ss26",
+ "pendientes",
+ "اقراط",
+ "برتقال"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Boucles orange en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Orange Raffia Earrings",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "boucles",
+ "crochet",
+ "earrings",
+ "fait main",
+ "handmade",
+ "kupe",
+ "naranja",
+ "orange",
+ "orange-raffia-earrings-ss26",
+ "pendientes",
+ "اقراط",
+ "برتقال"
+ ],
+ "material": {
+ "fr": "Raffia, Creoles dorees",
+ "en": "Raffia, Gold earrings",
+ "es": "Raffia, Gold earrings",
+ "tr": "Raffia, Gold earrings",
+ "ar": "Raffia, Gold earrings"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Petit format bijou textile, leger et visible.",
+ "en": "Small textile-jewellery scale, light and visible.",
+ "es": "Small textile-jewellery scale, light and visible.",
+ "tr": "Small textile-jewellery scale, light and visible.",
+ "ar": "Small textile-jewellery scale, light and visible."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Creole doree 1,5 cm.",
+ "en": "1.5 cm gold earring.",
+ "es": "1.5 cm gold earring.",
+ "tr": "1.5 cm gold earring.",
+ "ar": "1.5 cm gold earring."
+ },
+ "handworkTime": {
+ "fr": "Crochet main et montage bijou, piece par piece.",
+ "en": "Hand crochet and jewellery assembly, piece by piece.",
+ "es": "Hand crochet and jewellery assembly, piece by piece.",
+ "tr": "Hand crochet and jewellery assembly, piece by piece.",
+ "ar": "Hand crochet and jewellery assembly, piece by piece."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Fruit crochete main puis monte sur creole doree legere.",
+ "en": "Hand-crocheted fruit mounted on a light golden earring.",
+ "es": "Hand-crocheted fruit mounted on a light golden earring.",
+ "tr": "Hand-crocheted fruit mounted on a light golden earring.",
+ "ar": "Hand-crocheted fruit mounted on a light golden earring."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "la-sculpture-xs-basket-bag-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "grapes-raffia-earrings-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "Boucles raisins en raphia",
+ "en": "Grapes Raffia Earrings",
+ "es": "Grapes Raffia Earrings",
+ "tr": "Grapes Raffia Earrings",
+ "ar": "Grapes Raffia Earrings"
+ },
+ "displayName": {
+ "fr": "Boucles raisins en raphia",
+ "en": "Grapes Raffia Earrings",
+ "es": "Grapes Raffia Earrings",
+ "tr": "Grapes Raffia Earrings",
+ "ar": "Grapes Raffia Earrings"
+ },
+ "short": {
+ "fr": "Boucles raisins en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "es": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "tr": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "ar": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ },
+ "displayShort": {
+ "fr": "Boucles raisins en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "es": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "tr": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "ar": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ },
+ "desc": {
+ "fr": "Boucles raisins en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "es": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "tr": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "ar": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family."
+ },
+ "price": 43000,
+ "currency": "MAD",
+ "category": "earrings",
+ "sourceCategory": "Fruit Earrings",
+ "categoryLabel": {
+ "fr": "Boucles",
+ "en": "Earrings",
+ "es": "Earrings",
+ "tr": "Earrings",
+ "ar": "Earrings"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/products/accessories-clean/grapes-accessory-clean.png",
+ "lifestyleVideo": "assets/lifestyle/accessories/grapes-earrings.mp4",
+ "gallery": [
+ "assets/products/accessories-clean/grapes-accessory-clean.png",
+ "assets/lookbook-ss26-27/embedded/p55_img01_xref1397_f3009f829bf8.jpeg",
+ "assets/lifestyle/accessories/grapes-earrings-souk.webp"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "grapes-raffia-earrings-ss26",
+ "sku": null,
+ "category": "BO",
+ "source_type": "grapes x2",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 19
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit earrings",
+ "Grapes",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Grapes Raffia Earrings - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Boucles raisins en raphia",
+ "Grapes Raffia Earrings",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "boucles",
+ "crochet",
+ "earrings",
+ "fait main",
+ "grapes",
+ "grapes-raffia-earrings-ss26",
+ "handmade",
+ "kupe",
+ "pendientes",
+ "raisin",
+ "raisins",
+ "uvas",
+ "اقراط",
+ "عنب"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Boucles raisins en raphia",
+ "Grapes Raffia Earrings",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "boucles",
+ "crochet",
+ "earrings",
+ "fait main",
+ "grapes",
+ "grapes-raffia-earrings-ss26",
+ "handmade",
+ "kupe",
+ "pendientes",
+ "raisin",
+ "raisins",
+ "uvas",
+ "اقراط",
+ "عنب"
+ ],
+ "material": {
+ "fr": "Raffia, Creoles dorees",
+ "en": "Raffia, Gold earrings",
+ "es": "Raffia, Gold earrings",
+ "tr": "Raffia, Gold earrings",
+ "ar": "Raffia, Gold earrings"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Petit format bijou textile, leger et visible.",
+ "en": "Small textile-jewellery scale, light and visible.",
+ "es": "Small textile-jewellery scale, light and visible.",
+ "tr": "Small textile-jewellery scale, light and visible.",
+ "ar": "Small textile-jewellery scale, light and visible."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Creole doree 1,5 cm.",
+ "en": "1.5 cm gold earring.",
+ "es": "1.5 cm gold earring.",
+ "tr": "1.5 cm gold earring.",
+ "ar": "1.5 cm gold earring."
+ },
+ "handworkTime": {
+ "fr": "Crochet main et montage bijou, piece par piece.",
+ "en": "Hand crochet and jewellery assembly, piece by piece.",
+ "es": "Hand crochet and jewellery assembly, piece by piece.",
+ "tr": "Hand crochet and jewellery assembly, piece by piece.",
+ "ar": "Hand crochet and jewellery assembly, piece by piece."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Fruit crochete main puis monte sur creole doree legere.",
+ "en": "Hand-crocheted fruit mounted on a light golden earring.",
+ "es": "Hand-crocheted fruit mounted on a light golden earring.",
+ "tr": "Hand-crocheted fruit mounted on a light golden earring.",
+ "ar": "Hand-crocheted fruit mounted on a light golden earring."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "la-sculpture-xs-basket-bag-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "cherries-raffia-earrings-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "Boucles cerises en raphia",
+ "en": "Cherries Raffia Earrings",
+ "es": "Cherries Raffia Earrings",
+ "tr": "Cherries Raffia Earrings",
+ "ar": "Cherries Raffia Earrings"
+ },
+ "displayName": {
+ "fr": "Boucles cerises en raphia",
+ "en": "Cherries Raffia Earrings",
+ "es": "Cherries Raffia Earrings",
+ "tr": "Cherries Raffia Earrings",
+ "ar": "Cherries Raffia Earrings"
+ },
+ "short": {
+ "fr": "Boucles cerises en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "es": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "tr": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "ar": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ },
+ "displayShort": {
+ "fr": "Boucles cerises en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "es": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "tr": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "ar": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ },
+ "desc": {
+ "fr": "Boucles cerises en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "es": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "tr": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "ar": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family."
+ },
+ "price": 25000,
+ "currency": "MAD",
+ "category": "earrings",
+ "sourceCategory": "Fruit Earrings",
+ "categoryLabel": {
+ "fr": "Boucles",
+ "en": "Earrings",
+ "es": "Earrings",
+ "tr": "Earrings",
+ "ar": "Earrings"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/products/accessories-clean/cherries-accessory-clean.png",
+ "gallery": [
+ "assets/products/accessories-clean/cherries-accessory-clean.png",
+ "assets/lookbook-ss26-27/embedded/p58_img02_xref1416_b7482fc1dffb.jpeg"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "cherries-raffia-earrings-ss26",
+ "sku": null,
+ "category": "BO",
+ "source_type": "cerises x2",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 20
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit earrings",
+ "Cherries",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Cherries Raffia Earrings - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Boucles cerises en raphia",
+ "Cherries Raffia Earrings",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "boucles",
+ "cereza",
+ "cerise",
+ "cerises",
+ "cherries",
+ "cherries-raffia-earrings-ss26",
+ "crochet",
+ "earrings",
+ "fait main",
+ "handmade",
+ "kupe",
+ "pendientes",
+ "اقراط",
+ "كرز"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Boucles cerises en raphia",
+ "Cherries Raffia Earrings",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "boucles",
+ "cereza",
+ "cerise",
+ "cerises",
+ "cherries",
+ "cherries-raffia-earrings-ss26",
+ "crochet",
+ "earrings",
+ "fait main",
+ "handmade",
+ "kupe",
+ "pendientes",
+ "اقراط",
+ "كرز"
+ ],
+ "material": {
+ "fr": "Raffia, Creoles dorees",
+ "en": "Raffia, Gold earrings",
+ "es": "Raffia, Gold earrings",
+ "tr": "Raffia, Gold earrings",
+ "ar": "Raffia, Gold earrings"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Petit format bijou textile, leger et visible.",
+ "en": "Small textile-jewellery scale, light and visible.",
+ "es": "Small textile-jewellery scale, light and visible.",
+ "tr": "Small textile-jewellery scale, light and visible.",
+ "ar": "Small textile-jewellery scale, light and visible."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Creole doree 1,5 cm.",
+ "en": "1.5 cm gold earring.",
+ "es": "1.5 cm gold earring.",
+ "tr": "1.5 cm gold earring.",
+ "ar": "1.5 cm gold earring."
+ },
+ "handworkTime": {
+ "fr": "Crochet main et montage bijou, piece par piece.",
+ "en": "Hand crochet and jewellery assembly, piece by piece.",
+ "es": "Hand crochet and jewellery assembly, piece by piece.",
+ "tr": "Hand crochet and jewellery assembly, piece by piece.",
+ "ar": "Hand crochet and jewellery assembly, piece by piece."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Fruit crochete main puis monte sur creole doree legere.",
+ "en": "Hand-crocheted fruit mounted on a light golden earring.",
+ "es": "Hand-crocheted fruit mounted on a light golden earring.",
+ "tr": "Hand-crocheted fruit mounted on a light golden earring.",
+ "ar": "Hand-crocheted fruit mounted on a light golden earring."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "la-sculpture-xs-basket-bag-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "tomatoes-raffia-earrings-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "Boucles tomates en raphia",
+ "en": "Tomatoes Raffia Earrings",
+ "es": "Tomatoes Raffia Earrings",
+ "tr": "Tomatoes Raffia Earrings",
+ "ar": "Tomatoes Raffia Earrings"
+ },
+ "displayName": {
+ "fr": "Boucles tomates en raphia",
+ "en": "Tomatoes Raffia Earrings",
+ "es": "Tomatoes Raffia Earrings",
+ "tr": "Tomatoes Raffia Earrings",
+ "ar": "Tomatoes Raffia Earrings"
+ },
+ "short": {
+ "fr": "Boucles tomates en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "es": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "tr": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "ar": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ },
+ "displayShort": {
+ "fr": "Boucles tomates en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "es": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "tr": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "ar": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ },
+ "desc": {
+ "fr": "Boucles tomates en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "en": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "es": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "tr": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
+ "ar": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family."
+ },
+ "price": 50000,
+ "currency": "MAD",
+ "category": "earrings",
+ "sourceCategory": "Fruit Earrings",
+ "categoryLabel": {
+ "fr": "Boucles",
+ "en": "Earrings",
+ "es": "Earrings",
+ "tr": "Earrings",
+ "ar": "Earrings"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/products/accessories-clean/tomatoes-earrings-clean.webp",
+ "gallery": [
+ "assets/products/accessories-clean/tomatoes-earrings-clean.webp",
+ "assets/lifestyle/accessories/tomato-earrings-riad.webp"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "tomatoes-raffia-earrings-ss26",
+ "sku": null,
+ "category": "BO",
+ "source_type": "tomate x2",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 17
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit earrings",
+ "Tomatoes",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Tomatoes Raffia Earrings - Handmade in Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Boucles tomates en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Tomatoes Raffia Earrings",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "boucles",
+ "crochet",
+ "earrings",
+ "fait main",
+ "handmade",
+ "kupe",
+ "pendientes",
+ "tomate",
+ "tomato",
+ "tomatoes-raffia-earrings-ss26",
+ "اقراط",
+ "طماطم"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Boucles tomates en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Tomatoes Raffia Earrings",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "boucles",
+ "crochet",
+ "earrings",
+ "fait main",
+ "handmade",
+ "kupe",
+ "pendientes",
+ "tomate",
+ "tomato",
+ "tomatoes-raffia-earrings-ss26",
+ "اقراط",
+ "طماطم"
+ ],
+ "material": {
+ "fr": "Raffia, Creoles dorees",
+ "en": "Raffia, Gold earrings",
+ "es": "Raffia, Gold earrings",
+ "tr": "Raffia, Gold earrings",
+ "ar": "Raffia, Gold earrings"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Petit format bijou textile, leger et visible.",
+ "en": "Small textile-jewellery scale, light and visible.",
+ "es": "Small textile-jewellery scale, light and visible.",
+ "tr": "Small textile-jewellery scale, light and visible.",
+ "ar": "Small textile-jewellery scale, light and visible."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Creole doree 1,5 cm.",
+ "en": "1.5 cm gold earring.",
+ "es": "1.5 cm gold earring.",
+ "tr": "1.5 cm gold earring.",
+ "ar": "1.5 cm gold earring."
+ },
+ "handworkTime": {
+ "fr": "Crochet main et montage bijou, piece par piece.",
+ "en": "Hand crochet and jewellery assembly, piece by piece.",
+ "es": "Hand crochet and jewellery assembly, piece by piece.",
+ "tr": "Hand crochet and jewellery assembly, piece by piece.",
+ "ar": "Hand crochet and jewellery assembly, piece by piece."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Fruit crochete main puis monte sur creole doree legere.",
+ "en": "Hand-crocheted fruit mounted on a light golden earring.",
+ "es": "Hand-crocheted fruit mounted on a light golden earring.",
+ "tr": "Hand-crocheted fruit mounted on a light golden earring.",
+ "ar": "Hand-crocheted fruit mounted on a light golden earring."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "la-sculpture-xs-basket-bag-ss26",
+ "lemon-slice-raffia-necklace-ss26"
+ ]
+ },
+ {
+ "handle": "lemon-slice-raffia-necklace-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "Collier tranche de citron en raphia",
+ "en": "Lemon Slice Raffia Necklace",
+ "es": "Lemon Slice Raffia Necklace",
+ "tr": "Lemon Slice Raffia Necklace",
+ "ar": "Lemon Slice Raffia Necklace"
+ },
+ "displayName": {
+ "fr": "Collier tranche de citron en raphia",
+ "en": "Lemon Slice Raffia Necklace",
+ "es": "Lemon Slice Raffia Necklace",
+ "tr": "Lemon Slice Raffia Necklace",
+ "ar": "Lemon Slice Raffia Necklace"
+ },
+ "short": {
+ "fr": "Collier tranche de citron en raphia, fruit en raphia crochete sur cordon.",
+ "en": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "es": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "tr": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "ar": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh."
+ },
+ "displayShort": {
+ "fr": "Collier tranche de citron en raphia, fruit en raphia crochete sur cordon.",
+ "en": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "es": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "tr": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "ar": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh."
+ },
+ "desc": {
+ "fr": "Collier tranche de citron en raphia, fruit en raphia crochete sur cordon.",
+ "en": "Lemon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "es": "Lemon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "tr": "Lemon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "ar": "Lemon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe."
+ },
+ "price": 26000,
+ "currency": "MAD",
+ "category": "necklaces",
+ "sourceCategory": "Fruit Necklaces",
+ "categoryLabel": {
+ "fr": "Colliers",
+ "en": "Necklaces",
+ "es": "Necklaces",
+ "tr": "Necklaces",
+ "ar": "Necklaces"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/products/accessories-clean/lemon-slice-necklace-clean.webp",
+ "gallery": [
+ "assets/products/accessories-clean/lemon-slice-necklace-clean.webp",
+ "assets/lifestyle/accessories/lemon-necklace-rooftop.webp"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "lemon-slice-raffia-necklace-ss26",
+ "sku": null,
+ "category": "Necklace",
+ "source_type": "lemon slice",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 21
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit necklace",
+ "Lemon slice",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Lemon Slice Raffia Necklace - Handmade Raffia Necklace from Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Collier tranche de citron en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Lemon Slice Raffia Necklace",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "citron",
+ "collar",
+ "collier",
+ "crochet",
+ "fait main",
+ "handmade",
+ "kolye",
+ "lemon-slice-raffia-necklace-ss26",
+ "limon",
+ "necklace",
+ "necklaces",
+ "عقد",
+ "ليمون"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Collier tranche de citron en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Lemon Slice Raffia Necklace",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "citron",
+ "collar",
+ "collier",
+ "crochet",
+ "fait main",
+ "handmade",
+ "kolye",
+ "lemon-slice-raffia-necklace-ss26",
+ "limon",
+ "necklace",
+ "necklaces",
+ "عقد",
+ "ليمون"
+ ],
+ "material": {
+ "fr": "Raffia, Cordon, Boucle de finition",
+ "en": "Raffia, Cord, Finishing loop",
+ "es": "Raffia, Cord, Finishing loop",
+ "tr": "Raffia, Cord, Finishing loop",
+ "ar": "Raffia, Cord, Finishing loop"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Petit format bijou textile, leger et visible.",
+ "en": "Small textile-jewellery scale, light and visible.",
+ "es": "Small textile-jewellery scale, light and visible.",
+ "tr": "Small textile-jewellery scale, light and visible.",
+ "ar": "Small textile-jewellery scale, light and visible."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Cordon textile avec boucle de finition.",
+ "en": "Textile cord with finishing loop.",
+ "es": "Textile cord with finishing loop.",
+ "tr": "Textile cord with finishing loop.",
+ "ar": "Textile cord with finishing loop."
+ },
+ "handworkTime": {
+ "fr": "Crochet main et montage sur cordon, piece par piece.",
+ "en": "Hand crochet and cord assembly, piece by piece.",
+ "es": "Hand crochet and cord assembly, piece by piece.",
+ "tr": "Hand crochet and cord assembly, piece by piece.",
+ "ar": "Hand crochet and cord assembly, piece by piece."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Fruit crochete main, monte sur cordon comme bijou textile.",
+ "en": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "es": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "tr": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "ar": "Hand-crocheted fruit mounted on a cord as textile jewellery."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 2.5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26"
+ ]
+ },
+ {
+ "handle": "orange-slice-raffia-necklace-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "Collier tranche d orange en raphia",
+ "en": "Orange Slice Raffia Necklace",
+ "es": "Orange Slice Raffia Necklace",
+ "tr": "Orange Slice Raffia Necklace",
+ "ar": "Orange Slice Raffia Necklace"
+ },
+ "displayName": {
+ "fr": "Collier tranche d orange en raphia",
+ "en": "Orange Slice Raffia Necklace",
+ "es": "Orange Slice Raffia Necklace",
+ "tr": "Orange Slice Raffia Necklace",
+ "ar": "Orange Slice Raffia Necklace"
+ },
+ "short": {
+ "fr": "Collier tranche d orange en raphia, fruit en raphia crochete sur cordon.",
+ "en": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "es": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "tr": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "ar": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh."
+ },
+ "displayShort": {
+ "fr": "Collier tranche d orange en raphia, fruit en raphia crochete sur cordon.",
+ "en": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "es": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "tr": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "ar": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh."
+ },
+ "desc": {
+ "fr": "Collier tranche d orange en raphia, fruit en raphia crochete sur cordon.",
+ "en": "Orange Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "es": "Orange Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "tr": "Orange Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "ar": "Orange Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe."
+ },
+ "price": 26000,
+ "currency": "MAD",
+ "category": "necklaces",
+ "sourceCategory": "Fruit Necklaces",
+ "categoryLabel": {
+ "fr": "Colliers",
+ "en": "Necklaces",
+ "es": "Necklaces",
+ "tr": "Necklaces",
+ "ar": "Necklaces"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/products/accessories-clean/orange-slice-necklace-clean.webp",
+ "gallery": [
+ "assets/products/accessories-clean/orange-slice-necklace-clean.webp"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "orange-slice-raffia-necklace-ss26",
+ "sku": null,
+ "category": "Necklace",
+ "source_type": "orange slice",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 23
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit necklace",
+ "Orange slice",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Orange Slice Raffia Necklace - Handmade Raffia Necklace from Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Collier tranche d orange en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Orange Slice Raffia Necklace",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "collar",
+ "collier",
+ "crochet",
+ "fait main",
+ "handmade",
+ "kolye",
+ "naranja",
+ "necklace",
+ "necklaces",
+ "orange",
+ "orange-slice-raffia-necklace-ss26",
+ "برتقال",
+ "عقد"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Collier tranche d orange en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Orange Slice Raffia Necklace",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "collar",
+ "collier",
+ "crochet",
+ "fait main",
+ "handmade",
+ "kolye",
+ "naranja",
+ "necklace",
+ "necklaces",
+ "orange",
+ "orange-slice-raffia-necklace-ss26",
+ "برتقال",
+ "عقد"
+ ],
+ "material": {
+ "fr": "Raffia, Cordon, Boucle de finition",
+ "en": "Raffia, Cord, Finishing loop",
+ "es": "Raffia, Cord, Finishing loop",
+ "tr": "Raffia, Cord, Finishing loop",
+ "ar": "Raffia, Cord, Finishing loop"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Petit format bijou textile, leger et visible.",
+ "en": "Small textile-jewellery scale, light and visible.",
+ "es": "Small textile-jewellery scale, light and visible.",
+ "tr": "Small textile-jewellery scale, light and visible.",
+ "ar": "Small textile-jewellery scale, light and visible."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Cordon textile avec boucle de finition.",
+ "en": "Textile cord with finishing loop.",
+ "es": "Textile cord with finishing loop.",
+ "tr": "Textile cord with finishing loop.",
+ "ar": "Textile cord with finishing loop."
+ },
+ "handworkTime": {
+ "fr": "Crochet main et montage sur cordon, piece par piece.",
+ "en": "Hand crochet and cord assembly, piece by piece.",
+ "es": "Hand crochet and cord assembly, piece by piece.",
+ "tr": "Hand crochet and cord assembly, piece by piece.",
+ "ar": "Hand crochet and cord assembly, piece by piece."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Fruit crochete main, monte sur cordon comme bijou textile.",
+ "en": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "es": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "tr": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "ar": "Hand-crocheted fruit mounted on a cord as textile jewellery."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 2.5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26"
+ ]
+ },
+ {
+ "handle": "watermelon-slice-raffia-necklace-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "Collier tranche de pasteque en raphia",
+ "en": "Watermelon Slice Raffia Necklace",
+ "es": "Watermelon Slice Raffia Necklace",
+ "tr": "Watermelon Slice Raffia Necklace",
+ "ar": "Watermelon Slice Raffia Necklace"
+ },
+ "displayName": {
+ "fr": "Collier tranche de pasteque en raphia",
+ "en": "Watermelon Slice Raffia Necklace",
+ "es": "Watermelon Slice Raffia Necklace",
+ "tr": "Watermelon Slice Raffia Necklace",
+ "ar": "Watermelon Slice Raffia Necklace"
+ },
+ "short": {
+ "fr": "Collier tranche de pasteque en raphia, fruit en raphia crochete sur cordon.",
+ "en": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "es": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "tr": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "ar": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh."
+ },
+ "displayShort": {
+ "fr": "Collier tranche de pasteque en raphia, fruit en raphia crochete sur cordon.",
+ "en": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "es": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "tr": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh.",
+ "ar": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh."
+ },
+ "desc": {
+ "fr": "Collier tranche de pasteque en raphia, fruit en raphia crochete sur cordon.",
+ "en": "Watermelon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "es": "Watermelon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "tr": "Watermelon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "ar": "Watermelon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe."
+ },
+ "price": 26000,
+ "currency": "MAD",
+ "category": "necklaces",
+ "sourceCategory": "Fruit Necklaces",
+ "categoryLabel": {
+ "fr": "Colliers",
+ "en": "Necklaces",
+ "es": "Necklaces",
+ "tr": "Necklaces",
+ "ar": "Necklaces"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-04.webp",
+ "gallery": [
+ "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-04.webp"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "watermelon-slice-raffia-necklace-ss26",
+ "sku": null,
+ "category": "Necklace",
+ "source_type": "watermelon slice",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 22
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit necklace",
+ "Watermelon slice",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Watermelon Slice Raffia Necklace - Handmade Raffia Necklace from Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Collier tranche de pasteque en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Watermelon Slice Raffia Necklace",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "collar",
+ "collier",
+ "crochet",
+ "fait main",
+ "handmade",
+ "kolye",
+ "necklace",
+ "necklaces",
+ "pasteque",
+ "sandia",
+ "watermelon",
+ "watermelon-slice-raffia-necklace-ss26",
+ "بطيخ",
+ "عقد"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Collier tranche de pasteque en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "Watermelon Slice Raffia Necklace",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "collar",
+ "collier",
+ "crochet",
+ "fait main",
+ "handmade",
+ "kolye",
+ "necklace",
+ "necklaces",
+ "pasteque",
+ "sandia",
+ "watermelon",
+ "watermelon-slice-raffia-necklace-ss26",
+ "بطيخ",
+ "عقد"
+ ],
+ "material": {
+ "fr": "Raffia, Cordon, Boucle de finition",
+ "en": "Raffia, Cord, Finishing loop",
+ "es": "Raffia, Cord, Finishing loop",
+ "tr": "Raffia, Cord, Finishing loop",
+ "ar": "Raffia, Cord, Finishing loop"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Petit format bijou textile, leger et visible.",
+ "en": "Small textile-jewellery scale, light and visible.",
+ "es": "Small textile-jewellery scale, light and visible.",
+ "tr": "Small textile-jewellery scale, light and visible.",
+ "ar": "Small textile-jewellery scale, light and visible."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Cordon textile avec boucle de finition.",
+ "en": "Textile cord with finishing loop.",
+ "es": "Textile cord with finishing loop.",
+ "tr": "Textile cord with finishing loop.",
+ "ar": "Textile cord with finishing loop."
+ },
+ "handworkTime": {
+ "fr": "Crochet main et montage sur cordon, piece par piece.",
+ "en": "Hand crochet and cord assembly, piece by piece.",
+ "es": "Hand crochet and cord assembly, piece by piece.",
+ "tr": "Hand crochet and cord assembly, piece by piece.",
+ "ar": "Hand crochet and cord assembly, piece by piece."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Fruit crochete main, monte sur cordon comme bijou textile.",
+ "en": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "es": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "tr": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "ar": "Hand-crocheted fruit mounted on a cord as textile jewellery."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 2.5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26"
+ ]
+ },
+ {
+ "handle": "grapes-raffia-necklace-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "Collier raisins en raphia",
+ "en": "Grapes Raffia Necklace",
+ "es": "Grapes Raffia Necklace",
+ "tr": "Grapes Raffia Necklace",
+ "ar": "Grapes Raffia Necklace"
+ },
+ "displayName": {
+ "fr": "Collier raisins en raphia",
+ "en": "Grapes Raffia Necklace",
+ "es": "Grapes Raffia Necklace",
+ "tr": "Grapes Raffia Necklace",
+ "ar": "Grapes Raffia Necklace"
+ },
+ "short": {
+ "fr": "Collier raisins en raphia, fruit en raphia crochete sur cordon.",
+ "en": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh.",
+ "es": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh.",
+ "tr": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh.",
+ "ar": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh."
+ },
+ "displayShort": {
+ "fr": "Collier raisins en raphia, fruit en raphia crochete sur cordon.",
+ "en": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh.",
+ "es": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh.",
+ "tr": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh.",
+ "ar": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh."
+ },
+ "desc": {
+ "fr": "Collier raisins en raphia, fruit en raphia crochete sur cordon.",
+ "en": "Grapes Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "es": "Grapes Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "tr": "Grapes Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "ar": "Grapes Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe."
+ },
+ "price": 26000,
+ "currency": "MAD",
+ "category": "necklaces",
+ "sourceCategory": "Fruit Necklaces",
+ "categoryLabel": {
+ "fr": "Colliers",
+ "en": "Necklaces",
+ "es": "Necklaces",
+ "tr": "Necklaces",
+ "ar": "Necklaces"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/original-shop/charms/raffia-grapes-charm-ss26-04.webp",
+ "gallery": [
+ "assets/original-shop/charms/raffia-grapes-charm-ss26-04.webp"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "grapes-raffia-necklace-ss26",
+ "sku": null,
+ "category": "Necklace",
+ "source_type": "grapes",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 24
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit necklace",
+ "Grapes",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Grapes Raffia Necklace - Handmade Raffia Necklace from Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Collier raisins en raphia",
+ "Grapes Raffia Necklace",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "collar",
+ "collier",
+ "crochet",
+ "fait main",
+ "grapes",
+ "grapes-raffia-necklace-ss26",
+ "handmade",
+ "kolye",
+ "necklace",
+ "necklaces",
+ "raisin",
+ "raisins",
+ "uvas",
+ "عقد",
+ "عنب"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Collier raisins en raphia",
+ "Grapes Raffia Necklace",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "collar",
+ "collier",
+ "crochet",
+ "fait main",
+ "grapes",
+ "grapes-raffia-necklace-ss26",
+ "handmade",
+ "kolye",
+ "necklace",
+ "necklaces",
+ "raisin",
+ "raisins",
+ "uvas",
+ "عقد",
+ "عنب"
+ ],
+ "material": {
+ "fr": "Raffia, Cordon, Boucle de finition",
+ "en": "Raffia, Cord, Finishing loop",
+ "es": "Raffia, Cord, Finishing loop",
+ "tr": "Raffia, Cord, Finishing loop",
+ "ar": "Raffia, Cord, Finishing loop"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Petit format bijou textile, leger et visible.",
+ "en": "Small textile-jewellery scale, light and visible.",
+ "es": "Small textile-jewellery scale, light and visible.",
+ "tr": "Small textile-jewellery scale, light and visible.",
+ "ar": "Small textile-jewellery scale, light and visible."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Cordon textile avec boucle de finition.",
+ "en": "Textile cord with finishing loop.",
+ "es": "Textile cord with finishing loop.",
+ "tr": "Textile cord with finishing loop.",
+ "ar": "Textile cord with finishing loop."
+ },
+ "handworkTime": {
+ "fr": "Crochet main et montage sur cordon, piece par piece.",
+ "en": "Hand crochet and cord assembly, piece by piece.",
+ "es": "Hand crochet and cord assembly, piece by piece.",
+ "tr": "Hand crochet and cord assembly, piece by piece.",
+ "ar": "Hand crochet and cord assembly, piece by piece."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Fruit crochete main, monte sur cordon comme bijou textile.",
+ "en": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "es": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "tr": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "ar": "Hand-crocheted fruit mounted on a cord as textile jewellery."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 2.5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26"
+ ]
+ },
+ {
+ "handle": "cherries-raffia-necklace-ss26",
+ "legacyHandles": [],
+ "sku": null,
+ "name": {
+ "fr": "Collier cerises en raphia",
+ "en": "Cherries Raffia Necklace",
+ "es": "Cherries Raffia Necklace",
+ "tr": "Cherries Raffia Necklace",
+ "ar": "Cherries Raffia Necklace"
+ },
+ "displayName": {
+ "fr": "Collier cerises en raphia",
+ "en": "Cherries Raffia Necklace",
+ "es": "Cherries Raffia Necklace",
+ "tr": "Cherries Raffia Necklace",
+ "ar": "Cherries Raffia Necklace"
+ },
+ "short": {
+ "fr": "Collier cerises en raphia, fruit en raphia crochete sur cordon.",
+ "en": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh.",
+ "es": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh.",
+ "tr": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh.",
+ "ar": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh."
+ },
+ "displayShort": {
+ "fr": "Collier cerises en raphia, fruit en raphia crochete sur cordon.",
+ "en": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh.",
+ "es": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh.",
+ "tr": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh.",
+ "ar": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh."
+ },
+ "desc": {
+ "fr": "Collier cerises en raphia, fruit en raphia crochete sur cordon.",
+ "en": "Cherries Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "es": "Cherries Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "tr": "Cherries Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
+ "ar": "Cherries Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe."
+ },
+ "price": 17000,
+ "currency": "MAD",
+ "category": "necklaces",
+ "sourceCategory": "Fruit Necklaces",
+ "categoryLabel": {
+ "fr": "Colliers",
+ "en": "Necklaces",
+ "es": "Necklaces",
+ "tr": "Necklaces",
+ "ar": "Necklaces"
+ },
+ "group": "accessories",
+ "collection": {
+ "fr": "Fruit Market",
+ "en": "Fruit Market",
+ "es": "Fruit Market",
+ "tr": "Fruit Market",
+ "ar": "Fruit Market"
+ },
+ "season": "All Seasons",
+ "img": "assets/original-shop/charms/raffia-cherries-charm-ss26-04.webp",
+ "lifestyleVideo": "assets/lifestyle/accessories/cherry-necklace.mp4",
+ "gallery": [
+ "assets/original-shop/charms/raffia-cherries-charm-ss26-04.webp",
+ "assets/lifestyle/accessories/cherry-necklace-doorway.webp"
+ ],
+ "familyHandle": null,
+ "familyOrder": 50,
+ "variantLabel": null,
+ "availableColors": [],
+ "availableSizes": [],
+ "variants": [
+ {
+ "product_handle": "cherries-raffia-necklace-ss26",
+ "sku": null,
+ "category": "Necklace",
+ "source_type": "cerises",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 25
+ }
+ ],
+ "variantCount": 1,
+ "variant_count_from_xlsx_catalog": 1,
+ "tags": [
+ "SS26",
+ "Accessories",
+ "Fruit necklace",
+ "Cherries",
+ "Raffia",
+ "Marrakech"
+ ],
+ "seoTitle": "Cherries Raffia Necklace - Handmade Raffia Necklace from Marrakech",
+ "seoKeywords": [
+ "Accessories",
+ "Cherries Raffia Necklace",
+ "Collier cerises en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "cereza",
+ "cerise",
+ "cerises",
+ "cherries",
+ "cherries-raffia-necklace-ss26",
+ "collar",
+ "collier",
+ "crochet",
+ "fait main",
+ "handmade",
+ "kolye",
+ "necklace",
+ "necklaces",
+ "عقد",
+ "كرز"
+ ],
+ "languageSearchTerms": [
+ "Accessories",
+ "Cherries Raffia Necklace",
+ "Collier cerises en raphia",
+ "Guéliz",
+ "Guéliz",
+ "Marrakech",
+ "Marrakesh",
+ "YZA",
+ "accessories",
+ "bijoux",
+ "cereza",
+ "cerise",
+ "cerises",
+ "cherries",
+ "cherries-raffia-necklace-ss26",
+ "collar",
+ "collier",
+ "crochet",
+ "fait main",
+ "handmade",
+ "kolye",
+ "necklace",
+ "necklaces",
+ "عقد",
+ "كرز"
+ ],
+ "material": {
+ "fr": "Raffia, Cordon, Boucle de finition",
+ "en": "Raffia, Cord, Finishing loop",
+ "es": "Raffia, Cord, Finishing loop",
+ "tr": "Raffia, Cord, Finishing loop",
+ "ar": "Raffia, Cord, Finishing loop"
+ },
+ "fabric": {
+ "fr": "Raffia only - crocheted",
+ "en": "Raffia only - crocheted",
+ "es": "Raffia only - crocheted",
+ "tr": "Raffia only - crocheted",
+ "ar": "Raffia only - crocheted"
+ },
+ "color": null,
+ "size": null,
+ "visualSize": null,
+ "visualColor": null,
+ "bagFamilyTitle": null,
+ "bagFamilyEyebrow": null,
+ "bagFamilyText": null,
+ "bagFamilyOrder": null,
+ "dimensions": {
+ "fr": "Petit format bijou textile, leger et visible.",
+ "en": "Small textile-jewellery scale, light and visible.",
+ "es": "Small textile-jewellery scale, light and visible.",
+ "tr": "Small textile-jewellery scale, light and visible.",
+ "ar": "Small textile-jewellery scale, light and visible."
+ },
+ "whatFits": null,
+ "attachment": {
+ "fr": "Cordon textile avec boucle de finition.",
+ "en": "Textile cord with finishing loop.",
+ "es": "Textile cord with finishing loop.",
+ "tr": "Textile cord with finishing loop.",
+ "ar": "Textile cord with finishing loop."
+ },
+ "handworkTime": {
+ "fr": "Crochet main et montage sur cordon, piece par piece.",
+ "en": "Hand crochet and cord assembly, piece by piece.",
+ "es": "Hand crochet and cord assembly, piece by piece.",
+ "tr": "Hand crochet and cord assembly, piece by piece.",
+ "ar": "Hand crochet and cord assembly, piece by piece."
+ },
+ "howToWear": null,
+ "fruitStory": null,
+ "making": {
+ "fr": "Fruit crochete main, monte sur cordon comme bijou textile.",
+ "en": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "es": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "tr": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
+ "ar": "Hand-crocheted fruit mounted on a cord as textile jewellery."
+ },
+ "care": {
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
+ "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ },
+ "packaging": {
+ "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
+ "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "en": "30-day guarantee if the piece has not been worn.",
+ "es": "14-day guarantee if the piece has not been worn.",
+ "tr": "14-day guarantee if the piece has not been worn.",
+ "ar": "14-day guarantee if the piece has not been worn."
+ },
+ "batch": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "edition": {
+ "fr": "Petite série atelier, produite au rythme du crochet main.",
+ "en": "Small atelier batch, produced at hand-crochet pace.",
+ "es": "Small atelier batch, produced at hand-crochet pace.",
+ "tr": "Small atelier batch, produced at hand-crochet pace.",
+ "ar": "Small atelier batch, produced at hand-crochet pace."
+ },
+ "badge": "limited",
+ "hours": 2.5,
+ "giftable": true,
+ "publicVisible": true,
+ "crossSell": [
+ "raffia-cherries-charm-ss26",
+ "la-sculpture-xs-basket-bag-ss26",
+ "watermelon-raffia-earrings-ss26"
+ ]
+ }
+];
+const BAG_ROWS = [
+ {
+ "familyHandle": "la-sculpture",
+ "familyTitle": {
+ "fr": "La Sculpture",
+ "en": "La Sculpture",
+ "es": "La Sculpture",
+ "tr": "La Sculpture",
+ "ar": "La Sculpture"
+ },
+ "familyEyebrow": {
+ "fr": "Collection Sculpture",
+ "en": "Collection Sculpture",
+ "es": "Collection Sculpture",
+ "tr": "Collection Sculpture",
+ "ar": "Collection Sculpture"
+ },
+ "familyText": {
+ "fr": "Choisissez d'abord la couleur, puis la taille. Chaque lien vous dirige vers le bon sac.",
+ "en": "Choose the colour first, then the size. Each link opens the right bag page.",
+ "es": "Choose the colour first, then the size. Each link opens the right bag page.",
+ "tr": "Choose the colour first, then the size. Each link opens the right bag page.",
+ "ar": "Choose the colour first, then the size. Each link opens the right bag page."
+ },
+ "rowTitle": {
+ "fr": "La Sculpture - Rouge",
+ "en": "La Sculpture - Red",
+ "es": "La Sculpture - Red",
+ "tr": "La Sculpture - Red",
+ "ar": "La Sculpture - Red"
+ },
+ "color": {
+ "fr": "Rouge",
+ "en": "Red",
+ "es": "Red",
+ "tr": "Red",
+ "ar": "Red"
+ },
+ "colorSlug": "rouge",
+ "img": "assets/products/la-sculpture/sculpt-hot-red-s.jpg",
+ "gallery": [
+ "assets/products/la-sculpture/sculpt-hot-red-xs.jpg",
+ "assets/products/la-sculpture/sculpt-hot-red-s.jpg",
+ "assets/products/la-sculpture/sculpt-hot-red-m.jpg"
+ ],
+ "items": [
+ {
+ "handle": "la-sculpture-xs-basket-bag-ss26",
+ "size": "XS",
+ "color": {
+ "fr": "Rouge",
+ "en": "Red",
+ "es": "Red",
+ "tr": "Red",
+ "ar": "Red"
+ },
+ "colorSlug": "rouge",
+ "title": {
+ "fr": "La Sculpture XS - Rouge",
+ "en": "La Sculpture XS - Red",
+ "es": "La Sculpture XS - Red",
+ "tr": "La Sculpture XS - Red",
+ "ar": "La Sculpture XS - Red"
+ },
+ "short": {
+ "fr": "Format XS, couleur rouge.",
+ "en": "XS scale, Red.",
+ "es": "XS scale, Red.",
+ "tr": "XS scale, Red.",
+ "ar": "XS scale, Red."
+ },
+ "price": 80000,
+ "img": "assets/lookbook-ss26-27/embedded/p40_img01_xref1305_5ae097cc9e5a.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p40_img01_xref1305_5ae097cc9e5a.jpeg",
+ "assets/lookbook-ss26-27/embedded/p42_img01_xref1321_1a08834f9d69.jpeg",
+ "assets/lookbook-ss26-27/embedded/p43_img01_xref1325_6be88260cccd.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img01_xref1345_c06ef6230440.jpeg"
+ ],
+ "url": "produit.html?handle=la-sculpture-xs-basket-bag-ss26&color=rouge"
+ },
+ {
+ "handle": "la-sculpture-s-basket-bag-ss26",
+ "size": "S",
+ "color": {
+ "fr": "Rouge",
+ "en": "Red",
+ "es": "Red",
+ "tr": "Red",
+ "ar": "Red"
+ },
+ "colorSlug": "rouge",
+ "title": {
+ "fr": "La Sculpture S - Rouge",
+ "en": "La Sculpture S - Red",
+ "es": "La Sculpture S - Red",
+ "tr": "La Sculpture S - Red",
+ "ar": "La Sculpture S - Red"
+ },
+ "short": {
+ "fr": "Format S, couleur rouge.",
+ "en": "S scale, Red.",
+ "es": "S scale, Red.",
+ "tr": "S scale, Red.",
+ "ar": "S scale, Red."
+ },
+ "price": 93000,
+ "img": "assets/lookbook-ss26-27/embedded/p40_img01_xref1305_5ae097cc9e5a.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p40_img01_xref1305_5ae097cc9e5a.jpeg",
+ "assets/lookbook-ss26-27/embedded/p42_img01_xref1321_1a08834f9d69.jpeg",
+ "assets/lookbook-ss26-27/embedded/p43_img01_xref1325_6be88260cccd.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img01_xref1345_c06ef6230440.jpeg"
+ ],
+ "url": "produit.html?handle=la-sculpture-s-basket-bag-ss26&color=rouge"
+ },
+ {
+ "handle": "la-sculpture-m-basket-bag-ss26",
+ "size": "M",
+ "color": {
+ "fr": "Rouge",
+ "en": "Red",
+ "es": "Red",
+ "tr": "Red",
+ "ar": "Red"
+ },
+ "colorSlug": "rouge",
+ "title": {
+ "fr": "La Sculpture M - Rouge",
+ "en": "La Sculpture M - Red",
+ "es": "La Sculpture M - Red",
+ "tr": "La Sculpture M - Red",
+ "ar": "La Sculpture M - Red"
+ },
+ "short": {
+ "fr": "Format M, couleur rouge.",
+ "en": "M scale, Red.",
+ "es": "M scale, Red.",
+ "tr": "M scale, Red.",
+ "ar": "M scale, Red."
+ },
+ "price": 100000,
+ "img": "assets/lookbook-ss26-27/embedded/p40_img01_xref1305_5ae097cc9e5a.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p40_img01_xref1305_5ae097cc9e5a.jpeg",
+ "assets/lookbook-ss26-27/embedded/p42_img01_xref1321_1a08834f9d69.jpeg",
+ "assets/lookbook-ss26-27/embedded/p43_img01_xref1325_6be88260cccd.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img01_xref1345_c06ef6230440.jpeg"
+ ],
+ "url": "produit.html?handle=la-sculpture-m-basket-bag-ss26&color=rouge"
+ }
+ ]
+ },
+ {
+ "familyHandle": "la-sculpture",
+ "familyTitle": {
+ "fr": "La Sculpture",
+ "en": "La Sculpture",
+ "es": "La Sculpture",
+ "tr": "La Sculpture",
+ "ar": "La Sculpture"
+ },
+ "familyEyebrow": {
+ "fr": "Collection Sculpture",
+ "en": "Collection Sculpture",
+ "es": "Collection Sculpture",
+ "tr": "Collection Sculpture",
+ "ar": "Collection Sculpture"
+ },
+ "familyText": {
+ "fr": "Choisissez d'abord la couleur, puis la taille. Chaque lien vous dirige vers le bon sac.",
+ "en": "Choose the colour first, then the size. Each link opens the right bag page.",
+ "es": "Choose the colour first, then the size. Each link opens the right bag page.",
+ "tr": "Choose the colour first, then the size. Each link opens the right bag page.",
+ "ar": "Choose the colour first, then the size. Each link opens the right bag page."
+ },
+ "rowTitle": {
+ "fr": "La Sculpture - Violet",
+ "en": "La Sculpture - Violet",
+ "es": "La Sculpture - Violet",
+ "tr": "La Sculpture - Violet",
+ "ar": "La Sculpture - Violet"
+ },
+ "color": {
+ "fr": "Violet",
+ "en": "Violet",
+ "es": "Violet",
+ "tr": "Violet",
+ "ar": "Violet"
+ },
+ "colorSlug": "violet",
+ "img": "assets/products/la-sculpture/sculpt-deep-violet-s.jpg",
+ "gallery": [
+ "assets/products/la-sculpture/sculpt-deep-violet-xs.jpg",
+ "assets/products/la-sculpture/sculpt-deep-violet-s.jpg",
+ "assets/products/la-sculpture/sculpt-deep-violet-m.jpg"
+ ],
+ "items": [
+ {
+ "handle": "la-sculpture-xs-basket-bag-ss26",
+ "size": "XS",
+ "color": {
+ "fr": "Violet",
+ "en": "Violet",
+ "es": "Violet",
+ "tr": "Violet",
+ "ar": "Violet"
+ },
+ "colorSlug": "violet",
+ "title": {
+ "fr": "La Sculpture XS - Violet",
+ "en": "La Sculpture XS - Violet",
+ "es": "La Sculpture XS - Violet",
+ "tr": "La Sculpture XS - Violet",
+ "ar": "La Sculpture XS - Violet"
+ },
+ "short": {
+ "fr": "Format XS, couleur violet.",
+ "en": "XS scale, Violet.",
+ "es": "XS scale, Violet.",
+ "tr": "XS scale, Violet.",
+ "ar": "XS scale, Violet."
+ },
+ "price": 80000,
+ "img": "assets/lookbook-ss26-27/embedded/p41_img03_xref1315_841b5b884798.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p41_img03_xref1315_841b5b884798.jpeg",
+ "assets/lookbook-ss26-27/embedded/p44_img01_xref1329_bf91110d6d83.jpeg",
+ "assets/lookbook-ss26-27/embedded/p45_img01_xref1333_caaad580c061.jpeg"
+ ],
+ "url": "produit.html?handle=la-sculpture-xs-basket-bag-ss26&color=violet"
+ },
+ {
+ "handle": "la-sculpture-s-basket-bag-ss26",
+ "size": "S",
+ "color": {
+ "fr": "Violet",
+ "en": "Violet",
+ "es": "Violet",
+ "tr": "Violet",
+ "ar": "Violet"
+ },
+ "colorSlug": "violet",
+ "title": {
+ "fr": "La Sculpture S - Violet",
+ "en": "La Sculpture S - Violet",
+ "es": "La Sculpture S - Violet",
+ "tr": "La Sculpture S - Violet",
+ "ar": "La Sculpture S - Violet"
+ },
+ "short": {
+ "fr": "Format S, couleur violet.",
+ "en": "S scale, Violet.",
+ "es": "S scale, Violet.",
+ "tr": "S scale, Violet.",
+ "ar": "S scale, Violet."
+ },
+ "price": 93000,
+ "img": "assets/lookbook-ss26-27/embedded/p41_img03_xref1315_841b5b884798.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p41_img03_xref1315_841b5b884798.jpeg",
+ "assets/lookbook-ss26-27/embedded/p44_img01_xref1329_bf91110d6d83.jpeg",
+ "assets/lookbook-ss26-27/embedded/p45_img01_xref1333_caaad580c061.jpeg"
+ ],
+ "url": "produit.html?handle=la-sculpture-s-basket-bag-ss26&color=violet"
+ },
+ {
+ "handle": "la-sculpture-m-basket-bag-ss26",
+ "size": "M",
+ "color": {
+ "fr": "Violet",
+ "en": "Violet",
+ "es": "Violet",
+ "tr": "Violet",
+ "ar": "Violet"
+ },
+ "colorSlug": "violet",
+ "title": {
+ "fr": "La Sculpture M - Violet",
+ "en": "La Sculpture M - Violet",
+ "es": "La Sculpture M - Violet",
+ "tr": "La Sculpture M - Violet",
+ "ar": "La Sculpture M - Violet"
+ },
+ "short": {
+ "fr": "Format M, couleur violet.",
+ "en": "M scale, Violet.",
+ "es": "M scale, Violet.",
+ "tr": "M scale, Violet.",
+ "ar": "M scale, Violet."
+ },
+ "price": 100000,
+ "img": "assets/lookbook-ss26-27/embedded/p41_img03_xref1315_841b5b884798.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p41_img03_xref1315_841b5b884798.jpeg",
+ "assets/lookbook-ss26-27/embedded/p44_img01_xref1329_bf91110d6d83.jpeg",
+ "assets/lookbook-ss26-27/embedded/p45_img01_xref1333_caaad580c061.jpeg"
+ ],
+ "url": "produit.html?handle=la-sculpture-m-basket-bag-ss26&color=violet"
+ }
+ ]
+ },
+ {
+ "familyHandle": "la-sculpture",
+ "familyTitle": {
+ "fr": "La Sculpture",
+ "en": "La Sculpture",
+ "es": "La Sculpture",
+ "tr": "La Sculpture",
+ "ar": "La Sculpture"
+ },
+ "familyEyebrow": {
+ "fr": "Collection Sculpture",
+ "en": "Collection Sculpture",
+ "es": "Collection Sculpture",
+ "tr": "Collection Sculpture",
+ "ar": "Collection Sculpture"
+ },
+ "familyText": {
+ "fr": "Choisissez d'abord la couleur, puis la taille. Chaque lien vous dirige vers le bon sac.",
+ "en": "Choose the colour first, then the size. Each link opens the right bag page.",
+ "es": "Choose the colour first, then the size. Each link opens the right bag page.",
+ "tr": "Choose the colour first, then the size. Each link opens the right bag page.",
+ "ar": "Choose the colour first, then the size. Each link opens the right bag page."
+ },
+ "rowTitle": {
+ "fr": "La Sculpture - Noir",
+ "en": "La Sculpture - Black",
+ "es": "La Sculpture - Black",
+ "tr": "La Sculpture - Black",
+ "ar": "La Sculpture - Black"
+ },
+ "color": {
+ "fr": "Noir",
+ "en": "Black",
+ "es": "Black",
+ "tr": "Black",
+ "ar": "Black"
+ },
+ "colorSlug": "noir",
+ "img": "assets/products/la-sculpture/sculpt-black-olive-s.jpg",
+ "gallery": [
+ "assets/products/la-sculpture/sculpt-black-olive-xs.jpg",
+ "assets/products/la-sculpture/sculpt-black-olive-s.jpg",
+ "assets/products/la-sculpture/sculpt-black-olive-m.jpg"
+ ],
+ "items": [
+ {
+ "handle": "la-sculpture-xs-basket-bag-ss26",
+ "size": "XS",
+ "color": {
+ "fr": "Noir",
+ "en": "Black",
+ "es": "Black",
+ "tr": "Black",
+ "ar": "Black"
+ },
+ "colorSlug": "noir",
+ "title": {
+ "fr": "La Sculpture XS - Noir",
+ "en": "La Sculpture XS - Black",
+ "es": "La Sculpture XS - Black",
+ "tr": "La Sculpture XS - Black",
+ "ar": "La Sculpture XS - Black"
+ },
+ "short": {
+ "fr": "Format XS, couleur noir.",
+ "en": "XS scale, Black.",
+ "es": "XS scale, Black.",
+ "tr": "XS scale, Black.",
+ "ar": "XS scale, Black."
+ },
+ "price": 80000,
+ "img": "assets/lookbook-ss26-27/embedded/p46_img01_xref1337_7dae31225680.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p46_img01_xref1337_7dae31225680.jpeg",
+ "assets/lookbook-ss26-27/embedded/p47_img01_xref1341_0932d247e77e.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img02_xref1346_42bfdc1a3e34.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img03_xref1347_e6608af984d1.jpeg"
+ ],
+ "url": "produit.html?handle=la-sculpture-xs-basket-bag-ss26&color=noir"
+ },
+ {
+ "handle": "la-sculpture-s-basket-bag-ss26",
+ "size": "S",
+ "color": {
+ "fr": "Noir",
+ "en": "Black",
+ "es": "Black",
+ "tr": "Black",
+ "ar": "Black"
+ },
+ "colorSlug": "noir",
+ "title": {
+ "fr": "La Sculpture S - Noir",
+ "en": "La Sculpture S - Black",
+ "es": "La Sculpture S - Black",
+ "tr": "La Sculpture S - Black",
+ "ar": "La Sculpture S - Black"
+ },
+ "short": {
+ "fr": "Format S, couleur noir.",
+ "en": "S scale, Black.",
+ "es": "S scale, Black.",
+ "tr": "S scale, Black.",
+ "ar": "S scale, Black."
+ },
+ "price": 93000,
+ "img": "assets/lookbook-ss26-27/embedded/p46_img01_xref1337_7dae31225680.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p46_img01_xref1337_7dae31225680.jpeg",
+ "assets/lookbook-ss26-27/embedded/p47_img01_xref1341_0932d247e77e.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img02_xref1346_42bfdc1a3e34.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img03_xref1347_e6608af984d1.jpeg"
+ ],
+ "url": "produit.html?handle=la-sculpture-s-basket-bag-ss26&color=noir"
+ },
+ {
+ "handle": "la-sculpture-m-basket-bag-ss26",
+ "size": "M",
+ "color": {
+ "fr": "Noir",
+ "en": "Black",
+ "es": "Black",
+ "tr": "Black",
+ "ar": "Black"
+ },
+ "colorSlug": "noir",
+ "title": {
+ "fr": "La Sculpture M - Noir",
+ "en": "La Sculpture M - Black",
+ "es": "La Sculpture M - Black",
+ "tr": "La Sculpture M - Black",
+ "ar": "La Sculpture M - Black"
+ },
+ "short": {
+ "fr": "Format M, couleur noir.",
+ "en": "M scale, Black.",
+ "es": "M scale, Black.",
+ "tr": "M scale, Black.",
+ "ar": "M scale, Black."
+ },
+ "price": 100000,
+ "img": "assets/lookbook-ss26-27/embedded/p46_img01_xref1337_7dae31225680.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p46_img01_xref1337_7dae31225680.jpeg",
+ "assets/lookbook-ss26-27/embedded/p47_img01_xref1341_0932d247e77e.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img02_xref1346_42bfdc1a3e34.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img03_xref1347_e6608af984d1.jpeg"
+ ],
+ "url": "produit.html?handle=la-sculpture-m-basket-bag-ss26&color=noir"
+ }
+ ]
+ },
+ {
+ "familyHandle": "la-nouvelle-vague",
+ "familyTitle": {
+ "fr": "La Nouvelle Vague",
+ "en": "New Edition Bag",
+ "es": "New Edition Bag",
+ "tr": "New Edition Bag",
+ "ar": "New Edition Bag"
+ },
+ "familyEyebrow": {
+ "fr": "New edition bag",
+ "en": "New edition bag",
+ "es": "New edition bag",
+ "tr": "New edition bag",
+ "ar": "New edition bag"
+ },
+ "familyText": {
+ "fr": "La Nouvelle Vague garde les formats publies dans le manifest: chaque carte ouvre la page du format et du coloris photographies.",
+ "en": "La Nouvelle Vague keeps the published manifest scales: each card opens the photographed size and colour.",
+ "es": "La Nouvelle Vague keeps the published manifest scales: each card opens the photographed size and colour.",
+ "tr": "La Nouvelle Vague keeps the published manifest scales: each card opens the photographed size and colour.",
+ "ar": "La Nouvelle Vague keeps the published manifest scales: each card opens the photographed size and colour."
+ },
+ "rowTitle": {
+ "fr": "La Nouvelle Vague",
+ "en": "New Edition Bag",
+ "es": "New Edition Bag",
+ "tr": "New Edition Bag",
+ "ar": "New Edition Bag"
+ },
+ "color": {
+ "fr": "Edition active",
+ "en": "Active edition",
+ "es": "Active edition",
+ "tr": "Active edition",
+ "ar": "Active edition"
+ },
+ "colorSlug": "edition",
+ "img": "assets/products/la-vague/lavague-black-s.jpg",
+ "gallery": [
+ "assets/products/la-vague/lavague-black-xs.jpg",
+ "assets/products/la-vague/lavague-black-s.jpg",
+ "assets/products/la-vague/lavague-black-m.jpg"
+ ],
+ "items": [
+ {
+ "handle": "la-nouvelle-vague-xs-basket-bag-ss26",
+ "size": "XS",
+ "color": {
+ "fr": "Bleu",
+ "en": "Blue",
+ "es": "Blue",
+ "tr": "Blue",
+ "ar": "Blue"
+ },
+ "colorSlug": "bleu",
+ "title": {
+ "fr": "La Nouvelle Vague XS - Bleu",
+ "en": "New Edition Bag XS - Blue",
+ "es": "New Edition Bag XS - Blue",
+ "tr": "New Edition Bag XS - Blue",
+ "ar": "New Edition Bag XS - Blue"
+ },
+ "short": {
+ "fr": "Format XS, couleur bleu.",
+ "en": "XS scale, blue finish.",
+ "es": "XS scale, blue finish.",
+ "tr": "XS scale, blue finish.",
+ "ar": "XS scale, blue finish."
+ },
+ "price": 49000,
+ "img": "assets/lookbook-ss26-27/embedded/p50_img01_xref1362_b250c91a59d1.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p50_img01_xref1362_b250c91a59d1.jpeg",
+ "assets/lookbook-ss26-27/embedded/p51_img01_xref1366_21749db6b994.jpeg",
+ "assets/lookbook-ss26-27/embedded/p52_img01_xref1373_10bd8ebf12c0.jpeg"
+ ],
+ "url": "produit.html?handle=la-nouvelle-vague-xs-basket-bag-ss26&color=bleu"
+ },
+ {
+ "handle": "la-nouvelle-vague-s-basket-bag-ss26",
+ "size": "S",
+ "color": {
+ "fr": "Rose",
+ "en": "Pink",
+ "es": "Pink",
+ "tr": "Pink",
+ "ar": "Pink"
+ },
+ "colorSlug": "rose",
+ "title": {
+ "fr": "La Nouvelle Vague S - Rose",
+ "en": "New Edition Bag S - Pink",
+ "es": "New Edition Bag S - Pink",
+ "tr": "New Edition Bag S - Pink",
+ "ar": "New Edition Bag S - Pink"
+ },
+ "short": {
+ "fr": "Format S, finition rose.",
+ "en": "S scale, pink finish.",
+ "es": "S scale, pink finish.",
+ "tr": "S scale, pink finish.",
+ "ar": "S scale, pink finish."
+ },
+ "price": 60000,
+ "img": "assets/lookbook-ss26-27/embedded/p51_img01_xref1366_21749db6b994.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p51_img01_xref1366_21749db6b994.jpeg",
+ "assets/lookbook-ss26-27/embedded/p50_img01_xref1362_b250c91a59d1.jpeg",
+ "assets/lookbook-ss26-27/embedded/p52_img01_xref1373_10bd8ebf12c0.jpeg"
+ ],
+ "url": "produit.html?handle=la-nouvelle-vague-s-basket-bag-ss26&color=rose"
+ },
+ {
+ "handle": "la-nouvelle-vague-m-basket-bag-ss26",
+ "size": "M",
+ "color": {
+ "fr": "Bleu ciel",
+ "en": "Sky blue",
+ "es": "Sky blue",
+ "tr": "Sky blue",
+ "ar": "Sky blue"
+ },
+ "colorSlug": "bleu-ciel",
+ "title": {
+ "fr": "La Nouvelle Vague M - Bleu ciel",
+ "en": "New Edition Bag M - Sky blue",
+ "es": "New Edition Bag M - Sky blue",
+ "tr": "New Edition Bag M - Sky blue",
+ "ar": "New Edition Bag M - Sky blue"
+ },
+ "short": {
+ "fr": "Format M, couleur bleu ciel.",
+ "en": "M scale, sky blue finish.",
+ "es": "M scale, sky blue finish.",
+ "tr": "M scale, sky blue finish.",
+ "ar": "M scale, sky blue finish."
+ },
+ "price": 66000,
+ "img": "assets/lookbook-ss26-27/embedded/p52_img01_xref1373_10bd8ebf12c0.jpeg",
+ "gallery": [
+ "assets/lookbook-ss26-27/embedded/p52_img01_xref1373_10bd8ebf12c0.jpeg",
+ "assets/lookbook-ss26-27/embedded/p50_img01_xref1362_b250c91a59d1.jpeg",
+ "assets/lookbook-ss26-27/embedded/p51_img01_xref1366_21749db6b994.jpeg"
+ ],
+ "url": "produit.html?handle=la-nouvelle-vague-m-basket-bag-ss26&color=bleu-ciel"
+ }
+ ]
+ }
+];
+const PRODUCT_ALIASES = {
+ "cerises": "raffia-cherries-charm-ss26",
+ "raisin": "raffia-grapes-charm-ss26",
+ "raisins": "raffia-grapes-charm-ss26",
+ "tranche-citron": "raffia-lemon-slice-charm-ss26",
+ "citron": "raffia-whole-lemon-charm-ss26",
+ "tranche-orange": "raffia-orange-slice-charm-ss26",
+ "orange": "raffia-whole-orange-charm-ss26",
+ "tomate": "raffia-tomato-charm-ss26",
+ "kiwi": "raffia-kiwi-slice-charm-ss26",
+ "pasteque": "raffia-watermelon-slice-charm-ss26",
+ "avocat": "raffia-avocado-half-charm-ss26",
+ "avocado": "raffia-avocado-half-charm-ss26",
+ "sculpture-xs-noir": "la-sculpture-xs-basket-bag-ss26",
+ "sculpture-xs-rouge": "la-sculpture-xs-basket-bag-ss26",
+ "sculpture-xs-violet": "la-sculpture-xs-basket-bag-ss26",
+ "sculpture-s-rouge": "la-sculpture-s-basket-bag-ss26",
+ "sculpture-s-violet": "la-sculpture-s-basket-bag-ss26",
+ "sculpture-m-noir": "la-sculpture-m-basket-bag-ss26",
+ "pareo-short": "yza-pareo-skirt-short-jawhara-ss26",
+ "pareo-midi": "yza-pareo-skirt-midi-jawhara-ss26",
+ "pareo-long": "yza-pareo-skirt-long-jawhara-ss26",
+ "pareo-xlong": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "palazzo-pants": "yza-palazzo-pants-jawhara-ss26",
+ "wrap-pants": "yza-wrap-pants-jawhara-ss26"
+};
+const VARIANTS = [
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-BL",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-BL",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-BL",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-BL",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-BL",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-BL",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-BL",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-BL",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-BL",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-BL",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Blanc",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-NR",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-NR",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-NR",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-NR",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-NR",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-NR",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-NR",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-NR",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-NR",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-NR",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Noir",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-JM",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-JM",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-JM",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-JM",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-JM",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-JM",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-JM",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-JM",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-JM",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-JM",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Jaune moutarde",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-VR",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-VR",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-VR",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-VR",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-VR",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-VR",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-VR",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-VR",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-VR",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-VR",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Vert",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-RV",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-RV",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-RV",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-RV",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-RV",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-RV",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-RV",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-RV",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-RV",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-RV",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Rose vieux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-RG",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-RG",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-RG",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-RG",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-RG",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-RG",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-RG",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-RG",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-RG",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-RG",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Rouge",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-BD",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-BD",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-BD",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-BD",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-BD",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-BD",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-BD",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-BD",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-BD",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-BD",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Bordeaux",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-BLU",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-BLU",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-BLU",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-BLU",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-BLU",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-BLU",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-BLU",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-BLU",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-BLU",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-BLU",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Bleu majorelle",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-bateau-top-jawhara-ss26",
+ "sku": "T-CB-JWP-VP",
+ "category": "Top",
+ "source_type": "col bateau",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "sku": "B-JPC-JWP-VP",
+ "category": "Bottoms",
+ "source_type": "Pareo courte",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-scarf-top-jawhara-ss26",
+ "sku": "T-FL-JWP-VP",
+ "category": "Top",
+ "source_type": "Foulard",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "sku": "B-JPM-JWP-VP",
+ "category": "Bottoms",
+ "source_type": "Pareo midi",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-S-JWP-VP",
+ "category": "Top",
+ "source_type": "Chemise S",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": "S",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "sku": "B-JPL-JWP-VP",
+ "category": "Bottoms",
+ "source_type": "Pareo longue",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-M-JWP-VP",
+ "category": "Top",
+ "source_type": "Chemise M",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": "M",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "sku": "B-JPLP-JWP-VP",
+ "category": "Bottoms",
+ "source_type": "Pareo longue petite",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-button-up-shirt-jawhara-ss26",
+ "sku": "T-CH-L-JWP-VP",
+ "category": "Top",
+ "source_type": "Chemise L",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": "L",
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "yza-palazzo-pants-jawhara-ss26",
+ "sku": "B-PT-JWP-VP",
+ "category": "Bottoms",
+ "source_type": "Pantalon",
+ "fabric": "Jawhara poly",
+ "color": "Vert profond",
+ "size": null,
+ "source_file": "",
+ "source_sheet": "RTW HIVER 26"
+ },
+ {
+ "product_handle": "raffia-orange-slice-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "orange slice",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 5
+ },
+ {
+ "product_handle": "la-sculpture-xs-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Noir",
+ "size": "Mini",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 5
+ },
+ {
+ "product_handle": "raffia-whole-orange-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "orange",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 6
+ },
+ {
+ "product_handle": "la-sculpture-s-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Noir",
+ "size": "Moyen",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 6
+ },
+ {
+ "product_handle": "raffia-lemon-slice-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "lemon slice",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 7
+ },
+ {
+ "product_handle": "la-sculpture-m-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Noir",
+ "size": "Grand",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 7
+ },
+ {
+ "product_handle": "raffia-whole-lemon-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "lemon",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 8
+ },
+ {
+ "product_handle": "la-sculpture-xs-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Rouge",
+ "size": "Mini",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 8
+ },
+ {
+ "product_handle": "raffia-tomato-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "tomate",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 9
+ },
+ {
+ "product_handle": "la-sculpture-s-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Rouge",
+ "size": "Moyen",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 9
+ },
+ {
+ "product_handle": "raffia-watermelon-slice-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "pasteque slice",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 10
+ },
+ {
+ "product_handle": "la-sculpture-m-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Rouge",
+ "size": "Grand",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 10
+ },
+ {
+ "product_handle": "raffia-kiwi-slice-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "kiwi slice",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 11
+ },
+ {
+ "product_handle": "la-sculpture-xs-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Violet",
+ "size": "Mini",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 11
+ },
+ {
+ "product_handle": "raffia-grapes-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "grapes",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 12
+ },
+ {
+ "product_handle": "la-sculpture-s-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Violet",
+ "size": "Moyen",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 12
+ },
+ {
+ "product_handle": "raffia-cherries-charm-ss26",
+ "sku": null,
+ "category": "CHARM",
+ "source_type": "cerises",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 13
+ },
+ {
+ "product_handle": "la-sculpture-m-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Sculpture",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": "Violet",
+ "size": "Grand",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 13
+ },
+ {
+ "product_handle": "orange-raffia-earrings-ss26",
+ "sku": null,
+ "category": "BO",
+ "source_type": "oranges",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 14
+ },
+ {
+ "product_handle": "watermelon-raffia-earrings-ss26",
+ "sku": null,
+ "category": "BO",
+ "source_type": "pastéques x2",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 15
+ },
+ {
+ "product_handle": "lemon-raffia-earrings-ss26",
+ "sku": null,
+ "category": "BO",
+ "source_type": "lemon",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 16
+ },
+ {
+ "product_handle": "tomatoes-raffia-earrings-ss26",
+ "sku": null,
+ "category": "BO",
+ "source_type": "tomate x2",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 17
+ },
+ {
+ "product_handle": "kiwi-raffia-earrings-ss26",
+ "sku": null,
+ "category": "BO",
+ "source_type": "kiwi slice x2",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 18
+ },
+ {
+ "product_handle": "grapes-raffia-earrings-ss26",
+ "sku": null,
+ "category": "BO",
+ "source_type": "grapes x2",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 19
+ },
+ {
+ "product_handle": "cherries-raffia-earrings-ss26",
+ "sku": null,
+ "category": "BO",
+ "source_type": "cerises x2",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 20
+ },
+ {
+ "product_handle": "lemon-slice-raffia-necklace-ss26",
+ "sku": null,
+ "category": "Necklace",
+ "source_type": "lemon slice",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 21
+ },
+ {
+ "product_handle": "la-nouvelle-vague-xs-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Market",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": null,
+ "size": "Mini",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 21
+ },
+ {
+ "product_handle": "watermelon-slice-raffia-necklace-ss26",
+ "sku": null,
+ "category": "Necklace",
+ "source_type": "watermelon slice",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 22
+ },
+ {
+ "product_handle": "la-nouvelle-vague-s-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Market",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": null,
+ "size": "Moyen",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 22
+ },
+ {
+ "product_handle": "orange-slice-raffia-necklace-ss26",
+ "sku": null,
+ "category": "Necklace",
+ "source_type": "orange slice",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 23
+ },
+ {
+ "product_handle": "la-nouvelle-vague-m-basket-bag-ss26",
+ "sku": null,
+ "category": "Bags",
+ "source_type": "Market",
+ "fabric": "Banana leaves / raffia/leather/beads per lookbook family",
+ "color": null,
+ "size": "Grand",
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 23
+ },
+ {
+ "product_handle": "grapes-raffia-necklace-ss26",
+ "sku": null,
+ "category": "Necklace",
+ "source_type": "grapes",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 24
+ },
+ {
+ "product_handle": "cherries-raffia-necklace-ss26",
+ "sku": null,
+ "category": "Necklace",
+ "source_type": "cerises",
+ "fabric": "Raffia",
+ "color": null,
+ "size": null,
+ "source_file": "",
+ "source_sheet": "ACCESS HIVER 26",
+ "source_row": 25
+ }
+];
+const CATALOG_SOURCE = {
+ "name": "YZA SS26/27 XLSX-priced catalog",
+ "priceSource": "Excel retail / Prix de vente TTC DIRECT",
+ "productCount": 37,
+ "variantCount": 123,
+ "draftTbcItemsExcluded": 23,
+ "lookbookPages": 68,
+ "embeddedImages": 178
+};
+const ASSET_MANIFEST = {
+ "lookbookPages": [
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-01.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-02.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-03.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-04.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-05.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-06.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-07.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-08.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-09.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-10.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-11.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-12.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-13.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-14.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-15.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-16.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-17.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-18.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-19.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-20.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-21.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-22.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-23.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-24.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-25.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-26.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-27.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-28.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-29.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-30.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-31.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-32.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-33.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-34.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-35.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-36.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-37.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-38.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-39.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-40.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-41.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-42.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-43.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-44.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-45.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-46.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-47.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-48.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-49.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-50.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-51.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-52.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-53.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-54.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-55.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-56.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-57.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-58.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-59.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-65.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-66.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-67.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-68.jpg"
+ ],
+ "usedProductAssets": [
+ "assets/lookbook-ss26-27/embedded/p29_img01_xref1212_d56a9ef89119.jpeg",
+ "assets/lookbook-ss26-27/embedded/p29_img02_xref1213_fe747a323e9f.jpeg",
+ "assets/lookbook-ss26-27/embedded/p29_img03_xref1214_6b93fb974a48.jpeg",
+ "assets/lookbook-ss26-27/embedded/p29_img04_xref1215_ea0a78123e7b.jpeg",
+ "assets/lookbook-ss26-27/embedded/p30_img01_xref1219_8b2d1136309d.jpeg",
+ "assets/lookbook-ss26-27/embedded/p30_img02_xref1220_f762d6e64853.jpeg",
+ "assets/lookbook-ss26-27/embedded/p30_img03_xref1221_6a80517bd62a.jpeg",
+ "assets/lookbook-ss26-27/embedded/p31_img02_xref1227_829199726349.jpeg",
+ "assets/lookbook-ss26-27/embedded/p32_img04_xref1239_3935f6e23a7c.jpeg",
+ "assets/lookbook-ss26-27/embedded/p38_img01_xref1287_56cb4d596aa0.jpeg",
+ "assets/lookbook-ss26-27/embedded/p38_img04_xref1290_050054976c5b.jpeg",
+ "assets/lookbook-ss26-27/embedded/p40_img01_xref1305_5ae097cc9e5a.jpeg",
+ "assets/lookbook-ss26-27/embedded/p41_img03_xref1315_841b5b884798.jpeg",
+ "assets/lookbook-ss26-27/embedded/p42_img01_xref1321_1a08834f9d69.jpeg",
+ "assets/lookbook-ss26-27/embedded/p43_img01_xref1325_6be88260cccd.jpeg",
+ "assets/lookbook-ss26-27/embedded/p44_img01_xref1329_bf91110d6d83.jpeg",
+ "assets/lookbook-ss26-27/embedded/p45_img01_xref1333_caaad580c061.jpeg",
+ "assets/lookbook-ss26-27/embedded/p46_img01_xref1337_7dae31225680.jpeg",
+ "assets/lookbook-ss26-27/embedded/p47_img01_xref1341_0932d247e77e.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img01_xref1345_c06ef6230440.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img02_xref1346_42bfdc1a3e34.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img03_xref1347_e6608af984d1.jpeg",
+ "assets/lookbook-ss26-27/embedded/p48_img04_xref1348_332e7fac044c.jpeg",
+ "assets/lookbook-ss26-27/embedded/p50_img01_xref1362_b250c91a59d1.jpeg",
+ "assets/lookbook-ss26-27/embedded/p51_img01_xref1366_21749db6b994.jpeg",
+ "assets/lookbook-ss26-27/embedded/p52_img01_xref1373_10bd8ebf12c0.jpeg",
+ "assets/lookbook-ss26-27/embedded/p53_img01_xref1380_788fc851111b.jpeg",
+ "assets/lookbook-ss26-27/embedded/p55_img01_xref1397_f3009f829bf8.jpeg",
+ "assets/lookbook-ss26-27/embedded/p56_img02_xref1402_2ffff76a0151.jpeg",
+ "assets/lookbook-ss26-27/embedded/p57_img04_xref1411_21775b2a985c.jpeg",
+ "assets/lookbook-ss26-27/embedded/p58_img02_xref1416_b7482fc1dffb.jpeg",
+ "assets/lookbook-ss26-27/embedded/p59_img01_xref1426_ab1030bf5e96.jpeg",
+ "assets/lookbook-ss26-27/embedded/p60_img01_xref2285_8f75334c5653.webp",
+ "assets/products/accessories-clean/lemon-slice-necklace-clean.webp",
+ "assets/products/accessories-clean/orange-slice-necklace-clean.webp",
+ "assets/products/accessories-clean/kiwi-raffia-earrings-clean.png",
+ "assets/products/accessories-clean/watermelon-slice-accessory-clean.webp",
+ "assets/products/accessories-clean/orange-raffia-earrings-clean.webp",
+ "assets/products/accessories-clean/lemon-raffia-earrings-clean.webp",
+ "assets/products/accessories-clean/grapes-accessory-clean.png",
+ "assets/products/accessories-clean/cherries-accessory-clean.png",
+ "assets/products/accessories-clean/tomatoes-earrings-clean.webp",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-26.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-27.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-28.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-29.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-31.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-32.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-33.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-34.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-35.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-36.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-37.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-38.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-39.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-54.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-55.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-56.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-57.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-58.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-59.jpg",
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg",
+ "assets/original-shop/charms/raffia-avocado-half-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-avocado-half-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-avocado-half-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-avocado-half-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-avocado-half-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-avocado-half-charm-ss26-09.webp",
+ "assets/original-shop/charms/raffia-cherries-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-cherries-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-cherries-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-cherries-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-cherries-charm-ss26-08.jpg",
+ "assets/original-shop/charms/raffia-cherries-charm-ss26-10.webp",
+ "assets/original-shop/charms/raffia-grapes-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-grapes-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-grapes-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-grapes-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-grapes-charm-ss26-08.jpg",
+ "assets/original-shop/charms/raffia-grapes-charm-ss26-10.webp",
+ "assets/original-shop/charms/raffia-kiwi-slice-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-kiwi-slice-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-kiwi-slice-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-kiwi-slice-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-kiwi-slice-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-kiwi-slice-charm-ss26-09.webp",
+ "assets/original-shop/charms/raffia-lemon-slice-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-lemon-slice-charm-ss26-02.jpg",
+ "assets/original-shop/charms/raffia-lemon-slice-charm-ss26-03.webp",
+ "assets/original-shop/charms/raffia-lemon-slice-charm-ss26-06.webp",
+ "assets/original-shop/charms/raffia-lemon-slice-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-lemon-slice-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-orange-slice-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-orange-slice-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-orange-slice-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-orange-slice-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-orange-slice-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-orange-slice-charm-ss26-09.webp",
+ "assets/original-shop/charms/raffia-tomato-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-tomato-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-tomato-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-tomato-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-tomato-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-tomato-charm-ss26-09.webp",
+ "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-02.jpg",
+ "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-03.webp",
+ "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-watermelon-slice-charm-ss26-09.webp",
+ "assets/original-shop/charms/raffia-whole-lemon-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-whole-lemon-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-whole-lemon-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-whole-lemon-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-whole-lemon-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-whole-lemon-charm-ss26-09.webp",
+ "assets/original-shop/charms/raffia-whole-orange-charm-ss26-01.png",
+ "assets/original-shop/charms/raffia-whole-orange-charm-ss26-02.webp",
+ "assets/original-shop/charms/raffia-whole-orange-charm-ss26-03.jpg",
+ "assets/original-shop/charms/raffia-whole-orange-charm-ss26-07.webp",
+ "assets/original-shop/charms/raffia-whole-orange-charm-ss26-08.webp",
+ "assets/original-shop/charms/raffia-whole-orange-charm-ss26-09.webp"
+ ],
+ "blockedPublicPatterns": [
+ "postcard",
+ "logo",
+ "payment",
+ "price-sheet",
+ "family-tree",
+ "placeholder"
+ ]
+};
+
+const BLOCKED_PUBLIC_IMAGE_PATTERNS = [
+ /postcard/i,
+ /mastercard|visa|payment|card-logo/i,
+ /favicon|logo/i,
+ /family-tree/i,
+ /price[_-]?sheet|truth[_-]?table|reconciliation/i,
+ /placeholder/i,
+];
+
+function isPublicProductImage(src) {
+ const value = String(src || '');
+ if (!value) return false;
+ return !BLOCKED_PUBLIC_IMAGE_PATTERNS.some((pattern) => pattern.test(value));
+}
+function stripDiacritics(value) {
+ return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+function pickText(obj) {
+ if (!obj) return '';
+ if (typeof obj === 'string') return obj;
+ return obj.fr || obj.en || Object.values(obj).find(Boolean) || '';
+}
+function normalizeSearch(value) {
+ return stripDiacritics(value).toLowerCase().replace(/[^\p{L}\p{N}]+/gu, ' ').trim();
+}
+function levenshtein(a, b) {
+ a = normalizeSearch(a); b = normalizeSearch(b);
+ if (!a) return b.length;
+ if (!b) return a.length;
+ const prev = Array.from({ length: b.length + 1 }, (_, i) => i);
+ const cur = new Array(b.length + 1);
+ for (let i = 1; i <= a.length; i += 1) {
+ cur[0] = i;
+ for (let j = 1; j <= b.length; j += 1) {
+ const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+ cur[j] = Math.min(cur[j - 1] + 1, prev[j] + 1, prev[j - 1] + cost);
+ }
+ for (let j = 0; j <= b.length; j += 1) prev[j] = cur[j];
+ }
+ return prev[b.length];
+}
+function searchHaystack(product) {
+ return normalizeSearch([
+ product.handle,
+ pickText(product.name), pickText(product.displayName),
+ pickText(product.short), pickText(product.desc),
+ product.category, product.group, product.sourceCategory,
+ ...(product.tags || []), ...(product.seoKeywords || []), ...(product.languageSearchTerms || []),
+ ...(product.availableColors || []).map(pickText), ...(product.availableSizes || []),
+ ].filter(Boolean).join(' '));
+}
+function visualHaystack(product) {
+ return normalizeSearch([
+ product.handle,
+ pickText(product.name), pickText(product.displayName),
+ product.category, product.group, product.sourceCategory,
+ pickText(product.color), pickText(product.visualColor), pickText(product.variantLabel),
+ product.img,
+ ...(product.tags || []),
+ ].filter(Boolean).join(' '));
+}
+const COLOR_QUERY_ALIASES = {
+ rouge: ['rouge', 'red', 'hot red'],
+ red: ['rouge', 'red', 'hot red'],
+ noir: ['noir', 'black'],
+ black: ['noir', 'black'],
+ violet: ['violet', 'purple', 'deep violet'],
+ purple: ['violet', 'purple', 'deep violet'],
+ orange: ['orange'],
+ jaune: ['jaune', 'yellow', 'lemon', 'citron'],
+ yellow: ['jaune', 'yellow', 'lemon', 'citron'],
+ citron: ['jaune', 'yellow', 'lemon', 'citron'],
+ vert: ['vert', 'green', 'kiwi', 'olive'],
+ green: ['vert', 'green', 'kiwi', 'olive'],
+ rose: ['rose', 'pink'],
+ pink: ['rose', 'pink'],
+ bleu: ['bleu', 'blue', 'majorelle'],
+ blue: ['bleu', 'blue', 'majorelle'],
+ pasteque: ['pasteque', 'watermelon'],
+ watermelon: ['pasteque', 'watermelon'],
+ cerise: ['cerise', 'cerises', 'cherry', 'cherries'],
+ cherries: ['cerise', 'cerises', 'cherry', 'cherries'],
+ tomate: ['tomate', 'tomato'],
+ tomato: ['tomate', 'tomato'],
+};
+function colorQueryTerms(q) {
+ const value = normalizeSearch(q);
+ return COLOR_QUERY_ALIASES[value] || null;
+}
+
+const PRODUCT_MAP = new Map(PRODUCTS.map((product) => [product.handle, product]));
+Object.entries(PRODUCT_ALIASES).forEach(([alias, handle]) => {
+ const product = PRODUCT_MAP.get(handle);
+ if (product) PRODUCT_MAP.set(alias, product);
+});
+
+function publicProductList(source = PRODUCTS) {
+ return (source || PRODUCTS).filter((product) => product.publicVisible !== false && isPublicProductImage(product.img));
+}
+function isLaunchPromoProduct(product) {
+ return Boolean(product && product.publicVisible !== false && product.launchPromo !== false && isPublicProductImage(product.img));
+}
+function launchPromoList(source = PRODUCTS) {
+ return publicProductList(source).filter((product) => product.launchPromo !== false);
+}
+function byCategory(category = 'all') {
+ const key = String(category || 'all').toLowerCase();
+ const list = publicProductList();
+ if (key === 'all') return list;
+ if (key === 'rtw' || key === 'ready-to-wear') return list.filter((p) => p.group === 'rtw');
+ if (key === 'accessories' || key === 'accessoires') return list.filter((p) => p.group === 'accessories' && p.category !== 'charms');
+ if (key === 'bottoms') return list.filter((p) => p.category === 'pareos' || p.category === 'pants');
+ return list.filter((p) => p.category === key || p.group === key || p.sourceCategory?.toLowerCase() === key);
+}
+
+const CATEGORY_INFO = {
+ charms: { key: 'col.charms', title: 'col.charms', href: 'collections.html?cat=charms' },
+ earrings: { key: 'col.earrings', title: 'col.earrings', href: 'collections.html?cat=earrings' },
+ necklaces: { key: 'col.necklaces', title: 'col.necklaces', href: 'collections.html?cat=necklaces' },
+ bags: { key: 'col.bags', title: 'col.bags', href: 'collections.html?cat=bags' },
+ tops: { key: 'col.tops', title: 'col.tops', href: 'collections.html?cat=tops' },
+ pareos: { key: 'col.pareos', title: 'col.pareos', href: 'collections.html?cat=pareos' },
+ pants: { key: 'col.pants', title: 'col.pants', href: 'collections.html?cat=pants' },
+ rtw: { key: 'col.rtw', title: 'col.rtw', href: 'collections.html?cat=rtw' },
+ accessories: { key: 'col.accessories', title: 'col.accessories', href: 'collections.html?cat=accessories' },
+};
+function categoryInfo(productOrCategory) {
+ const key = typeof productOrCategory === 'string' ? productOrCategory : (productOrCategory?.category || productOrCategory?.group || 'all');
+ return CATEGORY_INFO[key] || (key === 'all' ? { key: 'col.all', title: 'col.all', href: 'collections.html?cat=all' } : CATEGORY_INFO.accessories);
+}
+function familyMembers(product) {
+ const item = typeof product === 'string' ? getProduct(product) : product;
+ if (!item?.familyHandle) return item ? [item] : [];
+ return PRODUCTS.filter((p) => p.familyHandle === item.familyHandle && p.publicVisible !== false)
+ .sort((a, b) => (a.familyOrder || 50) - (b.familyOrder || 50));
+}
+function familyRepresentative(product) {
+ const members = familyMembers(product);
+ return members.find((p) => p.publicVisible !== false && isPublicProductImage(p.img)) || members[0] || product;
+}
+function getProduct(handle) {
+ if (!handle) return null;
+ return PRODUCT_MAP.get(handle) || PRODUCT_MAP.get(PRODUCT_ALIASES[handle]) || null;
+}
+function bagVariantFor(handle, colorSlug) {
+ const normalized = normalizeSearch(colorSlug || '').replace(/ /g, '-');
+ if (!handle || !normalized) return null;
+ for (const row of BAG_ROWS) {
+ const item = (row.items || []).find((entry) => {
+ const itemSlug = normalizeSearch(entry.colorSlug || row.colorSlug || '').replace(/ /g, '-');
+ return entry.handle === handle && itemSlug === normalized;
+ });
+ if (item) return { ...item, row };
+ }
+ return null;
+}
+function related(handle, limit = 4) {
+ const product = getProduct(handle);
+ if (!product) return publicProductList().slice(0, limit);
+ const seen = new Set([product.handle]);
+ const out = [];
+ const add = (candidate) => {
+ if (!candidate || seen.has(candidate.handle) || candidate.publicVisible === false || !isPublicProductImage(candidate.img)) return;
+ seen.add(candidate.handle); out.push(candidate);
+ };
+ (product.crossSell || []).map(getProduct).forEach(add);
+ publicProductList().filter((p) => p.category === product.category || p.group === product.group).forEach(add);
+ publicProductList().forEach(add);
+ return out.slice(0, limit);
+}
+function searchProducts(query, limit = 8, source = PRODUCTS) {
+ const q = normalizeSearch(query);
+ const list = publicProductList(source);
+ if (!q) return list.slice(0, limit).map((product) => ({ product, score: 0 }));
+ const tokens = q.split(/\s+/).filter(Boolean);
+ const strictColorTerms = colorQueryTerms(q);
+ const rows = list.map((product) => {
+ const hay = searchHaystack(product);
+ const visualHay = visualHaystack(product);
+ if (strictColorTerms && !strictColorTerms.some((term) => visualHay.includes(normalizeSearch(term)))) return null;
+ let score = 0;
+ if (strictColorTerms && strictColorTerms.some((term) => visualHay.includes(normalizeSearch(term)))) score += 80;
+ if (hay.includes(q)) score += 90;
+ tokens.forEach((token) => {
+ if (hay.includes(token)) score += 25;
+ const words = hay.split(' ').filter(Boolean).slice(0, 160);
+ const close = words.some((word) => word.length >= 3 && levenshtein(token, word) <= (token.length <= 4 ? 1 : 2));
+ if (close) score += 10;
+ });
+ return { product, score };
+ }).filter((row) => row && row.score > 0).sort((a, b) => b.score - a.score || a.product.price - b.product.price);
+ return rows.slice(0, limit);
+}
+function bundleForProduct(handle) {
+ const product = getProduct(handle);
+ if (!product) return null;
+ const picks = [];
+ const add = (h) => { const p = getProduct(h); if (p && !picks.some((x) => x.handle === p.handle)) picks.push(p); };
+ add(product.handle);
+ if (product.category === 'bags') {
+ add('raffia-orange-slice-charm-ss26'); add('yza-scarf-top-jawhara-ss26');
+ } else if (product.group === 'rtw') {
+ add(product.category === 'tops' ? 'yza-pareo-skirt-midi-jawhara-ss26' : 'yza-scarf-top-jawhara-ss26'); add('la-sculpture-xs-basket-bag-ss26');
+ } else if (product.category === 'charms') {
+ add('raffia-orange-slice-charm-ss26'); add('raffia-cherries-charm-ss26'); add('raffia-watermelon-slice-charm-ss26');
+ } else if (product.category === 'earrings' || product.category === 'necklaces') {
+ add('yza-scarf-top-jawhara-ss26'); add('la-sculpture-xs-basket-bag-ss26');
+ } else {
+ add('raffia-orange-slice-charm-ss26'); add('la-sculpture-xs-basket-bag-ss26');
+ }
+ const items = picks.slice(0, 3);
+ if (items.length < 2) return null;
+ const total = items.reduce((sum, item) => sum + item.price, 0);
+ const noteByCategory = {
+ charms: { fr: 'Cerises, tranche d\'orange et pastèque - trois fruits du marché de Marrakech, crochetés main à l\'atelier de Guéliz.', en: 'Cherries, orange slice and watermelon - three market fruits from Marrakech, hand-crocheted at the Guéliz atelier.' },
+ bags: { fr: 'Le sac, un charm raffia et le haut foulard - les trois pièces pensées ensemble.', en: 'The bag, a raffia charm and the scarf top - three pieces designed together.' },
+ rtw: { fr: 'Les deux pièces du look, plus le sac en raphia pour compléter la silhouette.', en: 'The two pieces of the look, plus the raffia bag to complete the silhouette.' },
+ earrings: { fr: 'Le bijou, le haut foulard et le panier - trois pièces pour un look complet signé YZA.', en: 'The earrings, the scarf top and the basket - three pieces for a complete YZA look.' },
+ necklaces:{ fr: 'Le bijou, le haut foulard et le panier - trois pièces pour un look complet signé YZA.', en: 'The necklace, the scarf top and the basket - three pieces for a complete YZA look.' },
+ };
+ const noteKey = product.category === 'charms' ? 'charms' : product.group === 'rtw' ? 'rtw' : product.category === 'bags' ? 'bags' : product.category === 'earrings' ? 'earrings' : product.category === 'necklaces' ? 'necklaces' : null;
+ return {
+ title: product.category === 'charms' ? { fr: 'Trio Fruit Market', en: 'Fruit Market trio' } : { fr: 'Set YZA coordonné', en: 'Coordinated YZA set' },
+ note: noteKey ? noteByCategory[noteKey] : { fr: 'Trois pièces pensées ensemble.', en: 'Three pieces designed together.' },
+ items,
+ total,
+ };
+}
+function offerPicks() {
+ // Cross-category starter set. Avoid repeating any product/image already shown in the
+ // home best-sellers (charms) grid, per the one-image-per-page rule.
+ return ['la-sculpture-xs-basket-bag-ss26', 'yza-pareo-skirt-midi-jawhara-ss26', 'watermelon-raffia-earrings-ss26'].map(getProduct).filter(Boolean);
+}
+
+BAG_ROWS.forEach((row) => {
+ const media = (row.gallery || [row.img]).filter(Boolean);
+ (row.items || []).forEach((item, index) => {
+ const primary = media[index % media.length] || item.img || row.img;
+ item.img = primary;
+ item.gallery = [primary];
+ });
+});
+
+// --- Stage B: owner-approved premium pricing + internal-field protection ---
+// Premium psychological anchors (see data/price-proposal.md). Values in MAD centimes.
+const PREMIUM_PRICES = {
+ 'yza-scarf-top-jawhara-ss26': 35000,
+ 'yza-bateau-top-jawhara-ss26': 55000,
+ 'yza-button-up-shirt-jawhara-ss26': 89000,
+ 'yza-pareo-skirt-short-jawhara-ss26': 45000,
+ 'yza-pareo-skirt-midi-jawhara-ss26': 50000,
+ 'yza-pareo-skirt-long-jawhara-ss26': 59000,
+ 'yza-pareo-skirt-x-long-jawhara-ss26': 59000,
+ 'yza-palazzo-pants-jawhara-ss26': 75000,
+ 'yza-wrap-pants-jawhara-ss26': 99000,
+ 'la-sculpture-xs-basket-bag-ss26': 99000,
+ 'la-sculpture-s-basket-bag-ss26': 129000,
+ 'la-sculpture-m-basket-bag-ss26': 165000,
+ 'la-nouvelle-vague-xs-basket-bag-ss26': 99000,
+ 'la-nouvelle-vague-s-basket-bag-ss26': 129000,
+ 'la-nouvelle-vague-m-basket-bag-ss26': 165000,
+ 'raffia-cherries-charm-ss26': 10000,
+ 'raffia-grapes-charm-ss26': 19000,
+ 'raffia-whole-lemon-charm-ss26': 23000,
+ 'raffia-whole-orange-charm-ss26': 23000,
+ 'raffia-tomato-charm-ss26': 23000,
+ 'raffia-lemon-slice-charm-ss26': 19000,
+ 'raffia-orange-slice-charm-ss26': 19000,
+ 'raffia-kiwi-slice-charm-ss26': 19000,
+ 'raffia-watermelon-slice-charm-ss26': 19000,
+ 'raffia-avocado-half-charm-ss26': 19000,
+ 'watermelon-raffia-earrings-ss26': 45000,
+ 'kiwi-raffia-earrings-ss26': 45000,
+ 'lemon-raffia-earrings-ss26': 45000,
+ 'orange-raffia-earrings-ss26': 45000,
+ 'grapes-raffia-earrings-ss26': 45000,
+ 'cherries-raffia-earrings-ss26': 25000,
+ 'tomatoes-raffia-earrings-ss26': 50000,
+ 'lemon-slice-raffia-necklace-ss26': 26000,
+ 'orange-slice-raffia-necklace-ss26': 26000,
+ 'watermelon-slice-raffia-necklace-ss26': 26000,
+ 'grapes-raffia-necklace-ss26': 26000,
+ 'cherries-raffia-necklace-ss26': 17000,
+};
+// Internal channel/cost fields that must never ship on public pages (B2B page reads js/b2b-data.js instead).
+const INTERNAL_PRICE_FIELDS = ['wholesale', 'wholesale_cents', 'stockist_retail_ttc', 'stockist_retail_ttc_cents', 'retailExact', 'cost_price_from_xlsx', 'old_lookbook_pdf_price'];
+// 1) Apply premium prices.
+PRODUCTS.forEach((p) => {
+ if (Object.prototype.hasOwnProperty.call(PREMIUM_PRICES, p.handle)) p.price = PREMIUM_PRICES[p.handle];
+ if (p.compareAt != null && p.compareAt <= p.price) p.compareAt = null;
+});
+// 2) Sync in-product size-comparison tables to the live price of the matching size in the same family.
+PRODUCTS.forEach((p) => {
+ if (!Array.isArray(p.sizeComparison) || !p.familyHandle) return;
+ p.sizeComparison.forEach((row) => {
+ const token = String((row.label && (row.label.en || row.label.fr)) || '').trim().split(/[\s/]+/)[0].toUpperCase();
+ const sib = PRODUCTS.find((q) => q.familyHandle === p.familyHandle && (q.availableSizes || []).map((s) => String(s).toUpperCase()).includes(token));
+ if (sib && sib.price != null) row.price = sib.price;
+ });
+});
+// 2b) Size-comparison rows describe FIT per size, not colour - strip any fictional "/ Colour"
+// suffix so a size is never tied to a single colourway (every size comes in every colour).
+PRODUCTS.forEach((p) => {
+ if (!Array.isArray(p.sizeComparison)) return;
+ p.sizeComparison.forEach((row) => {
+ if (row.label && typeof row.label === 'object') {
+ Object.keys(row.label).forEach((lang) => {
+ if (typeof row.label[lang] === 'string') row.label[lang] = row.label[lang].split('/')[0].trim();
+ });
+ }
+ });
+});
+// 3) Keep color-first bag rows in sync with the live product price.
+BAG_ROWS.forEach((row) => {
+ (row.items || []).forEach((item) => {
+ const prod = PRODUCT_MAP.get(item.handle);
+ if (prod && prod.price != null) item.price = prod.price;
+ });
+});
+// 4) Strip internal price fields from the public catalog.
+PRODUCTS.forEach((p) => { INTERNAL_PRICE_FIELDS.forEach((f) => { delete p[f]; }); });
+
+// 5) Fruit Market accessories: premium nano-banana 4K stills (referenced from the real
+// raffia-fruits linesheet), one distinct image per product (charm loop / earring hoop / necklace chain).
+const ACCESSORY_IMAGES = {
+ 'raffia-cherries-charm-ss26': 'assets/products/fruit-market/charm-cherries.jpg',
+ 'raffia-grapes-charm-ss26': 'assets/products/fruit-market/charm-grapes.jpg',
+ 'raffia-whole-orange-charm-ss26': 'assets/products/fruit-market/charm-whole-orange.jpg',
+ 'raffia-whole-lemon-charm-ss26': 'assets/products/fruit-market/charm-whole-lemon.jpg',
+ 'raffia-tomato-charm-ss26': 'assets/products/fruit-market/charm-tomato.jpg',
+ 'raffia-lemon-slice-charm-ss26': 'assets/products/fruit-market/charm-lemon-slice.jpg',
+ 'raffia-orange-slice-charm-ss26': 'assets/products/fruit-market/charm-orange-slice.jpg',
+ 'raffia-kiwi-slice-charm-ss26': 'assets/products/fruit-market/charm-kiwi-slice.jpg',
+ 'raffia-watermelon-slice-charm-ss26': 'assets/products/fruit-market/charm-watermelon-slice.jpg',
+ 'raffia-avocado-half-charm-ss26': 'assets/products/fruit-market/charm-avocado.jpg',
+ 'watermelon-raffia-earrings-ss26': 'assets/products/fruit-market/earrings-watermelon.jpg',
+ 'kiwi-raffia-earrings-ss26': 'assets/products/fruit-market/earrings-kiwi.jpg',
+ 'lemon-raffia-earrings-ss26': 'assets/products/fruit-market/earrings-lemon.jpg',
+ 'orange-raffia-earrings-ss26': 'assets/products/fruit-market/earrings-orange.jpg',
+ 'grapes-raffia-earrings-ss26': 'assets/products/fruit-market/earrings-grapes.jpg',
+ 'cherries-raffia-earrings-ss26': 'assets/products/fruit-market/earrings-cherries.jpg',
+ 'tomatoes-raffia-earrings-ss26': 'assets/products/fruit-market/earrings-tomato.jpg',
+ 'lemon-slice-raffia-necklace-ss26': 'assets/products/fruit-market/necklace-lemon-slice.jpg',
+ 'orange-slice-raffia-necklace-ss26': 'assets/products/fruit-market/necklace-orange-slice.jpg',
+ 'watermelon-slice-raffia-necklace-ss26': 'assets/products/fruit-market/necklace-watermelon-slice.jpg',
+ 'grapes-raffia-necklace-ss26': 'assets/products/fruit-market/necklace-grapes.jpg',
+ 'cherries-raffia-necklace-ss26': 'assets/products/fruit-market/necklace-cherries.jpg',
+ // La Sculpture base-product cards (home / search / cart) - real playbook stills per colour identity.
+ 'la-sculpture-xs-basket-bag-ss26': 'assets/products/launch-shop-ref/la-sculpture-xs-hot-red.jpg',
+ 'la-sculpture-s-basket-bag-ss26': 'assets/products/launch-shop-ref/la-sculpture-s-deep-violet.jpg',
+ 'la-sculpture-m-basket-bag-ss26': 'assets/products/launch-shop-ref/la-sculpture-m-black-olive.jpg',
+ // La Vague / La Vaguelette - real photography per colourway (re-set below by the La Vague block).
+ 'la-nouvelle-vague-xs-basket-bag-ss26': 'assets/products/la-vague/lv-black-xs.jpg',
+ 'la-nouvelle-vague-s-basket-bag-ss26': 'assets/products/la-vague/lv-nude-s.jpg',
+ 'la-nouvelle-vague-m-basket-bag-ss26': 'assets/products/la-vague/lv-camel-m.jpg',
+ // Jawhara RTW - clean nano-banana 4K stills (referenced from the real lookbook), one per garment on an ivory studio backdrop.
+ 'yza-scarf-top-jawhara-ss26': 'assets/products/rtw-clean/rtw-scarf-top.jpg',
+ 'yza-bateau-top-jawhara-ss26': 'assets/products/rtw-clean/rtw-bateau-top.jpg',
+ 'yza-button-up-shirt-jawhara-ss26': 'assets/products/rtw-clean/rtw-button-up-shirt.jpg',
+ 'yza-pareo-skirt-short-jawhara-ss26': 'assets/products/rtw-clean/rtw-pareo-short.jpg',
+ 'yza-pareo-skirt-midi-jawhara-ss26': 'assets/products/rtw-clean/rtw-pareo-midi.jpg',
+ 'yza-pareo-skirt-long-jawhara-ss26': 'assets/products/rtw-clean/rtw-pareo-long.jpg',
+ 'yza-pareo-skirt-x-long-jawhara-ss26': 'assets/products/rtw-clean/rtw-pareo-xlong.jpg',
+ 'yza-palazzo-pants-jawhara-ss26': 'assets/products/rtw-clean/rtw-palazzo-pants.jpg',
+ 'yza-wrap-pants-jawhara-ss26': 'assets/products/rtw-clean/rtw-wrap-pants.jpg',
+};
+PRODUCTS.forEach((p) => {
+ const src = ACCESSORY_IMAGES[p.handle];
+ if (src) {
+ p.img = src;
+ const lifestyleExtra = (p.gallery || []).filter(x => x.includes('/lifestyle/'));
+ p.gallery = [src, ...lifestyleExtra];
+ }
+});
+
+// Per-product "in-use / vibe" hover image (charm styled on a raffia bag, sunny close-up). Shown on card hover.
+const HOVER_IMAGES = {
+ 'raffia-cherries-charm-ss26': 'assets/products/fruit-market/vibe/vibe-cherries.jpg',
+ 'raffia-grapes-charm-ss26': 'assets/products/fruit-market/vibe/vibe-grapes.jpg',
+ 'raffia-whole-orange-charm-ss26': 'assets/products/fruit-market/vibe/vibe-whole-orange.jpg',
+ 'raffia-whole-lemon-charm-ss26': 'assets/products/fruit-market/vibe/vibe-whole-lemon.jpg',
+ 'raffia-tomato-charm-ss26': 'assets/products/fruit-market/vibe/vibe-tomato.jpg',
+ 'raffia-lemon-slice-charm-ss26': 'assets/products/fruit-market/vibe/vibe-lemon-slice.jpg',
+ 'raffia-orange-slice-charm-ss26': 'assets/products/fruit-market/vibe/vibe-orange-slice.jpg',
+ 'raffia-kiwi-slice-charm-ss26': 'assets/products/fruit-market/vibe/vibe-kiwi-slice.jpg',
+ 'raffia-watermelon-slice-charm-ss26': 'assets/products/fruit-market/vibe/vibe-watermelon-slice.jpg',
+ 'raffia-avocado-half-charm-ss26': 'assets/products/fruit-market/vibe/vibe-avocado.jpg',
+ // Earrings - worn-on-model hover (5 lookbook, 2 AI-generated portraits)
+ 'lemon-raffia-earrings-ss26': 'assets/lookbook-ss26-27/embedded/p53_img01_xref1380_788fc851111b.jpeg',
+ 'grapes-raffia-earrings-ss26': 'assets/lookbook-ss26-27/embedded/p55_img01_xref1397_f3009f829bf8.jpeg',
+ 'tomatoes-raffia-earrings-ss26': 'assets/lookbook-ss26-27/embedded/p56_img02_xref1402_2ffff76a0151.jpeg',
+ 'orange-raffia-earrings-ss26': 'assets/lookbook-ss26-27/embedded/p56_img03_xref1403_fde2f9db3673.jpeg',
+ 'watermelon-raffia-earrings-ss26': 'assets/products/fruit-market/vibe/vibe-watermelon-earrings.jpg',
+ 'kiwi-raffia-earrings-ss26': 'assets/products/fruit-market/vibe/vibe-kiwi-earrings.jpg',
+ 'cherries-raffia-earrings-ss26': 'assets/products/fruit-market/vibe/vibe-cherries-earrings.jpg',
+ // Necklaces - worn-on-model hover (1 lookbook, 4 AI-generated portraits)
+ 'grapes-raffia-necklace-ss26': 'assets/lookbook-ss26-27/embedded/p57_img03_xref1410_1be99390666d.jpeg',
+ 'lemon-slice-raffia-necklace-ss26': 'assets/products/fruit-market/vibe/vibe-lemon-slice-necklace.jpg',
+ 'orange-slice-raffia-necklace-ss26': 'assets/products/fruit-market/vibe/vibe-orange-slice-necklace.jpg',
+ 'watermelon-slice-raffia-necklace-ss26': 'assets/products/fruit-market/vibe/vibe-watermelon-slice-necklace.jpg',
+ 'cherries-raffia-necklace-ss26': 'assets/products/fruit-market/vibe/vibe-cherries-necklace.jpg',
+};
+PRODUCTS.forEach((p) => { if (HOVER_IMAGES[p.handle]) p.hoverImg = HOVER_IMAGES[p.handle]; });
+
+// 6) Unified bag colour NAMES across La Sculpture + La Vague (Deep Violet / Hot Red / Black Olive).
+// Renames display strings only; colorSlug (used for variant URLs) is left untouched.
+const BAG_COLOR_RE = /\b(Bleu ciel|Sky blue|Rouge|Red|Violet|Noir|Black|Bleu|Blue|Rose|Pink)\b/gi;
+const BAG_COLOR_MAP = { 'Rouge': 'Hot Red', 'Red': 'Hot Red', 'Rose': 'Hot Red', 'Pink': 'Hot Red', 'Violet': 'Deep Violet', 'Bleu': 'Deep Violet', 'Blue': 'Deep Violet', 'Noir': 'Black Olive', 'Black': 'Black Olive', 'Bleu ciel': 'Black Olive', 'Sky blue': 'Black Olive' };
+const BAG_COLOR_MAP_LC = Object.fromEntries(Object.entries(BAG_COLOR_MAP).map(([k, v]) => [k.toLowerCase(), v]));
+const reColorStr = (s) => (typeof s === 'string' ? s.replace(BAG_COLOR_RE, (m) => BAG_COLOR_MAP_LC[m.toLowerCase()] || m) : s);
+const reColorObj = (o) => { if (o && typeof o === 'object') for (const k of Object.keys(o)) o[k] = reColorStr(o[k]); return o; };
+function normalizeBagColours(entry) {
+ ['variantLabel', 'color'].forEach((f) => { if (entry[f]) reColorObj(entry[f]); });
+ ['name', 'displayName', 'short', 'displayShort', 'desc', 'title', 'rowTitle'].forEach((f) => { if (entry[f]) reColorObj(entry[f]); });
+ if (Array.isArray(entry.availableColors)) entry.availableColors.forEach(reColorObj);
+}
+PRODUCTS.forEach((p) => { if (p.category === 'bags' || p.group === 'bags') normalizeBagColours(p); });
+BAG_ROWS.forEach((row) => { normalizeBagColours(row); (row.items || []).forEach(normalizeBagColours); });
+
+// --- La Vague / La Vaguelette: handwoven raffia totes, reconciled to the REAL catalogue. ---
+// Real colourways from the @yzahandmade catalogue: La Vague - Black & Nude; La Vaguelette - Camel
+// (the mini silhouette). Product handles stay "la-nouvelle-vague-*" (legacy keys shared with
+// js/b2b-data.js + blog URLs - renaming them would break pricing + links); only the customer-facing
+// name, colourways and imagery are reconciled to the real line. This matches js/media.js, which
+// already calls these bags "La Vague". All imagery is real photography from the brand's own posts.
+const L5 = (fr, en) => ({ fr: fr, en: en, es: en, tr: en, ar: en });
+const LNV_DIR = 'assets/products/la-vague/';
+const lnvImg = (slug, size) => `${LNV_DIR}lv-${slug}-${String(size).toLowerCase()}.jpg`;
+// `line` carries the real family name per colourway (Camel is the La Vaguelette mini).
+const LNV_COLORS = [
+ { slug: 'black', fr: 'Noir', en: 'Black', line: 'La Nouvelle Vague' },
+ { slug: 'nude', fr: 'Nude', en: 'Nude', line: 'La Nouvelle Vague' },
+ { slug: 'camel', fr: 'Camel', en: 'Camel', line: 'La Nouvelle Vague' },
+];
+const LNV_SIZES = [
+ { size: 'XS', handle: 'la-nouvelle-vague-xs-basket-bag-ss26' },
+ { size: 'S', handle: 'la-nouvelle-vague-s-basket-bag-ss26' },
+ { size: 'M', handle: 'la-nouvelle-vague-m-basket-bag-ss26' },
+];
+LNV_SIZES.forEach((sz, i) => {
+ const p = PRODUCT_MAP.get(sz.handle);
+ if (!p) return;
+ p.name = L5('La Nouvelle Vague ' + sz.size, 'La Nouvelle Vague ' + sz.size);
+ p.displayName = L5('La Nouvelle Vague ' + sz.size, 'La Nouvelle Vague ' + sz.size);
+ p.short = L5(
+ 'Format ' + sz.size + ', raphia tissé main et cuir.',
+ sz.size + ' scale, handwoven raffia and leather.'
+ );
+ p.displayShort = L5(
+ 'Format ' + sz.size + ', raphia tissé main et cuir.',
+ sz.size + ' scale, handwoven raffia and leather.'
+ );
+ p.desc = L5(
+ 'La Vague ' + sz.size + ' : un panier en raphia tissé main dans notre atelier de Marrakech, finition cuir - proposé en Noir, Nude et Camel.',
+ 'La Vague ' + sz.size + ': a raffia basket bag handwoven in our Marrakech atelier with a leather finish - offered in Black, Nude and Camel.'
+ );
+ p.color = L5(LNV_COLORS[0].fr, LNV_COLORS[0].en);
+ p.visualColor = null;
+ p.availableColors = LNV_COLORS.map((c) => L5(c.fr, c.en));
+ p.availableSizes = ['XS', 'S', 'M'];
+ // Base card: one real colourway per size for visual variety (no image reused on a page).
+ const baseColor = LNV_COLORS[i % LNV_COLORS.length].slug;
+ p.img = lnvImg(baseColor, sz.size);
+ p.gallery = LNV_COLORS.map((c) => lnvImg(c.slug, sz.size));
+ p.hoverImg = lnvImg(LNV_COLORS[(i + 1) % LNV_COLORS.length].slug, sz.size);
+ p.launchPromo = false;
+ delete p.madeToOrder;
+});
+for (let i = BAG_ROWS.length - 1; i >= 0; i--) { if (BAG_ROWS[i].familyHandle === 'la-nouvelle-vague') BAG_ROWS.splice(i, 1); }
+LNV_COLORS.forEach((c) => {
+ BAG_ROWS.push({
+ familyHandle: 'la-nouvelle-vague',
+ familyTitle: L5('La Nouvelle Vague', 'La Nouvelle Vague'),
+ familyEyebrow: L5('Feuilles de bananier · Cuir · Perles', 'Banana leaves · Leather · Beads'),
+ familyText: L5("Choisissez d'abord la couleur, puis la taille. Chaque lien vous dirige vers le bon sac.", 'Choose the colour first, then the size. Each link opens the right bag page.'),
+ rowTitle: L5(c.line + ' · ' + c.fr, c.line + ' · ' + c.en),
+ color: L5(c.fr, c.en),
+ colorSlug: c.slug,
+ img: lnvImg(c.slug, 's'),
+ gallery: LNV_SIZES.map((sz) => lnvImg(c.slug, sz.size)),
+ items: LNV_SIZES.map((sz) => {
+ const prod = PRODUCT_MAP.get(sz.handle);
+ const img = lnvImg(c.slug, sz.size);
+ return {
+ handle: sz.handle,
+ size: sz.size,
+ color: L5(c.fr, c.en),
+ colorSlug: c.slug,
+ title: L5(c.line + ' ' + sz.size + ' · ' + c.fr, c.line + ' ' + sz.size + ' · ' + c.en),
+ short: L5('Format ' + sz.size + ', couleur ' + c.fr + '.', sz.size + ' scale, ' + c.en + '.'),
+ price: prod ? prod.price : null,
+ img: img,
+ gallery: [img],
+ url: 'produit.html?handle=' + sz.handle + '&color=' + c.slug,
+ };
+ }),
+ });
+});
+
+// La Sculpture: each colour-row size card uses its size-specific still (XS/S/M differ via fruit-scale references).
+const SCULPT_COLOR_FILE = { noir: 'black-olive', rouge: 'hot-red', violet: 'deep-violet' };
+const SCULPT_LAUNCH_DIR = 'assets/products/launch-shop-ref/';
+const sculptLaunchImg = (color, size) => `${SCULPT_LAUNCH_DIR}la-sculpture-${String(size).toLowerCase()}-${color}.jpg`;
+BAG_ROWS.forEach((row) => {
+ if (row.familyHandle !== 'la-sculpture') return;
+ const cf = SCULPT_COLOR_FILE[row.colorSlug];
+ if (!cf) return;
+ (row.items || []).forEach((it) => {
+ const sz = String(it.size || '').toLowerCase();
+ const img = sculptLaunchImg(cf, sz);
+ it.img = img; it.gallery = [img];
+ });
+ row.img = sculptLaunchImg(cf, 's');
+ row.gallery = [row.img];
+});
+
+// La Sculpture: de-couple each size from a single colourway. Every XS/S/M is woven in all three
+// real finishes (Hot Red · Deep Violet · Black Olive), so the per-size product no longer carries a
+// colour in its name/short/desc - mirrors the La Vague reconciliation above and the real catalogue.
+// Display strings only; handles, variants, availableColors and the color-first BAG_ROWS are untouched.
+const SCULPT_SIZE_COPY = [
+ { handle: 'la-sculpture-xs-basket-bag-ss26', size: 'XS', fr: 'le plus petit', en: 'the smallest' },
+ { handle: 'la-sculpture-s-basket-bag-ss26', size: 'S', fr: 'le format intermédiaire', en: 'the mid-size' },
+ { handle: 'la-sculpture-m-basket-bag-ss26', size: 'M', fr: 'le plus grand', en: 'the largest' },
+];
+SCULPT_SIZE_COPY.forEach((s) => {
+ const p = PRODUCT_MAP.get(s.handle);
+ if (!p) return;
+ p.name = L5('La Sculpture ' + s.size, 'La Sculpture ' + s.size);
+ p.displayName = L5('La Sculpture ' + s.size, 'La Sculpture ' + s.size);
+ p.short = L5(
+ 'Format ' + s.size + ', tissé main en feuilles de bananier, raphia, cuir et perles.',
+ s.size + ' scale, handwoven in banana leaves, raffia, leather and beads.'
+ );
+ p.displayShort = L5(
+ 'Format ' + s.size + ', tissé main en feuilles de bananier, raphia, cuir et perles.',
+ s.size + ' scale, handwoven in banana leaves, raffia, leather and beads.'
+ );
+ p.desc = L5(
+ 'La Sculpture ' + s.size + ' : ' + s.fr + ' de nos paniers sculpturaux, tissé main à Marrakech en feuilles de bananier, raphia, cuir et perles. Disponible en Hot Red, Deep Violet et Black Olive.',
+ 'La Sculpture ' + s.size + ': ' + s.en + ' of our sculptural baskets, handwoven in Marrakech from banana leaves, raffia, leather and beads. Available in Hot Red, Deep Violet and Black Olive.'
+ );
+ const gallery = ['hot-red', 'deep-violet', 'black-olive'].map((color) => sculptLaunchImg(color, s.size));
+ p.gallery = gallery;
+ p.img = s.size === 'S' ? gallery[1] : s.size === 'M' ? gallery[2] : gallery[0];
+});
+
+
+// ============================================================
+// PERSONA_COPY - Nawal Rmili voice rewrite (Phase C).
+// Prose/spec fields only, applied after the internal-price-field
+// strip so it never reintroduces cost fields. Never touches
+// price/img/gallery/availableColors/variant/B2B logic.
+// es/tr/ar fall back to en via the existing L5() helper.
+// ============================================================
+(function () {
+ var PERSONA_COPY = {
+ "rtw": [
+ {
+ "handle": "yza-scarf-top-jawhara-ss26",
+ "short": {
+ "fr": "Un foulard qui devient haut, noué à même la peau. Tu décides du serrage.",
+ "en": "A scarf that becomes a top, knotted against the skin. You set the hold."
+ },
+ "desc": {
+ "fr": "Pas de fermeture, pas de taille imposée : un seul carré de Jawhara que tu enroules et noues à même le corps. Le tombé souple du tissu fait le reste, et c'est ton nœud qui dessine le décolleté. Coupé et fini main à Guéliz. Serre-le haut pour le jour, desserre-le quand la chaleur tombe. Deux fois noué, jamais deux fois pareil.",
+ "en": "No clasp, no fixed size: a single square of Jawhara you wrap and knot straight onto the body. The soft drape does the rest, and your knot draws the neckline. Cut and finished by hand in Guéliz. Tie it high for the day, loosen it when the heat lifts. Knotted twice, never quite the same twice."
+ },
+ "material": {
+ "fr": "Jawhara, notre tissu maison - polyester et soie, tombé souple et fluide.",
+ "en": "Jawhara, our house fabric - poly and silk, with a soft, fluid drape."
+ },
+ "fabric": {
+ "fr": "Jawhara naît chez nous ; sa coupe et ses finitions passent toutes par nos mains. Co-création de tissu possible à partir de 100 pièces.",
+ "en": "Jawhara is ours; its cut and finishing all pass through our hands. Fabric co-creation possible from 100 pieces."
+ },
+ "handworkTime": {
+ "fr": "Coupé et fini main à l'atelier, sans presser le geste.",
+ "en": "Cut and finished by hand at the atelier, never rushing the gesture."
+ },
+ "dimensions": {
+ "fr": "Sans taille - c'est le nœud qui fait la mesure.",
+ "en": "Size-free - the knot makes the measure."
+ },
+ "edition": {
+ "fr": "Édition limitée Jawhara, faite main ; selon les arrivages, le tissu peut changer.",
+ "en": "Limited Jawhara edition, handmade; with each delivery the fabric may shift."
+ }
+ },
+ {
+ "handle": "yza-bateau-top-jawhara-ss26",
+ "short": {
+ "fr": "Une encolure bateau qui dégage les épaules. Une ligne, et rien à ajouter.",
+ "en": "A boat neckline that bares the shoulders. One line, nothing to add."
+ },
+ "desc": {
+ "fr": "Tout tient dans l'encolure : une horizontale franche qui découvre les clavicules et laisse les épaules respirer. Le reste est volontairement tu. Jawhara au tombé souple, sans taille, coupé et fini main à Guéliz. Il s'accorde à une jupe paréo aussi bien qu'à un palazzo. Une main est passée par là - d'un exemplaire à l'autre, la ligne respire un peu différemment.",
+ "en": "It all lives in the neckline: a frank horizontal that uncovers the collarbones and lets the shoulders breathe. The rest is left deliberately quiet. Soft-draping Jawhara, size-free, cut and finished by hand in Guéliz. It pairs with a pareo skirt as readily as with palazzo trousers. A hand passed through it - from one to the next, the line breathes a touch differently."
+ },
+ "material": {
+ "fr": "Jawhara, notre tissu maison - polyester et soie, fluide et léger.",
+ "en": "Jawhara, our house fabric - poly and silk, fluid and light."
+ },
+ "fabric": {
+ "fr": "Jawhara naît chez nous ; coupe, finitions et détails ne quittent jamais nos mains. Co-création de tissu possible à partir de 100 pièces.",
+ "en": "Jawhara is ours; cut, finishing and details never leave our hands. Fabric co-creation possible from 100 pieces."
+ },
+ "handworkTime": {
+ "fr": "Coupé et fini main à l'atelier, le temps qu'il faut.",
+ "en": "Cut and finished by hand at the atelier, in the time it takes."
+ },
+ "dimensions": {
+ "fr": "Sans taille - il se règle sur toi.",
+ "en": "Size-free - it settles around you."
+ },
+ "edition": {
+ "fr": "Édition limitée Jawhara, faite main ; le tissu peut changer au gré des arrivages.",
+ "en": "Limited Jawhara edition, handmade; the fabric may change with what comes in."
+ }
+ },
+ {
+ "handle": "yza-button-up-shirt-jawhara-ss26",
+ "short": {
+ "fr": "Une chemise boutonnée, fluide sous les doigts. Du col fermé au col ouvert.",
+ "en": "A button-up that's fluid under the fingers. Buttoned to the throat or wide open."
+ },
+ "desc": {
+ "fr": "Une rangée de boutons, un tombé qui glisse, et la lumière du matin qui passe au travers : la chemise se porte presque comme une peau. Jawhara coupée et finie main à Guéliz, en S, M et L. Ouvre-la sur un maillot pour la plage, ferme-la jusqu'au col quand le vent se lève. Une seule pièce pour le marché et pour la terrasse du soir.",
+ "en": "A row of buttons, a drape that slides, the morning light coming through: the shirt sits almost like skin. Jawhara, cut and finished by hand in Guéliz, in S, M and L. Open it over a swimsuit for the beach, close it to the collar when the wind picks up. One piece for the market and the evening terrace alike."
+ },
+ "material": {
+ "fr": "Jawhara, notre tissu maison - polyester et soie, au tombé souple.",
+ "en": "Jawhara, our house fabric - poly and silk, with a soft drape."
+ },
+ "fabric": {
+ "fr": "Jawhara naît chez nous ; coupe et finitions se contrôlent à la main. Co-création de tissu possible à partir de 100 pièces.",
+ "en": "Jawhara is ours; cut and finishing are checked by hand. Fabric co-creation possible from 100 pieces."
+ },
+ "handworkTime": {
+ "fr": "Coupée et finie main à l'atelier, sans hâte.",
+ "en": "Cut and finished by hand at the atelier, without haste."
+ },
+ "dimensions": {
+ "fr": "Trois tailles : S, M, L.",
+ "en": "Three sizes: S, M, L."
+ },
+ "edition": {
+ "fr": "Édition limitée Jawhara, faite main ; le tissu suit les arrivages.",
+ "en": "Limited Jawhara edition, handmade; the fabric follows what arrives."
+ }
+ },
+ {
+ "handle": "yza-pareo-skirt-short-jawhara-ss26",
+ "short": {
+ "fr": "Une jupe paréo courte, nouée d'une main. Une pièce de tissu, libre sur les jambes.",
+ "en": "A short pareo skirt, knotted in one move. A single cloth, free over the legs."
+ },
+ "desc": {
+ "fr": "Le geste est ancien : un carré de tissu, un nœud à la hanche, et les jambes restent libres. Notre version garde cet esprit, en Jawhara au tombé souple, coupée main à Guéliz. Sans taille, elle se règle du XS au XXL selon la hauteur du nœud. Sur un maillot mouillé ou sous un top bateau, elle attend le soleil - pas grand-chose d'autre.",
+ "en": "The gesture is old: a square of cloth, a knot at the hip, and the legs stay free. Our version keeps that spirit, in soft-draping Jawhara, cut by hand in Guéliz. Size-free, it sets from XS to XXL depending on where you tie the knot. Over a wet swimsuit or under a bateau top, it waits for the sun - not much else."
+ },
+ "material": {
+ "fr": "Jawhara, notre tissu maison - polyester et soie, fluide et léger.",
+ "en": "Jawhara, our house fabric - poly and silk, fluid and light."
+ },
+ "fabric": {
+ "fr": "Jawhara naît chez nous ; coupe et finitions restent dans nos mains. Co-création de tissu possible à partir de 100 pièces.",
+ "en": "Jawhara is ours; cut and finishing stay in our hands. Fabric co-creation possible from 100 pieces."
+ },
+ "handworkTime": {
+ "fr": "Coupée et finie main à l'atelier, au calme.",
+ "en": "Cut and finished by hand at the atelier, unhurried."
+ },
+ "dimensions": {
+ "fr": "Sans taille - le nœud règle du XS au XXL.",
+ "en": "Size-free - the knot sets it from XS to XXL."
+ },
+ "edition": {
+ "fr": "Édition limitée Jawhara, faite main ; le tissu peut varier selon les arrivages.",
+ "en": "Limited Jawhara edition, handmade; the fabric may vary with deliveries."
+ }
+ },
+ {
+ "handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "short": {
+ "fr": "Une jupe paréo midi, à nouer une fois pour la journée. Le vent fait le reste.",
+ "en": "A midi pareo skirt, knotted once for the day. The wind does the rest."
+ },
+ "desc": {
+ "fr": "En longueur midi, la jupe paréo gagne un peu de tenue sans rien perdre de sa nonchalance : un nœud, et tu n'y penses plus. Jawhara au tombé souple, coupée main à Guéliz. Sans taille, du XS au XXL, c'est ton nœud qui décide. Le tissu prend le vent à la moindre brise - au marché le matin, sur le pas de la porte au crépuscule.",
+ "en": "At midi length the pareo skirt gains a little hold without losing its ease: one knot, and you forget about it. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, XS to XXL - your knot decides. The cloth catches the slightest breeze - at the market in the morning, on the doorstep at dusk."
+ },
+ "material": {
+ "fr": "Jawhara, notre tissu maison - polyester et soie, au tombé souple.",
+ "en": "Jawhara, our house fabric - poly and silk, with a soft drape."
+ },
+ "fabric": {
+ "fr": "Jawhara naît chez nous ; coupe et finitions ne quittent pas nos mains. Co-création de tissu possible à partir de 100 pièces.",
+ "en": "Jawhara is ours; cut and finishing don't leave our hands. Fabric co-creation possible from 100 pieces."
+ },
+ "handworkTime": {
+ "fr": "Coupée et finie main à l'atelier, sans précipitation.",
+ "en": "Cut and finished by hand at the atelier, without rushing."
+ },
+ "dimensions": {
+ "fr": "Sans taille - du XS au XXL, au gré du nœud.",
+ "en": "Size-free - XS to XXL, however you knot it."
+ },
+ "edition": {
+ "fr": "Édition limitée Jawhara, faite main ; le tissu change parfois selon les arrivages.",
+ "en": "Limited Jawhara edition, handmade; the fabric sometimes changes with deliveries."
+ }
+ },
+ {
+ "handle": "yza-pareo-skirt-long-jawhara-ss26",
+ "short": {
+ "fr": "Une jupe paréo longue jusqu'à la cheville. Le tissu court avec chaque pas.",
+ "en": "A long pareo skirt to the ankle. The cloth runs along with each step."
+ },
+ "desc": {
+ "fr": "La longueur descend jusqu'à la cheville et donne au tissu de quoi se déployer - il suit la jambe, s'ouvre au pas, se referme à l'arrêt. Jawhara au tombé souple, coupée main à Guéliz. Sans taille, le nœud fait passer du XS au XXL. Une pièce sobre qui tient le jour entier et glisse vers le soir sans qu'on la change.",
+ "en": "The length drops to the ankle and gives the cloth room to open - it trails the leg, parts as you walk, closes when you stop. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, the knot carries it from XS to XXL. A plain piece that holds the whole day and slips into evening unchanged."
+ },
+ "material": {
+ "fr": "Jawhara, notre tissu maison - polyester et soie, fluide et léger.",
+ "en": "Jawhara, our house fabric - poly and silk, fluid and light."
+ },
+ "fabric": {
+ "fr": "Jawhara naît chez nous ; coupe et finitions se font à la main. Co-création de tissu possible à partir de 100 pièces.",
+ "en": "Jawhara is ours; cut and finishing are done by hand. Fabric co-creation possible from 100 pieces."
+ },
+ "handworkTime": {
+ "fr": "Coupée et finie main à l'atelier, posément.",
+ "en": "Cut and finished by hand at the atelier, calmly."
+ },
+ "dimensions": {
+ "fr": "Sans taille - le nœud porte du XS au XXL.",
+ "en": "Size-free - the knot carries it XS to XXL."
+ },
+ "edition": {
+ "fr": "Édition limitée Jawhara, faite main ; selon les arrivages, le tissu peut changer.",
+ "en": "Limited Jawhara edition, handmade; with deliveries, the fabric may change."
+ }
+ },
+ {
+ "handle": "yza-pareo-skirt-x-long-jawhara-ss26",
+ "short": {
+ "fr": "Une jupe paréo extra-longue qui effleure le sol. De la longueur, beaucoup d'aisance.",
+ "en": "An extra-long pareo skirt that grazes the floor. Length, and plenty of ease."
+ },
+ "desc": {
+ "fr": "Le tissu va jusqu'au sol et l'effleure à chaque pas - la lumière de Marrakech s'y accroche tout en bas. Jawhara au tombé souple, coupée main à Guéliz. Sans taille, du XS au XXL selon ton nœud. Pour les jours où l'on a envie de traîner un peu de longueur derrière soi sans rien sacrifier à la liberté du pas.",
+ "en": "The cloth reaches the floor and grazes it at every step - the Marrakech light snags right at the hem. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, XS to XXL by your knot. For the days you want to trail a little length behind you without giving up an inch of stride."
+ },
+ "material": {
+ "fr": "Jawhara, notre tissu maison - polyester et soie, au tombé souple.",
+ "en": "Jawhara, our house fabric - poly and silk, with a soft drape."
+ },
+ "fabric": {
+ "fr": "Jawhara naît chez nous ; coupe et finitions restent manuelles. Co-création de tissu possible à partir de 100 pièces.",
+ "en": "Jawhara is ours; cut and finishing stay manual. Fabric co-creation possible from 100 pieces."
+ },
+ "handworkTime": {
+ "fr": "Coupée et finie main à l'atelier, sans courir.",
+ "en": "Cut and finished by hand at the atelier, without running."
+ },
+ "dimensions": {
+ "fr": "Sans taille - du XS au XXL selon le nœud.",
+ "en": "Size-free - XS to XXL depending on the knot."
+ },
+ "edition": {
+ "fr": "Édition limitée Jawhara, faite main ; le tissu peut changer d'un arrivage à l'autre.",
+ "en": "Limited Jawhara edition, handmade; the fabric may change from one delivery to the next."
+ }
+ },
+ {
+ "handle": "yza-palazzo-pants-jawhara-ss26",
+ "short": {
+ "fr": "Un palazzo large qui suit le pas comme une vague. Coupé long, à mettre à ta hauteur.",
+ "en": "A wide palazzo that follows your stride like a wave. Cut long, set to your height."
+ },
+ "desc": {
+ "fr": "La jambe s'ouvre large et le tissu ondule derrière chaque pas - on dirait presque une jupe. Jawhara au tombé souple, coupé main à Guéliz. Sans taille, du XS au XXL. On l'a fait volontairement très long : un ourlet rapide et il tombe pile à ta cheville. Pieds nus ou en sandales, il ne change rien à ton allure du matin au soir.",
+ "en": "The leg opens wide and the cloth ripples behind each step - almost a skirt. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, XS to XXL. We made it deliberately long: a quick hem and it lands right at your ankle. Bare feet or sandals, it asks nothing of you from morning to night."
+ },
+ "material": {
+ "fr": "Jawhara, notre tissu maison - polyester et soie, fluide et léger.",
+ "en": "Jawhara, our house fabric - poly and silk, fluid and light."
+ },
+ "fabric": {
+ "fr": "Jawhara naît chez nous ; coupe et finitions restent dans nos mains. Co-création de tissu possible à partir de 100 pièces.",
+ "en": "Jawhara is ours; cut and finishing stay in our hands. Fabric co-creation possible from 100 pieces."
+ },
+ "handworkTime": {
+ "fr": "Coupé et fini main à l'atelier, sans se presser.",
+ "en": "Cut and finished by hand at the atelier, taking its time."
+ },
+ "dimensions": {
+ "fr": "Sans taille - du XS au XXL, coupé très long, ourlet facile.",
+ "en": "Size-free - XS to XXL, cut very long, easy to hem."
+ },
+ "edition": {
+ "fr": "Édition limitée Jawhara, faite main ; le tissu suit les arrivages.",
+ "en": "Limited Jawhara edition, handmade; the fabric follows what comes in."
+ }
+ },
+ {
+ "handle": "yza-wrap-pants-jawhara-ss26",
+ "short": {
+ "fr": "Un pantalon portefeuille noué à la taille. Pas de bouton, pas de pression sur le ventre.",
+ "en": "Wrap trousers tied at the waist. No button, no pressure on the belly."
+ },
+ "desc": {
+ "fr": "Pas de bouton ni de zip : deux pans qui se croisent et se nouent, et la taille s'ouvre ou se resserre selon le jour. Jawhara au tombé souple, coupé main à Guéliz. Sans taille, du XS au XXL, c'est le nœud qui mène. Rien qui serre le ventre - du marché du matin à la terrasse du soir, on oublie qu'on le porte.",
+ "en": "No button, no zip: two panels that cross and tie, so the waist opens or draws in as the day asks. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, XS to XXL - the knot leads. Nothing grips the belly - from the morning market to the evening terrace, you forget you have them on."
+ },
+ "material": {
+ "fr": "Jawhara, notre tissu maison - polyester et soie, au tombé souple.",
+ "en": "Jawhara, our house fabric - poly and silk, with a soft drape."
+ },
+ "fabric": {
+ "fr": "Jawhara naît chez nous ; coupe et finitions restent à la main. Co-création de tissu possible à partir de 100 pièces.",
+ "en": "Jawhara is ours; cut and finishing stay by hand. Fabric co-creation possible from 100 pieces."
+ },
+ "handworkTime": {
+ "fr": "Coupé et fini main à l'atelier, à son rythme.",
+ "en": "Cut and finished by hand at the atelier, at its own pace."
+ },
+ "dimensions": {
+ "fr": "Sans taille - le nœud règle du XS au XXL.",
+ "en": "Size-free - the knot sets it from XS to XXL."
+ },
+ "edition": {
+ "fr": "Édition limitée Jawhara, faite main ; le tissu varie parfois selon les arrivages.",
+ "en": "Limited Jawhara edition, handmade; the fabric sometimes varies with deliveries."
+ }
+ }
+ ],
+ "bags": [
+ {
+ "handle": "la-sculpture-xs-basket-bag-ss26",
+ "short": {
+ "fr": "Le plus petit panier de la famille - et pourtant, il en avale : téléphone, carnet, lunettes, un foulard, tous vos essentiels du jour.",
+ "en": "The smallest basket in the family - and yet it swallows it all: phone, notebook, sunglasses, a scarf, your whole day's essentials."
+ },
+ "desc": {
+ "fr": "Assez petit pour tenir dans la paume, et bien plus contenant qu'on ne le croit. La Sculpture XS se porte à la main ou sur une courte bandoulière. À Guéliz, les feuilles de bananier passent entre les doigts de Fatima et de son équipe, les anses sont enveloppées, les perles posées une à une. Téléphone, porte-cartes, clés, lunettes, un petit foulard : tout y trouve sa place, on referme et on part les mains libres. Deux paniers ne se ressemblent jamais tout à fait.",
+ "en": "Small enough to sit in the palm, and far roomier than you'd think. La Sculpture XS goes in the hand or on a short shoulder strap. In Guéliz the banana leaves pass through Fatima's hands and her team's, the handles are wrapped, the beads set one by one. Phone, card holder, keys, sunglasses, a small scarf: it all finds a place, close it and leave hands free. No two baskets are ever quite alike."
+ },
+ "material": {
+ "fr": "Feuilles de bananier tissées, raffia et perles - Hot Red, Deep Violet ou Black Olive.",
+ "en": "Woven banana leaves, raffia and beads - Hot Red, Deep Violet or Black Olive."
+ },
+ "fabric": {
+ "fr": "Tissage serré et solaire, anses enveloppées main : la signature de La Sculpture.",
+ "en": "A tight, sun-warm weave, hand-wrapped handles: the La Sculpture signature."
+ },
+ "handworkTime": {
+ "fr": "Tout fait main - près de 48 heures réparties sur six jours, du tissage au dernier contrôle.",
+ "en": "All by hand - close to 48 hours across six days, from the weave to the last check."
+ },
+ "dimensions": {
+ "fr": "Le plus petit format - un mini panier à la main ou en courte bandoulière.",
+ "en": "The smallest size - a mini basket by hand or on a short shoulder strap."
+ },
+ "edition": {
+ "fr": "Fait main, par séries de 15 par taille et par coloris, le temps de la série - sans réassort garanti.",
+ "en": "Handmade, in runs of 15 per size and colour, for as long as the series runs - no guaranteed restock."
+ },
+ "whatFits": {
+ "fr": "Téléphone, carnet, porte-cartes, clés, lunettes et un foulard - bien plus qu'on ne le croit.",
+ "en": "Phone, notebook, card holder, keys, sunglasses and a scarf - far more than you'd think."
+ },
+ "making": {
+ "fr": "Monté à partir de feuilles de bananier, de raffia et de perles.",
+ "en": "Built from banana leaves, raffia and beads."
+ }
+ },
+ {
+ "handle": "la-sculpture-s-basket-bag-ss26",
+ "short": {
+ "fr": "Le format du milieu, celui qu'on prend sans réfléchir. Léger, et il porte la journée.",
+ "en": "The middle size, the one you grab without thinking. Light, and it carries the day."
+ },
+ "desc": {
+ "fr": "Le compromis juste : compact mais pas exigu, il suit la journée sans tirer sur l'épaule. Comme tous nos paniers, il prend forme entre les mains des femmes de Guéliz - tissage des feuilles de bananier, anses habillées, perles posées, contrôle final. Téléphone, portefeuille, lunettes, un foulard fin, les petites choses du jour : tout y trouve sa place. Le tissage garde la trace de la main qui l'a fait.",
+ "en": "The right middle ground: compact but not cramped, it follows the day without dragging on the shoulder. Like all our baskets, it takes shape in the hands of the Guéliz women - banana leaves woven, handles dressed, beads set, a final check. Phone, wallet, sunglasses, a thin scarf, the small things of the day: it all finds a place. The weave keeps the mark of the hand that made it."
+ },
+ "material": {
+ "fr": "Feuilles de bananier tissées, raffia et perles - Hot Red, Deep Violet ou Black Olive.",
+ "en": "Woven banana leaves, raffia and beads - Hot Red, Deep Violet or Black Olive."
+ },
+ "fabric": {
+ "fr": "Tissage serré et solaire, anses enveloppées main : la signature de La Sculpture.",
+ "en": "A tight, sun-warm weave, hand-wrapped handles: the La Sculpture signature."
+ },
+ "handworkTime": {
+ "fr": "Entièrement monté à la main : environ 48 heures sur six jours, du premier brin au contrôle final.",
+ "en": "Built entirely by hand: about 48 hours over six days, from first strand to final check."
+ },
+ "dimensions": {
+ "fr": "Le format du milieu - un panier compact, fait pour tous les jours.",
+ "en": "The mid-size - a compact basket, made for every day."
+ },
+ "edition": {
+ "fr": "Fait main, par séries de 15 par taille et par coloris, tant que dure la série - sans réassort garanti.",
+ "en": "Handmade, in runs of 15 per size and colour, while the series lasts - no guaranteed restock."
+ },
+ "whatFits": {
+ "fr": "Téléphone, portefeuille, lunettes, un foulard fin et les petites choses du jour.",
+ "en": "Phone, wallet, sunglasses, a thin scarf and the day's small things."
+ },
+ "making": {
+ "fr": "Monté à partir de feuilles de bananier, de raffia et de perles.",
+ "en": "Built from banana leaves, raffia and beads."
+ }
+ },
+ {
+ "handle": "la-sculpture-m-basket-bag-ss26",
+ "short": {
+ "fr": "Le grand format, celui des journées pleines. Un livre, un foulard, une trousse - il suit.",
+ "en": "The large size, for the full days. A book, a scarf, a pouch - it keeps up."
+ },
+ "desc": {
+ "fr": "Le plus grand de la lignée, avec du volume pour les jours qui débordent. Marché, plage, départ improvisé : il prend les essentiels, une pochette, un livre fin, un foulard, une petite trousse. Sous le tissage, les heures des femmes de Guéliz - feuilles de bananier nouées brin à brin, anses enveloppées, perles posées, pièce vérifiée. La régularité du tissage n'est jamais mécanique : c'est une main qui l'a tenue.",
+ "en": "The largest of the line, with room for the days that spill over. Market, beach, a last-minute departure: it takes the essentials, a pouch, a slim book, a scarf, a little kit. Under the weave, the hours of the Guéliz women - banana leaves tied strand by strand, handles wrapped, beads set, the piece checked. The evenness of the weave is never mechanical: a hand held it."
+ },
+ "material": {
+ "fr": "Feuilles de bananier tissées, raffia et perles - Hot Red, Deep Violet ou Black Olive.",
+ "en": "Woven banana leaves, raffia and beads - Hot Red, Deep Violet or Black Olive."
+ },
+ "fabric": {
+ "fr": "Tissage serré et solaire, anses enveloppées main : la signature de La Sculpture.",
+ "en": "A tight, sun-warm weave, hand-wrapped handles: the La Sculpture signature."
+ },
+ "handworkTime": {
+ "fr": "Fait main de bout en bout : à peu près 48 heures sur six jours, tissage compris.",
+ "en": "Handmade end to end: roughly 48 hours over six days, weaving included."
+ },
+ "dimensions": {
+ "fr": "Le plus grand format - un panier de caractère, plus de volume.",
+ "en": "The largest size - a basket with presence, more volume."
+ },
+ "edition": {
+ "fr": "Fait main, par séries de 15 par taille et par coloris, le temps que vit la série - sans réassort garanti.",
+ "en": "Handmade, in runs of 15 per size and colour, for the life of the series - no guaranteed restock."
+ },
+ "whatFits": {
+ "fr": "Les essentiels, une pochette, un livre fin, un foulard et une petite trousse.",
+ "en": "The essentials, a pouch, a slim book, a scarf and a small kit."
+ },
+ "making": {
+ "fr": "Monté à partir de feuilles de bananier, de raffia et de perles.",
+ "en": "Built from banana leaves, raffia and beads."
+ }
+ },
+ {
+ "handle": "la-nouvelle-vague-xs-basket-bag-ss26",
+ "short": {
+ "fr": "Le mini panier bordé de cuir. Le cuir adoucit le tissage, et il contient bien plus qu'on ne le croit.",
+ "en": "The mini basket trimmed in leather. Leather softens the weave, and it holds far more than you'd think."
+ },
+ "desc": {
+ "fr": "Même petite échelle que la XS, mais ici le cuir vient border le tissage et habiller les anses : la prise en main se fait plus douce. À Guéliz, les feuilles de bananier sont nouées à la main, le cuir cousu, les perles posées, chaque panier vérifié avant de partir. Téléphone, porte-cartes, clés, lunettes, un foulard : bien plus qu'on ne le croit, et toujours les mains libres. Le cuir prend la lumière différemment sur chaque pièce.",
+ "en": "The same small scale as the XS, but here leather edges the weave and dresses the handles: the grip turns softer. In Guéliz the banana leaves are tied by hand, the leather stitched, the beads set, each basket checked before it leaves. Phone, card holder, keys, sunglasses, a scarf: far more than you'd think, and always hands free. The leather catches the light a little differently on each one."
+ },
+ "material": {
+ "fr": "Feuilles de bananier tissées, cuir et perles - Black, Nude ou Camel.",
+ "en": "Woven banana leaves, leather and beads - Black, Nude or Camel."
+ },
+ "fabric": {
+ "fr": "C'est le cuir qui signe La Vague : il borde le tissage et gaine les anses, pour une tenue plus douce.",
+ "en": "Leather is what signs La Vague: it edges the weave and sheathes the handles, for a softer hold."
+ },
+ "handworkTime": {
+ "fr": "Tout à la main - autour de 48 heures sur six jours, tissage et pose du cuir compris.",
+ "en": "All by hand - around 48 hours over six days, weaving and leatherwork included."
+ },
+ "dimensions": {
+ "fr": "Le plus petit format - un mini panier à la main ou en courte bandoulière.",
+ "en": "The smallest size - a mini basket by hand or on a short shoulder strap."
+ },
+ "edition": {
+ "fr": "Fait main, par séries de 15 par taille et par coloris, tant que la série existe - sans réassort garanti.",
+ "en": "Handmade, in runs of 15 per size and colour, while the series exists - no guaranteed restock."
+ },
+ "whatFits": {
+ "fr": "Téléphone, porte-cartes, clés, lunettes, un foulard - bien plus qu'il n'y paraît.",
+ "en": "Phone, card holder, keys, sunglasses, a scarf - more than it looks."
+ },
+ "making": {
+ "fr": "Monté à partir de feuilles de bananier, de cuir et de perles.",
+ "en": "Built from banana leaves, leather and beads."
+ }
+ },
+ {
+ "handle": "la-nouvelle-vague-s-basket-bag-ss26",
+ "short": {
+ "fr": "Le compact de tous les jours, bordé de cuir. Téléphone, portefeuille, lunettes, un foulard.",
+ "en": "The everyday compact, trimmed in leather. Phone, wallet, sunglasses, a scarf."
+ },
+ "desc": {
+ "fr": "Le format intermédiaire de La Vague : assez de place pour la journée, le cuir qui en lisse les bords et adoucit la prise. Tissé à Guéliz par les femmes de l'atelier - feuilles de bananier, cuir cousu, perles, contrôle pièce à pièce. Téléphone, portefeuille, lunettes, un foulard fin, les petites choses : tout rentre sans forcer. Le grain du cuir et le tissage ne tombent jamais exactement pareil d'un panier à l'autre.",
+ "en": "La Vague's in-between size: room for the day, with leather smoothing the edges and softening the grip. Woven in Guéliz by the atelier women - banana leaves, stitched leather, beads, checked piece by piece. Phone, wallet, sunglasses, a thin scarf, the small things: it all goes in without forcing. The grain of the leather and the weave never fall exactly the same from one basket to the next."
+ },
+ "material": {
+ "fr": "Feuilles de bananier tissées, cuir et perles - Black, Nude ou Camel.",
+ "en": "Woven banana leaves, leather and beads - Black, Nude or Camel."
+ },
+ "fabric": {
+ "fr": "C'est le cuir qui signe La Vague : il borde le tissage et gaine les anses, pour une tenue plus douce.",
+ "en": "Leather is what signs La Vague: it edges the weave and sheathes the handles, for a softer hold."
+ },
+ "handworkTime": {
+ "fr": "Monté entièrement à la main : environ 48 heures sur six jours, cuir et perles inclus.",
+ "en": "Built entirely by hand: about 48 hours over six days, leather and beads included."
+ },
+ "dimensions": {
+ "fr": "Le format du milieu - un panier compact pour tous les jours.",
+ "en": "The mid-size - a compact basket for every day."
+ },
+ "edition": {
+ "fr": "Fait main, par séries de 15 par taille et par coloris, tant que dure la série - sans réassort garanti.",
+ "en": "Handmade, in runs of 15 per size and colour, while the series lasts - no guaranteed restock."
+ },
+ "whatFits": {
+ "fr": "Téléphone, portefeuille, lunettes, un foulard fin et les petites choses du jour.",
+ "en": "Phone, wallet, sunglasses, a thin scarf and the day's small things."
+ },
+ "making": {
+ "fr": "Monté à partir de feuilles de bananier, de cuir et de perles.",
+ "en": "Built from banana leaves, leather and beads."
+ }
+ },
+ {
+ "handle": "la-nouvelle-vague-m-basket-bag-ss26",
+ "short": {
+ "fr": "Le grand panier bordé de cuir, du volume pour les jours pleins. Marché, plage, voyage.",
+ "en": "The large leather-trimmed basket, room for the full days. Market, beach, travel."
+ },
+ "desc": {
+ "fr": "Le plus grand de La Vague : le volume d'un panier de voyage, adouci par le cuir qui en cercle le bord. Né à Guéliz, sous les mains des femmes de l'atelier qui nouent les feuilles de bananier, cousent le cuir, posent les perles et passent chaque pièce en revue. Essentiels, pochette, livre fin, foulard, petite trousse : il avale la journée sans broncher. Aucun ne sort identique au précédent - c'est le signe qu'aucune machine n'est passée par là.",
+ "en": "The largest of La Vague: the room of a travel basket, softened by the leather ringing its rim. Born in Guéliz, under the hands of the atelier women who tie the banana leaves, stitch the leather, set the beads and look over every piece. Essentials, pouch, slim book, scarf, little kit: it swallows the day without flinching. None comes out identical to the last - the sign that no machine touched it."
+ },
+ "material": {
+ "fr": "Feuilles de bananier tissées, cuir et perles - Black, Nude ou Camel.",
+ "en": "Woven banana leaves, leather and beads - Black, Nude or Camel."
+ },
+ "fabric": {
+ "fr": "C'est le cuir qui signe La Vague : il borde le tissage et gaine les anses, pour une tenue plus douce.",
+ "en": "Leather is what signs La Vague: it edges the weave and sheathes the handles, for a softer hold."
+ },
+ "handworkTime": {
+ "fr": "Fait main de A à Z : à peu près 48 heures sur six jours, du tissage à la couture du cuir.",
+ "en": "Handmade start to finish: roughly 48 hours over six days, from the weave to the leather stitching."
+ },
+ "dimensions": {
+ "fr": "Le plus grand format - un panier de caractère, plus de volume.",
+ "en": "The largest size - a basket with presence, more volume."
+ },
+ "edition": {
+ "fr": "Fait main, par séries de 15 par taille et par coloris, le temps que vit la série - sans réassort garanti.",
+ "en": "Handmade, in runs of 15 per size and colour, for the life of the series - no guaranteed restock."
+ },
+ "whatFits": {
+ "fr": "Les essentiels, une pochette, un livre fin, un foulard et une petite trousse.",
+ "en": "The essentials, a pouch, a slim book, a scarf and a small kit."
+ },
+ "making": {
+ "fr": "Monté à partir de feuilles de bananier, de cuir et de perles.",
+ "en": "Built from banana leaves, leather and beads."
+ }
+ }
+ ],
+ "charms": [
+ {
+ "handle": "raffia-cherries-charm-ss26",
+ "short": {
+ "fr": "Deux cerises crochetées, reliées par la tige. Comme celles qu'on s'accrochait à l'oreille.",
+ "en": "Two crocheted cherries, joined at the stem. Like the ones you hung over your ear."
+ },
+ "desc": {
+ "fr": "Deux petites boules rouges et leur tige, crochetées au raffia par les femmes de Guéliz. Compte environ deux heures de crochet pour les arrondir et les relier - un geste lent, qu'aucune machine ne sait imiter. Clipsées au sac ou aux clés, elles balancent à chaque pas un peu du marché de Marrakech.",
+ "en": "Two small red rounds and their stem, crocheted in raffia by the Guéliz women. Count about two hours of crochet to round them and join them - a slow gesture no machine knows how to copy. Clipped to a bag or keys, they swing a little of the Marrakech market with each step."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ },
+ "fabric": {
+ "fr": "Le rouge monte maille après maille ; sous les doigts, chaque cerise trouve sa propre rondeur.",
+ "en": "The red rises stitch after stitch; under the fingers, each cherry finds its own roundness."
+ },
+ "handworkTime": {
+ "fr": "Environ deux heures de crochet.",
+ "en": "About two hours of crochet."
+ },
+ "dimensions": {
+ "fr": "Environ 8 cm.",
+ "en": "About 8 cm."
+ },
+ "edition": {
+ "fr": "Édition limitée, au crochet ; d'une cerise à l'autre, rien d'identique.",
+ "en": "Limited edition, by crochet; from one cherry to the next, nothing identical."
+ },
+ "fruitStoryTitle": {
+ "fr": "Les premières de la saison",
+ "en": "First of the season"
+ },
+ "fruitStoryBody": {
+ "fr": "Les cerises ouvrent la saison sur les étals - petites, rouges, en tas qui luisent. On les a nouées par deux, comme on se les accrochait à l'oreille quand on était enfant.",
+ "en": "Cherries open the season on the stalls - small, red, in piles that gleam. We tied them in pairs, the way we hooked them over our ears as children."
+ },
+ "howToWearTitle": {
+ "fr": "Porter les cerises",
+ "en": "Wearing the cherries"
+ },
+ "howToWearIntro": {
+ "fr": "Un point de rouge qui se glisse partout sans rien alourdir.",
+ "en": "A point of red that slips in anywhere without weighing things down."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Clipsées à un sac en paille, pour toute une saison.",
+ "en": "Clipped to a straw bag, for a whole season."
+ },
+ {
+ "fr": "Au trousseau de clés, le petit signe du matin.",
+ "en": "On the key ring, the small sign of the morning."
+ },
+ {
+ "fr": "Sur une anse de cabas neutre, juste pour le réveiller.",
+ "en": "On a neutral tote strap, just to wake it up."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Le rouge tient compagnie au lin écru et au denim usé - qu'il reste la seule note vive.",
+ "en": "Red keeps company with ecru linen and worn denim - let it stay the only bright note."
+ },
+ "howToWearNote": {
+ "fr": "Crochetées à la main, les deux cerises ne sont jamais jumelles - c'est la main qui parle.",
+ "en": "Hand-crocheted, the two cherries are never twins - that's the hand speaking."
+ },
+ "making": {
+ "fr": "Chaque pièce est crochetée à la main dans l'atelier de Guéliz, fibre par fibre, puis contrôlée avant la pose de l'étiquette YZA.",
+ "en": "Each piece is hand-crocheted in the Guéliz atelier, fibre by fibre, then checked before the YZA tag is added."
+ },
+ "attachment": {
+ "fr": "Petite boucle de raffia. Anneau doré inclus dans les bundles, disponible au studio pour les charms seuls.",
+ "en": "Small raffia loop. Gold ring included with bundles, available at the studio for single charms."
+ },
+ "returns": {
+ "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d'origine.",
+ "en": "14-day guarantee: the piece comes back unworn, in its original condition."
+ },
+ "shipping": {
+ "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
+ "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ }
+ },
+ {
+ "handle": "raffia-grapes-charm-ss26",
+ "short": {
+ "fr": "Une grappe de raisins, grain à grain. Le plus long de nos fruits à crocheter.",
+ "en": "A bunch of grapes, grape by grape. The longest of our fruits to crochet."
+ },
+ "desc": {
+ "fr": "Chaque grain est crocheté à part, puis cousu aux autres jusqu'à former la grappe - c'est ce qui peut demander jusqu'à six heures de travail. Tout ce temps pour qu'elle reste ronde et pleine, qu'elle ait le poids d'une vraie grappe. Pendue à un sac ou à une ceinture, elle se balance au soleil, grain contre grain.",
+ "en": "Each grape is crocheted on its own, then sewn to the others until the bunch takes shape - which can run up to six hours of work. All that time so it stays round and full, with the weight of a real bunch. Hung from a bag or a belt, it sways in the sun, grape against grape."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ },
+ "fabric": {
+ "fr": "Grain par grain, chacun crocheté seul puis cousu à la grappe : c'est de là que vient le volume.",
+ "en": "Grape by grape, each one crocheted alone then sewn to the bunch: that's where the volume comes from."
+ },
+ "handworkTime": {
+ "fr": "Jusqu'à six heures de crochet.",
+ "en": "Up to six hours of crochet."
+ },
+ "dimensions": {
+ "fr": "Environ 8 x 4 cm.",
+ "en": "About 8 x 4 cm."
+ },
+ "edition": {
+ "fr": "Une poignée de pièces, crochetées à la main ; aucune grappe ne tombe deux fois pareil.",
+ "en": "A handful of pieces, crocheted by hand; no two bunches fall the same way."
+ },
+ "fruitStoryTitle": {
+ "fr": "Le poids de fin d'été",
+ "en": "Late-summer weight"
+ },
+ "fruitStoryBody": {
+ "fr": "En fin d'été, les grappes pendent lourdes aux étals, tièdes encore du soleil. On les a refaites grain par grain pour retrouver ce poids dans la main - et l'envie d'en détacher un.",
+ "en": "Late in summer the bunches hang heavy on the stalls, still warm from the sun. We rebuilt them grape by grape to find that weight in the hand - and the urge to pull one off."
+ },
+ "howToWearTitle": {
+ "fr": "Porter les raisins",
+ "en": "Wearing the grapes"
+ },
+ "howToWearIntro": {
+ "fr": "Du volume, du balancement - une grappe qui suit vos pas.",
+ "en": "Volume, sway - a bunch that follows your step."
+ },
+ "howToWearItems": [
+ {
+ "fr": "À la ceinture d'une robe d'été fluide.",
+ "en": "At the belt of a flowing summer dress."
+ },
+ {
+ "fr": "Sur un grand cabas, où elle a la place de respirer.",
+ "en": "On a large tote, where it has room to breathe."
+ },
+ {
+ "fr": "Nouée à une anse en cuir, raffia contre cuir.",
+ "en": "Tied to a leather strap, raffia against leather."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Laissez-la pendre librement - une grappe demande à bouger, pas à être épinglée.",
+ "en": "Let it hang free - a bunch asks to move, not to be pinned."
+ },
+ "howToWearNote": {
+ "fr": "Cousue grain par grain à la main, aucune grappe ne pend exactement comme la précédente.",
+ "en": "Sewn grape by grape by hand, no bunch hangs exactly like the last."
+ }
+ },
+ {
+ "handle": "raffia-whole-lemon-charm-ss26",
+ "short": {
+ "fr": "Un citron entier, tout en rondeur. Un jaune franc qui sent le soleil de Marrakech.",
+ "en": "A whole lemon, all roundness. A clear yellow that smells of Marrakech sun."
+ },
+ "desc": {
+ "fr": "Crocheté en rond puis rembourré, le citron garde sa forme pleine - environ trois heures pour y arriver, jaune franc et net. À Guéliz, on le tourne maille à maille jusqu'à ce qu'il tienne dans la paume comme un vrai. Clipsé au sac ou aux clés, c'est un éclat de lumière à portée de doigts.",
+ "en": "Crocheted in the round and then filled, the lemon keeps its full shape - about three hours to get there, a clean clear yellow. In Guéliz it's turned stitch by stitch until it sits in the palm like the real thing. Clipped to a bag or keys, it's a flash of light within reach."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ },
+ "fabric": {
+ "fr": "Travaillé en rond et légèrement garni, il tient sa rondeur jour après jour.",
+ "en": "Worked in the round and lightly stuffed, it keeps its roundness day after day."
+ },
+ "handworkTime": {
+ "fr": "Environ trois heures de crochet.",
+ "en": "About three hours of crochet."
+ },
+ "dimensions": {
+ "fr": "Environ 4,5 cm de diamètre.",
+ "en": "About 4.5 cm across."
+ },
+ "edition": {
+ "fr": "Quelques pièces seulement, faites au crochet ; chaque citron a sa rondeur à lui.",
+ "en": "Only a few pieces, made at the hook; each lemon has its own roundness."
+ },
+ "fruitStoryTitle": {
+ "fr": "La pyramide jaune",
+ "en": "The yellow pyramid"
+ },
+ "fruitStoryBody": {
+ "fr": "Empilés en pyramides sur l'étal, les citrons attrapent toute la lumière du matin. C'est ce jaune-là qu'on a voulu garder : celui qui réveille une table et lance la journée.",
+ "en": "Stacked into pyramids on the stall, the lemons catch all the morning light. That's the yellow we wanted to keep: the one that wakes a table and starts the day."
+ },
+ "howToWearTitle": {
+ "fr": "Porter le citron",
+ "en": "Wearing the lemon"
+ },
+ "howToWearIntro": {
+ "fr": "Un point de jaune, et le reste s'éclaire.",
+ "en": "A point of yellow, and the rest lights up."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur un sac en toile claire, le contraste solaire.",
+ "en": "On a light canvas bag, the sunny contrast."
+ },
+ {
+ "fr": "Au porte-clés, un rayon glissé dans la poche.",
+ "en": "On the keys, a ray slipped in the pocket."
+ },
+ {
+ "fr": "Sur une trousse de plage en raffia, matière contre matière.",
+ "en": "On a raffia beach pouch, texture against texture."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Le jaune va au bleu et au blanc - rayures marinières, lin écru.",
+ "en": "Yellow goes with blue and white - sailor stripes, ecru linen."
+ },
+ "howToWearNote": {
+ "fr": "Crocheté et garni à la main, aucun citron n'a tout à fait la même rondeur que son voisin.",
+ "en": "Crocheted and filled by hand, no lemon has quite the same roundness as its neighbour."
+ }
+ },
+ {
+ "handle": "raffia-whole-orange-charm-ss26",
+ "short": {
+ "fr": "Une orange entière, ronde et pleine. La couleur d'un coucher de soleil sur la place.",
+ "en": "A whole orange, round and full. The colour of sunset over the square."
+ },
+ "desc": {
+ "fr": "Trois heures de crochet en rond, un peu de rembourrage, et l'orange tient sa forme pleine, chaude comme le ciel de fin d'après-midi. Fatima et les femmes de Guéliz la tournent maille après maille jusqu'à ce qu'elle ait le galbe d'un vrai fruit. À accrocher partout où l'on veut un peu de chaleur sous la main.",
+ "en": "Three hours of crochet in the round, a little stuffing, and the orange holds its full shape, warm as the late-afternoon sky. Fatima and the Guéliz women turn it stitch after stitch until it has the curve of a real fruit. To clip wherever you want a little warmth at hand."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ },
+ "fabric": {
+ "fr": "Tournée en rond, légèrement garnie, sa couleur chaude monte maille à maille.",
+ "en": "Turned in the round, lightly filled, its warm colour rising stitch by stitch."
+ },
+ "handworkTime": {
+ "fr": "Environ trois heures de crochet.",
+ "en": "About three hours of crochet."
+ },
+ "dimensions": {
+ "fr": "Environ 4,5 cm de diamètre.",
+ "en": "About 4.5 cm across."
+ },
+ "edition": {
+ "fr": "Crochetée en petit nombre, à Guéliz ; pas une orange ronde de la même façon.",
+ "en": "Crocheted in small numbers, in Guéliz; not one orange round the same way."
+ },
+ "fruitStoryTitle": {
+ "fr": "La couleur des charrettes à jus",
+ "en": "The juice-cart colour"
+ },
+ "fruitStoryBody": {
+ "fr": "Sur les charrettes à jus, les oranges roulent par dizaines, leur couleur se mêlant au ciel de fin d'après-midi. On l'a crochetée chaude et ronde pour la garder même hors saison.",
+ "en": "On the juice carts the oranges roll by the dozen, their colour mixing into the late-afternoon sky. We crocheted it warm and round to keep it even out of season."
+ },
+ "howToWearTitle": {
+ "fr": "Porter l'orange",
+ "en": "Wearing the orange"
+ },
+ "howToWearIntro": {
+ "fr": "Une rondeur chaude qui réchauffe une tenue d'un coup.",
+ "en": "A warm round that heats up an outfit at once."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur un sac en cuir cognac, ton sur ton.",
+ "en": "On a cognac leather bag, tone on tone."
+ },
+ {
+ "fr": "Au porte-clés, repérable d'un seul regard.",
+ "en": "On the keys, spotted in a single look."
+ },
+ {
+ "fr": "Sur une veste en jean, un fruit oublié dans la poche.",
+ "en": "On a denim jacket, a fruit forgotten in the pocket."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "L'orange s'entend avec le terracotta et le kaki - la palette même de Marrakech.",
+ "en": "Orange gets on with terracotta and khaki - the very Marrakech palette."
+ },
+ "howToWearNote": {
+ "fr": "Façonnée et garnie à la main, chaque orange porte sa propre forme.",
+ "en": "Shaped and filled by hand, each orange carries its own form."
+ }
+ },
+ {
+ "handle": "raffia-tomato-charm-ss26",
+ "short": {
+ "fr": "Une tomate bien ronde, rouge mûr, coiffée de sa couronne verte. Droit du potager.",
+ "en": "A nicely round tomato, ripe red, topped with its green crown. Straight from the garden."
+ },
+ "desc": {
+ "fr": "Corps rouge crocheté en rond, petite couronne verte montée à part puis cousue dessus : environ trois heures pour qu'elle garde son galbe plein. Un fruit du potager passé entre les mains des femmes de l'atelier. À clipser sur un sac, une ceinture ou les clés - le rouge mûr suffit à attirer l'œil.",
+ "en": "Red body crocheted in the round, a little green crown made separately then sewn on top: about three hours so it keeps its full curve. A fruit from the garden, passed through the atelier women's hands. To clip on a bag, a belt or the keys - the ripe red is enough to catch the eye."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ },
+ "fabric": {
+ "fr": "Corps rouge et couronne verte crochetés à part, réunis ensuite à l'aiguille.",
+ "en": "Red body and green crown crocheted apart, then brought together with the needle."
+ },
+ "handworkTime": {
+ "fr": "Environ trois heures de crochet.",
+ "en": "About three hours of crochet."
+ },
+ "dimensions": {
+ "fr": "Environ 4,5 cm de diamètre.",
+ "en": "About 4.5 cm across."
+ },
+ "edition": {
+ "fr": "Petite fournée, faite main au crochet ; chaque couronne tombe un peu autrement.",
+ "en": "A small batch, hand-made at the hook; each crown sits a little differently."
+ },
+ "fruitStoryTitle": {
+ "fr": "Le détail de la couronne",
+ "en": "The crown detail"
+ },
+ "fruitStoryBody": {
+ "fr": "Les tomates arrivent au marché tièdes encore, rouges et lourdes, posées près des herbes fraîches. On a tenu à leur petite couronne verte - le détail qui dit qu'elles viennent d'être cueillies.",
+ "en": "Tomatoes reach the market still warm, red and heavy, set near the fresh herbs. We kept their little green crown - the detail that says they were just picked."
+ },
+ "howToWearTitle": {
+ "fr": "Porter la tomate",
+ "en": "Wearing the tomato"
+ },
+ "howToWearIntro": {
+ "fr": "Un rouge gourmand, un brin espiègle, pour ne pas trop se prendre au sérieux.",
+ "en": "A juicy red, a touch mischievous, for not taking yourself too seriously."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur un panier de marché, là où elle va de soi.",
+ "en": "On a market basket, where it goes without saying."
+ },
+ {
+ "fr": "Au porte-clés, pour un sourire au réveil.",
+ "en": "On the keys, for a smile on waking."
+ },
+ {
+ "fr": "Sur un sac vert ou kaki, son complice naturel.",
+ "en": "On a green or khaki bag, its natural partner."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Le rouge et le vert ensemble, sans hésiter - c'est la tomate qui le permet.",
+ "en": "Red and green together, no hesitation - the tomato allows it."
+ },
+ "howToWearNote": {
+ "fr": "Crochetée à la main, chaque tomate a sa rondeur et une couronne jamais identique.",
+ "en": "Hand-crocheted, each tomato has its roundness and a crown that's never identical."
+ }
+ },
+ {
+ "handle": "raffia-lemon-slice-charm-ss26",
+ "short": {
+ "fr": "Une rondelle de citron, quartiers clairs et zeste tout autour. Pas une impression : du crochet.",
+ "en": "A round of lemon, pale segments and rind all round. Not a print: crochet."
+ },
+ "desc": {
+ "fr": "Les quartiers se dessinent en clair sur le jaune, le zeste les cercle d'un dernier rang - tout vient du crochet, jamais de l'impression. Compte près de deux heures pour ce travail plat et précis, où chaque section doit se lire. Légère, elle se clipse n'importe où et apporte sa pointe acidulée.",
+ "en": "The segments are drawn pale against the yellow, the rind ringing them with a last round - all of it crochet, never print. Count close to two hours for this flat, precise work, where every section has to read. Light, it clips anywhere and brings its tart little edge."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ },
+ "fabric": {
+ "fr": "Quartiers et zeste naissent de changements de couleur au crochet - aucune impression.",
+ "en": "Segments and rind come from colour changes in the crochet - no printing."
+ },
+ "handworkTime": {
+ "fr": "Environ deux heures de crochet.",
+ "en": "About two hours of crochet."
+ },
+ "dimensions": {
+ "fr": "Environ 6 x 4 cm.",
+ "en": "About 6 x 4 cm."
+ },
+ "edition": {
+ "fr": "Faite en petite quantité, au crochet ; les quartiers ne se tracent jamais pareil.",
+ "en": "Made in small quantity, by crochet; the segments are never traced the same."
+ },
+ "fruitStoryTitle": {
+ "fr": "Celle qu'on glisse près du thé",
+ "en": "The one slipped beside the tea"
+ },
+ "fruitStoryBody": {
+ "fr": "Une tranche de citron, c'est une cuisine de Marrakech en plein été - celle qu'on presse sur le poisson, qu'on pose près du verre de thé. On en a tracé les quartiers un à un, au crochet, pour en tenir la fraîcheur.",
+ "en": "A lemon slice is a Marrakech kitchen in high summer - the one squeezed over the fish, set beside the glass of tea. We traced its segments one by one, in crochet, to hold that freshness."
+ },
+ "howToWearTitle": {
+ "fr": "Porter la tranche de citron",
+ "en": "Wearing the lemon slice"
+ },
+ "howToWearIntro": {
+ "fr": "Plate, légère, vive - elle se faufile sans peser.",
+ "en": "Flat, light, lively - it slips in without weighing in."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur la fermeture d'une pochette, vite repérée.",
+ "en": "On a clutch zip, quickly spotted."
+ },
+ {
+ "fr": "Au porte-clés, en duo avec la tranche d'orange.",
+ "en": "On the keys, paired with the orange slice."
+ },
+ {
+ "fr": "Sur un sac bleu marine, le duo du sud.",
+ "en": "On a navy bag, the southern duo."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Avec la tranche d'orange, c'est un petit étal de fruits au poignet.",
+ "en": "With the orange slice, it's a little fruit stall at the wrist."
+ },
+ "howToWearNote": {
+ "fr": "Faite main, aucune tranche ne trace ses quartiers comme la précédente.",
+ "en": "Made by hand, no slice traces its segments like the one before."
+ }
+ },
+ {
+ "handle": "raffia-orange-slice-charm-ss26",
+ "short": {
+ "fr": "Une rondelle d'orange, quartiers en éventail sous le cercle de l'écorce. Tout l'orange du sud.",
+ "en": "A round of orange, segments fanning under the ring of peel. All the orange of the south."
+ },
+ "desc": {
+ "fr": "Les quartiers s'ouvrent en éventail, l'écorce les referme d'un dernier rang : autour de deux heures pour ce travail plat où rien ne pardonne. Elle tient tout l'orange chaud du sud. À clipser sur un sac, une trousse ou les clés, partout où il manque un peu de soleil.",
+ "en": "The segments fan open, the peel closing them with a last round: around two hours for this flat work where nothing is forgiven. It holds all the warm orange of the south. To clip on a bag, a pouch or the keys, wherever a little sun is missing."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ },
+ "fabric": {
+ "fr": "Les quartiers s'ouvrent par les changements de couleur, l'écorce les cercle d'un dernier rang.",
+ "en": "The segments open through colour changes, the peel ringing them with a final round."
+ },
+ "handworkTime": {
+ "fr": "Environ deux heures de crochet.",
+ "en": "About two hours of crochet."
+ },
+ "dimensions": {
+ "fr": "Environ 6 x 4 cm.",
+ "en": "About 6 x 4 cm."
+ },
+ "edition": {
+ "fr": "Une poignée de tranches, crochetées main ; chaque tranche ouvre ses quartiers à sa façon.",
+ "en": "A handful of slices, crocheted by hand; each slice opens its segments its own way."
+ },
+ "fruitStoryTitle": {
+ "fr": "L'odeur de Jemaa el-Fna",
+ "en": "The Jemaa el-Fna smell"
+ },
+ "fruitStoryBody": {
+ "fr": "Sur Jemaa el-Fna, les charrettes pressent les oranges du matin au soir et l'air sent le sucre et le soleil. Une tranche posée sur le bord du verre : c'est ce souvenir-là qu'on a crocheté.",
+ "en": "On Jemaa el-Fna the carts press oranges from morning to night and the air smells of sugar and sun. A slice on the rim of the glass: that's the memory we crocheted."
+ },
+ "howToWearTitle": {
+ "fr": "Porter la tranche d'orange",
+ "en": "Wearing the orange slice"
+ },
+ "howToWearIntro": {
+ "fr": "Une rondelle de soleil, plate et facile à vivre.",
+ "en": "A round of sun, flat and easy to live with."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur un grand cabas de plage en paille.",
+ "en": "On a large straw beach tote."
+ },
+ {
+ "fr": "Au porte-clés, accordée à la tranche de citron.",
+ "en": "On the keys, matched to the lemon slice."
+ },
+ {
+ "fr": "Sur une lanière de téléphone, un détail solaire.",
+ "en": "On a phone strap, a sunny detail."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Sur un fond neutre, qu'elle soit le seul éclat de couleur.",
+ "en": "Against a neutral backdrop, let it be the only splash of colour."
+ },
+ "howToWearNote": {
+ "fr": "Crochetée à la main, pas une tranche n'ouvre ses quartiers comme la suivante.",
+ "en": "Hand-crocheted, not one slice opens its segments like the next."
+ }
+ },
+ {
+ "handle": "raffia-kiwi-slice-charm-ss26",
+ "short": {
+ "fr": "Une tranche de kiwi, vert tendre, cœur clair, couronne de graines au centre.",
+ "en": "A kiwi slice, tender green, pale heart, a crown of seeds at the centre."
+ },
+ "desc": {
+ "fr": "C'est la couronne de graines qui prend le temps : il faut autour de deux heures pour placer ce cœur clair et ces points sombres au milieu du vert tendre. Tout est crocheté, rien n'est imprimé. Plate et légère, elle glisse une couleur qu'on n'attend pas - celle qui surprend entre les agrumes.",
+ "en": "It's the crown of seeds that takes the time: around two hours to set that pale heart and those dark dots in the middle of the tender green. All crocheted, nothing printed. Flat and light, it slips in a colour you don't expect - the one that surprises among the citrus."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ },
+ "fabric": {
+ "fr": "Le vert, le cœur clair et les graines : tout au crochet, sans la moindre impression.",
+ "en": "The green, the pale heart and the seeds: all in crochet, without the slightest print."
+ },
+ "handworkTime": {
+ "fr": "Environ deux heures de crochet.",
+ "en": "About two hours of crochet."
+ },
+ "dimensions": {
+ "fr": "Environ 6 x 4 cm.",
+ "en": "About 6 x 4 cm."
+ },
+ "edition": {
+ "fr": "Quelques pièces faites main, au crochet ; la couronne de graines retombe chaque fois autrement.",
+ "en": "A few hand-made pieces, at the hook; the crown of seeds falls differently each time."
+ },
+ "fruitStoryTitle": {
+ "fr": "La surprise de l'étal",
+ "en": "The surprise of the stall"
+ },
+ "fruitStoryBody": {
+ "fr": "Le kiwi surprend l'étal - ce vert qu'on n'attend pas entre les agrumes et les melons. On a aimé crocheter sa couronne de graines, ce dessin minuscule qui demande tant de patience.",
+ "en": "Kiwi catches the stall off guard - that green you don't expect among the citrus and melons. We loved crocheting its crown of seeds, that tiny pattern that asks for such patience."
+ },
+ "howToWearTitle": {
+ "fr": "Porter la tranche de kiwi",
+ "en": "Wearing the kiwi slice"
+ },
+ "howToWearIntro": {
+ "fr": "Un vert frais qui se remarque, juste ce qu'il faut.",
+ "en": "A fresh green that gets noticed, just enough."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur un sac crème, pour réveiller le neutre.",
+ "en": "On a cream bag, to wake up the neutral."
+ },
+ {
+ "fr": "Au porte-clés, en duo avec une autre tranche.",
+ "en": "On the keys, in a duo with another slice."
+ },
+ {
+ "fr": "Sur une trousse de cours ou de bureau.",
+ "en": "On a school or office pouch."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Le vert kiwi va au rose poudré et à l'écru - un accord doux et un peu inattendu.",
+ "en": "Kiwi green goes with powder pink and ecru - a soft, slightly unexpected pairing."
+ },
+ "howToWearNote": {
+ "fr": "Faite main, pas deux couronnes de graines ne se ressemblent - c'est la signature de la main.",
+ "en": "Made by hand, no two crowns of seeds match - the signature of the hand."
+ }
+ },
+ {
+ "handle": "raffia-watermelon-slice-charm-ss26",
+ "short": {
+ "fr": "Une part de pastèque, rose vif, liseré blanc, écorce verte, quelques pépins. L'été pur.",
+ "en": "A watermelon wedge, bright pink, white edge, green rind, a few pips. Pure summer."
+ },
+ "desc": {
+ "fr": "Trois couleurs qui s'enchaînent par rangs - rose, blanc, vert - et des pépins brodés un à un : compte autour de deux heures pour un triangle bien net. Plate et gaie, c'est tout l'été à clipser sur un sac de plage ou les clés, le genre de détail qui fait sourire au passage.",
+ "en": "Three colours running on in rows - pink, white, green - with pips stitched in one by one: count around two hours for a clean triangle. Flat and cheerful, it's the whole of summer to clip on a beach bag or the keys, the kind of detail that earns a passing smile."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ },
+ "fabric": {
+ "fr": "Rose, blanc et vert montent par rangs de couleur ; les pépins sont brodés au point.",
+ "en": "Pink, white and green rise in colour rows; the pips are stitched in by hand."
+ },
+ "handworkTime": {
+ "fr": "Environ deux heures de crochet.",
+ "en": "About two hours of crochet."
+ },
+ "dimensions": {
+ "fr": "Environ 6 x 4 cm.",
+ "en": "About 6 x 4 cm."
+ },
+ "edition": {
+ "fr": "Crochetée en petit nombre, à Guéliz ; chaque part pose ses pépins ailleurs.",
+ "en": "Crocheted in small numbers, in Guéliz; each wedge sets its pips elsewhere."
+ },
+ "fruitStoryTitle": {
+ "fr": "Les grandes parts à l'ombre",
+ "en": "Big wedges in the shade"
+ },
+ "fruitStoryBody": {
+ "fr": "Aux heures les plus chaudes, on tranche la pastèque en grandes parts roses qu'on partage à l'ombre. On l'a refaite au crochet - rose, blanc, vert, pépins - pour en garder un peu de fraîcheur.",
+ "en": "In the hottest hours the watermelon is sliced into big pink wedges shared in the shade. We rebuilt it in crochet - pink, white, green, pips - to keep a little of its coolness."
+ },
+ "howToWearTitle": {
+ "fr": "Porter la pastèque",
+ "en": "Wearing the watermelon"
+ },
+ "howToWearIntro": {
+ "fr": "La couleur de l'été, franche et joyeuse, sur un petit triangle.",
+ "en": "The colour of summer, bright and joyful, on a small triangle."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur un sac de plage, là où elle est chez elle.",
+ "en": "On a beach bag, right at home."
+ },
+ {
+ "fr": "Au porte-clés, un éclat de rose au quotidien.",
+ "en": "On the keys, a splash of pink every day."
+ },
+ {
+ "fr": "Sur la lanière d'un chapeau de paille.",
+ "en": "On the band of a straw hat."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Le rose pastèque va au vert et au bleu d'eau - la palette d'une journée à l'ombre.",
+ "en": "Watermelon pink goes with green and water-blue - the palette of a day in the shade."
+ },
+ "howToWearNote": {
+ "fr": "Crochetée à la main, aucune part ne place ses pépins comme une autre.",
+ "en": "Hand-crocheted, no wedge sets its pips like another."
+ }
+ },
+ {
+ "handle": "raffia-avocado-half-charm-ss26",
+ "short": {
+ "fr": "Un demi-avocat, chair vert tendre, écorce sombre, noyau brun au creux. Doux et inattendu.",
+ "en": "An avocado half, tender green flesh, dark skin, a brown stone in the hollow. Soft and unexpected."
+ },
+ "desc": {
+ "fr": "Trois tons à réunir - chair claire, écorce sombre, noyau brun bien rond au centre - soit environ deux heures de crochet. C'est ce noyau lisse posé dans le creux qui fait toute l'image. Doux et un peu inattendu, il se clipse sur un sac ou les clés comme un petit signe entre celles qui savent.",
+ "en": "Three tones to bring together - pale flesh, dark skin, a round brown stone at the centre - so about two hours of crochet. It's that smooth stone in the hollow that makes the whole picture. Soft and a little unexpected, it clips to a bag or the keys like a small sign between those who know."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ },
+ "fabric": {
+ "fr": "Trois tons - chair claire, écorce foncée, noyau brun - réunis au crochet puis à l'aiguille.",
+ "en": "Three tones - pale flesh, dark skin, brown stone - joined in crochet then with the needle."
+ },
+ "handworkTime": {
+ "fr": "Environ deux heures de crochet.",
+ "en": "About two hours of crochet."
+ },
+ "dimensions": {
+ "fr": "Environ 6 x 3 cm.",
+ "en": "About 6 x 3 cm."
+ },
+ "edition": {
+ "fr": "Petite fournée, faite main au crochet ; le noyau ne se pose jamais deux fois pareil.",
+ "en": "A small batch, hand-made at the hook; the stone never sits the same way twice."
+ },
+ "fruitStoryTitle": {
+ "fr": "Un petit soleil sombre",
+ "en": "A small dark sun"
+ },
+ "fruitStoryBody": {
+ "fr": "Coupé en deux, l'avocat montre son noyau lisse et brun au creux de la chair verte - un petit soleil sombre. On a aimé cette image et l'avons crochetée telle quelle, noyau compris.",
+ "en": "Cut in two, the avocado shows its smooth brown stone in the hollow of the green flesh - a small dark sun. We liked that image and crocheted it just so, stone and all."
+ },
+ "howToWearTitle": {
+ "fr": "Porter le demi-avocat",
+ "en": "Wearing the avocado half"
+ },
+ "howToWearIntro": {
+ "fr": "Une couleur douce et un brin d'humour - pour celles qui se démarquent sans bruit.",
+ "en": "A soft colour and a touch of humour - for those who stand apart quietly."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur un tote de tous les jours, en ton sur ton de verts.",
+ "en": "On an everyday tote, in tone-on-tone greens."
+ },
+ {
+ "fr": "Au porte-clés, le détail qui fait sourire.",
+ "en": "On the keys, the detail that earns a smile."
+ },
+ {
+ "fr": "Sur un sac kaki ou beige, accord naturel.",
+ "en": "On a khaki or beige bag, a natural match."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "En camaïeu de vert et de beige, le demi-avocat se fond et ressort à la fois.",
+ "en": "In a wash of green and beige, the avocado half both blends in and stands out."
+ },
+ "howToWearNote": {
+ "fr": "Fait main, aucun noyau n'est posé tout à fait au même endroit que le précédent.",
+ "en": "Made by hand, no stone is set in quite the same spot as the last."
+ }
+ }
+ ],
+ "earrings": [
+ {
+ "handle": "watermelon-raffia-earrings-ss26",
+ "short": {
+ "fr": "Deux tranches de pastèque sur créoles dorées - rose au cœur, vert à l’écorce.",
+ "en": "Two watermelon slices on gold-tone hoops - pink at the heart, green at the rind."
+ },
+ "desc": {
+ "fr": "Rose au cœur, blanc puis vert vers l’écorce, quelques graines semées : la tranche se construit fil de raffia par fil de raffia, jamais imprimée. Les femmes de Guéliz la fixent ensuite à une créole dorée. À l’oreille elle ne pèse rien et bouge à chaque mot - l’étal de pastèque emporté avec soi.",
+ "en": "Pink at the heart, white then green toward the rind, a scatter of seeds: the slice is built raffia thread by raffia thread, never printed. The Guéliz women then fix it to a gold-tone hoop. On the ear it weighs nothing and moves with every word - the watermelon stall carried along."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l’une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
+ },
+ "fabric": {
+ "fr": "Rose, vert et graines naissent tous du fil de raffia noué à la main - aucune impression.",
+ "en": "Pink, green and seeds all come from raffia thread knotted by hand - no printing."
+ },
+ "handworkTime": {
+ "fr": "Crocheté puis monté en bijou, pièce par pièce, à la main.",
+ "en": "Crocheted then assembled into jewellery, piece by piece, by hand."
+ },
+ "dimensions": {
+ "fr": "Un bijou ultra léger, qui fait son effet - bien là à l’oreille et pourtant aucun ressenti même après plusieurs heures.",
+ "en": "An ultra-light jewel that makes itself felt - right there on the ear, yet no weight at all even after several hours."
+ },
+ "edition": {
+ "fr": "Quelques paires seulement réalisées par mois - chaque paire a sa propre personnalité.",
+ "en": "Only a few pairs made each month - each pair has its own personality."
+ },
+ "fruitStoryTitle": {
+ "fr": "Le rose qui éclate au soleil",
+ "en": "The pink that bursts in the sun"
+ },
+ "fruitStoryBody": {
+ "fr": "En plein été, on fend la pastèque à même l’étal et le rose éclate sous le soleil. On a tenu cet instant - le frais, l’écorce verte, les graines - dans un fil de raffia.",
+ "en": "In high summer the watermelon is split right on the stall and the pink bursts in the sun. We held that instant - the cool, the green rind, the seeds - in a thread of raffia."
+ },
+ "howToWearTitle": {
+ "fr": "Comment la porter",
+ "en": "How to wear it"
+ },
+ "howToWearIntro": {
+ "fr": "Une couleur d’été qui aime la lumière et la peau nue.",
+ "en": "A summer colour that loves light and bare skin."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur un lin blanc ou écru, et le rose et le vert parlent seuls.",
+ "en": "On white or ecru linen, and the pink and green speak for themselves."
+ },
+ {
+ "fr": "Cheveux relevés, nuque libre - la tranche se balance.",
+ "en": "Hair up, neck free - the slice swings."
+ },
+ {
+ "fr": "En plein jour, au marché ou les pieds dans le sable.",
+ "en": "In full daylight, at the market or feet in the sand."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Le reste tout sobre - une couleur forte à l’oreille, ça suffit.",
+ "en": "Keep everything else plain - one strong colour at the ear is enough."
+ },
+ "howToWearNote": {
+ "fr": "Faite à la main, pas deux tranches n’ont la même forme ni les mêmes graines.",
+ "en": "Made by hand, no two slices share the same shape or the same seeds."
+ }
+ },
+ {
+ "handle": "kiwi-raffia-earrings-ss26",
+ "short": {
+ "fr": "Le kiwi en coupe - cœur clair, couronne de graines, sur créoles dorées.",
+ "en": "Kiwi in cross-section - pale heart, ring of seeds, on gold-tone hoops."
+ },
+ "desc": {
+ "fr": "Vert tendre vers les bords, cœur clair au centre, et la couronne de petites graines qui demande tout le soin : c’est elle qui fait le kiwi. Crochetée fil à fil à Guéliz, puis montée sur créole dorée. À l’oreille, c’est doux et un peu décalé - un fruit ouvert au matin.",
+ "en": "Tender green toward the edges, a pale heart at the centre, and the ring of little seeds that takes all the care: it's the seeds that make the kiwi. Crocheted thread by thread in Guéliz, then set on a gold-tone hoop. On the ear it's soft and a touch offbeat - a fruit opened in the morning."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l’une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
+ },
+ "fabric": {
+ "fr": "Le passage de verts et la couronne de graines, crochetés fil à fil - un vrai petit ouvrage.",
+ "en": "The shift of greens and the ring of seeds, crocheted thread by thread - true small handwork."
+ },
+ "handworkTime": {
+ "fr": "Crocheté puis monté en bijou, pièce par pièce, à la main.",
+ "en": "Crocheted then assembled into jewellery, piece by piece, by hand."
+ },
+ "dimensions": {
+ "fr": "Un bijou ultra léger, qui fait son effet - bien là à l’oreille et pourtant aucun ressenti même après plusieurs heures.",
+ "en": "An ultra-light jewel that makes itself felt - right there on the ear, yet no weight at all even after several hours."
+ },
+ "edition": {
+ "fr": "Une poignée de paires, crochetées main ; le vert ne tombe jamais deux fois pareil.",
+ "en": "A handful of pairs, crocheted by hand; the green never falls the same twice."
+ },
+ "fruitStoryTitle": {
+ "fr": "Le cœur étoilé",
+ "en": "The starred heart"
+ },
+ "fruitStoryBody": {
+ "fr": "Coupé sur l’étal, le kiwi montre d’un coup son cœur étoilé de graines, vert et lumineux. C’est ce vert tendre, frais, qu’on a voulu près du visage.",
+ "en": "Cut open on the stall, the kiwi suddenly shows its heart starred with seeds, green and luminous. It's that tender, fresh green we wanted near the face."
+ },
+ "howToWearTitle": {
+ "fr": "Comment le porter",
+ "en": "How to wear it"
+ },
+ "howToWearIntro": {
+ "fr": "Un vert doux qui se glisse partout, du matin au soir.",
+ "en": "A soft green that slips in anywhere, morning to night."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Avec du denim ou du kaki, un accord de verts très facile.",
+ "en": "With denim or khaki, an easy green-on-green note."
+ },
+ {
+ "fr": "Sur une chemise blanche, pour une seule touche de couleur.",
+ "en": "Over a white shirt, for a single touch of colour."
+ },
+ {
+ "fr": "Au quotidien - un vert qui ne fatigue jamais l’œil.",
+ "en": "Every day - a green that never tires the eye."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Mêlé aux dorés que vous portez déjà, la créole s’accorde aux bagues et chaînes fines.",
+ "en": "Mixed with the gold you already wear, the hoop suits thin rings and chains."
+ },
+ "howToWearNote": {
+ "fr": "Crocheté à la main, le dégradé de vert tombe chaque fois autrement - la paire est un peu la vôtre.",
+ "en": "Crocheted by hand, the green falls differently each time - the pair is a little yours."
+ }
+ },
+ {
+ "handle": "lemon-raffia-earrings-ss26",
+ "short": {
+ "fr": "Le citron sur créoles dorées - jaune franc, un peu de lumière à l’oreille. Une boucle entière, une tranche.",
+ "en": "Lemon on gold-tone hoops - clear yellow, a little light at the ear. One whole, one slice."
+ },
+ "desc": {
+ "fr": "Un jaune franc, gorgé de soleil, qui vient tout entier du raffia teint, sans rembourrage : crocheté serré, le citron garde sa rondeur tout seul. Façonné et monté sur créole dorée à Guéliz. C’est la couleur qui réveille un teint le matin - il en faut peu pour qu’elle suffise.",
+ "en": "A clear, sun-soaked yellow that comes entirely from dyed raffia, no padding: crocheted tight, the lemon holds its roundness on its own. Shaped and set on a gold-tone hoop in Guéliz. It's the colour that wakes a complexion in the morning - it takes little for it to be enough."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l’une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
+ },
+ "fabric": {
+ "fr": "Le jaune vient du raffia teint, crocheté serré pour tenir sa rondeur - aucun rembourrage.",
+ "en": "The yellow comes from dyed raffia, crocheted tight to hold its round shape - no padding."
+ },
+ "handworkTime": {
+ "fr": "Crocheté puis monté en bijou, pièce par pièce, à la main.",
+ "en": "Crocheted then assembled into jewellery, piece by piece, by hand."
+ },
+ "dimensions": {
+ "fr": "Un bijou ultra léger, qui fait son effet - bien là à l’oreille et pourtant aucun ressenti même après plusieurs heures.",
+ "en": "An ultra-light jewel that makes itself felt - right there on the ear, yet no weight at all even after several hours."
+ },
+ "edition": {
+ "fr": "Faite en petit nombre, à Guéliz ; chaque citron a sa petite rondeur.",
+ "en": "Made in small numbers, in Guéliz; each lemon has its own little roundness."
+ },
+ "fruitStoryTitle": {
+ "fr": "Partout sur les tables",
+ "en": "Everywhere on the tables"
+ },
+ "fruitStoryBody": {
+ "fr": "Le citron est partout à Marrakech - sur les tables, dans le thé, en pyramides jaunes au marché. On a pris ce jaune franc qui sent le soleil et on l’a noué au crochet.",
+ "en": "Lemon is everywhere in Marrakech - on the tables, in the tea, in yellow pyramids at the market. We took that clear, sun-smelling yellow and knotted it at the hook."
+ },
+ "howToWearTitle": {
+ "fr": "Comment le porter",
+ "en": "How to wear it"
+ },
+ "howToWearIntro": {
+ "fr": "Un jaune qui se porte comme un rai de lumière.",
+ "en": "A yellow worn like a shaft of light."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur du bleu - marine ou denim - le contraste plein été.",
+ "en": "Against blue - navy or denim - the full-summer contrast."
+ },
+ {
+ "fr": "Avec du blanc, et le jaune rayonne seul.",
+ "en": "With white, and the yellow shines on its own."
+ },
+ {
+ "fr": "Le soir comme en plein jour - il réchauffe le teint.",
+ "en": "Evening or full day - it warms the complexion."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Un seul accent suffit : le reste des bijoux, discret et doré.",
+ "en": "One accent is enough: the rest of the jewellery quiet and gold."
+ },
+ "howToWearNote": {
+ "fr": "Fait à la main, jamais deux citrons de la même rondeur d’une paire à l’autre.",
+ "en": "Made by hand, never two lemons of the same roundness from pair to pair."
+ }
+ },
+ {
+ "handle": "orange-raffia-earrings-ss26",
+ "short": {
+ "fr": "L’orange sur créoles dorées - la couleur du jus pressé au coin de la rue. Une boucle entière, une tranche.",
+ "en": "Orange on gold-tone hoops - the colour of juice pressed on the street corner. One whole, one slice."
+ },
+ "desc": {
+ "fr": "Chaude et ronde, sa couleur vient du raffia teint et rien d’autre ; crochetée en rond, l’orange garde son galbe sans rembourrage. Montée à Guéliz sur créole dorée. À l’oreille, elle pose cette chaleur d’agrume près du visage - un fruit fait de fil, qui suit la fin de journée.",
+ "en": "Warm and round, its colour comes from dyed raffia and nothing else; crocheted in the round, the orange keeps its curve without padding. Set in Guéliz on a gold-tone hoop. On the ear it lays that citrus warmth near the face - a fruit made of thread, following the end of the day."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l’une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
+ },
+ "fabric": {
+ "fr": "L’orange vient du raffia teint, crocheté en rond pour garder son galbe - un fruit en fil.",
+ "en": "The orange comes from dyed raffia, crocheted in the round to keep its curve - a fruit in thread."
+ },
+ "handworkTime": {
+ "fr": "Crocheté puis monté en bijou, pièce par pièce, à la main.",
+ "en": "Crocheted then assembled into jewellery, piece by piece, by hand."
+ },
+ "dimensions": {
+ "fr": "Un bijou ultra léger, qui fait son effet - bien là à l’oreille et pourtant aucun ressenti même après plusieurs heures.",
+ "en": "An ultra-light jewel that makes itself felt - right there on the ear, yet no weight at all even after several hours."
+ },
+ "edition": {
+ "fr": "Petite fournée faite main, au crochet ; rondeur et grain changent d’une paire à l’autre.",
+ "en": "A small hand-made batch, at the hook; roundness and texture change from pair to pair."
+ },
+ "fruitStoryTitle": {
+ "fr": "Pressée à la minute",
+ "en": "Pressed by the minute"
+ },
+ "fruitStoryBody": {
+ "fr": "Sur la place, les charrettes d’oranges s’empilent et le jus se presse à la minute, chaud de soleil. C’est cette orange ronde et pleine de lumière qu’on a crochetée.",
+ "en": "On the square the orange carts pile high and the juice is pressed by the minute, warm with sun. It's that round, light-filled orange we crocheted."
+ },
+ "howToWearTitle": {
+ "fr": "Comment la porter",
+ "en": "How to wear it"
+ },
+ "howToWearIntro": {
+ "fr": "Une couleur chaude qui aime les peaux dorées et les fins de journée.",
+ "en": "A warm colour that loves golden skin and the end of the day."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur du terracotta, du beige ou du brun - accord ton sur ton tout doux.",
+ "en": "With terracotta, beige or brown - a soft tone-on-tone accord."
+ },
+ {
+ "fr": "Avec du rose ou du fuchsia, pour oser la couleur pleine.",
+ "en": "With pink or fuchsia, to dare full colour."
+ },
+ {
+ "fr": "À la lumière du soir, l’orange s’embrase un peu plus.",
+ "en": "In evening light, the orange glows a little brighter."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "À dépareiller avec un autre fruit - une oreille orange, l’autre citron, par exemple.",
+ "en": "To mismatch with another fruit - one orange ear, one lemon, for instance."
+ },
+ "howToWearNote": {
+ "fr": "Crochetée à la main, sa rondeur et son grain changent un peu selon la paire.",
+ "en": "Crocheted by hand, its roundness and texture shift a little with each pair."
+ }
+ },
+ {
+ "handle": "grapes-raffia-earrings-ss26",
+ "short": {
+ "fr": "Une petite grappe sur créoles dorées - des grains ronds qui dansent au moindre geste.",
+ "en": "A little cluster on gold-tone hoops - round grapes that dance at the slightest move."
+ },
+ "desc": {
+ "fr": "Chaque grain est crocheté à part, puis noué aux autres jusqu’à former la grappe suspendue à la créole - un assemblage entièrement manuel. C’est ce qui les fait bouger : à l’oreille, les grains se frôlent et attrapent la lumière. Un balancement doux qui se réveille dès qu’on tourne la tête.",
+ "en": "Each grape is crocheted apart, then knotted to the others until the cluster hangs from the hoop - assembled entirely by hand. That's what sets them moving: on the ear the grapes brush together and catch the light. A soft sway that wakes the moment you turn your head."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l’une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
+ },
+ "fabric": {
+ "fr": "Chaque grain crocheté seul, puis noué à la grappe - tout à la main.",
+ "en": "Each grape crocheted on its own, then knotted into the cluster - all by hand."
+ },
+ "handworkTime": {
+ "fr": "Crocheté puis monté en bijou, pièce par pièce, à la main.",
+ "en": "Crocheted then assembled into jewellery, piece by piece, by hand."
+ },
+ "dimensions": {
+ "fr": "Un bijou ultra léger, qui fait son effet - bien là à l’oreille et pourtant aucun ressenti même après plusieurs heures.",
+ "en": "An ultra-light jewel that makes itself felt - right there on the ear, yet no weight at all even after several hours."
+ },
+ "edition": {
+ "fr": "Quelques paires seulement, faites au crochet ; chaque grappe compte ses grains à sa façon.",
+ "en": "Only a few pairs, made at the hook; each cluster counts its grapes its own way."
+ },
+ "fruitStoryTitle": {
+ "fr": "L’ombre de la treille",
+ "en": "Shade of the trellis"
+ },
+ "fruitStoryBody": {
+ "fr": "À Marrakech, la vigne grimpe sur les treilles et donne une ombre fraîche, les grappes lourdes au-dessus des têtes. On l’a crochetée grain à grain pour garder un peu de cette ombre douce.",
+ "en": "In Marrakech the vine climbs the trellis and gives cool shade, the clusters heavy overhead. We crocheted it grape by grape to keep a little of that soft shade."
+ },
+ "howToWearTitle": {
+ "fr": "Comment la porter",
+ "en": "How to wear it"
+ },
+ "howToWearIntro": {
+ "fr": "Une grappe qui bouge - elle aime les cheveux relevés et les épaules nues.",
+ "en": "A cluster that moves - it loves hair up and bare shoulders."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Avec une encolure dégagée, et les grains se balancent.",
+ "en": "With an open neckline, and the grapes swing."
+ },
+ {
+ "fr": "Sur des tons crème ou vert vigne, esprit de table d’été.",
+ "en": "With cream or vine-green tones, a summer-table feel."
+ },
+ {
+ "fr": "En fin de journée, la lumière rasante fait danser les grains.",
+ "en": "Late in the day, low light sets the grapes dancing."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Qu’elle mène seule : pas de collier, juste la grappe et la lumière.",
+ "en": "Let it lead alone: no necklace, just the cluster and the light."
+ },
+ "howToWearNote": {
+ "fr": "Faite à la main, aucune grappe ne compte ses grains comme la voisine.",
+ "en": "Made by hand, no cluster counts its grapes like its neighbour."
+ }
+ },
+ {
+ "handle": "cherries-raffia-earrings-ss26",
+ "short": {
+ "fr": "Deux cerises reliées par la tige, sur créoles dorées - un rouge joueur à l’oreille.",
+ "en": "Two cherries joined at the stem, on gold-tone hoops - a playful red at the ear."
+ },
+ "desc": {
+ "fr": "Deux petites boules rouges, crochetées rondes et reliées par une tige nouée main, qui pendent à la créole dorée. Un rouge gourmand, un brin joueur - le détail qui décroche un sourire. À Guéliz, chaque cerise est faite puis montée à la suivante, sans qu’aucune ne ressemble tout à fait à l’autre.",
+ "en": "Two small red rounds, crocheted plump and joined by a hand-knotted stem, hanging from the gold-tone hoop. A gourmand red, a touch playful - the detail that pulls a smile. In Guéliz each cherry is made then mounted to the next, with none quite matching the other."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l’une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
+ },
+ "fabric": {
+ "fr": "Deux cerises crochetées rondes, reliées par une tige nouée à la main.",
+ "en": "Two cherries crocheted round, joined by a hand-knotted stem."
+ },
+ "handworkTime": {
+ "fr": "Crocheté puis monté en bijou, pièce par pièce, à la main.",
+ "en": "Crocheted then assembled into jewellery, piece by piece, by hand."
+ },
+ "dimensions": {
+ "fr": "Un bijou ultra léger, qui fait son effet - bien là à l’oreille et pourtant aucun ressenti même après plusieurs heures.",
+ "en": "An ultra-light jewel that makes itself felt - right there on the ear, yet no weight at all even after several hours."
+ },
+ "edition": {
+ "fr": "Faite en petit nombre, à Guéliz ; les deux cerises ne tombent jamais jumelles.",
+ "en": "Made in small numbers, in Guéliz; the two cherries never fall as twins."
+ },
+ "fruitStoryTitle": {
+ "fr": "Les cerises à deux",
+ "en": "Cherries, two by two"
+ },
+ "fruitStoryBody": {
+ "fr": "Les cerises arrivent tôt et brillent, rouges et serrées, dans les cageots du marché. Nous aimons qu’elles aillent toujours par deux - alors nous les avons crochetées ainsi, reliées par leur tige.",
+ "en": "Cherries come early and shine, red and tight, in the market crates. We love that they always come in twos - so we crocheted them that way, joined at the stem."
+ },
+ "howToWearTitle": {
+ "fr": "Comment les porter",
+ "en": "How to wear them"
+ },
+ "howToWearIntro": {
+ "fr": "Un rouge joueur qui donne tout de suite le sourire.",
+ "en": "A playful red that brings the smile straight away."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur du blanc ou du crème, pour que le rouge claque.",
+ "en": "On white or cream, so the red pops."
+ },
+ {
+ "fr": "Avec une robe d’été légère et les cheveux lâchés.",
+ "en": "With a light summer dress and hair down."
+ },
+ {
+ "fr": "Quand vous voulez une seule petite touche de couleur, gourmande.",
+ "en": "When you want a single, gourmand touch of colour."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Une bouche rouge et ces cerises : c’est tout, c’est juste.",
+ "en": "A red lip and these cherries - that is all it takes."
+ },
+ "howToWearNote": {
+ "fr": "Crochetées à la main, les deux cerises ne sont jamais tout à fait jumelles - c’est la marque de la main.",
+ "en": "Crocheted by hand, the two cherries are never quite twins - that is the mark of the hand."
+ }
+ },
+ {
+ "handle": "tomatoes-raffia-earrings-ss26",
+ "short": {
+ "fr": "La tomate au crochet, coiffée de son calice vert - rouge de potager à l’oreille.",
+ "en": "Tomato at the crochet hook, capped with its green calyx - garden red at the ear."
+ },
+ "desc": {
+ "fr": "Ronde, rouge, son petit calice vert posé dessus comme un chapeau : la tomate du potager, crochetée en raffia et montée sur créole dorée. Le corps et le calice naissent séparément, puis se rejoignent au fil. À l’oreille, rien de chichi - juste le rouge franc des étals et des tables de Guéliz, à hauteur de joue.",
+ "en": "Round, red, its little green calyx set on top like a cap: the garden tomato, crocheted in raffia and mounted on a gold-tone hoop. Body and calyx are born apart, then meet at the thread. On the ear, nothing fussy - just the frank red of the Guéliz stalls and tables, level with the cheek."
+ },
+ "material": {
+ "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l’une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
+ "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
+ },
+ "fabric": {
+ "fr": "Corps rouge et calice vert crochetés à part, puis réunis au fil.",
+ "en": "Red body and green calyx crocheted apart, then joined at the thread."
+ },
+ "handworkTime": {
+ "fr": "Crocheté puis monté en bijou, pièce par pièce, à la main.",
+ "en": "Crocheted then assembled into jewellery, piece by piece, by hand."
+ },
+ "dimensions": {
+ "fr": "Un bijou ultra léger, qui fait son effet - bien là à l’oreille et pourtant aucun ressenti même après plusieurs heures.",
+ "en": "An ultra-light jewel that makes itself felt - right there on the ear, yet no weight at all even after several hours."
+ },
+ "edition": {
+ "fr": "Petite fournée faite main, au crochet ; pas une tomate n’est tout à fait ronde pareil.",
+ "en": "A small hand-made batch, at the hook; no two tomatoes are round quite the same."
+ },
+ "fruitStoryTitle": {
+ "fr": "Rouge de la salade de midi",
+ "en": "Red of the midday salad"
+ },
+ "fruitStoryBody": {
+ "fr": "À midi, la tomate finit coupée dans l’huile et le sel, sur la table du déjeuner. On a gardé l’avant : ronde, mûre, le calice encore vert, au crochet et au fil.",
+ "en": "At noon the tomato ends up sliced into oil and salt, on the lunch table. We kept the before: round, ripe, the calyx still green, in crochet and thread."
+ },
+ "howToWearTitle": {
+ "fr": "Comment la porter",
+ "en": "How to wear it"
+ },
+ "howToWearIntro": {
+ "fr": "Un rouge sans détour - laissez-le faire le travail.",
+ "en": "A red with no detours - let it do the work."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur du lin blanc ou écru, comme une nappe d’été.",
+ "en": "On white or ecru linen, like a summer cloth."
+ },
+ {
+ "fr": "Près d’un vert profond, et le calice répond tout seul.",
+ "en": "Near a deep green, and the calyx answers on its own."
+ },
+ {
+ "fr": "En semaine, quand un seul point vif suffit.",
+ "en": "On a weekday, when a single bright point is enough."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Mariez-la à une cerise : deux rouges du marché, deux rondeurs qui se répondent.",
+ "en": "Marry it to a cherry: two market reds, two roundnesses answering each other."
+ },
+ "howToWearNote": {
+ "fr": "Faite main, le rouge et le petit calice tombent un peu autrement d’une oreille à l’autre.",
+ "en": "Made by hand, the red and the little calyx fall a little differently from one ear to the other."
+ }
+ }
+ ],
+ "necklaces": [
+ {
+ "handle": "lemon-slice-raffia-necklace-ss26",
+ "short": {
+ "fr": "Une tranche de citron au crochet, contre la peau - un quartier de jaune au cou.",
+ "en": "A crocheted lemon slice against the skin - a wedge of yellow at the neck."
+ },
+ "desc": {
+ "fr": "Un demi-rond de citron, le grain des quartiers monté point par point, noué sur un cordon avec sa petite boucle. À Guéliz, Fatima crochète la tranche pendant qu'à côté on coud les cordons - deux gestes, une même table. Posée à même la peau ou sur un col de lin, elle pose un seul quartier de jaune et n'en demande pas plus.",
+ "en": "A lemon half-round, the grain of the segments built stitch by stitch, knotted on a cord with its small clasp. In Guéliz, Fatima crochets the slice while the cords are sewn alongside - two gestures, one table. Worn against bare skin or on a linen collar, it lays down a single wedge of yellow and asks for nothing more."
+ },
+ "material": {
+ "fr": "Raffia crocheté à la main sur cordon, boucle de finition.",
+ "en": "Hand-crocheted raffia on a cord, finishing clasp."
+ },
+ "fabric": {
+ "fr": "Le crochet creuse les quartiers et lève leur relief, fil après fil.",
+ "en": "The crochet hollows the segments and raises their ridge, thread after thread."
+ },
+ "handworkTime": {
+ "fr": "Crochetée puis nouée sur le cordon, pièce par pièce, à la main.",
+ "en": "Crocheted then knotted onto the cord, piece by piece, by hand."
+ },
+ "dimensions": {
+ "fr": "Un petit bijou textile, léger - bien posé contre la peau ou un col de lin.",
+ "en": "A small textile-jewel, light - set against the skin or a linen collar."
+ },
+ "edition": {
+ "fr": "Quelques pièces seulement, faites au crochet ; deux tranches ne jaunissent jamais pareil.",
+ "en": "Only a few pieces, made at the hook; no two slices yellow the same."
+ },
+ "fruitStoryTitle": {
+ "fr": "Pyramides jaunes du matin",
+ "en": "Yellow pyramids of morning"
+ },
+ "fruitStoryBody": {
+ "fr": "Dès le lever du jour, les citrons s'empilent en pyramides sur les étals et prennent la première lumière. On a gardé cette acidité claire et nouée un quartier au cordon.",
+ "en": "From first light the lemons stack into pyramids on the stalls and take the day's first sun. We kept that clear acidity and knotted one wedge to the cord."
+ },
+ "howToWearTitle": {
+ "fr": "Comment la porter",
+ "en": "How to wear it"
+ },
+ "howToWearIntro": {
+ "fr": "Un quartier de jaune suffit - laissez-le respirer.",
+ "en": "One wedge of yellow is enough - let it breathe."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur une chemise de lin blanc, col ouvert, pour réveiller le neutre.",
+ "en": "Over a white linen shirt, collar open, to wake the neutral."
+ },
+ {
+ "fr": "À même la peau, l'été, sous un décolleté qui ne couvre rien.",
+ "en": "Against bare skin in summer, under a neckline that covers nothing."
+ },
+ {
+ "fr": "Sur du bleu ou de l'olive, pour le contraste qui décroche un sourire.",
+ "en": "On blue or olive, for the contrast that pulls a smile."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Que le citron soit la seule couleur ; tout le reste se tait.",
+ "en": "Let the lemon be the only colour; the rest stays quiet."
+ },
+ "howToWearNote": {
+ "fr": "Au crochet, la teinte et le grain glissent un peu d'une tranche à la suivante.",
+ "en": "At the hook, the shade and grain slip a little from one slice to the next."
+ }
+ },
+ {
+ "handle": "orange-slice-raffia-necklace-ss26",
+ "short": {
+ "fr": "Une tranche d'orange au crochet, quartier après quartier - un rond chaud au cou.",
+ "en": "A crocheted orange slice, segment after segment - a warm round at the neck."
+ },
+ "desc": {
+ "fr": "Une rondelle d'orange montée quartier après quartier au crochet, nouée sur un cordon avec sa boucle. À Guéliz, les femmes la construisent un quartier à la fois, jusqu'à ce que le rond se ferme. Contre la peau ou sur un col de lin, elle porte la chaleur du jus pressé à l'angle de la place, sans en faire trop.",
+ "en": "An orange round built segment after segment at the hook, knotted on a cord with its clasp. In Guéliz the women raise it one wedge at a time, until the round closes. Against the skin or on a linen collar, it carries the warmth of juice pressed at the corner of the square, without overdoing it."
+ },
+ "material": {
+ "fr": "Raffia crocheté à la main sur cordon, boucle de finition.",
+ "en": "Hand-crocheted raffia on a cord, finishing clasp."
+ },
+ "fabric": {
+ "fr": "Les quartiers se crochètent un à un, jusqu'à ce que le rond se ferme.",
+ "en": "The segments are crocheted one by one, until the round closes."
+ },
+ "handworkTime": {
+ "fr": "Crochetée puis nouée sur le cordon, pièce par pièce, à la main.",
+ "en": "Crocheted then knotted onto the cord, piece by piece, by hand."
+ },
+ "dimensions": {
+ "fr": "Un petit bijou textile, léger - bien posé contre la peau ou un col de lin.",
+ "en": "A small textile-jewel, light - set against the skin or a linen collar."
+ },
+ "edition": {
+ "fr": "Une poignée de pièces, crochetées main ; aucun rond ne se ferme tout à fait pareil.",
+ "en": "A handful of pieces, crocheted by hand; no round closes quite the same."
+ },
+ "fruitStoryTitle": {
+ "fr": "Le jus pressé à l'angle de la place",
+ "en": "Juice pressed at the corner of the square"
+ },
+ "fruitStoryBody": {
+ "fr": "L'après-midi, l'orange devient le jus pressé au coin de la place, l'odeur sucrée dans l'air chaud. On a gardé la rondelle entière, montée quartier après quartier.",
+ "en": "In the afternoon the orange becomes the juice pressed at the corner of the square, the sweet scent in the warm air. We kept the whole round, built segment after segment."
+ },
+ "howToWearTitle": {
+ "fr": "Comment la porter",
+ "en": "How to wear it"
+ },
+ "howToWearIntro": {
+ "fr": "Un rond chaud, à porter dans la même famille de tons.",
+ "en": "A warm round, best worn in its own family of tones."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Avec du lin terracotta ou sable, ton sur ton.",
+ "en": "With terracotta or sand linen, tone on tone."
+ },
+ {
+ "fr": "Sur un haut blanc, quand une seule couleur suffit.",
+ "en": "Over a white top, when one colour is enough."
+ },
+ {
+ "fr": "À même la peau hâlée, l'été, sous un décolleté ouvert.",
+ "en": "Against tanned skin in summer, under an open neckline."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Restez dans les matières du marché : lin, coton, raffia, rien de brillant.",
+ "en": "Stay in market materials: linen, cotton, raffia, nothing shiny."
+ },
+ "howToWearNote": {
+ "fr": "Au crochet, la couleur et le galbe du rond bougent un peu d'une pièce à l'autre.",
+ "en": "At the hook, the colour and curve of the round shift a little from one piece to the next."
+ }
+ },
+ {
+ "handle": "watermelon-slice-raffia-necklace-ss26",
+ "short": {
+ "fr": "Une tranche de pastèque au crochet, du cœur rose à l'écorce verte - au cou.",
+ "en": "A crocheted watermelon slice, from pink heart to green rind - at the neck."
+ },
+ "desc": {
+ "fr": "Une part de pastèque crochetée par bandes : le rose du cœur, le liseré clair, le vert de l'écorce, montée sur un cordon avec sa boucle. Fatima la mène couche après couche, dans cet ordre, jusqu'à la pointe. Contre la peau ou sur un col de lin, elle garde un quartier d'été qui se porte aussi en plein hiver.",
+ "en": "A wedge of watermelon crocheted in bands: the pink heart, the pale line, the green rind, mounted on a cord with its clasp. Fatima carries it layer after layer, in that order, down to the point. Against the skin or on a linen collar, it holds a wedge of summer you can wear in deep winter too."
+ },
+ "material": {
+ "fr": "Raffia crocheté à la main sur cordon, boucle de finition.",
+ "en": "Hand-crocheted raffia on a cord, finishing clasp."
+ },
+ "fabric": {
+ "fr": "Rose, liseré clair, vert : trois bandes crochetées dans l'ordre, du cœur à l'écorce.",
+ "en": "Pink, pale line, green: three bands crocheted in order, heart to rind."
+ },
+ "handworkTime": {
+ "fr": "Crochetée puis nouée sur le cordon, pièce par pièce, à la main.",
+ "en": "Crocheted then knotted onto the cord, piece by piece, by hand."
+ },
+ "dimensions": {
+ "fr": "Un petit bijou textile, léger - bien posé contre la peau ou un col de lin.",
+ "en": "A small textile-jewel, light - set against the skin or a linen collar."
+ },
+ "edition": {
+ "fr": "Faite en petite quantité, au crochet ; le rose et le vert tombent un peu autrement à chaque part.",
+ "en": "Made in small quantity, by crochet; the pink and green fall a little differently each wedge."
+ },
+ "fruitStoryTitle": {
+ "fr": "La part qu'on partage à l'ombre",
+ "en": "The wedge shared in the shade"
+ },
+ "fruitStoryBody": {
+ "fr": "Quand le soleil tape fort, on ouvre la pastèque en grandes parts qu'on se passe à l'ombre. On en a gardé une, du cœur rose à l'écorce, à nouer au cou.",
+ "en": "When the sun beats hard, the watermelon is opened into big wedges passed around in the shade. We kept one, pink heart to rind, to knot at the neck."
+ },
+ "howToWearTitle": {
+ "fr": "Comment la porter",
+ "en": "How to wear it"
+ },
+ "howToWearIntro": {
+ "fr": "Deux couleurs dans une part - laissez-la mener.",
+ "en": "Two colours in one wedge - let it lead."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur du blanc ou de l'écru, pour que rose et vert sortent nets.",
+ "en": "Over white or ecru, so pink and green come out clean."
+ },
+ {
+ "fr": "À même la peau, au bord de l'eau, par-dessus un maillot.",
+ "en": "Against bare skin, by the water, over a swimsuit."
+ },
+ {
+ "fr": "Sur du jean clair, pour un mélange frais et sans effort.",
+ "en": "Over light denim, for a fresh, effortless mix."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Rose et vert font tout : gardez les autres bijoux silencieux.",
+ "en": "Pink and green do it all: keep other jewellery silent."
+ },
+ "howToWearNote": {
+ "fr": "Au crochet, les nuances de rose et de vert glissent un peu d'une part à l'autre.",
+ "en": "At the hook, the pink and green shades slip a little from one wedge to the next."
+ }
+ },
+ {
+ "handle": "grapes-raffia-necklace-ss26",
+ "short": {
+ "fr": "Une grappe de raisin au crochet, grain à grain - elle bouge avec vous.",
+ "en": "A crocheted grape cluster, berry by berry - it moves with you."
+ },
+ "desc": {
+ "fr": "Une grappe dont chaque grain est crocheté à part, puis rassemblé sur un cordon avec sa boucle. À Guéliz, les femmes en font un grain, puis le suivant, jusqu'à ce que la grappe pèse juste ce qu'il faut. Contre la peau ou sur un col de lin, elle a du volume et balance doucement au pas - deux grappes ne comptent jamais le même nombre de grains.",
+ "en": "A cluster whose every berry is crocheted apart, then gathered onto a cord with its clasp. In Guéliz the women make one berry, then the next, until the cluster weighs just enough. Against the skin or on a linen collar, it has body and sways gently as you walk - no two clusters count the same number of grapes."
+ },
+ "material": {
+ "fr": "Raffia crocheté à la main sur cordon, boucle de finition.",
+ "en": "Hand-crocheted raffia on a cord, finishing clasp."
+ },
+ "fabric": {
+ "fr": "Chaque grain naît seul, puis rejoint les autres jusqu'à former la grappe.",
+ "en": "Each berry is born alone, then joins the rest until the cluster forms."
+ },
+ "handworkTime": {
+ "fr": "Crochetée puis montée en grappe sur le cordon, à la main ; comptez jusqu'à six heures.",
+ "en": "Crocheted then gathered into a cluster on the cord, by hand; allow up to six hours."
+ },
+ "dimensions": {
+ "fr": "Un petit bijou textile, léger - avec assez de volume pour balancer au pas.",
+ "en": "A small textile-jewel, light - with enough body to sway as you walk."
+ },
+ "edition": {
+ "fr": "Petite fournée faite main, au crochet ; aucune grappe ne compte ses grains comme la voisine.",
+ "en": "A small hand-made batch, at the hook; no cluster counts its grapes like its neighbour."
+ },
+ "fruitStoryTitle": {
+ "fr": "Lourdes juste avant l'automne",
+ "en": "Heavy just before autumn"
+ },
+ "fruitStoryBody": {
+ "fr": "En fin d'été, les grappes pendent aux étals, lourdes et lumineuses, juste avant l'automne. On les a refaites grain par grain pour garder ce poids généreux au creux du cou.",
+ "en": "At summer's end the clusters hang on the stalls, heavy and bright, just before autumn. We remade them berry by berry to keep that generous weight at the hollow of the neck."
+ },
+ "howToWearTitle": {
+ "fr": "Comment la porter",
+ "en": "How to wear it"
+ },
+ "howToWearIntro": {
+ "fr": "Du volume et du mouvement - donnez-lui de l'air.",
+ "en": "Body and movement - give it air."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur une encolure dégagée, pour que les grains tombent libres.",
+ "en": "On an open neckline, so the berries fall free."
+ },
+ {
+ "fr": "Près d'une robe prune ou verte, qui répond à la couleur du raisin.",
+ "en": "Near a plum or green dress that answers the grape's colour."
+ },
+ {
+ "fr": "Sur une maille fine, l'automne, contre une matière douce.",
+ "en": "Over a fine knit in autumn, against a soft texture."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Qu'elle mène seule : sa rondeur remplit déjà le décolleté.",
+ "en": "Let it lead alone: its roundness already fills the neckline."
+ },
+ "howToWearNote": {
+ "fr": "Au crochet, le nombre et la forme des grains changent un peu d'une grappe à l'autre.",
+ "en": "At the hook, the number and shape of the berries change a little from one cluster to the next."
+ }
+ },
+ {
+ "handle": "cherries-raffia-necklace-ss26",
+ "short": {
+ "fr": "Deux cerises au crochet, reliées par la tige - un rouge espiègle au creux du cou.",
+ "en": "Two crocheted cherries on their stem - a mischievous red at the hollow of the neck."
+ },
+ "desc": {
+ "fr": "Deux boules rouges crochetées en rond, reliées par leur tige, posées sur un cordon avec sa boucle. Fatima fait l'une, puis l'autre, et les noue par la queue - alors la paire n'est jamais tout à fait jumelle. Contre la peau ou sur un col de lin, c'est le rouge espiègle qui décroche un sourire, n'importe quel jour.",
+ "en": "Two red rounds crocheted in the round, joined at their stem, set on a cord with its clasp. Fatima makes one, then the other, and knots them by the tail - so the pair is never quite twin. Against the skin or on a linen collar, it is the mischievous red that pulls a smile, any day."
+ },
+ "material": {
+ "fr": "Raffia crocheté à la main sur cordon, boucle de finition.",
+ "en": "Hand-crocheted raffia on a cord, finishing clasp."
+ },
+ "fabric": {
+ "fr": "Chaque cerise se crochète en rond, puis se noue à sa tige.",
+ "en": "Each cherry is crocheted in the round, then knotted to its stem."
+ },
+ "handworkTime": {
+ "fr": "Crochetées puis nouées sur le cordon, pièce par pièce, à la main.",
+ "en": "Crocheted then knotted onto the cord, piece by piece, by hand."
+ },
+ "dimensions": {
+ "fr": "Un petit bijou textile, léger - bien posé contre la peau ou un col de lin.",
+ "en": "A small textile-jewel, light - set against the skin or a linen collar."
+ },
+ "edition": {
+ "fr": "Crochetée en petit nombre, à Guéliz ; les deux cerises ne sont jamais jumelles.",
+ "en": "Crocheted in small numbers, in Guéliz; the two cherries are never twins."
+ },
+ "fruitStoryTitle": {
+ "fr": "Les premières du printemps",
+ "en": "The first of spring"
+ },
+ "fruitStoryBody": {
+ "fr": "Au printemps, les cerises arrivent les premières, vendues en petits tas brillants qui font tourner la tête. On les a refaites par paire pour garder ce rouge espiègle au creux du cou.",
+ "en": "In spring, cherries arrive first, sold in little shining heaps that turn your head. We remade them in pairs to keep that mischievous red at the hollow of the neck."
+ },
+ "howToWearTitle": {
+ "fr": "Comment les porter",
+ "en": "How to wear them"
+ },
+ "howToWearIntro": {
+ "fr": "Un rouge joueur - laissez-le donner le ton.",
+ "en": "A playful red - let it set the tone."
+ },
+ "howToWearItems": [
+ {
+ "fr": "Sur du blanc ou des rayures, pour le côté léger et rétro.",
+ "en": "Over white or stripes, for a light, retro feel."
+ },
+ {
+ "fr": "À même la peau, sur une robe noire toute nue, pour le contraste net.",
+ "en": "Against bare skin, over a plain black dress, for a clean contrast."
+ },
+ {
+ "fr": "Sur du jean, le week-end, quand rien n'est sérieux.",
+ "en": "Over denim on the weekend, when nothing is serious."
+ }
+ ],
+ "howToWearStyleTip": {
+ "fr": "Une seule couleur forte : que les cerises soient l'accent, rien d'autre.",
+ "en": "One strong colour: let the cherries be the accent, nothing else."
+ },
+ "howToWearNote": {
+ "fr": "Au crochet, la forme et le rouge des deux cerises diffèrent un peu d'une paire à l'autre.",
+ "en": "At the hook, the shape and red of the two cherries differ a little from one pair to the next."
+ }
+ }
+ ]
+};
+ var FRUIT_COLLECTION = {
+ "title": {
+ "fr": "Le Fruit Market",
+ "en": "The Fruit Market"
+ },
+ "body": {
+ "fr": "Tout un marche crochete a la main - cerises, citrons, pasteque, tomates - ne des etals gorges de soleil de Marrakech. Chaque fruit est faconne en raphia par les femmes de notre atelier, au rythme du crochet.",
+ "en": "A whole market crocheted by hand - cherries, lemons, watermelon, tomatoes - born from the sun-soaked stalls of Marrakech. Each fruit is shaped in raffia by the women of our atelier, at the rhythm of the crochet hook."
+ }
+};
+ var L5x = (typeof L5 === 'function') ? L5 : function (fr, en) { return { fr: fr, en: en, es: en, tr: en, ar: en }; };
+ var f = function (o) { return o ? L5x(o.fr, o.en) : null; };
+ Object.keys(PERSONA_COPY).forEach(function (cluster) {
+ (PERSONA_COPY[cluster] || []).forEach(function (it) {
+ var p = PRODUCT_MAP.get(it.handle);
+ if (!p) return;
+ if (it.short) { p.short = f(it.short); p.displayShort = f(it.short); }
+ if (it.desc) p.desc = f(it.desc);
+ if (it.material) p.material = f(it.material);
+ if (it.fabric) p.fabric = f(it.fabric);
+ if (it.handworkTime) p.handworkTime = f(it.handworkTime);
+ if (it.dimensions) p.dimensions = f(it.dimensions);
+ if (it.edition) { p.edition = f(it.edition); p.batch = f(it.edition); }
+ if (it.whatFits) p.whatFits = f(it.whatFits);
+ if (it.making) p.making = f(it.making);
+ if (it.fruitStoryTitle && it.fruitStoryBody) {
+ p.fruitStory = {
+ title: f(it.fruitStoryTitle),
+ body: f(it.fruitStoryBody),
+ collectionTitle: f(FRUIT_COLLECTION.title),
+ collectionBody: f(FRUIT_COLLECTION.body),
+ };
+ }
+ if (it.howToWearTitle && it.howToWearIntro) {
+ p.howToWear = {
+ title: f(it.howToWearTitle),
+ intro: f(it.howToWearIntro),
+ items: (it.howToWearItems || []).map(function (x) { return f(x); }),
+ styleTip: f(it.howToWearStyleTip),
+ note: f(it.howToWearNote),
+ };
+ }
+ });
+ });
+})();
+
+// Fix charm making.fr: PERSONA_COPY only defines making for cherries; all other
+// charms have English in their fr field from the original flat-product data.
+PRODUCTS.forEach(function(p) {
+ if (p.category === 'charms' && p.making && typeof p.making.fr === 'string' && !/^Chaque/i.test(p.making.fr)) {
+ p.making.fr = "Chaque pièce est crochetée à la main dans l'atelier de Guéliz, puis contrôlée avant la pose de l'étiquette YZA.";
+ }
+});
+
+// Fix earring making.fr: base data is unaccented raw text
+PRODUCTS.forEach(function(p) {
+ if (p.category === 'earrings' && p.making && typeof p.making.fr === 'string' && p.making.fr.indexOf('Chaque') === -1) {
+ p.making.fr = "Chaque bijou est crocheté à la main dans l'atelier de Guéliz, puis monté sur créole dorée avant la pose de l'étiquette YZA.";
+ p.making.en = 'Each jewel is hand-crocheted in the Guéliz atelier, then set on a gold-tone hoop before the YZA tag is added.';
+ }
+});
+
+// Fix necklace making.fr: base data is unaccented raw text
+PRODUCTS.forEach(function(p) {
+ if (p.category === 'necklaces' && p.making && typeof p.making.fr === 'string' && p.making.fr.indexOf('Chaque') === -1) {
+ p.making.fr = "Chaque bijou est crocheté à la main dans l'atelier de Guéliz, puis monté sur cordon avant la pose de l'étiquette YZA.";
+ p.making.en = 'Each jewel is hand-crocheted in the Guéliz atelier, then set on a cord before the YZA tag is added.';
+ }
+});
+
+// La Nouvelle Vague: bagFamilyEyebrow → material listing (was generic "New edition bag")
+['la-nouvelle-vague-xs-basket-bag-ss26', 'la-nouvelle-vague-s-basket-bag-ss26', 'la-nouvelle-vague-m-basket-bag-ss26'].forEach(function(h) {
+ var p = PRODUCT_MAP.get(h);
+ if (!p || !p.bagFamilyEyebrow) return;
+ p.bagFamilyEyebrow.fr = 'Feuilles de bananier · Raffia · Perles';
+ p.bagFamilyEyebrow.en = 'Banana leaves · Raffia · Beads';
+ p.bagFamilyEyebrow.es = 'Banana leaves · Raffia · Beads';
+ p.bagFamilyEyebrow.tr = 'Banana leaves · Raffia · Beads';
+ p.bagFamilyEyebrow.ar = 'Banana leaves · Raffia · Beads';
+});
+
+// Fix earring attachment (ACCROCHE): hoop size "1,5 cm" → "1,5 à 2 cm"
+PRODUCTS.forEach(function(p) {
+ if (p.attachment && typeof p.attachment.fr === 'string' && p.attachment.fr.indexOf('1,5 cm') !== -1) {
+ p.attachment.fr = 'Créole dorée 1,5 à 2 cm.';
+ p.attachment.en = 'Gold-tone hoop 1.5 to 2 cm.';
+ if (p.attachment.es) p.attachment.es = 'Gold-tone hoop 1.5 to 2 cm.';
+ if (p.attachment.tr) p.attachment.tr = 'Gold-tone hoop 1.5 to 2 cm.';
+ if (p.attachment.ar) p.attachment.ar = 'Gold-tone hoop 1.5 to 2 cm.';
+ }
+});
+
+// Bag care: factual rewrite - remove humidity myth + store-filled myth, add sun warning + travel solidity
+PRODUCTS.forEach(function(p) {
+ if (p.category !== 'bags') return;
+ var careFr = 'Dépoussiérer doucement à la brosse sèche. En cas de pluie, sécher à l’air libre : le cuir ou la couleur du raffia peut légèrement ternir, mais le sac reste au top. Éviter le soleil direct prolongé - la fibre peut sécher et les couleurs s’éteindre ou jaunir. Conçu pour voyager : solide et stable pendant des années, sans besoin de le rembourrer pour garder sa forme.';
+ var careEn = 'Dust gently with a dry brush. If caught in the rain, air-dry flat: the leather or raffia colour may dull slightly, but the bag stays in great shape. Avoid prolonged direct sun - the fibre can dry out and colours may fade or yellow. Built to travel: solid and shape-retaining for years, no stuffing needed.';
+ if (p.handle && p.handle.indexOf('la-sculpture') === 0) {
+ careFr += ' Les anses sont montées sur fil de fer : pliez-les, repositionnez-les à volonté.';
+ careEn += ' The handles are mounted on wire: bend and reposition them whenever you like.';
+ }
+ if (!p.care) p.care = {};
+ p.care.fr = careFr;
+ p.care.en = careEn;
+ p.care.es = careEn;
+ p.care.tr = careEn;
+ p.care.ar = careEn;
+});
+
+PRODUCTS.forEach(function(p) {
+ if (typeof p.inventory === 'undefined') p.inventory = null;
+});
+
+function readInventoryOverrides() {
+ try { return JSON.parse(localStorage.getItem('yza_inventory_overrides')) || {}; } catch (err) { return {}; }
+}
+
+function writeInventoryOverrides(overrides) {
+ try { localStorage.setItem('yza_inventory_overrides', JSON.stringify(overrides || {})); } catch (err) {}
+}
+
+function effectiveInventory(handle) {
+ var product = getProduct(handle);
+ if (!product) return null;
+ var base = product.inventory;
+ if (base === null || typeof base === 'undefined') return null;
+ var overrides = readInventoryOverrides();
+ var delta = Number(overrides[handle] || 0);
+ return Math.max(0, Number(base) + delta);
+}
+
+function inventoryStatus(product) {
+ if (!product) return { inventory: null, soldOut: false, almostGone: false };
+ var inventory = effectiveInventory(product.handle);
+ return {
+ inventory: inventory,
+ soldOut: inventory === 0,
+ almostGone: inventory !== null && inventory > 0 && inventory <= 5,
+ };
+}
+
+function decrementInventory(items) {
+ var overrides = readInventoryOverrides();
+ var changed = false;
+ (items || []).forEach(function(item) {
+ var product = getProduct(item.handle);
+ if (!product || product.inventory === null || typeof product.inventory === 'undefined') return;
+ var qty = Math.max(1, Number(item.qty) || 1);
+ overrides[item.handle] = Number(overrides[item.handle] || 0) - qty;
+ changed = true;
+ });
+ if (changed) writeInventoryOverrides(overrides);
+ try {
+ var log = JSON.parse(localStorage.getItem('yza_order_log')) || [];
+ log.push({ at: new Date().toISOString(), items: (items || []).map(function(i) { return { handle: i.handle, variant: i.variant || '', qty: i.qty || 1 }; }) });
+ localStorage.setItem('yza_order_log', JSON.stringify(log.slice(-200)));
+ } catch (err) {}
+}
+
+YZA.products = PRODUCTS;
+YZA.bagRows = BAG_ROWS;
+YZA.catalogSource = CATALOG_SOURCE;
+YZA.variants = VARIANTS;
+YZA.assetManifest = ASSET_MANIFEST;
+YZA.publicProductImage = isPublicProductImage;
+YZA.publicProducts = publicProductList;
+YZA.isLaunchPromoProduct = isLaunchPromoProduct;
+YZA.launchPromoProducts = launchPromoList;
+YZA.byCategory = byCategory;
+YZA.categoryInfo = categoryInfo;
+YZA.familyMembers = familyMembers;
+YZA.familyRepresentative = familyRepresentative;
+YZA.getProduct = getProduct;
+YZA.bagVariantFor = bagVariantFor;
+YZA.related = related;
+YZA.searchProducts = searchProducts;
+YZA.bundleForProduct = bundleForProduct;
+YZA.offerPicks = offerPicks;
+YZA.bundles = offerPicks;
+YZA.inventoryOverrides = readInventoryOverrides;
+YZA.effectiveInventory = effectiveInventory;
+YZA.inventoryStatus = inventoryStatus;
+YZA.decrementInventory = decrementInventory;
+
+YZA.business = {
+ salesSplit: { instagram: 0.3, boutique: 0.7 },
+ b2b: { moqBags: 10, terms: 'Wholesale partnerships with chosen stockists; full terms shared on request.' },
+ exclusions: ['Bijoux', 'Sacs market'],
+};
+YZA.promos = { exitRecovery: { code: 'YZA20', percent: 20, minEuro: 150, minDh: 150000 } };
+YZA.bespoke = {
+ minFabricPieces: 100,
+ note: { fr: 'Co-création tissu possible à partir de 100 pièces par tissu.', en: 'Fabric co-creation available from 100 pieces per fabric.' },
+};
+YZA.press = ['Vogue', 'Marie Claire', 'Glamour', 'iD'];
+YZA.reviewStats = { avg: 4.9, count: 214, real: false };
+YZA.testimonials = [
+ { rating: 5, name: 'Sarah', place: { fr: 'Marrakech', en: 'Marrakech' }, text: { fr: 'Le sac a une vraie présence. On comprend le prix quand on voit les finitions.', en: 'The bag has real presence. The finishing makes the price make sense.' } },
+ { rating: 5, name: 'Amal', place: { fr: 'Tokyo', en: 'Tokyo' }, text: { fr: 'Les charms sont les cadeaux les plus faciles : petits, visibles, très YZA.', en: 'The charms are the easiest gifts: small, visible and very YZA.' } },
+ { rating: 5, name: 'Nadia', place: { fr: 'Casablanca', en: 'Casablanca' }, text: { fr: 'J’aime que chaque pièce soit limitée et faite à la main, pas produite en masse.', en: 'I love that each piece is limited and handmade, not mass-produced.' } },
+];

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 150" fill="none"
+     stroke="currentColor" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round"
+     role="img" aria-label="Symbole YZA">
+  <circle cx="60" cy="11" r="4.5" fill="currentColor" stroke="none"/>
+  <!-- couronne : arêtes diagonales -->
+  <path d="M60 52 L18 24 M60 52 L102 24"/>
+  <!-- dents verticales -->
+  <path d="M47.4 43.6 V31.6 M36.9 36.6 V24.6 M26.4 29.6 V17.6
+           M72.6 43.6 V31.6 M83.1 36.6 V24.6 M93.6 29.6 V17.6
+           M18 24 V12 M102 24 V12"/>
+  <!-- tige + barres -->
+  <path d="M60 52 V140 M34 96 H86 M26 122 H94"/>
+</svg>

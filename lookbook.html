@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>Lookbook SS26/27 - YZA</title>
+ <meta name="description" content="Lookbook YZA SS26/27: univers Modern Marrakech wear, collection Jawhara, sacs La Sculpture, La Nouvelle Vague et accessoires fruit." />
+ <link rel="canonical" href="https://yza-shop.com/lookbook.html" />
+ <meta property="og:title" content="Lookbook SS26/27 - YZA" />
+ <meta property="og:description" content="Le lookbook YZA SS26/27 en lecture editoriale." />
+ <meta property="og:image" content="https://yza-shop.com/assets/lookbook-ss26-27/pages/yza-lookbook-page-01.jpg" />
+ <meta name="twitter:card" content="summary_large_image" />
+ <meta name="theme-color" content="#fcf7f1" />
+ <link rel="icon" href="assets/brand/yza-favicon.png" type="image/png" />
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Overpass+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="css/tokens.css" />
+ <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="lookbook">
+<main>
+ <section class="lookbook-hero container">
+ <nav class="breadcrumb"><a href="index.html" data-i18n="breadcrumb.home">Accueil</a><span>/</span><span data-i18n="nav.lookbook">Lookbook SS26/27</span></nav>
+ <p class="eyebrow">SS26/27</p>
+ <h1>Modern Marrakesh Wear&trade;</h1>
+ <p><span data-lang="fr">Le lookbook se lit comme un magazine - des pages lentes, signées de notre atelier de Guéliz, où le raphia prend la couleur des fruits du souk. Pas de prix ici : les tarifs vivent sur chaque produit, alors laisse-toi séduire par une pièce, puis retrouve-la prête à emporter. Des souks au bord de mer, du déjeuner en famille aux nuits d'été - enracinée à Marrakech, faite pour partout.</span><span data-lang="en" hidden>The lookbook reads like a magazine - slow pages from our atelier in Guéliz, where raffia takes the colour of fruit from the souk. No prices here: tariffs live on each piece, so let one catch your eye, then find it ready to take home. From the souks to the seaside, from family lunches to summer nights - rooted in Marrakech, crafted for everywhere.</span></p>
+ <div class="lookbook-hero__links">
+ <a class="btn btn--solid" href="collections.html?cat=charms" data-i18n="cta.shopCharms">Voir les charms</a>
+ <a class="btn btn--ghost" href="collections.html?cat=bags" data-i18n="nav.bags">Paniers & Sacs</a>
+ </div>
+ </section>
+
+ <section class="lookbook-reader container-wide" aria-label="YZA SS26/27 Lookbook">
+ <div class="lookbook-reader__grid" id="lookbookPages"></div>
+ </section>
+</main>
+
+ <script defer src="js/products.js"></script>
+ <script defer src="js/media.js"></script>
+ <script defer src="js/i18n.js"></script>
+ <script defer src="js/cart.js"></script>
+ <script defer src="js/chrome.js"></script>
+ <script defer src="js/main.js"></script>
+ <script>
+ document.addEventListener('DOMContentLoaded', function () {
+ const root = document.getElementById('lookbookPages');
+ if (!root) return;
+ const privatePages = new Set(['61', '62', '63', '64']);
+ root.innerHTML = Array.from({ length: 68 }, function (_, index) {
+ const page = String(index + 1).padStart(2, '0');
+ if (privatePages.has(page)) return '';
+ return '<figure class="lookbook-page" data-reveal>' +
+ '<img src="assets/lookbook-ss26-27/pages/yza-lookbook-page-' + page + '.jpg" alt="YZA SS26/27 lookbook page ' + page + '" width="864" height="1222" loading="lazy" decoding="async">' +
+ '<figcaption>Page ' + page + '</figcaption>' +
+ '</figure>';
+ }).join('');
+ });
+ </script>
+</body>
+</html>

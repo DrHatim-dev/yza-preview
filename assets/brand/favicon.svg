@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="YZA">
+  <rect width="64" height="64" rx="0" fill="#ffffff"/>
+  <g fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter" transform="translate(5 20) scale(.2)">
+    <path d="M13 8 48 61"/>
+    <path d="M83 8 48 61"/>
+    <path d="M98 10H165"/>
+    <path d="M165 10 101 60"/>
+    <path d="M101 60H171"/>
+    <path d="M190 60 224 10"/>
+    <path d="M224 10 253 60"/>
+  </g>
+</svg>

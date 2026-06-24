@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+ <title>B2B Wholesale - YZA</title>
+ <meta name="description" content="Programme wholesale YZA SS26/27 : séries courtes faites main à Marrakech. Templates de commande prêts à l'emploi, présentoir et kit offerts. Demandez votre devis revendeur." />
+ <link rel="canonical" href="https://yza-shop.com/b2b.html" />
+ <meta property="og:title" content="B2B Wholesale - YZA" />
+ <meta property="og:description" content="Séries courtes, atelier de femmes à Guéliz. Présentoir et kit marketing offerts. Demandez votre devis revendeur." />
+ <meta property="og:image" content="https://yza-shop.com/assets/products/la-sculpture/sculpture-deep-violet.jpg" />
+ <meta name="twitter:card" content="summary_large_image" />
+ <meta name="theme-color" content="#fcf7f1" />
+ <link rel="icon" href="assets/brand/yza-favicon.png" type="image/png" />
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Overpass+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="css/tokens.css" />
+ <link rel="stylesheet" href="css/styles.css" />
+ <style>
+ .b2b-wrap { max-width: 1100px; margin-inline: auto; }
+ .b2b-section { padding-block: clamp(2.5rem, 5vw, var(--space-16)); }
+ .b2b-eyebrow { font-family: var(--font-hand); color: var(--color-accent); font-size: var(--fs-sm); font-weight: 700; }
+ .b2b-h2 { font-family: var(--font-display); font-size: var(--fs-2xl); color: var(--color-accent); margin: var(--space-2) 0 var(--space-3); }
+ .b2b-lead { color: var(--color-muted); max-width: 62ch; }
+ .b2b-offer { background: var(--paper-card); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: clamp(1.5rem, 4vw, var(--space-12)); display: grid; gap: var(--space-6); }
+ .b2b-offer__stack { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-3) var(--space-6); }
+ .b2b-offer__item { display: grid; grid-template-columns: 2.6rem 1fr; gap: var(--space-3); align-items: start; font-size: var(--fs-sm); }
+ .b2b-ico { width: 2.3rem; height: 2.3rem; object-fit: contain; display: block; }
+ .b2b-offer__item .b2b-ico { margin-top: 0.1rem; }
+ .b2b-banner { max-width: 1100px; margin: 0 auto var(--space-4); overflow: hidden; border-radius: var(--radius-lg); border: 1px solid var(--color-border); }
+ .b2b-banner img { width: 100%; height: clamp(220px, 32vw, 400px); object-fit: cover; display: block; }
+ .b2b-banner figcaption { font-size: var(--fs-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0; padding: var(--space-3) var(--space-4); background: var(--paper-card); }
+ .b2b-offer__item strong { font-weight: 600; }
+ .b2b-templates { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-5); }
+ .b2b-template { border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); display: grid; gap: var(--space-3); align-content: start; background: var(--color-bg); }
+ .b2b-template h3 { font-family: var(--font-display); font-size: var(--fs-lg); }
+ .b2b-template p { color: var(--color-muted); font-size: var(--fs-sm); }
+ .b2b-template ul { list-style: none; display: grid; gap: var(--space-1); font-size: var(--fs-xs); color: var(--color-muted); }
+ .b2b-template button { margin-top: var(--space-2); }
+ .b2b-templates--4 { grid-template-columns: repeat(4, 1fr); }
+ @media (max-width: 1024px) { .b2b-templates--4 { grid-template-columns: repeat(2, 1fr); } }
+ .b2b-quote { display: grid; gap: var(--space-8); }
+ .b2b-fieldset { border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: clamp(1.25rem, 3vw, var(--space-8)); display: grid; gap: var(--space-5); min-width: 0; }
+ .b2b-fieldset > legend { font-family: var(--font-display); font-size: var(--fs-lg); padding-inline: var(--space-3); color: var(--color-accent); }
+ .b2b-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-4) var(--space-5); }
+ .b2b-field { display: grid; gap: var(--space-2); }
+ .b2b-field--full { grid-column: 1 / -1; }
+ .b2b-field label { font-size: var(--fs-xs); font-weight: 600; letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--color-muted); }
+ .b2b-field input, .b2b-field textarea { font-family: var(--font-body); font-size: var(--fs-base); padding: 0.7rem 0.85rem; border: 1px solid var(--color-border); border-radius: var(--radius); background: var(--color-bg); color: var(--color-fg); width: 100%; }
+ .b2b-field textarea { min-height: 110px; resize: vertical; }
+ .b2b-prod-group h3 { font-family: var(--font-body); font-size: var(--fs-sm); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin: var(--space-6) 0 var(--space-3); }
+ .b2b-prod { display: grid; grid-template-columns: 56px 1fr auto; gap: var(--space-4); align-items: center; padding-block: var(--space-3); border-bottom: 1px solid var(--color-border); }
+ .b2b-prod__thumb { width: 56px; height: 56px; object-fit: cover; border-radius: var(--radius); background: var(--paper-card); }
+ .b2b-prod__info { display: grid; gap: 0.1rem; min-width: 0; }
+ .b2b-prod__name { font-size: var(--fs-sm); font-weight: 600; color: var(--color-fg); text-decoration: none; }
+ .b2b-prod__name:hover { text-decoration: underline; }
+ .b2b-prod__thumb-link { display: block; }
+ .b2b-prod__meta { font-size: var(--fs-xs); color: var(--color-muted); }
+ .b2b-prod__qty, .b2b-mqty { display: inline-flex; align-items: center; border: 1px solid var(--color-border); border-radius: 999px; overflow: hidden; }
+ .b2b-prod__qty button, .b2b-mqty button { width: 2.1rem; height: 2.1rem; font-size: 1.1rem; line-height: 1; background: none; color: var(--color-fg); }
+ .b2b-prod__qty input, .b2b-mqty input { width: 2.6rem; text-align: center; border: none; padding: 0.5rem 0; background: none; color: var(--color-fg); -moz-appearance: textfield; }
+ .b2b-prod__qty input::-webkit-outer-spin-button, .b2b-prod__qty input::-webkit-inner-spin-button, .b2b-mqty input::-webkit-outer-spin-button, .b2b-mqty input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
+ /* Size x colour matrix */
+ .b2b-matrix { border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-5); display: grid; gap: var(--space-4); margin-bottom: var(--space-4); }
+ .b2b-matrix__head { display: flex; gap: var(--space-4); align-items: center; }
+ .b2b-matrix__head img { width: 64px; height: 64px; object-fit: cover; border-radius: var(--radius); background: var(--paper-card); }
+ .b2b-matrix__head h4 { font-family: var(--font-display); font-size: var(--fs-lg); }
+ .b2b-matrix__head span { font-size: var(--fs-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+ .b2b-mtable { display: grid; gap: var(--space-2); overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+ .b2b-mtable::-webkit-scrollbar { display: none; }
+ .b2b-summary { min-width: 0; }
+ .b2b-mrow { display: grid; grid-template-columns: 8rem repeat(3, 1fr); gap: var(--space-2); align-items: center; }
+ .b2b-mrow--head span { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-muted); text-align: center; }
+ .b2b-mrow__color { font-size: var(--fs-sm); font-weight: 600; }
+ .b2b-mcell { display: flex; justify-content: center; }
+ .b2b-mcell--empty { color: var(--color-muted); opacity: 0.45; }
+ .b2b-summary { position: sticky; bottom: 0; background: var(--color-bg); border-top: 1px solid var(--color-border); padding: var(--space-4) 0; display: grid; gap: var(--space-2); }
+ .b2b-summary__top { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; justify-content: space-between; }
+ .b2b-summary__count strong { font-family: var(--font-display); font-size: var(--fs-lg); color: var(--color-accent); }
+ .b2b-status { font-size: var(--fs-sm); }
+ .b2b-status--warn { color: var(--brand-orange); font-weight: 600; }
+ .b2b-status--ok { color: var(--color-muted); }
+ .b2b-status--bonus { color: var(--brand-olive); font-weight: 700; }
+ .b2b-quote__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+ .btn:disabled { opacity: 0.4; pointer-events: none; }
+ .b2b-moq-note { color: var(--color-muted); font-size: var(--fs-sm); margin-top: var(--space-2); }
+ .b2b-moq-note b { color: var(--color-fg); }
+ .b2b-guarantees { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-6); }
+ .b2b-guarantee { display: grid; gap: var(--space-2); }
+ .b2b-guarantee .b2b-ico { width: 2.7rem; height: 2.7rem; }
+ .b2b-guarantee h4 { font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: 0.04em; }
+ .b2b-guarantee p { font-size: var(--fs-sm); color: var(--color-muted); }
+ .b2b-stockists { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+ .b2b-stockist { border: 1px solid var(--color-border); border-radius: var(--radius); padding: var(--space-5); }
+ .b2b-stockist strong { display: block; font-size: var(--fs-md); font-family: var(--font-display); }
+ .b2b-stockist span { font-size: var(--fs-xs); color: var(--color-muted); text-transform: uppercase; letter-spacing: 0.06em; }
+ .b2b-presence { margin-top: var(--space-6); color: var(--color-muted); font-size: var(--fs-sm); }
+ .b2b-presence b { color: var(--color-fg); font-weight: 600; }
+ @media (max-width: 860px) { .b2b-templates, .b2b-guarantees, .b2b-stockists { grid-template-columns: 1fr; } .b2b-offer__stack, .b2b-grid { grid-template-columns: 1fr; } .b2b-guarantees { grid-template-columns: repeat(2, 1fr); } }
+ @media (max-width: 520px) {
+ .b2b-prod { grid-template-columns: 44px 1fr auto; }
+ .b2b-prod__thumb { width: 44px; height: 44px; }
+ .b2b-matrix { padding: var(--space-3); }
+ .b2b-matrix__head img { width: 52px; height: 52px; }
+ .b2b-mrow { grid-template-columns: 3.1rem repeat(3, 1fr); gap: var(--space-1); }
+ .b2b-mrow__color { font-size: var(--fs-xs); }
+ .b2b-prod__qty button, .b2b-mqty button { width: 1.7rem; height: 1.9rem; font-size: 1rem; }
+ .b2b-prod__qty input, .b2b-mqty input { width: 1.55rem; }
+ .b2b-summary__top { gap: var(--space-2); }
+ .b2b-quote__actions { width: 100%; }
+ .b2b-quote__actions .btn { flex: 1 1 auto; }
+ }
+ </style>
+</head>
+<body data-page="b2b">
+<main>
+ <section class="b2b-hero container b2b-wrap">
+ <nav class="breadcrumb"><a href="index.html" data-i18n="breadcrumb.home">Accueil</a><span>/</span><span data-i18n="nav.b2b">B2B</span></nav>
+ <p class="b2b-eyebrow"><span data-lang="fr">Wholesale SS26/27</span><span data-lang="en" hidden>Wholesale SS26/27</span></p>
+ <h1><span data-lang="fr">YZA dans votre boutique</span><span data-lang="en" hidden>Stock YZA in your boutique</span></h1>
+ <p class="b2b-lead"><span data-lang="fr">Des séries limitées, faites à la main à Guéliz - composez votre sélection, tailles et couleurs, puis écrivez-nous. Nous vous contacterons avec notre lookbook &amp; line sheet.</span><span data-lang="en" hidden>Limited series, handmade in Guéliz - build your selection, sizes and colours, then reach out. We'll come back to you with our lookbook &amp; line sheet.</span></p>
+ <div class="b2b-hero__facts">
+ <span><span data-lang="fr">Line sheets &amp; lookbooks sur demande</span><span data-lang="en" hidden>Line sheets &amp; lookbooks on request</span></span>
+ <span><span data-lang="fr">Collections exclusives à votre boutique, sur demande</span><span data-lang="en" hidden>Exclusive collections for your boutique, on request</span></span>
+ <span><span data-lang="fr">Atelier 100 % féminin - Guéliz</span><span data-lang="en" hidden>100% women's atelier - Guéliz</span></span>
+ <span><span data-lang="fr">Expédition dans le monde entier</span><span data-lang="en" hidden>Shipping worldwide</span></span>
+ </div>
+ </section>
+
+ <figure class="b2b-banner">
+ <img src="assets/atelier/atelier-wide.jpg" alt="L'atelier de femmes YZA à Guéliz, Marrakech" loading="lazy" width="2016" height="1344" decoding="async">
+ <figcaption><span data-lang="fr">Notre atelier 100 % féminin - Guéliz, Marrakech</span><span data-lang="en" hidden>Our 100% women-run atelier - Guéliz, Marrakech</span></figcaption>
+ </figure>
+
+ <section class="b2b-section container b2b-wrap">
+ <p class="b2b-eyebrow"><span data-lang="fr">Le partenariat revendeur</span><span data-lang="en" hidden>The reseller partnership</span></p>
+ <h2 class="b2b-h2"><span data-lang="fr">Ce qui vient avec YZA</span><span data-lang="en" hidden>What comes with YZA</span></h2>
+ <div class="b2b-offer" data-reveal><div class="b2b-offer__stack" id="b2bOffer"></div></div>
+ </section>
+
+ <section class="b2b-section container b2b-wrap">
+ <p class="b2b-eyebrow"><span data-lang="fr">Pour commencer</span><span data-lang="en" hidden>To begin</span></p>
+ <h2 class="b2b-h2"><span data-lang="fr">Trois sélections types</span><span data-lang="en" hidden>Three starting selections</span></h2>
+ <p class="b2b-lead"><span data-lang="fr">Un clic remplit le formulaire plus bas. À vous d'ajuster chaque quantité, pièce par pièce, avant l'envoi.</span><span data-lang="en" hidden>One click fills the form below. Then adjust each quantity, piece by piece, before you send.</span></p>
+ <div class="b2b-templates" id="b2bTemplates" style="margin-top:var(--space-6)"></div>
+ </section>
+
+ <section class="b2b-section container b2b-wrap">
+ <p class="b2b-eyebrow"><span data-lang="fr">Par catégorie</span><span data-lang="en" hidden>By category</span></p>
+ <h2 class="b2b-h2"><span data-lang="fr">Réassort d'une seule catégorie</span><span data-lang="en" hidden>Restock a single category</span></h2>
+ <p class="b2b-lead"><span data-lang="fr">Besoin d'un seul type de pièce ? Un clic remplit cette catégorie et remet les autres à zéro.</span><span data-lang="en" hidden>Need just one kind of piece? One click fills that category and clears the rest.</span></p>
+ <div class="b2b-templates b2b-templates--4" id="b2bTemplatesCat" style="margin-top:var(--space-6)"></div>
+ </section>
+
+ <section class="b2b-section container b2b-wrap">
+ <p class="b2b-eyebrow"><span data-lang="fr">Devis revendeur</span><span data-lang="en" hidden>Reseller quote</span></p>
+ <h2 class="b2b-h2"><span data-lang="fr">Composez votre commande</span><span data-lang="en" hidden>Build your order</span></h2>
+ <p class="b2b-moq-note"><span data-lang="fr">Cochez vos pièces, tailles et couleurs ci-dessous, puis envoyez. <b>Line sheets, prix B2B &amp; lookbooks suivent sur demande</b> - par WhatsApp ou sur rendez-vous.</span><span data-lang="en" hidden>Tick your pieces, sizes and colours below, then send. <b>Line sheets, B2B prices &amp; lookbooks follow on request</b> - over WhatsApp or by appointment.</span></p>
+ <form class="b2b-quote" id="b2bForm" novalidate>
+ <fieldset class="b2b-fieldset">
+ <legend><span data-lang="fr">Votre boutique</span><span data-lang="en" hidden>Your boutique</span></legend>
+ <div class="b2b-grid">
+ <div class="b2b-field"><label for="bCompany"><span data-lang="fr">Boutique / société</span><span data-lang="en" hidden>Boutique / company</span></label><input id="bCompany" type="text" autocomplete="organization" required></div>
+ <div class="b2b-field"><label for="bContact"><span data-lang="fr">Nom du contact</span><span data-lang="en" hidden>Contact name</span></label><input id="bContact" type="text" autocomplete="name" required></div>
+ <div class="b2b-field"><label for="bEmail"><span data-lang="fr">E-mail</span><span data-lang="en" hidden>Email</span></label><input id="bEmail" type="email" autocomplete="email" required></div>
+ <div class="b2b-field"><label for="bPhone"><span data-lang="fr">WhatsApp / téléphone</span><span data-lang="en" hidden>WhatsApp / phone</span></label><input id="bPhone" type="tel" autocomplete="tel"></div>
+ <div class="b2b-field"><label for="bCountry"><span data-lang="fr">Pays / ville</span><span data-lang="en" hidden>Country / city</span></label><input id="bCountry" type="text"></div>
+ <div class="b2b-field"><label for="bSite"><span data-lang="fr">Site / Instagram (optionnel)</span><span data-lang="en" hidden>Website / Instagram (optional)</span></label><input id="bSite" type="text"></div>
+ </div>
+ </fieldset>
+
+ <fieldset class="b2b-fieldset">
+ <legend><span data-lang="fr">Ma sélection</span><span data-lang="en" hidden>My selection</span></legend>
+ <div class="b2b-prod-group">
+ <h3><span data-lang="fr">Paniers &amp; sacs - banane tressée, raffia &amp; cuir</span><span data-lang="en" hidden>Baskets &amp; bags - woven banana leaf, raffia &amp; leather</span></h3>
+ <div id="grpBags"></div>
+ <h3><span data-lang="fr">Fruit Market - charms &amp; accessoires</span><span data-lang="en" hidden>Fruit Market - charms &amp; accessories</span></h3>
+ <div id="grpCharms"></div>
+ <h3><span data-lang="fr">Prêt-à-porter Jawhara - taille libre</span><span data-lang="en" hidden>Jawhara ready-to-wear - size-free</span></h3>
+ <div id="grpRtw"></div>
+ </div>
+ <div class="b2b-field b2b-field--full"><label for="bNotes"><span data-lang="fr">Un mot pour nous (délais, personnalisation…)</span><span data-lang="en" hidden>A word for us (lead times, customisation…)</span></label><textarea id="bNotes"></textarea></div>
+ </fieldset>
+
+ <div class="b2b-summary">
+ <div class="b2b-summary__top">
+ <span class="b2b-summary__count"><strong id="b2bCount">0</strong> <span data-lang="fr">pièces</span><span data-lang="en" hidden>pieces</span></span>
+ <div class="b2b-quote__actions">
+ <button type="button" class="btn btn--solid" id="b2bWhats" disabled><span data-lang="fr">Devis par WhatsApp</span><span data-lang="en" hidden>Quote on WhatsApp</span></button>
+ <button type="button" class="btn btn--outline" id="b2bEmail" disabled><span data-lang="fr">Devis par e-mail</span><span data-lang="en" hidden>Quote by email</span></button>
+ </div>
+ </div>
+ <p class="b2b-status b2b-status--warn" id="b2bStatus" role="status" aria-live="polite"></p>
+ </div>
+ </form>
+ </section>
+
+ <div class="b2b-wrap" style="text-align:center;padding-block:var(--space-6)" aria-hidden="true"><img aria-hidden="true" src="assets/illustrations/illu-vine-border.png" alt="" loading="lazy" width="1800" height="1005" style="width:min(560px,72%);height:auto;opacity:.9" decoding="async"></div>
+
+ <section class="b2b-section container b2b-wrap">
+ <p class="b2b-eyebrow"><span data-lang="fr">Nos garanties</span><span data-lang="en" hidden>Our guarantees</span></p>
+ <h2 class="b2b-h2"><span data-lang="fr">Vendez YZA l'esprit tranquille</span><span data-lang="en" hidden>Sell YZA with a clear mind</span></h2>
+ <div class="b2b-guarantees" id="b2bGuarantees" style="margin-top:var(--space-6)"></div>
+ </section>
+
+ <section class="b2b-section container b2b-wrap">
+ <p class="b2b-eyebrow"><span data-lang="fr">Sur le terrain</span><span data-lang="en" hidden>On the show floor</span></p>
+ <h2 class="b2b-h2"><span data-lang="fr">Retrouvons-nous aux salons</span><span data-lang="en" hidden>Meet us at the shows</span></h2>
+ <p class="b2b-lead"><span data-lang="fr">YZA participe à <b>Who's Next Paris</b> et <b>Coterie New York</b> - deux des plus grands salons de mode internationale. C'est là que tout commence pour la plupart de nos partenariats boutiques : collections au complet, prix B2B, lookbooks - tout en vrai, en un seul rendez-vous.</span><span data-lang="en" hidden>YZA shows at <b>Who's Next Paris</b> and <b>Coterie New York</b> - two of the biggest international fashion trade shows. It's where most of our boutique partnerships begin: full collections, B2B prices, lookbooks - all in person, in one meeting.</span></p>
+ <div style="margin-top:var(--space-6);display:flex;flex-wrap:wrap;gap:var(--space-4);align-items:center">
+ <button type="button" class="btn btn--solid" id="b2bSalonBtn"><span data-lang="fr">Prenons rendez-vous au salon</span><span data-lang="en" hidden>Book a meeting at the show</span></button>
+ <span style="color:var(--color-muted);font-size:var(--fs-sm)">Who's Next Paris &nbsp;·&nbsp; Coterie New York</span>
+ </div>
+ </section>
+
+ <section class="b2b-section container b2b-wrap">
+ <p class="b2b-eyebrow"><span data-lang="fr">Déjà chez elles</span><span data-lang="en" hidden>Already on their shelves</span></p>
+ <h2 class="b2b-h2"><span data-lang="fr">Nos points de vente</span><span data-lang="en" hidden>Where to find us</span></h2>
+ <div class="b2b-stockists" id="b2bStockists" style="margin-top:var(--space-6)"></div>
+ <p class="b2b-presence">
+ <span data-lang="fr"><b>Export B2B - boutiques indépendantes depuis 2022 :</b> France · Espagne · Italie · Grèce · Afrique du Sud · États-Unis · Japon.<br>Au Maroc, YZA travaille en <b>dépôt-vente</b> avec les boutiques locales - pas en wholesale. Pour tout autre pays, c'est du B2B export classique.<br>Contactez-nous pour la liste de nos boutiques partenaires en France et à l'international.</span>
+ <span data-lang="en" hidden><b>B2B Export - independent boutiques since 2022:</b> France · Spain · Italy · Greece · South Africa · USA · Japan.<br>In Morocco, YZA works on a <b>consignment basis</b> with local boutiques - not wholesale. For all other countries, it's standard B2B export.<br>Contact us for our full list of partner boutiques in France and internationally.</span>
+ </p>
+ </section>
+</main>
+
+ <script defer src="js/products.js"></script>
+ <script defer src="js/media.js"></script>
+ <script defer src="js/i18n.js"></script>
+ <script defer src="js/cart.js"></script>
+ <script defer src="js/chrome.js"></script>
+ <script defer src="js/main.js"></script>
+ <script>
+ document.addEventListener('DOMContentLoaded', function () {
+ var t = YZA.i18n;
+ var MOQ = 10, TIER1 = 30, BULK = 50;
+ function lang() { return (t && t.lang) || 'fr'; }
+ function L(fr, en) { return lang() === 'en' ? en : fr; }
+ function esc(s) { return String(s == null ? '' : s).replace(/"/g, '&quot;'); }
+
+ var OFFER = [
+ ['Séries courtes', 'Short runs', 'Faites main, en petites quantités. Pas de sur-stock - vos clientes ne retrouvent pas la même pièce partout.', 'Hand-made, in small batches. No overstock - your clients won’t find the same piece everywhere.', 'svc-limited'],
+ ['Présentoir + kit marketing offerts', 'Free display + marketing kit', 'Présentoir YZA, lookbook, cartes et étiquettes dorées gravées, prêts pour votre vitrine.', 'YZA display, lookbook, cards and engraved golden tags, ready for your window.', 'svc-gift'],
+ ['Livraison Maroc offerte', 'Free Morocco delivery', 'Offerte au Maroc dès 1 500 DH ; ailleurs, expédition suivie dans le monde entier.', 'Free within Morocco from 1,500 DH; elsewhere, tracked shipping worldwide.', 'svc-delivery'],
+ ['Line sheets &amp; prix B2B', 'Line sheets &amp; B2B prices', 'Partagés sur demande - par WhatsApp ou sur rendez-vous, jamais en public.', 'Shared on request - over WhatsApp or by appointment, never in the open.', 'svc-community'],
+ ['Réparations à vie à l’atelier', 'Lifetime atelier repairs', 'Chaque pièce YZA revient se faire réparer chez nous, à Guéliz, sans limite de temps.', 'Every YZA piece comes back to us in Guéliz for repair, with no time limit.', 'svc-repair'],
+ ['Fait main par des femmes', 'Hand-made by women', '100 % crochet et tressage main, par notre atelier de femmes à Marrakech. More hands, fewer machines.', '100% hand crochet and weaving, by our women’s atelier in Marrakech. More hands, fewer machines.', 'svc-handmade'],
+ ];
+ var bIco = function (f) { return '<img aria-hidden="true" class="b2b-ico" src="assets/brand/icons/' + f + '.png" alt="" width="40" height="40" loading="lazy" decoding="async">'; };
+ var offerEl = document.getElementById('b2bOffer');
+ if (offerEl) offerEl.innerHTML = OFFER.map(function (o) { return '<div class="b2b-offer__item">' + bIco(o[4]) + '<span><strong>' + L(o[0], o[1]) + '</strong><br>' + L(o[2], o[3]) + '</span></div>'; }).join('');
+
+ var GUAR = [
+ ['Fait main', 'Hand-made', 'Atelier de femmes à Guéliz, de 1,5 à 5 h de travail par pièce. Parfaitement imparfait.', 'Women’s atelier in Guéliz, 1.5 to 5 h of work per piece. Perfectly imperfect.', 'svc-handmade'],
+ ['Réparations à vie', 'Lifetime repairs', 'Offertes sur chaque pièce YZA, à l’atelier, sans limite de temps.', 'Free on every YZA piece, at the atelier, with no time limit.', 'svc-repair'],
+ ['Garantie 14 jours', '14-day guarantee', '14 jours après réception : échange si la pièce revient non portée, en l’état.', '14 days from delivery: exchange if the piece comes back unworn, as new.', 'svc-returns'],
+ ['Séries courtes', 'Short runs', 'Petites quantités, par choix : vos clientes ne retrouvent pas la même pièce partout.', 'Small batches, by choice: your clients won’t find the same piece everywhere.', 'svc-limited'],
+ ];
+ var guarEl = document.getElementById('b2bGuarantees');
+ if (guarEl) guarEl.innerHTML = GUAR.map(function (g) { return '<div class="b2b-guarantee">' + bIco(g[4]) + '<h4>' + L(g[0], g[1]) + '</h4><p>' + L(g[2], g[3]) + '</p></div>'; }).join('');
+
+ var STOCKISTS = [
+ ['Hanout Boutique', 'Marrakech'], ['Jaad Riad Resort', 'Marrakech'], ['Atelier 44 - M Avenue', 'Marrakech'],
+ ['Las Chicas De Tanger', 'Tanger'], ['Mimsa - Le Casablanca Hotel', 'Casablanca'], ['Bee on 6th', 'Rabat'],
+ ];
+ var stoEl = document.getElementById('b2bStockists');
+ if (stoEl) stoEl.innerHTML = STOCKISTS.map(function (s) { return '<div class="b2b-stockist"><strong>' + s[0] + '</strong><span>' + s[1] + '</span></div>'; }).join('');
+
+ /* ---- Bag size×colour matrices ---- */
+ var SIZES = ['XS', 'S', 'M'];
+ // Built live from the catalog (YZA.bagRows) so the B2B matrix always matches the shop.
+ function buildBagModels() {
+ var order = ['la-sculpture', 'la-nouvelle-vague'];
+ var byFam = {};
+ var promoOk = typeof YZA.isLaunchPromoProduct === 'function' ? YZA.isLaunchPromoProduct : function (product) { return product && product.launchPromo !== false; };
+ (YZA.bagRows || []).forEach(function (row) {
+ var fh = row.familyHandle; if (!fh) return;
+ var items = (row.items || []).filter(function (it) { return promoOk(YZA.getProduct ? YZA.getProduct(it.handle) : null); });
+ if (!items.length) return;
+ if (!byFam[fh]) byFam[fh] = { handle: fh, family: t.pick(row.familyTitle), note: t.pick(row.familyEyebrow) || '', img: row.img, colors: [], avail: {} };
+ var cn = t.pick(row.color);
+ if (byFam[fh].colors.indexOf(cn) === -1) byFam[fh].colors.push(cn);
+ byFam[fh].avail[cn] = items.map(function (it) { return it.size; });
+ });
+ var keys = order.filter(function (f) { return byFam[f]; })
+ .concat(Object.keys(byFam).filter(function (f) { return order.indexOf(f) === -1; }));
+ return keys.map(function (f) { return byFam[f]; });
+ }
+ var BAG_MODELS = buildBagModels();
+ function qtyBox(name, extra) {
+ return '<span class="b2b-mqty"><button type="button" data-step="-1" aria-label="-"> - </button>' +
+ '<input class="b2b-qty" type="number" min="0" step="1" value="0" inputmode="numeric" data-name="' + esc(name) + '" ' + (extra || '') + ' aria-label="' + esc(name) + '">' +
+ '<button type="button" data-step="1" aria-label="+">+</button></span>';
+ }
+ function matrixHTML(m) {
+ var head = '<div class="b2b-mrow b2b-mrow--head"><span></span>' + SIZES.map(function (s) { return '<span>' + s + '</span>'; }).join('') + '</div>';
+ var rows = m.colors.map(function (c) {
+ var cells = SIZES.map(function (s) {
+ if (m.avail[c].indexOf(s) === -1) return '<span class="b2b-mcell b2b-mcell--empty"> - </span>';
+ return '<span class="b2b-mcell">' + qtyBox(m.family + ' ' + c + ' ' + s, 'data-family="' + esc(m.family) + '" data-color="' + esc(c) + '" data-size="' + s + '"') + '</span>';
+ }).join('');
+ return '<div class="b2b-mrow"><span class="b2b-mrow__color">' + c + '</span>' + cells + '</div>';
+ }).join('');
+    return '<div class="b2b-matrix"><div class="b2b-matrix__head"><img aria-hidden="true" src="' + esc(m.img) + '" alt="" width="96" height="120" decoding="async"><div><h4>' + m.family + '</h4><span>' + m.note + '</span></div></div><div class="b2b-mtable">' + head + rows + '</div></div>';
+ }
+ var bagsEl = document.getElementById('grpBags');
+ if (bagsEl) bagsEl.innerHTML = BAG_MODELS.map(matrixHTML).join('');
+
+ /* ---- Accessory + RTW rows with thumbnails ---- */
+ function rowHTML(p) {
+ var name = t.pick(p.name);
+ var href = 'produit.html?handle=' + encodeURIComponent(p.handle || '');
+ return '<div class="b2b-prod">' +
+      '<a class="b2b-prod__thumb-link" href="' + href + '" target="_blank" rel="noopener" title="' + esc(name) + '"><img class="b2b-prod__thumb" src="' + esc(p.img) + '" alt="' + esc(name) + ' - YZA" loading="lazy" width="84" height="112" decoding="async"></a>' +
+ '<span class="b2b-prod__info"><a class="b2b-prod__name" href="' + href + '" target="_blank" rel="noopener">' + name + '</a><span class="b2b-prod__meta">' + esc(t.pick(p.short || p.displayShort || {}) || '') + '</span></span>' +
+ qtyBox(name, 'data-cat="' + esc(p.category || '') + '"').replace('b2b-mqty', 'b2b-prod__qty') +
+ '</div>';
+ }
+ function group(cats) { var list = []; cats.forEach(function (c) { list = list.concat(YZA.byCategory ? YZA.byCategory(c) : []); }); var promoOk = typeof YZA.isLaunchPromoProduct === 'function' ? YZA.isLaunchPromoProduct : function (p) { return p && p.launchPromo !== false; }; return list.filter(function (p) { return p && !p.bundle && promoOk(p); }).map(rowHTML).join(''); }
+ var charmsEl = document.getElementById('grpCharms'); if (charmsEl) charmsEl.innerHTML = group(['charms', 'earrings', 'necklaces']);
+ var rtwEl = document.getElementById('grpRtw'); if (rtwEl) rtwEl.innerHTML = group(['rtw']);
+
+ var form = document.getElementById('b2bForm');
+ function total() { var n = 0; form.querySelectorAll('.b2b-qty').forEach(function (i) { n += Math.max(0, parseInt(i.value || '0', 10) || 0); }); return n; }
+ function refresh() {
+ var n = total();
+ var c = document.getElementById('b2bCount'); if (c) c.textContent = n;
+ var w = document.getElementById('b2bWhats'), em = document.getElementById('b2bEmail');
+ var ok = n >= MOQ;
+ if (w) w.disabled = !ok; if (em) em.disabled = !ok;
+ var s = document.getElementById('b2bStatus');
+ if (s) {
+ if (n < MOQ) { s.textContent = L('Ajoutez quelques pièces, puis envoyez - on revient vers vous avec les prix B2B.', 'Add a few pieces, then send - we’ll come back to you with B2B prices.'); s.className = 'b2b-status b2b-status--warn'; }
+ else if (n >= BULK) { s.textContent = L('Belle sélection. Envoyez-la - line sheets & prix B2B suivent sur demande.', 'Lovely selection. Send it over - line sheets & B2B prices follow on request.'); s.className = 'b2b-status b2b-status--bonus'; }
+ else if (n >= TIER1) { s.textContent = L('Belle sélection. Envoyez-la - line sheets & prix B2B suivent sur demande.', 'Lovely selection. Send it over - line sheets & B2B prices follow on request.'); s.className = 'b2b-status b2b-status--bonus'; }
+ else { s.textContent = L('Votre sélection est prête. Envoyez-la - on revient vers vous avec les prix B2B.', 'Your selection is ready. Send it over - we’ll come back to you with B2B prices.'); s.className = 'b2b-status b2b-status--ok'; }
+ }
+ }
+ form.addEventListener('click', function (e) {
+ var b = e.target.closest('button[data-step]'); if (!b) return;
+ var input = b.parentElement.querySelector('input');
+ input.value = Math.max(0, (parseInt(input.value || '0', 10) || 0) + parseInt(b.dataset.step, 10));
+ refresh();
+ });
+ form.addEventListener('input', refresh);
+ form.addEventListener('submit', function (e) { e.preventDefault(); });
+
+ /* ---- Templates ---- */
+ function dataOf(input) { var cell = input.closest('.b2b-mcell'); var box = input; if (input.dataset.family) return { family: input.dataset.family, color: input.dataset.color, size: input.dataset.size, cat: 'bags' }; return { cat: input.dataset.cat || '' }; }
+ // Templates total exactly 10 / 30 / 50 pieces.
+ var TEMPLATES = {
+ decouverte: function (d) { if (d.family === 'La Sculpture' && d.size === 'S') return 1; if (d.cat === 'earrings') return 1; return 0; }, // 3 + 7 = 10
+ bestsellers: function (d) { if (d.cat === 'charms') return 1; if (d.cat === 'earrings') return 1; if (d.cat === 'necklaces') return 1; if (d.family === 'La Sculpture' && d.size === 'S') return 1; if (d.family === 'La Nouvelle Vague' && (d.size === 'S' || d.size === 'M')) return 1; return 0; }, // 10+7+5+3+6 = 31
+ complete: function (d) { if (d.cat === 'charms') return 2; if (d.cat === 'earrings') return 1; if (d.cat === 'necklaces') return 1; if (d.cat === 'rtw' || d.cat === 'tops' || d.cat === 'pareos' || d.cat === 'pants' || d.cat === 'bottoms') return 1; if (d.family) return 1; return 0; }, // 20+7+5+9+18 = 59
+ // Single-category fills - sized to each category's economics.
+ charmsOnly: function (d) { return d.cat === 'charms' ? 3 : 0; }, // 10 charms x3 = 30 -> -10%
+ accOnly: function (d) { if (d.cat === 'earrings') return 2; if (d.cat === 'necklaces') return 2; return 0; }, // 14 + 10 = 24
+ bagsOnly: function (d) { return d.family ? 1 : 0; }, // all 18 bag combos x1
+ clothesOnly: function (d) { return (d.cat === 'rtw' || d.cat === 'tops' || d.cat === 'pareos' || d.cat === 'pants' || d.cat === 'bottoms') ? 2 : 0; }, // 9 x2 = 18
+ };
+ function applyTemplate(key) { var fn = TEMPLATES[key]; form.querySelectorAll('.b2b-qty').forEach(function (i) { i.value = fn(dataOf(i)) || 0; }); refresh(); form.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+ var TPL_CARDS = [
+ ['decouverte', 'Découverte', 'Discovery', 'Une première sélection pour faire entrer YZA chez vous.', 'A first selection to bring YZA into your store.', ['La Sculpture S · 3 couleurs', 'Boucles fruit en raffia', L('Prix B2B sur demande', 'B2B prices on request')]],
+ ['bestsellers', 'Best-sellers', 'Best-sellers', 'Les pièces qui partent le plus vite de l’atelier.', 'The pieces that leave the atelier fastest.', ['Charms · boucles · colliers', 'La Sculpture S · La Nouvelle Vague S & M', L('Prix B2B sur demande', 'B2B prices on request')]],
+ ['complete', 'Collection complète', 'Full collection', 'Un assortiment large, toutes catégories réunies.', 'A wide assortment, every category in one go.', ['Charms · boucles · colliers', 'Jawhara · sacs La Sculpture & La Nouvelle Vague', L('Prix B2B sur demande', 'B2B prices on request')]],
+ ];
+ var tplEl = document.getElementById('b2bTemplates');
+ if (tplEl) {
+ tplEl.innerHTML = TPL_CARDS.map(function (c) {
+ return '<article class="b2b-template"><h3>' + L(c[1], c[2]) + '</h3><p>' + L(c[3], c[4]) + '</p><ul>' +
+ c[5].map(function (li) { return '<li>' + li + '</li>'; }).join('') +
+ '</ul><button type="button" class="btn btn--outline" data-tpl="' + c[0] + '">' + L('Pré-remplir', 'Pre-fill') + '</button></article>';
+ }).join('');
+ tplEl.addEventListener('click', function (e) { var b = e.target.closest('[data-tpl]'); if (b) applyTemplate(b.dataset.tpl); });
+ }
+ var CAT_CARDS = [
+ ['charmsOnly', 'Charms', 'Charms', 'Tout un mur de charms - chaque fruit crocheté main en raffia par Fatima.', 'A whole charm wall - each fruit hand-crocheted in raffia by Fatima.'],
+ ['accOnly', 'Accessoires', 'Accessories', 'Boucles & colliers en raffia : tout le Fruit Market d’un coup.', 'Raffia earrings & necklaces: the whole Fruit Market at once.'],
+ ['bagsOnly', 'Paniers & sacs', 'Baskets & bags', 'Le mur de sacs au complet - La Sculpture et La Nouvelle Vague.', 'The full bag wall - La Sculpture and La Nouvelle Vague.'],
+ ['clothesOnly', 'Prêt-à-porter', 'Ready-to-wear', 'La garde-robe Jawhara, taille libre, du XS au XXL.', 'The Jawhara wardrobe, size-free, XS to XXL.'],
+ ];
+ var tplCatEl = document.getElementById('b2bTemplatesCat');
+ if (tplCatEl) {
+ tplCatEl.innerHTML = CAT_CARDS.map(function (c) {
+ return '<article class="b2b-template"><h3>' + L(c[1], c[2]) + '</h3><p>' + L(c[3], c[4]) + '</p>' +
+ '<button type="button" class="btn btn--outline" data-tpl="' + c[0] + '">' + L('Pré-remplir', 'Pre-fill') + '</button></article>';
+ }).join('');
+ tplCatEl.addEventListener('click', function (e) { var b = e.target.closest('[data-tpl]'); if (b) applyTemplate(b.dataset.tpl); });
+ }
+
+ /* ---- Quote message ---- */
+ function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+ function buildMessage() {
+ var lines = [];
+ form.querySelectorAll('.b2b-qty').forEach(function (i) { var q = parseInt(i.value || '0', 10); if (q > 0) lines.push('- ' + i.dataset.name + ' x ' + q); });
+ var n = total();
+ var head = ['Demande de devis B2B - YZA', 'Boutique: ' + val('bCompany'), 'Contact: ' + val('bContact'), 'E-mail: ' + val('bEmail'), 'WhatsApp/Tel: ' + val('bPhone'), 'Pays/Ville: ' + val('bCountry'), val('bSite') ? ('Site: ' + val('bSite')) : ''].filter(Boolean);
+ var notes = val('bNotes');
+ return head.join('\n') + '\n\nSelection (' + n + ' pieces):\n' + (lines.length ? lines.join('\n') : '(a preciser)') + (notes ? ('\n\nNote: ' + notes) : '') + '\n\nMerci de m\'envoyer les line sheets, prix B2B & lookbooks. Page: ' + location.href;
+ }
+ function validateBuyer() {
+ var ids = ['bCompany', 'bContact', 'bEmail'];
+ var invalid = null;
+ ids.forEach(function (id) {
+ var el = document.getElementById(id);
+ var bad = !el || !el.value.trim() || (el.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()));
+ if (el) el.classList.toggle('is-invalid', bad);
+ if (!invalid && bad) invalid = el;
+ });
+ var status = document.getElementById('b2bStatus');
+ if (invalid) {
+ if (status) { status.textContent = L('Completez boutique, contact et e-mail avant l envoi.', 'Complete boutique, contact and email before sending.'); status.className = 'b2b-status b2b-status--warn'; }
+ invalid.focus();
+ return false;
+ }
+ if (total() < MOQ) {
+ if (status) { status.textContent = L('Ajoutez au moins 10 pieces avant l envoi.', 'Add at least 10 pieces before sending.'); status.className = 'b2b-status b2b-status--warn'; }
+ return false;
+ }
+ return true;
+ }
+ var w = document.getElementById('b2bWhats');
+ if (w) w.addEventListener('click', function () { if (!validateBuyer()) return; var phone = ((YZA.brand && YZA.brand.whatsapp) || '').replace(/\D/g, ''); YZA.analytics?.track('b2b_quote_whatsapp', { count: total() }); window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(buildMessage()), '_blank', 'noopener'); });
+ var em = document.getElementById('b2bEmail');
+ if (em) em.addEventListener('click', function () { if (!validateBuyer()) return; YZA.analytics?.track('b2b_quote_email', { count: total() }); window.location.href = 'mailto:contact@yza-shop.com?subject=' + encodeURIComponent('Demande de devis B2B - YZA') + '&body=' + encodeURIComponent(buildMessage()); });
+
+ var salonBtn = document.getElementById('b2bSalonBtn');
+ if (salonBtn) salonBtn.addEventListener('click', function () {
+ var phone = ((YZA.brand && YZA.brand.whatsapp) || '').replace(/\D/g, '');
+ var msg = L(
+ 'Bonjour ! Je souhaite prendre rendez-vous avec YZA au salon (Who\'s Next Paris / Coterie New York). Boutique : ' + (val('bCompany') || ' - '),
+ 'Hello! I\'d like to book a meeting with YZA at the show (Who\'s Next Paris / Coterie New York). Store: ' + (val('bCompany') || ' - ')
+ );
+ window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(msg), '_blank', 'noopener');
+ });
+
+ refresh();
+ });
+ </script>
+</body>
+</html>
