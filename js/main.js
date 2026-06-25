@@ -1276,11 +1276,18 @@
  const short = bagVariant.short || baseProduct.displayShort || baseProduct.short;
  const colorFr = bagVariant.color?.fr || '';
  const colorEn = bagVariant.color?.en || colorFr;
+ const colorEs = bagVariant.color?.es || colorEn;
+ const colorTr = bagVariant.color?.tr || colorEn;
+ const colorAr = bagVariant.color?.ar || colorEn;
  const size = bagVariant.size || baseProduct.visualSize || '';
- const desc = textObj(
- `${title.fr}: panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre le format ${size} en couleur ${colorFr}.`,
- `${title.en}: YZA basket in banana leaves, raffia, leather and beads. This page shows the ${size} scale with the ${colorEn.toLowerCase()} finish.`
- );
+ const titleEn = (title.en || title.fr || '');
+ const desc = {
+ fr: `${title.fr || titleEn}: panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre le format ${size} en couleur ${colorFr}.`,
+ en: `${titleEn}: YZA basket in banana leaves, raffia, leather and beads. This page shows the ${size} scale with the ${colorEn.toLowerCase()} finish.`,
+ es: `${title.es || titleEn}: cesta YZA en hojas de bananero, rafia, cuero y cuentas. Esta página muestra la talla ${size} en color ${colorEs.toLowerCase()}.`,
+ tr: `${title.tr || titleEn}: muz yaprağı, rafya, deri ve boncuklardan yapılmış YZA sepeti. Bu sayfa ${size} beden ${colorTr.toLowerCase()} renk versiyonunu göstermektedir.`,
+ ar: `${title.ar || titleEn}: سلة YZA من أوراق الموز والرافيا والجلد والخرز. تعرض هذه الصفحة مقاس ${size} بلون ${colorAr}.`,
+ };
  return {
  ...baseProduct,
  name: title,
@@ -1295,7 +1302,7 @@
  visualSize: size,
  availableColors: bagVariant.color ? [bagVariant.color] : baseProduct.availableColors,
  availableSizes: size ? [size] : baseProduct.availableSizes,
- activeVariantLabel: textObj(`${size} / ${colorFr}`, `${size} / ${colorEn}`),
+ activeVariantLabel: { fr: `${size} / ${colorFr}`, en: `${size} / ${colorEn}`, es: `${size} / ${colorEs}`, tr: `${size} / ${colorTr}`, ar: `${size} / ${colorAr}` },
  selectedBagVariant: bagVariant,
  };
  }
