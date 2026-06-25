@@ -2747,19 +2747,20 @@ body[data-page="home"] .header.is-stuck { background: rgba(252, 247, 241, 0.7); 
  content: "";
  position: absolute;
  inset: 0;
- background: linear-gradient(rgba(0, 0, 0, 0) 42%, rgba(0, 0, 0, 0.55));
+ background: linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.72));
 }
 .acc__feature-label {
  position: absolute;
  right: 0.7rem;
  bottom: 0.55rem;
  z-index: 1;
-  color: var(--white);
+ color: var(--white);
  font-family: var(--font-body);
  font-weight: 700;
  font-size: 0.72rem;
  letter-spacing: 0.12em;
  text-transform: uppercase;
+ text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 .drawer__lang.lang { order: 2; margin: var(--space-8) 0 0; padding-top: var(--space-6); border-top: 1px solid var(--color-border); }
@@ -2865,7 +2866,7 @@ body[data-page="home"] .header.is-stuck { background: rgba(252, 247, 241, 0.7); 
 .nav a.mega__feature:hover img { transform: scale(1.05); }
 .nav a.mega__feature::after {
  content: ""; position: absolute; inset: 0;
- background: linear-gradient(rgba(0, 0, 0, 0) 38%, rgba(0, 0, 0, 0.62));
+ background: linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.75));
 }
 .mega__feature-body {
  position: absolute; left: var(--space-4); right: var(--space-4); bottom: var(--space-4);
@@ -2874,10 +2875,12 @@ body[data-page="home"] .header.is-stuck { background: rgba(252, 247, 241, 0.7); 
 .mega__feature-body strong {
  font-family: var(--font-body);
  font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+ text-shadow: 0 1px 5px rgba(0,0,0,0.55);
 }
 .mega__feature-body span {
  font-family: var(--font-body);
  font-size: 0.74rem; letter-spacing: 0.01em; text-transform: none; opacity: 0.88;
+ text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
 [dir="rtl"] .nav .mega__list a:hover { transform: translateX(-3px); }

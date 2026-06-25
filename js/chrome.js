@@ -110,7 +110,7 @@ const navMega = (active) => {
  li('nav.fruitmarket', 'collections.html?cat=charms'),
  li('nav.sculpture', 'collections.html?cat=bags'),
  ]),
-    feature('lookbook.html', 'assets/yza-girls/girls-amelie-look.jpg', 'nav.lookbook', 'mega.feat.lookbook', 720, 900),
+    feature('lookbook.html', 'assets/story/nawal-bag-garden.jpg', 'nav.lookbook', 'mega.feat.lookbook', 1280, 853),
     feature('collections.html?cat=bags', 'assets/products/la-sculpture/sculpture-deep-violet.jpg', 'nav.sculpture', 'mega.feat.sculpture', 640, 800),
  ], 4);
 
@@ -156,7 +156,7 @@ const drawerAccordion = () => {
 
  const feature = `
  <a class="acc__feature" href="lookbook.html">
-          <img aria-hidden="true" src="assets/yza-girls/girls-amelie-look.jpg" alt="" loading="lazy" width="720" height="900" decoding="async">
+          <img aria-hidden="true" src="assets/story/nawal-bag-garden.jpg" alt="" loading="lazy" width="1280" height="853" decoding="async">
  <span class="acc__feature-label" data-i18n="nav.lookbook">${t.t('nav.lookbook')}</span>
  </a>`;
 
