@@ -664,7 +664,7 @@
  const cta = soldOut ? T().t('girls.shopCurrent') : T().t('girls.shopLook');
  return `<a class="${compact ? 'girls-home-card' : 'girls-card'}${soldOut ? ' is-soldout' : ''}" href="${href}" data-shop-look="${esc(handle || girl.id || '')}" style="--i:${index}">
  <figure>
- ${mediaImg(girl.src, girl.alt || girl.product || 'YZA Girl', 'width="720" height="960"')}
+ ${mediaImg(girl.src, (typeof girl.alt === 'object' ? T().pick(girl.alt) : girl.alt) || girl.product || 'YZA Girl', 'width="720" height="960"')}
  <figcaption>
  <strong>${esc(girl.name || 'YZA Girl')}</strong>
  <span>${esc(girl.product || '')}${girl.city ? ` / ${esc(girl.city)}` : ''}</span>
@@ -700,7 +700,7 @@
  const soldOut = girlSoldOut(girl);
  const cta = soldOut ? T().t('girls.shopCurrent') : T().t('girls.shopLook');
  return `<a class="girls-feed__item${soldOut ? ' is-soldout' : ''}" href="${href}" data-shop-look="${esc(handle || girl.id || '')}" style="--i:${index}">
- ${mediaImg(girl.src, girl.alt || girl.product || 'YZA Girl', 'width="720" height="960"')}
+ ${mediaImg(girl.src, (typeof girl.alt === 'object' ? T().pick(girl.alt) : girl.alt) || girl.product || 'YZA Girl', 'width="720" height="960"')}
  <span class="girls-feed__overlay" aria-hidden="true"><span class="girls-feed__cta">${esc(cta)}</span></span>
  </a>`;
  }
