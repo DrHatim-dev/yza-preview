@@ -3165,3 +3165,51 @@ body.has-cart-drawer .lead-chat { display: none; }
   }
   .lead-chat--simple .lead-chat__empty { min-height: 230px; }
 }
+
+/* ============================================================
+   HEADER MONO TREATMENT (pasted-component style)
+   Overpass Mono · 11px · 1px tracking · uppercase · soft opacity
+   with a hover fade. Applied to the announcement bar, the desktop
+   nav (top-level triggers/links + dropdown links) and the search /
+   language labels. Logo, icon buttons (cart/burger) and the
+   editorial feature image cards are intentionally left untouched.
+   ============================================================ */
+.announcement__inner,
+.nav-item > a, .nav-trigger,
+.header-search,
+.lang-select__button,
+.nav .mega__list a,
+.mega__eyebrow,
+.mega__sub {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+}
+
+/* Top-level nav + action labels */
+.nav-item > a, .nav-trigger,
+.header-search,
+.lang-select__button {
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  line-height: 16px;
+  opacity: 0.92;
+  transition: opacity var(--transition-fast), color var(--transition-fast);
+}
+.nav-item > a:hover, .nav-trigger:hover,
+.header-search:hover,
+.lang-select__button:hover { opacity: 0.68; }
+
+/* Announcement bar texts */
+.announcement__inner { font-size: 11px; letter-spacing: 1px; font-weight: 500; }
+.announcement__inner > * { opacity: 0.92; transition: opacity var(--transition-fast); }
+.announcement__inner a:hover { opacity: 0.68; }
+
+/* Dropdown (mega-menu) links → same mono utility style */
+.nav .mega__list a {
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: 500;
+  opacity: 0.92;
+}
+.nav .mega__list a:hover { opacity: 0.68; }
