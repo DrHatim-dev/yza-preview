@@ -15439,7 +15439,7 @@ PRODUCTS.forEach((p) => {
 
 // Per-product "in-use / vibe" hover image (charm styled on a raffia bag, sunny close-up). Shown on card hover.
 const HOVER_IMAGES = {
- 'raffia-cherries-charm-ss26': 'assets/original-shop/charms/raffia-cherries-charm-ss26-07.webp',
+ 'raffia-cherries-charm-ss26': 'assets/original-shop/charms/raffia-cherries-charm-ss26-01.png',
  'raffia-grapes-charm-ss26': 'assets/products/fruit-market/vibe/vibe-grapes.jpg',
  'raffia-whole-orange-charm-ss26': 'assets/products/fruit-market/vibe/vibe-whole-orange.jpg',
  'raffia-whole-lemon-charm-ss26': 'assets/products/fruit-market/vibe/vibe-whole-lemon.jpg',
