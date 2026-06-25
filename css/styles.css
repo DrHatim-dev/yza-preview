@@ -3228,3 +3228,6 @@ body.has-cart-drawer .lead-chat { display: none; }
 .video-band__content h2 { text-shadow: 0 2px 20px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.45); }
 .product-story--wide .product-story__image::after { background: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.06) 55%, transparent); }
 .product-story--wide .product-story__copy--overlay h2 { text-shadow: 0 2px 16px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.4); }
+
+/* best-sellers section background override */
+#bestSellers { background: #fffdf8; }
