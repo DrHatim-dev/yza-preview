@@ -14,13 +14,6 @@ const LANG_META_SAFE = {
  tr: { label: 'TR', flag: flagImg('tr') },
  ar: { label: 'AR', flag: flagImg('ma') },
 };
-const LANG_META = {
- fr: { label: 'FR', flag: '🇫🇷' },
- en: { label: 'EN', flag: '🇬🇧' },
- es: { label: 'ES', flag: '🇪🇸' },
- tr: { label: 'TR', flag: '🇹🇷' },
- ar: { label: 'AR', flag: '🇲🇦' },
-};
 const langSwitcher = () => {
  const current = YZA.i18n?.lang || 'fr';
  const meta = LANG_META_SAFE;
@@ -343,10 +336,10 @@ YZA.chrome = {
  </div>
  <nav class="nav" aria-label="Navigation">${navMega(active)}</nav>
  <div class="header__actions">
- <button class="header-search" id="searchOpen" data-i18n-attr="aria-label:a.search" aria-label="${t.t('a.search')}"><span data-i18n="a.search">${t.t('a.search')}</span>${ICON.search}</button>
+ <button type="button" class="header-search" id="searchOpen" data-i18n-attr="aria-label:a.search" aria-label="${t.t('a.search')}"><span data-i18n="a.search">${t.t('a.search')}</span>${ICON.search}</button>
  <div class="lang" role="group" aria-label="${t.t('lang.label')}">${langSwitcher()}</div>
- <button class="icon-btn cart-btn" data-cart-open data-i18n-attr="aria-label:a.cart" aria-label="${t.t('a.cart')}">${ICON.cart}<span class="cart-count" data-cart-count aria-hidden="true">0</span></button>
- <button class="icon-btn burger" id="burger" data-i18n-attr="aria-label:a.menu" aria-label="${t.t('a.menu')}">${ICON.burger}</button>
+ <button type="button" class="icon-btn cart-btn" data-cart-open data-i18n-attr="aria-label:a.cart" aria-label="${t.t('a.cart')}">${ICON.cart}<span class="cart-count" data-cart-count aria-hidden="true">0</span></button>
+ <button type="button" class="icon-btn burger" id="burger" data-i18n-attr="aria-label:a.menu" aria-label="${t.t('a.menu')}">${ICON.burger}</button>
  </div>
  </div>
  </header>`;
@@ -375,7 +368,7 @@ YZA.chrome = {
  <nav class="drawer" id="drawer" aria-label="Menu">
  <div class="drawer__bar">
  <span class="drawer__brand">Menu</span>
- <button class="icon-btn drawer__close" id="drawerClose" aria-label="${t.t('a.close')}">${ICON.close}</button>
+ <button type="button" class="icon-btn drawer__close" id="drawerClose" aria-label="${t.t('a.close')}">${ICON.close}</button>
  </div>
  ${drawerAccordion()}
  <div class="drawer__lang lang">${langSwitcher()}</div>
@@ -409,7 +402,7 @@ YZA.chrome = {
  <aside class="cart-drawer" id="cartDrawer" aria-label="${t.t('cart.title')}">
  <div class="cart-drawer__head">
  <h2 data-i18n="cart.title">${t.t('cart.title')}</h2>
- <button class="icon-btn" id="cartClose" aria-label="${t.t('a.close')}">${ICON.close}</button>
+ <button type="button" class="icon-btn" id="cartClose" aria-label="${t.t('a.close')}">${ICON.close}</button>
  </div>
  <div class="cart-drawer__body" id="cartBody"></div>
  <div class="cart-drawer__foot" id="cartFoot" hidden>
