@@ -1295,8 +1295,10 @@
  short,
  displayShort: short,
  desc,
+ dimensions: bagVariant.dimensions || baseProduct.dimensions,
  img: bagVariant.img || baseProduct.img,
  gallery: bagVariant.gallery || baseProduct.gallery,
+ media: bagVariant.media || baseProduct.media,
  color: bagVariant.color || baseProduct.color,
  visualColor: bagVariant.color || baseProduct.visualColor,
  visualSize: size,
@@ -1767,25 +1769,33 @@
         if (schemaDesc) setMeta('meta[property="og:description"]', schemaDesc);
         setMeta('meta[property="og:image"]', abs(gal[0]));
       } catch (e) {}
- const lifestyleVid = p.lifestyleVideo || null;
- $('#galMain').innerHTML = `<img id="galMainImg" src="${gal[0]}" alt="${pageName} - YZA" fetchpriority="high" width="900" height="1180" decoding="async">`;
- const imgThumbs = gal.map((src, i) =>
- `<button class="gallery__thumb${i === 0 ? ' is-active' : ''}" data-src="${esc(src)}" data-gtype="img"><img aria-hidden="true" src="${esc(src)}" alt="" loading="lazy" width="76" height="100" decoding="async"></button>`
- ).join('');
- const vidThumb = lifestyleVid
- ? `<button class="gallery__thumb gallery__thumb--play" data-src="${esc(lifestyleVid)}" data-gtype="video" aria-label="Voir en mouvement"><img aria-hidden="true" src="${esc(gal[gal.length - 1])}" alt="" loading="lazy" width="76" height="100" decoding="async"><span class="gallery__play-icon" aria-hidden="true"></span></button>`
- : '';
- $('#galThumbs').innerHTML = imgThumbs + vidThumb;
+ // Unified ordered media list: prefer p.media (images + videos interleaved, in the
+ // brand's own order); otherwise synthesise from the image gallery plus an optional
+ // single lifestyle video, so every existing product renders exactly as before.
+ const mediaItems = (Array.isArray(p.media) && p.media.length)
+ ? p.media.filter((m) => m && m.src && (m.type === 'video' || isPublicMedia(m.src)))
+ : gal.map((src) => ({ type: 'image', src })).concat(
+ p.lifestyleVideo ? [{ type: 'video', src: p.lifestyleVideo, poster: gal[gal.length - 1] }] : []
+ );
+ if (!mediaItems.length) mediaItems.push({ type: 'image', src: gal[0] });
+ const videoMainMarkup = (src, poster) => `<video id="galMainVid" autoplay muted loop playsinline src="${esc(src)}"${poster ? ` poster="${esc(poster)}"` : ''} style="width:100%;height:100%;object-fit:contain;display:block;background:var(--black)"></video>`;
+ const imageMainMarkup = (src) => `<img id="galMainImg" src="${esc(src)}" alt="${esc(pageName)} - YZA" fetchpriority="high" width="900" height="1180" decoding="async">`;
+ $('#galMain').innerHTML = mediaItems[0].type === 'video' ? videoMainMarkup(mediaItems[0].src, mediaItems[0].poster) : imageMainMarkup(mediaItems[0].src);
+ $('#galThumbs').innerHTML = mediaItems.map((it, i) => {
+ const isVid = it.type === 'video';
+ const thumbSrc = isVid ? (it.poster || gal[0] || it.src) : it.src;
+ return `<button class="gallery__thumb${i === 0 ? ' is-active' : ''}${isVid ? ' gallery__thumb--play' : ''}" data-src="${esc(it.src)}" data-poster="${esc(isVid ? (it.poster || '') : '')}" data-gtype="${isVid ? 'video' : 'img'}"${isVid ? ' aria-label="Voir en mouvement"' : ''}><img aria-hidden="true" src="${esc(thumbSrc)}" alt="" loading="lazy" width="76" height="100" decoding="async">${isVid ? '<span class="gallery__play-icon" aria-hidden="true"></span>' : ''}</button>`;
+ }).join('');
  $('#galThumbs').onclick = (e) => {
  const b = e.target.closest('.gallery__thumb'); if (!b) return;
  $$('#galThumbs .gallery__thumb').forEach(x => x.classList.remove('is-active'));
  b.classList.add('is-active');
  if (b.dataset.gtype === 'video') {
- $('#galMain').innerHTML = `<video id="galMainVid" autoplay muted loop playsinline src="${b.dataset.src}" style="width:100%;height:100%;object-fit:contain;display:block;background:var(--black)"></video>`;
+ $('#galMain').innerHTML = videoMainMarkup(b.dataset.src, b.dataset.poster);
  } else {
  let mainImg = $('#galMainImg');
  if (!mainImg) {
- $('#galMain').innerHTML = `<img id="galMainImg" src="${b.dataset.src}" alt="${pageName} - YZA" width="900" height="1180" decoding="async">`;
+ $('#galMain').innerHTML = imageMainMarkup(b.dataset.src);
  } else {
  if (mainImg.getAttribute('src') === b.dataset.src) return;
  mainImg.classList.add('is-swapping');
@@ -1911,6 +1921,10 @@
  if (p.attachment) detailRows.push(`<strong>${buyingProofCopy().attachment}:</strong> ${esc(t.pick(p.attachment))}`);
  if (p.whatFits) detailRows.push(`<strong>${buyingProofCopy().fits}:</strong> ${esc(t.pick(p.whatFits))}`);
  if (p.edition) detailRows.push(`<strong>${t.t('pp.edition')}:</strong> ${esc(t.pick(p.edition))}`);
+ const _ml = ({ fr: 'Mannequin', en: 'Model', es: 'Modelo', tr: 'Manken', ar: 'العارضة' })[t.lang] || 'Model';
+ const _sl = ({ fr: 'Conseil style', en: 'Style tip', es: 'Consejo de estilo', tr: 'Stil ipucu', ar: 'نصيحة الإطلالة' })[t.lang] || 'Style tip';
+ if (p.modelNote) detailRows.push(`<strong>${_ml}:</strong> ${esc(t.pick(p.modelNote))}`);
+ if (p.styleTip) detailRows.push(`<strong>${_sl}:</strong> ${esc(t.pick(p.styleTip))}`);
  if (p.howToWear) {
  const wear = p.howToWear;
  const wearItems = Array.isArray(wear.items) ? wear.items : [];

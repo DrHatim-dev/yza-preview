@@ -15592,16 +15592,147 @@ const SCULPT_ANGLES = {
 };
 const SCULPT_LAUNCH_DIR = 'assets/products/launch-shop-ref/';
 const sculptLaunchImg = (color, size) => `${SCULPT_LAUNCH_DIR}la-sculpture-${String(size).toLowerCase()}-${color}.jpg`;
+// Real client product media (downloaded from yza-shop.com) per colourway + size, in the
+// brand's own display order (images + videos interleaved). Drives the product gallery so
+// each La Sculpture page mirrors the live shop. Falls back to launch-ref stills if absent.
+const SCULPT_MEDIA = {
+  rouge: {
+    xs: [
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-xs-01.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-xs-02.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-xs-03.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-0ddacc88bf0e.mp4', poster: 'assets/lifestyle/bags/sculpt-0ddacc88bf0e-poster.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-xs-04.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-xs-05.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-xs-06.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-96c4de8f62d8.mp4', poster: 'assets/lifestyle/bags/sculpt-96c4de8f62d8-poster.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-ac10c7a24b8a.mp4', poster: 'assets/lifestyle/bags/sculpt-ac10c7a24b8a-poster.jpg' },
+    ],
+    s: [
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-s-01.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-s-02.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-s-03.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-s-04.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-9e0be019838c.mp4', poster: 'assets/lifestyle/bags/sculpt-9e0be019838c-poster.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-s-05.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-c364378af353.mp4', poster: 'assets/lifestyle/bags/sculpt-c364378af353-poster.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-s-06.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-db3e01c697d6.mp4', poster: 'assets/lifestyle/bags/sculpt-db3e01c697d6-poster.jpg' },
+    ],
+    m: [
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-m-01.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-m-02.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-m-03.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-fb5882a2b09a.mp4', poster: 'assets/lifestyle/bags/sculpt-fb5882a2b09a-poster.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-m-04.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/rouge-m-05.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-81e047c7187b.mp4', poster: 'assets/lifestyle/bags/sculpt-81e047c7187b-poster.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-00e7fdbabe4c.mp4', poster: 'assets/lifestyle/bags/sculpt-00e7fdbabe4c-poster.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-68a448af9a8f.mp4', poster: 'assets/lifestyle/bags/sculpt-68a448af9a8f-poster.jpg' },
+    ],
+  },
+  violet: {
+    xs: [
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-xs-01.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-xs-02.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-xs-03.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-xs-04.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-xs-05.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-8b72ff737263.mp4', poster: 'assets/lifestyle/bags/sculpt-8b72ff737263-poster.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-9111447ff8ee.mp4', poster: 'assets/lifestyle/bags/sculpt-9111447ff8ee-poster.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-0822a661c6da.mp4', poster: 'assets/lifestyle/bags/sculpt-0822a661c6da-poster.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-ac10c7a24b8a.mp4', poster: 'assets/lifestyle/bags/sculpt-ac10c7a24b8a-poster.jpg' },
+    ],
+    s: [
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-s-01.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-s-02.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-s-03.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-s-04.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-s-05.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-c89e10dfa2c1.mp4', poster: 'assets/lifestyle/bags/sculpt-c89e10dfa2c1-poster.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-s-06.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-9ce9dfc2c755.mp4', poster: 'assets/lifestyle/bags/sculpt-9ce9dfc2c755-poster.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-79d964b70e17.mp4', poster: 'assets/lifestyle/bags/sculpt-79d964b70e17-poster.jpg' },
+    ],
+    m: [
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-m-01.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-m-02.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-m-03.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-d6a04c707ca9.mp4', poster: 'assets/lifestyle/bags/sculpt-d6a04c707ca9-poster.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-m-04.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-m-05.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-m-06.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-900417588600.mp4', poster: 'assets/lifestyle/bags/sculpt-900417588600-poster.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/violet-m-07.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-ad7ef6541720.mp4', poster: 'assets/lifestyle/bags/sculpt-ad7ef6541720-poster.jpg' },
+    ],
+  },
+  noir: {
+    xs: [
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-xs-01.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-xs-02.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-xs-03.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-xs-04.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-xs-05.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-xs-06.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-xs-07.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-ac10c7a24b8a.mp4', poster: 'assets/lifestyle/bags/sculpt-ac10c7a24b8a-poster.jpg' },
+    ],
+    s: [
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-s-01.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-s-02.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-s-03.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-9bfeffb491ae.mp4', poster: 'assets/lifestyle/bags/sculpt-9bfeffb491ae-poster.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-s-04.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-s-05.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-9afd0b29e5b8.mp4', poster: 'assets/lifestyle/bags/sculpt-9afd0b29e5b8-poster.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-79d964b70e17.mp4', poster: 'assets/lifestyle/bags/sculpt-79d964b70e17-poster.jpg' },
+    ],
+    m: [
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-m-01.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-m-02.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-m-03.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-m-04.jpg' },
+      { type: 'image', src: 'assets/products/la-sculpture/client/noir-m-05.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-68a448af9a8f.mp4', poster: 'assets/lifestyle/bags/sculpt-68a448af9a8f-poster.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-9bfeffb491ae.mp4', poster: 'assets/lifestyle/bags/sculpt-9bfeffb491ae-poster.jpg' },
+      { type: 'video', src: 'assets/lifestyle/bags/sculpt-ad7ef6541720.mp4', poster: 'assets/lifestyle/bags/sculpt-ad7ef6541720-poster.jpg' },
+    ],
+  },
+};
+// Per-variant dimension overrides where the client size differs from the size default
+// (the Deep Violet M is woven larger than the red/black M). Localised; carried onto the
+// colour view via bagViewProduct, so the bullet shows the real measurement per variant.
+const SCULPT_DIM_OVERRIDE = {
+ 'violet-m': {
+ fr: 'Le plus grand format en Deep Violet, plus généreux encore. Dimensions : 44 × 38 × 18 cm.',
+ en: 'The largest size in Deep Violet, more generous still. Dimensions: 44 × 38 × 18 cm.',
+ es: 'La talla más grande en Deep Violet, aún más amplia. Dimensiones: 44 × 38 × 18 cm.',
+ tr: 'Deep Violet renginde en büyük beden, daha da geniş. Ölçüler: 44 × 38 × 18 cm.',
+ ar: 'أكبر مقاس بلون Deep Violet، أكثر سعة. الأبعاد: 44 × 38 × 18 سم.',
+ },
+};
 BAG_ROWS.forEach((row) => {
  if (row.familyHandle !== 'la-sculpture') return;
  const cf = SCULPT_COLOR_FILE[row.colorSlug];
  if (!cf) return;
  (row.items || []).forEach((it) => {
  const sz = String(it.size || '').toLowerCase();
+ const dimOver = SCULPT_DIM_OVERRIDE[row.colorSlug + '-' + sz];
+ if (dimOver) it.dimensions = dimOver;
+ const media = (SCULPT_MEDIA[row.colorSlug] || {})[sz];
+ if (media && media.length) {
+ it.media = media;
+ it.gallery = media.filter((m) => m.type === 'image').map((m) => m.src);
+ it.img = it.gallery[0] || sculptLaunchImg(cf, sz);
+ } else {
  const img = sculptLaunchImg(cf, sz);
  it.img = img; it.gallery = [img, ...(SCULPT_ANGLES[row.colorSlug] || [])];
+ }
  });
- row.img = sculptLaunchImg(cf, 's');
+ const rowMedia = (SCULPT_MEDIA[row.colorSlug] || {}).s;
+ const rowImg = ((rowMedia || []).filter((m) => m.type === 'image')[0] || {}).src;
+ row.img = rowImg || sculptLaunchImg(cf, 's');
  row.gallery = [row.img];
 });
 
@@ -15945,24 +16076,53 @@ SCULPT_SIZE_COPY.forEach((s) => {
  "en": "Small enough to sit in the palm, and far roomier than you'd think. La Sculpture XS goes in the hand or on a short shoulder strap. In Guéliz the banana leaves pass through Fatima's hands and her team's, the handles are wrapped, the beads set one by one. Phone, card holder, keys, sunglasses, a small scarf: it all finds a place, close it and leave hands free. No two baskets are ever quite alike."
  },
  "material": {
- "fr": "Feuilles de bananier tissées, raffia et perles - Hot Red, Deep Violet ou Black Olive.",
- "en": "Woven banana leaves, raffia and beads - Hot Red, Deep Violet or Black Olive."
+ "fr": "Feuilles de bananier tissées main, anse sculptée en métal léger inspirée de l'architecture de Marrakech, gainée de raphia naturel et teinté et finie de perles - Hot Red, Deep Violet ou Black Olive.",
+ "en": "Hand-woven banana leaves with a sculpted lightweight metal handle inspired by Marrakech architecture, wrapped in natural and dyed raffia and finished with beads - Hot Red, Deep Violet or Black Olive.",
+ "es": "Hojas de banano tejidas a mano con un asa esculpida de metal ligero inspirada en la arquitectura de Marrakech, envuelta en rafia natural y teñida y rematada con cuentas - Hot Red, Deep Violet o Black Olive.",
+ "tr": "Elde dokunmuş muz yaprağı; Marakeş mimarisinden esinlenen, doğal ve boyalı rafyayla sarılıp boncuklarla bitirilen hafif heykelsi metal sap - Hot Red, Deep Violet veya Black Olive.",
+ "ar": "أوراق الموز المنسوجة يدويًا مع مقبض معدني خفيف منحوت مستوحى من عمارة مراكش، ملفوف برافيا طبيعية ومصبوغة ومزيّن بالخرز - Hot Red أو Deep Violet أو Black Olive."
  },
  "fabric": {
- "fr": "Tissage serré et solaire, anses enveloppées main : la signature de La Sculpture.",
- "en": "A tight, sun-warm weave, hand-wrapped handles: the La Sculpture signature."
+ "fr": "Un tissage serré et solaire, broderie de raphia sur les bords et anses gainées main : la signature de La Sculpture.",
+ "en": "A tight, sun-warm weave with raffia embroidery along the edges and hand-wrapped handles: the La Sculpture signature.",
+ "es": "Un tejido apretado y cálido, con bordado de rafia en los bordes y asas envueltas a mano: la firma de La Sculpture.",
+ "tr": "Sıkı ve güneş sıcaklığında bir dokuma; kenarlarda rafya işlemesi ve elde sarılmış saplar: La Sculpture imzası.",
+ "ar": "نسيج محكم ودافئ مع تطريز من الرافيا على الحواف ومقابض ملفوفة يدويًا: توقيع La Sculpture."
  },
  "handworkTime": {
  "fr": "Tout fait main - près de 48 heures réparties sur six jours, du tissage au dernier contrôle.",
- "en": "All by hand - close to 48 hours across six days, from the weave to the last check."
+ "en": "All by hand - close to 48 hours across six days, from the weave to the last check.",
+ "es": "Todo a mano: cerca de 48 horas repartidas en seis días, del tejido al último control.",
+ "tr": "Tümüyle elde: dokumadan son kontrole, altı güne yayılan yaklaşık 48 saat.",
+ "ar": "كل شيء يدويًا: نحو 48 ساعة موزعة على ستة أيام، من النسج حتى الفحص الأخير."
  },
  "dimensions": {
- "fr": "Le plus petit format - un mini panier à la main ou en courte bandoulière.",
- "en": "The smallest size - a mini basket by hand or on a short shoulder strap."
+ "fr": "Le plus petit format - un mini panier à la main ou en courte bandoulière. Dimensions : 36 × 22 × 11 cm.",
+ "en": "The smallest size - a mini basket by hand or on a short shoulder strap. Dimensions: 36 × 22 × 11 cm.",
+ "es": "La talla más pequeña - un mini cesto en la mano o en bandolera corta. Dimensiones: 36 × 22 × 11 cm.",
+ "tr": "En küçük beden - elde ya da kısa askıda mini sepet. Ölçüler: 36 × 22 × 11 cm.",
+ "ar": "أصغر مقاس - سلة صغيرة تُحمل باليد أو بحزام كتف قصير. الأبعاد: 36 × 22 × 11 سم."
  },
  "edition": {
- "fr": "Fait main, par séries de 15 par taille et par coloris, le temps de la série - sans réassort garanti.",
- "en": "Handmade, in runs of 15 per size and colour, for as long as the series runs - no guaranteed restock."
+ "fr": "Édition très limitée - faite main, par séries de 15 par taille et par coloris, le temps de la série, sans réassort garanti.",
+ "en": "Very limited edition - handmade in runs of 15 per size and colour, for as long as the series runs, with no guaranteed restock.",
+ "es": "Edición muy limitada - hecha a mano, en series de 15 por talla y color, mientras dure la serie, sin reposición garantizada.",
+ "tr": "Çok sınırlı üretim - elde, beden ve renk başına 15 adetlik serilerle, seri sürdüğü sürece, garantili stok yenileme yok.",
+ "ar": "إصدار محدود جدًا - مصنوع يدويًا بسلاسل من 15 قطعة لكل مقاس ولون، طوال مدة السلسلة، دون ضمان إعادة التوفير."
+ },
+ "modelNote": {
+ "fr": "Mannequin : Nawal mesure 1 m 55 et porte du XS/S.",
+ "en": "Model: Nawal is 1m55 and wears XS/S.",
+ "es": "Modelo: Nawal mide 1,55 m y usa XS/S.",
+ "tr": "Manken: Nawal 1,55 m boyunda ve XS/S beden giyiyor.",
+ "ar": "العارضة: نوال طولها 1.55 م وترتدي مقاس XS/S."
+ },
+ "styleTip": {
+ "fr": "Noir pour une allure sculpturale intemporelle, Rouge pour une déclaration estivale audacieuse, Violet pour un esprit plus artistique et inattendu.",
+ "en": "Choose Black for a timeless sculptural look, Red for a bold summer statement, and Purple for a more artistic, unexpected feel.",
+ "es": "Elige Negro para un look escultural atemporal, Rojo para una declaración veraniega audaz y Violeta para un aire más artístico e inesperado.",
+ "tr": "Zamansız heykelsi bir görünüm için Siyah, iddialı bir yaz ifadesi için Kırmızı, daha sanatsal ve beklenmedik bir hava için Mor'u seçin.",
+ "ar": "اختر الأسود لإطلالة نحتية خالدة، والأحمر للمسة صيفية جريئة، والبنفسجي لروح أكثر فنية وغير متوقعة."
  },
  "whatFits": {
  "fr": "Téléphone, carnet, porte-cartes, clés, lunettes et un foulard - bien plus qu'on ne le croit.",
@@ -15984,24 +16144,53 @@ SCULPT_SIZE_COPY.forEach((s) => {
  "en": "The right middle ground: compact but not cramped, it follows the day without dragging on the shoulder. Like all our baskets, it takes shape in the hands of the Guéliz women - banana leaves woven, handles dressed, beads set, a final check. Phone, wallet, sunglasses, a thin scarf, the small things of the day: it all finds a place. The weave keeps the mark of the hand that made it."
  },
  "material": {
- "fr": "Feuilles de bananier tissées, raffia et perles - Hot Red, Deep Violet ou Black Olive.",
- "en": "Woven banana leaves, raffia and beads - Hot Red, Deep Violet or Black Olive."
+ "fr": "Feuilles de bananier tissées main, anse sculptée en métal léger inspirée de l'architecture de Marrakech, gainée de raphia naturel et teinté et finie de perles - Hot Red, Deep Violet ou Black Olive.",
+ "en": "Hand-woven banana leaves with a sculpted lightweight metal handle inspired by Marrakech architecture, wrapped in natural and dyed raffia and finished with beads - Hot Red, Deep Violet or Black Olive.",
+ "es": "Hojas de banano tejidas a mano con un asa esculpida de metal ligero inspirada en la arquitectura de Marrakech, envuelta en rafia natural y teñida y rematada con cuentas - Hot Red, Deep Violet o Black Olive.",
+ "tr": "Elde dokunmuş muz yaprağı; Marakeş mimarisinden esinlenen, doğal ve boyalı rafyayla sarılıp boncuklarla bitirilen hafif heykelsi metal sap - Hot Red, Deep Violet veya Black Olive.",
+ "ar": "أوراق الموز المنسوجة يدويًا مع مقبض معدني خفيف منحوت مستوحى من عمارة مراكش، ملفوف برافيا طبيعية ومصبوغة ومزيّن بالخرز - Hot Red أو Deep Violet أو Black Olive."
  },
  "fabric": {
- "fr": "Tissage serré et solaire, anses enveloppées main : la signature de La Sculpture.",
- "en": "A tight, sun-warm weave, hand-wrapped handles: the La Sculpture signature."
+ "fr": "Un tissage serré et solaire, broderie de raphia sur les bords et anses gainées main : la signature de La Sculpture.",
+ "en": "A tight, sun-warm weave with raffia embroidery along the edges and hand-wrapped handles: the La Sculpture signature.",
+ "es": "Un tejido apretado y cálido, con bordado de rafia en los bordes y asas envueltas a mano: la firma de La Sculpture.",
+ "tr": "Sıkı ve güneş sıcaklığında bir dokuma; kenarlarda rafya işlemesi ve elde sarılmış saplar: La Sculpture imzası.",
+ "ar": "نسيج محكم ودافئ مع تطريز من الرافيا على الحواف ومقابض ملفوفة يدويًا: توقيع La Sculpture."
  },
  "handworkTime": {
  "fr": "Entièrement monté à la main : environ 48 heures sur six jours, du premier brin au contrôle final.",
- "en": "Built entirely by hand: about 48 hours over six days, from first strand to final check."
+ "en": "Built entirely by hand: about 48 hours over six days, from first strand to final check.",
+ "es": "Montado enteramente a mano: unas 48 horas en seis días, de la primera hebra al control final.",
+ "tr": "Tümüyle elde montaj: ilk lifinden son kontrole, altı günde yaklaşık 48 saat.",
+ "ar": "مُجمَّع يدويًا بالكامل: نحو 48 ساعة في ستة أيام، من أول خيط حتى الفحص النهائي."
  },
  "dimensions": {
- "fr": "Le format du milieu - un panier compact, fait pour tous les jours.",
- "en": "The mid-size - a compact basket, made for every day."
+ "fr": "Le format du milieu - un panier compact, fait pour tous les jours. Dimensions : 40 × 31 × 14 cm.",
+ "en": "The mid-size - a compact basket, made for every day. Dimensions: 40 × 31 × 14 cm.",
+ "es": "La talla intermedia - un cesto compacto, para cada día. Dimensiones: 40 × 31 × 14 cm.",
+ "tr": "Orta beden - her güne uygun kompakt bir sepet. Ölçüler: 40 × 31 × 14 cm.",
+ "ar": "المقاس المتوسط - سلة مدمجة لكل يوم. الأبعاد: 40 × 31 × 14 سم."
  },
  "edition": {
- "fr": "Fait main, par séries de 15 par taille et par coloris, tant que dure la série - sans réassort garanti.",
- "en": "Handmade, in runs of 15 per size and colour, while the series lasts - no guaranteed restock."
+ "fr": "Édition très limitée - faite main, par séries de 15 par taille et par coloris, tant que dure la série, sans réassort garanti.",
+ "en": "Very limited edition - handmade in runs of 15 per size and colour, while the series lasts, with no guaranteed restock.",
+ "es": "Edición muy limitada - hecha a mano, en series de 15 por talla y color, mientras dure la serie, sin reposición garantizada.",
+ "tr": "Çok sınırlı üretim - elde, beden ve renk başına 15 adetlik serilerle, seri sürdüğü sürece, garantili stok yenileme yok.",
+ "ar": "إصدار محدود جدًا - مصنوع يدويًا بسلاسل من 15 قطعة لكل مقاس ولون، طوال مدة السلسلة، دون ضمان إعادة التوفير."
+ },
+ "modelNote": {
+ "fr": "Mannequin : Nawal mesure 1 m 55 et porte du XS/S.",
+ "en": "Model: Nawal is 1m55 and wears XS/S.",
+ "es": "Modelo: Nawal mide 1,55 m y usa XS/S.",
+ "tr": "Manken: Nawal 1,55 m boyunda ve XS/S beden giyiyor.",
+ "ar": "العارضة: نوال طولها 1.55 م وترتدي مقاس XS/S."
+ },
+ "styleTip": {
+ "fr": "Noir pour une allure sculpturale intemporelle, Rouge pour une déclaration estivale audacieuse, Violet pour un esprit plus artistique et inattendu.",
+ "en": "Choose Black for a timeless sculptural look, Red for a bold summer statement, and Purple for a more artistic, unexpected feel.",
+ "es": "Elige Negro para un look escultural atemporal, Rojo para una declaración veraniega audaz y Violeta para un aire más artístico e inesperado.",
+ "tr": "Zamansız heykelsi bir görünüm için Siyah, iddialı bir yaz ifadesi için Kırmızı, daha sanatsal ve beklenmedik bir hava için Mor'u seçin.",
+ "ar": "اختر الأسود لإطلالة نحتية خالدة، والأحمر للمسة صيفية جريئة، والبنفسجي لروح أكثر فنية وغير متوقعة."
  },
  "whatFits": {
  "fr": "Téléphone, portefeuille, lunettes, un foulard fin et les petites choses du jour.",
@@ -16023,24 +16212,53 @@ SCULPT_SIZE_COPY.forEach((s) => {
  "en": "The largest of the line, with room for the days that spill over. Market, beach, a last-minute departure: it takes the essentials, a pouch, a slim book, a scarf, a little kit. Under the weave, the hours of the Guéliz women - banana leaves tied strand by strand, handles wrapped, beads set, the piece checked. The evenness of the weave is never mechanical: a hand held it."
  },
  "material": {
- "fr": "Feuilles de bananier tissées, raffia et perles - Hot Red, Deep Violet ou Black Olive.",
- "en": "Woven banana leaves, raffia and beads - Hot Red, Deep Violet or Black Olive."
+ "fr": "Feuilles de bananier tissées main, anse sculptée en métal léger inspirée de l'architecture de Marrakech, gainée de raphia naturel et teinté et finie de perles - Hot Red, Deep Violet ou Black Olive.",
+ "en": "Hand-woven banana leaves with a sculpted lightweight metal handle inspired by Marrakech architecture, wrapped in natural and dyed raffia and finished with beads - Hot Red, Deep Violet or Black Olive.",
+ "es": "Hojas de banano tejidas a mano con un asa esculpida de metal ligero inspirada en la arquitectura de Marrakech, envuelta en rafia natural y teñida y rematada con cuentas - Hot Red, Deep Violet o Black Olive.",
+ "tr": "Elde dokunmuş muz yaprağı; Marakeş mimarisinden esinlenen, doğal ve boyalı rafyayla sarılıp boncuklarla bitirilen hafif heykelsi metal sap - Hot Red, Deep Violet veya Black Olive.",
+ "ar": "أوراق الموز المنسوجة يدويًا مع مقبض معدني خفيف منحوت مستوحى من عمارة مراكش، ملفوف برافيا طبيعية ومصبوغة ومزيّن بالخرز - Hot Red أو Deep Violet أو Black Olive."
  },
  "fabric": {
- "fr": "Tissage serré et solaire, anses enveloppées main : la signature de La Sculpture.",
- "en": "A tight, sun-warm weave, hand-wrapped handles: the La Sculpture signature."
+ "fr": "Un tissage serré et solaire, broderie de raphia sur les bords et anses gainées main : la signature de La Sculpture.",
+ "en": "A tight, sun-warm weave with raffia embroidery along the edges and hand-wrapped handles: the La Sculpture signature.",
+ "es": "Un tejido apretado y cálido, con bordado de rafia en los bordes y asas envueltas a mano: la firma de La Sculpture.",
+ "tr": "Sıkı ve güneş sıcaklığında bir dokuma; kenarlarda rafya işlemesi ve elde sarılmış saplar: La Sculpture imzası.",
+ "ar": "نسيج محكم ودافئ مع تطريز من الرافيا على الحواف ومقابض ملفوفة يدويًا: توقيع La Sculpture."
  },
  "handworkTime": {
  "fr": "Fait main de bout en bout : à peu près 48 heures sur six jours, tissage compris.",
- "en": "Handmade end to end: roughly 48 hours over six days, weaving included."
+ "en": "Handmade end to end: roughly 48 hours over six days, weaving included.",
+ "es": "Hecho a mano de principio a fin: alrededor de 48 horas en seis días, tejido incluido.",
+ "tr": "Baştan sona elde yapım: dokuma dahil, altı güne yayılan yaklaşık 48 saat.",
+ "ar": "مصنوع يدويًا من البداية إلى النهاية: نحو 48 ساعة في ستة أيام، بما في ذلك النسج."
  },
  "dimensions": {
- "fr": "Le plus grand format - un panier de caractère, plus de volume.",
- "en": "The largest size - a basket with presence, more volume."
+ "fr": "Le plus grand format - un panier de caractère, plus de volume. Dimensions : 40 × 31 × 14 cm.",
+ "en": "The largest size - a basket with presence, more volume. Dimensions: 40 × 31 × 14 cm.",
+ "es": "La talla más grande - un cesto con carácter, más volumen. Dimensiones: 40 × 31 × 14 cm.",
+ "tr": "En büyük beden - karakterli, daha hacimli bir sepet. Ölçüler: 40 × 31 × 14 cm.",
+ "ar": "أكبر مقاس - سلة بحضور لافت وحجم أكبر. الأبعاد: 40 × 31 × 14 سم."
  },
  "edition": {
- "fr": "Fait main, par séries de 15 par taille et par coloris, le temps que vit la série - sans réassort garanti.",
- "en": "Handmade, in runs of 15 per size and colour, for the life of the series - no guaranteed restock."
+ "fr": "Édition très limitée - faite main, par séries de 15 par taille et par coloris, le temps que vit la série, sans réassort garanti.",
+ "en": "Very limited edition - handmade in runs of 15 per size and colour, for the life of the series, with no guaranteed restock.",
+ "es": "Edición muy limitada - hecha a mano, en series de 15 por talla y color, mientras dure la serie, sin reposición garantizada.",
+ "tr": "Çok sınırlı üretim - elde, beden ve renk başına 15 adetlik serilerle, seri sürdüğü sürece, garantili stok yenileme yok.",
+ "ar": "إصدار محدود جدًا - مصنوع يدويًا بسلاسل من 15 قطعة لكل مقاس ولون، طوال مدة السلسلة، دون ضمان إعادة التوفير."
+ },
+ "modelNote": {
+ "fr": "Mannequin : Nawal mesure 1 m 55 et porte du XS/S.",
+ "en": "Model: Nawal is 1m55 and wears XS/S.",
+ "es": "Modelo: Nawal mide 1,55 m y usa XS/S.",
+ "tr": "Manken: Nawal 1,55 m boyunda ve XS/S beden giyiyor.",
+ "ar": "العارضة: نوال طولها 1.55 م وترتدي مقاس XS/S."
+ },
+ "styleTip": {
+ "fr": "Noir pour une allure sculpturale intemporelle, Rouge pour une déclaration estivale audacieuse, Violet pour un esprit plus artistique et inattendu.",
+ "en": "Choose Black for a timeless sculptural look, Red for a bold summer statement, and Purple for a more artistic, unexpected feel.",
+ "es": "Elige Negro para un look escultural atemporal, Rojo para una declaración veraniega audaz y Violeta para un aire más artístico e inesperado.",
+ "tr": "Zamansız heykelsi bir görünüm için Siyah, iddialı bir yaz ifadesi için Kırmızı, daha sanatsal ve beklenmedik bir hava için Mor'u seçin.",
+ "ar": "اختر الأسود لإطلالة نحتية خالدة، والأحمر للمسة صيفية جريئة، والبنفسجي لروح أكثر فنية وغير متوقعة."
  },
  "whatFits": {
  "fr": "Les essentiels, une pochette, un livre fin, un foulard et une petite trousse.",
@@ -17741,6 +17959,8 @@ SCULPT_SIZE_COPY.forEach((s) => {
  if (it.edition) { var _e = f(it.edition, p.edition); p.edition = _e; p.batch = _e; }
  if (it.whatFits) p.whatFits = f(it.whatFits, p.whatFits);
  if (it.making) p.making = f(it.making, p.making);
+ if (it.modelNote) p.modelNote = f(it.modelNote, p.modelNote);
+ if (it.styleTip) p.styleTip = f(it.styleTip, p.styleTip);
  if (it.fruitStoryTitle && it.fruitStoryBody) {
  p.fruitStory = {
  title: f(it.fruitStoryTitle),
