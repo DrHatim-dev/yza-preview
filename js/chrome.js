@@ -426,6 +426,7 @@ YZA.chrome = {
  <div class="footer__cols">
  <div class="footer__brand">
  <a class="logo logo--wordmark" href="index.html" aria-label="YZA">${WORDMARK}</a>
+ <p class="brand-mark-tri" aria-label="YZA"><span class="brand-mark-tri__lat">YZA</span><span class="brand-mark-tri__sep" aria-hidden="true">·</span><span class="brand-mark-tri__tif" lang="zgh" aria-hidden="true">ⴰⵣⵉ</span><span class="brand-mark-tri__sep" aria-hidden="true">·</span><span class="brand-mark-tri__ar" lang="ar" aria-hidden="true">ييزة</span></p>
  <p class="footer__tag" data-i18n="footer.tagline">${t.t('footer.tagline')}</p>
  <div class="footer__social">
  <a href="${YZA.brand.instagramUrl}" target="_blank" rel="noopener">Instagram</a>
