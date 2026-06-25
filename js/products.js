@@ -4065,23 +4065,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Format XS, couleur rouge, feuilles de bananier, raphia, cuir et perles.",
  "en": "XS scale, red finish, banana leaves, raffia, leather and beads.",
- "es": "XS scale, red finish, banana leaves, raffia, leather and beads.",
- "tr": "XS scale, red finish, banana leaves, raffia, leather and beads.",
- "ar": "XS scale, red finish, banana leaves, raffia, leather and beads."
+ "es": "Talla XS, acabado rojo, hojas de bananero, rafia, cuero y cuentas.",
+ "tr": "XS beden, kırmızı renk, muz yaprağı, rafya, deri ve boncuklar.",
+ "ar": "حجم XS، لون أحمر، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "displayShort": {
  "fr": "Format XS, couleur rouge, feuilles de bananier, raphia, cuir et perles.",
  "en": "XS scale, red finish, banana leaves, raffia, leather and beads.",
- "es": "XS scale, red finish, banana leaves, raffia, leather and beads.",
- "tr": "XS scale, red finish, banana leaves, raffia, leather and beads.",
- "ar": "XS scale, red finish, banana leaves, raffia, leather and beads."
+ "es": "Talla XS, acabado rojo, hojas de bananero, rafia, cuero y cuentas.",
+ "tr": "XS beden, kırmızı renk, muz yaprağı, rafya, deri ve boncuklar.",
+ "ar": "حجم XS، لون أحمر، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "desc": {
  "fr": "La Sculpture XS - Rouge: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur rouge et le format XS, pour comprendre la taille, la couleur et les details reels de la piece.",
  "en": "La Sculpture XS - Red: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the red finish and XS scale, so the size, colour and real details stay clear.",
- "es": "La Sculpture XS - Red: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the red finish and XS scale, so the size, colour and real details stay clear.",
- "tr": "La Sculpture XS - Red: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the red finish and XS scale, so the size, colour and real details stay clear.",
- "ar": "La Sculpture XS - Red: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the red finish and XS scale, so the size, colour and real details stay clear."
+ "es": "La Sculpture XS - Rojo: una cesta YZA en hojas de bananero, rafia, cuero y cuentas. Esta página muestra únicamente el acabado rojo y la talla XS, para que el tamaño, el color y los detalles reales queden claros.",
+ "tr": "La Sculpture XS - Kırmızı: muz yaprağı, rafya, deri ve boncuklardan yapılmış bir YZA sepeti. Bu sayfa yalnızca kırmızı rengi ve XS bedeni gösterir; boyut, renk ve gerçek detaylar net kalır.",
+ "ar": "La Sculpture XS - أحمر: سلة YZA من أوراق الموز والرافيا والجلد والخرز. تعرض هذه الصفحة فقط اللون الأحمر وحجم XS، ليظل الحجم واللون والتفاصيل الحقيقية واضحة."
  },
  "price": 80000,
  "currency": "MAD",
@@ -4090,9 +4090,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Paniers & sacs",
  "en": "Bags",
- "es": "Bags",
- "tr": "Bags",
- "ar": "Bags"
+ "es": "Bolsos y cestas",
+ "tr": "Çantalar ve sepetler",
+ "ar": "حقائب وسلال"
  },
  "group": "bags",
  "collection": {
@@ -4115,17 +4115,17 @@ const PRODUCTS = [
  "variantLabel": {
  "fr": "XS / Rouge",
  "en": "XS / Red",
- "es": "XS / Red",
- "tr": "XS / Red",
- "ar": "XS / Red"
+ "es": "XS / Rojo",
+ "tr": "XS / Kırmızı",
+ "ar": "XS / أحمر"
  },
  "availableColors": [
  {
  "fr": "Rouge",
  "en": "Red",
- "es": "Red",
- "tr": "Red",
- "ar": "Red"
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  }
  ],
  "availableSizes": [
@@ -4250,23 +4250,23 @@ const PRODUCTS = [
  "material": {
  "fr": "Feuilles de bananier, Raffia, Perles",
  "en": "Banana leaves, Raffia, Beads",
- "es": "Banana leaves, Raffia, Beads",
- "tr": "Banana leaves, Raffia, Beads",
- "ar": "Banana leaves, Raffia, Beads"
+ "es": "Hojas de bananero, Rafia, Cuentas",
+ "tr": "Muz yaprağı, Rafya, Boncuklar",
+ "ar": "أوراق الموز، الرافيا، الخرز"
  },
  "fabric": {
  "fr": "Banana leaves, raffia & beads; 3 colors in stock",
  "en": "Banana leaves, raffia & beads; 3 colors in stock",
- "es": "Banana leaves, raffia & beads; 3 colors in stock",
- "tr": "Banana leaves, raffia & beads; 3 colors in stock",
- "ar": "Banana leaves, raffia & beads; 3 colors in stock"
+ "es": "Hojas de bananero, rafia y cuentas; 3 colores en stock",
+ "tr": "Muz yaprağı, rafya ve boncuklar; 3 renk stokta",
+ "ar": "أوراق الموز والرافيا والخرز؛ 3 ألوان في المخزون"
  },
  "color": {
  "fr": "Rouge",
  "en": "Red",
- "es": "Red",
- "tr": "Red",
- "ar": "Red"
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  },
  "size": {
  "fr": "XS",
@@ -4279,9 +4279,9 @@ const PRODUCTS = [
  "visualColor": {
  "fr": "Rouge",
  "en": "Red",
- "es": "Red",
- "tr": "Red",
- "ar": "Red"
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  },
  "bagFamilyTitle": {
  "fr": "La Sculpture",
@@ -4298,64 +4298,64 @@ const PRODUCTS = [
  "ar": "Collection Sculpture"
  },
  "bagFamilyText": {
- "fr": "Trois formats, trois lectures couleur. Chaque sac garde sa propre page, ses propres images et son propre rythme d'atelier.",
+ "fr": "Trois formats, trois lectures couleur. Chaque sac garde sa propre page, ses propres images et son propre rythme d’atelier.",
  "en": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
- "es": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
- "tr": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
- "ar": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm."
+ "es": "Tres formatos, tres lecturas de color. Cada bolso mantiene su propia página, imágenes y ritmo de atelier.",
+ "tr": "Üç beden, üç renk yorumu. Her çanta kendi sayfasını, görsel setini ve atölye ritmini korur.",
+ "ar": "ثلاثة أحجام، ثلاث قراءات للون. كل حقيبة تحتفظ بصفحتها الخاصة ومجموعة صورها وإيقاع الأتيليه."
  },
  "bagFamilyOrder": 1,
  "dimensions": {
  "fr": "Format XS: mini panier main ou epaule courte.",
  "en": "XS scale: mini hand or short-shoulder basket.",
- "es": "XS scale: mini hand or short-shoulder basket.",
- "tr": "XS scale: mini hand or short-shoulder basket.",
- "ar": "XS scale: mini hand or short-shoulder basket."
+ "es": "Talla XS: mini cesta de mano o hombro corto.",
+ "tr": "XS beden: mini el ya da kısa omuz sepeti.",
+ "ar": "حجم XS: سلة يد صغيرة أو حمالة قصيرة."
  },
  "whatFits": {
  "fr": "Telephone, porte-cartes, cles, rouge a levres.",
  "en": "Phone, card holder, keys and lipstick.",
- "es": "Phone, card holder, keys and lipstick.",
- "tr": "Phone, card holder, keys and lipstick.",
- "ar": "Phone, card holder, keys and lipstick."
+ "es": "Teléfono, tarjetero, llaves y pintalabios.",
+ "tr": "Telefon, kart kılıfı, anahtarlar ve ruj.",
+ "ar": "هاتف، حامل بطاقات، مفاتيح وأحمر شفاه."
  },
  "attachment": null,
  "handworkTime": {
  "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
  "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "es": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "tr": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "ar": "Hand assembly: weaving, handle wrapping, beadwork and final check."
+ "es": "Ensamblaje manual: tejido, forrado de asas, abalorios y revisión final.",
+ "tr": "El montajı: dokuma, sap kaplama, boncuk işi ve son kontrol.",
+ "ar": "تجميع يدوي: نسيج، تغليف المقابض، أعمال الخرز والفحص النهائي."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
  "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "es": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "tr": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "ar": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier."
+ "es": "Estructura tejida, asas forradas, cuentas y acabados revisados pieza a pieza en el atelier de Guéliz.",
+ "tr": "Dokuma yapı, kaplı saplar, boncuk işi ve bitişler Guéliz atelyesinde parça parça kontrol edildi.",
+ "ar": "هيكل منسوج، مقابض مغطاة، خرز وتشطيبات مفحوصة قطعة بقطعة في أتيليه قوليز."
  },
  "care": {
  "fr": "Depoussierer doucement. Eviter l humidite, la pluie et le poids excessif. Ranger rempli pour garder la forme.",
  "en": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "es": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "tr": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "ar": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape."
+ "es": "Quitar el polvo con suavidad. Evitar la humedad, la lluvia y el peso excesivo. Guardar relleno para mantener la forma.",
+ "tr": "Nazikçe tozunu alın. Nem, yağmur ve aşırı ağırlıktan kaçının. Şeklini korumak için dolu saklayın.",
+ "ar": "نظّف الغبار بلطف. تجنب الرطوبة والمطر والثقل الزائد. احفظه ممتلئاً للحفاظ على الشكل."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA minimalista, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim için hazır.",
+ "ar": "تغليف YZA بسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz’de stüdyo teslimi mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في قوليز."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -4367,16 +4367,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
  "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ "es": "15 bolsos por talla y color cuando el lote está activo; sin reposición garantizada.",
+ "tr": "Seri aktifken beden ve renk başına 15 çanta; garantili yeniden stok yok.",
+ "ar": "15 حقيبة لكل حجم ولون عندما يكون الدفعة نشطة؛ لا إعادة تخزين مضمونة."
  },
  "edition": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
  "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ "es": "15 bolsos por talla y color cuando el lote está activo; sin reposición garantizada.",
+ "tr": "Seri aktifken beden ve renk başına 15 çanta; garantili yeniden stok yok.",
+ "ar": "15 حقيبة لكل حجم ولون عندما يكون الدفعة نشطة؛ لا إعادة تخزين مضمونة."
  },
  "badge": "bestseller",
  "hours": null,
@@ -4387,51 +4387,51 @@ const PRODUCTS = [
  "label": {
  "fr": "XS / Rouge",
  "en": "XS / Red",
- "es": "XS / Red",
- "tr": "XS / Red",
- "ar": "XS / Red"
+ "es": "XS / Rojo",
+ "tr": "XS / Kırmızı",
+ "ar": "XS / أحمر"
  },
  "price": 80000,
  "whatFits": {
  "fr": "Telephone, porte-cartes, cles, rouge a levres.",
  "en": "Phone, card holder, keys and lipstick.",
- "es": "Phone, card holder, keys and lipstick.",
- "tr": "Phone, card holder, keys and lipstick.",
- "ar": "Phone, card holder, keys and lipstick."
+ "es": "Teléfono, tarjetero, llaves y pintalabios.",
+ "tr": "Telefon, kart kılıfı, anahtarlar ve ruj.",
+ "ar": "هاتف، حامل بطاقات، مفاتيح وأحمر شفاه."
  }
  },
  {
  "label": {
  "fr": "S / Violet",
  "en": "S / Violet",
- "es": "S / Violet",
- "tr": "S / Violet",
- "ar": "S / Violet"
+ "es": "S / Violeta",
+ "tr": "S / Mor",
+ "ar": "S / بنفسجي"
  },
  "price": 93000,
  "whatFits": {
  "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
  "en": "Phone, wallet, sunglasses, light scarf and essentials.",
- "es": "Phone, wallet, sunglasses, light scarf and essentials.",
- "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
- "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ "es": "Teléfono, cartera, gafas de sol, fular ligero y esenciales.",
+ "tr": "Telefon, cüzdan, güneş gözlüğü, ince fular ve temel eşyalar.",
+ "ar": "هاتف، محفظة، نظارات شمسية، وشاح خفيف ومستلزمات أساسية."
  }
  },
  {
  "label": {
  "fr": "M / Noir",
  "en": "M / Black",
- "es": "M / Black",
- "tr": "M / Black",
- "ar": "M / Black"
+ "es": "M / Negro",
+ "tr": "M / Siyah",
+ "ar": "M / أسود"
  },
  "price": 100000,
  "whatFits": {
  "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
  "en": "Essentials plus pouch, slim book, scarf and small clutch.",
- "es": "Essentials plus pouch, slim book, scarf and small clutch.",
- "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
- "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ "es": "Esenciales más neceser, libro fino, fular y pequeño clutch.",
+ "tr": "Temel eşyalar artı poşet, ince kitap, fular ve küçük el çantası.",
+ "ar": "مستلزمات أساسية مع حقيبة صغيرة، كتاب رفيع، وشاح وحقيبة صغيرة."
  }
  }
  ],
@@ -4465,23 +4465,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Format S, couleur violet, feuilles de bananier, raphia, cuir et perles.",
  "en": "S scale, violet finish, banana leaves, raffia, leather and beads.",
- "es": "S scale, violet finish, banana leaves, raffia, leather and beads.",
- "tr": "S scale, violet finish, banana leaves, raffia, leather and beads.",
- "ar": "S scale, violet finish, banana leaves, raffia, leather and beads."
+ "es": "Talla S, acabado violeta, hojas de bananero, rafia, cuero y cuentas.",
+ "tr": "S beden, mor renk, muz yaprağı, rafya, deri ve boncuklar.",
+ "ar": "حجم S، لون بنفسجي، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "displayShort": {
  "fr": "Format S, couleur violet, feuilles de bananier, raphia, cuir et perles.",
  "en": "S scale, violet finish, banana leaves, raffia, leather and beads.",
- "es": "S scale, violet finish, banana leaves, raffia, leather and beads.",
- "tr": "S scale, violet finish, banana leaves, raffia, leather and beads.",
- "ar": "S scale, violet finish, banana leaves, raffia, leather and beads."
+ "es": "Talla S, acabado violeta, hojas de bananero, rafia, cuero y cuentas.",
+ "tr": "S beden, mor renk, muz yaprağı, rafya, deri ve boncuklar.",
+ "ar": "حجم S، لون بنفسجي، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "desc": {
  "fr": "La Sculpture S - Violet: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur violet et le format S, pour comprendre la taille, la couleur et les details reels de la piece.",
  "en": "La Sculpture S - Violet: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the violet finish and S scale, so the size, colour and real details stay clear.",
- "es": "La Sculpture S - Violet: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the violet finish and S scale, so the size, colour and real details stay clear.",
- "tr": "La Sculpture S - Violet: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the violet finish and S scale, so the size, colour and real details stay clear.",
- "ar": "La Sculpture S - Violet: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the violet finish and S scale, so the size, colour and real details stay clear."
+ "es": "La Sculpture S - Violeta: una cesta YZA en hojas de bananero, rafia, cuero y cuentas. Esta página muestra únicamente el acabado violeta y la talla S, para que el tamaño, el color y los detalles reales queden claros.",
+ "tr": "La Sculpture S - Mor: muz yaprağı, rafya, deri ve boncuklardan yapılmış bir YZA sepeti. Bu sayfa yalnızca mor rengi ve S bedeni gösterir; boyut, renk ve gerçek detaylar net kalır.",
+ "ar": "La Sculpture S - بنفسجي: سلة YZA من أوراق الموز والرافيا والجلد والخرز. تعرض هذه الصفحة فقط اللون البنفسجي وحجم S، ليظل الحجم واللون والتفاصيل الحقيقية واضحة."
  },
  "price": 93000,
  "currency": "MAD",
@@ -4490,9 +4490,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Paniers & sacs",
  "en": "Bags",
- "es": "Bags",
- "tr": "Bags",
- "ar": "Bags"
+ "es": "Bolsos y cestas",
+ "tr": "Çantalar ve sepetler",
+ "ar": "حقائب وسلال"
  },
  "group": "bags",
  "collection": {
@@ -4514,17 +4514,17 @@ const PRODUCTS = [
  "variantLabel": {
  "fr": "S / Violet",
  "en": "S / Violet",
- "es": "S / Violet",
- "tr": "S / Violet",
- "ar": "S / Violet"
+ "es": "S / Violeta",
+ "tr": "S / Mor",
+ "ar": "S / بنفسجي"
  },
  "availableColors": [
  {
  "fr": "Violet",
  "en": "Violet",
- "es": "Violet",
- "tr": "Violet",
- "ar": "Violet"
+ "es": "Violeta",
+ "tr": "Mor",
+ "ar": "بنفسجي"
  }
  ],
  "availableSizes": [
@@ -4649,23 +4649,23 @@ const PRODUCTS = [
  "material": {
  "fr": "Feuilles de bananier, Raffia, Perles",
  "en": "Banana leaves, Raffia, Beads",
- "es": "Banana leaves, Raffia, Beads",
- "tr": "Banana leaves, Raffia, Beads",
- "ar": "Banana leaves, Raffia, Beads"
+ "es": "Hojas de bananero, Rafia, Cuentas",
+ "tr": "Muz yaprağı, Rafya, Boncuklar",
+ "ar": "أوراق الموز، الرافيا، الخرز"
  },
  "fabric": {
  "fr": "Banana leaves, raffia & beads; 3 colors in stock",
  "en": "Banana leaves, raffia & beads; 3 colors in stock",
- "es": "Banana leaves, raffia & beads; 3 colors in stock",
- "tr": "Banana leaves, raffia & beads; 3 colors in stock",
- "ar": "Banana leaves, raffia & beads; 3 colors in stock"
+ "es": "Hojas de bananero, rafia y cuentas; 3 colores en stock",
+ "tr": "Muz yaprağı, rafya ve boncuklar; 3 renk stokta",
+ "ar": "أوراق الموز والرافيا والخرز؛ 3 ألوان في المخزون"
  },
  "color": {
  "fr": "Violet",
  "en": "Violet",
- "es": "Violet",
- "tr": "Violet",
- "ar": "Violet"
+ "es": "Violeta",
+ "tr": "Mor",
+ "ar": "بنفسجي"
  },
  "size": {
  "fr": "S",
@@ -4678,9 +4678,9 @@ const PRODUCTS = [
  "visualColor": {
  "fr": "Violet",
  "en": "Violet",
- "es": "Violet",
- "tr": "Violet",
- "ar": "Violet"
+ "es": "Violeta",
+ "tr": "Mor",
+ "ar": "بنفسجي"
  },
  "bagFamilyTitle": {
  "fr": "La Sculpture",
@@ -4699,62 +4699,62 @@ const PRODUCTS = [
  "bagFamilyText": {
  "fr": "Trois formats, trois lectures couleur. Chaque sac garde sa propre page, ses propres images et son propre rythme d'atelier.",
  "en": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
- "es": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
- "tr": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
- "ar": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm."
+ "es": "Tres formatos, tres lecturas de color. Cada bolso mantiene su propia página, imágenes y ritmo de atelier.",
+ "tr": "Üç beden, üç renk yorumu. Her çanta kendi sayfasını, görsel setini ve atölye ritmini korur.",
+ "ar": "ثلاثة أحجام، ثلاث قراءات للون. كل حقيبة تحتفظ بصفحتها الخاصة ومجموعة صورها وإيقاع الأتيليه."
  },
  "bagFamilyOrder": 1,
  "dimensions": {
  "fr": "Format S: panier journee compact.",
  "en": "S scale: compact day basket.",
- "es": "S scale: compact day basket.",
- "tr": "S scale: compact day basket.",
- "ar": "S scale: compact day basket."
+ "es": "Talla S: cesta de día compacta.",
+ "tr": "S beden: kompakt günlük sepet.",
+ "ar": "حجم S: سلة يومية مضغوطة."
  },
  "whatFits": {
  "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
  "en": "Phone, wallet, sunglasses, light scarf and essentials.",
- "es": "Phone, wallet, sunglasses, light scarf and essentials.",
- "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
- "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ "es": "Teléfono, cartera, gafas de sol, fular ligero y esenciales.",
+ "tr": "Telefon, cüzdan, güneş gözlüğü, ince fular ve temel eşyalar.",
+ "ar": "هاتف، محفظة، نظارات شمسية، وشاح خفيف ومستلزمات أساسية."
  },
  "attachment": null,
  "handworkTime": {
  "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
  "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "es": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "tr": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "ar": "Hand assembly: weaving, handle wrapping, beadwork and final check."
+ "es": "Ensamblaje manual: tejido, forrado de asas, abalorios y revisión final.",
+ "tr": "El montajı: dokuma, sap kaplama, boncuk işi ve son kontrol.",
+ "ar": "تجميع يدوي: نسيج، تغليف المقابض، أعمال الخرز والفحص النهائي."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
  "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "es": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "tr": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "ar": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier."
+ "es": "Estructura tejida, asas forradas, cuentas y acabados revisados pieza a pieza en el atelier de Guéliz.",
+ "tr": "Dokuma yapı, kaplı saplar, boncuk işi ve bitişler Guéliz atelyesinde parça parça kontrol edildi.",
+ "ar": "هيكل منسوج، مقابض مغطاة، خرز وتشطيبات مفحوصة قطعة بقطعة في أتيليه قوليز."
  },
  "care": {
  "fr": "Depoussierer doucement. Eviter l humidite, la pluie et le poids excessif. Ranger rempli pour garder la forme.",
  "en": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "es": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "tr": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "ar": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape."
+ "es": "Quitar el polvo con suavidad. Evitar la humedad, la lluvia y el peso excesivo. Guardar relleno para mantener la forma.",
+ "tr": "Nazikçe tozunu alın. Nem, yağmur ve aşırı ağırlıktan kaçının. Şeklini korumak için dolu saklayın.",
+ "ar": "نظّف الغبار بلطف. تجنب الرطوبة والمطر والثقل الزائد. احفظه ممتلئاً للحفاظ على الشكل."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA minimalista, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim için hazır.",
+ "ar": "تغليف YZA بسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz’de stüdyo teslimi mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في قوليز."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -4766,16 +4766,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
  "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ "es": "15 bolsos por talla y color cuando el lote está activo; sin reposición garantizada.",
+ "tr": "Seri aktifken beden ve renk başına 15 çanta; garantili yeniden stok yok.",
+ "ar": "15 حقيبة لكل حجم ولون عندما يكون الدفعة نشطة؛ لا إعادة تخزين مضمونة."
  },
  "edition": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
  "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ "es": "15 bolsos por talla y color cuando el lote está activo; sin reposición garantizada.",
+ "tr": "Seri aktifken beden ve renk başına 15 çanta; garantili yeniden stok yok.",
+ "ar": "15 حقيبة لكل حجم ولون عندما يكون الدفعة نشطة؛ لا إعادة تخزين مضمونة."
  },
  "badge": "limited",
  "hours": null,
@@ -4786,51 +4786,51 @@ const PRODUCTS = [
  "label": {
  "fr": "XS / Rouge",
  "en": "XS / Red",
- "es": "XS / Red",
- "tr": "XS / Red",
- "ar": "XS / Red"
+ "es": "XS / Rojo",
+ "tr": "XS / Kırmızı",
+ "ar": "XS / أحمر"
  },
  "price": 80000,
  "whatFits": {
  "fr": "Telephone, porte-cartes, cles, rouge a levres.",
  "en": "Phone, card holder, keys and lipstick.",
- "es": "Phone, card holder, keys and lipstick.",
- "tr": "Phone, card holder, keys and lipstick.",
- "ar": "Phone, card holder, keys and lipstick."
+ "es": "Teléfono, tarjetero, llaves y pintalabios.",
+ "tr": "Telefon, kart kılıfı, anahtarlar ve ruj.",
+ "ar": "هاتف، حامل بطاقات، مفاتيح وأحمر شفاه."
  }
  },
  {
  "label": {
  "fr": "S / Violet",
  "en": "S / Violet",
- "es": "S / Violet",
- "tr": "S / Violet",
- "ar": "S / Violet"
+ "es": "S / Violeta",
+ "tr": "S / Mor",
+ "ar": "S / بنفسجي"
  },
  "price": 93000,
  "whatFits": {
  "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
  "en": "Phone, wallet, sunglasses, light scarf and essentials.",
- "es": "Phone, wallet, sunglasses, light scarf and essentials.",
- "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
- "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ "es": "Teléfono, cartera, gafas de sol, fular ligero y esenciales.",
+ "tr": "Telefon, cüzdan, güneş gözlüğü, ince fular ve temel eşyalar.",
+ "ar": "هاتف، محفظة، نظارات شمسية، وشاح خفيف ومستلزمات أساسية."
  }
  },
  {
  "label": {
  "fr": "M / Noir",
  "en": "M / Black",
- "es": "M / Black",
- "tr": "M / Black",
- "ar": "M / Black"
+ "es": "M / Negro",
+ "tr": "M / Siyah",
+ "ar": "M / أسود"
  },
  "price": 100000,
  "whatFits": {
  "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
  "en": "Essentials plus pouch, slim book, scarf and small clutch.",
- "es": "Essentials plus pouch, slim book, scarf and small clutch.",
- "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
- "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ "es": "Esenciales más neceser, libro fino, fular y pequeño clutch.",
+ "tr": "Temel eşyalar artı poşet, ince kitap, fular ve küçük el çantası.",
+ "ar": "مستلزمات أساسية مع حقيبة صغيرة، كتاب رفيع، وشاح وحقيبة صغيرة."
  }
  }
  ],
@@ -4863,23 +4863,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Format M, couleur noir, feuilles de bananier, raphia, cuir et perles.",
  "en": "M scale, black finish, banana leaves, raffia, leather and beads.",
- "es": "M scale, black finish, banana leaves, raffia, leather and beads.",
- "tr": "M scale, black finish, banana leaves, raffia, leather and beads.",
- "ar": "M scale, black finish, banana leaves, raffia, leather and beads."
+ "es": "Talla M, acabado negro, hojas de bananero, rafia, cuero y cuentas.",
+ "tr": "M beden, siyah renk, muz yaprağı, rafya, deri ve boncuklar.",
+ "ar": "حجم M، لون أسود، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "displayShort": {
  "fr": "Format M, couleur noir, feuilles de bananier, raphia, cuir et perles.",
  "en": "M scale, black finish, banana leaves, raffia, leather and beads.",
- "es": "M scale, black finish, banana leaves, raffia, leather and beads.",
- "tr": "M scale, black finish, banana leaves, raffia, leather and beads.",
- "ar": "M scale, black finish, banana leaves, raffia, leather and beads."
+ "es": "Talla M, acabado negro, hojas de bananero, rafia, cuero y cuentas.",
+ "tr": "M beden, siyah renk, muz yaprağı, rafya, deri ve boncuklar.",
+ "ar": "حجم M، لون أسود، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "desc": {
  "fr": "La Sculpture M - Noir: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur noir et le format M, pour comprendre la taille, la couleur et les details reels de la piece.",
  "en": "La Sculpture M - Black: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the black finish and M scale, so the size, colour and real details stay clear.",
- "es": "La Sculpture M - Black: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the black finish and M scale, so the size, colour and real details stay clear.",
- "tr": "La Sculpture M - Black: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the black finish and M scale, so the size, colour and real details stay clear.",
- "ar": "La Sculpture M - Black: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the black finish and M scale, so the size, colour and real details stay clear."
+ "es": "La Sculpture M - Negro: una cesta YZA en hojas de bananero, rafia, cuero y cuentas. Esta página muestra únicamente el acabado negro y la talla M, para que el tamaño, el color y los detalles reales queden claros.",
+ "tr": "La Sculpture M - Siyah: muz yaprağı, rafya, deri ve boncuklardan yapılmış bir YZA sepeti. Bu sayfa yalnızca siyah rengi ve M bedeni gösterir; boyut, renk ve gerçek detaylar net kalır.",
+ "ar": "La Sculpture M - أسود: سلة YZA من أوراق الموز والرافيا والجلد والخرز. تعرض هذه الصفحة فقط اللون الأسود وحجم M، ليظل الحجم واللون والتفاصيل الحقيقية واضحة."
  },
  "price": 100000,
  "currency": "MAD",
@@ -4888,9 +4888,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Paniers & sacs",
  "en": "Bags",
- "es": "Bags",
- "tr": "Bags",
- "ar": "Bags"
+ "es": "Bolsos y cestas",
+ "tr": "Çantalar ve sepetler",
+ "ar": "حقائب وسلال"
  },
  "group": "bags",
  "collection": {
@@ -4913,17 +4913,17 @@ const PRODUCTS = [
  "variantLabel": {
  "fr": "M / Noir",
  "en": "M / Black",
- "es": "M / Black",
- "tr": "M / Black",
- "ar": "M / Black"
+ "es": "M / Negro",
+ "tr": "M / Siyah",
+ "ar": "M / أسود"
  },
  "availableColors": [
  {
  "fr": "Noir",
  "en": "Black",
- "es": "Black",
- "tr": "Black",
- "ar": "Black"
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  }
  ],
  "availableSizes": [
@@ -5048,23 +5048,23 @@ const PRODUCTS = [
  "material": {
  "fr": "Feuilles de bananier, Raffia, Perles",
  "en": "Banana leaves, Raffia, Beads",
- "es": "Banana leaves, Raffia, Beads",
- "tr": "Banana leaves, Raffia, Beads",
- "ar": "Banana leaves, Raffia, Beads"
+ "es": "Hojas de bananero, Rafia, Cuentas",
+ "tr": "Muz yaprağı, Rafya, Boncuklar",
+ "ar": "أوراق الموز، الرافيا، الخرز"
  },
  "fabric": {
  "fr": "Banana leaves, raffia & beads; 3 colors in stock",
  "en": "Banana leaves, raffia & beads; 3 colors in stock",
- "es": "Banana leaves, raffia & beads; 3 colors in stock",
- "tr": "Banana leaves, raffia & beads; 3 colors in stock",
- "ar": "Banana leaves, raffia & beads; 3 colors in stock"
+ "es": "Hojas de bananero, rafia y cuentas; 3 colores en stock",
+ "tr": "Muz yaprağı, rafya ve boncuklar; 3 renk stokta",
+ "ar": "أوراق الموز والرافيا والخرز؛ 3 ألوان في المخزون"
  },
  "color": {
  "fr": "Noir",
  "en": "Black",
- "es": "Black",
- "tr": "Black",
- "ar": "Black"
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  },
  "size": {
  "fr": "M",
@@ -5077,9 +5077,9 @@ const PRODUCTS = [
  "visualColor": {
  "fr": "Noir",
  "en": "Black",
- "es": "Black",
- "tr": "Black",
- "ar": "Black"
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  },
  "bagFamilyTitle": {
  "fr": "La Sculpture",
@@ -5096,64 +5096,64 @@ const PRODUCTS = [
  "ar": "Collection Sculpture"
  },
  "bagFamilyText": {
- "fr": "Trois formats, trois lectures couleur. Chaque sac garde sa propre page, ses propres images et son propre rythme d'atelier.",
+ "fr": "Trois formats, trois lectures couleur. Chaque sac garde sa propre page, ses propres images et son propre rythme d’atelier.",
  "en": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
- "es": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
- "tr": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm.",
- "ar": "Three scales, three colour readings. Each bag keeps its own page, image set and atelier rhythm."
+ "es": "Tres formatos, tres lecturas de color. Cada bolso mantiene su propia página, imágenes y ritmo de atelier.",
+ "tr": "Üç beden, üç renk yorumu. Her çanta kendi sayfasını, görsel setini ve atölye ritmini korur.",
+ "ar": "ثلاثة أحجام، ثلاث قراءات للون. كل حقيبة تحتفظ بصفحتها الخاصة ومجموعة صورها وإيقاع الأتيليه."
  },
  "bagFamilyOrder": 1,
  "dimensions": {
  "fr": "Format M: panier statement avec plus de volume.",
  "en": "M scale: statement basket with more volume.",
- "es": "M scale: statement basket with more volume.",
- "tr": "M scale: statement basket with more volume.",
- "ar": "M scale: statement basket with more volume."
+ "es": "Talla M: cesta statement con más volumen.",
+ "tr": "M beden: daha fazla hacimli statement sepet.",
+ "ar": "حجم M: سلة statement بحجم أكبر."
  },
  "whatFits": {
  "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
  "en": "Essentials plus pouch, slim book, scarf and small clutch.",
- "es": "Essentials plus pouch, slim book, scarf and small clutch.",
- "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
- "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ "es": "Esenciales más neceser, libro fino, fular y pequeño clutch.",
+ "tr": "Temel eşyalar artı poşet, ince kitap, fular ve küçük el çantası.",
+ "ar": "مستلزمات أساسية مع حقيبة صغيرة، كتاب رفيع، وشاح وحقيبة صغيرة."
  },
  "attachment": null,
  "handworkTime": {
  "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
  "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "es": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "tr": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "ar": "Hand assembly: weaving, handle wrapping, beadwork and final check."
+ "es": "Ensamblaje manual: tejido, forrado de asas, abalorios y revisión final.",
+ "tr": "El montajı: dokuma, sap kaplama, boncuk işi ve son kontrol.",
+ "ar": "تجميع يدوي: نسيج، تغليف المقابض، أعمال الخرز والفحص النهائي."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
  "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "es": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "tr": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "ar": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier."
+ "es": "Estructura tejida, asas forradas, cuentas y acabados revisados pieza a pieza en el atelier de Guéliz.",
+ "tr": "Dokuma yapı, kaplı saplar, boncuk işi ve bitişler Guéliz atelyesinde parça parça kontrol edildi.",
+ "ar": "هيكل منسوج، مقابض مغطاة، خرز وتشطيبات مفحوصة قطعة بقطعة في أتيليه قوليز."
  },
  "care": {
  "fr": "Depoussierer doucement. Eviter l humidite, la pluie et le poids excessif. Ranger rempli pour garder la forme.",
  "en": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "es": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "tr": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "ar": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape."
+ "es": "Quitar el polvo con suavidad. Evitar la humedad, la lluvia y el peso excesivo. Guardar relleno para mantener la forma.",
+ "tr": "Nazikçe tozunu alın. Nem, yağmur ve aşırı ağırlıktan kaçının. Şeklini korumak için dolu saklayın.",
+ "ar": "نظّف الغبار بلطف. تجنب الرطوبة والمطر والثقل الزائد. احفظه ممتلئاً للحفاظ على الشكل."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA minimalista, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim için hazır.",
+ "ar": "تغليف YZA بسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz’de stüdyo teslimi mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في قوليز."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -5165,16 +5165,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
  "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ "es": "15 bolsos por talla y color cuando el lote está activo; sin reposición garantizada.",
+ "tr": "Seri aktifken beden ve renk başına 15 çanta; garantili yeniden stok yok.",
+ "ar": "15 حقيبة لكل حجم ولون عندما يكون الدفعة نشطة؛ لا إعادة تخزين مضمونة."
  },
  "edition": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
  "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ "es": "15 bolsos por talla y color cuando el lote está activo; sin reposición garantizada.",
+ "tr": "Seri aktifken beden ve renk başına 15 çanta; garantili yeniden stok yok.",
+ "ar": "15 حقيبة لكل حجم ولون عندما يكون الدفعة نشطة؛ لا إعادة تخزين مضمونة."
  },
  "badge": "limited",
  "hours": null,
@@ -5185,51 +5185,51 @@ const PRODUCTS = [
  "label": {
  "fr": "XS / Rouge",
  "en": "XS / Red",
- "es": "XS / Red",
- "tr": "XS / Red",
- "ar": "XS / Red"
+ "es": "XS / Rojo",
+ "tr": "XS / Kırmızı",
+ "ar": "XS / أحمر"
  },
  "price": 80000,
  "whatFits": {
  "fr": "Telephone, porte-cartes, cles, rouge a levres.",
  "en": "Phone, card holder, keys and lipstick.",
- "es": "Phone, card holder, keys and lipstick.",
- "tr": "Phone, card holder, keys and lipstick.",
- "ar": "Phone, card holder, keys and lipstick."
+ "es": "Teléfono, tarjetero, llaves y pintalabios.",
+ "tr": "Telefon, kart kılıfı, anahtarlar ve ruj.",
+ "ar": "هاتف، حامل بطاقات، مفاتيح وأحمر شفاه."
  }
  },
  {
  "label": {
  "fr": "S / Violet",
  "en": "S / Violet",
- "es": "S / Violet",
- "tr": "S / Violet",
- "ar": "S / Violet"
+ "es": "S / Violeta",
+ "tr": "S / Mor",
+ "ar": "S / بنفسجي"
  },
  "price": 93000,
  "whatFits": {
  "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
  "en": "Phone, wallet, sunglasses, light scarf and essentials.",
- "es": "Phone, wallet, sunglasses, light scarf and essentials.",
- "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
- "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ "es": "Teléfono, cartera, gafas de sol, fular ligero y esenciales.",
+ "tr": "Telefon, cüzdan, güneş gözlüğü, ince fular ve temel eşyalar.",
+ "ar": "هاتف، محفظة، نظارات شمسية، وشاح خفيف ومستلزمات أساسية."
  }
  },
  {
  "label": {
  "fr": "M / Noir",
  "en": "M / Black",
- "es": "M / Black",
- "tr": "M / Black",
- "ar": "M / Black"
+ "es": "M / Negro",
+ "tr": "M / Siyah",
+ "ar": "M / أسود"
  },
  "price": 100000,
  "whatFits": {
  "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
  "en": "Essentials plus pouch, slim book, scarf and small clutch.",
- "es": "Essentials plus pouch, slim book, scarf and small clutch.",
- "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
- "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ "es": "Esenciales más neceser, libro fino, fular y pequeño clutch.",
+ "tr": "Temel eşyalar artı poşet, ince kitap, fular ve küçük el çantası.",
+ "ar": "مستلزمات أساسية مع حقيبة صغيرة، كتاب رفيع، وشاح وحقيبة صغيرة."
  }
  }
  ],
@@ -5260,23 +5260,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Format XS, couleur bleu, feuilles de bananier, raphia, cuir et perles.",
  "en": "XS scale, blue finish, banana leaves, raffia, leather and beads.",
- "es": "XS scale, blue finish, banana leaves, raffia, leather and beads.",
- "tr": "XS scale, blue finish, banana leaves, raffia, leather and beads.",
- "ar": "XS scale, blue finish, banana leaves, raffia, leather and beads."
+ "es": "Talla XS, acabado azul, hojas de bananero, rafia, cuero y cuentas.",
+ "tr": "XS beden, mavi renk, muz yaprağı, rafya, deri ve boncuklar.",
+ "ar": "حجم XS، لون أزرق، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "displayShort": {
  "fr": "Format XS, couleur bleu, feuilles de bananier, raphia, cuir et perles.",
  "en": "XS scale, blue finish, banana leaves, raffia, leather and beads.",
- "es": "XS scale, blue finish, banana leaves, raffia, leather and beads.",
- "tr": "XS scale, blue finish, banana leaves, raffia, leather and beads.",
- "ar": "XS scale, blue finish, banana leaves, raffia, leather and beads."
+ "es": "Talla XS, acabado azul, hojas de bananero, rafia, cuero y cuentas.",
+ "tr": "XS beden, mavi renk, muz yaprağı, rafya, deri ve boncuklar.",
+ "ar": "حجم XS، لون أزرق، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "desc": {
  "fr": "La Nouvelle Vague XS - Bleu: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur bleu et le format XS, pour comprendre la taille, la couleur et les details reels de la piece.",
  "en": "New Edition Bag XS - Blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the blue finish and XS scale, so the size, colour and real details stay clear.",
- "es": "New Edition Bag XS - Blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the blue finish and XS scale, so the size, colour and real details stay clear.",
- "tr": "New Edition Bag XS - Blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the blue finish and XS scale, so the size, colour and real details stay clear.",
- "ar": "New Edition Bag XS - Blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the blue finish and XS scale, so the size, colour and real details stay clear."
+ "es": "La Nouvelle Vague XS - Azul: una cesta YZA en hojas de bananero, rafia, cuero y cuentas. Esta página muestra únicamente el acabado azul y la talla XS, para que el tamaño, el color y los detalles reales queden claros.",
+ "tr": "La Nouvelle Vague XS - Mavi: muz yaprağı, rafya, deri ve boncuklardan yapılmış bir YZA sepeti. Bu sayfa yalnızca mavi rengi ve XS bedeni gösterir; boyut, renk ve gerçek detaylar net kalır.",
+ "ar": "La Nouvelle Vague XS - أزرق: سلة YZA من أوراق الموز والرافيا والجلد والخرز. تعرض هذه الصفحة فقط اللون الأزرق وحجم XS، ليظل الحجم واللون والتفاصيل الحقيقية واضحة."
  },
  "price": 49000,
  "currency": "MAD",
@@ -5285,9 +5285,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Paniers & sacs",
  "en": "Bags",
- "es": "Bags",
- "tr": "Bags",
- "ar": "Bags"
+ "es": "Bolsos y cestas",
+ "tr": "Çantalar ve sepetler",
+ "ar": "حقائب وسلال"
  },
  "group": "bags",
  "collection": {
@@ -5308,17 +5308,17 @@ const PRODUCTS = [
  "variantLabel": {
  "fr": "XS / Bleu",
  "en": "XS / Blue",
- "es": "XS / Blue",
- "tr": "XS / Blue",
- "ar": "XS / Blue"
+ "es": "XS / Azul",
+ "tr": "XS / Mavi",
+ "ar": "XS / أزرق"
  },
  "availableColors": [
  {
  "fr": "Bleu",
  "en": "Blue",
- "es": "Blue",
- "tr": "Blue",
- "ar": "Blue"
+ "es": "Azul",
+ "tr": "Mavi",
+ "ar": "أزرق"
  }
  ],
  "availableSizes": [
@@ -5419,23 +5419,23 @@ const PRODUCTS = [
  "material": {
  "fr": "Feuilles de bananier, Cuir, Perles",
  "en": "Banana leaves, Leather, Beads",
- "es": "Banana leaves, Leather, Beads",
- "tr": "Banana leaves, Leather, Beads",
- "ar": "Banana leaves, Leather, Beads"
+ "es": "Hojas de bananero, Cuero, Cuentas",
+ "tr": "Muz yaprağı, Deri, Boncuklar",
+ "ar": "أوراق الموز، الجلد، الخرز"
  },
  "fabric": {
  "fr": "Banana leaves, leather & beads; 3 sizes x 3 colors",
  "en": "Banana leaves, leather & beads; 3 sizes x 3 colors",
- "es": "Banana leaves, leather & beads; 3 sizes x 3 colors",
- "tr": "Banana leaves, leather & beads; 3 sizes x 3 colors",
- "ar": "Banana leaves, leather & beads; 3 sizes x 3 colors"
+ "es": "Hojas de bananero, cuero y cuentas; 3 tallas x 3 colores",
+ "tr": "Muz yaprağı, deri ve boncuklar; 3 beden x 3 renk",
+ "ar": "أوراق الموز والجلد والخرز؛ 3 أحجام × 3 ألوان"
  },
  "color": {
  "fr": "Bleu",
  "en": "Blue",
- "es": "Blue",
- "tr": "Blue",
- "ar": "Blue"
+ "es": "Azul",
+ "tr": "Mavi",
+ "ar": "أزرق"
  },
  "size": {
  "fr": "XS",
@@ -5448,9 +5448,9 @@ const PRODUCTS = [
  "visualColor": {
  "fr": "Bleu",
  "en": "Blue",
- "es": "Blue",
- "tr": "Blue",
- "ar": "Blue"
+ "es": "Azul",
+ "tr": "Mavi",
+ "ar": "أزرق"
  },
  "bagFamilyTitle": {
  "fr": "La Nouvelle Vague",
@@ -5462,69 +5462,69 @@ const PRODUCTS = [
  "bagFamilyEyebrow": {
  "fr": "New edition bag",
  "en": "New edition bag",
- "es": "New edition bag",
- "tr": "New edition bag",
- "ar": "New edition bag"
+ "es": "Nueva edición",
+ "tr": "Yeni koleksiyon çantası",
+ "ar": "حقيبة إصدار جديد"
  },
  "bagFamilyText": {
  "fr": "La ligne plus souple et solaire: anses bijou, foulard et formats faciles a porter en ville ou en vacances.",
  "en": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
- "es": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
- "tr": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
- "ar": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays."
+ "es": "La línea más suave y luminosa: asas con cuentas, estilo con fular y formatos fáciles para la ciudad o las vacaciones.",
+ "tr": "Daha yumuşak ve güneşli çizgi: boncuklu saplar, fular stili ve şehir günleri veya tatil için kolay bedenler.",
+ "ar": "الخط الأكثر نعومة وإشراقاً: مقابض خرزية، تنسيق مع وشاح وأحجام سهلة لأيام المدينة أو العطلات."
  },
  "bagFamilyOrder": 2,
  "dimensions": {
  "fr": "Format XS: mini panier main ou epaule courte.",
  "en": "XS scale: mini hand or short-shoulder basket.",
- "es": "XS scale: mini hand or short-shoulder basket.",
- "tr": "XS scale: mini hand or short-shoulder basket.",
- "ar": "XS scale: mini hand or short-shoulder basket."
+ "es": "Talla XS: mini cesta de mano o hombro corto.",
+ "tr": "XS beden: mini el ya da kısa omuz sepeti.",
+ "ar": "حجم XS: سلة يد صغيرة أو حمالة قصيرة."
  },
  "whatFits": {
  "fr": "Telephone, porte-cartes, cles, rouge a levres.",
  "en": "Phone, card holder, keys and lipstick.",
- "es": "Phone, card holder, keys and lipstick.",
- "tr": "Phone, card holder, keys and lipstick.",
- "ar": "Phone, card holder, keys and lipstick."
+ "es": "Teléfono, tarjetero, llaves y pintalabios.",
+ "tr": "Telefon, kart kılıfı, anahtarlar ve ruj.",
+ "ar": "هاتف، حامل بطاقات، مفاتيح وأحمر شفاه."
  },
  "attachment": null,
  "handworkTime": {
  "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
  "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "es": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "tr": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "ar": "Hand assembly: weaving, handle wrapping, beadwork and final check."
+ "es": "Ensamblaje manual: tejido, forrado de asas, abalorios y revisión final.",
+ "tr": "El montajı: dokuma, sap kaplama, boncuk işi ve son kontrol.",
+ "ar": "تجميع يدوي: نسيج، تغليف المقابض، أعمال الخرز والفحص النهائي."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
  "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "es": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "tr": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "ar": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier."
+ "es": "Estructura tejida, asas forradas, cuentas y acabados revisados pieza a pieza en el atelier de Guéliz.",
+ "tr": "Dokuma yapı, kaplı saplar, boncuk işi ve bitişler Guéliz atelyesinde parça parça kontrol edildi.",
+ "ar": "هيكل منسوج، مقابض مغطاة، خرز وتشطيبات مفحوصة قطعة بقطعة في أتيليه قوليز."
  },
  "care": {
  "fr": "Depoussierer doucement. Eviter l humidite, la pluie et le poids excessif. Ranger rempli pour garder la forme.",
  "en": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "es": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "tr": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "ar": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape."
+ "es": "Quitar el polvo con suavidad. Evitar la humedad, la lluvia y el peso excesivo. Guardar relleno para mantener la forma.",
+ "tr": "Nazikçe tozunu alın. Nem, yağmur ve aşırı ağırlıktan kaçının. Şeklini korumak için dolu saklayın.",
+ "ar": "نظّف الغبار بلطف. تجنب الرطوبة والمطر والثقل الزائد. احفظه ممتلئاً للحفاظ على الشكل."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA minimalista, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim için hazır.",
+ "ar": "تغليف YZA بسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz’de stüdyo teslimi mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في قوليز."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -5536,16 +5536,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
  "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ "es": "15 bolsos por talla y color cuando el lote está activo; sin reposición garantizada.",
+ "tr": "Seri aktifken beden ve renk başına 15 çanta; garantili yeniden stok yok.",
+ "ar": "15 حقيبة لكل حجم ولون عندما يكون الدفعة نشطة؛ لا إعادة تخزين مضمونة."
  },
  "edition": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
  "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ "es": "15 bolsos por talla y color cuando el lote está activo; sin reposición garantizada.",
+ "tr": "Seri aktifken beden ve renk başına 15 çanta; garantili yeniden stok yok.",
+ "ar": "15 حقيبة لكل حجم ولون عندما يكون الدفعة نشطة؛ لا إعادة تخزين مضمونة."
  },
  "badge": "limited",
  "hours": null,
@@ -5556,51 +5556,51 @@ const PRODUCTS = [
  "label": {
  "fr": "XS / Bleu",
  "en": "XS / Blue",
- "es": "XS / Blue",
- "tr": "XS / Blue",
- "ar": "XS / Blue"
+ "es": "XS / Azul",
+ "tr": "XS / Mavi",
+ "ar": "XS / أزرق"
  },
  "price": 49000,
  "whatFits": {
  "fr": "Telephone, porte-cartes, cles, rouge a levres.",
  "en": "Phone, card holder, keys and lipstick.",
- "es": "Phone, card holder, keys and lipstick.",
- "tr": "Phone, card holder, keys and lipstick.",
- "ar": "Phone, card holder, keys and lipstick."
+ "es": "Teléfono, tarjetero, llaves y pintalabios.",
+ "tr": "Telefon, kart kılıfı, anahtarlar ve ruj.",
+ "ar": "هاتف، حامل بطاقات، مفاتيح وأحمر شفاه."
  }
  },
  {
  "label": {
  "fr": "S / Rose",
  "en": "S / Pink",
- "es": "S / Pink",
- "tr": "S / Pink",
- "ar": "S / Pink"
+ "es": "S / Rosa",
+ "tr": "S / Pembe",
+ "ar": "S / وردي"
  },
  "price": 60000,
  "whatFits": {
  "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
  "en": "Phone, wallet, sunglasses, light scarf and essentials.",
- "es": "Phone, wallet, sunglasses, light scarf and essentials.",
- "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
- "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ "es": "Teléfono, cartera, gafas de sol, fular ligero y esenciales.",
+ "tr": "Telefon, cüzdan, güneş gözlüğü, ince fular ve temel eşyalar.",
+ "ar": "هاتف، محفظة، نظارات شمسية، وشاح خفيف ومستلزمات أساسية."
  }
  },
  {
  "label": {
  "fr": "M / Bleu ciel",
  "en": "M / Sky blue",
- "es": "M / Sky blue",
- "tr": "M / Sky blue",
- "ar": "M / Sky blue"
+ "es": "M / Azul cielo",
+ "tr": "M / Gökyüzü mavisi",
+ "ar": "M / أزرق سماوي"
  },
  "price": 66000,
  "whatFits": {
  "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
  "en": "Essentials plus pouch, slim book, scarf and small clutch.",
- "es": "Essentials plus pouch, slim book, scarf and small clutch.",
- "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
- "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ "es": "Esenciales más neceser, libro fino, fular y pequeño clutch.",
+ "tr": "Temel eşyalar artı poşet, ince kitap, fular ve küçük el çantası.",
+ "ar": "مستلزمات أساسية مع حقيبة صغيرة، كتاب رفيع، وشاح وحقيبة صغيرة."
  }
  }
  ],
@@ -5631,23 +5631,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Format S, finition rose, feuilles de bananier, raphia, cuir et perles.",
  "en": "S scale, pink finish, banana leaves, raffia, leather and beads.",
- "es": "S scale, pink finish, banana leaves, raffia, leather and beads.",
- "tr": "S scale, pink finish, banana leaves, raffia, leather and beads.",
- "ar": "S scale, pink finish, banana leaves, raffia, leather and beads."
+ "es": "Talla S, acabado rosa, hojas de bananero, rafia, cuero y cuentas.",
+ "tr": "S beden, pembe renk, muz yaprağı, rafya, deri ve boncuklar.",
+ "ar": "حجم S، لون وردي، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "displayShort": {
  "fr": "Format S, finition rose, feuilles de bananier, raphia, cuir et perles.",
  "en": "S scale, pink finish, banana leaves, raffia, leather and beads.",
- "es": "S scale, pink finish, banana leaves, raffia, leather and beads.",
- "tr": "S scale, pink finish, banana leaves, raffia, leather and beads.",
- "ar": "S scale, pink finish, banana leaves, raffia, leather and beads."
+ "es": "Talla S, acabado rosa, hojas de bananero, rafia, cuero y cuentas.",
+ "tr": "S beden, pembe renk, muz yaprağı, rafya, deri ve boncuklar.",
+ "ar": "حجم S، لون وردي، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "desc": {
  "fr": "La Nouvelle Vague S - Rose: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la finition rose et le format S, pour comprendre la taille, la couleur et les details reels de la piece.",
  "en": "New Edition Bag S - Pink: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the pink finish and S scale, so the size, colour and real details stay clear.",
- "es": "New Edition Bag S - Pink: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the pink finish and S scale, so the size, colour and real details stay clear.",
- "tr": "New Edition Bag S - Pink: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the pink finish and S scale, so the size, colour and real details stay clear.",
- "ar": "New Edition Bag S - Pink: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the pink finish and S scale, so the size, colour and real details stay clear."
+ "es": "La Nouvelle Vague S - Rosa: una cesta YZA en hojas de bananero, rafia, cuero y cuentas. Esta página muestra únicamente el acabado rosa y la talla S, para que el tamaño, el color y los detalles reales queden claros.",
+ "tr": "La Nouvelle Vague S - Pembe: muz yaprağı, rafya, deri ve boncuklardan yapılmış bir YZA sepeti. Bu sayfa yalnızca pembe rengi ve S bedeni gösterir; boyut, renk ve gerçek detaylar net kalır.",
+ "ar": "La Nouvelle Vague S - وردي: سلة YZA من أوراق الموز والرافيا والجلد والخرز. تعرض هذه الصفحة فقط اللون الوردي وحجم S، ليظل الحجم واللون والتفاصيل الحقيقية واضحة."
  },
  "price": 60000,
  "currency": "MAD",
@@ -5656,9 +5656,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Paniers & sacs",
  "en": "Bags",
- "es": "Bags",
- "tr": "Bags",
- "ar": "Bags"
+ "es": "Bolsos y cestas",
+ "tr": "Çantalar ve sepetler",
+ "ar": "حقائب وسلال"
  },
  "group": "bags",
  "collection": {
@@ -5679,17 +5679,17 @@ const PRODUCTS = [
  "variantLabel": {
  "fr": "S / Rose",
  "en": "S / Pink",
- "es": "S / Pink",
- "tr": "S / Pink",
- "ar": "S / Pink"
+ "es": "S / Rosa",
+ "tr": "S / Pembe",
+ "ar": "S / وردي"
  },
  "availableColors": [
  {
  "fr": "Rose",
  "en": "Pink",
- "es": "Pink",
- "tr": "Pink",
- "ar": "Pink"
+ "es": "Rosa",
+ "tr": "Pembe",
+ "ar": "وردي"
  }
  ],
  "availableSizes": [
@@ -5790,23 +5790,23 @@ const PRODUCTS = [
  "material": {
  "fr": "Feuilles de bananier, Cuir, Perles",
  "en": "Banana leaves, Leather, Beads",
- "es": "Banana leaves, Leather, Beads",
- "tr": "Banana leaves, Leather, Beads",
- "ar": "Banana leaves, Leather, Beads"
+ "es": "Hojas de bananero, Cuero, Cuentas",
+ "tr": "Muz yaprağı, Deri, Boncuklar",
+ "ar": "أوراق الموز، الجلد، الخرز"
  },
  "fabric": {
  "fr": "Banana leaves, leather & beads; 3 sizes x 3 colors",
  "en": "Banana leaves, leather & beads; 3 sizes x 3 colors",
- "es": "Banana leaves, leather & beads; 3 sizes x 3 colors",
- "tr": "Banana leaves, leather & beads; 3 sizes x 3 colors",
- "ar": "Banana leaves, leather & beads; 3 sizes x 3 colors"
+ "es": "Hojas de bananero, cuero y cuentas; 3 tallas x 3 colores",
+ "tr": "Muz yaprağı, deri ve boncuklar; 3 beden x 3 renk",
+ "ar": "أوراق الموز والجلد والخرز؛ 3 أحجام × 3 ألوان"
  },
  "color": {
  "fr": "Rose",
  "en": "Pink",
- "es": "Pink",
- "tr": "Pink",
- "ar": "Pink"
+ "es": "Rosa",
+ "tr": "Pembe",
+ "ar": "وردي"
  },
  "size": {
  "fr": "S",
@@ -5819,9 +5819,9 @@ const PRODUCTS = [
  "visualColor": {
  "fr": "Rose",
  "en": "Pink",
- "es": "Pink",
- "tr": "Pink",
- "ar": "Pink"
+ "es": "Rosa",
+ "tr": "Pembe",
+ "ar": "وردي"
  },
  "bagFamilyTitle": {
  "fr": "La Nouvelle Vague",
@@ -5833,69 +5833,69 @@ const PRODUCTS = [
  "bagFamilyEyebrow": {
  "fr": "New edition bag",
  "en": "New edition bag",
- "es": "New edition bag",
- "tr": "New edition bag",
- "ar": "New edition bag"
+ "es": "Nueva edición",
+ "tr": "Yeni koleksiyon çantası",
+ "ar": "حقيبة إصدار جديد"
  },
  "bagFamilyText": {
  "fr": "La ligne plus souple et solaire: anses bijou, foulard et formats faciles a porter en ville ou en vacances.",
  "en": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
- "es": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
- "tr": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
- "ar": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays."
+ "es": "La línea más suave y luminosa: asas con cuentas, estilo con fular y formatos fáciles para la ciudad o las vacaciones.",
+ "tr": "Daha yumuşak ve güneşli çizgi: boncuklu saplar, fular stili ve şehir günleri veya tatil için kolay bedenler.",
+ "ar": "الخط الأكثر نعومة وإشراقاً: مقابض خرزية، تنسيق مع وشاح وأحجام سهلة لأيام المدينة أو العطلات."
  },
  "bagFamilyOrder": 2,
  "dimensions": {
  "fr": "Format S: panier journee compact.",
  "en": "S scale: compact day basket.",
- "es": "S scale: compact day basket.",
- "tr": "S scale: compact day basket.",
- "ar": "S scale: compact day basket."
+ "es": "Talla S: cesta de día compacta.",
+ "tr": "S beden: kompakt günlük sepet.",
+ "ar": "حجم S: سلة يومية مضغوطة."
  },
  "whatFits": {
  "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
  "en": "Phone, wallet, sunglasses, light scarf and essentials.",
- "es": "Phone, wallet, sunglasses, light scarf and essentials.",
- "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
- "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ "es": "Teléfono, cartera, gafas de sol, fular ligero y esenciales.",
+ "tr": "Telefon, cüzdan, güneş gözlüğü, ince fular ve temel eşyalar.",
+ "ar": "هاتف، محفظة، نظارات شمسية، وشاح خفيف ومستلزمات أساسية."
  },
  "attachment": null,
  "handworkTime": {
  "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
  "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "es": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "tr": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "ar": "Hand assembly: weaving, handle wrapping, beadwork and final check."
+ "es": "Ensamblaje manual: tejido, forrado de asas, abalorios y revisión final.",
+ "tr": "El montajı: dokuma, sap kaplama, boncuk işi ve son kontrol.",
+ "ar": "تجميع يدوي: نسيج، تغليف المقابض، أعمال الخرز والفحص النهائي."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
  "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "es": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "tr": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "ar": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier."
+ "es": "Estructura tejida, asas forradas, cuentas y acabados revisados pieza a pieza en el atelier de Guéliz.",
+ "tr": "Dokuma yapı, kaplı saplar, boncuk işi ve bitişler Guéliz atelyesinde parça parça kontrol edildi.",
+ "ar": "هيكل منسوج، مقابض مغطاة، خرز وتشطيبات مفحوصة قطعة بقطعة في أتيليه قوليز."
  },
  "care": {
  "fr": "Depoussierer doucement. Eviter l humidite, la pluie et le poids excessif. Ranger rempli pour garder la forme.",
  "en": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "es": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "tr": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "ar": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape."
+ "es": "Quitar el polvo con suavidad. Evitar la humedad, la lluvia y el peso excesivo. Guardar relleno para mantener la forma.",
+ "tr": "Nazikçe tozunu alın. Nem, yağmur ve aşırı ağırlıktan kaçının. Şeklini korumak için dolu saklayın.",
+ "ar": "نظّف الغبار بلطف. تجنب الرطوبة والمطر والثقل الزائد. احفظه ممتلئاً للحفاظ على الشكل."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA minimalista, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim için hazır.",
+ "ar": "تغليف YZA بسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz’de stüdyo teslimi mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في قوليز."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -5907,16 +5907,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
  "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ "es": "15 bolsos por talla y color cuando el lote está activo; sin reposición garantizada.",
+ "tr": "Seri aktifken beden ve renk başına 15 çanta; garantili yeniden stok yok.",
+ "ar": "15 حقيبة لكل حجم ولون عندما يكون الدفعة نشطة؛ لا إعادة تخزين مضمونة."
  },
  "edition": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
  "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ "es": "15 bolsos por talla y color cuando el lote está activo; sin reposición garantizada.",
+ "tr": "Seri aktifken beden ve renk başına 15 çanta; garantili yeniden stok yok.",
+ "ar": "15 حقيبة لكل حجم ولون عندما يكون الدفعة نشطة؛ لا إعادة تخزين مضمونة."
  },
  "badge": "limited",
  "hours": null,
@@ -5927,51 +5927,51 @@ const PRODUCTS = [
  "label": {
  "fr": "XS / Bleu",
  "en": "XS / Blue",
- "es": "XS / Blue",
- "tr": "XS / Blue",
- "ar": "XS / Blue"
+ "es": "XS / Azul",
+ "tr": "XS / Mavi",
+ "ar": "XS / أزرق"
  },
  "price": 49000,
  "whatFits": {
  "fr": "Telephone, porte-cartes, cles, rouge a levres.",
  "en": "Phone, card holder, keys and lipstick.",
- "es": "Phone, card holder, keys and lipstick.",
- "tr": "Phone, card holder, keys and lipstick.",
- "ar": "Phone, card holder, keys and lipstick."
+ "es": "Teléfono, tarjetero, llaves y pintalabios.",
+ "tr": "Telefon, kart kılıfı, anahtarlar ve ruj.",
+ "ar": "هاتف، حامل بطاقات، مفاتيح وأحمر شفاه."
  }
  },
  {
  "label": {
  "fr": "S / Rose",
  "en": "S / Pink",
- "es": "S / Pink",
- "tr": "S / Pink",
- "ar": "S / Pink"
+ "es": "S / Rosa",
+ "tr": "S / Pembe",
+ "ar": "S / وردي"
  },
  "price": 60000,
  "whatFits": {
  "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
  "en": "Phone, wallet, sunglasses, light scarf and essentials.",
- "es": "Phone, wallet, sunglasses, light scarf and essentials.",
- "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
- "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ "es": "Teléfono, cartera, gafas de sol, fular ligero y esenciales.",
+ "tr": "Telefon, cüzdan, güneş gözlüğü, ince fular ve temel eşyalar.",
+ "ar": "هاتف، محفظة، نظارات شمسية، وشاح خفيف ومستلزمات أساسية."
  }
  },
  {
  "label": {
  "fr": "M / Bleu ciel",
  "en": "M / Sky blue",
- "es": "M / Sky blue",
- "tr": "M / Sky blue",
- "ar": "M / Sky blue"
+ "es": "M / Azul cielo",
+ "tr": "M / Gökyüzü mavisi",
+ "ar": "M / أزرق سماوي"
  },
  "price": 66000,
  "whatFits": {
  "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
  "en": "Essentials plus pouch, slim book, scarf and small clutch.",
- "es": "Essentials plus pouch, slim book, scarf and small clutch.",
- "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
- "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ "es": "Esenciales más neceser, libro fino, fular y pequeño clutch.",
+ "tr": "Temel eşyalar artı poşet, ince kitap, fular ve küçük el çantası.",
+ "ar": "مستلزمات أساسية مع حقيبة صغيرة، كتاب رفيع، وشاح وحقيبة صغيرة."
  }
  }
  ],
@@ -6002,23 +6002,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Format M, couleur bleu ciel, feuilles de bananier, raphia, cuir et perles.",
  "en": "M scale, sky blue finish, banana leaves, raffia, leather and beads.",
- "es": "M scale, sky blue finish, banana leaves, raffia, leather and beads.",
- "tr": "M scale, sky blue finish, banana leaves, raffia, leather and beads.",
- "ar": "M scale, sky blue finish, banana leaves, raffia, leather and beads."
+ "es": "Talla M, acabado azul cielo, hojas de bananero, rafia, cuero y cuentas.",
+ "tr": "M beden, gökyüzü mavisi renk, muz yaprağı, rafya, deri ve boncuklar.",
+ "ar": "حجم M، لون أزرق سماوي، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "displayShort": {
  "fr": "Format M, couleur bleu ciel, feuilles de bananier, raphia, cuir et perles.",
  "en": "M scale, sky blue finish, banana leaves, raffia, leather and beads.",
- "es": "M scale, sky blue finish, banana leaves, raffia, leather and beads.",
- "tr": "M scale, sky blue finish, banana leaves, raffia, leather and beads.",
- "ar": "M scale, sky blue finish, banana leaves, raffia, leather and beads."
+ "es": "Talla M, acabado azul cielo, hojas de bananero, rafia, cuero y cuentas.",
+ "tr": "M beden, gökyüzü mavisi renk, muz yaprağı, rafya, deri ve boncuklar.",
+ "ar": "حجم M، لون أزرق سماوي، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "desc": {
  "fr": "La Nouvelle Vague M - Bleu ciel: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur bleu ciel et le format M, pour comprendre la taille, la couleur et les details reels de la piece.",
  "en": "New Edition Bag M - Sky blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the sky blue finish and M scale, so the size, colour and real details stay clear.",
- "es": "New Edition Bag M - Sky blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the sky blue finish and M scale, so the size, colour and real details stay clear.",
- "tr": "New Edition Bag M - Sky blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the sky blue finish and M scale, so the size, colour and real details stay clear.",
- "ar": "New Edition Bag M - Sky blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the sky blue finish and M scale, so the size, colour and real details stay clear."
+ "es": "La Nouvelle Vague M - Azul cielo: una cesta YZA en hojas de bananero, rafia, cuero y cuentas. Esta página muestra únicamente el acabado azul cielo y la talla M, para que el tamaño, el color y los detalles reales queden claros.",
+ "tr": "La Nouvelle Vague M - Gökyüzü mavisi: muz yaprağı, rafya, deri ve boncuklardan yapılmış bir YZA sepeti. Bu sayfa yalnızca gökyüzü mavisi rengi ve M bedeni gösterir; boyut, renk ve gerçek detaylar net kalır.",
+ "ar": "La Nouvelle Vague M - أزرق سماوي: سلة YZA من أوراق الموز والرافيا والجلد والخرز. تعرض هذه الصفحة فقط اللون الأزرق السماوي وحجم M، ليظل الحجم واللون والتفاصيل الحقيقية واضحة."
  },
  "price": 66000,
  "currency": "MAD",
@@ -6027,9 +6027,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Paniers & sacs",
  "en": "Bags",
- "es": "Bags",
- "tr": "Bags",
- "ar": "Bags"
+ "es": "Bolsos y cestas",
+ "tr": "Çantalar ve sepetler",
+ "ar": "حقائب وسلال"
  },
  "group": "bags",
  "collection": {
@@ -6050,17 +6050,17 @@ const PRODUCTS = [
  "variantLabel": {
  "fr": "M / Bleu ciel",
  "en": "M / Sky blue",
- "es": "M / Sky blue",
- "tr": "M / Sky blue",
- "ar": "M / Sky blue"
+ "es": "M / Azul cielo",
+ "tr": "M / Gökyüzü mavisi",
+ "ar": "M / أزرق سماوي"
  },
  "availableColors": [
  {
  "fr": "Bleu ciel",
  "en": "Sky blue",
- "es": "Sky blue",
- "tr": "Sky blue",
- "ar": "Sky blue"
+ "es": "Azul cielo",
+ "tr": "Gökyüzü mavisi",
+ "ar": "أزرق سماوي"
  }
  ],
  "availableSizes": [
@@ -6161,23 +6161,23 @@ const PRODUCTS = [
  "material": {
  "fr": "Feuilles de bananier, Cuir, Perles",
  "en": "Banana leaves, Leather, Beads",
- "es": "Banana leaves, Leather, Beads",
- "tr": "Banana leaves, Leather, Beads",
- "ar": "Banana leaves, Leather, Beads"
+ "es": "Hojas de bananero, Cuero, Cuentas",
+ "tr": "Muz yaprağı, Deri, Boncuklar",
+ "ar": "أوراق الموز، الجلد، الخرز"
  },
  "fabric": {
  "fr": "Banana leaves, leather & beads; 3 sizes x 3 colors",
  "en": "Banana leaves, leather & beads; 3 sizes x 3 colors",
- "es": "Banana leaves, leather & beads; 3 sizes x 3 colors",
- "tr": "Banana leaves, leather & beads; 3 sizes x 3 colors",
- "ar": "Banana leaves, leather & beads; 3 sizes x 3 colors"
+ "es": "Hojas de bananero, cuero y cuentas; 3 tallas x 3 colores",
+ "tr": "Muz yaprağı, deri ve boncuklar; 3 beden x 3 renk",
+ "ar": "أوراق الموز والجلد والخرز؛ 3 أحجام × 3 ألوان"
  },
  "color": {
  "fr": "Bleu ciel",
  "en": "Sky blue",
- "es": "Sky blue",
- "tr": "Sky blue",
- "ar": "Sky blue"
+ "es": "Azul cielo",
+ "tr": "Gökyüzü mavisi",
+ "ar": "أزرق سماوي"
  },
  "size": {
  "fr": "M",
@@ -6190,9 +6190,9 @@ const PRODUCTS = [
  "visualColor": {
  "fr": "Bleu ciel",
  "en": "Sky blue",
- "es": "Sky blue",
- "tr": "Sky blue",
- "ar": "Sky blue"
+ "es": "Azul cielo",
+ "tr": "Gökyüzü mavisi",
+ "ar": "أزرق سماوي"
  },
  "bagFamilyTitle": {
  "fr": "La Nouvelle Vague",
@@ -6204,69 +6204,69 @@ const PRODUCTS = [
  "bagFamilyEyebrow": {
  "fr": "New edition bag",
  "en": "New edition bag",
- "es": "New edition bag",
- "tr": "New edition bag",
- "ar": "New edition bag"
+ "es": "Nueva edición",
+ "tr": "Yeni koleksiyon çantası",
+ "ar": "حقيبة إصدار جديد"
  },
  "bagFamilyText": {
  "fr": "La ligne plus souple et solaire: anses bijou, foulard et formats faciles a porter en ville ou en vacances.",
  "en": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
- "es": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
- "tr": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
- "ar": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays."
+ "es": "La línea más suave y luminosa: asas con cuentas, estilo con fular y formatos fáciles para la ciudad o las vacaciones.",
+ "tr": "Daha yumuşak ve güneşli çizgi: boncuklu saplar, fular stili ve şehir günleri veya tatil için kolay bedenler.",
+ "ar": "الخط الأكثر نعومة وإشراقاً: مقابض خرزية، تنسيق مع وشاح وأحجام سهلة لأيام المدينة أو العطلات."
  },
  "bagFamilyOrder": 2,
  "dimensions": {
  "fr": "Format M: panier statement avec plus de volume.",
  "en": "M scale: statement basket with more volume.",
- "es": "M scale: statement basket with more volume.",
- "tr": "M scale: statement basket with more volume.",
- "ar": "M scale: statement basket with more volume."
+ "es": "Talla M: cesta statement con más volumen.",
+ "tr": "M beden: daha fazla hacimli statement sepet.",
+ "ar": "حجم M: سلة statement بحجم أكبر."
  },
  "whatFits": {
  "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
  "en": "Essentials plus pouch, slim book, scarf and small clutch.",
- "es": "Essentials plus pouch, slim book, scarf and small clutch.",
- "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
- "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ "es": "Esenciales más neceser, libro fino, fular y pequeño clutch.",
+ "tr": "Temel eşyalar artı poşet, ince kitap, fular ve küçük el çantası.",
+ "ar": "مستلزمات أساسية مع حقيبة صغيرة، كتاب رفيع، وشاح وحقيبة صغيرة."
  },
  "attachment": null,
  "handworkTime": {
  "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
  "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "es": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "tr": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "ar": "Hand assembly: weaving, handle wrapping, beadwork and final check."
+ "es": "Ensamblaje manual: tejido, forrado de asas, abalorios y revisión final.",
+ "tr": "El montajı: dokuma, sap kaplama, boncuk işi ve son kontrol.",
+ "ar": "تجميع يدوي: نسيج، تغليف المقابض، أعمال الخرز والفحص النهائي."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
  "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "es": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "tr": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
- "ar": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier."
+ "es": "Estructura tejida, asas forradas, cuentas y acabados revisados pieza a pieza en el atelier de Guéliz.",
+ "tr": "Dokuma yapı, kaplı saplar, boncuk işi ve bitişler Guéliz atelyesinde parça parça kontrol edildi.",
+ "ar": "هيكل منسوج، مقابض مغطاة، خرز وتشطيبات مفحوصة قطعة بقطعة في أتيليه قوليز."
  },
  "care": {
  "fr": "Depoussierer doucement. Eviter l humidite, la pluie et le poids excessif. Ranger rempli pour garder la forme.",
  "en": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "es": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "tr": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape.",
- "ar": "Dust gently. Avoid humidity, rain and excessive weight. Store filled to keep the shape."
+ "es": "Quitar el polvo con suavidad. Evitar la humedad, la lluvia y el peso excesivo. Guardar relleno para mantener la forma.",
+ "tr": "Nazikçe tozunu alın. Nem, yağmur ve aşırı ağırlıktan kaçının. Şeklini korumak için dolu saklayın.",
+ "ar": "نظّف الغبار بلطف. تجنب الرطوبة والمطر والثقل الزائد. احفظه ممتلئاً للحفاظ على الشكل."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA minimalista, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim için hazır.",
+ "ar": "تغليف YZA بسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz’de stüdyo teslimi mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في قوليز."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -6278,16 +6278,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
  "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ "es": "15 bolsos por talla y color cuando el lote está activo; sin reposición garantizada.",
+ "tr": "Seri aktifken beden ve renk başına 15 çanta; garantili yeniden stok yok.",
+ "ar": "15 حقيبة لكل حجم ولون عندما يكون الدفعة نشطة؛ لا إعادة تخزين مضمونة."
  },
  "edition": {
  "fr": "15 sacs par taille et couleur quand la serie est active; pas de restock garanti.",
  "en": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "es": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "tr": "15 bags per size and colour when the batch is active; no guaranteed restock.",
- "ar": "15 bags per size and colour when the batch is active; no guaranteed restock."
+ "es": "15 bolsos por talla y color cuando el lote está activo; sin reposición garantizada.",
+ "tr": "Seri aktifken beden ve renk başına 15 çanta; garantili yeniden stok yok.",
+ "ar": "15 حقيبة لكل حجم ولون عندما يكون الدفعة نشطة؛ لا إعادة تخزين مضمونة."
  },
  "badge": "limited",
  "hours": null,
@@ -6298,51 +6298,51 @@ const PRODUCTS = [
  "label": {
  "fr": "XS / Bleu",
  "en": "XS / Blue",
- "es": "XS / Blue",
- "tr": "XS / Blue",
- "ar": "XS / Blue"
+ "es": "XS / Azul",
+ "tr": "XS / Mavi",
+ "ar": "XS / أزرق"
  },
  "price": 49000,
  "whatFits": {
  "fr": "Telephone, porte-cartes, cles, rouge a levres.",
  "en": "Phone, card holder, keys and lipstick.",
- "es": "Phone, card holder, keys and lipstick.",
- "tr": "Phone, card holder, keys and lipstick.",
- "ar": "Phone, card holder, keys and lipstick."
+ "es": "Teléfono, tarjetero, llaves y pintalabios.",
+ "tr": "Telefon, kart kılıfı, anahtarlar ve ruj.",
+ "ar": "هاتف، حامل بطاقات، مفاتيح وأحمر شفاه."
  }
  },
  {
  "label": {
  "fr": "S / Rose",
  "en": "S / Pink",
- "es": "S / Pink",
- "tr": "S / Pink",
- "ar": "S / Pink"
+ "es": "S / Rosa",
+ "tr": "S / Pembe",
+ "ar": "S / وردي"
  },
  "price": 60000,
  "whatFits": {
  "fr": "Telephone, portefeuille, lunettes, foulard fin et essentiels.",
  "en": "Phone, wallet, sunglasses, light scarf and essentials.",
- "es": "Phone, wallet, sunglasses, light scarf and essentials.",
- "tr": "Phone, wallet, sunglasses, light scarf and essentials.",
- "ar": "Phone, wallet, sunglasses, light scarf and essentials."
+ "es": "Teléfono, cartera, gafas de sol, fular ligero y esenciales.",
+ "tr": "Telefon, cüzdan, güneş gözlüğü, ince fular ve temel eşyalar.",
+ "ar": "هاتف، محفظة، نظارات شمسية، وشاح خفيف ومستلزمات أساسية."
  }
  },
  {
  "label": {
  "fr": "M / Bleu ciel",
  "en": "M / Sky blue",
- "es": "M / Sky blue",
- "tr": "M / Sky blue",
- "ar": "M / Sky blue"
+ "es": "M / Azul cielo",
+ "tr": "M / Gökyüzü mavisi",
+ "ar": "M / أزرق سماوي"
  },
  "price": 66000,
  "whatFits": {
  "fr": "Essentiels + trousse, livre fin, foulard et petite pochette.",
  "en": "Essentials plus pouch, slim book, scarf and small clutch.",
- "es": "Essentials plus pouch, slim book, scarf and small clutch.",
- "tr": "Essentials plus pouch, slim book, scarf and small clutch.",
- "ar": "Essentials plus pouch, slim book, scarf and small clutch."
+ "es": "Esenciales más neceser, libro fino, fular y pequeño clutch.",
+ "tr": "Temel eşyalar artı poşet, ince kitap, fular ve küçük el çantası.",
+ "ar": "مستلزمات أساسية مع حقيبة صغيرة، كتاب رفيع، وشاح وحقيبة صغيرة."
  }
  }
  ],
@@ -6375,23 +6375,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Charm cerises en raffia, crocheté main avec anneau doré 2 cm.",
  "en": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag.",
- "es": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag.",
- "tr": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag.",
- "ar": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag."
+ "es": "Un charm de cerezas en rafia tejido a ganchillo, con aro dorado de 2,5 cm y nombre de la artesana en la etiqueta.",
+ "tr": "Bir tığ işi rafya kiraz charm, 2,5 cm altın halka ve etiket üzerinde usta bilgisiyle.",
+ "ar": "ميدالية كرز من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم وبيانات الحرفية على البطاقة."
  },
  "displayShort": {
  "fr": "Charm cerises en raffia, crocheté main avec anneau doré 2 cm.",
  "en": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag.",
- "es": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag.",
- "tr": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag.",
- "ar": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag."
+ "es": "Un charm de cerezas en rafia tejido a ganchillo, con aro dorado de 2,5 cm y nombre de la artesana en la etiqueta.",
+ "tr": "Bir tığ işi rafya kiraz charm, 2,5 cm altın halka ve etiket üzerinde usta bilgisiyle.",
+ "ar": "ميدالية كرز من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم وبيانات الحرفية على البطاقة."
  },
  "desc": {
  "fr": "Deux petites cerises qui bougent ensemble: legeres, joueuses, un peu romantiques. Parfaites sur mini sac, pochette ou porte-clés.",
  "en": "Two small cherries swinging together, light, playful and a little romantic. Perfect for mini bags, clutches or as a fun accent on your keys.",
- "es": "Two small cherries swinging together, light, playful and a little romantic. Perfect for mini bags, clutches or as a fun accent on your keys.",
- "tr": "Two small cherries swinging together, light, playful and a little romantic. Perfect for mini bags, clutches or as a fun accent on your keys.",
- "ar": "Two small cherries swinging together, light, playful and a little romantic. Perfect for mini bags, clutches or as a fun accent on your keys."
+ "es": "Dos pequeñas cerezas que se balancean juntas, ligeras, traviesas y un poco románticas. Perfectas para mini bolsos, clutches o como detalle en el llavero.",
+ "tr": "İki küçük kiraz birlikte sallanıyor; hafif, oyuncu ve biraz romantik. Mini çantalar, clutch'lar veya anahtarlık için mükemmel.",
+ "ar": "كرزتان صغيرتان تتأرجحان معاً، خفيفتان ومرحتان وبهما لمسة رومانسية. مثاليتان للحقائب الصغيرة أو clutch أو كإضافة مرحة على المفاتيح."
  },
  "price": 10000,
  "currency": "MAD",
@@ -6400,9 +6400,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Charms",
  "en": "Charms",
- "es": "Charms",
- "tr": "Charms",
- "ar": "Charms"
+ "es": "Complementos",
+ "tr": "Charmlar",
+ "ar": "تعليقات الحقيبة"
  },
  "group": "accessories",
  "collection": {
@@ -6515,16 +6515,16 @@ const PRODUCTS = [
  "material": {
  "fr": "raphia crochete main et aiguille raffia",
  "en": "hand-crocheted and needle-crocheted raffia",
- "es": "hand-crocheted and needle-crocheted raffia",
- "tr": "hand-crocheted and needle-crocheted raffia",
- "ar": "hand-crocheted and needle-crocheted raffia"
+ "es": "rafia tejida a mano con ganchillo y aguja",
+ "tr": "el örgüsü ve iğne örgüsü rafya",
+ "ar": "رافيا مصنوعة بالكروشيه اليدوي والإبرة"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia — tejida a ganchillo",
+ "tr": "Yalnızca rafya — kroşe",
+ "ar": "رافيا فقط — مصنوعة بالكروشيه"
  },
  "color": null,
  "size": null,
@@ -6537,9 +6537,9 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Environ 8 cm (chaque piece peut legerement varier).",
  "en": "Approx. 8 cm (each piece may vary slightly).",
- "es": "Approx. 8 cm (each piece may vary slightly).",
- "tr": "Approx. 8 cm (each piece may vary slightly).",
- "ar": "Approx. 8 cm (each piece may vary slightly)."
+ "es": "Aprox. 8 cm (cada pieza puede variar ligeramente).",
+ "tr": "Yaklaşık 8 cm (her parça hafifçe farklılık gösterebilir).",
+ "ar": "حوالي 8 سم (قد تختلف كل قطعة قليلاً)."
  },
  "whatFits": null,
  "attachment": {
@@ -6552,149 +6552,149 @@ const PRODUCTS = [
  "handworkTime": {
  "fr": "1,5 h de crochet main pour ce fruit.",
  "en": "1.5 hours of hand crochet for this fruit.",
- "es": "1.5 hours of hand crochet for this fruit.",
- "tr": "1.5 hours of hand crochet for this fruit.",
- "ar": "1.5 hours of hand crochet for this fruit."
+ "es": "1,5 horas de crochet a mano para esta fruta.",
+ "tr": "Bu meyve için 1,5 saat el kroşesi.",
+ "ar": "1.5 ساعة كروشيه يدوي لهذه الفاكهة."
  },
  "howToWear": {
  "title": {
  "fr": "Comment le porter",
  "en": "How to wear it",
- "es": "How to wear it",
- "tr": "How to wear it",
- "ar": "How to wear it"
+ "es": "Cómo llevarlo",
+ "tr": "Nasıl kullanılır",
+ "ar": "كيف تلبسينه"
  },
  "intro": {
  "fr": "Utilisez ce Fruit Charm sur:",
  "en": "Use this Fruit Charm on:",
- "es": "Use this Fruit Charm on:",
- "tr": "Use this Fruit Charm on:",
- "ar": "Use this Fruit Charm on:"
+ "es": "Úsalo en:",
+ "tr": "Bu Meyve Charm'ı şunlara takın:",
+ "ar": "استخدمي هذا الميدالية الفاكهة على:"
  },
  "items": [
  {
  "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
  "en": "YZA bags, La Vague and other YZA baskets.",
- "es": "YZA bags, La Vague and other YZA baskets.",
- "tr": "YZA bags, La Vague and other YZA baskets.",
- "ar": "YZA bags, La Vague and other YZA baskets."
+ "es": "Bolsos YZA, La Vague y otros cestos de la marca.",
+ "tr": "YZA çantaları, La Vague ve diğer YZA sepetleri.",
+ "ar": "حقائب YZA، La Vague وسلال YZA الأخرى."
  },
  {
  "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
  "en": "Leather bags to add personality and colour.",
- "es": "Leather bags to add personality and colour.",
- "tr": "Leather bags to add personality and colour.",
- "ar": "Leather bags to add personality and colour."
+ "es": "Bolsos de piel para añadir personalidad y color.",
+ "tr": "Kişilik ve renk katmak için deri çantalar.",
+ "ar": "الحقائب الجلدية لإضافة شخصية ولون."
  },
  {
  "fr": "Paniers en paille, market totes et sacs de plage.",
  "en": "Straw baskets, market totes and beach bags.",
- "es": "Straw baskets, market totes and beach bags.",
- "tr": "Straw baskets, market totes and beach bags.",
- "ar": "Straw baskets, market totes and beach bags."
+ "es": "Cestos de paja, bolsas de mercado y bolsas de playa.",
+ "tr": "Hasır sepetler, alışveriş çantaları ve plaj çantaları.",
+ "ar": "السلال القشية، وحقائب السوق، وحقائب الشاطئ."
  },
  {
  "fr": "Clés, porte-clés et pochettes.",
  "en": "Keys, keychains and pouches.",
- "es": "Keys, keychains and pouches.",
- "tr": "Keys, keychains and pouches.",
- "ar": "Keys, keychains and pouches."
+ "es": "Llaves, llaveros y bolsillos.",
+ "tr": "Anahtarlar, anahtarlıklar ve kılıflar.",
+ "ar": "المفاتيح والمفاتيح وحافظات المفاتيح."
  }
  ],
  "styleTip": {
  "fr": "Best on mini bags, black leather, keys and evening clutches. Keep them alone so the movement stays clean.",
  "en": "Best on mini bags, black leather, keys and evening clutches. Keep them alone so the movement stays clean.",
- "es": "Best on mini bags, black leather, keys and evening clutches. Keep them alone so the movement stays clean.",
- "tr": "Best on mini bags, black leather, keys and evening clutches. Keep them alone so the movement stays clean.",
- "ar": "Best on mini bags, black leather, keys and evening clutches. Keep them alone so the movement stays clean."
+ "es": "Mejor en mini bolsos, cuero negro, llaves y clutches de noche. Llévalo solo para que el movimiento sea limpio.",
+ "tr": "Mini çantalar, siyah deri, anahtarlar ve gece clutch'larında en iyisi. Hareketi temiz tutmak için yalnız bırakın.",
+ "ar": "الأفضل على الحقائب الصغيرة والجلد الأسود والمفاتيح وحقائب السهرة. احتفظ به وحده ليظل الحركة نظيفة."
  },
  "note": {
  "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
+ "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
+ "ar": "كل ميدالية تأتي مع حلقة صغيرة. الحلقة الذهبية مشمولة في الحزم ويمكن إضافتها في الأستوديو للميداليات المفردة."
  }
  },
  "fruitStory": {
  "title": {
  "fr": "Cherries: the flirt of the market.",
  "en": "Cherries: the flirt of the market.",
- "es": "Cherries: the flirt of the market.",
- "tr": "Cherries: the flirt of the market.",
- "ar": "Cherries: the flirt of the market."
+ "es": "Las cerezas: el coqueteo del mercado.",
+ "tr": "Kirazlar: pazarın cilvebazkârı.",
+ "ar": "الكرز: غنج السوق."
  },
  "body": {
  "fr": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail.",
  "en": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail.",
- "es": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail.",
- "tr": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail.",
- "ar": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail."
+ "es": "Las cerezas están hechas para moverse. Llaman la atención como la fruta roja en un puesto del mercado de Guéliz: pequeñas, brillantes, imposibles de ignorar. Úsalas cuando un bolso muy sencillo necesita un detalle juguetón.",
+ "tr": "Kirazlar hareket etmek için yapıldı. Guéliz pazar tezgahındaki kırmızı meyve gibi gözü çekiyorlar: küçük, parlak, fark etmemek imkânsız. Çok sade bir çantanın oyuncu bir detaya ihtiyacı olduğunda onları kullanın.",
+ "ar": "الكرز مصنوع للتأرجح. يلفت الأنظار كالفاكهة الحمراء على طاولة سوق Guéliz: صغير، مشرق، يستحيل تجاهله. استخدميه حين تحتاج حقيبة بسيطة جداً إلى تفصيلة مرحة واحدة."
  },
  "collectionTitle": {
  "fr": "Fruit Market : inspiré des marchés de Marrakech",
  "en": "Fruit Market: inspired by the Marrakesh markets",
- "es": "Fruit Market: inspired by the Marrakesh markets",
- "tr": "Fruit Market: inspired by the Marrakesh markets",
- "ar": "Fruit Market: inspired by the Marrakesh markets"
+ "es": "Fruit Market: inspirado en los mercados de Marrakech",
+ "tr": "Fruit Market: Marakeş pazarlarından ilham alınmıştır",
+ "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
  "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
  "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
+ "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
  },
  "liveUrl": "https://yza-shop.com/products/cherry-raffia-bag-charm"
  },
  "making": {
  "fr": "Chaque pièce est crochetée à la main dans l’atelier de Guéliz, fibre par fibre, puis contrôlée avant la pose de l’étiquette YZA.",
  "en": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "es": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "tr": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "ar": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ "es": "Las cerezas están hechas para moverse. Llaman la atención como la fruta roja en un puesto del mercado de Guéliz: pequeñas, brillantes, imposibles de ignorar. Úsalas cuando un bolso muy sencillo necesita un detalle juguetón. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
+ "tr": "Kirazlar hareket etmek için yapıldı. Guéliz pazar tezgahındaki kırmızı meyve gibi gözü çekiyorlar: küçük, parlak, fark etmemek imkânsız. Çok sade bir çantanın oyuncu bir detaya ihtiyacı olduğunda onları kullanın. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
+ "ar": "الكرز مصنوع للتأرجح. يلفت الأنظار كالفاكهة الحمراء على طاولة سوق Guéliz: صغير، مشرق، يستحيل تجاهله. استخدميه حين تحتاج حقيبة بسيطة جداً إلى تفصيلة مرحة واحدة. كل قطعة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ثم تُفحص قبل إضافة علامة YZA."
  },
  "care": {
  "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, dejar secar al aire libre alejada del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurumaya bırakın. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın öge rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
  "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
+ "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz'deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
- "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
- "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
+ "es": "Satisfecho o reembolsado — 30 días",
+ "tr": "Memnun olun ya da iade edin — 30 gün",
+ "ar": "راضٍ أو مُستردّ — 30 يومًا"
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "badge": "limited",
  "hours": 1.5,
@@ -6730,23 +6730,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Charm raisins en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag.",
- "es": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag.",
- "tr": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag.",
- "ar": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag."
+ "es": "Un charm de uvas en rafia tejido a ganchillo, con aro dorado de 2,5 cm y nombre de la artesana en la etiqueta.",
+ "tr": "Bir tığ işi rafya üzüm charm, 2,5 cm altın halka ve etiket üzerinde usta bilgisiyle.",
+ "ar": "ميدالية عنب من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم وبيانات الحرفية على البطاقة."
  },
  "displayShort": {
  "fr": "Charm raisins en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag.",
- "es": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag.",
- "tr": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag.",
- "ar": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag."
+ "es": "Un charm de uvas en rafia tejido a ganchillo, con aro dorado de 2,5 cm y nombre de la artesana en la etiqueta.",
+ "tr": "Bir tığ işi rafya üzüm charm, 2,5 cm altın halka ve etiket üzerinde usta bilgisiyle.",
+ "ar": "ميدالية عنب من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم وبيانات الحرفية على البطاقة."
  },
  "desc": {
  "fr": "Une petite grappe comme un bijou textile: volume, mouvement et plusieurs grains crochetes un par un.",
  "en": "A tiny bunch of grapes, almost like textile jewellery. One of the most intricate designs, with multiple crocheted grapes creating volume and movement.",
- "es": "A tiny bunch of grapes, almost like textile jewellery. One of the most intricate designs, with multiple crocheted grapes creating volume and movement.",
- "tr": "A tiny bunch of grapes, almost like textile jewellery. One of the most intricate designs, with multiple crocheted grapes creating volume and movement.",
- "ar": "A tiny bunch of grapes, almost like textile jewellery. One of the most intricate designs, with multiple crocheted grapes creating volume and movement."
+ "es": "Un pequeño racimo de uvas, casi como una joya textil. Uno de los diseños más elaborados, con múltiples uvas tejidas a ganchillo que crean volumen y movimiento.",
+ "tr": "Küçük bir üzüm salkımı, neredeyse bir tekstil takısı gibi. Çok sayıda kroşe üzümün hacim ve hareket yarattığı en karmaşık tasarımlardan biri.",
+ "ar": "عنقود عنب صغير، يشبه المجوهرات النسيجية. أحد أكثر التصاميم تعقيداً، مع حبات عنب متعددة بالكروشيه تخلق حجماً وحركة."
  },
  "price": 19000,
  "currency": "MAD",
@@ -6755,9 +6755,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Charms",
  "en": "Charms",
- "es": "Charms",
- "tr": "Charms",
- "ar": "Charms"
+ "es": "Complementos",
+ "tr": "Charmlar",
+ "ar": "تعليقات الحقيبة"
  },
  "group": "accessories",
  "collection": {
@@ -6871,16 +6871,16 @@ const PRODUCTS = [
  "material": {
  "fr": "raphia crochete main et aiguille raffia",
  "en": "hand-crocheted and needle-crocheted raffia",
- "es": "hand-crocheted and needle-crocheted raffia",
- "tr": "hand-crocheted and needle-crocheted raffia",
- "ar": "hand-crocheted and needle-crocheted raffia"
+ "es": "rafia tejida a mano con ganchillo y aguja",
+ "tr": "el örgüsü ve iğne örgüsü rafya",
+ "ar": "رافيا مصنوعة بالكروشيه اليدوي والإبرة"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia — tejida a ganchillo",
+ "tr": "Yalnızca rafya — kroşe",
+ "ar": "رافيا فقط — مصنوعة بالكروشيه"
  },
  "color": null,
  "size": null,
@@ -6893,9 +6893,9 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Environ 8 x 4 cm (chaque piece peut legerement varier).",
  "en": "Approx. 8 x 4 cm (each piece may vary slightly).",
- "es": "Approx. 8 x 4 cm (each piece may vary slightly).",
- "tr": "Approx. 8 x 4 cm (each piece may vary slightly).",
- "ar": "Approx. 8 x 4 cm (each piece may vary slightly)."
+ "es": "Aprox. 8 x 4 cm (cada pieza puede variar ligeramente).",
+ "tr": "Yaklaşık 8 x 4 cm (her parça hafifçe farklılık gösterebilir).",
+ "ar": "حوالي 8 x 4 سم (قد تختلف كل قطعة قليلاً)."
  },
  "whatFits": null,
  "attachment": {
@@ -6908,149 +6908,149 @@ const PRODUCTS = [
  "handworkTime": {
  "fr": "4 h de crochet main pour ce fruit.",
  "en": "4 hours of hand crochet for this fruit.",
- "es": "4 hours of hand crochet for this fruit.",
- "tr": "4 hours of hand crochet for this fruit.",
- "ar": "4 hours of hand crochet for this fruit."
+ "es": "4 horas de crochet a mano para esta fruta.",
+ "tr": "Bu meyve için 4 saat el kroşesi.",
+ "ar": "4 ساعات كروشيه يدوي لهذه الفاكهة."
  },
  "howToWear": {
  "title": {
  "fr": "Comment le porter",
  "en": "How to wear it",
- "es": "How to wear it",
- "tr": "How to wear it",
- "ar": "How to wear it"
+ "es": "Cómo llevarlo",
+ "tr": "Nasıl kullanılır",
+ "ar": "كيف تلبسينه"
  },
  "intro": {
  "fr": "Utilisez ce Fruit Charm sur:",
  "en": "Use this Fruit Charm on:",
- "es": "Use this Fruit Charm on:",
- "tr": "Use this Fruit Charm on:",
- "ar": "Use this Fruit Charm on:"
+ "es": "Úsalo en:",
+ "tr": "Bu Meyve Charm'ı şunlara takın:",
+ "ar": "استخدمي هذا الميدالية الفاكهة على:"
  },
  "items": [
  {
  "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
  "en": "YZA bags, La Vague and other YZA baskets.",
- "es": "YZA bags, La Vague and other YZA baskets.",
- "tr": "YZA bags, La Vague and other YZA baskets.",
- "ar": "YZA bags, La Vague and other YZA baskets."
+ "es": "Bolsos YZA, La Vague y otros cestos de la marca.",
+ "tr": "YZA çantaları, La Vague ve diğer YZA sepetleri.",
+ "ar": "حقائب YZA، La Vague وسلال YZA الأخرى."
  },
  {
  "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
  "en": "Leather bags to add personality and colour.",
- "es": "Leather bags to add personality and colour.",
- "tr": "Leather bags to add personality and colour.",
- "ar": "Leather bags to add personality and colour."
+ "es": "Bolsos de piel para añadir personalidad y color.",
+ "tr": "Kişilik ve renk katmak için deri çantalar.",
+ "ar": "الحقائب الجلدية لإضافة شخصية ولون."
  },
  {
  "fr": "Paniers en paille, market totes et sacs de plage.",
  "en": "Straw baskets, market totes and beach bags.",
- "es": "Straw baskets, market totes and beach bags.",
- "tr": "Straw baskets, market totes and beach bags.",
- "ar": "Straw baskets, market totes and beach bags."
+ "es": "Cestos de paja, bolsas de mercado y bolsas de playa.",
+ "tr": "Hasır sepetler, alışveriş çantaları ve plaj çantaları.",
+ "ar": "السلال القشية، وحقائب السوق، وحقائب الشاطئ."
  },
  {
  "fr": "Clés, porte-clés et pochettes.",
  "en": "Keys, keychains and pouches.",
- "es": "Keys, keychains and pouches.",
- "tr": "Keys, keychains and pouches.",
- "ar": "Keys, keychains and pouches."
+ "es": "Llaves, llaveros y bolsillos.",
+ "tr": "Anahtarlar, anahtarlıklar ve kılıflar.",
+ "ar": "المفاتيح والمفاتيح وحافظات المفاتيح."
  }
  ],
  "styleTip": {
  "fr": "Best on clean handles and evening baskets. Let the volume hang freely rather than crowding it with too many charms.",
  "en": "Best on clean handles and evening baskets. Let the volume hang freely rather than crowding it with too many charms.",
- "es": "Best on clean handles and evening baskets. Let the volume hang freely rather than crowding it with too many charms.",
- "tr": "Best on clean handles and evening baskets. Let the volume hang freely rather than crowding it with too many charms.",
- "ar": "Best on clean handles and evening baskets. Let the volume hang freely rather than crowding it with too many charms."
+ "es": "Mejor en asas limpias y cestos de noche. Deja que el volumen cuelgue libremente en lugar de saturarlo con demasiados charms.",
+ "tr": "Temiz kulplar ve akşam sepetlerinde en iyisi. Çok fazla charm ile kalabalıklaştırmak yerine hacmin serbestçe sarkmasına izin verin.",
+ "ar": "الأفضل على المقابض النظيفة وسلال المساء. اتركي الحجم يتدلى بحرية بدلاً من ازدحامه بالعديد من الميداليات."
  },
  "note": {
  "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
+ "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
+ "ar": "كل ميدالية تأتي مع حلقة صغيرة. الحلقة الذهبية مشمولة في الحزم ويمكن إضافتها في الأستوديو للميداليات المفردة."
  }
  },
  "fruitStory": {
  "title": {
  "fr": "Grapes: the most sculptural charm.",
  "en": "Grapes: the most sculptural charm.",
- "es": "Grapes: the most sculptural charm.",
- "tr": "Grapes: the most sculptural charm.",
- "ar": "Grapes: the most sculptural charm."
+ "es": "Las uvas: el charm más escultural.",
+ "tr": "Üzümler: en heykelvari charm.",
+ "ar": "العنب: الميدالية الأكثر نحتاً."
  },
  "body": {
  "fr": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory.",
  "en": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory.",
- "es": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory.",
- "tr": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory.",
- "ar": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory."
+ "es": "Las uvas son el charm que explica mejor el precio: muchas piezas pequeñas, cada una formada por separado y luego equilibradas en un racimo en movimiento. Se parece más a una joya textil que a un accesorio sencillo.",
+ "tr": "Üzüm, fiyatı en hızlı açıklayan charm: pek çok küçük parça, her biri ayrı ayrı şekillendirilir, ardından tek bir hareketli salkım halinde dengelenir. Sıradan bir aksesuardan çok bir tekstil takısına benziyor.",
+ "ar": "العنب هو الميدالية التي تُبرّر السعر بأسرع طريقة: قطع صغيرة كثيرة، كل واحدة تُشكَّل على حدة، ثم تُوزَن في عنقود واحد متحرك. يبدو أقرب إلى المجوهرات النسيجية منه إلى إكسسوار بسيط."
  },
  "collectionTitle": {
  "fr": "Fruit Market : inspiré des marchés de Marrakech",
  "en": "Fruit Market: inspired by the Marrakesh markets",
- "es": "Fruit Market: inspired by the Marrakesh markets",
- "tr": "Fruit Market: inspired by the Marrakesh markets",
- "ar": "Fruit Market: inspired by the Marrakesh markets"
+ "es": "Fruit Market: inspirado en los mercados de Marrakech",
+ "tr": "Fruit Market: Marakeş pazarlarından ilham alınmıştır",
+ "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
  "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
  "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
+ "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
  },
  "liveUrl": "https://yza-shop.com/products/grapes-raffia-bag-charm"
  },
  "making": {
  "fr": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
  "en": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "es": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "tr": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "ar": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ "es": "Las uvas son el charm que explica mejor el precio: muchas piezas pequeñas, cada una formada por separado y luego equilibradas en un racimo en movimiento. Se parece más a una joya textil que a un accesorio sencillo. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
+ "tr": "Üzüm, fiyatı en hızlı açıklayan charm: pek çok küçük parça, her biri ayrı ayrı şekillendirilir, ardından tek bir hareketli salkım halinde dengelenir. Sıradan bir aksesuardan çok bir tekstil takısına benziyor. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
+ "ar": "العنب هو الميدالية التي تُبرّر السعر بأسرع طريقة: قطع صغيرة كثيرة، كل واحدة تُشكَّل على حدة، ثم تُوزَن في عنقود واحد متحرك. يبدو أقرب إلى المجوهرات النسيجية منه إلى إكسسوار بسيط. كل قطعة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ثم تُفحص قبل إضافة علامة YZA."
  },
  "care": {
  "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, dejar secar al aire libre alejada del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurumaya bırakın. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın öge rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
  "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
+ "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz'deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
- "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
- "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
+ "es": "Satisfecho o reembolsado — 30 días",
+ "tr": "Memnun olun ya da iade edin — 30 gün",
+ "ar": "راضٍ أو مُستردّ — 30 يومًا"
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "badge": "limited",
  "hours": 4,
@@ -7085,23 +7085,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Charm citron entier en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring.",
- "es": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring.",
- "tr": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring.",
- "ar": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring."
+ "es": "Un charm de limón entero en rafia, tejido a mano con aro dorado de 2,5 cm.",
+ "tr": "Bir bütün limon rafya charm, 2,5 cm altın halkayla el kroşesiyle yapılmış.",
+ "ar": "ميدالية ليمون كامل من الرافيا، مصنوعة بالكروشيه اليدوي مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
  "fr": "Charm citron entier en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring.",
- "es": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring.",
- "tr": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring.",
- "ar": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring."
+ "es": "Un charm de limón entero en rafia, tejido a mano con aro dorado de 2,5 cm.",
+ "tr": "Bir bütün limon rafya charm, 2,5 cm altın halkayla el kroşesiyle yapılmış.",
+ "ar": "ميدالية ليمون كامل من الرافيا، مصنوعة بالكروشيه اليدوي مع حلقة ذهبية 2.5 سم."
  },
  "desc": {
  "fr": "Un citron de marche en raphia: vif, graphique, plein d energie. Beau sur cuir noir, denim et paille naturelle.",
  "en": "A juicy lemon from the market, in raffia form: bright, cheeky and full of energy. Works beautifully on dark leather, denim and natural straw.",
- "es": "A juicy lemon from the market, in raffia form: bright, cheeky and full of energy. Works beautifully on dark leather, denim and natural straw.",
- "tr": "A juicy lemon from the market, in raffia form: bright, cheeky and full of energy. Works beautifully on dark leather, denim and natural straw.",
- "ar": "A juicy lemon from the market, in raffia form: bright, cheeky and full of energy. Works beautifully on dark leather, denim and natural straw."
+ "es": "Un limón jugoso del mercado, en forma de rafia: brillante, pícaro y lleno de energía. Queda perfecto en cuero oscuro, denim y paja natural.",
+ "tr": "Pazardan bir sulu limon, rafya formunda: parlak, şakacı ve enerjiye dolu. Koyu deri, denim ve doğal hasır üzerinde harika duruyor.",
+ "ar": "ليمونة طازجة من السوق بشكل رافيا: مشرقة، شقية ومليئة بالطاقة. تبدو رائعة على الجلد الداكن والدنيم والقش الطبيعي."
  },
  "price": 23000,
  "currency": "MAD",
@@ -7110,9 +7110,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Charms",
  "en": "Charms",
- "es": "Charms",
- "tr": "Charms",
- "ar": "Charms"
+ "es": "Complementos",
+ "tr": "Charmlar",
+ "ar": "تعليقات الحقيبة"
  },
  "group": "accessories",
  "collection": {
@@ -7222,16 +7222,16 @@ const PRODUCTS = [
  "material": {
  "fr": "raphia crochete main raffia",
  "en": "hand-crocheted raffia",
- "es": "hand-crocheted raffia",
- "tr": "hand-crocheted raffia",
- "ar": "hand-crocheted raffia"
+ "es": "rafia tejida a mano con ganchillo",
+ "tr": "el örgüsü rafya",
+ "ar": "رافيا مصنوعة بالكروشيه اليدوي"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia — tejida a ganchillo",
+ "tr": "Yalnızca rafya — kroşe",
+ "ar": "رافيا فقط — مصنوعة بالكروشيه"
  },
  "color": null,
  "size": null,
@@ -7244,9 +7244,9 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Environ 4.5 cm diameter (chaque piece peut legerement varier).",
  "en": "Approx. 4.5 cm diameter (each piece may vary slightly).",
- "es": "Approx. 4.5 cm diameter (each piece may vary slightly).",
- "tr": "Approx. 4.5 cm diameter (each piece may vary slightly).",
- "ar": "Approx. 4.5 cm diameter (each piece may vary slightly)."
+ "es": "Aprox. 4,5 cm de diámetro (cada pieza puede variar ligeramente).",
+ "tr": "Yaklaşık 4,5 cm çap (her parça hafifçe farklılık gösterebilir).",
+ "ar": "حوالي 4.5 سم قطر (قد تختلف كل قطعة قليلاً)."
  },
  "whatFits": null,
  "attachment": {
@@ -7259,149 +7259,149 @@ const PRODUCTS = [
  "handworkTime": {
  "fr": "3 h de crochet main pour ce fruit.",
  "en": "3 hours of hand crochet for this fruit.",
- "es": "3 hours of hand crochet for this fruit.",
- "tr": "3 hours of hand crochet for this fruit.",
- "ar": "3 hours of hand crochet for this fruit."
+ "es": "3 horas de crochet a mano para esta fruta.",
+ "tr": "Bu meyve için 3 saat el kroşesi.",
+ "ar": "3 ساعات كروشيه يدوي لهذه الفاكهة."
  },
  "howToWear": {
  "title": {
  "fr": "Comment le porter",
  "en": "How to wear it",
- "es": "How to wear it",
- "tr": "How to wear it",
- "ar": "How to wear it"
+ "es": "Cómo llevarlo",
+ "tr": "Nasıl kullanılır",
+ "ar": "كيف تلبسينه"
  },
  "intro": {
  "fr": "Utilisez ce Fruit Charm sur:",
  "en": "Use this Fruit Charm on:",
- "es": "Use this Fruit Charm on:",
- "tr": "Use this Fruit Charm on:",
- "ar": "Use this Fruit Charm on:"
+ "es": "Úsalo en:",
+ "tr": "Bu Meyve Charm'ı şunlara takın:",
+ "ar": "استخدمي هذا الميدالية الفاكهة على:"
  },
  "items": [
  {
  "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
  "en": "YZA bags, La Vague and other YZA baskets.",
- "es": "YZA bags, La Vague and other YZA baskets.",
- "tr": "YZA bags, La Vague and other YZA baskets.",
- "ar": "YZA bags, La Vague and other YZA baskets."
+ "es": "Bolsos YZA, La Vague y otros cestos de la marca.",
+ "tr": "YZA çantaları, La Vague ve diğer YZA sepetleri.",
+ "ar": "حقائب YZA، La Vague وسلال YZA الأخرى."
  },
  {
  "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
  "en": "Leather bags to add personality and colour.",
- "es": "Leather bags to add personality and colour.",
- "tr": "Leather bags to add personality and colour.",
- "ar": "Leather bags to add personality and colour."
+ "es": "Bolsos de piel para añadir personalidad y color.",
+ "tr": "Kişilik ve renk katmak için deri çantalar.",
+ "ar": "الحقائب الجلدية لإضافة شخصية ولون."
  },
  {
  "fr": "Paniers en paille, market totes et sacs de plage.",
  "en": "Straw baskets, market totes and beach bags.",
- "es": "Straw baskets, market totes and beach bags.",
- "tr": "Straw baskets, market totes and beach bags.",
- "ar": "Straw baskets, market totes and beach bags."
+ "es": "Cestos de paja, bolsas de mercado y bolsas de playa.",
+ "tr": "Hasır sepetler, alışveriş çantaları ve plaj çantaları.",
+ "ar": "السلال القشية، وحقائب السوق، وحقائب الشاطئ."
  },
  {
  "fr": "Clés, porte-clés et pochettes.",
  "en": "Keys, keychains and pouches.",
- "es": "Keys, keychains and pouches.",
- "tr": "Keys, keychains and pouches.",
- "ar": "Keys, keychains and pouches."
+ "es": "Llaves, llaveros y bolsillos.",
+ "tr": "Anahtarlar, anahtarlıklar ve kılıflar.",
+ "ar": "المفاتيح والمفاتيح وحافظات المفاتيح."
  }
  ],
  "styleTip": {
  "fr": "Best on dark leather, denim, natural straw and black handles. Wear alone for one sharp colour note.",
  "en": "Best on dark leather, denim, natural straw and black handles. Wear alone for one sharp colour note.",
- "es": "Best on dark leather, denim, natural straw and black handles. Wear alone for one sharp colour note.",
- "tr": "Best on dark leather, denim, natural straw and black handles. Wear alone for one sharp colour note.",
- "ar": "Best on dark leather, denim, natural straw and black handles. Wear alone for one sharp colour note."
+ "es": "Mejor en cuero oscuro, denim, paja natural y asas negras. Llévalo solo para una nota de color nítida.",
+ "tr": "Koyu deri, denim, doğal hasır ve siyah kulplarda en iyisi. Tek keskin renk notu için yalnız kullanın.",
+ "ar": "الأفضل على الجلد الداكن والدنيم والقش الطبيعي والمقابض السوداء. ارتدِه وحده لنغمة لون حادة."
  },
  "note": {
  "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
+ "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
+ "ar": "كل ميدالية تأتي مع حلقة صغيرة. الحلقة الذهبية مشمولة في الحزم ويمكن إضافتها في الأستوديو للميداليات المفردة."
  }
  },
  "fruitStory": {
  "title": {
  "fr": "Lemon: the clean pop.",
  "en": "Lemon: the clean pop.",
- "es": "Lemon: the clean pop.",
- "tr": "Lemon: the clean pop.",
- "ar": "Lemon: the clean pop."
+ "es": "El limón: el toque nítido.",
+ "tr": "Limon: temiz bir renk patlaması.",
+ "ar": "الليمون: اللمسة النقية."
  },
  "body": {
  "fr": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud.",
  "en": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud.",
- "es": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud.",
- "tr": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud.",
- "ar": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud."
+ "es": "El limón entero es un pequeño despertar marrakchí. Trae el color de los puestos de zumo, las mañanas de taxi y las cajas del mercado a la asa. La forma redonda lo hace llamativo sin volverse estrepitoso.",
+ "tr": "Bütün limon, küçük bir Marakeş uyanış çağrısı. Meyve suyu tezgahlarının, taksi sabahlarının ve pazar kasalarının rengini bir sapaya taşıyor. Yuvarlak şekli, gürültülü olmadan cesur kalmasını sağlıyor.",
+ "ar": "الليمون الكامل صرخة صحيان صغيرة من مراكش. يحمل لون أكشاك العصير وصباحات التاكسي وأقفاص السوق إلى المقبض. الشكل الدائري يجعله جريئاً دون أن يصبح صاخباً."
  },
  "collectionTitle": {
  "fr": "Fruit Market : inspiré des marchés de Marrakech",
  "en": "Fruit Market: inspired by the Marrakesh markets",
- "es": "Fruit Market: inspired by the Marrakesh markets",
- "tr": "Fruit Market: inspired by the Marrakesh markets",
- "ar": "Fruit Market: inspired by the Marrakesh markets"
+ "es": "Fruit Market: inspirado en los mercados de Marrakech",
+ "tr": "Fruit Market: Marakeş pazarlarından ilham alınmıştır",
+ "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
  "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
  "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
+ "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
  },
  "liveUrl": "https://yza-shop.com/products/lemon-raffia-bag-charm"
  },
  "making": {
  "fr": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
  "en": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "es": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "tr": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "ar": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ "es": "El limón entero es un pequeño despertar marrakchí. Trae el color de los puestos de zumo, las mañanas de taxi y las cajas del mercado a la asa. La forma redonda lo hace llamativo sin volverse estrepitoso. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
+ "tr": "Bütün limon, küçük bir Marakeş uyanış çağrısı. Meyve suyu tezgahlarının, taksi sabahlarının ve pazar kasalarının rengini bir sapaya taşıyor. Yuvarlak şekli, gürültülü olmadan cesur kalmasını sağlıyor. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
+ "ar": "الليمون الكامل صرخة صحيان صغيرة من مراكش. يحمل لون أكشاك العصير وصباحات التاكسي وأقفاص السوق إلى المقبض. الشكل الدائري يجعله جريئاً دون أن يصبح صاخباً. كل قطعة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ثم تُفحص قبل إضافة علامة YZA."
  },
  "care": {
  "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, dejar secar al aire libre alejada del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurumaya bırakın. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın öge rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
  "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
+ "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz'deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
- "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
- "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
+ "es": "Satisfecho o reembolsado — 30 días",
+ "tr": "Memnun olun ya da iade edin — 30 gün",
+ "ar": "راضٍ أو مُستردّ — 30 يومًا"
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "badge": "limited",
  "hours": 3,
@@ -7436,23 +7436,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Charm orange entiere en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring.",
- "es": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring.",
- "tr": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring.",
- "ar": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring."
+ "es": "Un charm de naranja entera en rafia, tejido a mano con aro dorado de 2,5 cm.",
+ "tr": "Bir bütün portakal rafya charm, 2,5 cm altın halkayla el kroşesiyle yapılmış.",
+ "ar": "ميدالية برتقالة كاملة من الرافيا، مصنوعة بالكروشيه اليدوي مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
  "fr": "Charm orange entiere en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring.",
- "es": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring.",
- "tr": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring.",
- "ar": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring."
+ "es": "Un charm de naranja entera en rafia, tejido a mano con aro dorado de 2,5 cm.",
+ "tr": "Bir bütün portakal rafya charm, 2,5 cm altın halkayla el kroşesiyle yapılmış.",
+ "ar": "ميدالية برتقالة كاملة من الرافيا، مصنوعة بالكروشيه اليدوي مع حلقة ذهبية 2.5 سم."
  },
  "desc": {
  "fr": "Une petite orange ronde comme un soleil sur la anse: chaleur, couleur et presence graphique sur cuir ou panier.",
  "en": "A small, round orange turned into a charm, like a little sun on your handle. Brings warmth and colour to both leather bags and straw baskets.",
- "es": "A small, round orange turned into a charm, like a little sun on your handle. Brings warmth and colour to both leather bags and straw baskets.",
- "tr": "A small, round orange turned into a charm, like a little sun on your handle. Brings warmth and colour to both leather bags and straw baskets.",
- "ar": "A small, round orange turned into a charm, like a little sun on your handle. Brings warmth and colour to both leather bags and straw baskets."
+ "es": "Una pequeña naranja redonda convertida en charm, como un pequeño sol en tu asa. Aporta calidez y color tanto a bolsos de piel como a cestos de paja.",
+ "tr": "Küçük, yuvarlak bir portakal charm'a dönüştürülmüş, kulpunuzda küçük bir güneş gibi. Hem deri çantalara hem de hasır sepetlere sıcaklık ve renk katıyor.",
+ "ar": "برتقالة صغيرة مستديرة تحولت إلى ميدالية، كشمس صغيرة على مقبض حقيبتك. تضفي دفئاً ولوناً على الحقائب الجلدية والسلال القشية على حد سواء."
  },
  "price": 23000,
  "currency": "MAD",
@@ -7461,9 +7461,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Charms",
  "en": "Charms",
- "es": "Charms",
- "tr": "Charms",
- "ar": "Charms"
+ "es": "Complementos",
+ "tr": "Charmlar",
+ "ar": "تعليقات الحقيبة"
  },
  "group": "accessories",
  "collection": {
@@ -7572,16 +7572,16 @@ const PRODUCTS = [
  "material": {
  "fr": "raphia crochete main raffia",
  "en": "hand-crocheted raffia",
- "es": "hand-crocheted raffia",
- "tr": "hand-crocheted raffia",
- "ar": "hand-crocheted raffia"
+ "es": "rafia tejida a mano con ganchillo",
+ "tr": "el örgüsü rafya",
+ "ar": "رافيا مصنوعة بالكروشيه اليدوي"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia — tejida a ganchillo",
+ "tr": "Yalnızca rafya — kroşe",
+ "ar": "رافيا فقط — مصنوعة بالكروشيه"
  },
  "color": null,
  "size": null,
@@ -7594,9 +7594,9 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Environ 4.5 cm diameter (chaque piece peut legerement varier).",
  "en": "Approx. 4.5 cm diameter (each piece may vary slightly).",
- "es": "Approx. 4.5 cm diameter (each piece may vary slightly).",
- "tr": "Approx. 4.5 cm diameter (each piece may vary slightly).",
- "ar": "Approx. 4.5 cm diameter (each piece may vary slightly)."
+ "es": "Aprox. 4,5 cm de diámetro (cada pieza puede variar ligeramente).",
+ "tr": "Yaklaşık 4,5 cm çap (her parça hafifçe farklılık gösterebilir).",
+ "ar": "حوالي 4.5 سم قطر (قد تختلف كل قطعة قليلاً)."
  },
  "whatFits": null,
  "attachment": {
@@ -7609,149 +7609,149 @@ const PRODUCTS = [
  "handworkTime": {
  "fr": "3 h de crochet main pour ce fruit.",
  "en": "3 hours of hand crochet for this fruit.",
- "es": "3 hours of hand crochet for this fruit.",
- "tr": "3 hours of hand crochet for this fruit.",
- "ar": "3 hours of hand crochet for this fruit."
+ "es": "3 horas de crochet a mano para esta fruta.",
+ "tr": "Bu meyve için 3 saat el kroşesi.",
+ "ar": "3 ساعات كروشيه يدوي لهذه الفاكهة."
  },
  "howToWear": {
  "title": {
  "fr": "Comment le porter",
  "en": "How to wear it",
- "es": "How to wear it",
- "tr": "How to wear it",
- "ar": "How to wear it"
+ "es": "Cómo llevarlo",
+ "tr": "Nasıl kullanılır",
+ "ar": "كيف تلبسينه"
  },
  "intro": {
  "fr": "Utilisez ce Fruit Charm sur:",
  "en": "Use this Fruit Charm on:",
- "es": "Use this Fruit Charm on:",
- "tr": "Use this Fruit Charm on:",
- "ar": "Use this Fruit Charm on:"
+ "es": "Úsalo en:",
+ "tr": "Bu Meyve Charm'ı şunlara takın:",
+ "ar": "استخدمي هذا الميدالية الفاكهة على:"
  },
  "items": [
  {
  "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
  "en": "YZA bags, La Vague and other YZA baskets.",
- "es": "YZA bags, La Vague and other YZA baskets.",
- "tr": "YZA bags, La Vague and other YZA baskets.",
- "ar": "YZA bags, La Vague and other YZA baskets."
+ "es": "Bolsos YZA, La Vague y otros cestos de la marca.",
+ "tr": "YZA çantaları, La Vague ve diğer YZA sepetleri.",
+ "ar": "حقائب YZA، La Vague وسلال YZA الأخرى."
  },
  {
  "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
  "en": "Leather bags to add personality and colour.",
- "es": "Leather bags to add personality and colour.",
- "tr": "Leather bags to add personality and colour.",
- "ar": "Leather bags to add personality and colour."
+ "es": "Bolsos de piel para añadir personalidad y color.",
+ "tr": "Kişilik ve renk katmak için deri çantalar.",
+ "ar": "الحقائب الجلدية لإضافة شخصية ولون."
  },
  {
  "fr": "Paniers en paille, market totes et sacs de plage.",
  "en": "Straw baskets, market totes and beach bags.",
- "es": "Straw baskets, market totes and beach bags.",
- "tr": "Straw baskets, market totes and beach bags.",
- "ar": "Straw baskets, market totes and beach bags."
+ "es": "Cestos de paja, bolsas de mercado y bolsas de playa.",
+ "tr": "Hasır sepetler, alışveriş çantaları ve plaj çantaları.",
+ "ar": "السلال القشية، وحقائب السوق، وحقائب الشاطئ."
  },
  {
  "fr": "Clés, porte-clés et pochettes.",
  "en": "Keys, keychains and pouches.",
- "es": "Keys, keychains and pouches.",
- "tr": "Keys, keychains and pouches.",
- "ar": "Keys, keychains and pouches."
+ "es": "Llaves, llaveros y bolsillos.",
+ "tr": "Anahtarlar, anahtarlıklar ve kılıflar.",
+ "ar": "المفاتيح والمفاتيح وحافظات المفاتيح."
  }
  ],
  "styleTip": {
  "fr": "Best alone for a graphic touch, or mixed with lemon and tomato for a warm market story.",
  "en": "Best alone for a graphic touch, or mixed with lemon and tomato for a warm market story.",
- "es": "Best alone for a graphic touch, or mixed with lemon and tomato for a warm market story.",
- "tr": "Best alone for a graphic touch, or mixed with lemon and tomato for a warm market story.",
- "ar": "Best alone for a graphic touch, or mixed with lemon and tomato for a warm market story."
+ "es": "Mejor solo para un toque gráfico, o combinado con limón y tomate para contar una historia de mercado cálida.",
+ "tr": "Grafik bir dokunuş için yalnız ya da sıcak bir pazar hikayesi için limon ve domatesle karıştırılmış en iyisi.",
+ "ar": "الأفضل وحده للمسة رسومية، أو مع الليمون والطماطم لرواية قصة سوق دافئة."
  },
  "note": {
  "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
+ "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
+ "ar": "كل ميدالية تأتي مع حلقة صغيرة. الحلقة الذهبية مشمولة في الحزم ويمكن إضافتها في الأستوديو للميداليات المفردة."
  }
  },
  "fruitStory": {
  "title": {
  "fr": "Orange: the little sun.",
  "en": "Orange: the little sun.",
- "es": "Orange: the little sun.",
- "tr": "Orange: the little sun.",
- "ar": "Orange: the little sun."
+ "es": "La naranja: el pequeño sol.",
+ "tr": "Portakal: küçük güneş.",
+ "ar": "البرتقال: الشمس الصغيرة."
  },
  "body": {
  "fr": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close.",
  "en": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close.",
- "es": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close.",
- "tr": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close.",
- "ar": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close."
+ "es": "Este es el charm más cercano a la luz de Marrakech. Una naranja redonda en el asa parece sencilla de lejos; de cerca se ven la tensión manual y los diminutos puntos.",
+ "tr": "Bu, Marakeş ışığına en yakın charm. Kulptaki yuvarlak portakal uzaktan sade görünüyor, yakından bakınca el gerginliğini ve küçük iğneleri fark ediyorsunuz.",
+ "ar": "هذه هي الميدالية الأقرب إلى ضوء مراكش. البرتقالة المستديرة على المقبض تبدو بسيطة من بعيد، ثم من قريب ترى شدّ اليد والغرز الدقيقة."
  },
  "collectionTitle": {
  "fr": "Fruit Market : inspiré des marchés de Marrakech",
  "en": "Fruit Market: inspired by the Marrakesh markets",
- "es": "Fruit Market: inspired by the Marrakesh markets",
- "tr": "Fruit Market: inspired by the Marrakesh markets",
- "ar": "Fruit Market: inspired by the Marrakesh markets"
+ "es": "Fruit Market: inspirado en los mercados de Marrakech",
+ "tr": "Fruit Market: Marakeş pazarlarından ilham alınmıştır",
+ "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
  "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
  "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
+ "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çanta nız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
  },
  "liveUrl": "https://yza-shop.com/products/orange-raffia-bag-charm"
  },
  "making": {
  "fr": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
  "en": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "es": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "tr": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "ar": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ "es": "Este es el charm más cercano a la luz de Marrakech. Una naranja redonda en el asa parece sencilla de lejos; de cerca se ven la tensión manual y los diminutos puntos. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
+ "tr": "Bu, Marakeş ışığına en yakın charm. Kulptaki yuvarlak portakal uzaktan sade görünüyor, yakından bakınca el gerginliğini ve küçük iğneleri fark ediyorsunuz. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
+ "ar": "هذه هي الميدالية الأقرب إلى ضوء مراكش. البرتقالة المستديرة على المقبض تبدو بسيطة من بعيد، ثم من قريب ترى شدّ اليد والغرز الدقيقة. كل قطعة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ثم تُفحص قبل إضافة علامة YZA."
  },
  "care": {
  "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, dejar secar al aire libre alejada del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurumaya bırakın. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın öge rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
  "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
+ "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz’deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
- "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
- "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
+ "es": "Satisfecho o reembolsado — 30 días",
+ "tr": "Memnun olun ya da iade edin — 30 gün",
+ "ar": "راضٍ أو مُستردّ — 30 يومًا"
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "badge": "limited",
  "hours": 3,
@@ -7786,23 +7786,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Charm tomate en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring.",
- "es": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring.",
- "tr": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring.",
- "ar": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring."
+ "es": "Un charm de tomate en rafia, tejido a mano con aro dorado de 2,5 cm.",
+ "tr": "Bir rafya domates charm, 2,5 cm altın halkayla el kroşesiyle yapılmış.",
+ "ar": "ميدالية طماطم من الرافيا، مصنوعة بالكروشيه اليدوي مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
  "fr": "Charm tomate en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring.",
- "es": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring.",
- "tr": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring.",
- "ar": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring."
+ "es": "Un charm de tomate en rafia, tejido a mano con aro dorado de 2,5 cm.",
+ "tr": "Bir rafya domates charm, 2,5 cm altın halkayla el kroşesiyle yapılmış.",
+ "ar": "ميدالية طماطم من الرافيا، مصنوعة بالكروشيه اليدوي مع حلقة ذهبية 2.5 سم."
  },
  "desc": {
  "fr": "Une mini tomate de marche a Guéliz: rouge profond, petit vert, graphique et porte-bonheur du quotidien.",
  "en": "A tiny tomato straight from a Guéliz market. Deep red with a small green top, cute and graphic. Clip it as a small everyday good-luck talisman.",
- "es": "A tiny tomato straight from a Guéliz market. Deep red with a small green top, cute and graphic. Clip it as a small everyday good-luck talisman.",
- "tr": "A tiny tomato straight from a Guéliz market. Deep red with a small green top, cute and graphic. Clip it as a small everyday good-luck talisman.",
- "ar": "A tiny tomato straight from a Guéliz market. Deep red with a small green top, cute and graphic. Clip it as a small everyday good-luck talisman."
+ "es": "Un pequeño tomate directo del mercado de Guéliz. Rojo intenso con un pequeño tallo verde, mono y gráfico. Llévalo como un pequeño talismán de la suerte del día a día.",
+ "tr": "Guéliz pazarından gelen küçük bir domates. Küçük yeşil sapıyla koyu kırmızı, sevimli ve grafik. Günlük bir küçük şans tılsımı olarak takın.",
+ "ar": "طماطمة صغيرة مباشرة من سوق Guéliz. أحمر عميق مع قمة خضراء صغيرة، لطيفة وذات طابع رسومي. علّقيها كتعويذة حظ صغيرة للحياة اليومية."
  },
  "price": 23000,
  "currency": "MAD",
@@ -7811,9 +7811,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Charms",
  "en": "Charms",
- "es": "Charms",
- "tr": "Charms",
- "ar": "Charms"
+ "es": "Complementos",
+ "tr": "Charmlar",
+ "ar": "تعليقات الحقيبة"
  },
  "group": "accessories",
  "collection": {
@@ -7922,16 +7922,16 @@ const PRODUCTS = [
  "material": {
  "fr": "raphia crochete main raffia",
  "en": "hand-crocheted raffia",
- "es": "hand-crocheted raffia",
- "tr": "hand-crocheted raffia",
- "ar": "hand-crocheted raffia"
+ "es": "rafia tejida a mano con ganchillo",
+ "tr": "el örgüsü rafya",
+ "ar": "رافيا مصنوعة بالكروشيه اليدوي"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia — tejida a ganchillo",
+ "tr": "Yalnızca rafya — kroşe",
+ "ar": "رافيا فقط — مصنوعة بالكروشيه"
  },
  "color": null,
  "size": null,
@@ -7944,9 +7944,9 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Environ 4.5 cm diameter (chaque piece peut legerement varier).",
  "en": "Approx. 4.5 cm diameter (each piece may vary slightly).",
- "es": "Approx. 4.5 cm diameter (each piece may vary slightly).",
- "tr": "Approx. 4.5 cm diameter (each piece may vary slightly).",
- "ar": "Approx. 4.5 cm diameter (each piece may vary slightly)."
+ "es": "Aprox. 4,5 cm de diámetro (cada pieza puede variar ligeramente).",
+ "tr": "Yaklaşık 4,5 cm çap (her parça hafifçe farklılık gösterebilir).",
+ "ar": "حوالي 4.5 سم قطر (قد تختلف كل قطعة قليلاً)."
  },
  "whatFits": null,
  "attachment": {
@@ -7959,149 +7959,149 @@ const PRODUCTS = [
  "handworkTime": {
  "fr": "3 h de crochet main pour ce fruit.",
  "en": "3 hours of hand crochet for this fruit.",
- "es": "3 hours of hand crochet for this fruit.",
- "tr": "3 hours of hand crochet for this fruit.",
- "ar": "3 hours of hand crochet for this fruit."
+ "es": "3 horas de crochet a mano para esta fruta.",
+ "tr": "Bu meyve için 3 saat el kroşesi.",
+ "ar": "3 ساعات كروشيه يدوي لهذه الفاكهة."
  },
  "howToWear": {
  "title": {
  "fr": "Comment le porter",
  "en": "How to wear it",
- "es": "How to wear it",
- "tr": "How to wear it",
- "ar": "How to wear it"
+ "es": "Cómo llevarlo",
+ "tr": "Nasıl kullanılır",
+ "ar": "كيف تلبسينه"
  },
  "intro": {
  "fr": "Utilisez ce Fruit Charm sur:",
  "en": "Use this Fruit Charm on:",
- "es": "Use this Fruit Charm on:",
- "tr": "Use this Fruit Charm on:",
- "ar": "Use this Fruit Charm on:"
+ "es": "Úsalo en:",
+ "tr": "Bu Meyve Charm’ı şunlara takın:",
+ "ar": "استخدمي هذا الميدالية الفاكهة على:"
  },
  "items": [
  {
  "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
  "en": "YZA bags, La Vague and other YZA baskets.",
- "es": "YZA bags, La Vague and other YZA baskets.",
- "tr": "YZA bags, La Vague and other YZA baskets.",
- "ar": "YZA bags, La Vague and other YZA baskets."
+ "es": "Bolsos YZA, La Vague y otros cestos de la marca.",
+ "tr": "YZA çantaları, La Vague ve diğer YZA sepetleri.",
+ "ar": "حقائب YZA، La Vague وسلال YZA الأخرى."
  },
  {
  "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
  "en": "Leather bags to add personality and colour.",
- "es": "Leather bags to add personality and colour.",
- "tr": "Leather bags to add personality and colour.",
- "ar": "Leather bags to add personality and colour."
+ "es": "Bolsos de piel para añadir personalidad y color.",
+ "tr": "Kişilik ve renk katmak için deri çantalar.",
+ "ar": "الحقائب الجلدية لإضافة شخصية ولون."
  },
  {
  "fr": "Paniers en paille, market totes et sacs de plage.",
  "en": "Straw baskets, market totes and beach bags.",
- "es": "Straw baskets, market totes and beach bags.",
- "tr": "Straw baskets, market totes and beach bags.",
- "ar": "Straw baskets, market totes and beach bags."
+ "es": "Cestos de paja, bolsas de mercado y bolsas de playa.",
+ "tr": "Hasır sepetler, alışveriş çantaları ve plaj çantaları.",
+ "ar": "السلال القشية، وحقائب السوق، وحقائب الشاطئ."
  },
  {
  "fr": "Clés, porte-clés et pochettes.",
  "en": "Keys, keychains and pouches.",
- "es": "Keys, keychains and pouches.",
- "tr": "Keys, keychains and pouches.",
- "ar": "Keys, keychains and pouches."
+ "es": "Llaves, llaveros y bolsillos.",
+ "tr": "Anahtarlar, anahtarlıklar ve kılıflar.",
+ "ar": "المفاتيح والمفاتيح وحافظات المفاتيح."
  }
  ],
  "styleTip": {
  "fr": "Best on straw, denim and black bags. Pair with watermelon when the look needs more red.",
  "en": "Best on straw, denim and black bags. Pair with watermelon when the look needs more red.",
- "es": "Best on straw, denim and black bags. Pair with watermelon when the look needs more red.",
- "tr": "Best on straw, denim and black bags. Pair with watermelon when the look needs more red.",
- "ar": "Best on straw, denim and black bags. Pair with watermelon when the look needs more red."
+ "es": "Mejor en paja, denim y bolsos negros. Combínalo con sandía cuando el look necesita más rojo.",
+ "tr": "Hasır, denim ve siyah çantalarda en iyisi. Görünüm daha fazla kırmızıya ihtiyaç duyduğunda karpuzla eşleştirin.",
+ "ar": "الأفضل على القش والدنيم والحقائب السوداء. زوّجيه بالبطيخ حين يحتاج اللوك المزيد من الأحمر."
  },
  "note": {
  "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
+ "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle’lara dahildir; tek charmlar için stüdyoda eklenebilir.",
+ "ar": "كل ميدالية تأتي مع حلقة صغيرة. الحلقة الذهبية مشمولة في الحزم ويمكن إضافتها في الأستوديو للميداليات المفردة."
  }
  },
  "fruitStory": {
  "title": {
  "fr": "Tomato: the market talisman.",
  "en": "Tomato: the market talisman.",
- "es": "Tomato: the market talisman.",
- "tr": "Tomato: the market talisman.",
- "ar": "Tomato: the market talisman."
+ "es": "El tomate: el talismán del mercado.",
+ "tr": "Domates: pazarın tılsımı.",
+ "ar": "الطماطم: تعويذة السوق."
  },
  "body": {
  "fr": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA.",
  "en": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA.",
- "es": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA.",
- "tr": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA.",
- "ar": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA."
+ "es": "El tomate es humilde de la mejor manera. Viene de la mesa del mercado de todos los días, no de la fantasía. En rafia, se convierte en un pequeño talismán rojo: familiar, gracioso, muy YZA.",
+ "tr": "Domates en iyi anlamda alçakgönüllüdür. Hayal gücünden değil, günlük pazar tezgahından geliyor. Rafyada küçük kırmızı bir tılsım oluyor: tanıdık, eğlenceli, çok YZA.",
+ "ar": "الطماطم متواضعة بأفضل معنى. تأتي من طاولة السوق اليومية، لا من الخيال. في الرافيا، تصبح تعويذة حمراء صغيرة: مألوفة، مضحكة، YZA جداً."
  },
  "collectionTitle": {
  "fr": "Fruit Market : inspiré des marchés de Marrakech",
  "en": "Fruit Market: inspired by the Marrakesh markets",
- "es": "Fruit Market: inspired by the Marrakesh markets",
- "tr": "Fruit Market: inspired by the Marrakesh markets",
- "ar": "Fruit Market: inspired by the Marrakesh markets"
+ "es": "Fruit Market: inspirado en los mercados de Marrakech",
+ "tr": "Fruit Market: Marakeş pazarlarından ilham alınmıştır",
+ "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
  "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
  "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
+ "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
  },
  "liveUrl": "https://yza-shop.com/products/tomato-raffia-bag-charm"
  },
  "making": {
  "fr": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
  "en": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "es": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "tr": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "ar": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ "es": "El tomate es humilde de la mejor manera. Viene de la mesa del mercado de todos los días, no de la fantasía. En rafia, se convierte en un pequeño talismán rojo: familiar, gracioso, muy YZA. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
+ "tr": "Domates en iyi anlamda alçakgönüllüdür. Hayal gücünden değil, günlük pazar tezgahından geliyor. Rafyada küçük kırmızı bir tılsım oluyor: tanıdık, eğlenceli, çok YZA. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
+ "ar": "الطماطم متواضعة بأفضل معنى. تأتي من طاولة السوق اليومية، لا من الخيال. في الرافيا، تصبح تعويذة حمراء صغيرة: مألوفة، مضحكة، YZA جداً. كل قطعة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ثم تُفحص قبل إضافة علامة YZA."
  },
  "care": {
  "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, dejar secar al aire libre alejada del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurumaya bırakın. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın öge rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "fr": "Prêt à offrir, avec le prénom de l’artisane qui a réalisé la pièce gravé sur l’étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
+ "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz’deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
- "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
- "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
+ "es": "Satisfecho o reembolsado — 30 días",
+ "tr": "Memnun olun ya da iade edin — 30 gün",
+ "ar": "راضٍ أو مُستردّ — 30 يومًا"
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "badge": "limited",
  "hours": 3,
@@ -8136,23 +8136,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Charm tranche de citron en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring.",
- "es": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring.",
- "tr": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring.",
- "ar": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring."
+ "es": "Un charm de rodaja de limón en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
+ "tr": "Bir tığ işi rafya limon dilimi charm, 2,5 cm altın halkayla.",
+ "ar": "ميدالية شريحة ليمون من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
  "fr": "Charm tranche de citron en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring.",
- "es": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring.",
- "tr": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring.",
- "ar": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring."
+ "es": "Un charm de rodaja de limón en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
+ "tr": "Bir tığ işi rafya limon dilimi charm, 2,5 cm altın halkayla.",
+ "ar": "ميدالية شريحة ليمون من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "desc": {
  "fr": "Frais, vif, presque citronnade: une touche jaune nette pour reveiller sac noir, nude ou panier.",
  "en": "Bright, zesty and super fresh. The Lemon Slice charm wakes up black, nude or straw bags with a clean pop of yellow.",
- "es": "Bright, zesty and super fresh. The Lemon Slice charm wakes up black, nude or straw bags with a clean pop of yellow.",
- "tr": "Bright, zesty and super fresh. The Lemon Slice charm wakes up black, nude or straw bags with a clean pop of yellow.",
- "ar": "Bright, zesty and super fresh. The Lemon Slice charm wakes up black, nude or straw bags with a clean pop of yellow."
+ "es": "Brillante, vibrante y superfresh. El charm de rodaja de limón despierta bolsos negros, nude o de paja con un toque limpio de amarillo.",
+ "tr": "Parlak, ferahlatıcı ve süper taze. Limon Dilimi charm, siyah, nud veya hasır çantaları temiz bir sarı renk patlamasıyla canlandırıyor.",
+ "ar": "مشرقة ومنعشة جداً. ميدالية شريحة الليمون تُحيي الحقائب السوداء أو البيج أو القشية بلمسة صفراء نقية."
  },
  "price": 19000,
  "currency": "MAD",
@@ -8161,9 +8161,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Charms",
  "en": "Charms",
- "es": "Charms",
- "tr": "Charms",
- "ar": "Charms"
+ "es": "Complementos",
+ "tr": "Charmlar",
+ "ar": "تعليقات الحقيبة"
  },
  "group": "accessories",
  "collection": {
@@ -8272,16 +8272,16 @@ const PRODUCTS = [
  "material": {
  "fr": "raphia crochete main raffia",
  "en": "hand-crocheted raffia",
- "es": "hand-crocheted raffia",
- "tr": "hand-crocheted raffia",
- "ar": "hand-crocheted raffia"
+ "es": "rafia tejida a mano con ganchillo",
+ "tr": "el örgüsü rafya",
+ "ar": "رافيا مصنوعة بالكروشيه اليدوي"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia — tejida a ganchillo",
+ "tr": "Yalnızca rafya — kroşe",
+ "ar": "رافيا فقط — مصنوعة بالكروشيه"
  },
  "color": null,
  "size": null,
@@ -8294,9 +8294,9 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Environ 6 x 4 cm (chaque piece peut legerement varier).",
  "en": "Approx. 6 x 4 cm (each piece may vary slightly).",
- "es": "Approx. 6 x 4 cm (each piece may vary slightly).",
- "tr": "Approx. 6 x 4 cm (each piece may vary slightly).",
- "ar": "Approx. 6 x 4 cm (each piece may vary slightly)."
+ "es": "Aprox. 6 x 4 cm (cada pieza puede variar ligeramente).",
+ "tr": "Yaklaşık 6 x 4 cm (her parça hafifçe farklılık gösterebilir).",
+ "ar": "حوالي 6 x 4 سم (قد تختلف كل قطعة قليلاً)."
  },
  "whatFits": null,
  "attachment": {
@@ -8309,149 +8309,149 @@ const PRODUCTS = [
  "handworkTime": {
  "fr": "1 h de crochet main pour ce fruit.",
  "en": "1 hours of hand crochet for this fruit.",
- "es": "1 hours of hand crochet for this fruit.",
- "tr": "1 hours of hand crochet for this fruit.",
- "ar": "1 hours of hand crochet for this fruit."
+ "es": "1 hora de crochet a mano para esta fruta.",
+ "tr": "Bu meyve için 1 saat el kroşesi.",
+ "ar": "ساعة واحدة من الكروشيه اليدوي لهذه الفاكهة."
  },
  "howToWear": {
  "title": {
  "fr": "Comment le porter",
  "en": "How to wear it",
- "es": "How to wear it",
- "tr": "How to wear it",
- "ar": "How to wear it"
+ "es": "Cómo llevarlo",
+ "tr": "Nasıl kullanılır",
+ "ar": "كيف تلبسينه"
  },
  "intro": {
  "fr": "Utilisez ce Fruit Charm sur:",
  "en": "Use this Fruit Charm on:",
- "es": "Use this Fruit Charm on:",
- "tr": "Use this Fruit Charm on:",
- "ar": "Use this Fruit Charm on:"
+ "es": "Úsalo en:",
+ "tr": "Bu Meyve Charm'ı şunlara takın:",
+ "ar": "استخدمي هذا الميدالية الفاكهة على:"
  },
  "items": [
  {
  "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
  "en": "YZA bags, La Vague and other YZA baskets.",
- "es": "YZA bags, La Vague and other YZA baskets.",
- "tr": "YZA bags, La Vague and other YZA baskets.",
- "ar": "YZA bags, La Vague and other YZA baskets."
+ "es": "Bolsos YZA, La Vague y otros cestos de la marca.",
+ "tr": "YZA çantaları, La Vague ve diğer YZA sepetleri.",
+ "ar": "حقائب YZA، La Vague وسلال YZA الأخرى."
  },
  {
  "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
  "en": "Leather bags to add personality and colour.",
- "es": "Leather bags to add personality and colour.",
- "tr": "Leather bags to add personality and colour.",
- "ar": "Leather bags to add personality and colour."
+ "es": "Bolsos de piel para añadir personalidad y color.",
+ "tr": "Kişilik ve renk katmak için deri çantalar.",
+ "ar": "الحقائب الجلدية لإضافة شخصية ولون."
  },
  {
  "fr": "Paniers en paille, market totes et sacs de plage.",
  "en": "Straw baskets, market totes and beach bags.",
- "es": "Straw baskets, market totes and beach bags.",
- "tr": "Straw baskets, market totes and beach bags.",
- "ar": "Straw baskets, market totes and beach bags."
+ "es": "Cestos de paja, bolsas de mercado y bolsas de playa.",
+ "tr": "Hasır sepetler, alışveriş çantaları ve plaj çantaları.",
+ "ar": "السلال القشية، وحقائب السوق، وحقائب الشاطئ."
  },
  {
  "fr": "Clés, porte-clés et pochettes.",
  "en": "Keys, keychains and pouches.",
- "es": "Keys, keychains and pouches.",
- "tr": "Keys, keychains and pouches.",
- "ar": "Keys, keychains and pouches."
+ "es": "Llaves, llaveros y bolsillos.",
+ "tr": "Anahtarlar, anahtarlıklar ve kılıflar.",
+ "ar": "المفاتيح والمفاتيح وحافظات المفاتيح."
  }
  ],
  "styleTip": {
  "fr": "Best on black, nude, straw and beach totes. Add orange slice for the bold citrus duo.",
  "en": "Best on black, nude, straw and beach totes. Add orange slice for the bold citrus duo.",
- "es": "Best on black, nude, straw and beach totes. Add orange slice for the bold citrus duo.",
- "tr": "Best on black, nude, straw and beach totes. Add orange slice for the bold citrus duo.",
- "ar": "Best on black, nude, straw and beach totes. Add orange slice for the bold citrus duo."
+ "es": "Mejor en negro, nude, paja y bolsas de playa. Añade rodaja de naranja para el atrevido dúo cítrico.",
+ "tr": "Siyah, nud, hasır ve plaj çantalarında en iyisi. Cesur turunçgil ikilisi için portakal dilimi ekleyin.",
+ "ar": "الأفضل على الأسود والبيج والقش وحقائب الشاطئ. أضيفي شريحة البرتقال للثنائي الحمضي الجريء."
  },
  "note": {
  "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
+ "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
+ "ar": "كل ميدالية تأتي مع حلقة صغيرة. الحلقة الذهبية مشمولة في الحزم ويمكن إضافتها في الأستوديو للميداليات المفردة."
  }
  },
  "fruitStory": {
  "title": {
  "fr": "Lemon slice: Marrakesh lemonade.",
  "en": "Lemon slice: Marrakesh lemonade.",
- "es": "Lemon slice: Marrakesh lemonade.",
- "tr": "Lemon slice: Marrakesh lemonade.",
- "ar": "Lemon slice: Marrakesh lemonade."
+ "es": "Rodaja de limón: limonada marrakchí.",
+ "tr": "Limon dilimi: Marakeş limonalası.",
+ "ar": "شريحة الليمون: عصير ليمون مراكش."
  },
  "body": {
  "fr": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm.",
  "en": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm.",
- "es": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm.",
- "tr": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm.",
- "ar": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm."
+ "es": "La rodaja de limón es la manera más ligera de entrar en Fruit Market: un poco de sol, un poco de acidez, muy fácil de combinar. Es como el primer sorbo de zumo fresco cuando la ciudad ya calienta.",
+ "tr": "Limon dilimi, Fruit Market'e girmenin en hafif yolu: biraz güneş, biraz asitlik, stilize etmesi çok kolay. Şehir zaten ısındığında taze meyve suyunun ilk yudumu gibi hissettiriyor.",
+ "ar": "شريحة الليمون هي أخف طريقة للدخول إلى Fruit Market: بعض الشمس، بعض الحموضة، سهلة التنسيق جداً. تشعر كأول رشفة عصير طازج حين تكون المدينة دافئة بالفعل."
  },
  "collectionTitle": {
  "fr": "Fruit Market : inspiré des marchés de Marrakech",
  "en": "Fruit Market: inspired by the Marrakesh markets",
- "es": "Fruit Market: inspired by the Marrakesh markets",
- "tr": "Fruit Market: inspired by the Marrakesh markets",
- "ar": "Fruit Market: inspired by the Marrakesh markets"
+ "es": "Fruit Market: inspirado en los mercados de Marrakech",
+ "tr": "Fruit Market: Marakeş pazarlarından ilham alınmıştır",
+ "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
  "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
  "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
+ "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
  },
  "liveUrl": "https://yza-shop.com/products/lemon-slice-raphia-bag-charm"
  },
  "making": {
  "fr": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
  "en": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "es": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "tr": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "ar": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ "es": "La rodaja de limón es la manera más ligera de entrar en Fruit Market: un poco de sol, un poco de acidez, muy fácil de combinar. Es como el primer sorbo de zumo fresco cuando la ciudad ya calienta. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
+ "tr": "Limon dilimi, Fruit Market'e girmenin en hafif yolu: biraz güneş, biraz asitlik, stilize etmesi çok kolay. Şehir zaten ısındığında taze meyve suyunun ilk yudumu gibi hissettiriyor. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
+ "ar": "شريحة الليمون هي أخف طريقة للدخول إلى Fruit Market: بعض الشمس، بعض الحموضة، سهلة التنسيق جداً. تشعر كأول رشفة عصير طازج حين تكون المدينة دافئة بالفعل. كل قطعة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ثم تُفحص قبل إضافة علامة YZA."
  },
  "care": {
  "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, dejar secar al aire libre alejada del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurumaya bırakın. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın öge rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
  "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
+ "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz'deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
- "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
- "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
+ "es": "Satisfecho o reembolsado — 30 días",
+ "tr": "Memnun olun ya da iade edin — 30 gün",
+ "ar": "راضٍ أو مُستردّ — 30 يومًا"
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "badge": "limited",
  "hours": 1,
@@ -8486,23 +8486,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Charm tranche d orange en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A crocheted raffia orange slice charm with a 2.5 cm gold ring.",
- "es": "A crocheted raffia orange slice charm with a 2.5 cm gold ring.",
- "tr": "A crocheted raffia orange slice charm with a 2.5 cm gold ring.",
- "ar": "A crocheted raffia orange slice charm with a 2.5 cm gold ring."
+ "es": "Un charm de rodaja de naranja en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
+ "tr": "Bir tığ işi rafya portakal dilimi charm, 2,5 cm altın halkayla.",
+ "ar": "ميدالية شريحة برتقال من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
  "fr": "Charm tranche d orange en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A crocheted raffia orange slice charm with a 2.5 cm gold ring.",
- "es": "A crocheted raffia orange slice charm with a 2.5 cm gold ring.",
- "tr": "A crocheted raffia orange slice charm with a 2.5 cm gold ring.",
- "ar": "A crocheted raffia orange slice charm with a 2.5 cm gold ring."
+ "es": "Un charm de rodaja de naranja en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
+ "tr": "Bir tığ işi rafya portakal dilimi charm, 2,5 cm altın halkayla.",
+ "ar": "ميدالية شريحة برتقال من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "desc": {
  "fr": "Inspiree des stands de jus d orange: une tranche solaire pour panier, tote de plage ou sac cuir minimal.",
  "en": "Inspired by orange juice stalls, this crocheted Orange Slice brings a soft, sunny glow to baskets, beach totes and simple leather bags.",
- "es": "Inspired by orange juice stalls, this crocheted Orange Slice brings a soft, sunny glow to baskets, beach totes and simple leather bags.",
- "tr": "Inspired by orange juice stalls, this crocheted Orange Slice brings a soft, sunny glow to baskets, beach totes and simple leather bags.",
- "ar": "Inspired by orange juice stalls, this crocheted Orange Slice brings a soft, sunny glow to baskets, beach totes and simple leather bags."
+ "es": "Inspirado en los puestos de zumo de naranja, esta rodaja de naranja tejida a ganchillo aporta un suave resplandor soleado a cestos, bolsas de playa y bolsos de piel sencillos.",
+ "tr": "Portakal suyu tezgahlarından ilham alan bu kroşe Portakal Dilimi, sepetlere, plaj çantalarına ve sade deri çantalara yumuşak, güneşli bir parıltı katıyor.",
+ "ar": "مستوحاة من أكشاك عصير البرتقال، تضفي شريحة البرتقال المكروشيهة هذه توهجاً مشمساً ناعماً على السلال وحقائب الشاطئ والحقائب الجلدية البسيطة."
  },
  "price": 19000,
  "currency": "MAD",
@@ -8511,9 +8511,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Charms",
  "en": "Charms",
- "es": "Charms",
- "tr": "Charms",
- "ar": "Charms"
+ "es": "Complementos",
+ "tr": "Charmlar",
+ "ar": "تعليقات الحقيبة"
  },
  "group": "accessories",
  "collection": {
@@ -8622,16 +8622,16 @@ const PRODUCTS = [
  "material": {
  "fr": "raphia crochete main raffia",
  "en": "hand-crocheted raffia",
- "es": "hand-crocheted raffia",
- "tr": "hand-crocheted raffia",
- "ar": "hand-crocheted raffia"
+ "es": "rafia tejida a mano con ganchillo",
+ "tr": "el örgüsü rafya",
+ "ar": "رافيا مصنوعة بالكروشيه اليدوي"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia — tejida a ganchillo",
+ "tr": "Yalnızca rafya — kroşe",
+ "ar": "رافيا فقط — مصنوعة بالكروشيه"
  },
  "color": null,
  "size": null,
@@ -8644,9 +8644,9 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Environ 6 x 4 cm (chaque piece peut legerement varier).",
  "en": "Approx. 6 x 4 cm (each piece may vary slightly).",
- "es": "Approx. 6 x 4 cm (each piece may vary slightly).",
- "tr": "Approx. 6 x 4 cm (each piece may vary slightly).",
- "ar": "Approx. 6 x 4 cm (each piece may vary slightly)."
+ "es": "Aprox. 6 x 4 cm (cada pieza puede variar ligeramente).",
+ "tr": "Yaklaşık 6 x 4 cm (her parça hafifçe farklılık gösterebilir).",
+ "ar": "حوالي 6 x 4 سم (قد تختلف كل قطعة قليلاً)."
  },
  "whatFits": null,
  "attachment": {
@@ -8659,149 +8659,149 @@ const PRODUCTS = [
  "handworkTime": {
  "fr": "1 h de crochet main pour ce fruit.",
  "en": "1 hours of hand crochet for this fruit.",
- "es": "1 hours of hand crochet for this fruit.",
- "tr": "1 hours of hand crochet for this fruit.",
- "ar": "1 hours of hand crochet for this fruit."
+ "es": "1 hora de crochet a mano para esta fruta.",
+ "tr": "Bu meyve için 1 saat el kroşesi.",
+ "ar": "ساعة واحدة من الكروشيه اليدوي لهذه الفاكهة."
  },
  "howToWear": {
  "title": {
  "fr": "Comment le porter",
  "en": "How to wear it",
- "es": "How to wear it",
- "tr": "How to wear it",
- "ar": "How to wear it"
+ "es": "Cómo llevarlo",
+ "tr": "Nasıl kullanılır",
+ "ar": "كيف تلبسينه"
  },
  "intro": {
  "fr": "Utilisez ce Fruit Charm sur:",
  "en": "Use this Fruit Charm on:",
- "es": "Use this Fruit Charm on:",
- "tr": "Use this Fruit Charm on:",
- "ar": "Use this Fruit Charm on:"
+ "es": "Úsalo en:",
+ "tr": "Bu Meyve Charm'ı şunlara takın:",
+ "ar": "استخدمي هذا الميدالية الفاكهة على:"
  },
  "items": [
  {
  "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
  "en": "YZA bags, La Vague and other YZA baskets.",
- "es": "YZA bags, La Vague and other YZA baskets.",
- "tr": "YZA bags, La Vague and other YZA baskets.",
- "ar": "YZA bags, La Vague and other YZA baskets."
+ "es": "Bolsos YZA, La Vague y otros cestos de la marca.",
+ "tr": "YZA çantaları, La Vague ve diğer YZA sepetleri.",
+ "ar": "حقائب YZA، La Vague وسلال YZA الأخرى."
  },
  {
  "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
  "en": "Leather bags to add personality and colour.",
- "es": "Leather bags to add personality and colour.",
- "tr": "Leather bags to add personality and colour.",
- "ar": "Leather bags to add personality and colour."
+ "es": "Bolsos de piel para añadir personalidad y color.",
+ "tr": "Kişilik ve renk katmak için deri çantalar.",
+ "ar": "الحقائب الجلدية لإضافة شخصية ولون."
  },
  {
  "fr": "Paniers en paille, market totes et sacs de plage.",
  "en": "Straw baskets, market totes and beach bags.",
- "es": "Straw baskets, market totes and beach bags.",
- "tr": "Straw baskets, market totes and beach bags.",
- "ar": "Straw baskets, market totes and beach bags."
+ "es": "Cestos de paja, bolsas de mercado y bolsas de playa.",
+ "tr": "Hasır sepetler, alışveriş çantaları ve plaj çantaları.",
+ "ar": "السلال القشية، وحقائب السوق، وحقائب الشاطئ."
  },
  {
  "fr": "Clés, porte-clés et pochettes.",
  "en": "Keys, keychains and pouches.",
- "es": "Keys, keychains and pouches.",
- "tr": "Keys, keychains and pouches.",
- "ar": "Keys, keychains and pouches."
+ "es": "Llaves, llaveros y bolsillos.",
+ "tr": "Anahtarlar, anahtarlıklar ve kılıflar.",
+ "ar": "المفاتيح والمفاتيح وحافظات المفاتيح."
  }
  ],
  "styleTip": {
  "fr": "Best on baskets, market totes and simple leather bags. Mix with avocado and lemon slice for a fresh trio.",
  "en": "Best on baskets, market totes and simple leather bags. Mix with avocado and lemon slice for a fresh trio.",
- "es": "Best on baskets, market totes and simple leather bags. Mix with avocado and lemon slice for a fresh trio.",
- "tr": "Best on baskets, market totes and simple leather bags. Mix with avocado and lemon slice for a fresh trio.",
- "ar": "Best on baskets, market totes and simple leather bags. Mix with avocado and lemon slice for a fresh trio."
+ "es": "Mejor en cestos, totes de mercado y bolsos de piel sencillos. Mezcla con aguacate y rodaja de limón para un trío fresco.",
+ "tr": "Sepetler, pazar tote'ları ve sade deri çantalarda en iyisi. Taze bir üçlü için avokado ve limon dilimi ile karıştırın.",
+ "ar": "الأفضل على السلال وحقائب السوق والحقائب الجلدية البسيطة. امزجيه مع الأفوكادو وشريحة الليمون للثلاثي الطازج."
  },
  "note": {
  "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
+ "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
+ "ar": "كل ميدالية تأتي مع حلقة صغيرة. الحلقة الذهبية مشمولة في الحزم ويمكن إضافتها في الأستوديو للميداليات المفردة."
  }
  },
  "fruitStory": {
  "title": {
  "fr": "Orange slice: juice stall energy.",
  "en": "Orange slice: juice stall energy.",
- "es": "Orange slice: juice stall energy.",
- "tr": "Orange slice: juice stall energy.",
- "ar": "Orange slice: juice stall energy."
+ "es": "Rodaja de naranja: la energía del puesto de zumo.",
+ "tr": "Portakal dilimi: meyve suyu tezgahı enerjisi.",
+ "ar": "شريحة البرتقال: طاقة كشك العصير."
  },
  "body": {
  "fr": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings.",
  "en": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings.",
- "es": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings.",
- "tr": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings.",
- "ar": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings."
+ "es": "La rodaja de naranja está hecha para asas que necesitan movimiento y color sin peso. Mantiene la forma gráfica de la fruta y el calor de las mañanas de Marrakech.",
+ "tr": "Portakal dilimi, ağırlık olmadan hareket ve renge ihtiyaç duyan kulplar için yapılmış. Meyvenin grafik şeklini ve Marakeş sabahlarının sıcaklığını koruyor.",
+ "ar": "شريحة البرتقال مصنوعة للمقابض التي تحتاج حركة ولوناً دون ثقل. تحافظ على الشكل الرسومي للفاكهة ودفء صباحات مراكش."
  },
  "collectionTitle": {
  "fr": "Fruit Market : inspiré des marchés de Marrakech",
  "en": "Fruit Market: inspired by the Marrakesh markets",
- "es": "Fruit Market: inspired by the Marrakesh markets",
- "tr": "Fruit Market: inspired by the Marrakesh markets",
- "ar": "Fruit Market: inspired by the Marrakesh markets"
+ "es": "Fruit Market: inspirado en los mercados de Marrakech",
+ "tr": "Fruit Market: Marakeş pazarlarından ilham alınmıştır",
+ "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
  "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
  "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
+ "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
  },
  "liveUrl": "https://yza-shop.com/products/orange-slice-raffia-crochet-bag-charm"
  },
  "making": {
  "fr": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
  "en": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "es": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "tr": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "ar": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ "es": "La rodaja de naranja está hecha para asas que necesitan movimiento y color sin peso. Mantiene la forma gráfica de la fruta y el calor de las mañanas de Marrakech. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
+ "tr": "Portakal dilimi, ağırlık olmadan hareket ve renge ihtiyaç duyan kulplar için yapılmış. Meyvenin grafik şeklini ve Marakeş sabahlarının sıcaklığını koruyor. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
+ "ar": "شريحة البرتقال مصنوعة للمقابض التي تحتاج حركة ولوناً دون ثقل. تحافظ على الشكل الرسومي للفاكهة ودفء صباحات مراكش. كل قطعة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ثم تُفحص قبل إضافة علامة YZA."
  },
  "care": {
  "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, dejar secar al aire libre alejada del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurumaya bırakın. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın öge rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
  "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
+ "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz'deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
- "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
- "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
+ "es": "Satisfecho o reembolsado — 30 días",
+ "tr": "Memnun olun ya da iade edin — 30 gün",
+ "ar": "راضٍ أو مُستردّ — 30 يومًا"
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "badge": "bestseller",
  "hours": 1,
@@ -8836,23 +8836,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Charm tranche de kiwi en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring.",
- "es": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring.",
- "tr": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring.",
- "ar": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring."
+ "es": "Un charm de rodaja de kiwi en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
+ "tr": "Bir tığ işi rafya kivi dilimi charm, 2,5 cm altın halkayla.",
+ "ar": "ميدالية شريحة كيوي من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
  "fr": "Charm tranche de kiwi en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring.",
- "es": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring.",
- "tr": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring.",
- "ar": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring."
+ "es": "Un charm de rodaja de kiwi en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
+ "tr": "Bir tığ işi rafya kivi dilimi charm, 2,5 cm altın halkayla.",
+ "ar": "ميدالية شريحة كيوي من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "desc": {
  "fr": "Discretement drole et inattendu: vert doux, petits points contrastes et crochet main pour un accent chic.",
  "en": "Quietly fun and a little unexpected. The Kiwi Slice mixes soft greens with tiny contrasting seeds, hand-crocheted in raffia for a subtle, chic accent.",
- "es": "Quietly fun and a little unexpected. The Kiwi Slice mixes soft greens with tiny contrasting seeds, hand-crocheted in raffia for a subtle, chic accent.",
- "tr": "Quietly fun and a little unexpected. The Kiwi Slice mixes soft greens with tiny contrasting seeds, hand-crocheted in raffia for a subtle, chic accent.",
- "ar": "Quietly fun and a little unexpected. The Kiwi Slice mixes soft greens with tiny contrasting seeds, hand-crocheted in raffia for a subtle, chic accent."
+ "es": "Discretamente divertido y un poco inesperado. La rodaja de kiwi mezcla verdes suaves con pequeñas semillas contrastadas, tejida a mano en rafia para un acento sutil y chic.",
+ "tr": "Sessizce eğlenceli ve biraz beklenmedik. Kivi Dilimi, yumuşak yeşilleri küçük zıt renkli tohumlarla harmanlıyor; rafyadan el kroşesiyle yapılmış, narin ve şik bir aksan.",
+ "ar": "ممتع بهدوء ومفاجئ قليلاً. تمزج شريحة الكيوي بين الخضرة الناعمة والبذور الصغيرة المتباينة، مصنوعة بالكروشيه اليدوي من الرافيا كلمسة راقية ودقيقة."
  },
  "price": 19000,
  "currency": "MAD",
@@ -8861,9 +8861,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Charms",
  "en": "Charms",
- "es": "Charms",
- "tr": "Charms",
- "ar": "Charms"
+ "es": "Complementos",
+ "tr": "Charmlar",
+ "ar": "تعليقات الحقيبة"
  },
  "group": "accessories",
  "collection": {
@@ -8971,16 +8971,16 @@ const PRODUCTS = [
  "material": {
  "fr": "raphia crochete main raffia",
  "en": "hand-crocheted raffia",
- "es": "hand-crocheted raffia",
- "tr": "hand-crocheted raffia",
- "ar": "hand-crocheted raffia"
+ "es": "rafia tejida a mano con ganchillo",
+ "tr": "el örgüsü rafya",
+ "ar": "رافيا مصنوعة بالكروشيه اليدوي"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia — tejida a ganchillo",
+ "tr": "Yalnızca rafya — kroşe",
+ "ar": "رافيا فقط — مصنوعة بالكروشيه"
  },
  "color": null,
  "size": null,
@@ -8993,9 +8993,9 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Environ 6 x 4 cm (chaque piece peut legerement varier).",
  "en": "Approx. 6 x 4 cm (each piece may vary slightly).",
- "es": "Approx. 6 x 4 cm (each piece may vary slightly).",
- "tr": "Approx. 6 x 4 cm (each piece may vary slightly).",
- "ar": "Approx. 6 x 4 cm (each piece may vary slightly)."
+ "es": "Aprox. 6 x 4 cm (cada pieza puede variar ligeramente).",
+ "tr": "Yaklaşık 6 x 4 cm (her parça hafifçe farklılık gösterebilir).",
+ "ar": "حوالي 6 x 4 سم (قد تختلف كل قطعة قليلاً)."
  },
  "whatFits": null,
  "attachment": {
@@ -9008,149 +9008,149 @@ const PRODUCTS = [
  "handworkTime": {
  "fr": "1,5 h de crochet main pour ce fruit.",
  "en": "1.5 hours of hand crochet for this fruit.",
- "es": "1.5 hours of hand crochet for this fruit.",
- "tr": "1.5 hours of hand crochet for this fruit.",
- "ar": "1.5 hours of hand crochet for this fruit."
+ "es": "1,5 horas de crochet a mano para esta fruta.",
+ "tr": "Bu meyve için 1,5 saat el kroşesi.",
+ "ar": "1.5 ساعة كروشيه يدوي لهذه الفاكهة."
  },
  "howToWear": {
  "title": {
  "fr": "Comment le porter",
  "en": "How to wear it",
- "es": "How to wear it",
- "tr": "How to wear it",
- "ar": "How to wear it"
+ "es": "Cómo llevarlo",
+ "tr": "Nasıl kullanılır",
+ "ar": "كيف تلبسينه"
  },
  "intro": {
  "fr": "Utilisez ce Fruit Charm sur:",
  "en": "Use this Fruit Charm on:",
- "es": "Use this Fruit Charm on:",
- "tr": "Use this Fruit Charm on:",
- "ar": "Use this Fruit Charm on:"
+ "es": "Úsalo en:",
+ "tr": "Bu Meyve Charm'ı şunlara takın:",
+ "ar": "استخدمي هذا الميدالية الفاكهة على:"
  },
  "items": [
  {
  "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
  "en": "YZA bags, La Vague and other YZA baskets.",
- "es": "YZA bags, La Vague and other YZA baskets.",
- "tr": "YZA bags, La Vague and other YZA baskets.",
- "ar": "YZA bags, La Vague and other YZA baskets."
+ "es": "Bolsos YZA, La Vague y otros cestos de la marca.",
+ "tr": "YZA çantaları, La Vague ve diğer YZA sepetleri.",
+ "ar": "حقائب YZA، La Vague وسلال YZA الأخرى."
  },
  {
  "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
  "en": "Leather bags to add personality and colour.",
- "es": "Leather bags to add personality and colour.",
- "tr": "Leather bags to add personality and colour.",
- "ar": "Leather bags to add personality and colour."
+ "es": "Bolsos de piel para añadir personalidad y color.",
+ "tr": "Kişilik ve renk katmak için deri çantalar.",
+ "ar": "الحقائب الجلدية لإضافة شخصية ولون."
  },
  {
  "fr": "Paniers en paille, market totes et sacs de plage.",
  "en": "Straw baskets, market totes and beach bags.",
- "es": "Straw baskets, market totes and beach bags.",
- "tr": "Straw baskets, market totes and beach bags.",
- "ar": "Straw baskets, market totes and beach bags."
+ "es": "Cestos de paja, bolsas de mercado y bolsas de playa.",
+ "tr": "Hasır sepetler, alışveriş çantaları ve plaj çantaları.",
+ "ar": "السلال القشية، وحقائب السوق، وحقائب الشاطئ."
  },
  {
  "fr": "Clés, porte-clés et pochettes.",
  "en": "Keys, keychains and pouches.",
- "es": "Keys, keychains and pouches.",
- "tr": "Keys, keychains and pouches.",
- "ar": "Keys, keychains and pouches."
+ "es": "Llaves, llaveros y bolsillos.",
+ "tr": "Anahtarlar, anahtarlıklar ve kılıflar.",
+ "ar": "المفاتيح والمفاتيح وحافظات المفاتيح."
  }
  ],
  "styleTip": {
  "fr": "Best on beige, cream, tan and straw. Pair with grapes when you want a cooler green-purple story.",
  "en": "Best on beige, cream, tan and straw. Pair with grapes when you want a cooler green-purple story.",
- "es": "Best on beige, cream, tan and straw. Pair with grapes when you want a cooler green-purple story.",
- "tr": "Best on beige, cream, tan and straw. Pair with grapes when you want a cooler green-purple story.",
- "ar": "Best on beige, cream, tan and straw. Pair with grapes when you want a cooler green-purple story."
+ "es": "Mejor en beige, crema, tostado y paja. Combínalo con uvas cuando quieras una historia verde-morada más fresca.",
+ "tr": "Bej, krem, bronz ve hasırda en iyisi. Daha serin bir yeşil-mor hikayesi için üzümle eşleştirin.",
+ "ar": "الأفضل على البيج والكريم والتان والقش. زوّجيه بالعنب حين تريدين قصة خضراء-بنفسجية أكثر هدوءاً."
  },
  "note": {
  "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
+ "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
+ "ar": "كل ميدالية تأتي مع حلقة صغيرة. الحلقة الذهبية مشمولة في الحزم ويمكن إضافتها في الأستوديو للميداليات المفردة."
  }
  },
  "fruitStory": {
  "title": {
  "fr": "Kiwi: the unexpected green.",
  "en": "Kiwi: the unexpected green.",
- "es": "Kiwi: the unexpected green.",
- "tr": "Kiwi: the unexpected green.",
- "ar": "Kiwi: the unexpected green."
+ "es": "El kiwi: el verde inesperado.",
+ "tr": "Kivi: beklenmedik yeşil.",
+ "ar": "الكيوي: الأخضر غير المتوقع."
  },
  "body": {
  "fr": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer.",
  "en": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer.",
- "es": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer.",
- "tr": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer.",
- "ar": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer."
+ "es": "Una rodaja de kiwi no es el charm de fruta obvio, y eso es precisamente el punto. Le da a la colección un guiño moderno: semillas gráficas, verde suave y una forma que parece casi un pequeño retazo de verano.",
+ "tr": "Kivi dilimi, bariz meyve charm'{ı} değil ve bu aslında amacı. Koleksiyona modern bir göz kırpma katıyor: grafik tohumlar, yumuşak yeşil ve neredeyse küçük bir yaz parçası gibi hissettiren bir şekil.",
+ "ar": "شريحة الكيوي ليست ميدالية الفاكهة المعتادة، وهذا هو المقصود بالضبط. إنها تضفي على المجموعة إيماءة عصرية: بذور رسومية، خضرة ناعمة وشكل يبدو تقريباً كقطعة صيف صغيرة."
  },
  "collectionTitle": {
  "fr": "Fruit Market : inspiré des marchés de Marrakech",
  "en": "Fruit Market: inspired by the Marrakesh markets",
- "es": "Fruit Market: inspired by the Marrakesh markets",
- "tr": "Fruit Market: inspired by the Marrakesh markets",
- "ar": "Fruit Market: inspired by the Marrakesh markets"
+ "es": "Fruit Market: inspirado en los mercados de Marrakech",
+ "tr": "Fruit Market: Marakeş pazarlarından ilham alınmıştır",
+ "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
  "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
  "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
+ "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
  },
  "liveUrl": "https://yza-shop.com/products/kiwi-raffia-crochet-bag-charm"
  },
  "making": {
  "fr": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
  "en": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "es": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "tr": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "ar": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ "es": "Una rodaja de kiwi no es el charm de fruta obvio, y eso es precisamente el punto. Le da a la colección un guiño moderno: semillas gráficas, verde suave y una forma que parece casi un pequeño retazo de verano. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
+ "tr": "Kivi dilimi, bariz meyve charm'{ı} değil ve bu aslında amacı. Koleksiyona modern bir göz kırpma katıyor: grafik tohumlar, yumuşak yeşil ve neredeyse küçük bir yaz parçası gibi hissettiren bir şekil. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
+ "ar": "شريحة الكيوي ليست ميدالية الفاكهة المعتادة، وهذا هو المقصود بالضبط. إنها تضفي على المجموعة إيماءة عصرية: بذور رسومية، خضرة ناعمة وشكل يبدو تقريباً كقطعة صيف صغيرة. كل قطعة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ثم تُفحص قبل إضافة علامة YZA."
  },
  "care": {
  "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, dejar secar al aire libre alejada del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurumaya bırakın. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın öge rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
  "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
+ "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz'deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
- "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
- "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
+ "es": "Satisfecho o reembolsado — 30 días",
+ "tr": "Memnun olun ya da iade edin — 30 gün",
+ "ar": "راضٍ أو مُستردّ — 30 يومًا"
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "badge": "limited",
  "hours": 1.5,
@@ -9185,23 +9185,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Charm tranche de pasteque en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring.",
- "es": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring.",
- "tr": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring.",
- "ar": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring."
+ "es": "Un charm de rodaja de sandía en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
+ "tr": "Bir tığ işi rafya karpuz dilimi charm, 2,5 cm altın halkayla.",
+ "ar": "ميدالية شريحة بطيخ من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
  "fr": "Charm tranche de pasteque en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring.",
- "es": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring.",
- "tr": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring.",
- "ar": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring."
+ "es": "Un charm de rodaja de sandía en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
+ "tr": "Bir tığ işi rafya karpuz dilimi charm, 2,5 cm altın halkayla.",
+ "ar": "ميدالية شريحة بطيخ من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "desc": {
  "fr": "Une petite tranche d ete marrakchi: rose, vert, fraiche et joyeuse sur sac ou panier.",
  "en": "A tiny slice of Marrakesh summer. This hand-crocheted watermelon charm adds a playful pop of pink and green to any bag or basket.",
- "es": "A tiny slice of Marrakesh summer. This hand-crocheted watermelon charm adds a playful pop of pink and green to any bag or basket.",
- "tr": "A tiny slice of Marrakesh summer. This hand-crocheted watermelon charm adds a playful pop of pink and green to any bag or basket.",
- "ar": "A tiny slice of Marrakesh summer. This hand-crocheted watermelon charm adds a playful pop of pink and green to any bag or basket."
+ "es": "Una pequeña rodaja del verano de Marrakech. Este charm de sandía tejido a mano añade un toque juguetón de rosa y verde a cualquier bolso o cesto.",
+ "tr": "Marakeş yazından küçük bir dilim. Bu el kroşesiyle yapılmış karpuz charm, her çanta veya sepete eğlenceli bir pembe-yeşil renk patlaması katıyor.",
+ "ar": "شريحة صغيرة من صيف مراكش. تضيف هذه الميدالية المكروشيهة يدوياً لمسة مرحة من الوردي والأخضر لأي حقيبة أو سلة."
  },
  "price": 19000,
  "currency": "MAD",
@@ -9210,9 +9210,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Charms",
  "en": "Charms",
- "es": "Charms",
- "tr": "Charms",
- "ar": "Charms"
+ "es": "Complementos",
+ "tr": "Charmlar",
+ "ar": "تعليقات الحقيبة"
  },
  "group": "accessories",
  "collection": {
@@ -9323,16 +9323,16 @@ const PRODUCTS = [
  "material": {
  "fr": "raphia crochete main raffia",
  "en": "hand-crocheted raffia",
- "es": "hand-crocheted raffia",
- "tr": "hand-crocheted raffia",
- "ar": "hand-crocheted raffia"
+ "es": "rafia tejida a mano con ganchillo",
+ "tr": "el örgüsü rafya",
+ "ar": "رافيا مصنوعة بالكروشيه اليدوي"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia — tejida a ganchillo",
+ "tr": "Yalnızca rafya — kroşe",
+ "ar": "رافيا فقط — مصنوعة بالكروشيه"
  },
  "color": null,
  "size": null,
@@ -9345,9 +9345,9 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Environ 6 x 4 cm (chaque piece peut legerement varier).",
  "en": "Approx. 6 x 4 cm (each piece may vary slightly).",
- "es": "Approx. 6 x 4 cm (each piece may vary slightly).",
- "tr": "Approx. 6 x 4 cm (each piece may vary slightly).",
- "ar": "Approx. 6 x 4 cm (each piece may vary slightly)."
+ "es": "Aprox. 6 x 4 cm (cada pieza puede variar ligeramente).",
+ "tr": "Yaklaşık 6 x 4 cm (her parça hafifçe farklılık gösterebilir).",
+ "ar": "حوالي 6 x 4 سم (قد تختلف كل قطعة قليلاً)."
  },
  "whatFits": null,
  "attachment": {
@@ -9360,149 +9360,149 @@ const PRODUCTS = [
  "handworkTime": {
  "fr": "1,5 h de crochet main pour ce fruit.",
  "en": "1.5 hours of hand crochet for this fruit.",
- "es": "1.5 hours of hand crochet for this fruit.",
- "tr": "1.5 hours of hand crochet for this fruit.",
- "ar": "1.5 hours of hand crochet for this fruit."
+ "es": "1,5 horas de crochet a mano para esta fruta.",
+ "tr": "Bu meyve için 1,5 saat el kroşesi.",
+ "ar": "1.5 ساعة كروشيه يدوي لهذه الفاكهة."
  },
  "howToWear": {
  "title": {
  "fr": "Comment le porter",
  "en": "How to wear it",
- "es": "How to wear it",
- "tr": "How to wear it",
- "ar": "How to wear it"
+ "es": "Cómo llevarlo",
+ "tr": "Nasıl kullanılır",
+ "ar": "كيف تلبسينه"
  },
  "intro": {
  "fr": "Utilisez ce Fruit Charm sur:",
  "en": "Use this Fruit Charm on:",
- "es": "Use this Fruit Charm on:",
- "tr": "Use this Fruit Charm on:",
- "ar": "Use this Fruit Charm on:"
+ "es": "Úsalo en:",
+ "tr": "Bu Meyve Charm'ı şunlara takın:",
+ "ar": "استخدمي هذا الميدالية الفاكهة على:"
  },
  "items": [
  {
  "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
  "en": "YZA bags, La Vague and other YZA baskets.",
- "es": "YZA bags, La Vague and other YZA baskets.",
- "tr": "YZA bags, La Vague and other YZA baskets.",
- "ar": "YZA bags, La Vague and other YZA baskets."
+ "es": "Bolsos YZA, La Vague y otros cestos de la marca.",
+ "tr": "YZA çantaları, La Vague ve diğer YZA sepetleri.",
+ "ar": "حقائب YZA، La Vague وسلال YZA الأخرى."
  },
  {
  "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
  "en": "Leather bags to add personality and colour.",
- "es": "Leather bags to add personality and colour.",
- "tr": "Leather bags to add personality and colour.",
- "ar": "Leather bags to add personality and colour."
+ "es": "Bolsos de piel para añadir personalidad y color.",
+ "tr": "Kişilik ve renk katmak için deri çantalar.",
+ "ar": "الحقائب الجلدية لإضافة شخصية ولون."
  },
  {
  "fr": "Paniers en paille, market totes et sacs de plage.",
  "en": "Straw baskets, market totes and beach bags.",
- "es": "Straw baskets, market totes and beach bags.",
- "tr": "Straw baskets, market totes and beach bags.",
- "ar": "Straw baskets, market totes and beach bags."
+ "es": "Cestos de paja, bolsas de mercado y bolsas de playa.",
+ "tr": "Hasır sepetler, alışveriş çantaları ve plaj çantaları.",
+ "ar": "السلال القشية، وحقائب السوق، وحقائب الشاطئ."
  },
  {
  "fr": "Clés, porte-clés et pochettes.",
  "en": "Keys, keychains and pouches.",
- "es": "Keys, keychains and pouches.",
- "tr": "Keys, keychains and pouches.",
- "ar": "Keys, keychains and pouches."
+ "es": "Llaves, llaveros y bolsillos.",
+ "tr": "Anahtarlar, anahtarlıklar ve kılıflar.",
+ "ar": "المفاتيح والمفاتيح وحافظات المفاتيح."
  }
  ],
  "styleTip": {
  "fr": "Best on beach totes, white baskets and holiday bags. Add tomato for a red Fruit Market moment.",
  "en": "Best on beach totes, white baskets and holiday bags. Add tomato for a red Fruit Market moment.",
- "es": "Best on beach totes, white baskets and holiday bags. Add tomato for a red Fruit Market moment.",
- "tr": "Best on beach totes, white baskets and holiday bags. Add tomato for a red Fruit Market moment.",
- "ar": "Best on beach totes, white baskets and holiday bags. Add tomato for a red Fruit Market moment."
+ "es": "Mejor en bolsas de playa, cestos blancos y bolsos de vacaciones. Añade tomate para un momento Fruit Market en rojo.",
+ "tr": "Plaj çantaları, beyaz sepetler ve tatil çantalarında en iyisi. Kırmızı bir Fruit Market anı için domates ekleyin.",
+ "ar": "الأفضل على حقائب الشاطئ والسلال البيضاء وحقائب العطلات. أضيفي الطماطم للحظة Fruit Market حمراء."
  },
  "note": {
  "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
+ "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
+ "ar": "كل ميدالية تأتي مع حلقة صغيرة. الحلقة الذهبية مشمولة في الحزم ويمكن إضافتها في الأستوديو للميداليات المفردة."
  }
  },
  "fruitStory": {
  "title": {
  "fr": "Watermelon: summer in one slice.",
  "en": "Watermelon: summer in one slice.",
- "es": "Watermelon: summer in one slice.",
- "tr": "Watermelon: summer in one slice.",
- "ar": "Watermelon: summer in one slice."
+ "es": "Sandía: el verano en una rodaja.",
+ "tr": "Karpuz: bir dilimde yaz.",
+ "ar": "البطيخ: الصيف في شريحة واحدة."
  },
  "body": {
  "fr": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel.",
  "en": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel.",
- "es": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel.",
- "tr": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel.",
- "ar": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel."
+ "es": "La sandía es el charm del calor, las terrazas y las tardes largas. Es el que transmite la sensación de verano más inmediata de la colección: una rodaja brillante, hecha despacio, destinada a viajar.",
+ "tr": "Karpuz, sıcak için, teraslar için ve uzun öğleden sonralar için yapılmış charm. Koleksiyondaki en anlık yaz hissini taşıyor: yavaş yapılmış, seyahat etmek için tasarlanmış parlak bir dilim.",
+ "ar": "البطيخ هو ميدالية الحر والشرفات والعصريات الطويلة. تحمل الشعور الصيفي الأكثر فورية في المجموعة: شريحة مشرقة، مصنوعة بتأنّ، تُقصد للسفر."
  },
  "collectionTitle": {
  "fr": "Fruit Market : inspiré des marchés de Marrakech",
  "en": "Fruit Market: inspired by the Marrakesh markets",
- "es": "Fruit Market: inspired by the Marrakesh markets",
- "tr": "Fruit Market: inspired by the Marrakesh markets",
- "ar": "Fruit Market: inspired by the Marrakesh markets"
+ "es": "Fruit Market: inspirado en los mercados de Marrakech",
+ "tr": "Fruit Market: Marakeş pazarlarından ilham alınmıştır",
+ "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
  "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
  "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
+ "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
  },
  "liveUrl": "https://yza-shop.com/products/watermelon-raffia-bag-charm"
  },
  "making": {
  "fr": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
  "en": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "es": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "tr": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "ar": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ "es": "La sandía es el charm del calor, las terrazas y las tardes largas. Es el que transmite la sensación de verano más inmediata de la colección: una rodaja brillante, hecha despacio, destinada a viajar. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
+ "tr": "Karpuz, sıcak için, teraslar için ve uzun öğleden sonralar için yapılmış charm. Koleksiyondaki en anlık yaz hissini taşıyor: yavaş yapılmış, seyahat etmek için tasarlanmış parlak bir dilim. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
+ "ar": "البطيخ هو ميدالية الحر والشرفات والعصريات الطويلة. تحمل الشعور الصيفي الأكثر فورية في المجموعة: شريحة مشرقة، مصنوعة بتأنّ، تُقصد للسفر. كل قطعة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ثم تُفحص قبل إضافة علامة YZA."
  },
  "care": {
  "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, dejar secar al aire libre alejada del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurumaya bırakın. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın öge rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
  "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
+ "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz'deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
- "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
- "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
+ "es": "Satisfecho o reembolsado — 30 días",
+ "tr": "Memnun olun ya da iade edin — 30 gün",
+ "ar": "راضٍ أو مُستردّ — 30 يومًا"
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "badge": "limited",
  "hours": 1.5,
@@ -9538,23 +9538,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Charm demi avocat en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing.",
- "es": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing.",
- "tr": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing.",
- "ar": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing."
+ "es": "Un charm de medio aguacate en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
+ "tr": "Bir tığ işi rafya avokado yarısı charm, 2,5 cm altın halkayla.",
+ "ar": "ميدالية نصف أفوكادو من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
  "fr": "Charm demi avocat en raphia, crochete main avec anneau dore 2,5 cm.",
  "en": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing.",
- "es": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing.",
- "tr": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing.",
- "ar": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing."
+ "es": "Un charm de medio aguacate en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
+ "tr": "Bir tığ işi rafya avokado yarısı charm, 2,5 cm altın halkayla.",
+ "ar": "ميدالية نصف أفوكادو من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "desc": {
  "fr": "Un clin d oeil aux rooftops au soleil: avocat vert doux, noyau contraste et crochet main en raphia. A porter sur panier, tote ou sac de ville.",
  "en": "A nod to brunches and rooftops in the sun. The Avocado charm mixes soft greens with a contrasting pit, all hand-crocheted in raffia. Looks great on straw baskets and canvas totes.",
- "es": "A nod to brunches and rooftops in the sun. The Avocado charm mixes soft greens with a contrasting pit, all hand-crocheted in raffia. Looks great on straw baskets and canvas totes.",
- "tr": "A nod to brunches and rooftops in the sun. The Avocado charm mixes soft greens with a contrasting pit, all hand-crocheted in raffia. Looks great on straw baskets and canvas totes.",
- "ar": "A nod to brunches and rooftops in the sun. The Avocado charm mixes soft greens with a contrasting pit, all hand-crocheted in raffia. Looks great on straw baskets and canvas totes."
+ "es": "Un guiño a los brunchs y azoteas al sol. El charm de aguacate mezcla verdes suaves con un hueso contrastado, todo tejido a mano en rafia. Queda genial en cestos de paja y totes de lona.",
+ "tr": "Güneşli brönchlara ve çatı teraslarına bir selam. Avokado charm, yumuşak yeşilleri zıt renkli çekirdekle harmanlıyor; tamamı rafyadan el kroşesiyle yapılmış. Hasır sepetler ve tuval tote çantalarda harika görünüyor.",
+ "ar": "تحية للبرانش وأسطح المنازل تحت الشمس. تمزج ميدالية الأفوكادو بين الخضرة الناعمة والنواة المتباينة، كل شيء مصنوع بالكروشيه اليدوي من الرافيا. تبدو رائعة على السلال القشية وحقائب الكانفاس."
  },
  "price": 19000,
  "currency": "MAD",
@@ -9563,9 +9563,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Charms",
  "en": "Charms",
- "es": "Charms",
- "tr": "Charms",
- "ar": "Charms"
+ "es": "Complementos",
+ "tr": "Charmlar",
+ "ar": "تعليقات الحقيبة"
  },
  "group": "accessories",
  "collection": {
@@ -9662,16 +9662,16 @@ const PRODUCTS = [
  "material": {
  "fr": "raphia crochete main raffia",
  "en": "hand-crocheted raffia",
- "es": "hand-crocheted raffia",
- "tr": "hand-crocheted raffia",
- "ar": "hand-crocheted raffia"
+ "es": "rafia tejida a mano con ganchillo",
+ "tr": "el örgüsü rafya",
+ "ar": "رافيا مصنوعة بالكروشيه اليدوي"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia — tejida a ganchillo",
+ "tr": "Yalnızca rafya — kroşe",
+ "ar": "رافيا فقط — مصنوعة بالكروشيه"
  },
  "color": null,
  "size": null,
@@ -9684,9 +9684,9 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Environ 6 x 3 cm (chaque piece peut legerement varier).",
  "en": "Approx. 6 x 3 cm (each piece may vary slightly).",
- "es": "Approx. 6 x 3 cm (each piece may vary slightly).",
- "tr": "Approx. 6 x 3 cm (each piece may vary slightly).",
- "ar": "Approx. 6 x 3 cm (each piece may vary slightly)."
+ "es": "Aprox. 6 x 3 cm (cada pieza puede variar ligeramente).",
+ "tr": "Yaklaşık 6 x 3 cm (her parça hafifçe farklılık gösterebilir).",
+ "ar": "حوالي 6 x 3 سم (قد تختلف كل قطعة قليلاً)."
  },
  "whatFits": null,
  "attachment": {
@@ -9699,149 +9699,149 @@ const PRODUCTS = [
  "handworkTime": {
  "fr": "2 h de crochet main pour ce fruit.",
  "en": "2 hours of hand crochet for this fruit.",
- "es": "2 hours of hand crochet for this fruit.",
- "tr": "2 hours of hand crochet for this fruit.",
- "ar": "2 hours of hand crochet for this fruit."
+ "es": "2 horas de crochet a mano para esta fruta.",
+ "tr": "Bu meyve için 2 saat el kroşesi.",
+ "ar": "ساعتان كروشيه يدوي لهذه الفاكهة."
  },
  "howToWear": {
  "title": {
  "fr": "Comment le porter",
  "en": "How to wear it",
- "es": "How to wear it",
- "tr": "How to wear it",
- "ar": "How to wear it"
+ "es": "Cómo llevarlo",
+ "tr": "Nasıl kullanılır",
+ "ar": "كيف تلبسينه"
  },
  "intro": {
  "fr": "Utilisez ce Fruit Charm sur:",
  "en": "Use this Fruit Charm on:",
- "es": "Use this Fruit Charm on:",
- "tr": "Use this Fruit Charm on:",
- "ar": "Use this Fruit Charm on:"
+ "es": "Úsalo en:",
+ "tr": "Bu Meyve Charm'ı şunlara takın:",
+ "ar": "استخدمي هذا الميدالية الفاكهة على:"
  },
  "items": [
  {
  "fr": "Les sacs YZA, La Vague et autres paniers de la marque.",
  "en": "YZA bags, La Vague and other YZA baskets.",
- "es": "YZA bags, La Vague and other YZA baskets.",
- "tr": "YZA bags, La Vague and other YZA baskets.",
- "ar": "YZA bags, La Vague and other YZA baskets."
+ "es": "Bolsos YZA, La Vague y otros cestos de la marca.",
+ "tr": "YZA çantaları, La Vague ve diğer YZA sepetleri.",
+ "ar": "حقائب YZA، La Vague وسلال YZA الأخرى."
  },
  {
  "fr": "Vos sacs en cuir pour ajouter une touche de personnalité et de couleur.",
  "en": "Leather bags to add personality and colour.",
- "es": "Leather bags to add personality and colour.",
- "tr": "Leather bags to add personality and colour.",
- "ar": "Leather bags to add personality and colour."
+ "es": "Bolsos de piel para añadir personalidad y color.",
+ "tr": "Kişilik ve renk katmak için deri çantalar.",
+ "ar": "الحقائب الجلدية لإضافة شخصية ولون."
  },
  {
  "fr": "Paniers en paille, market totes et sacs de plage.",
  "en": "Straw baskets, market totes and beach bags.",
- "es": "Straw baskets, market totes and beach bags.",
- "tr": "Straw baskets, market totes and beach bags.",
- "ar": "Straw baskets, market totes and beach bags."
+ "es": "Cestos de paja, bolsas de mercado y bolsas de playa.",
+ "tr": "Hasır sepetler, alışveriş çantaları ve plaj çantaları.",
+ "ar": "السلال القشية، وحقائب السوق، وحقائب الشاطئ."
  },
  {
  "fr": "Clés, porte-clés et pochettes.",
  "en": "Keys, keychains and pouches.",
- "es": "Keys, keychains and pouches.",
- "tr": "Keys, keychains and pouches.",
- "ar": "Keys, keychains and pouches."
+ "es": "Llaves, llaveros y bolsillos.",
+ "tr": "Anahtarlar, anahtarlıklar ve kılıflar.",
+ "ar": "المفاتيح والمفاتيح وحافظات المفاتيح."
  }
  ],
  "styleTip": {
  "fr": "Best on natural straw, canvas totes and cream leather. Mix with lemon slice for a fresh market set.",
  "en": "Best on natural straw, canvas totes and cream leather. Mix with lemon slice for a fresh market set.",
- "es": "Best on natural straw, canvas totes and cream leather. Mix with lemon slice for a fresh market set.",
- "tr": "Best on natural straw, canvas totes and cream leather. Mix with lemon slice for a fresh market set.",
- "ar": "Best on natural straw, canvas totes and cream leather. Mix with lemon slice for a fresh market set."
+ "es": "Mejor en paja natural, totes de lona y cuero crema. Combínalo con rodaja de limón para un set de mercado fresco.",
+ "tr": "Doğal hasır, tuval tote'lar ve krem deride en iyisi. Taze bir pazar seti için limon dilimi ile karıştırın.",
+ "ar": "الأفضل على القش الطبيعي وحقائب الكانفاس والجلد الكريمي. امزجيه مع شريحة الليمون لطقم سوق طازج."
  },
  "note": {
  "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "es": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "tr": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
- "ar": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms."
+ "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
+ "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
+ "ar": "كل ميدالية تأتي مع حلقة صغيرة. الحلقة الذهبية مشمولة في الحزم ويمكن إضافتها في الأستوديو للميداليات المفردة."
  }
  },
  "fruitStory": {
  "title": {
  "fr": "Avocado: soft green, city sun.",
  "en": "Avocado: soft green, city sun.",
- "es": "Avocado: soft green, city sun.",
- "tr": "Avocado: soft green, city sun.",
- "ar": "Avocado: soft green, city sun."
+ "es": "El aguacate: verde suave, sol urbano.",
+ "tr": "Avokado: yumuşak yeşil, şehir güneşi.",
+ "ar": "الأفوكادو: الأخضر الناعم وشمس المدينة."
  },
  "body": {
  "fr": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature.",
  "en": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature.",
- "es": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature.",
- "tr": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature.",
- "ar": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature."
+ "es": "Inspirado en los largos brunchs de Marrakech y la nueva generación de portadoras de cestos. El aguacate es más tranquilo que los cítricos: más suave, más verde, un poco más minimalista. Funciona cuando el bolso ya tiene color y necesita una firma serena.",
+ "tr": "Uzun Marakeş brönchlarından ve yeni nesil sepet taşıyıcılarından ilham alınmış. Avokado, narenciye meyvelerinden daha sessiz: daha yumuşak, daha yeşil, biraz daha minimal. Çanta zaten renkli olduğunda ve sakin bir imzaya ihtiyaç duyduğunda işe yarıyor.",
+ "ar": "مستوحاة من البرانش الطويلة بمراكش والجيل الجديد من حاملات السلال. الأفوكادو أهدأ من الفواكه الحمضية: أكثر نعومة، أكثر خضرة، أكثر مينيمالية قليلاً. تعمل حين تكون الحقيبة ملونة بالفعل وتحتاج توقيعاً هادئاً."
  },
  "collectionTitle": {
  "fr": "Fruit Market : inspiré des marchés de Marrakech",
  "en": "Fruit Market: inspired by the Marrakesh markets",
- "es": "Fruit Market: inspired by the Marrakesh markets",
- "tr": "Fruit Market: inspired by the Marrakesh markets",
- "ar": "Fruit Market: inspired by the Marrakesh markets"
+ "es": "Fruit Market: inspirado en los mercados de Marrakech",
+ "tr": "Fruit Market: Marakeş pazarlarından ilham alınmıştır",
+ "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
  "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
  "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "tr": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "ar": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag."
+ "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
+ "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
  },
  "liveUrl": "https://yza-shop.com/products/avocado-raffia-bag-charm"
  },
  "making": {
  "fr": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
  "en": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "es": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "tr": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "ar": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added."
+ "es": "Inspirado en los largos brunchs de Marrakech y la nueva generación de portadoras de cestos. El aguacate es más tranquilo que los cítricos: más suave, más verde, un poco más minimalista. Funciona cuando el bolso ya tiene color y necesita una firma serena. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
+ "tr": "Uzun Marakeş brönchlarından ve yeni nesil sepet taşıyıcılarından ilham alınmış. Avokado, narenciye meyvelerinden daha sessiz: daha yumuşak, daha yeşil, biraz daha minimal. Çanta zaten renkli olduğunda ve sakin bir imzaya ihtiyaç duyduğunda işe yarıyor. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
+ "ar": "مستوحاة من البرانش الطويلة بمراكش والجيل الجديد من حاملات السلال. الأفوكادو أهدأ من الفواكه الحمضية: أكثر نعومة، أكثر خضرة، أكثر مينيمالية قليلاً. تعمل حين تكون الحقيبة ملونة بالفعل وتحتاج توقيعاً هادئاً. كل قطعة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ثم تُفحص قبل إضافة علامة YZA."
  },
  "care": {
  "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, dejar secar al aire libre alejada del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurumaya bırakın. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın öge rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
  "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
+ "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz'deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
- "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
- "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
- "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
+ "es": "Satisfecho o reembolsado — 30 días",
+ "tr": "Memnun olun ya da iade edin — 30 gün",
+ "ar": "راضٍ أو مُستردّ — 30 يومًا"
  },
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Pequeña serie de taller, producida al ritmo del crochet a mano.",
+ "tr": "Küçük atölye serisi, el kroşesi hızında üretildi.",
+ "ar": "دفعة أتيليه صغيرة، تُنتج بإيقاع الكروشيه اليدوي."
  },
  "badge": "limited",
  "hours": 2,
@@ -9874,23 +9874,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Boucles pasteque en raphia, crochet main avec creoles dorees 1,5 cm.",
  "en": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "es": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "tr": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "ar": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ "es": "Pendientes de sandía en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
+ "tr": "El yapımı rafia karpuz küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
+ "ar": "أقراط بطيخ من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "displayShort": {
  "fr": "Boucles pasteque en raphia, crochet main avec creoles dorees 1,5 cm.",
  "en": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "es": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "tr": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "ar": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ "es": "Pendientes de sandía en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
+ "tr": "El yapımı rafia karpuz küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
+ "ar": "أقراط بطيخ من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "desc": {
  "fr": "Boucles pasteque en raphia, crochet main avec creoles dorees 1,5 cm.",
  "en": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh.",
- "es": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh.",
- "tr": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh.",
- "ar": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh."
+ "es": "Parte de la línea de accesorios de YZA, estos pendientes de fruta están tejidos en rafia y diseñados como postales portables de Marrakech.",
+ "tr": "YZA’nın Aksesuar serisinden bu meyve küpeleri rafiadan tığ işiyle örülmüş ve Marakeş’ten taşınabilir kartpostallar olarak tasarlanmıştır.",
+ "ar": "من خط الإكسسوارات لدى YZA، هذه الأقراط الفاكهية منسوجة بالرافيا وصُمِّمت كبطاقات بريدية مرتدَاة من مراكش."
  },
  "price": 43000,
  "currency": "MAD",
@@ -9899,9 +9899,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Boucles",
  "en": "Earrings",
- "es": "Earrings",
- "tr": "Earrings",
- "ar": "Earrings"
+ "es": "Pendientes",
+ "tr": "Küpeler",
+ "ar": "أقراط"
  },
  "group": "accessories",
  "collection": {
@@ -10000,16 +10000,16 @@ const PRODUCTS = [
  "material": {
  "fr": "Raffia, Creoles dorees",
  "en": "Raffia, Gold earrings",
- "es": "Raffia, Gold earrings",
- "tr": "Raffia, Gold earrings",
- "ar": "Raffia, Gold earrings"
+ "es": "Rafia, Aros dorados",
+ "tr": "Rafya, Altın halkalar",
+ "ar": "رافيا، حلقات ذهبية"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia - tejido a ganchillo",
+ "tr": "Yalnızca rafya - tığ işi",
+ "ar": "رافيا فقط - كروشيه"
  },
  "color": null,
  "size": null,
@@ -10022,54 +10022,54 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Petit format bijou textile, leger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
- "es": "Small textile-jewellery scale, light and visible.",
- "tr": "Small textile-jewellery scale, light and visible.",
- "ar": "Small textile-jewellery scale, light and visible."
+ "es": "Escala pequeña de joyería textil, ligero y visible.",
+ "tr": "Küçük tekstil-mücevheri ölçeği, hafif ve görünür.",
+ "ar": "حجم مجوهرات نسيجية صغيرة، خفيف وواضح."
  },
  "whatFits": null,
  "attachment": {
  "fr": "Creole doree 1,5 cm.",
  "en": "1.5 cm gold earring.",
- "es": "1.5 cm gold earring.",
- "tr": "1.5 cm gold earring.",
- "ar": "1.5 cm gold earring."
+ "es": "Aro dorado de 1,5 cm.",
+ "tr": "1,5 cm altın halka.",
+ "ar": "حلقة ذهبية 1,5 سم."
  },
  "handworkTime": {
  "fr": "Crochet main et montage bijou, piece par piece.",
  "en": "Hand crochet and jewellery assembly, piece by piece.",
- "es": "Hand crochet and jewellery assembly, piece by piece.",
- "tr": "Hand crochet and jewellery assembly, piece by piece.",
- "ar": "Hand crochet and jewellery assembly, piece by piece."
+ "es": "Ganchillo a mano y montaje de joyería, pieza por pieza.",
+ "tr": "El tığ işi ve mücevher montajı, parça parça.",
+ "ar": "كروشيه يدوي وتجميع مجوهرات، قطعة قطعة."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Fruit crochete main puis monte sur creole doree legere.",
  "en": "Hand-crocheted fruit mounted on a light golden earring.",
- "es": "Hand-crocheted fruit mounted on a light golden earring.",
- "tr": "Hand-crocheted fruit mounted on a light golden earring.",
- "ar": "Hand-crocheted fruit mounted on a light golden earring."
+ "es": "Fruta tejida a mano montada sobre un aro dorado ligero.",
+ "tr": "El yapımı tığ işi meyve, hafif bir altın halkaya monte edilmiş.",
+ "ar": "فاكهة منسوجة يدويًا ومثبتة على حلقة ذهبية خفيفة."
  },
  "care": {
- "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l’eau ; s’il est mouillé, le faire sécher à l’air libre à l’ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l’anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, secar al aire libre alejado del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurutun. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın unsur rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنب الماء؛ إذا ابتلت، جففها في الهواء الطلق بعيدًا عن أشعة الشمس المباشرة. تجنب التعرض المطول للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "fr": "Prêt à offrir, avec le prénom de l’artisane qui a réalisé la pièce gravé sur l’étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Listo para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediyeye hazır, parçayı yapan zanaatkarın adı YZA etiketine kazınmış.",
+ "ar": "جاهز للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشًا على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz’deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع خلال 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في جيليز."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -10081,16 +10081,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Éditions limitées de atelier, producidas al ritmo del ganchillo a mano.",
+ "tr": "Küçük atölye serisi, el tığ işi temposunda üretilmiştir.",
+ "ar": "دُفعة أتيليه صغيرة، مُنتَجة على وتيرة الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Éditions limitées de atelier, producidas al ritmo del ganchillo a mano.",
+ "tr": "Küçük atölye serisi, el tığ işi temposunda üretilmiştir.",
+ "ar": "دُفعة أتيليه صغيرة، مُنتَجة على وتيرة الكروشيه اليدوي."
  },
  "badge": "limited",
  "hours": 5,
@@ -10367,23 +10367,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Boucles citron en raphia, crochet main avec creoles dorees 1,5 cm.",
  "en": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "es": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "tr": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "ar": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ "es": "Pendientes de limón en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
+ "tr": "El yapımı rafia limon küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
+ "ar": "أقراط ليمون من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "displayShort": {
  "fr": "Boucles citron en raphia, crochet main avec creoles dorees 1,5 cm.",
  "en": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "es": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "tr": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "ar": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ "es": "Pendientes de limón en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
+ "tr": "El yapımı rafia limon küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
+ "ar": "أقراط ليمون من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "desc": {
  "fr": "Boucles citron en raphia, crochet main avec creoles dorees 1,5 cm.",
  "en": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
- "es": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
- "tr": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
- "ar": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family."
+ "es": "Un estilo de pendiente de fruta en rafia de la colección de accesorios de YZA, hecho a mano como parte de la familia de frutas SS26.",
+ "tr": "YZA’nın Aksesuar koleksiyonundan rafia meyve küpesi modeli, SS26 meyve ailesinin bir parçası olarak el yapımı.",
+ "ar": "تصميم أقراط فاكهة من الرافيا من مجموعة الإكسسوارات لدى YZA، مصنوع يدويًا ضمن عائلة الفاكهة SS26."
  },
  "price": 46000,
  "currency": "MAD",
@@ -10392,9 +10392,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Boucles",
  "en": "Earrings",
- "es": "Earrings",
- "tr": "Earrings",
- "ar": "Earrings"
+ "es": "Pendientes",
+ "tr": "Küpeler",
+ "ar": "أقراط"
  },
  "group": "accessories",
  "collection": {
@@ -10492,16 +10492,16 @@ const PRODUCTS = [
  "material": {
  "fr": "Raffia, Creoles dorees",
  "en": "Raffia, Gold earrings",
- "es": "Raffia, Gold earrings",
- "tr": "Raffia, Gold earrings",
- "ar": "Raffia, Gold earrings"
+ "es": "Rafia, Aros dorados",
+ "tr": "Rafya, Altın halkalar",
+ "ar": "رافيا، حلقات ذهبية"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia - tejido a ganchillo",
+ "tr": "Yalnızca rafya - tığ işi",
+ "ar": "رافيا فقط - كروشيه"
  },
  "color": null,
  "size": null,
@@ -10514,54 +10514,54 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Petit format bijou textile, leger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
- "es": "Small textile-jewellery scale, light and visible.",
- "tr": "Small textile-jewellery scale, light and visible.",
- "ar": "Small textile-jewellery scale, light and visible."
+ "es": "Escala pequeña de joyería textil, ligero y visible.",
+ "tr": "Küçük tekstil-mücevheri ölçeği, hafif ve görünür.",
+ "ar": "حجم مجوهرات نسيجية صغيرة، خفيف وواضح."
  },
  "whatFits": null,
  "attachment": {
  "fr": "Creole doree 1,5 cm.",
  "en": "1.5 cm gold earring.",
- "es": "1.5 cm gold earring.",
- "tr": "1.5 cm gold earring.",
- "ar": "1.5 cm gold earring."
+ "es": "Aro dorado de 1,5 cm.",
+ "tr": "1,5 cm altın halka.",
+ "ar": "حلقة ذهبية 1,5 سم."
  },
  "handworkTime": {
  "fr": "Crochet main et montage bijou, piece par piece.",
  "en": "Hand crochet and jewellery assembly, piece by piece.",
- "es": "Hand crochet and jewellery assembly, piece by piece.",
- "tr": "Hand crochet and jewellery assembly, piece by piece.",
- "ar": "Hand crochet and jewellery assembly, piece by piece."
+ "es": "Ganchillo a mano y montaje de joyería, pieza por pieza.",
+ "tr": "El tığ işi ve mücevher montajı, parça parça.",
+ "ar": "كروشيه يدوي وتجميع مجوهرات، قطعة قطعة."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Fruit crochete main puis monte sur creole doree legere.",
  "en": "Hand-crocheted fruit mounted on a light golden earring.",
- "es": "Hand-crocheted fruit mounted on a light golden earring.",
- "tr": "Hand-crocheted fruit mounted on a light golden earring.",
- "ar": "Hand-crocheted fruit mounted on a light golden earring."
+ "es": "Fruta tejida a mano montada sobre un aro dorado ligero.",
+ "tr": "El yapımı tığ işi meyve, hafif bir altın halkaya monte edilmiş.",
+ "ar": "فاكهة منسوجة يدويًا ومثبتة على حلقة ذهبية خفيفة."
  },
  "care": {
- "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l’eau ; s’il est mouillé, le faire sécher à l’air libre à l’ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l’anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, secar al aire libre alejado del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurutun. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın unsur rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنب الماء؛ إذا ابتلت، جففها في الهواء الطلق بعيدًا عن أشعة الشمس المباشرة. تجنب التعرض المطول للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "fr": "Prêt à offrir, avec le prénom de l’artisane qui a réalisé la pièce gravé sur l’étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Listo para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediyeye hazır, parçayı yapan zanaatkarın adı YZA etiketine kazınmış.",
+ "ar": "جاهز للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشًا على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz’deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع خلال 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في جيليز."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -10573,16 +10573,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Éditions limitées de atelier, producidas al ritmo del ganchillo a mano.",
+ "tr": "Küçük atölye serisi, el tığ işi temposunda üretilmiştir.",
+ "ar": "دُفعة أتيليه صغيرة، مُنتَجة على وتيرة الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Éditions limitées de atelier, producidas al ritmo del ganchillo a mano.",
+ "tr": "Küçük atölye serisi, el tığ işi temposunda üretilmiştir.",
+ "ar": "دُفعة أتيليه صغيرة، مُنتَجة على وتيرة الكروشيه اليدوي."
  },
  "badge": "bestseller",
  "hours": 5,
@@ -10615,23 +10615,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Boucles orange en raphia, crochet main avec creoles dorees 1,5 cm.",
  "en": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "es": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "tr": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "ar": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ "es": "Pendientes de naranja en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
+ "tr": "El yapımı rafia portakal küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
+ "ar": "أقراط برتقال من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "displayShort": {
  "fr": "Boucles orange en raphia, crochet main avec creoles dorees 1,5 cm.",
  "en": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "es": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "tr": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "ar": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ "es": "Pendientes de naranja en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
+ "tr": "El yapımı rafia portakal küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
+ "ar": "أقراط برتقال من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "desc": {
  "fr": "Boucles orange en raphia, crochet main avec creoles dorees 1,5 cm.",
  "en": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
- "es": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
- "tr": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
- "ar": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family."
+ "es": "Un estilo de pendiente de fruta en rafia de la colección de accesorios de YZA, hecho a mano como parte de la familia de frutas SS26.",
+ "tr": "YZA’nın Aksesuar koleksiyonundan rafia meyve küpesi modeli, SS26 meyve ailesinin bir parçası olarak el yapımı.",
+ "ar": "تصميم أقراط فاكهة من الرافيا من مجموعة الإكسسوارات لدى YZA، مصنوع يدويًا ضمن عائلة الفاكهة SS26."
  },
  "price": 46000,
  "currency": "MAD",
@@ -10640,9 +10640,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Boucles",
  "en": "Earrings",
- "es": "Earrings",
- "tr": "Earrings",
- "ar": "Earrings"
+ "es": "Pendientes",
+ "tr": "Küpeler",
+ "ar": "أقراط"
  },
  "group": "accessories",
  "collection": {
@@ -10738,16 +10738,16 @@ const PRODUCTS = [
  "material": {
  "fr": "Raffia, Creoles dorees",
  "en": "Raffia, Gold earrings",
- "es": "Raffia, Gold earrings",
- "tr": "Raffia, Gold earrings",
- "ar": "Raffia, Gold earrings"
+ "es": "Rafia, Aros dorados",
+ "tr": "Rafya, Altın halkalar",
+ "ar": "رافيا، حلقات ذهبية"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia - tejido a ganchillo",
+ "tr": "Yalnızca rafya - tığ işi",
+ "ar": "رافيا فقط - كروشيه"
  },
  "color": null,
  "size": null,
@@ -10760,54 +10760,54 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Petit format bijou textile, leger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
- "es": "Small textile-jewellery scale, light and visible.",
- "tr": "Small textile-jewellery scale, light and visible.",
- "ar": "Small textile-jewellery scale, light and visible."
+ "es": "Escala pequeña de joyería textil, ligero y visible.",
+ "tr": "Küçük tekstil-mücevheri ölçeği, hafif ve görünür.",
+ "ar": "حجم مجوهرات نسيجية صغيرة، خفيف وواضح."
  },
  "whatFits": null,
  "attachment": {
  "fr": "Creole doree 1,5 cm.",
  "en": "1.5 cm gold earring.",
- "es": "1.5 cm gold earring.",
- "tr": "1.5 cm gold earring.",
- "ar": "1.5 cm gold earring."
+ "es": "Aro dorado de 1,5 cm.",
+ "tr": "1,5 cm altın halka.",
+ "ar": "حلقة ذهبية 1,5 سم."
  },
  "handworkTime": {
  "fr": "Crochet main et montage bijou, piece par piece.",
  "en": "Hand crochet and jewellery assembly, piece by piece.",
- "es": "Hand crochet and jewellery assembly, piece by piece.",
- "tr": "Hand crochet and jewellery assembly, piece by piece.",
- "ar": "Hand crochet and jewellery assembly, piece by piece."
+ "es": "Ganchillo a mano y montaje de joyería, pieza por pieza.",
+ "tr": "El tığ işi ve mücevher montajı, parça parça.",
+ "ar": "كروشيه يدوي وتجميع مجوهرات، قطعة قطعة."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Fruit crochete main puis monte sur creole doree legere.",
  "en": "Hand-crocheted fruit mounted on a light golden earring.",
- "es": "Hand-crocheted fruit mounted on a light golden earring.",
- "tr": "Hand-crocheted fruit mounted on a light golden earring.",
- "ar": "Hand-crocheted fruit mounted on a light golden earring."
+ "es": "Fruta tejida a mano montada sobre un aro dorado ligero.",
+ "tr": "El yapımı tığ işi meyve, hafif bir altın halkaya monte edilmiş.",
+ "ar": "فاكهة منسوجة يدويًا ومثبتة على حلقة ذهبية خفيفة."
  },
  "care": {
- "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l’eau ; s’il est mouillé, le faire sécher à l’air libre à l’ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l’anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, secar al aire libre alejado del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurutun. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın unsur rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنب الماء؛ إذا ابتلت، جففها في الهواء الطلق بعيدًا عن أشعة الشمس المباشرة. تجنب التعرض المطول للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "fr": "Prêt à offrir, avec le prénom de l’artisane qui a réalisé la pièce gravé sur l’étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Listo para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediyeye hazır, parçayı yapan zanaatkarın adı YZA etiketine kazınmış.",
+ "ar": "جاهز للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشًا على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz’deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع خلال 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في جيليز."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -10819,16 +10819,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Éditions limitées de atelier, producidas al ritmo del ganchillo a mano.",
+ "tr": "Küçük atölye serisi, el tığ işi temposunda üretilmiştir.",
+ "ar": "دُفعة أتيليه صغيرة، مُنتَجة على وتيرة الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Éditions limitées de atelier, producidas al ritmo del ganchillo a mano.",
+ "tr": "Küçük atölye serisi, el tığ işi temposunda üretilmiştir.",
+ "ar": "دُفعة أتيليه صغيرة، مُنتَجة على وتيرة الكروشيه اليدوي."
  },
  "badge": "limited",
  "hours": 5,
@@ -11612,23 +11612,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Collier tranche de citron en raphia, fruit en raphia crochete sur cordon.",
  "en": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh.",
- "es": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh.",
- "tr": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh.",
- "ar": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh."
+ "es": "Collar de rafia con rodaja de limón, tejido a mano como pequeña postal de Marrakech.",
+ "tr": "El yapımı rafia limon dilimi kolyesi, Marakeş'ten küçük bir kartpostal olarak.",
+ "ar": "قلادة رافيا بشريحة ليمون، منسوجة يدويًا كبطاقة بريدية صغيرة من مراكش."
  },
  "displayShort": {
  "fr": "Collier tranche de citron en raphia, fruit en raphia crochete sur cordon.",
  "en": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh.",
- "es": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh.",
- "tr": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh.",
- "ar": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh."
+ "es": "Collar de rafia con rodaja de limón, tejido a mano como pequeña postal de Marrakech.",
+ "tr": "El yapımı rafia limon dilimi kolyesi, Marakeş'ten küçük bir kartpostal olarak.",
+ "ar": "قلادة رافيا بشريحة ليمون، منسوجة يدويًا كبطاقة بريدية صغيرة من مراكش."
  },
  "desc": {
  "fr": "Collier tranche de citron en raphia, fruit en raphia crochete sur cordon.",
  "en": "Lemon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
- "es": "Lemon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
- "tr": "Lemon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
- "ar": "Lemon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe."
+ "es": "El Collar de Rafia con Rodaja de Limón pertenece a la línea de accesorios de YZA: fruta tejida en rafia, diseñada como un objeto portador lúdico del universo del Mercado de Fruta de Marrakech.",
+ "tr": "Limon Dilimi Rafia Kolyesi, YZA'nın Aksesuar serisine ait: rafiadan örülmüş meyve, Marakeş Meyve Pazarı evrenine dayanan eğlenceli bir giyilebilir nesne olarak tasarlanmıştır.",
+ "ar": "قلادة شريحة الليمون من الرافيا تنتمي إلى خط الإكسسوارات لدى YZA: فاكهة منسوجة بالرافيا، صُمِّمت كقطعة مرتدَاة مرحة من عالم سوق الفاكهة في مراكش."
  },
  "price": 26000,
  "currency": "MAD",
@@ -11637,9 +11637,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Colliers",
  "en": "Necklaces",
- "es": "Necklaces",
- "tr": "Necklaces",
- "ar": "Necklaces"
+ "es": "Collares",
+ "tr": "Kolyeler",
+ "ar": "عقود"
  },
  "group": "accessories",
  "collection": {
@@ -11738,16 +11738,16 @@ const PRODUCTS = [
  "material": {
  "fr": "Raffia, Cordon, Boucle de finition",
  "en": "Raffia, Cord, Finishing loop",
- "es": "Raffia, Cord, Finishing loop",
- "tr": "Raffia, Cord, Finishing loop",
- "ar": "Raffia, Cord, Finishing loop"
+ "es": "Rafia, Cordón, Presilla de acabado",
+ "tr": "Rafya, Kordon, Bitirme ilmeği",
+ "ar": "رافيا، خيط، حلقة إنهاء"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia - tejido a ganchillo",
+ "tr": "Yalnızca rafya - tığ işi",
+ "ar": "رافيا فقط - كروشيه"
  },
  "color": null,
  "size": null,
@@ -11760,54 +11760,54 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Petit format bijou textile, leger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
- "es": "Small textile-jewellery scale, light and visible.",
- "tr": "Small textile-jewellery scale, light and visible.",
- "ar": "Small textile-jewellery scale, light and visible."
+ "es": "Escala pequeña de joyería textil, ligero y visible.",
+ "tr": "Küçük tekstil-mücevheri ölçeği, hafif ve görünür.",
+ "ar": "حجم مجوهرات نسيجية صغيرة، خفيف وواضح."
  },
  "whatFits": null,
  "attachment": {
  "fr": "Cordon textile avec boucle de finition.",
  "en": "Textile cord with finishing loop.",
- "es": "Textile cord with finishing loop.",
- "tr": "Textile cord with finishing loop.",
- "ar": "Textile cord with finishing loop."
+ "es": "Cordón textil con presilla de acabado.",
+ "tr": "Bitirme ilmekli tekstil kordonu.",
+ "ar": "خيط نسيجي مع حلقة إنهاء."
  },
  "handworkTime": {
  "fr": "Crochet main et montage sur cordon, piece par piece.",
  "en": "Hand crochet and cord assembly, piece by piece.",
- "es": "Hand crochet and cord assembly, piece by piece.",
- "tr": "Hand crochet and cord assembly, piece by piece.",
- "ar": "Hand crochet and cord assembly, piece by piece."
+ "es": "Ganchillo a mano y montaje en cordón, pieza por pieza.",
+ "tr": "El tığ işi ve kordon montajı, parça parça.",
+ "ar": "كروشيه يدوي وتجميع الخيط، قطعة قطعة."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Fruit crochete main, monte sur cordon comme bijou textile.",
  "en": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
- "es": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
- "tr": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
- "ar": "Hand-crocheted fruit mounted on a cord as textile jewellery."
+ "es": "Fruta tejida a mano montada sobre un cordón como joyería textil.",
+ "tr": "El yapımı tığ işi meyve, tekstil mücevheri olarak bir kordona monte edilmiş.",
+ "ar": "فاكهة منسوجة يدويًا ومثبتة على خيط كمجوهرات نسيجية."
  },
  "care": {
- "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l’eau ; s’il est mouillé, le faire sécher à l’air libre à l’ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l’anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, secar al aire libre alejado del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurutun. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın unsur rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنب الماء؛ إذا ابتلت، جففها في الهواء الطلق بعيدًا عن أشعة الشمس المباشرة. تجنب التعرض المطول للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "fr": "Prêt à offrir, avec le prénom de l’artisane qui a réalisé la pièce gravé sur l’étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Listo para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediyeye hazır, parçayı yapan zanaatkarın adı YZA etiketine kazınmış.",
+ "ar": "جاهز للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشًا على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz’deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع خلال 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في جيليز."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -11819,16 +11819,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Éditions limitées de atelier, producidas al ritmo del ganchillo a mano.",
+ "tr": "Küçük atölye serisi, el tığ işi temposunda üretilmiştir.",
+ "ar": "دُفعة أتيليه صغيرة، مُنتَجة على وتيرة الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Éditions limitées de atelier, producidas al ritmo del ganchillo a mano.",
+ "tr": "Küçük atölye serisi, el tığ işi temposunda üretilmiştir.",
+ "ar": "دُفعة أتيليه صغيرة، مُنتَجة على وتيرة الكروشيه اليدوي."
  },
  "badge": "limited",
  "hours": 2.5,
@@ -11861,23 +11861,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Collier tranche d orange en raphia, fruit en raphia crochete sur cordon.",
  "en": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh.",
- "es": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh.",
- "tr": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh.",
- "ar": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh."
+ "es": "Collar de rafia con rodaja de naranja, tejido a mano como pequeña postal de Marrakech.",
+ "tr": "El yapımı rafia portakal dilimi kolyesi, Marakeş'ten küçük bir kartpostal olarak.",
+ "ar": "قلادة رافيا بشريحة برتقال، منسوجة يدويًا كبطاقة بريدية صغيرة من مراكش."
  },
  "displayShort": {
  "fr": "Collier tranche d orange en raphia, fruit en raphia crochete sur cordon.",
  "en": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh.",
- "es": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh.",
- "tr": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh.",
- "ar": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh."
+ "es": "Collar de rafia con rodaja de naranja, tejido a mano como pequeña postal de Marrakech.",
+ "tr": "El yapımı rafia portakal dilimi kolyesi, Marakeş'ten küçük bir kartpostal olarak.",
+ "ar": "قلادة رافيا بشريحة برتقال، منسوجة يدويًا كبطاقة بريدية صغيرة من مراكش."
  },
  "desc": {
  "fr": "Collier tranche d orange en raphia, fruit en raphia crochete sur cordon.",
  "en": "Orange Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
- "es": "Orange Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
- "tr": "Orange Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
- "ar": "Orange Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe."
+ "es": "El Collar de Rafia con Rodaja de Naranja pertenece a la línea de accesorios de YZA: fruta tejida en rafia, diseñada como un objeto portador lúdico del universo del Mercado de Fruta de Marrakech.",
+ "tr": "Portakal Dilimi Rafia Kolyesi, YZA'nın Aksesuar serisine ait: rafiadan örülmüş meyve, Marakeş Meyve Pazarı evrenine dayanan eğlenceli bir giyilebilir nesne olarak tasarlanmıştır.",
+ "ar": "قلادة شريحة البرتقال من الرافيا تنتمي إلى خط الإكسسوارات لدى YZA: فاكهة منسوجة بالرافيا، صُمِّمت كقطعة مرتدَاة مرحة من عالم سوق الفاكهة في مراكش."
  },
  "price": 26000,
  "currency": "MAD",
@@ -11886,9 +11886,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Colliers",
  "en": "Necklaces",
- "es": "Necklaces",
- "tr": "Necklaces",
- "ar": "Necklaces"
+ "es": "Collares",
+ "tr": "Kolyeler",
+ "ar": "عقود"
  },
  "group": "accessories",
  "collection": {
@@ -11986,16 +11986,16 @@ const PRODUCTS = [
  "material": {
  "fr": "Raffia, Cordon, Boucle de finition",
  "en": "Raffia, Cord, Finishing loop",
- "es": "Raffia, Cord, Finishing loop",
- "tr": "Raffia, Cord, Finishing loop",
- "ar": "Raffia, Cord, Finishing loop"
+ "es": "Rafia, Cordón, Presilla de acabado",
+ "tr": "Rafya, Kordon, Bitirme ilmeği",
+ "ar": "رافيا، خيط، حلقة إنهاء"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia - tejido a ganchillo",
+ "tr": "Yalnızca rafya - tığ işi",
+ "ar": "رافيا فقط - كروشيه"
  },
  "color": null,
  "size": null,
@@ -12008,54 +12008,54 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Petit format bijou textile, leger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
- "es": "Small textile-jewellery scale, light and visible.",
- "tr": "Small textile-jewellery scale, light and visible.",
- "ar": "Small textile-jewellery scale, light and visible."
+ "es": "Escala pequeña de joyería textil, ligero y visible.",
+ "tr": "Küçük tekstil-mücevheri ölçeği, hafif ve görünür.",
+ "ar": "حجم مجوهرات نسيجية صغيرة، خفيف وواضح."
  },
  "whatFits": null,
  "attachment": {
  "fr": "Cordon textile avec boucle de finition.",
  "en": "Textile cord with finishing loop.",
- "es": "Textile cord with finishing loop.",
- "tr": "Textile cord with finishing loop.",
- "ar": "Textile cord with finishing loop."
+ "es": "Cordón textil con presilla de acabado.",
+ "tr": "Bitirme ilmekli tekstil kordonu.",
+ "ar": "خيط نسيجي مع حلقة إنهاء."
  },
  "handworkTime": {
  "fr": "Crochet main et montage sur cordon, piece par piece.",
  "en": "Hand crochet and cord assembly, piece by piece.",
- "es": "Hand crochet and cord assembly, piece by piece.",
- "tr": "Hand crochet and cord assembly, piece by piece.",
- "ar": "Hand crochet and cord assembly, piece by piece."
+ "es": "Ganchillo a mano y montaje en cordón, pieza por pieza.",
+ "tr": "El tığ işi ve kordon montajı, parça parça.",
+ "ar": "كروشيه يدوي وتجميع الخيط، قطعة قطعة."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Fruit crochete main, monte sur cordon comme bijou textile.",
  "en": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
- "es": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
- "tr": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
- "ar": "Hand-crocheted fruit mounted on a cord as textile jewellery."
+ "es": "Fruta tejida a mano montada sobre un cordón como joyería textil.",
+ "tr": "El yapımı tığ işi meyve, tekstil mücevheri olarak bir kordona monte edilmiş.",
+ "ar": "فاكهة منسوجة يدويًا ومثبتة على خيط كمجوهرات نسيجية."
  },
  "care": {
- "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l’eau ; s’il est mouillé, le faire sécher à l’air libre à l’ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l’anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, secar al aire libre alejado del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurutun. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın unsur rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنب الماء؛ إذا ابتلت، جففها في الهواء الطلق بعيدًا عن أشعة الشمس المباشرة. تجنب التعرض المطول للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "fr": "Prêt à offrir, avec le prénom de l’artisane qui a réalisé la pièce gravé sur l’étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Listo para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediyeye hazır, parçayı yapan zanaatkarın adı YZA etiketine kazınmış.",
+ "ar": "جاهز للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشًا على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz’deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع خلال 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في جيليز."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -12067,16 +12067,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Éditions limitées de atelier, producidas al ritmo del ganchillo a mano.",
+ "tr": "Küçük atölye serisi, el tığ işi temposunda üretilmiştir.",
+ "ar": "دُفعة أتيليه صغيرة، مُنتَجة على وتيرة الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Éditions limitées de atelier, producidas al ritmo del ganchillo a mano.",
+ "tr": "Küçük atölye serisi, el tığ işi temposunda üretilmiştir.",
+ "ar": "دُفعة أتيليه صغيرة، مُنتَجة على وتيرة الكروشيه اليدوي."
  },
  "badge": "limited",
  "hours": 2.5,
@@ -12109,23 +12109,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Collier tranche de pasteque en raphia, fruit en raphia crochete sur cordon.",
  "en": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh.",
- "es": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh.",
- "tr": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh.",
- "ar": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh."
+ "es": "Collar de rafia con rodaja de sandía, tejido a mano como pequeña postal de Marrakech.",
+ "tr": "El yapımı rafia karpuz dilimi kolyesi, Marakeş'ten küçük bir kartpostal olarak.",
+ "ar": "قلادة رافيا بشريحة بطيخ، منسوجة يدويًا كبطاقة بريدية صغيرة من مراكش."
  },
  "displayShort": {
  "fr": "Collier tranche de pasteque en raphia, fruit en raphia crochete sur cordon.",
  "en": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh.",
- "es": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh.",
- "tr": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh.",
- "ar": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh."
+ "es": "Collar de rafia con rodaja de sandía, tejido a mano como pequeña postal de Marrakech.",
+ "tr": "El yapımı rafia karpuz dilimi kolyesi, Marakeş'ten küçük bir kartpostal olarak.",
+ "ar": "قلادة رافيا بشريحة بطيخ، منسوجة يدويًا كبطاقة بريدية صغيرة من مراكش."
  },
  "desc": {
  "fr": "Collier tranche de pasteque en raphia, fruit en raphia crochete sur cordon.",
  "en": "Watermelon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
- "es": "Watermelon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
- "tr": "Watermelon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
- "ar": "Watermelon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe."
+ "es": "El Collar de Rafia con Rodaja de Sandía pertenece a la línea de accesorios de YZA: fruta tejida en rafia, diseñada como un objeto portador lúdico del universo del Mercado de Fruta de Marrakech.",
+ "tr": "Karpuz Dilimi Rafia Kolyesi, YZA'nın Aksesuar serisine ait: rafiadan örülmüş meyve, Marakeş Meyve Pazarı evrenine dayanan eğlenceli bir giyilebilir nesne olarak tasarlanmıştır.",
+ "ar": "قلادة شريحة البطيخ من الرافيا تنتمي إلى خط الإكسسوارات لدى YZA: فاكهة منسوجة بالرافيا، صُمِّمت كقطعة مرتدَاة مرحة من عالم سوق الفاكهة في مراكش."
  },
  "price": 26000,
  "currency": "MAD",
@@ -12134,9 +12134,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Colliers",
  "en": "Necklaces",
- "es": "Necklaces",
- "tr": "Necklaces",
- "ar": "Necklaces"
+ "es": "Collares",
+ "tr": "Kolyeler",
+ "ar": "عقود"
  },
  "group": "accessories",
  "collection": {
@@ -12236,16 +12236,16 @@ const PRODUCTS = [
  "material": {
  "fr": "Raffia, Cordon, Boucle de finition",
  "en": "Raffia, Cord, Finishing loop",
- "es": "Raffia, Cord, Finishing loop",
- "tr": "Raffia, Cord, Finishing loop",
- "ar": "Raffia, Cord, Finishing loop"
+ "es": "Rafia, Cordón, Presilla de acabado",
+ "tr": "Rafya, Kordon, Bitirme ilmeği",
+ "ar": "رافيا، خيط، حلقة إنهاء"
  },
  "fabric": {
  "fr": "Raffia only - crocheted",
  "en": "Raffia only - crocheted",
- "es": "Raffia only - crocheted",
- "tr": "Raffia only - crocheted",
- "ar": "Raffia only - crocheted"
+ "es": "Solo rafia - tejido a ganchillo",
+ "tr": "Yalnızca rafya - tığ işi",
+ "ar": "رافيا فقط - كروشيه"
  },
  "color": null,
  "size": null,
@@ -12258,54 +12258,54 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Petit format bijou textile, leger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
- "es": "Small textile-jewellery scale, light and visible.",
- "tr": "Small textile-jewellery scale, light and visible.",
- "ar": "Small textile-jewellery scale, light and visible."
+ "es": "Escala pequeña de joyería textil, ligero y visible.",
+ "tr": "Küçük tekstil-mücevheri ölçeği, hafif ve görünür.",
+ "ar": "حجم مجوهرات نسيجية صغيرة، خفيف وواضح."
  },
  "whatFits": null,
  "attachment": {
  "fr": "Cordon textile avec boucle de finition.",
  "en": "Textile cord with finishing loop.",
- "es": "Textile cord with finishing loop.",
- "tr": "Textile cord with finishing loop.",
- "ar": "Textile cord with finishing loop."
+ "es": "Cordón textil con presilla de acabado.",
+ "tr": "Bitirme ilmekli tekstil kordonu.",
+ "ar": "خيط نسيجي مع حلقة إنهاء."
  },
  "handworkTime": {
  "fr": "Crochet main et montage sur cordon, piece par piece.",
  "en": "Hand crochet and cord assembly, piece by piece.",
- "es": "Hand crochet and cord assembly, piece by piece.",
- "tr": "Hand crochet and cord assembly, piece by piece.",
- "ar": "Hand crochet and cord assembly, piece by piece."
+ "es": "Ganchillo a mano y montaje en cordón, pieza por pieza.",
+ "tr": "El tığ işi ve kordon montajı, parça parça.",
+ "ar": "كروشيه يدوي وتجميع الخيط، قطعة قطعة."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Fruit crochete main, monte sur cordon comme bijou textile.",
  "en": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
- "es": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
- "tr": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
- "ar": "Hand-crocheted fruit mounted on a cord as textile jewellery."
+ "es": "Fruta tejida a mano montada sobre un cordón como joyería textil.",
+ "tr": "El yapımı tığ işi meyve, tekstil mücevheri olarak bir kordona monte edilmiş.",
+ "ar": "فاكهة منسوجة يدويًا ومثبتة على خيط كمجوهرات نسيجية."
  },
  "care": {
- "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
+ "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l’eau ; s’il est mouillé, le faire sécher à l’air libre à l’ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l’anneau doré perd sa couleur, il peut être remplacé.",
  "en": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "es": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "tr": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced.",
- "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
+ "es": "La rafia no necesita cuidados especiales. Evitar el agua; si se moja, secar al aire libre alejado del sol directo. Evitar la exposición prolongada al sol para preservar los colores. Si el elemento dorado pierde su color, puede reemplazarse.",
+ "tr": "Rafyanın özel bakıma ihtiyacı yoktur. Suyla temastan kaçının; ıslanırsa doğrudan güneş ışığından uzakta açık havada kurutun. Renkleri korumak için uzun süreli güneş maruziyetinden kaçının. Altın unsur rengini kaybederse değiştirilebilir.",
+ "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنب الماء؛ إذا ابتلت، جففها في الهواء الطلق بعيدًا عن أشعة الشمس المباشرة. تجنب التعرض المطول للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
+ "fr": "Prêt à offrir, avec le prénom de l’artisane qui a réalisé la pièce gravé sur l’étiquette YZA.",
  "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "es": "Listo para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
+ "tr": "Hediyeye hazır, parçayı yapan zanaatkarın adı YZA etiketine kazınmış.",
+ "ar": "جاهز للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشًا على بطاقة YZA."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli kargo. Guéliz’deki stüdyodan teslim alma mevcut.",
+ "ar": "شحن مع تتبع خلال 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في جيليز."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -12317,16 +12317,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Éditions limitées de atelier, producidas al ritmo del ganchillo a mano.",
+ "tr": "Küçük atölye serisi, el tığ işi temposunda üretilmiştir.",
+ "ar": "دُفعة أتيليه صغيرة، مُنتَجة على وتيرة الكروشيه اليدوي."
  },
  "edition": {
  "fr": "Petite série atelier, produite au rythme du crochet main.",
  "en": "Small atelier batch, produced at hand-crochet pace.",
- "es": "Small atelier batch, produced at hand-crochet pace.",
- "tr": "Small atelier batch, produced at hand-crochet pace.",
- "ar": "Small atelier batch, produced at hand-crochet pace."
+ "es": "Éditions limitées de atelier, producidas al ritmo del ganchillo a mano.",
+ "tr": "Küçük atölye serisi, el tığ işi temposunda üretilmiştir.",
+ "ar": "دُفعة أتيليه صغيرة، مُنتَجة على وتيرة الكروشيه اليدوي."
  },
  "badge": "limited",
  "hours": 2.5,
