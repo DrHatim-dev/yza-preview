@@ -296,23 +296,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Top foulard Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
  "en": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels.",
- "es": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels.",
- "tr": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels.",
- "ar": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels."
+ "es": "Top foulard Jawhara de talla flexible, pensado para looks de verano frescos, acabado con detalles de borlas Shoushia hechas a mano inspiradas en los flecos marroquíes.",
+ "tr": "Serin yaz kombinleri için tasarlanmış, beden esnekliği olan Jawhara fular top; Fas frangılarından ilham alınan el yapımı Shoushia püskülleriyle tamamlanmış.",
+ "ar": "توب فولار Jawhara مرن في المقاس، مصمَّم لأطقم الصيف المنعشة، مزيَّن بتفاصيل شراشيب Shoushia المصنوعة يدوياً من وحي الشراريب المغربية."
  },
  "displayShort": {
  "fr": "Top foulard Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
  "en": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels.",
- "es": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels.",
- "tr": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels.",
- "ar": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels."
+ "es": "Top foulard Jawhara de talla flexible, pensado para looks de verano frescos, acabado con detalles de borlas Shoushia hechas a mano inspiradas en los flecos marroquíes.",
+ "tr": "Serin yaz kombinleri için tasarlanmış, beden esnekliği olan Jawhara fular top; Fas frangılarından ilham alınan el yapımı Shoushia püskülleriyle tamamlanmış.",
+ "ar": "توب فولار Jawhara مرن في المقاس، مصمَّم لأطقم الصيف المنعشة، مزيَّن بتفاصيل شراشيب Shoushia المصنوعة يدوياً من وحي الشراريب المغربية."
  },
  "desc": {
  "fr": "Top foulard Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
  "en": "The YZA Scarf Top is part of the Resort Marrakesh Wear line: a modern Marrakchi wardrobe designed from Jawhara, a striped textile associated with eastern formalwear and reimagined for summer movement. Pair it with the pareo skirt, palazzo pants, wrap pants or basket bags.",
- "es": "The YZA Scarf Top is part of the Resort Marrakesh Wear line: a modern Marrakchi wardrobe designed from Jawhara, a striped textile associated with eastern formalwear and reimagined for summer movement. Pair it with the pareo skirt, palazzo pants, wrap pants or basket bags.",
- "tr": "The YZA Scarf Top is part of the Resort Marrakesh Wear line: a modern Marrakchi wardrobe designed from Jawhara, a striped textile associated with eastern formalwear and reimagined for summer movement. Pair it with the pareo skirt, palazzo pants, wrap pants or basket bags.",
- "ar": "The YZA Scarf Top is part of the Resort Marrakesh Wear line: a modern Marrakchi wardrobe designed from Jawhara, a striped textile associated with eastern formalwear and reimagined for summer movement. Pair it with the pareo skirt, palazzo pants, wrap pants or basket bags."
+ "es": "El YZA Scarf Top forma parte de la línea Resort Marrakech Wear: un guardarropa marrakchí moderno concebido en Jawhara, un tejido a rayas asociado a la elegancia oriental y reinventado para el movimiento del verano. Combínalo con la falda pareo, los pantalones palazzo, los pantalones cruzados o las cestas.",
+ "tr": "YZA Scarf Top, Resort Marrakech Wear serisinin bir parçası: doğu resmi kıyafetleriyle özdeşleşmiş çizgili bir tekstil olan Jawhara'dan tasarlanmış, yaz hareketliliği için yeniden yorumlanmış modern bir Marakeşli dolabı. Pareo etek, palazzo pantolon, etek pantolon veya sepet çantalarla kombin et.",
+ "ar": "يُشكّل YZA Scarf Top جزءاً من خط Resort Marrakech Wear: خزانة ملابس مراكشية معاصرة مصنوعة من Jawhara، نسيج مخطَّط مرتبط بالأناقة الشرقية وأُعيد تخيّله لحرية الحركة صيفاً. ارتديه مع تنورة الباريو أو البنطال البالاتزو أو البنطال الملفوف أو السلال."
  },
  "price": 36000,
  "currency": "MAD",
@@ -322,8 +322,8 @@ const PRODUCTS = [
  "fr": "Tops",
  "en": "Tops",
  "es": "Tops",
- "tr": "Tops",
- "ar": "Tops"
+ "tr": "Üstler",
+ "ar": "قطع علوية"
  },
  "group": "rtw",
  "collection": {
@@ -345,73 +345,73 @@ const PRODUCTS = [
  "variantLabel": {
  "fr": "Foulard",
  "en": "Scarf",
- "es": "Scarf",
- "tr": "Scarf",
- "ar": "Scarf"
+ "es": "Fular",
+ "tr": "Fular",
+ "ar": "فولار"
  },
  "availableColors": [
  {
  "fr": "Blanc",
- "en": "Blanc",
- "es": "Blanc",
- "tr": "Blanc",
- "ar": "Blanc"
+ "en": "White",
+ "es": "Blanco",
+ "tr": "Beyaz",
+ "ar": "أبيض"
  },
  {
  "fr": "Noir",
- "en": "Noir",
- "es": "Noir",
- "tr": "Noir",
- "ar": "Noir"
+ "en": "Black",
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  },
  {
  "fr": "Jaune moutarde",
- "en": "Jaune moutarde",
- "es": "Jaune moutarde",
- "tr": "Jaune moutarde",
- "ar": "Jaune moutarde"
+ "en": "Mustard yellow",
+ "es": "Amarillo mostaza",
+ "tr": "Hardal sarısı",
+ "ar": "أصفر خردل"
  },
  {
  "fr": "Vert",
- "en": "Vert",
- "es": "Vert",
- "tr": "Vert",
- "ar": "Vert"
+ "en": "Green",
+ "es": "Verde",
+ "tr": "Yeşil",
+ "ar": "أخضر"
  },
  {
  "fr": "Rose vieux",
- "en": "Rose vieux",
- "es": "Rose vieux",
- "tr": "Rose vieux",
- "ar": "Rose vieux"
+ "en": "Dusty rose",
+ "es": "Rosa viejo",
+ "tr": "Soluk pembe",
+ "ar": "وردي عتيق"
  },
  {
  "fr": "Rouge",
- "en": "Rouge",
- "es": "Rouge",
- "tr": "Rouge",
- "ar": "Rouge"
+ "en": "Red",
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  },
  {
  "fr": "Bordeaux",
  "en": "Bordeaux",
- "es": "Bordeaux",
- "tr": "Bordeaux",
- "ar": "Bordeaux"
+ "es": "Burdeos",
+ "tr": "Bordo",
+ "ar": "بوردو"
  },
  {
  "fr": "Bleu majorelle",
- "en": "Bleu majorelle",
- "es": "Bleu majorelle",
- "tr": "Bleu majorelle",
- "ar": "Bleu majorelle"
+ "en": "Majorelle blue",
+ "es": "Azul Majorelle",
+ "tr": "Majorelle mavisi",
+ "ar": "أزرق ماجوريل"
  },
  {
  "fr": "Vert profond",
- "en": "Vert profond",
- "es": "Vert profond",
- "tr": "Vert profond",
- "ar": "Vert profond"
+ "en": "Deep green",
+ "es": "Verde profundo",
+ "tr": "Koyu yeşil",
+ "ar": "أخضر عميق"
  }
  ],
  "availableSizes": [],
@@ -586,24 +586,24 @@ const PRODUCTS = [
  "material": {
  "fr": "Jawhara poly & silk, details faits main",
  "en": "Jawhara poly & silk with handmade details",
- "es": "Jawhara poly & silk with handmade details",
- "tr": "Jawhara poly & silk with handmade details",
- "ar": "Jawhara poly & silk with handmade details"
+ "es": "Jawhara poly y seda con detalles hechos a mano",
+ "tr": "El yapımı detaylı Jawhara poly ve ipek",
+ "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
  "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
  "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
+ "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
+ "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
  },
  "color": null,
  "size": {
  "fr": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
  "en": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
- "es": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
- "tr": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
- "ar": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements"
+ "es": "Talla única / ajustable con lazada",
+ "tr": "Tek beden / bağlama ile ayarlanabilir",
+ "ar": "مقاس حر / قابل للضبط بالربط"
  },
  "visualSize": null,
  "visualColor": null,
@@ -614,48 +614,48 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
  "en": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
- "es": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
- "tr": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements",
- "ar": "Size-free / tie-adjustable unless codebase requires sizing; do not invent fixed measurements"
+ "es": "Talla única / ajustable con lazada",
+ "tr": "Tek beden / bağlama ile ayarlanabilir",
+ "ar": "مقاس حر / قابل للضبط بالربط"
  },
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
  "fr": "Coupe, finitions et details Jawhara controles a la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
- "es": "Cut, finishing and Jawhara details checked by hand.",
- "tr": "Cut, finishing and Jawhara details checked by hand.",
- "ar": "Cut, finishing and Jawhara details checked by hand."
+ "es": "Corte, acabados y detalles Jawhara verificados a mano.",
+ "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
+ "ar": "القصّ والتشطيب وتفاصيل Jawhara تُراجع يدوياً."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
+ "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
+ "ar": "قطعة Jawhara تُنهى يدوياً، مصمَّمة لأطقم الصيف ومظاهر المنتجعات."
  },
  "care": {
- "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "fr": "Lavage doux à froid recommandé. Séchage à l’air libre. Repassage délicat sur l’envers.",
  "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ "es": "Lavado suave en frío recomendado. Secar al aire. Planchar con delicadeza del revés.",
+ "tr": "Nazik soğuk yıkama önerilir. Havada kurutun. İçi dışına çevrilerek hassas ütüleme.",
+ "ar": "يُنصح بالغسيل اللطيف على البارد. تجفيف في الهواء. كيّ خفيف من الجانب الداخلي."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA discreto, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim almaya hazır.",
+ "ar": "تغليف YZA أنيق وبسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli gönderim. Guéliz’de stüdyodan teslim alma mümkün.",
+ "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -667,16 +667,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "badge": "limited",
  "hours": null,
@@ -709,23 +709,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Top bateau Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
  "en": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading.",
- "es": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading.",
- "tr": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading.",
- "ar": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading."
+ "es": "Top Jawhara de cuello barca para conjuntos de verano, acabado con bordado de letras Amazigh hecho a mano.",
+ "tr": "Yaz kombinleri için Jawhara col bateau top; el yapımı Amazigh harf boncuk işlemesiyle tamamlanmış.",
+ "ar": "توب Jawhara بياقة بارو لأطقم الصيف، مزيَّن بخرز حروف Amazigh المصنوع يدوياً."
  },
  "displayShort": {
  "fr": "Top bateau Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
  "en": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading.",
- "es": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading.",
- "tr": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading.",
- "ar": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading."
+ "es": "Top Jawhara de cuello barca para conjuntos de verano, acabado con bordado de letras Amazigh hecho a mano.",
+ "tr": "Yaz kombinleri için Jawhara col bateau top; el yapımı Amazigh harf boncuk işlemesiyle tamamlanmış.",
+ "ar": "توب Jawhara بياقة بارو لأطقم الصيف، مزيَّن بخرز حروف Amazigh المصنوع يدوياً."
  },
  "desc": {
  "fr": "Top bateau Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
  "en": "The YZA Bateau Top is part of the Resort Marrakesh Wear line. Made in Jawhara, a striped textile traditionally associated with formalwear, it translates local wardrobe codes into a modern, size-flexible summer piece.",
- "es": "The YZA Bateau Top is part of the Resort Marrakesh Wear line. Made in Jawhara, a striped textile traditionally associated with formalwear, it translates local wardrobe codes into a modern, size-flexible summer piece.",
- "tr": "The YZA Bateau Top is part of the Resort Marrakesh Wear line. Made in Jawhara, a striped textile traditionally associated with formalwear, it translates local wardrobe codes into a modern, size-flexible summer piece.",
- "ar": "The YZA Bateau Top is part of the Resort Marrakesh Wear line. Made in Jawhara, a striped textile traditionally associated with formalwear, it translates local wardrobe codes into a modern, size-flexible summer piece."
+ "es": "El YZA Bateau Top forma parte de la línea Resort Marrakech Wear. Confeccionado en Jawhara, un tejido a rayas asociado tradicionalmente a la ropa de ceremonia, traduce los códigos del guardarropa local en una pieza de verano moderna y de talla flexible.",
+ "tr": "YZA Bateau Top, Resort Marrakech Wear serisinin bir parçası. Geleneksel olarak resmi kıyafetlerle ilişkilendirilen çizgili bir tekstil olan Jawhara'dan yapılmış; yerel dolap kodlarını modern, beden esnekliğine sahip bir yaz parçasına dönüştürüyor.",
+ "ar": "يُشكّل YZA Bateau Top جزءاً من خط Resort Marrakech Wear. مصنوع من Jawhara، نسيج مخطَّط مرتبط تقليدياً بالملابس الرسمية، يُترجم أكواد خزانة الملابس المحلية إلى قطعة صيفية معاصرة مرنة في المقاس."
  },
  "price": 55000,
  "currency": "MAD",
@@ -735,8 +735,8 @@ const PRODUCTS = [
  "fr": "Tops",
  "en": "Tops",
  "es": "Tops",
- "tr": "Tops",
- "ar": "Tops"
+ "tr": "Üstler",
+ "ar": "قطع علوية"
  },
  "group": "rtw",
  "collection": {
@@ -757,73 +757,73 @@ const PRODUCTS = [
  "variantLabel": {
  "fr": "Bateau",
  "en": "Bateau",
- "es": "Bateau",
- "tr": "Bateau",
- "ar": "Bateau"
+ "es": "Cuello barca",
+ "tr": "Kayık yaka",
+ "ar": "ياقة بارو"
  },
  "availableColors": [
  {
  "fr": "Blanc",
- "en": "Blanc",
- "es": "Blanc",
- "tr": "Blanc",
- "ar": "Blanc"
+ "en": "White",
+ "es": "Blanco",
+ "tr": "Beyaz",
+ "ar": "أبيض"
  },
  {
  "fr": "Noir",
- "en": "Noir",
- "es": "Noir",
- "tr": "Noir",
- "ar": "Noir"
+ "en": "Black",
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  },
  {
  "fr": "Jaune moutarde",
- "en": "Jaune moutarde",
- "es": "Jaune moutarde",
- "tr": "Jaune moutarde",
- "ar": "Jaune moutarde"
+ "en": "Mustard yellow",
+ "es": "Amarillo mostaza",
+ "tr": "Hardal sarısı",
+ "ar": "أصفر خردل"
  },
  {
  "fr": "Vert",
- "en": "Vert",
- "es": "Vert",
- "tr": "Vert",
- "ar": "Vert"
+ "en": "Green",
+ "es": "Verde",
+ "tr": "Yeşil",
+ "ar": "أخضر"
  },
  {
  "fr": "Rose vieux",
- "en": "Rose vieux",
- "es": "Rose vieux",
- "tr": "Rose vieux",
- "ar": "Rose vieux"
+ "en": "Dusty rose",
+ "es": "Rosa viejo",
+ "tr": "Soluk pembe",
+ "ar": "وردي عتيق"
  },
  {
  "fr": "Rouge",
- "en": "Rouge",
- "es": "Rouge",
- "tr": "Rouge",
- "ar": "Rouge"
+ "en": "Red",
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  },
  {
  "fr": "Bordeaux",
  "en": "Bordeaux",
- "es": "Bordeaux",
- "tr": "Bordeaux",
- "ar": "Bordeaux"
+ "es": "Burdeos",
+ "tr": "Bordo",
+ "ar": "بوردو"
  },
  {
  "fr": "Bleu majorelle",
- "en": "Bleu majorelle",
- "es": "Bleu majorelle",
- "tr": "Bleu majorelle",
- "ar": "Bleu majorelle"
+ "en": "Majorelle blue",
+ "es": "Azul Majorelle",
+ "tr": "Majorelle mavisi",
+ "ar": "أزرق ماجوريل"
  },
  {
  "fr": "Vert profond",
- "en": "Vert profond",
- "es": "Vert profond",
- "tr": "Vert profond",
- "ar": "Vert profond"
+ "en": "Deep green",
+ "es": "Verde profundo",
+ "tr": "Koyu yeşil",
+ "ar": "أخضر عميق"
  }
  ],
  "availableSizes": [],
@@ -998,24 +998,24 @@ const PRODUCTS = [
  "material": {
  "fr": "Jawhara poly & silk, details faits main",
  "en": "Jawhara poly & silk with handmade details",
- "es": "Jawhara poly & silk with handmade details",
- "tr": "Jawhara poly & silk with handmade details",
- "ar": "Jawhara poly & silk with handmade details"
+ "es": "Jawhara poly y seda con detalles hechos a mano",
+ "tr": "El yapımı detaylı Jawhara poly ve ipek",
+ "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
  "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
  "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
+ "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
+ "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
  },
  "color": null,
  "size": {
  "fr": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
  "en": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
- "es": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
- "tr": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
- "ar": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements"
+ "es": "Talla única / ajustable",
+ "tr": "Tek beden / ayarlanabilir",
+ "ar": "مقاس حر / قابل للضبط"
  },
  "visualSize": null,
  "visualColor": null,
@@ -1026,48 +1026,48 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
  "en": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
- "es": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
- "tr": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements",
- "ar": "Size-free / adjustable unless existing product spec defines sizes; do not invent exact measurements"
+ "es": "Talla única / ajustable",
+ "tr": "Tek beden / ayarlanabilir",
+ "ar": "مقاس حر / قابل للضبط"
  },
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
  "fr": "Coupe, finitions et details Jawhara controles a la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
- "es": "Cut, finishing and Jawhara details checked by hand.",
- "tr": "Cut, finishing and Jawhara details checked by hand.",
- "ar": "Cut, finishing and Jawhara details checked by hand."
+ "es": "Corte, acabados y detalles Jawhara verificados a mano.",
+ "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
+ "ar": "القصّ والتشطيب وتفاصيل Jawhara تُراجع يدوياً."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
+ "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
+ "ar": "قطعة Jawhara تُنهى يدوياً، مصمَّمة لأطقم الصيف ومظاهر المنتجعات."
  },
  "care": {
- "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "fr": "Lavage doux à froid recommandé. Séchage à l’air libre. Repassage délicat sur l’envers.",
  "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ "es": "Lavado suave en frío recomendado. Secar al aire. Planchar con delicadeza del revés.",
+ "tr": "Nazik soğuk yıkama önerilir. Havada kurutun. İçi dışına çevrilerek hassas ütüleme.",
+ "ar": "يُنصح بالغسيل اللطيف على البارد. تجفيف في الهواء. كيّ خفيف من الجانب الداخلي."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA discreto, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim almaya hazır.",
+ "ar": "تغليف YZA أنيق وبسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli gönderim. Guéliz’de stüdyodan teslim alma mümkün.",
+ "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -1079,16 +1079,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "badge": "limited",
  "hours": null,
@@ -1121,23 +1121,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Chemise Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
  "en": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading.",
- "es": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading.",
- "tr": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading.",
- "ar": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading."
+ "es": "Camisa Jawhara abotonada en S/M/L, diseñada para los conjuntos frescos de verano de YZA y acabada con bordado de letras Amazigh hecho a mano.",
+ "tr": "S/M/L bedenlerinde Jawhara düğmeli gömlek; YZA’nın serin yaz kombinleri için tasarlandı, el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
+ "ar": "قميص Jawhara بأزرار بمقاسات S/M/L، مصمَّم لأطقم الصيف المنعشة من YZA ومزيَّن بخرز حروف Amazigh المصنوع يدوياً."
  },
  "displayShort": {
  "fr": "Chemise Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
  "en": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading.",
- "es": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading.",
- "tr": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading.",
- "ar": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading."
+ "es": "Camisa Jawhara abotonada en S/M/L, diseñada para los conjuntos frescos de verano de YZA y acabada con bordado de letras Amazigh hecho a mano.",
+ "tr": "S/M/L bedenlerinde Jawhara düğmeli gömlek; YZA’nın serin yaz kombinleri için tasarlandı, el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
+ "ar": "قميص Jawhara بأزرار بمقاسات S/M/L، مصمَّم لأطقم الصيف المنعشة من YZA ومزيَّن بخرز حروف Amazigh المصنوع يدوياً."
  },
  "desc": {
  "fr": "Chemise Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
  "en": "The YZA Button-Up Shirt reworks Jawhara fabric into a modern Marrakchi wardrobe staple. It belongs to the Resort Marrakesh Wear family and is designed to pair with YZA pareo skirts, palazzo pants, wrap pants and basket bags.",
- "es": "The YZA Button-Up Shirt reworks Jawhara fabric into a modern Marrakchi wardrobe staple. It belongs to the Resort Marrakesh Wear family and is designed to pair with YZA pareo skirts, palazzo pants, wrap pants and basket bags.",
- "tr": "The YZA Button-Up Shirt reworks Jawhara fabric into a modern Marrakchi wardrobe staple. It belongs to the Resort Marrakesh Wear family and is designed to pair with YZA pareo skirts, palazzo pants, wrap pants and basket bags.",
- "ar": "The YZA Button-Up Shirt reworks Jawhara fabric into a modern Marrakchi wardrobe staple. It belongs to the Resort Marrakesh Wear family and is designed to pair with YZA pareo skirts, palazzo pants, wrap pants and basket bags."
+ "es": "El YZA Button-Up Shirt reinterpreta el tejido Jawhara como un básico del guardarropa marrakchí moderno. Pertenece a la familia Resort Marrakech Wear y está pensado para combinar con las faldas pareo, los pantalones palazzo, los pantalones cruzados y las cestas de YZA.",
+ "tr": "YZA Button-Up Shirt, Jawhara kumaşını modern bir Marakeşli dolap temel parçasına dönüştürüyor. Resort Marrakech Wear ailesine ait olan bu gömlek, YZA’nın pareo etekleri, palazzo pantolonları, etek pantolonları ve sepet çantalarıyla kombin için tasarlandı.",
+ "ar": "يُعيد YZA Button-Up Shirt تشكيل قماش Jawhara ليصبح قطعة أساسية في خزانة الملابس المراكشية المعاصرة. ينتمي إلى عائلة Resort Marrakech Wear ومصمَّم للتنسيق مع تنانير الباريو وبنطال البالاتزو والبنطال الملفوف والسلال من YZA."
  },
  "price": 88000,
  "currency": "MAD",
@@ -1147,8 +1147,8 @@ const PRODUCTS = [
  "fr": "Tops",
  "en": "Tops",
  "es": "Tops",
- "tr": "Tops",
- "ar": "Tops"
+ "tr": "Üstler",
+ "ar": "قطع علوية"
  },
  "group": "rtw",
  "collection": {
@@ -1170,73 +1170,73 @@ const PRODUCTS = [
  "variantLabel": {
  "fr": "Chemise S/M/L",
  "en": "Shirt S/M/L",
- "es": "Shirt S/M/L",
- "tr": "Shirt S/M/L",
- "ar": "Shirt S/M/L"
+ "es": "Camisa S/M/L",
+ "tr": "Gömlek S/M/L",
+ "ar": "قميص S/M/L"
  },
  "availableColors": [
  {
  "fr": "Blanc",
- "en": "Blanc",
- "es": "Blanc",
- "tr": "Blanc",
- "ar": "Blanc"
+ "en": "White",
+ "es": "Blanco",
+ "tr": "Beyaz",
+ "ar": "أبيض"
  },
  {
  "fr": "Noir",
- "en": "Noir",
- "es": "Noir",
- "tr": "Noir",
- "ar": "Noir"
+ "en": "Black",
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  },
  {
  "fr": "Jaune moutarde",
- "en": "Jaune moutarde",
- "es": "Jaune moutarde",
- "tr": "Jaune moutarde",
- "ar": "Jaune moutarde"
+ "en": "Mustard yellow",
+ "es": "Amarillo mostaza",
+ "tr": "Hardal sarısı",
+ "ar": "أصفر خردل"
  },
  {
  "fr": "Vert",
- "en": "Vert",
- "es": "Vert",
- "tr": "Vert",
- "ar": "Vert"
+ "en": "Green",
+ "es": "Verde",
+ "tr": "Yeşil",
+ "ar": "أخضر"
  },
  {
  "fr": "Rose vieux",
- "en": "Rose vieux",
- "es": "Rose vieux",
- "tr": "Rose vieux",
- "ar": "Rose vieux"
+ "en": "Dusty rose",
+ "es": "Rosa viejo",
+ "tr": "Soluk pembe",
+ "ar": "وردي عتيق"
  },
  {
  "fr": "Rouge",
- "en": "Rouge",
- "es": "Rouge",
- "tr": "Rouge",
- "ar": "Rouge"
+ "en": "Red",
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  },
  {
  "fr": "Bordeaux",
  "en": "Bordeaux",
- "es": "Bordeaux",
- "tr": "Bordeaux",
- "ar": "Bordeaux"
+ "es": "Burdeos",
+ "tr": "Bordo",
+ "ar": "بوردو"
  },
  {
  "fr": "Bleu majorelle",
- "en": "Bleu majorelle",
- "es": "Bleu majorelle",
- "tr": "Bleu majorelle",
- "ar": "Bleu majorelle"
+ "en": "Majorelle blue",
+ "es": "Azul Majorelle",
+ "tr": "Majorelle mavisi",
+ "ar": "أزرق ماجوريل"
  },
  {
  "fr": "Vert profond",
- "en": "Vert profond",
- "es": "Vert profond",
- "tr": "Vert profond",
- "ar": "Vert profond"
+ "en": "Deep green",
+ "es": "Verde profundo",
+ "tr": "Koyu yeşil",
+ "ar": "أخضر عميق"
  }
  ],
  "availableSizes": [
@@ -1613,16 +1613,16 @@ const PRODUCTS = [
  "material": {
  "fr": "Jawhara poly & silk, details faits main",
  "en": "Jawhara poly & silk with handmade details",
- "es": "Jawhara poly & silk with handmade details",
- "tr": "Jawhara poly & silk with handmade details",
- "ar": "Jawhara poly & silk with handmade details"
+ "es": "Jawhara poly y seda con detalles hechos a mano",
+ "tr": "El yapımı detaylı Jawhara poly ve ipek",
+ "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
  "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
  "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
+ "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
+ "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
  },
  "color": null,
  "size": {
@@ -1650,39 +1650,39 @@ const PRODUCTS = [
  "handworkTime": {
  "fr": "Coupe, finitions et details Jawhara controles a la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
- "es": "Cut, finishing and Jawhara details checked by hand.",
- "tr": "Cut, finishing and Jawhara details checked by hand.",
- "ar": "Cut, finishing and Jawhara details checked by hand."
+ "es": "Corte, acabados y detalles Jawhara verificados a mano.",
+ "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
+ "ar": "القصّ والتشطيب وتفاصيل Jawhara تُراجع يدوياً."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
+ "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
+ "ar": "قطعة Jawhara تُنهى يدوياً، مصمَّمة لأطقم الصيف ومظاهر المنتجعات."
  },
  "care": {
- "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "fr": "Lavage doux à froid recommandé. Séchage à l’air libre. Repassage délicat sur l’envers.",
  "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ "es": "Lavado suave en frío recomendado. Secar al aire. Planchar con delicadeza del revés.",
+ "tr": "Nazik soğuk yıkama önerilir. Havada kurutun. İçi dışına çevrilerek hassas ütüleme.",
+ "ar": "يُنصح بالغسيل اللطيف على البارد. تجفيف في الهواء. كيّ خفيف من الجانب الداخلي."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA discreto, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim almaya hazır.",
+ "ar": "تغليف YZA أنيق وبسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli gönderim. Guéliz’de stüdyodan teslim alma mümkün.",
+ "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -1694,16 +1694,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "badge": "limited",
  "hours": null,
@@ -1738,23 +1738,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Jupe pareo courte Jawhara, taille libre XS a XXL.",
  "en": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "es": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "tr": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "ar": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ "es": "Falda pareo corta Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
+ "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip kısa Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
+ "ar": "تنورة باريو Jawhara قصيرة مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "displayShort": {
  "fr": "Jupe pareo courte Jawhara, taille libre XS a XXL.",
  "en": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "es": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "tr": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "ar": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ "es": "Falda pareo corta Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
+ "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip kısa Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
+ "ar": "تنورة باريو Jawhara قصيرة مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "desc": {
  "fr": "Jupe pareo courte Jawhara, taille libre XS a XXL.",
  "en": "The YZA Pareo Skirt is a size-free Resort Marrakesh Wear piece made in Jawhara, a striped textile traditionally used in formalwear. The short length is designed for movement from seaside days to summer nights out.",
- "es": "The YZA Pareo Skirt is a size-free Resort Marrakesh Wear piece made in Jawhara, a striped textile traditionally used in formalwear. The short length is designed for movement from seaside days to summer nights out.",
- "tr": "The YZA Pareo Skirt is a size-free Resort Marrakesh Wear piece made in Jawhara, a striped textile traditionally used in formalwear. The short length is designed for movement from seaside days to summer nights out.",
- "ar": "The YZA Pareo Skirt is a size-free Resort Marrakesh Wear piece made in Jawhara, a striped textile traditionally used in formalwear. The short length is designed for movement from seaside days to summer nights out."
+ "es": "La YZA Pareo Skirt es una pieza Resort Marrakech Wear de talla libre confeccionada en Jawhara, un tejido a rayas usado tradicionalmente en ropa de ceremonia. El largo corto está pensado para el movimiento: de los días en la playa a las noches de verano.",
+ "tr": "YZA Pareo Etek, geleneksel olarak resmi kıyafetlerde kullanılan çizgili bir tekstil olan Jawhara'dan yapılmış beden esnekliğine sahip bir Resort Marrakech Wear parçasıdır. Kısa boyu, deniz kenarı günlerinden yaz gecelerine hareketi desteklemek için tasarlandı.",
+ "ar": "تنورة YZA Pareo Skirt قطعة Resort Marrakech Wear مرنة في المقاس، مصنوعة من Jawhara، نسيج مخطَّط استُخدم تقليدياً في الملابس الرسمية. الطول القصير مصمَّم للحركة، من أيام الشاطئ إلى سهرات الصيف."
  },
  "price": 44000,
  "currency": "MAD",
@@ -1764,8 +1764,8 @@ const PRODUCTS = [
  "fr": "Pareos",
  "en": "Pareos",
  "es": "Pareos",
- "tr": "Pareos",
- "ar": "Pareos"
+ "tr": "Pareolar",
+ "ar": "باريو"
  },
  "group": "rtw",
  "collection": {
@@ -1786,73 +1786,73 @@ const PRODUCTS = [
  "variantLabel": {
  "fr": "Courte",
  "en": "Short",
- "es": "Short",
- "tr": "Short",
- "ar": "Short"
+ "es": "Corta",
+ "tr": "Kısa",
+ "ar": "قصيرة"
  },
  "availableColors": [
  {
  "fr": "Blanc",
- "en": "Blanc",
- "es": "Blanc",
- "tr": "Blanc",
- "ar": "Blanc"
+ "en": "White",
+ "es": "Blanco",
+ "tr": "Beyaz",
+ "ar": "أبيض"
  },
  {
  "fr": "Noir",
- "en": "Noir",
- "es": "Noir",
- "tr": "Noir",
- "ar": "Noir"
+ "en": "Black",
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  },
  {
  "fr": "Jaune moutarde",
- "en": "Jaune moutarde",
- "es": "Jaune moutarde",
- "tr": "Jaune moutarde",
- "ar": "Jaune moutarde"
+ "en": "Mustard yellow",
+ "es": "Amarillo mostaza",
+ "tr": "Hardal sarısı",
+ "ar": "أصفر خردل"
  },
  {
  "fr": "Vert",
- "en": "Vert",
- "es": "Vert",
- "tr": "Vert",
- "ar": "Vert"
+ "en": "Green",
+ "es": "Verde",
+ "tr": "Yeşil",
+ "ar": "أخضر"
  },
  {
  "fr": "Rose vieux",
- "en": "Rose vieux",
- "es": "Rose vieux",
- "tr": "Rose vieux",
- "ar": "Rose vieux"
+ "en": "Dusty rose",
+ "es": "Rosa viejo",
+ "tr": "Soluk pembe",
+ "ar": "وردي عتيق"
  },
  {
  "fr": "Rouge",
- "en": "Rouge",
- "es": "Rouge",
- "tr": "Rouge",
- "ar": "Rouge"
+ "en": "Red",
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  },
  {
  "fr": "Bordeaux",
  "en": "Bordeaux",
- "es": "Bordeaux",
- "tr": "Bordeaux",
- "ar": "Bordeaux"
+ "es": "Burdeos",
+ "tr": "Bordo",
+ "ar": "بوردو"
  },
  {
  "fr": "Bleu majorelle",
- "en": "Bleu majorelle",
- "es": "Bleu majorelle",
- "tr": "Bleu majorelle",
- "ar": "Bleu majorelle"
+ "en": "Majorelle blue",
+ "es": "Azul Majorelle",
+ "tr": "Majorelle mavisi",
+ "ar": "أزرق ماجوريل"
  },
  {
  "fr": "Vert profond",
- "en": "Vert profond",
- "es": "Vert profond",
- "tr": "Vert profond",
- "ar": "Vert profond"
+ "en": "Deep green",
+ "es": "Verde profundo",
+ "tr": "Koyu yeşil",
+ "ar": "أخضر عميق"
  }
  ],
  "availableSizes": [],
@@ -2028,24 +2028,24 @@ const PRODUCTS = [
  "material": {
  "fr": "Jawhara poly & silk, details faits main",
  "en": "Jawhara poly & silk with handmade details",
- "es": "Jawhara poly & silk with handmade details",
- "tr": "Jawhara poly & silk with handmade details",
- "ar": "Jawhara poly & silk with handmade details"
+ "es": "Jawhara poly y seda con detalles hechos a mano",
+ "tr": "El yapımı detaylı Jawhara poly ve ipek",
+ "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
  "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
  "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
+ "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
+ "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
  },
  "color": null,
  "size": {
  "fr": "Size free, fits XS to XXL",
  "en": "Size free, fits XS to XXL",
- "es": "Size free, fits XS to XXL",
- "tr": "Size free, fits XS to XXL",
- "ar": "Size free, fits XS to XXL"
+ "es": "Talla única, de XS a XXL",
+ "tr": "Tek beden, XS ile XXL arasına uyuyor",
+ "ar": "مقاس حر، يناسب من XS إلى XXL"
  },
  "visualSize": null,
  "visualColor": null,
@@ -2056,48 +2056,48 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Size free, fits XS to XXL",
  "en": "Size free, fits XS to XXL",
- "es": "Size free, fits XS to XXL",
- "tr": "Size free, fits XS to XXL",
- "ar": "Size free, fits XS to XXL"
+ "es": "Talla única, de XS a XXL",
+ "tr": "Tek beden, XS ile XXL arasına uyuyor",
+ "ar": "مقاس حر، يناسب من XS إلى XXL"
  },
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
  "fr": "Coupe, finitions et details Jawhara controles a la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
- "es": "Cut, finishing and Jawhara details checked by hand.",
- "tr": "Cut, finishing and Jawhara details checked by hand.",
- "ar": "Cut, finishing and Jawhara details checked by hand."
+ "es": "Corte, acabados y detalles Jawhara verificados a mano.",
+ "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
+ "ar": "القصّ والتشطيب وتفاصيل Jawhara تُراجع يدوياً."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
+ "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
+ "ar": "قطعة Jawhara تُنهى يدوياً، مصمَّمة لأطقم الصيف ومظاهر المنتجعات."
  },
  "care": {
- "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "fr": "Lavage doux à froid recommandé. Séchage à l’air libre. Repassage délicat sur l’envers.",
  "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ "es": "Lavado suave en frío recomendado. Secar al aire. Planchar con delicadeza del revés.",
+ "tr": "Nazik soğuk yıkama önerilir. Havada kurutun. İçi dışına çevrilerek hassas ütüleme.",
+ "ar": "يُنصح بالغسيل اللطيف على البارد. تجفيف في الهواء. كيّ خفيف من الجانب الداخلي."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA discreto, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim almaya hazır.",
+ "ar": "تغليف YZA أنيق وبسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli gönderim. Guéliz’de stüdyodan teslim alma mümkün.",
+ "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -2109,16 +2109,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "badge": "limited",
  "hours": null,
@@ -2153,23 +2153,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Jupe pareo midi Jawhara, taille libre XS a XXL.",
  "en": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "es": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "tr": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "ar": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ "es": "Falda pareo midi Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
+ "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip midi Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
+ "ar": "تنورة باريو Jawhara ميدي مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "displayShort": {
  "fr": "Jupe pareo midi Jawhara, taille libre XS a XXL.",
  "en": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "es": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "tr": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "ar": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ "es": "Falda pareo midi Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
+ "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip midi Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
+ "ar": "تنورة باريو Jawhara ميدي مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "desc": {
  "fr": "Jupe pareo midi Jawhara, taille libre XS a XXL.",
  "en": "The YZA Pareo Skirt in midi length is part of the Resort Marrakesh Wear wardrobe: modular, timeless and designed to move through life with you. Made in Jawhara and finished with handmade Amazigh letter beading.",
- "es": "The YZA Pareo Skirt in midi length is part of the Resort Marrakesh Wear wardrobe: modular, timeless and designed to move through life with you. Made in Jawhara and finished with handmade Amazigh letter beading.",
- "tr": "The YZA Pareo Skirt in midi length is part of the Resort Marrakesh Wear wardrobe: modular, timeless and designed to move through life with you. Made in Jawhara and finished with handmade Amazigh letter beading.",
- "ar": "The YZA Pareo Skirt in midi length is part of the Resort Marrakesh Wear wardrobe: modular, timeless and designed to move through life with you. Made in Jawhara and finished with handmade Amazigh letter beading."
+ "es": "La YZA Pareo Skirt en largo midi forma parte del guardarropa Resort Marrakech Wear: modular, atemporal y diseñada para acompañarte en cada momento. Confeccionada en Jawhara y acabada con bordado de letras Amazigh hecho a mano.",
+ "tr": "Midi boyunda YZA Pareo Etek, Resort Marrakech Wear gardırobunun bir parçasıdır: modüler, zamansız ve hayatınla birlikte hareket etmek için tasarlandı. Jawhara'dan yapılmış, el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
+ "ar": "تنورة YZA Pareo Skirt بالطول الميدي جزء من خزانة Resort Marrakech Wear: قطعة معيارية، خارج الزمن، مصمَّمة لترافقكِ في كل لحظة. مصنوعة من Jawhara ومزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "price": 51000,
  "currency": "MAD",
@@ -2179,8 +2179,8 @@ const PRODUCTS = [
  "fr": "Pareos",
  "en": "Pareos",
  "es": "Pareos",
- "tr": "Pareos",
- "ar": "Pareos"
+ "tr": "Pareolar",
+ "ar": "باريو"
  },
  "group": "rtw",
  "collection": {
@@ -2203,71 +2203,71 @@ const PRODUCTS = [
  "en": "Midi",
  "es": "Midi",
  "tr": "Midi",
- "ar": "Midi"
+ "ar": "ميدي"
  },
  "availableColors": [
  {
  "fr": "Blanc",
- "en": "Blanc",
- "es": "Blanc",
- "tr": "Blanc",
- "ar": "Blanc"
+ "en": "White",
+ "es": "Blanco",
+ "tr": "Beyaz",
+ "ar": "أبيض"
  },
  {
  "fr": "Noir",
- "en": "Noir",
- "es": "Noir",
- "tr": "Noir",
- "ar": "Noir"
+ "en": "Black",
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  },
  {
  "fr": "Jaune moutarde",
- "en": "Jaune moutarde",
- "es": "Jaune moutarde",
- "tr": "Jaune moutarde",
- "ar": "Jaune moutarde"
+ "en": "Mustard yellow",
+ "es": "Amarillo mostaza",
+ "tr": "Hardal sarısı",
+ "ar": "أصفر خردل"
  },
  {
  "fr": "Vert",
- "en": "Vert",
- "es": "Vert",
- "tr": "Vert",
- "ar": "Vert"
+ "en": "Green",
+ "es": "Verde",
+ "tr": "Yeşil",
+ "ar": "أخضر"
  },
  {
  "fr": "Rose vieux",
- "en": "Rose vieux",
- "es": "Rose vieux",
- "tr": "Rose vieux",
- "ar": "Rose vieux"
+ "en": "Dusty rose",
+ "es": "Rosa viejo",
+ "tr": "Soluk pembe",
+ "ar": "وردي عتيق"
  },
  {
  "fr": "Rouge",
- "en": "Rouge",
- "es": "Rouge",
- "tr": "Rouge",
- "ar": "Rouge"
+ "en": "Red",
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  },
  {
  "fr": "Bordeaux",
  "en": "Bordeaux",
- "es": "Bordeaux",
- "tr": "Bordeaux",
- "ar": "Bordeaux"
+ "es": "Burdeos",
+ "tr": "Bordo",
+ "ar": "بوردو"
  },
  {
  "fr": "Bleu majorelle",
- "en": "Bleu majorelle",
- "es": "Bleu majorelle",
- "tr": "Bleu majorelle",
- "ar": "Bleu majorelle"
+ "en": "Majorelle blue",
+ "es": "Azul Majorelle",
+ "tr": "Majorelle mavisi",
+ "ar": "أزرق ماجوريل"
  },
  {
  "fr": "Vert profond",
- "en": "Vert profond",
- "es": "Vert profond",
- "tr": "Vert profond",
- "ar": "Vert profond"
+ "en": "Deep green",
+ "es": "Verde profundo",
+ "tr": "Koyu yeşil",
+ "ar": "أخضر عميق"
  }
  ],
  "availableSizes": [],
@@ -2443,24 +2443,24 @@ const PRODUCTS = [
  "material": {
  "fr": "Jawhara poly & silk, details faits main",
  "en": "Jawhara poly & silk with handmade details",
- "es": "Jawhara poly & silk with handmade details",
- "tr": "Jawhara poly & silk with handmade details",
- "ar": "Jawhara poly & silk with handmade details"
+ "es": "Jawhara poly y seda con detalles hechos a mano",
+ "tr": "El yapımı detaylı Jawhara poly ve ipek",
+ "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
  "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
  "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
+ "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
+ "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
  },
  "color": null,
  "size": {
  "fr": "Size free, fits XS to XXL",
  "en": "Size free, fits XS to XXL",
- "es": "Size free, fits XS to XXL",
- "tr": "Size free, fits XS to XXL",
- "ar": "Size free, fits XS to XXL"
+ "es": "Talla única, de XS a XXL",
+ "tr": "Tek beden, XS ile XXL arasına uyuyor",
+ "ar": "مقاس حر، يناسب من XS إلى XXL"
  },
  "visualSize": null,
  "visualColor": null,
@@ -2471,48 +2471,48 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Size free, fits XS to XXL",
  "en": "Size free, fits XS to XXL",
- "es": "Size free, fits XS to XXL",
- "tr": "Size free, fits XS to XXL",
- "ar": "Size free, fits XS to XXL"
+ "es": "Talla única, de XS a XXL",
+ "tr": "Tek beden, XS ile XXL arasına uyuyor",
+ "ar": "مقاس حر، يناسب من XS إلى XXL"
  },
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
  "fr": "Coupe, finitions et details Jawhara controles a la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
- "es": "Cut, finishing and Jawhara details checked by hand.",
- "tr": "Cut, finishing and Jawhara details checked by hand.",
- "ar": "Cut, finishing and Jawhara details checked by hand."
+ "es": "Corte, acabados y detalles Jawhara verificados a mano.",
+ "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
+ "ar": "القصّ والتشطيب وتفاصيل Jawhara تُراجع يدوياً."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
+ "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
+ "ar": "قطعة Jawhara تُنهى يدوياً، مصمَّمة لأطقم الصيف ومظاهر المنتجعات."
  },
  "care": {
- "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "fr": "Lavage doux à froid recommandé. Séchage à l’air libre. Repassage délicat sur l’envers.",
  "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ "es": "Lavado suave en frío recomendado. Secar al aire. Planchar con delicadeza del revés.",
+ "tr": "Nazik soğuk yıkama önerilir. Havada kurutun. İçi dışına çevrilerek hassas ütüleme.",
+ "ar": "يُنصح بالغسيل اللطيف على البارد. تجفيف في الهواء. كيّ خفيف من الجانب الداخلي."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA discreto, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim almaya hazır.",
+ "ar": "تغليف YZA أنيق وبسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli gönderim. Guéliz’de stüdyodan teslim alma mümkün.",
+ "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -2524,16 +2524,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "badge": "bestseller",
  "hours": null,
@@ -2568,23 +2568,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Jupe pareo longue Jawhara, taille libre XS a XXL.",
  "en": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "es": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "tr": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "ar": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ "es": "Falda pareo larga Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
+ "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip uzun Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
+ "ar": "تنورة باريو Jawhara طويلة مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "displayShort": {
  "fr": "Jupe pareo longue Jawhara, taille libre XS a XXL.",
  "en": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "es": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "tr": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "ar": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ "es": "Falda pareo larga Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
+ "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip uzun Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
+ "ar": "تنورة باريو Jawhara طويلة مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "desc": {
  "fr": "Jupe pareo longue Jawhara, taille libre XS a XXL.",
  "en": "The long YZA Pareo Skirt brings the Resort Marrakesh Wear silhouette into a fluid, full-length piece made for summer lunches, seaside movement and evening dressing.",
- "es": "The long YZA Pareo Skirt brings the Resort Marrakesh Wear silhouette into a fluid, full-length piece made for summer lunches, seaside movement and evening dressing.",
- "tr": "The long YZA Pareo Skirt brings the Resort Marrakesh Wear silhouette into a fluid, full-length piece made for summer lunches, seaside movement and evening dressing.",
- "ar": "The long YZA Pareo Skirt brings the Resort Marrakesh Wear silhouette into a fluid, full-length piece made for summer lunches, seaside movement and evening dressing."
+ "es": "La YZA Pareo Skirt larga traslada la silueta Resort Marrakech Wear a una pieza fluida de largo completo, pensada para almuerzos de verano, movimiento junto al mar y veladas elegantes.",
+ "tr": "Uzun YZA Pareo Etek, Resort Marrakech Wear siluetini yaz öğle yemekleri, deniz kenarı hareketleri ve gece kıyafetleri için tasarlanmış akışkan, tam boylu bir parçaya dönüştürüyor.",
+ "ar": "تنورة YZA Pareo Skirt الطويلة تُجسّد صورة Resort Marrakech Wear في قطعة سائلة كاملة الطول، مصمَّمة لغداءات الصيف والحركة على ضفاف البحر والتلبّس الليلي."
  },
  "price": 59000,
  "currency": "MAD",
@@ -2594,8 +2594,8 @@ const PRODUCTS = [
  "fr": "Pareos",
  "en": "Pareos",
  "es": "Pareos",
- "tr": "Pareos",
- "ar": "Pareos"
+ "tr": "Pareolar",
+ "ar": "باريو"
  },
  "group": "rtw",
  "collection": {
@@ -2616,73 +2616,73 @@ const PRODUCTS = [
  "variantLabel": {
  "fr": "Longue",
  "en": "Long",
- "es": "Long",
- "tr": "Long",
- "ar": "Long"
+ "es": "Larga",
+ "tr": "Uzun",
+ "ar": "طويلة"
  },
  "availableColors": [
  {
  "fr": "Blanc",
- "en": "Blanc",
- "es": "Blanc",
- "tr": "Blanc",
- "ar": "Blanc"
+ "en": "White",
+ "es": "Blanco",
+ "tr": "Beyaz",
+ "ar": "أبيض"
  },
  {
  "fr": "Noir",
- "en": "Noir",
- "es": "Noir",
- "tr": "Noir",
- "ar": "Noir"
+ "en": "Black",
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  },
  {
  "fr": "Jaune moutarde",
- "en": "Jaune moutarde",
- "es": "Jaune moutarde",
- "tr": "Jaune moutarde",
- "ar": "Jaune moutarde"
+ "en": "Mustard yellow",
+ "es": "Amarillo mostaza",
+ "tr": "Hardal sarısı",
+ "ar": "أصفر خردل"
  },
  {
  "fr": "Vert",
- "en": "Vert",
- "es": "Vert",
- "tr": "Vert",
- "ar": "Vert"
+ "en": "Green",
+ "es": "Verde",
+ "tr": "Yeşil",
+ "ar": "أخضر"
  },
  {
  "fr": "Rose vieux",
- "en": "Rose vieux",
- "es": "Rose vieux",
- "tr": "Rose vieux",
- "ar": "Rose vieux"
+ "en": "Dusty rose",
+ "es": "Rosa viejo",
+ "tr": "Soluk pembe",
+ "ar": "وردي عتيق"
  },
  {
  "fr": "Rouge",
- "en": "Rouge",
- "es": "Rouge",
- "tr": "Rouge",
- "ar": "Rouge"
+ "en": "Red",
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  },
  {
  "fr": "Bordeaux",
  "en": "Bordeaux",
- "es": "Bordeaux",
- "tr": "Bordeaux",
- "ar": "Bordeaux"
+ "es": "Burdeos",
+ "tr": "Bordo",
+ "ar": "بوردو"
  },
  {
  "fr": "Bleu majorelle",
- "en": "Bleu majorelle",
- "es": "Bleu majorelle",
- "tr": "Bleu majorelle",
- "ar": "Bleu majorelle"
+ "en": "Majorelle blue",
+ "es": "Azul Majorelle",
+ "tr": "Majorelle mavisi",
+ "ar": "أزرق ماجوريل"
  },
  {
  "fr": "Vert profond",
- "en": "Vert profond",
- "es": "Vert profond",
- "tr": "Vert profond",
- "ar": "Vert profond"
+ "en": "Deep green",
+ "es": "Verde profundo",
+ "tr": "Koyu yeşil",
+ "ar": "أخضر عميق"
  }
  ],
  "availableSizes": [],
@@ -2858,24 +2858,24 @@ const PRODUCTS = [
  "material": {
  "fr": "Jawhara poly & silk, details faits main",
  "en": "Jawhara poly & silk with handmade details",
- "es": "Jawhara poly & silk with handmade details",
- "tr": "Jawhara poly & silk with handmade details",
- "ar": "Jawhara poly & silk with handmade details"
+ "es": "Jawhara poly y seda con detalles hechos a mano",
+ "tr": "El yapımı detaylı Jawhara poly ve ipek",
+ "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
  "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
  "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
+ "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
+ "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
  },
  "color": null,
  "size": {
  "fr": "Size free, fits XS to XXL",
  "en": "Size free, fits XS to XXL",
- "es": "Size free, fits XS to XXL",
- "tr": "Size free, fits XS to XXL",
- "ar": "Size free, fits XS to XXL"
+ "es": "Talla única, de XS a XXL",
+ "tr": "Tek beden, XS ile XXL arasına uyuyor",
+ "ar": "مقاس حر، يناسب من XS إلى XXL"
  },
  "visualSize": null,
  "visualColor": null,
@@ -2886,48 +2886,48 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Size free, fits XS to XXL",
  "en": "Size free, fits XS to XXL",
- "es": "Size free, fits XS to XXL",
- "tr": "Size free, fits XS to XXL",
- "ar": "Size free, fits XS to XXL"
+ "es": "Talla única, de XS a XXL",
+ "tr": "Tek beden, XS ile XXL arasına uyuyor",
+ "ar": "مقاس حر، يناسب من XS إلى XXL"
  },
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
  "fr": "Coupe, finitions et details Jawhara controles a la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
- "es": "Cut, finishing and Jawhara details checked by hand.",
- "tr": "Cut, finishing and Jawhara details checked by hand.",
- "ar": "Cut, finishing and Jawhara details checked by hand."
+ "es": "Corte, acabados y detalles Jawhara verificados a mano.",
+ "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
+ "ar": "القصّ والتشطيب وتفاصيل Jawhara تُراجع يدوياً."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
+ "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
+ "ar": "قطعة Jawhara تُنهى يدوياً، مصمَّمة لأطقم الصيف ومظاهر المنتجعات."
  },
  "care": {
- "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "fr": "Lavage doux à froid recommandé. Séchage à l’air libre. Repassage délicat sur l’envers.",
  "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ "es": "Lavado suave en frío recomendado. Secar al aire. Planchar con delicadeza del revés.",
+ "tr": "Nazik soğuk yıkama önerilir. Havada kurutun. İçi dışına çevrilerek hassas ütüleme.",
+ "ar": "يُنصح بالغسيل اللطيف على البارد. تجفيف في الهواء. كيّ خفيف من الجانب الداخلي."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA discreto, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim almaya hazır.",
+ "ar": "تغليف YZA أنيق وبسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli gönderim. Guéliz’de stüdyodan teslim alma mümkün.",
+ "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -2939,16 +2939,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "badge": "limited",
  "hours": null,
@@ -2983,23 +2983,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Jupe pareo extra longue Jawhara, taille libre XS a XXL.",
  "en": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "es": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "tr": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "ar": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ "es": "Falda pareo extra larga Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
+ "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip ekstra uzun Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
+ "ar": "تنورة باريو Jawhara إكسترا طويلة مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "displayShort": {
  "fr": "Jupe pareo extra longue Jawhara, taille libre XS a XXL.",
  "en": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "es": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "tr": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
- "ar": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading."
+ "es": "Falda pareo extra larga Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
+ "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip ekstra uzun Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
+ "ar": "تنورة باريو Jawhara إكسترا طويلة مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "desc": {
  "fr": "Jupe pareo extra longue Jawhara, taille libre XS a XXL.",
  "en": "The X Long YZA Pareo Skirt is the most dramatic length in the pareo skirt family: a fluid Jawhara piece built for movement and finished by hand.",
- "es": "The X Long YZA Pareo Skirt is the most dramatic length in the pareo skirt family: a fluid Jawhara piece built for movement and finished by hand.",
- "tr": "The X Long YZA Pareo Skirt is the most dramatic length in the pareo skirt family: a fluid Jawhara piece built for movement and finished by hand.",
- "ar": "The X Long YZA Pareo Skirt is the most dramatic length in the pareo skirt family: a fluid Jawhara piece built for movement and finished by hand."
+ "es": "La YZA Pareo Skirt X Long es el largo más espectacular de la familia pareo: una pieza fluida en Jawhara construida para el movimiento y terminada a mano.",
+ "tr": "X Long YZA Pareo Etek, pareo etek ailesinin en dramatik boyudur: hareket için inşa edilmiş ve elle tamamlanmış akışkan bir Jawhara parçası.",
+ "ar": "تنورة YZA Pareo Skirt X Long هي الأطول والأكثر حضوراً في عائلة الباريو: قطعة Jawhara سائلة مصنوعة للحركة ومُنهاة يدوياً."
  },
  "price": 59000,
  "currency": "MAD",
@@ -3009,8 +3009,8 @@ const PRODUCTS = [
  "fr": "Pareos",
  "en": "Pareos",
  "es": "Pareos",
- "tr": "Pareos",
- "ar": "Pareos"
+ "tr": "Pareolar",
+ "ar": "باريو"
  },
  "group": "rtw",
  "collection": {
@@ -3031,73 +3031,73 @@ const PRODUCTS = [
  "variantLabel": {
  "fr": "Extra longue",
  "en": "Extra long",
- "es": "Extra long",
- "tr": "Extra long",
- "ar": "Extra long"
+ "es": "Extra larga",
+ "tr": "Ekstra uzun",
+ "ar": "إكسترا طويلة"
  },
  "availableColors": [
  {
  "fr": "Blanc",
- "en": "Blanc",
- "es": "Blanc",
- "tr": "Blanc",
- "ar": "Blanc"
+ "en": "White",
+ "es": "Blanco",
+ "tr": "Beyaz",
+ "ar": "أبيض"
  },
  {
  "fr": "Noir",
- "en": "Noir",
- "es": "Noir",
- "tr": "Noir",
- "ar": "Noir"
+ "en": "Black",
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  },
  {
  "fr": "Jaune moutarde",
- "en": "Jaune moutarde",
- "es": "Jaune moutarde",
- "tr": "Jaune moutarde",
- "ar": "Jaune moutarde"
+ "en": "Mustard yellow",
+ "es": "Amarillo mostaza",
+ "tr": "Hardal sarısı",
+ "ar": "أصفر خردل"
  },
  {
  "fr": "Vert",
- "en": "Vert",
- "es": "Vert",
- "tr": "Vert",
- "ar": "Vert"
+ "en": "Green",
+ "es": "Verde",
+ "tr": "Yeşil",
+ "ar": "أخضر"
  },
  {
  "fr": "Rose vieux",
- "en": "Rose vieux",
- "es": "Rose vieux",
- "tr": "Rose vieux",
- "ar": "Rose vieux"
+ "en": "Dusty rose",
+ "es": "Rosa viejo",
+ "tr": "Soluk pembe",
+ "ar": "وردي عتيق"
  },
  {
  "fr": "Rouge",
- "en": "Rouge",
- "es": "Rouge",
- "tr": "Rouge",
- "ar": "Rouge"
+ "en": "Red",
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  },
  {
  "fr": "Bordeaux",
  "en": "Bordeaux",
- "es": "Bordeaux",
- "tr": "Bordeaux",
- "ar": "Bordeaux"
+ "es": "Burdeos",
+ "tr": "Bordo",
+ "ar": "بوردو"
  },
  {
  "fr": "Bleu majorelle",
- "en": "Bleu majorelle",
- "es": "Bleu majorelle",
- "tr": "Bleu majorelle",
- "ar": "Bleu majorelle"
+ "en": "Majorelle blue",
+ "es": "Azul Majorelle",
+ "tr": "Majorelle mavisi",
+ "ar": "أزرق ماجوريل"
  },
  {
  "fr": "Vert profond",
- "en": "Vert profond",
- "es": "Vert profond",
- "tr": "Vert profond",
- "ar": "Vert profond"
+ "en": "Deep green",
+ "es": "Verde profundo",
+ "tr": "Koyu yeşil",
+ "ar": "أخضر عميق"
  }
  ],
  "availableSizes": [],
@@ -3273,24 +3273,24 @@ const PRODUCTS = [
  "material": {
  "fr": "Jawhara poly & silk, details faits main",
  "en": "Jawhara poly & silk with handmade details",
- "es": "Jawhara poly & silk with handmade details",
- "tr": "Jawhara poly & silk with handmade details",
- "ar": "Jawhara poly & silk with handmade details"
+ "es": "Jawhara poly y seda con detalles hechos a mano",
+ "tr": "El yapımı detaylı Jawhara poly ve ipek",
+ "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
  "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
  "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
+ "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
+ "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
  },
  "color": null,
  "size": {
  "fr": "Size free, fits XS to XXL",
  "en": "Size free, fits XS to XXL",
- "es": "Size free, fits XS to XXL",
- "tr": "Size free, fits XS to XXL",
- "ar": "Size free, fits XS to XXL"
+ "es": "Talla única, de XS a XXL",
+ "tr": "Tek beden, XS ile XXL arasına uyuyor",
+ "ar": "مقاس حر، يناسب من XS إلى XXL"
  },
  "visualSize": null,
  "visualColor": null,
@@ -3301,48 +3301,48 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Size free, fits XS to XXL",
  "en": "Size free, fits XS to XXL",
- "es": "Size free, fits XS to XXL",
- "tr": "Size free, fits XS to XXL",
- "ar": "Size free, fits XS to XXL"
+ "es": "Talla única, de XS a XXL",
+ "tr": "Tek beden, XS ile XXL arasına uyuyor",
+ "ar": "مقاس حر، يناسب من XS إلى XXL"
  },
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
  "fr": "Coupe, finitions et details Jawhara controles a la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
- "es": "Cut, finishing and Jawhara details checked by hand.",
- "tr": "Cut, finishing and Jawhara details checked by hand.",
- "ar": "Cut, finishing and Jawhara details checked by hand."
+ "es": "Corte, acabados y detalles Jawhara verificados a mano.",
+ "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
+ "ar": "القصّ والتشطيب وتفاصيل Jawhara تُراجع يدوياً."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
+ "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
+ "ar": "قطعة Jawhara تُنهى يدوياً، مصمَّمة لأطقم الصيف ومظاهر المنتجعات."
  },
  "care": {
- "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "fr": "Lavage doux à froid recommandé. Séchage à l’air libre. Repassage délicat sur l’envers.",
  "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ "es": "Lavado suave en frío recomendado. Secar al aire. Planchar con delicadeza del revés.",
+ "tr": "Nazik soğuk yıkama önerilir. Havada kurutun. İçi dışına çevrilerek hassas ütüleme.",
+ "ar": "يُنصح بالغسيل اللطيف على البارد. تجفيف في الهواء. كيّ خفيف من الجانب الداخلي."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA discreto, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim almaya hazır.",
+ "ar": "تغليف YZA أنيق وبسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli gönderim. Guéliz’de stüdyodan teslim alma mümkün.",
+ "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -3354,16 +3354,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "badge": "limited",
  "hours": null,
@@ -3398,23 +3398,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Pantalon palazzo Jawhara, taille libre XS a XXL.",
  "en": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details.",
- "es": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details.",
- "tr": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details.",
- "ar": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details."
+ "es": "Pantalón palazzo Jawhara de talla libre de XS a XXL, ultra largo, fácil de adaptar, con grandes bolsillos y detalles de borlas Shoushia hechos a mano.",
+ "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip Jawhara palazzo pantolon; ultra uzun, kolayca kısaltılabilir, büyük cepler ve el yapımı Shoushia püskülleriyle.",
+ "ar": "بنطال بالاتزو Jawhara مرن في المقاس من XS إلى XXL، فائق الطول، قابل للتعديل بسهولة، بجيوب واسعة وتفاصيل شراشيب Shoushia المصنوعة يدوياً."
  },
  "displayShort": {
  "fr": "Pantalon palazzo Jawhara, taille libre XS a XXL.",
  "en": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details.",
- "es": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details.",
- "tr": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details.",
- "ar": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details."
+ "es": "Pantalón palazzo Jawhara de talla libre de XS a XXL, ultra largo, fácil de adaptar, con grandes bolsillos y detalles de borlas Shoushia hechos a mano.",
+ "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip Jawhara palazzo pantolon; ultra uzun, kolayca kısaltılabilir, büyük cepler ve el yapımı Shoushia püskülleriyle.",
+ "ar": "بنطال بالاتزو Jawhara مرن في المقاس من XS إلى XXL، فائق الطول، قابل للتعديل بسهولة، بجيوب واسعة وتفاصيل شراشيب Shoushia المصنوعة يدوياً."
  },
  "desc": {
  "fr": "Pantalon palazzo Jawhara, taille libre XS a XXL.",
  "en": "The YZA Palazzo Pants are part of the Resort Marrakesh Wear wardrobe. Made in Jawhara and cut as a size-free silhouette, they are designed to be ultra long, easily tailored and practical with big pockets.",
- "es": "The YZA Palazzo Pants are part of the Resort Marrakesh Wear wardrobe. Made in Jawhara and cut as a size-free silhouette, they are designed to be ultra long, easily tailored and practical with big pockets.",
- "tr": "The YZA Palazzo Pants are part of the Resort Marrakesh Wear wardrobe. Made in Jawhara and cut as a size-free silhouette, they are designed to be ultra long, easily tailored and practical with big pockets.",
- "ar": "The YZA Palazzo Pants are part of the Resort Marrakesh Wear wardrobe. Made in Jawhara and cut as a size-free silhouette, they are designed to be ultra long, easily tailored and practical with big pockets."
+ "es": "Los YZA Palazzo Pants forman parte del guardarropa Resort Marrakech Wear. Confeccionados en Jawhara y cortados como una silueta de talla libre, están pensados para ser ultra largos, fáciles de adaptar y prácticos con grandes bolsillos.",
+ "tr": "YZA Palazzo Pantolon, Resort Marrakech Wear gardırobunun bir parçasıdır. Jawhara'dan yapılmış ve beden esnekliğine sahip bir siluet olarak kesilmiş; ultra uzun, kolayca kısaltılabilir ve büyük cepler sayesinde pratik olmak üzere tasarlandı.",
+ "ar": "بنطال YZA Palazzo جزء من خزانة Resort Marrakech Wear. مصنوع من Jawhara ومقصوص بخط حر في المقاس، مصمَّم ليكون فائق الطول قابلاً للتعديل بيسر، عملياً بجيوب واسعة."
  },
  "price": 76000,
  "currency": "MAD",
@@ -3423,9 +3423,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Pantalons",
  "en": "Pants",
- "es": "Pants",
- "tr": "Pants",
- "ar": "Pants"
+ "es": "Pantalones",
+ "tr": "Pantolonlar",
+ "ar": "بناطيل"
  },
  "group": "rtw",
  "collection": {
@@ -3448,71 +3448,71 @@ const PRODUCTS = [
  "en": "Palazzo",
  "es": "Palazzo",
  "tr": "Palazzo",
- "ar": "Palazzo"
+ "ar": "بالاتزو"
  },
  "availableColors": [
  {
  "fr": "Blanc",
- "en": "Blanc",
- "es": "Blanc",
- "tr": "Blanc",
- "ar": "Blanc"
+ "en": "White",
+ "es": "Blanco",
+ "tr": "Beyaz",
+ "ar": "أبيض"
  },
  {
  "fr": "Noir",
- "en": "Noir",
- "es": "Noir",
- "tr": "Noir",
- "ar": "Noir"
+ "en": "Black",
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  },
  {
  "fr": "Jaune moutarde",
- "en": "Jaune moutarde",
- "es": "Jaune moutarde",
- "tr": "Jaune moutarde",
- "ar": "Jaune moutarde"
+ "en": "Mustard yellow",
+ "es": "Amarillo mostaza",
+ "tr": "Hardal sarısı",
+ "ar": "أصفر خردل"
  },
  {
  "fr": "Vert",
- "en": "Vert",
- "es": "Vert",
- "tr": "Vert",
- "ar": "Vert"
+ "en": "Green",
+ "es": "Verde",
+ "tr": "Yeşil",
+ "ar": "أخضر"
  },
  {
  "fr": "Rose vieux",
- "en": "Rose vieux",
- "es": "Rose vieux",
- "tr": "Rose vieux",
- "ar": "Rose vieux"
+ "en": "Dusty rose",
+ "es": "Rosa viejo",
+ "tr": "Soluk pembe",
+ "ar": "وردي عتيق"
  },
  {
  "fr": "Rouge",
- "en": "Rouge",
- "es": "Rouge",
- "tr": "Rouge",
- "ar": "Rouge"
+ "en": "Red",
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  },
  {
  "fr": "Bordeaux",
  "en": "Bordeaux",
- "es": "Bordeaux",
- "tr": "Bordeaux",
- "ar": "Bordeaux"
+ "es": "Burdeos",
+ "tr": "Bordo",
+ "ar": "بوردو"
  },
  {
  "fr": "Bleu majorelle",
- "en": "Bleu majorelle",
- "es": "Bleu majorelle",
- "tr": "Bleu majorelle",
- "ar": "Bleu majorelle"
+ "en": "Majorelle blue",
+ "es": "Azul Majorelle",
+ "tr": "Majorelle mavisi",
+ "ar": "أزرق ماجوريل"
  },
  {
  "fr": "Vert profond",
- "en": "Vert profond",
- "es": "Vert profond",
- "tr": "Vert profond",
- "ar": "Vert profond"
+ "en": "Deep green",
+ "es": "Verde profundo",
+ "tr": "Koyu yeşil",
+ "ar": "أخضر عميق"
  }
  ],
  "availableSizes": [],
@@ -3688,24 +3688,24 @@ const PRODUCTS = [
  "material": {
  "fr": "Jawhara poly & silk, details faits main",
  "en": "Jawhara poly & silk with handmade details",
- "es": "Jawhara poly & silk with handmade details",
- "tr": "Jawhara poly & silk with handmade details",
- "ar": "Jawhara poly & silk with handmade details"
+ "es": "Jawhara poly y seda con detalles hechos a mano",
+ "tr": "El yapımı detaylı Jawhara poly ve ipek",
+ "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
  "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
  "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
+ "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
+ "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
  },
  "color": null,
  "size": {
  "fr": "Size free, fits XS to XXL; ultra long and easily tailored",
  "en": "Size free, fits XS to XXL; ultra long and easily tailored",
- "es": "Size free, fits XS to XXL; ultra long and easily tailored",
- "tr": "Size free, fits XS to XXL; ultra long and easily tailored",
- "ar": "Size free, fits XS to XXL; ultra long and easily tailored"
+ "es": "Talla única, de XS a XXL; ultra largo y fácil de adaptar",
+ "tr": "Tek beden, XS ile XXL arasına uyuyor; ultra uzun ve kolayca kısaltılabilir",
+ "ar": "مقاس حر، يناسب من XS إلى XXL؛ فائق الطول وسهل التعديل"
  },
  "visualSize": null,
  "visualColor": null,
@@ -3716,48 +3716,48 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Size free, fits XS to XXL; ultra long and easily tailored",
  "en": "Size free, fits XS to XXL; ultra long and easily tailored",
- "es": "Size free, fits XS to XXL; ultra long and easily tailored",
- "tr": "Size free, fits XS to XXL; ultra long and easily tailored",
- "ar": "Size free, fits XS to XXL; ultra long and easily tailored"
+ "es": "Talla única, de XS a XXL; ultra largo y fácil de adaptar",
+ "tr": "Tek beden, XS ile XXL arasına uyuyor; ultra uzun ve kolayca kısaltılabilir",
+ "ar": "مقاس حر، يناسب من XS إلى XXL؛ فائق الطول وسهل التعديل"
  },
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
  "fr": "Coupe, finitions et details Jawhara controles a la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
- "es": "Cut, finishing and Jawhara details checked by hand.",
- "tr": "Cut, finishing and Jawhara details checked by hand.",
- "ar": "Cut, finishing and Jawhara details checked by hand."
+ "es": "Corte, acabados y detalles Jawhara verificados a mano.",
+ "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
+ "ar": "القصّ والتشطيب وتفاصيل Jawhara تُراجع يدوياً."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
+ "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
+ "ar": "قطعة Jawhara تُنهى يدوياً، مصمَّمة لأطقم الصيف ومظاهر المنتجعات."
  },
  "care": {
- "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
+ "fr": "Lavage doux à froid recommandé. Séchage à l’air libre. Repassage délicat sur l’envers.",
  "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ "es": "Lavado suave en frío recomendado. Secar al aire. Planchar con delicadeza del revés.",
+ "tr": "Nazik soğuk yıkama önerilir. Havada kurutun. İçi dışına çevrilerek hassas ütüleme.",
+ "ar": "يُنصح بالغسيل اللطيف على البارد. تجفيف في الهواء. كيّ خفيف من الجانب الداخلي."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA discreto, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim almaya hazır.",
+ "ar": "تغليف YZA أنيق وبسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli gönderim. Guéliz’de stüdyodan teslim alma mümkün.",
+ "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -3769,16 +3769,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "badge": "limited",
  "hours": null,
@@ -3813,23 +3813,23 @@ const PRODUCTS = [
  "short": {
  "fr": "Pantalon wrap Jawhara, taille libre XS a XXL.",
  "en": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading.",
- "es": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading.",
- "tr": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading.",
- "ar": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading."
+ "es": "Pantalón wrap Jawhara de talla libre de XS a XXL, que reimagina un estilo local icónico con bordado de letras Amazigh hecho a mano.",
+ "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip Jawhara wrap pantolon; el yapımı Amazigh harf boncuk işlemesiyle ikonik yerel bir stili yeniden yorumluyor.",
+ "ar": "بنطال Jawhara ملفوف مرن في المقاس من XS إلى XXL، يُعيد تخيّل أسلوب محلي أيقوني بخرز حروف Amazigh المصنوع يدوياً."
  },
  "displayShort": {
  "fr": "Pantalon wrap Jawhara, taille libre XS a XXL.",
  "en": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading.",
- "es": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading.",
- "tr": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading.",
- "ar": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading."
+ "es": "Pantalón wrap Jawhara de talla libre de XS a XXL, que reimagina un estilo local icónico con bordado de letras Amazigh hecho a mano.",
+ "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip Jawhara wrap pantolon; el yapımı Amazigh harf boncuk işlemesiyle ikonik yerel bir stili yeniden yorumluyor.",
+ "ar": "بنطال Jawhara ملفوف مرن في المقاس من XS إلى XXL، يُعيد تخيّل أسلوب محلي أيقوني بخرز حروف Amazigh المصنوع يدوياً."
  },
  "desc": {
  "fr": "Pantalon wrap Jawhara, taille libre XS a XXL.",
  "en": "The YZA Wrap Pants are a modern play on an iconic local style. Made in Jawhara and designed to fit XS to XXL, they translate Marrakchi ease into a resortwear silhouette.",
- "es": "The YZA Wrap Pants are a modern play on an iconic local style. Made in Jawhara and designed to fit XS to XXL, they translate Marrakchi ease into a resortwear silhouette.",
- "tr": "The YZA Wrap Pants are a modern play on an iconic local style. Made in Jawhara and designed to fit XS to XXL, they translate Marrakchi ease into a resortwear silhouette.",
- "ar": "The YZA Wrap Pants are a modern play on an iconic local style. Made in Jawhara and designed to fit XS to XXL, they translate Marrakchi ease into a resortwear silhouette."
+ "es": "Los YZA Wrap Pants son una reinterpretación moderna de un estilo local icónico. Confeccionados en Jawhara y diseñados para ir de XS a XXL, traducen la soltura marrakchí en una silueta de resortwear.",
+ "tr": "YZA Wrap Pantolon, ikonik bir yerel stilin modern yorumudur. Jawhara'dan yapılmış ve XS ile XXL arasına uyacak şekilde tasarlanmış; Marakeşli rahatlığı bir resortwear siluetine dönüştürüyor.",
+ "ar": "بنطال YZA Wrap إعادة صياغة عصرية لأسلوب محلي أيقوني. مصنوع من Jawhara ومصمَّم ليناسب من XS إلى XXL، يُترجم خفّة الروح المراكشية إلى صورة resortwear أنيقة."
  },
  "price": 98000,
  "currency": "MAD",
@@ -3838,9 +3838,9 @@ const PRODUCTS = [
  "categoryLabel": {
  "fr": "Pantalons",
  "en": "Pants",
- "es": "Pants",
- "tr": "Pants",
- "ar": "Pants"
+ "es": "Pantalones",
+ "tr": "Pantolonlar",
+ "ar": "بناطيل"
  },
  "group": "rtw",
  "collection": {
@@ -3861,9 +3861,9 @@ const PRODUCTS = [
  "variantLabel": {
  "fr": "Wrap",
  "en": "Wrap",
- "es": "Wrap",
- "tr": "Wrap",
- "ar": "Wrap"
+ "es": "Envolvente",
+ "tr": "Kuşaklı",
+ "ar": "ملفوف"
  },
  "availableColors": [],
  "availableSizes": [],
@@ -3938,24 +3938,24 @@ const PRODUCTS = [
  "material": {
  "fr": "Jawhara poly & silk, details faits main",
  "en": "Jawhara poly & silk with handmade details",
- "es": "Jawhara poly & silk with handmade details",
- "tr": "Jawhara poly & silk with handmade details",
- "ar": "Jawhara poly & silk with handmade details"
+ "es": "Jawhara poly y seda con detalles hechos a mano",
+ "tr": "El yapımı detaylı Jawhara poly ve ipek",
+ "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
  "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
  "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "es": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "tr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "ar": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric"
+ "es": "Jawhara (poly & silk) - or co-creación a partir de 100 piezas por tejido",
+ "tr": "Jawhara (poly & silk) - veya kumaş başına 100 parçadan başlayan ko-kreasyonlar",
+ "ar": "Jawhara (poly & silk) - أو تعاون إبداعي يبدأ من 100 قطعة لكل قماش"
  },
  "color": null,
  "size": {
  "fr": "Size free, fits XS to XXL",
  "en": "Size free, fits XS to XXL",
- "es": "Size free, fits XS to XXL",
- "tr": "Size free, fits XS to XXL",
- "ar": "Size free, fits XS to XXL"
+ "es": "Talla única, de XS a XXL",
+ "tr": "Tek beden, XS ile XXL arasına uyuyor",
+ "ar": "مقاس حر، يناسب من XS إلى XXL"
  },
  "visualSize": null,
  "visualColor": null,
@@ -3966,48 +3966,48 @@ const PRODUCTS = [
  "dimensions": {
  "fr": "Size free, fits XS to XXL",
  "en": "Size free, fits XS to XXL",
- "es": "Size free, fits XS to XXL",
- "tr": "Size free, fits XS to XXL",
- "ar": "Size free, fits XS to XXL"
+ "es": "Talla única, de XS a XXL",
+ "tr": "Tek beden, XS ile XXL arasına uyuyor",
+ "ar": "مقاس حر، يناسب من XS إلى XXL"
  },
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
  "fr": "Coupe, finitions et details Jawhara controles a la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
- "es": "Cut, finishing and Jawhara details checked by hand.",
- "tr": "Cut, finishing and Jawhara details checked by hand.",
- "ar": "Cut, finishing and Jawhara details checked by hand."
+ "es": "Corte, acabados y detalles Jawhara verificados a mano.",
+ "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
+ "ar": "القصّ والتشطيب وتفاصيل Jawhara تُراجع يدوياً."
  },
  "howToWear": null,
  "fruitStory": null,
  "making": {
  "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "es": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "tr": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
- "ar": "Hand-finished Jawhara piece designed for summer sets and resort looks."
+ "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
+ "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
+ "ar": "قطعة Jawhara تُنهى يدوياً، مصمَّمة لأطقم الصيف ومظاهر المنتجعات."
  },
  "care": {
  "fr": "Lavage doux à froid recommandé. Séchage à l'air libre. Repassage délicat sur l'envers.",
  "en": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "es": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "tr": "Gentle cold wash recommended. Air dry. Delicate ironing inside out.",
- "ar": "Gentle cold wash recommended. Air dry. Delicate ironing inside out."
+ "es": "Lavado suave en frío recomendado. Secar al aire. Planchar con delicadeza del revés.",
+ "tr": "Nazik soğuk yıkama önerilir. Havada kurutun. İçi dışına çevrilerek hassas ütüleme.",
+ "ar": "يُنصح بالغسيل اللطيف على البارد. تجفيف في الهواء. كيّ خفيف من الجانب الداخلي."
  },
  "packaging": {
  "fr": "Emballage YZA sobre, prêt pour cadeau ou retrait studio.",
  "en": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "es": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "tr": "Minimal YZA packaging, ready for gifting or studio pickup.",
- "ar": "Minimal YZA packaging, ready for gifting or studio pickup."
+ "es": "Embalaje YZA discreto, listo para regalo o recogida en el estudio.",
+ "tr": "Sade YZA ambalajı, hediye veya stüdyodan teslim almaya hazır.",
+ "ar": "تغليف YZA أنيق وبسيط، جاهز للهدية أو الاستلام من الاستوديو."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
  "en": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "es": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "tr": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz.",
- "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
+ "es": "Envío con seguimiento en 2 a 5 días hábiles. Recogida en el estudio disponible en Guéliz.",
+ "tr": "2 ila 5 iş günü içinde takipli gönderim. Guéliz'de stüdyodan teslim alma mümkün.",
+ "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
  "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
@@ -4019,16 +4019,16 @@ const PRODUCTS = [
  "batch": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
- "es": "Small Jawhara batch; fabrics may change depending on availability.",
- "tr": "Small Jawhara batch; fabrics may change depending on availability.",
- "ar": "Small Jawhara batch; fabrics may change depending on availability."
+ "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
+ "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
+ "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "badge": "limited",
  "hours": null,
