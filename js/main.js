@@ -427,7 +427,7 @@
  const images = story.images || [];
  if (story.layout === 'wide') {
  return `<section class="product-story product-story--wide" data-reveal>
- <div class="product-story__image">${mediaImg(images[0], title || 'YZA editorial product worn on model', 'width="1480" height="920"')}</div>
+ <div class="product-story__image">${mediaImg(images[0], title || T().t('alt.editorial.worn'), 'width="1480" height="920"')}</div>
  <div class="product-story__copy product-story__copy--overlay">
  <p class="eyebrow">${esc(kicker)}</p>
  <h2>${esc(title)}</h2>
@@ -440,7 +440,7 @@
  <h2>${esc(title)}</h2>
  ${text ? `<p>${esc(text)}</p>` : ''}
  </div>
- ${images.slice(0, 2).map((src) => `<div class="product-story__image">${mediaImg(src, title || 'YZA product worn by model', 'width="1120" height="1400"')}</div>`).join('')}
+ ${images.slice(0, 2).map((src) => `<div class="product-story__image">${mediaImg(src, title || T().t('alt.product.worn'), 'width="1120" height="1400"')}</div>`).join('')}
  </section>`;
  }
 
@@ -509,7 +509,7 @@
  if (setIndex % 3 === 1) {
  const full = ['assets/lifestyle/hero.jpg', 'assets/lifestyle/editorial-grapes.jpg'][setIndex % 2];
  return `<section class="product-story product-story--wide" data-reveal>
- <div class="product-story__image"><img src="${full}" alt="YZA editorial product worn on model" loading="lazy" width="1480" height="920" decoding="async"></div>
+ <div class="product-story__image"><img src="${full}" alt="${esc(T().t('alt.editorial.worn'))}" loading="lazy" width="1480" height="920" decoding="async"></div>
  <div class="product-story__copy product-story__copy--overlay">
  <p class="eyebrow">${esc(c.fullKicker)}</p>
  <h2>${esc(c.fullTitle)}</h2>
@@ -523,7 +523,7 @@
  <h2>${esc(c.duoTitle)}</h2>
  <p>${esc(c.duoText)}</p>
  </div>
- ${imgs.map((src) => `<div class="product-story__image"><img src="${src}" alt="YZA product worn by model" loading="lazy" width="1120" height="1400" decoding="async"></div>`).join('')}
+ ${imgs.map((src) => `<div class="product-story__image"><img src="${src}" alt="${esc(T().t('alt.product.worn'))}" loading="lazy" width="1120" height="1400" decoding="async"></div>`).join('')}
  </section>`;
  }
  function renderCollectionGrid(el, list) {

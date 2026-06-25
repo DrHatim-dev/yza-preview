@@ -318,6 +318,8 @@ const EXTRA = {
   'alt.story.atelierBoard': { fr: 'À l’intérieur du studio YZA, Guéliz', en: 'Inside the YZA studio, Guéliz', es: 'Dentro del studio YZA, Guéliz', tr: 'YZA stüdyosunun içi, Guéliz', ar: 'داخل استوديو YZA، Guéliz' },
   'alt.story.bagGarden':    { fr: 'Un sac YZA dans le jardin de Guéliz', en: 'A YZA bag in the Guéliz garden', es: 'Un bolso YZA en el jardín de Guéliz', tr: 'Guéliz bahçesinde bir YZA çantası', ar: 'حقيبة YZA في حديقة Guéliz' },
   'alt.story.bandCharm':    { fr: 'Charm fruit en raphia, crocheté à la main', en: 'Raffia fruit charm, crocheted by hand', es: 'Charm de fruta en rafia, tejido a mano', tr: 'Elle tığ işiyle örülmüş rafya meyve charm’ı', ar: 'تميمة فاكهة من الرافيا، محبوكة يدويًا' },
+  'alt.editorial.worn':     { fr: 'Pièce éditoriale YZA portée par un modèle', en: 'YZA editorial piece worn on model', es: 'Pieza editorial YZA llevada por una modelo', tr: 'Bir modelin üzerinde YZA editoryal parça', ar: 'قطعة YZA من إطلالة تحرير، ترتديها عارضة' },
+  'alt.product.worn':       { fr: 'Pièce YZA portée par un modèle', en: 'YZA piece worn by a model', es: 'Pieza YZA llevada por una modelo', tr: 'Bir modelin üzerinde YZA parçası', ar: 'قطعة YZA ترتديها عارضة' },
   'announce': { es: 'Garantía 30 días · reparaciones de por vida en el atelier', tr: '30 gun garanti · atolyede omur boyu tamir', ar: 'ضمان 30 يوما · تصليحات مدى الحياة في الأتولييه' },
   'meta.shipping': { es: 'Envío gratis en Marruecos desde 1.500 DH', tr: 'Fas ici 1.500 DH uzeri ucretsiz teslimat', ar: 'توصيل مجاني في المغرب ابتداء من 1,500 درهم' },
   'meta.sale': { es: 'Fruit Market — ver charms', tr: 'Fruit Market — charm’ları keşfet', ar: 'Fruit Market — اكتشفي التعليقات' },
