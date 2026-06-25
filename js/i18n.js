@@ -9,7 +9,7 @@ const STR = {
   /* — Annonce / header / nav — */
   "announce":        { fr: "Garantie 30 jours · Réparations à vie à l’atelier", en: "30-day guarantee · Lifetime atelier repairs" },
   'announce.editions': { fr: 'Éditions limitées · jamais refaites', en: 'Limited editions · never remade', es: 'Ediciones limitadas · nunca reproducidas', tr: 'Sınırlı sayı · asla yeniden üretilmez', ar: 'إصدارات محدودة · لا تُصنع من جديد' },
-  'hero.editions':     { fr: 'Éditions limitées — une fois parties, elles ne reviennent pas', en: 'Limited editions — once they’re gone, they’re gone' },
+  'hero.editions':     { fr: 'Éditions limitées — une fois parties, elles ne reviennent pas', en: 'Limited editions — once they’re gone, they’re gone', es: 'Ediciones limitadas — una vez agotadas, no vuelven', tr: 'Sınırlı sayı — tükendiğinde geri dönmez', ar: 'إصدارات محدودة — حين تنفد، لا تعود' },
   'meta.shipping':   { fr: 'Livraison Maroc offerte dès 500 DH', en: 'Free Morocco delivery from 500 DH' },
   'meta.sale':       { fr: 'Fruit Market — nos fruits en raphia', en: 'Fruit Market — our raffia fruits' },
   'nav.charms':      { fr: 'Charms', en: 'Charms' },
@@ -34,10 +34,10 @@ const STR = {
   'mega.brand':      { fr: 'La marque', en: 'The brand' },
   'mega.editorial':  { fr: 'Éditorial', en: 'Editorial' },
   'mega.service':    { fr: 'Service client', en: 'Customer care' },
-  'mega.feat.lookbook':  { fr: 'Collection SS26/27', en: 'SS26/27 collection' },
-  'mega.feat.sculpture': { fr: 'Le it-bag de l’atelier', en: 'The atelier it-bag' },
-  'mega.feat.studio':    { fr: '66 Rue Yougoslavie, Guéliz', en: '66 Rue Yougoslavie, Guéliz' },
-  'mega.feat.contact':   { fr: 'On vous répond, vraiment', en: 'We actually reply' },
+  'mega.feat.lookbook':  { fr: 'Collection SS26/27', en: 'SS26/27 collection', es: 'Colección SS26/27', tr: 'SS26/27 koleksiyonu', ar: 'مجموعة SS26/27' },
+  'mega.feat.sculpture': { fr: 'Le it-bag de l’atelier', en: 'The atelier it-bag', es: 'El it-bag del atelier', tr: 'Atölyenin it-bag’i', ar: 'حقيبة الأتيليه الأيقونية' },
+  'mega.feat.studio':    { fr: '66 Rue Yougoslavie, Guéliz', en: '66 Rue Yougoslavie, Guéliz', es: '66 Rue Yougoslavie, Guéliz', tr: '66 Rue Yougoslavie, Guéliz', ar: '٦٦ شارع يوغوسلافيا، Guéliz' },
+  'mega.feat.contact':   { fr: 'On vous répond, vraiment', en: 'We actually reply', es: 'Te respondemos, de verdad', tr: 'Gerçekten yanıt veriyoruz', ar: 'نردّ عليكِ، فعلاً' },
   'a.search':        { fr: 'Rechercher', en: 'Search' },
   'a.wishlist':      { fr: 'Mes coups de cœur', en: 'Saved' },
   'a.cart':          { fr: 'Panier', en: 'Cart' },
@@ -133,7 +133,7 @@ const STR = {
   'conv.chat.reply': { fr: 'Merci ! Laissez-nous votre prénom et votre WhatsApp — on revient vers vous, et le code YZA10 est pour vous.', en: 'Thank you! Leave your name and WhatsApp — we’ll come back to you, and the YZA10 code is yours.', es: '¡Gracias! Déjanos tu nombre y tu WhatsApp — te respondemos, y el código YZA10 es para ti.', tr: 'Teşekkürler! Adınızı ve WhatsApp numaranızı bırakın — size yanıt veririz, YZA10 kodu sizindir.', ar: 'شكراً! اتركي لنا اسمك ورقم واتساب — نردّ عليكِ، وكود YZA10 لكِ.' },
   'conv.chat.questionPh': { fr: 'Taille, couleur, disponibilité, cadeau...', en: 'Size, colour, availability, gift...' },
   'conv.chat.namePh': { fr: 'Votre prénom', en: 'Your name', es: 'Tu nombre', tr: 'Adınız', ar: 'اسمك' },
-  'conv.chat.phonePh': { fr: 'WhatsApp (+212...)', en: 'WhatsApp (+212...)', es: 'WhatsApp (+212...)', tr: 'WhatsApp (+212...)', ar: 'واتساب (+212...)' },
+  'conv.chat.phonePh': { fr: 'WhatsApp (+212...)', en: 'WhatsApp (+212...)', es: 'WhatsApp (+34...)', tr: 'WhatsApp (+90...)', ar: 'واتساب (+212...)' },
   'conv.chat.sendBtn': { fr: 'Envoyer', en: 'Send', es: 'Enviar', tr: 'Gönder', ar: 'إرسال' },
   'conv.chat.send': { fr: 'Ouvrir WhatsApp avec le code YZA10', en: 'Open WhatsApp with code YZA10' },
   'promo.exit.kicker': { fr: 'Avant de filer', en: 'Before you slip off' },
@@ -238,11 +238,11 @@ const STR = {
   'col.pants':     { fr: 'Pantalons Jawhara', en: 'Jawhara pants' },
   'col.bottoms':   { fr: 'Bas Jawhara', en: 'Jawhara bottoms' },
   'col.bags':      { fr: 'Paniers & sacs', en: 'Baskets & bags' },
-  'col.desc.all':         { fr: 'Charms, prêt-à-porter Jawhara et sacs Sculpture SS26.', en: 'SS26 charms, Jawhara ready-to-wear and Sculpture bags.' },
-  'col.desc.charms':      { fr: 'Fruits crochetés à la main en raphia, en éditions limitées.', en: 'Hand-crocheted raffia fruits, in limited editions.' },
-  'col.desc.accessories': { fr: 'Bijoux en raphia crocheté — boucles d\'oreilles et colliers.', en: 'Crocheted raffia jewellery — earrings and necklaces.' },
-  'col.desc.bags':        { fr: 'Paniers et sacs Sculpture, faits main en raphia et cuir.', en: 'Handmade raffia baskets and Sculpture bags.' },
-  'col.desc.rtw':         { fr: 'Prêt-à-porter en tissu Jawhara, cousu à Marrakech.', en: 'Jawhara fabric ready-to-wear, sewn in Marrakech.' },
+  'col.desc.all':         { fr: 'Charms, prêt-à-porter Jawhara et sacs Sculpture SS26.', en: 'SS26 charms, Jawhara ready-to-wear and Sculpture bags.', es: 'Charms, prêt-à-porter Jawhara y bolsos Sculpture SS26.', tr: 'SS26 charm’lar, Jawhara hazır giyim ve Sculpture çantalar.', ar: 'تمائم SS26، وملابس Jawhara الجاهزة، وحقائب Sculpture.' },
+  'col.desc.charms':      { fr: 'Fruits crochetés à la main en raphia, en éditions limitées.', en: 'Hand-crocheted raffia fruits, in limited editions.', es: 'Frutas tejidas a ganchillo en rafia, en ediciones limitadas.', tr: 'Elde tığ işiyle örülmüş rafya meyveler, sınırlı sayıda.', ar: 'ثمار من الرافيا محبوكة يدويًا بالكروشيه، في إصدارات محدودة.' },
+  'col.desc.accessories': { fr: 'Bijoux en raphia crocheté — boucles d\'oreilles et colliers.', en: 'Crocheted raffia jewellery — earrings and necklaces.', es: 'Joyería en rafia a ganchillo — pendientes y collares.', tr: 'Tığ işi rafya takılar — küpeler ve kolyeler.', ar: 'مجوهرات من الرافيا المحبوكة بالكروشيه — أقراط وعقود.' },
+  'col.desc.bags':        { fr: 'Paniers et sacs Sculpture, faits main en raphia et cuir.', en: 'Handmade raffia baskets and Sculpture bags.', es: 'Cestas y bolsos Sculpture, hechos a mano en rafia y piel.', tr: 'El yapımı rafya sepetler ve Sculpture çantalar.', ar: 'سلال وحقائب Sculpture مصنوعة يدويًا من الرافيا والجلد.' },
+  'col.desc.rtw':         { fr: 'Prêt-à-porter en tissu Jawhara, cousu à Marrakech.', en: 'Jawhara fabric ready-to-wear, sewn in Marrakech.', es: 'Prêt-à-porter en tejido Jawhara, cosido en Marrakech.', tr: 'Marrakech’te dikilmiş Jawhara kumaşı hazır giyim.', ar: 'ملابس جاهزة من قماش Jawhara، مخيطة في Marrakech.' },
   'col.filterCat': { fr: 'Catégorie', en: 'Category' },
   'col.sort':      { fr: 'Trier', en: 'Sort' },
   'col.sort.feat': { fr: 'En vedette', en: 'Featured' },
@@ -288,6 +288,16 @@ const EXTRA = {
   'meta.story.desc': { fr: 'Enracinée à Guéliz, fondée par Nawal Rmili après quinze ans dans la mode à Paris. Un atelier 100 % féminin, le raphia et le tissu Jawhara.', en: 'Rooted in Guéliz, founded by Nawal Rmili after fifteen years in Paris fashion. A 100% women-run atelier, raffia and Jawhara fabric.', es: 'Con raíces en Guéliz, fundada por Nawal Rmili tras quince años en la moda en París. Un atelier 100 % femenino, la rafia y el tejido Jawhara.', tr: "Guéliz'e kök salmış, Paris modasında on beş yılın ardından Nawal Rmili tarafından kuruldu. %100 kadın atölyesi, rafya ve Jawhara kumaşı.", ar: 'متجذّرة في Guéliz، أسّستها Nawal Rmili بعد خمسة عشر عامًا في موضة باريس. أتيليه نسائي بالكامل، الرافيا وقماش Jawhara.' },
   'meta.studio.title': { fr: "Le Studio YZA à Guéliz — visite de l'atelier", en: 'The YZA Studio in Guéliz — atelier visit', es: 'El Studio YZA en Guéliz — visita al atelier', tr: "Guéliz'deki YZA Studio — atölye ziyareti", ar: 'استوديو YZA في Guéliz — زيارة الأتيليه' },
   'meta.studio.desc': { fr: 'Poussez la porte du studio YZA, rue Yougoslavie à Guéliz : thé à la menthe, raphia frais, et les mains qui font chaque pièce.', en: 'Push the door of the YZA studio on rue Yougoslavie in Guéliz: mint tea, fresh raffia, and the hands behind every piece.', es: 'Empuja la puerta del studio YZA en la rue Yougoslavie de Guéliz: té de menta, rafia fresca y las manos tras cada pieza.', tr: "Guéliz'de rue Yougoslavie'deki YZA stüdyosunun kapısını aralayın: naneli çay, taze rafya ve her parçanın arkasındaki eller.", ar: 'ادفعي باب استوديو YZA في rue Yougoslavie بحي Guéliz: شاي بالنعناع، ورافيا طازجة، والأيادي التي تصنع كل قطعة.' },
+  'meta.product.title': { fr: 'Pièce YZA — faite main à Marrakech', en: 'YZA piece — handmade in Marrakech', es: 'Pieza YZA — hecha a mano en Marrakech', tr: 'YZA parçası — Marrakech’te el yapımı', ar: 'قطعة YZA — مصنوعة يدويًا في مراكش' },
+  'meta.product.desc': { fr: 'Pièce YZA faite main à Marrakech : détails atelier, livraison Maroc & monde, retours 30 jours, checkout par WhatsApp.', en: 'YZA piece handmade in Marrakech: atelier details, Morocco & worldwide shipping, 30-day returns, WhatsApp checkout.', es: 'Pieza YZA hecha a mano en Marrakech: detalles del atelier, envío a Marruecos y al mundo, devoluciones 30 días, pago por WhatsApp.', tr: 'Marrakech’te el yapımı YZA parçası: atölye detayları, Fas ve dünya çapında gönderim, 30 gün iade, WhatsApp ile ödeme.', ar: 'قطعة YZA مصنوعة يدويًا في مراكش: تفاصيل الأتيليه، توصيل داخل المغرب وحول العالم، إرجاع خلال 30 يومًا، إتمام الطلب عبر WhatsApp.' },
+  'meta.b2b.title': { fr: 'B2B — Guéliz dans votre boutique | YZA', en: 'B2B — Guéliz in your boutique | YZA', es: 'B2B — Guéliz en tu boutique | YZA', tr: 'B2B — butiğinizde Guéliz | YZA', ar: 'B2B — Guéliz في بوتيكك | YZA' },
+  'meta.b2b.desc': { fr: 'Séries limitées YZA pour boutiques sélectionnées : line sheets, lookbooks, exclusivités. Atelier 100 % féminin à Guéliz, Marrakech.', en: 'YZA limited runs for selected boutiques: line sheets, lookbooks, exclusives. 100% women-run atelier in Guéliz, Marrakech.', es: 'Series limitadas YZA para boutiques seleccionadas: line sheets, lookbooks, exclusivas. Atelier 100 % femenino en Guéliz, Marrakech.', tr: 'Seçili butikler için sınırlı sayıda YZA: line sheet, lookbook, özel parçalar. Guéliz, Marrakech’te %100 kadın atölyesi.', ar: 'إصدارات YZA المحدودة لبوتيكات مختارة: line sheets، lookbooks، قطع حصرية. أتيليه نسائي بالكامل في Guéliz، مراكش.' },
+  'meta.girls.title': { fr: 'YZA Girls — vraies femmes, vraies pièces', en: 'YZA Girls — real women, real pieces', es: 'YZA Girls — mujeres reales, piezas reales', tr: 'YZA Girls — gerçek kadınlar, gerçek parçalar', ar: 'YZA Girls — نساء حقيقيات، قطع حقيقية' },
+  'meta.girls.desc': { fr: 'Elles portent YZA — un lookbook vivant signé par la communauté, de Marrakech à Tokyo. Sisters, friends, femmes libres.', en: 'They wear YZA — a living lookbook by the community, from Marrakech to Tokyo. Sisters, friends, free women.', es: 'Llevan YZA — un lookbook vivo firmado por la comunidad, de Marrakech a Tokio. Hermanas, amigas, mujeres libres.', tr: 'YZA giyiyorlar — topluluğun imzasını taşıyan canlı bir lookbook, Marrakech’ten Tokyo’ya. Kardeşler, arkadaşlar, özgür kadınlar.', ar: 'يرتدين YZA — Lookbook حيّ بإمضاء المجتمع، من Marrakech إلى طوكيو. أخوات، صديقات، نساء حرّات.' },
+  'meta.lookbook.title': { fr: 'Lookbook SS26/27 — YZA Modern Marrakech Wear', en: 'Lookbook SS26/27 — YZA Modern Marrakech Wear', es: 'Lookbook SS26/27 — YZA Modern Marrakech Wear', tr: 'Lookbook SS26/27 — YZA Modern Marrakech Wear', ar: 'Lookbook SS26/27 — YZA Modern Marrakech Wear' },
+  'meta.lookbook.desc': { fr: 'Le lookbook SS26/27 comme un magazine — pages lentes signées de l’atelier YZA, Guéliz. Charms, Jawhara, Sculpture.', en: 'The SS26/27 lookbook like a magazine — slow pages signed by the YZA atelier in Guéliz. Charms, Jawhara, Sculpture.', es: 'El lookbook SS26/27 como una revista — páginas lentas firmadas por el atelier YZA en Guéliz. Charms, Jawhara, Sculpture.', tr: 'Bir dergi gibi SS26/27 lookbook — Guéliz’deki YZA atölyesinin imzasını taşıyan yavaş sayfalar. Charm, Jawhara, Sculpture.', ar: 'Lookbook SS26/27 كأنه مجلة — صفحاتٌ هادئة بإمضاء أتيليه YZA في Guéliz. تمائم، Jawhara، Sculpture.' },
+  'meta.journal.title': { fr: 'Le Journal YZA — Marrakech, histoires & savoir-faire', en: 'The YZA Journal — Marrakech, stories & craft', es: 'El Journal YZA — Marrakech, historias y savoir-faire', tr: 'YZA Journal — Marrakech, hikâyeler ve zanaat', ar: 'يوميات YZA — مراكش، حكايات وحرفة' },
+  'meta.journal.desc': { fr: 'Le journal YZA : reportages de l’atelier de Guéliz, guides de style, raphia et tissu Jawhara, vie à Marrakech.', en: 'The YZA journal: reports from the Guéliz atelier, styling guides, raffia and Jawhara fabric, life in Marrakech.', es: 'El journal YZA: reportajes desde el atelier de Guéliz, guías de estilo, rafia y tejido Jawhara, vida en Marrakech.', tr: 'YZA günlüğü: Guéliz atölyesinden haberler, stil rehberleri, rafya ve Jawhara kumaşı, Marrakech’te yaşam.', ar: 'يوميات YZA: تقارير من أتيليه Guéliz، أدلة تنسيق، الرافيا وقماش Jawhara، الحياة في Marrakech.' },
   'announce': { es: 'Garantía 30 días · reparaciones de por vida en el atelier', tr: '30 gun garanti · atolyede omur boyu tamir', ar: 'ضمان 30 يوما · تصليحات مدى الحياة في الأتولييه' },
   'meta.shipping': { es: 'Envío gratis en Marruecos desde 1.500 DH', tr: 'Fas ici 1.500 DH uzeri ucretsiz teslimat', ar: 'توصيل مجاني في المغرب ابتداء من 1,500 درهم' },
   'meta.sale': { es: 'Fruit Market — ver charms', tr: 'Fruit Market — charm’ları keşfet', ar: 'Fruit Market — اكتشفي التعليقات' },
@@ -319,7 +329,7 @@ const EXTRA = {
   'a.close': { es: 'Cerrar', tr: 'Kapat', ar: 'إغلاق' },
   'cta.added': { es: 'Añadido ✓', tr: 'Eklendi ✓', ar: 'تمت الإضافة ✓' },
   'hero.title': { es: 'La Sculpture', tr: 'La Sculpture', ar: 'La Sculpture' },
-  'hero.subheading': { es: 'Hand-woven in Guéliz, Marrakech. Never the same twice.', tr: 'Hand-woven in Guéliz, Marrakech. Never the same twice.', ar: 'منسوج يدوياً في Guéliz, Marrakech. لا يتكرر أبداً.' },
+  'hero.subheading': { es: 'Tejido a mano en Guéliz, Marrakech. Nunca igual dos veces.', tr: 'Guéliz, Marrakech’te elle dokunmuş. Hiçbiri aynı değil.', ar: 'منسوج يدوياً في Guéliz, Marrakech. لا يتكرر أبداً.' },
   'pp.limited': {
     fr: 'Édition limitée · une fois partie, on ne la refait pas',
     en: 'Limited edition · once it’s gone, we don’t remake it',
@@ -440,7 +450,10 @@ const i18n = {
     // Prices are stored as whole-DH premium values; show them as-is (no extra rounding).
     const v = Math.round((Number(cents) || 0) / 100);
     const loc = LOCALES[this.lang] || 'fr-MA';
-    return `${new Intl.NumberFormat(loc, { minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(v)} DH`;
+    // Force Latin digits everywhere (avoid Arabic-Indic numerals next to Latin prices on the rest of the page).
+    const num = new Intl.NumberFormat(loc, { minimumFractionDigits: 0, maximumFractionDigits: 0, numberingSystem: 'latn' }).format(v);
+    const unit = this.lang === 'ar' ? 'درهم' : 'DH';
+    return `${num} ${unit}`;
   },
   onChange(cb) { this._cbs.push(cb); },
   setLang(l) {

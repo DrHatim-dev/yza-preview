@@ -36,14 +36,12 @@
     return p.displayPriceRange ? formatRange(p.displayPriceRange) : T().formatPrice(p.price);
   }
   function formatCardPrice(p) {
-    const lang = T().lang || 'fr';
-    const loc = ({ fr: 'fr-MA', en: 'en-US', es: 'es-ES', tr: 'tr-TR', ar: 'ar-MA' })[lang] || 'fr-MA';
-    const fmt = (cents) => `${new Intl.NumberFormat(loc, { minimumFractionDigits: 2, maximumFractionDigits: 2 }).format((Number(cents) || 0) / 100)} DH`;
+    const t = T();
     if (Array.isArray(p.displayPriceRange) && p.displayPriceRange.length >= 2) {
       const [min, max] = p.displayPriceRange;
-      return min === max ? fmt(min) : `${fmt(min)} - ${fmt(max)}`;
+      return min === max ? t.formatPrice(min) : `${t.formatPrice(min)} - ${t.formatPrice(max)}`;
     }
-    return fmt(p.price);
+    return t.formatPrice(p.price);
   }
   function stockCopy() {
     const lang = T().lang || 'fr';

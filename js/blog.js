@@ -97,7 +97,10 @@
  return YZA.i18n.formatPrice(product.price, product.currency || 'MAD');
  }
  const amount = Math.round((Number(product.price) || 0) / 100);
- return `${amount.toLocaleString('fr-FR')} DH`;
+ const lang = (document.documentElement.lang || 'fr');
+ const loc = ({ fr:'fr-MA', en:'en-MA', es:'es-ES', tr:'tr-TR', ar:'ar-MA' })[lang] || 'fr-MA';
+ const num = new Intl.NumberFormat(loc, { numberingSystem: 'latn' }).format(amount);
+ return `${num} ${lang === 'ar' ? 'درهم' : 'DH'}`;
  }
 
  function productCard(product, context) {
