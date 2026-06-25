@@ -228,7 +228,7 @@ YZA.pickText = (value) => {
 };
 
 // Berber/Amazigh symbol set (hand-keyed PNGs matching the brand-values strip), one per service.
-YZA.serviceIconFiles = { returns: 'svc-returns', payment: 'svc-payment', limited: 'svc-limited', shipping: 'svc-delivery', international: 'svc-international', repair: 'svc-repair' };
+YZA.serviceIconFiles = { returns: 'svc-returns-new', payment: 'svc-payment-new', limited: 'svc-limited-new', shipping: 'svc-delivery-new', international: 'svc-international', repair: 'svc-repair-new' };
 YZA.serviceIcon = (name, className = 'service-symbol') => {
  const file = YZA.serviceIconFiles[name] || 'svc-limited';
  return `<img aria-hidden="true" class="${className}" src="assets/brand/icons/${file}.png" alt="" width="88" height="88" loading="lazy" decoding="async">`;

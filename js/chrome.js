@@ -935,44 +935,49 @@ YZA.chrome = {
  const lang = YZA.i18n?.lang || 'fr';
  const copy = {
  fr: {
- title: 'YZA Atelier',
- eyebrow: 'WhatsApp',
- empty: 'Aucune conversation ici.',
- text: 'Demarrez sur WhatsApp pour une taille, une couleur, une disponibilite ou un cadeau.',
- cta: 'New Conversation',
- close: 'Fermer',
+ title: 'YZA Atelier', eyebrow: 'WhatsApp', close: 'Fermer',
+ greeting: 'Bonjour ! Partagez votre question ci-dessous — taille, couleur, disponibilité ou cadeau. On vous répond dès que possible.',
+ msgPh: 'Votre question (optionnel)',
+ namePh: 'Votre prénom *',
+ phonePh: 'Votre WhatsApp * (+212…)',
+ submit: 'Démarrer la conversation →',
+ err: 'Prénom et WhatsApp requis.',
  },
  en: {
- title: 'YZA Atelier',
- eyebrow: 'WhatsApp',
- empty: 'No conversations here yet.',
- text: 'Start on WhatsApp for sizing, colors, availability, or gifting help.',
- cta: 'New Conversation',
- close: 'Close',
+ title: 'YZA Atelier', eyebrow: 'WhatsApp', close: 'Close',
+ greeting: 'Hello ! Share your question below — sizing, colour, availability or gifting. We’ll reply as soon as possible.',
+ msgPh: 'Your question (optional)',
+ namePh: 'Your first name *',
+ phonePh: 'Your WhatsApp * (+…)',
+ submit: 'Start the conversation →',
+ err: 'First name and WhatsApp required.',
  },
  es: {
- title: 'YZA Atelier',
- eyebrow: 'WhatsApp',
- empty: 'Todavia no hay conversaciones aqui.',
- text: 'Empieza en WhatsApp para tallas, colores, disponibilidad o regalos.',
- cta: 'New Conversation',
- close: 'Cerrar',
+ title: 'YZA Atelier', eyebrow: 'WhatsApp', close: 'Cerrar',
+ greeting: '¡Hola ! Comparta su pregunta — talla, color, disponibilidad o regalo. Le respondemos lo antes posible.',
+ msgPh: 'Su pregunta (opcional)',
+ namePh: 'Su nombre *',
+ phonePh: 'Su WhatsApp * (+…)',
+ submit: 'Iniciar la conversación →',
+ err: 'Nombre y WhatsApp requeridos.',
  },
  tr: {
- title: 'YZA Atelier',
- eyebrow: 'WhatsApp',
- empty: 'Burada henuz konusma yok.',
- text: 'Beden, renk, stok veya hediye icin WhatsApp uzerinden baslayin.',
- cta: 'New Conversation',
- close: 'Kapat',
+ title: 'YZA Atelier', eyebrow: 'WhatsApp', close: 'Kapat',
+ greeting: 'Merhaba ! Sorunuzu paylaşın — beden, renk, stok veya hediye. En kısa sürede yanıtlıyoruz.',
+ msgPh: 'Sorunuz (isteğe bağlı)',
+ namePh: 'Adınız *',
+ phonePh: 'WhatsApp * (+…)',
+ submit: 'Konuşmayı başlat →',
+ err: 'Ad ve WhatsApp gerekli.',
  },
  ar: {
- title: 'YZA Atelier',
- eyebrow: 'WhatsApp',
- empty: 'No conversations here yet.',
- text: 'Start on WhatsApp for sizing, colors, availability, or gifting help.',
- cta: 'New Conversation',
- close: 'Close',
+ title: 'YZA Atelier', eyebrow: 'WhatsApp', close: 'إغلاق',
+ greeting: 'مرحباً ! شاركنا سؤالك — الحجم، اللون، التوفر أو هدية. سنرد عليكم فور الإمكان.',
+ msgPh: 'سؤالك (اختياري)',
+ namePh: 'اسمك *',
+ phonePh: 'WhatsApp * (+…)',
+ submit: '← ابدأ المحادثة',
+ err: 'الاسم و WhatsApp مطلوبان.',
  },
  };
  return copy[lang] || copy.fr;
@@ -982,54 +987,96 @@ YZA.chrome = {
  if (chat) return chat;
  const c = chatCopy();
  chat = document.createElement('aside');
- chat.className = 'lead-chat lead-chat--simple';
+ chat.className = 'lead-chat';
  chat.id = 'leadChat';
  chat.setAttribute('role', 'dialog');
  chat.setAttribute('aria-modal', 'false');
  chat.setAttribute('aria-labelledby', 'leadChatTitle');
  chat.hidden = true;
  chat.innerHTML = `
- <div class="lead-chat__top">
- <div>
- <span class="lead-chat__eyebrow">${c.eyebrow}</span>
+ <div class="lead-chat__header">
+ <div class="lead-chat__agent">
+ <span class="lead-chat__avatar" aria-hidden="true">YZA</span>
+ <div class="lead-chat__agent-info">
  <strong id="leadChatTitle">${c.title}</strong>
+ <span class="lead-chat__online-status"><span class="lead-chat__dot"></span><span class="lead-chat__eyebrow">${c.eyebrow}</span></span>
+ </div>
  </div>
  <button class="icon-btn lead-chat__close" id="leadChatClose" type="button" aria-label="${c.close}">${ICON.close}</button>
  </div>
- <div class="lead-chat__empty" id="leadChatEmpty">
- <span class="lead-chat__empty-icon" aria-hidden="true">${ICON.message}</span>
- <h2>${c.empty}</h2>
- <p>${c.text}</p>
+ <div class="lead-chat__thread" id="leadChatThread">
+ <div class="lead-chat__msg lead-chat__msg--bot lead-chat__msg--appear">
+ <p id="leadChatGreeting">${c.greeting}</p>
  </div>
- <a class="lead-chat__new" id="leadWhats" href="#" target="_blank" rel="noopener">${c.cta}</a>`;
+ </div>
+ <form class="lead-chat__form" id="leadChatForm" novalidate>
+ <textarea class="lead-chat__field lead-chat__field--area" id="lcMsg" name="msg" placeholder="${c.msgPh}" rows="2"></textarea>
+ <input class="lead-chat__field" id="lcName" name="name" type="text" placeholder="${c.namePh}" required autocomplete="given-name">
+ <input class="lead-chat__field" id="lcPhone" name="phone" type="tel" placeholder="${c.phonePh}" required autocomplete="tel">
+ <p class="lead-chat__err" id="lcErr" hidden></p>
+ <button type="submit" class="lead-chat__send">${c.submit}</button>
+ </form>`;
  document.body.append(chat);
  chat.querySelector('#leadChatClose')?.addEventListener('click', closeChat);
- chat.querySelector('#leadWhats')?.addEventListener('click', () => {
- YZA.analytics?.track('chat_whatsapp_click', { source: chat.dataset.source || 'lead_chat' });
+ const form = chat.querySelector('#leadChatForm');
+ form?.addEventListener('submit', (e) => {
+ e.preventDefault();
+ const name = chat.querySelector('#lcName')?.value.trim();
+ const phone = chat.querySelector('#lcPhone')?.value.trim();
+ const msg = chat.querySelector('#lcMsg')?.value.trim();
+ const err = chat.querySelector('#lcErr');
+ const cc = chatCopy();
+ if (!name || !phone) {
+ if (err) { err.textContent = cc.err; err.hidden = false; }
+ if (!name) chat.querySelector('#lcName')?.classList.add('is-invalid');
+ if (!phone) chat.querySelector('#lcPhone')?.classList.add('is-invalid');
+ return;
+ }
+ if (err) err.hidden = true;
+ const current = document.body.dataset.page === 'product'
+ ? YZA.getProduct?.(new URLSearchParams(location.search).get('handle') || '')
+ : null;
+ const productLine = current ? `Piece: ${YZA.i18n?.pick(current.name) || ''}` : `Page: ${document.title}`;
+ const waMsg = [
+ `Bonjour YZA ! Je m'appelle ${name} (WA: ${phone}).`,
+ productLine,
+ msg ? `Message: ${msg}` : '',
+ `Lien: ${location.href}`,
+ ].filter(Boolean).join('\n');
+ YZA.analytics?.track('whatsapp_open', { source: chat.dataset.source || 'lead_chat' });
+ window.open(waUrl(waMsg), '_blank', 'noopener');
+ });
+ chat.querySelectorAll('#lcName, #lcPhone').forEach((el) => {
+ el.addEventListener('input', () => el.classList.remove('is-invalid'));
  });
  return chat;
  };
 
  const refreshChatCopy = (panel) => {
  const c = chatCopy();
- panel.querySelector('#leadChatTitle').textContent = c.title;
- panel.querySelector('.lead-chat__eyebrow').textContent = c.eyebrow;
- panel.querySelector('.lead-chat__empty h2').textContent = c.empty;
- panel.querySelector('.lead-chat__empty p').textContent = c.text;
- panel.querySelector('#leadWhats').textContent = c.cta;
- panel.querySelector('#leadChatClose')?.setAttribute('aria-label', c.close);
+ const q = (sel) => panel.querySelector(sel);
+ if (q('#leadChatTitle')) q('#leadChatTitle').textContent = c.title;
+ if (q('.lead-chat__eyebrow')) q('.lead-chat__eyebrow').textContent = c.eyebrow;
+ if (q('#leadChatGreeting')) q('#leadChatGreeting').textContent = c.greeting;
+ if (q('#lcMsg')) q('#lcMsg').placeholder = c.msgPh;
+ if (q('#lcName')) q('#lcName').placeholder = c.namePh;
+ if (q('#lcPhone')) q('#lcPhone').placeholder = c.phonePh;
+ if (q('.lead-chat__send')) q('.lead-chat__send').textContent = c.submit;
+ q('#leadChatClose')?.setAttribute('aria-label', c.close);
  };
 
  const openChat = (source = 'lead_chat_button', topic = '') => {
  const panel = ensureChat();
  refreshChatCopy(panel);
  panel.dataset.source = source;
- const link = panel.querySelector('#leadWhats');
- if (link) link.href = waUrl(this.leadMessage({ topic }));
+ if (topic) {
+ const msgField = panel.querySelector('#lcMsg');
+ if (msgField && !msgField.value) msgField.placeholder = topic;
+ }
  panel.hidden = false;
  requestAnimationFrame(() => panel.classList.add('is-open'));
  chatOpen?.setAttribute('aria-expanded', 'true');
- setTimeout(() => link?.focus({ preventScroll: true }), 40);
+ setTimeout(() => panel.querySelector('#lcMsg')?.focus({ preventScroll: true }), 40);
  YZA.analytics?.track('chat_open', { source });
  };
 
