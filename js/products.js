@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
  YZA - CATALOGUE SS26/27
  Public product catalogue.
  ============================================================ */
@@ -4051,16 +4051,16 @@ const PRODUCTS = [
  "name": {
  "fr": "La Sculpture XS - Rouge",
  "en": "La Sculpture XS - Red",
- "es": "La Sculpture XS - Red",
- "tr": "La Sculpture XS - Red",
- "ar": "La Sculpture XS - Red"
+ "es": "La Sculpture XS - Rojo",
+ "tr": "La Sculpture XS - Kırmızı",
+ "ar": "La Sculpture XS - أحمر"
  },
  "displayName": {
  "fr": "La Sculpture XS - Rouge",
  "en": "La Sculpture XS - Red",
- "es": "La Sculpture XS - Red",
- "tr": "La Sculpture XS - Red",
- "ar": "La Sculpture XS - Red"
+ "es": "La Sculpture XS - Rojo",
+ "tr": "La Sculpture XS - Kırmızı",
+ "ar": "La Sculpture XS - أحمر"
  },
  "short": {
  "fr": "Format XS, couleur rouge, feuilles de bananier, raphia, cuir et perles.",
@@ -4451,16 +4451,16 @@ const PRODUCTS = [
  "name": {
  "fr": "La Sculpture S - Violet",
  "en": "La Sculpture S - Violet",
- "es": "La Sculpture S - Violet",
- "tr": "La Sculpture S - Violet",
- "ar": "La Sculpture S - Violet"
+ "es": "La Sculpture S - Violeta",
+ "tr": "La Sculpture S - Mor",
+ "ar": "La Sculpture S - بنفسجي"
  },
  "displayName": {
  "fr": "La Sculpture S - Violet",
  "en": "La Sculpture S - Violet",
- "es": "La Sculpture S - Violet",
- "tr": "La Sculpture S - Violet",
- "ar": "La Sculpture S - Violet"
+ "es": "La Sculpture S - Violeta",
+ "tr": "La Sculpture S - Mor",
+ "ar": "La Sculpture S - بنفسجي"
  },
  "short": {
  "fr": "Format S, couleur violet, feuilles de bananier, raphia, cuir et perles.",
@@ -4849,16 +4849,16 @@ const PRODUCTS = [
  "name": {
  "fr": "La Sculpture M - Noir",
  "en": "La Sculpture M - Black",
- "es": "La Sculpture M - Black",
- "tr": "La Sculpture M - Black",
- "ar": "La Sculpture M - Black"
+ "es": "La Sculpture M - Negro",
+ "tr": "La Sculpture M - Siyah",
+ "ar": "La Sculpture M - أسود"
  },
  "displayName": {
  "fr": "La Sculpture M - Noir",
  "en": "La Sculpture M - Black",
- "es": "La Sculpture M - Black",
- "tr": "La Sculpture M - Black",
- "ar": "La Sculpture M - Black"
+ "es": "La Sculpture M - Negro",
+ "tr": "La Sculpture M - Siyah",
+ "ar": "La Sculpture M - أسود"
  },
  "short": {
  "fr": "Format M, couleur noir, feuilles de bananier, raphia, cuir et perles.",
@@ -12865,23 +12865,23 @@ const BAG_ROWS = [
  "familyText": {
  "fr": "Choisissez d'abord la couleur, puis la taille. Chaque lien vous dirige vers le bon sac.",
  "en": "Choose the colour first, then the size. Each link opens the right bag page.",
- "es": "Choose the colour first, then the size. Each link opens the right bag page.",
- "tr": "Choose the colour first, then the size. Each link opens the right bag page.",
- "ar": "Choose the colour first, then the size. Each link opens the right bag page."
+ "es": "Elige primero el color y luego la talla. Cada enlace abre la página del bolso correcto.",
+ "tr": "Önce rengi, sonra bedeni seçin. Her bağlantı doğru çanta sayfasını açar.",
+ "ar": "اختر اللون أولاً ثم المقاس. كل رابط يفتح صفحة الحقيبة الصحيحة."
  },
  "rowTitle": {
  "fr": "La Sculpture - Rouge",
  "en": "La Sculpture - Red",
- "es": "La Sculpture - Red",
- "tr": "La Sculpture - Red",
- "ar": "La Sculpture - Red"
+ "es": "La Sculpture - Rojo",
+ "tr": "La Sculpture - Kırmızı",
+ "ar": "La Sculpture - أحمر"
  },
  "color": {
  "fr": "Rouge",
  "en": "Red",
- "es": "Red",
- "tr": "Red",
- "ar": "Red"
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  },
  "colorSlug": "rouge",
  "img": "assets/products/la-sculpture/sculpt-hot-red-s.jpg",
@@ -12897,24 +12897,24 @@ const BAG_ROWS = [
  "color": {
  "fr": "Rouge",
  "en": "Red",
- "es": "Red",
- "tr": "Red",
- "ar": "Red"
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  },
  "colorSlug": "rouge",
  "title": {
  "fr": "La Sculpture XS - Rouge",
  "en": "La Sculpture XS - Red",
- "es": "La Sculpture XS - Red",
- "tr": "La Sculpture XS - Red",
- "ar": "La Sculpture XS - Red"
+ "es": "La Sculpture XS - Rojo",
+ "tr": "La Sculpture XS - Kırmızı",
+ "ar": "La Sculpture XS - أحمر"
  },
  "short": {
  "fr": "Format XS, couleur rouge.",
  "en": "XS scale, Red.",
- "es": "XS scale, Red.",
- "tr": "XS scale, Red.",
- "ar": "XS scale, Red."
+ "es": "Talla XS, color rojo.",
+ "tr": "XS beden, kırmızı renk.",
+ "ar": "مقاس XS، لون أحمر."
  },
  "price": 80000,
  "img": "assets/lookbook-ss26-27/embedded/p40_img01_xref1305_5ae097cc9e5a.jpeg",
@@ -12932,24 +12932,24 @@ const BAG_ROWS = [
  "color": {
  "fr": "Rouge",
  "en": "Red",
- "es": "Red",
- "tr": "Red",
- "ar": "Red"
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  },
  "colorSlug": "rouge",
  "title": {
  "fr": "La Sculpture S - Rouge",
  "en": "La Sculpture S - Red",
- "es": "La Sculpture S - Red",
- "tr": "La Sculpture S - Red",
- "ar": "La Sculpture S - Red"
+ "es": "La Sculpture S - Rojo",
+ "tr": "La Sculpture S - Kırmızı",
+ "ar": "La Sculpture S - أحمر"
  },
  "short": {
  "fr": "Format S, couleur rouge.",
  "en": "S scale, Red.",
- "es": "S scale, Red.",
- "tr": "S scale, Red.",
- "ar": "S scale, Red."
+ "es": "Talla S, color rojo.",
+ "tr": "S beden, kırmızı renk.",
+ "ar": "مقاس S، لون أحمر."
  },
  "price": 93000,
  "img": "assets/lookbook-ss26-27/embedded/p40_img01_xref1305_5ae097cc9e5a.jpeg",
@@ -12967,24 +12967,24 @@ const BAG_ROWS = [
  "color": {
  "fr": "Rouge",
  "en": "Red",
- "es": "Red",
- "tr": "Red",
- "ar": "Red"
+ "es": "Rojo",
+ "tr": "Kırmızı",
+ "ar": "أحمر"
  },
  "colorSlug": "rouge",
  "title": {
  "fr": "La Sculpture M - Rouge",
  "en": "La Sculpture M - Red",
- "es": "La Sculpture M - Red",
- "tr": "La Sculpture M - Red",
- "ar": "La Sculpture M - Red"
+ "es": "La Sculpture M - Rojo",
+ "tr": "La Sculpture M - Kırmızı",
+ "ar": "La Sculpture M - أحمر"
  },
  "short": {
  "fr": "Format M, couleur rouge.",
  "en": "M scale, Red.",
- "es": "M scale, Red.",
- "tr": "M scale, Red.",
- "ar": "M scale, Red."
+ "es": "Talla M, color rojo.",
+ "tr": "M beden, kırmızı renk.",
+ "ar": "مقاس M، لون أحمر."
  },
  "price": 100000,
  "img": "assets/lookbook-ss26-27/embedded/p40_img01_xref1305_5ae097cc9e5a.jpeg",
@@ -13017,23 +13017,23 @@ const BAG_ROWS = [
  "familyText": {
  "fr": "Choisissez d'abord la couleur, puis la taille. Chaque lien vous dirige vers le bon sac.",
  "en": "Choose the colour first, then the size. Each link opens the right bag page.",
- "es": "Choose the colour first, then the size. Each link opens the right bag page.",
- "tr": "Choose the colour first, then the size. Each link opens the right bag page.",
- "ar": "Choose the colour first, then the size. Each link opens the right bag page."
+ "es": "Elige primero el color y luego la talla. Cada enlace abre la página del bolso correcto.",
+ "tr": "Önce rengi, sonra bedeni seçin. Her bağlantı doğru çanta sayfasını açar.",
+ "ar": "اختر اللون أولاً ثم المقاس. كل رابط يفتح صفحة الحقيبة الصحيحة."
  },
  "rowTitle": {
  "fr": "La Sculpture - Violet",
  "en": "La Sculpture - Violet",
- "es": "La Sculpture - Violet",
- "tr": "La Sculpture - Violet",
- "ar": "La Sculpture - Violet"
+ "es": "La Sculpture - Violeta",
+ "tr": "La Sculpture - Mor",
+ "ar": "La Sculpture - بنفسجي"
  },
  "color": {
  "fr": "Violet",
  "en": "Violet",
- "es": "Violet",
- "tr": "Violet",
- "ar": "Violet"
+ "es": "Violeta",
+ "tr": "Mor",
+ "ar": "بنفسجي"
  },
  "colorSlug": "violet",
  "img": "assets/products/la-sculpture/sculpt-deep-violet-s.jpg",
@@ -13049,24 +13049,24 @@ const BAG_ROWS = [
  "color": {
  "fr": "Violet",
  "en": "Violet",
- "es": "Violet",
- "tr": "Violet",
- "ar": "Violet"
+ "es": "Violeta",
+ "tr": "Mor",
+ "ar": "بنفسجي"
  },
  "colorSlug": "violet",
  "title": {
  "fr": "La Sculpture XS - Violet",
  "en": "La Sculpture XS - Violet",
- "es": "La Sculpture XS - Violet",
- "tr": "La Sculpture XS - Violet",
- "ar": "La Sculpture XS - Violet"
+ "es": "La Sculpture XS - Violeta",
+ "tr": "La Sculpture XS - Mor",
+ "ar": "La Sculpture XS - بنفسجي"
  },
  "short": {
  "fr": "Format XS, couleur violet.",
  "en": "XS scale, Violet.",
- "es": "XS scale, Violet.",
- "tr": "XS scale, Violet.",
- "ar": "XS scale, Violet."
+ "es": "Talla XS, color violeta.",
+ "tr": "XS beden, mor renk.",
+ "ar": "مقاس XS، لون بنفسجي."
  },
  "price": 80000,
  "img": "assets/lookbook-ss26-27/embedded/p41_img03_xref1315_841b5b884798.jpeg",
@@ -13083,24 +13083,24 @@ const BAG_ROWS = [
  "color": {
  "fr": "Violet",
  "en": "Violet",
- "es": "Violet",
- "tr": "Violet",
- "ar": "Violet"
+ "es": "Violeta",
+ "tr": "Mor",
+ "ar": "بنفسجي"
  },
  "colorSlug": "violet",
  "title": {
  "fr": "La Sculpture S - Violet",
  "en": "La Sculpture S - Violet",
- "es": "La Sculpture S - Violet",
- "tr": "La Sculpture S - Violet",
- "ar": "La Sculpture S - Violet"
+ "es": "La Sculpture S - Violeta",
+ "tr": "La Sculpture S - Mor",
+ "ar": "La Sculpture S - بنفسجي"
  },
  "short": {
  "fr": "Format S, couleur violet.",
  "en": "S scale, Violet.",
- "es": "S scale, Violet.",
- "tr": "S scale, Violet.",
- "ar": "S scale, Violet."
+ "es": "Talla S, color violeta.",
+ "tr": "S beden, mor renk.",
+ "ar": "مقاس S، لون بنفسجي."
  },
  "price": 93000,
  "img": "assets/lookbook-ss26-27/embedded/p41_img03_xref1315_841b5b884798.jpeg",
@@ -13117,24 +13117,24 @@ const BAG_ROWS = [
  "color": {
  "fr": "Violet",
  "en": "Violet",
- "es": "Violet",
- "tr": "Violet",
- "ar": "Violet"
+ "es": "Violeta",
+ "tr": "Mor",
+ "ar": "بنفسجي"
  },
  "colorSlug": "violet",
  "title": {
  "fr": "La Sculpture M - Violet",
  "en": "La Sculpture M - Violet",
- "es": "La Sculpture M - Violet",
- "tr": "La Sculpture M - Violet",
- "ar": "La Sculpture M - Violet"
+ "es": "La Sculpture M - Violeta",
+ "tr": "La Sculpture M - Mor",
+ "ar": "La Sculpture M - بنفسجي"
  },
  "short": {
  "fr": "Format M, couleur violet.",
  "en": "M scale, Violet.",
- "es": "M scale, Violet.",
- "tr": "M scale, Violet.",
- "ar": "M scale, Violet."
+ "es": "Talla M, color violeta.",
+ "tr": "M beden, mor renk.",
+ "ar": "مقاس M، لون بنفسجي."
  },
  "price": 100000,
  "img": "assets/lookbook-ss26-27/embedded/p41_img03_xref1315_841b5b884798.jpeg",
@@ -13166,23 +13166,23 @@ const BAG_ROWS = [
  "familyText": {
  "fr": "Choisissez d'abord la couleur, puis la taille. Chaque lien vous dirige vers le bon sac.",
  "en": "Choose the colour first, then the size. Each link opens the right bag page.",
- "es": "Choose the colour first, then the size. Each link opens the right bag page.",
- "tr": "Choose the colour first, then the size. Each link opens the right bag page.",
- "ar": "Choose the colour first, then the size. Each link opens the right bag page."
+ "es": "Elige primero el color y luego la talla. Cada enlace abre la página del bolso correcto.",
+ "tr": "Önce rengi, sonra bedeni seçin. Her bağlantı doğru çanta sayfasını açar.",
+ "ar": "اختر اللون أولاً ثم المقاس. كل رابط يفتح صفحة الحقيبة الصحيحة."
  },
  "rowTitle": {
  "fr": "La Sculpture - Noir",
  "en": "La Sculpture - Black",
- "es": "La Sculpture - Black",
- "tr": "La Sculpture - Black",
- "ar": "La Sculpture - Black"
+ "es": "La Sculpture - Negro",
+ "tr": "La Sculpture - Siyah",
+ "ar": "La Sculpture - أسود"
  },
  "color": {
  "fr": "Noir",
  "en": "Black",
- "es": "Black",
- "tr": "Black",
- "ar": "Black"
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  },
  "colorSlug": "noir",
  "img": "assets/products/la-sculpture/sculpt-black-olive-s.jpg",
@@ -13198,24 +13198,24 @@ const BAG_ROWS = [
  "color": {
  "fr": "Noir",
  "en": "Black",
- "es": "Black",
- "tr": "Black",
- "ar": "Black"
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  },
  "colorSlug": "noir",
  "title": {
  "fr": "La Sculpture XS - Noir",
  "en": "La Sculpture XS - Black",
- "es": "La Sculpture XS - Black",
- "tr": "La Sculpture XS - Black",
- "ar": "La Sculpture XS - Black"
+ "es": "La Sculpture XS - Negro",
+ "tr": "La Sculpture XS - Siyah",
+ "ar": "La Sculpture XS - أسود"
  },
  "short": {
  "fr": "Format XS, couleur noir.",
  "en": "XS scale, Black.",
- "es": "XS scale, Black.",
- "tr": "XS scale, Black.",
- "ar": "XS scale, Black."
+ "es": "Talla XS, color negro.",
+ "tr": "XS beden, siyah renk.",
+ "ar": "مقاس XS، لون أسود."
  },
  "price": 80000,
  "img": "assets/lookbook-ss26-27/embedded/p46_img01_xref1337_7dae31225680.jpeg",
@@ -13233,24 +13233,24 @@ const BAG_ROWS = [
  "color": {
  "fr": "Noir",
  "en": "Black",
- "es": "Black",
- "tr": "Black",
- "ar": "Black"
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  },
  "colorSlug": "noir",
  "title": {
  "fr": "La Sculpture S - Noir",
  "en": "La Sculpture S - Black",
- "es": "La Sculpture S - Black",
- "tr": "La Sculpture S - Black",
- "ar": "La Sculpture S - Black"
+ "es": "La Sculpture S - Negro",
+ "tr": "La Sculpture S - Siyah",
+ "ar": "La Sculpture S - أسود"
  },
  "short": {
  "fr": "Format S, couleur noir.",
  "en": "S scale, Black.",
- "es": "S scale, Black.",
- "tr": "S scale, Black.",
- "ar": "S scale, Black."
+ "es": "Talla S, color negro.",
+ "tr": "S beden, siyah renk.",
+ "ar": "مقاس S، لون أسود."
  },
  "price": 93000,
  "img": "assets/lookbook-ss26-27/embedded/p46_img01_xref1337_7dae31225680.jpeg",
@@ -13268,24 +13268,24 @@ const BAG_ROWS = [
  "color": {
  "fr": "Noir",
  "en": "Black",
- "es": "Black",
- "tr": "Black",
- "ar": "Black"
+ "es": "Negro",
+ "tr": "Siyah",
+ "ar": "أسود"
  },
  "colorSlug": "noir",
  "title": {
  "fr": "La Sculpture M - Noir",
  "en": "La Sculpture M - Black",
- "es": "La Sculpture M - Black",
- "tr": "La Sculpture M - Black",
- "ar": "La Sculpture M - Black"
+ "es": "La Sculpture M - Negro",
+ "tr": "La Sculpture M - Siyah",
+ "ar": "La Sculpture M - أسود"
  },
  "short": {
  "fr": "Format M, couleur noir.",
  "en": "M scale, Black.",
- "es": "M scale, Black.",
- "tr": "M scale, Black.",
- "ar": "M scale, Black."
+ "es": "Talla M, color negro.",
+ "tr": "M beden, siyah renk.",
+ "ar": "مقاس M، لون أسود."
  },
  "price": 100000,
  "img": "assets/lookbook-ss26-27/embedded/p46_img01_xref1337_7dae31225680.jpeg",
@@ -15503,31 +15503,41 @@ const LNV_DIR = 'assets/products/la-vague/';
 const lnvImg = (slug, size) => `${LNV_DIR}lv-${slug}-${String(size).toLowerCase()}.jpg`;
 // `line` carries the real family name per colourway (Camel is the La Vaguelette mini).
 const LNV_COLORS = [
- { slug: 'black', fr: 'Noir', en: 'Black', line: 'La Nouvelle Vague' },
- { slug: 'nude', fr: 'Nude', en: 'Nude', line: 'La Nouvelle Vague' },
- { slug: 'camel', fr: 'Camel', en: 'Camel', line: 'La Nouvelle Vague' },
+ { slug: 'black', fr: 'Noir', en: 'Black', es: 'Negro', tr: 'Siyah', ar: 'أسود', line: 'La Nouvelle Vague' },
+ { slug: 'nude', fr: 'Nude', en: 'Nude', es: 'Nude', tr: 'Nude', ar: 'نود', line: 'La Nouvelle Vague' },
+ { slug: 'camel', fr: 'Camel', en: 'Camel', es: 'Camel', tr: 'Camel', ar: 'كاميل', line: 'La Nouvelle Vague' },
 ];
 const LNV_SIZES = [
  { size: 'XS', handle: 'la-nouvelle-vague-xs-basket-bag-ss26' },
  { size: 'S', handle: 'la-nouvelle-vague-s-basket-bag-ss26' },
  { size: 'M', handle: 'la-nouvelle-vague-m-basket-bag-ss26' },
 ];
+// Preserve Batch-B es/tr/ar translations when only fr/en are provided.
+const _merge = (fr, en, prev) => {
+  var es = (prev && prev.es && prev.es !== prev.en) ? prev.es : en;
+  var tr = (prev && prev.tr && prev.tr !== prev.en) ? prev.tr : en;
+  var ar = (prev && prev.ar && prev.ar !== prev.en) ? prev.ar : en;
+  return { fr: fr, en: en, es: es, tr: tr, ar: ar };
+};
 LNV_SIZES.forEach((sz, i) => {
  const p = PRODUCT_MAP.get(sz.handle);
  if (!p) return;
  p.name = L5('La Nouvelle Vague ' + sz.size, 'La Nouvelle Vague ' + sz.size);
  p.displayName = L5('La Nouvelle Vague ' + sz.size, 'La Nouvelle Vague ' + sz.size);
- p.short = L5(
+ p.short = _merge(
  'Format ' + sz.size + ', raphia tissé main et cuir.',
- sz.size + ' scale, handwoven raffia and leather.'
+ sz.size + ' scale, handwoven raffia and leather.',
+ p.short
  );
- p.displayShort = L5(
+ p.displayShort = _merge(
  'Format ' + sz.size + ', raphia tissé main et cuir.',
- sz.size + ' scale, handwoven raffia and leather.'
+ sz.size + ' scale, handwoven raffia and leather.',
+ p.displayShort
  );
- p.desc = L5(
+ p.desc = _merge(
  'La Vague ' + sz.size + ' : un panier en raphia tissé main dans notre atelier de Marrakech, finition cuir - proposé en Noir, Nude et Camel.',
- 'La Vague ' + sz.size + ': a raffia basket bag handwoven in our Marrakech atelier with a leather finish - offered in Black, Nude and Camel.'
+ 'La Vague ' + sz.size + ': a raffia basket bag handwoven in our Marrakech atelier with a leather finish - offered in Black, Nude and Camel.',
+ p.desc
  );
  p.color = L5(LNV_COLORS[0].fr, LNV_COLORS[0].en);
  p.visualColor = null;
@@ -15548,8 +15558,8 @@ LNV_COLORS.forEach((c) => {
  familyTitle: L5('La Nouvelle Vague', 'La Nouvelle Vague'),
  familyEyebrow: L5('Feuilles de bananier · Cuir · Perles', 'Banana leaves · Leather · Beads'),
  familyText: L5("Choisissez d'abord la couleur, puis la taille. Chaque lien vous dirige vers le bon sac.", 'Choose the colour first, then the size. Each link opens the right bag page.'),
- rowTitle: L5(c.line + ' · ' + c.fr, c.line + ' · ' + c.en),
- color: L5(c.fr, c.en),
+ rowTitle: { fr: c.line + ' · ' + c.fr, en: c.line + ' · ' + c.en, es: c.line + ' · ' + c.es, tr: c.line + ' · ' + c.tr, ar: c.line + ' · ' + c.ar },
+ color: { fr: c.fr, en: c.en, es: c.es, tr: c.tr, ar: c.ar },
  colorSlug: c.slug,
  img: lnvImg(c.slug, 's'),
  gallery: LNV_SIZES.map((sz) => lnvImg(c.slug, sz.size)),
@@ -15559,10 +15569,10 @@ LNV_COLORS.forEach((c) => {
  return {
  handle: sz.handle,
  size: sz.size,
- color: L5(c.fr, c.en),
+ color: { fr: c.fr, en: c.en, es: c.es, tr: c.tr, ar: c.ar },
  colorSlug: c.slug,
- title: L5(c.line + ' ' + sz.size + ' · ' + c.fr, c.line + ' ' + sz.size + ' · ' + c.en),
- short: L5('Format ' + sz.size + ', couleur ' + c.fr + '.', sz.size + ' scale, ' + c.en + '.'),
+ title: { fr: c.line + ' ' + sz.size + ' · ' + c.fr, en: c.line + ' ' + sz.size + ' · ' + c.en, es: c.line + ' ' + sz.size + ' · ' + c.es, tr: c.line + ' ' + sz.size + ' · ' + c.tr, ar: c.line + ' ' + sz.size + ' · ' + c.ar },
+ short: { fr: 'Format ' + sz.size + ', couleur ' + c.fr + '.', en: sz.size + ' scale, ' + c.en + '.', es: 'Talla ' + sz.size + ', color ' + c.es + '.', tr: sz.size + ' beden, ' + c.tr + ' renk.', ar: 'مقاس ' + sz.size + '، لون ' + c.ar + '.' },
  price: prod ? prod.price : null,
  img: img,
  gallery: [img],
@@ -15609,17 +15619,20 @@ SCULPT_SIZE_COPY.forEach((s) => {
  if (!p) return;
  p.name = L5('La Sculpture ' + s.size, 'La Sculpture ' + s.size);
  p.displayName = L5('La Sculpture ' + s.size, 'La Sculpture ' + s.size);
- p.short = L5(
+ p.short = _merge(
  'Format ' + s.size + ', tissé main en feuilles de bananier, raphia, cuir et perles.',
- s.size + ' scale, handwoven in banana leaves, raffia, leather and beads.'
+ s.size + ' scale, handwoven in banana leaves, raffia, leather and beads.',
+ p.short
  );
- p.displayShort = L5(
+ p.displayShort = _merge(
  'Format ' + s.size + ', tissé main en feuilles de bananier, raphia, cuir et perles.',
- s.size + ' scale, handwoven in banana leaves, raffia, leather and beads.'
+ s.size + ' scale, handwoven in banana leaves, raffia, leather and beads.',
+ p.displayShort
  );
- p.desc = L5(
+ p.desc = _merge(
  'La Sculpture ' + s.size + ' : ' + s.fr + ' de nos paniers sculpturaux, tissé main à Marrakech en feuilles de bananier, raphia, cuir et perles. Disponible en Hot Red, Deep Violet et Black Olive.',
- 'La Sculpture ' + s.size + ': ' + s.en + ' of our sculptural baskets, handwoven in Marrakech from banana leaves, raffia, leather and beads. Available in Hot Red, Deep Violet and Black Olive.'
+ 'La Sculpture ' + s.size + ': ' + s.en + ' of our sculptural baskets, handwoven in Marrakech from banana leaves, raffia, leather and beads. Available in Hot Red, Deep Violet and Black Olive.',
+ p.desc
  );
  // Size-comparison cards first (XS/S/M to scale), then real angle + situation shots
  // of La Sculpture so the product page shows the bag from several views, not just the cards.
@@ -17708,20 +17721,26 @@ SCULPT_SIZE_COPY.forEach((s) => {
  }
 };
  var L5x = (typeof L5 === 'function') ? L5 : function (fr, en) { return { fr: fr, en: en, es: en, tr: en, ar: en }; };
- var f = function (o) { return o ? L5x(o.fr, o.en) : null; };
+ // f() merges PERSONA_COPY (fr/en only) with the existing product field so that
+ // our es/tr/ar catalog translations are preserved rather than overwritten with en.
+ var f = function (o, prev) {
+   if (!o) return null;
+   var base = L5x(o.fr, o.en);
+   return { fr: base.fr, en: base.en, es: o.es || (prev && prev.es) || base.es, tr: o.tr || (prev && prev.tr) || base.tr, ar: o.ar || (prev && prev.ar) || base.ar };
+ };
  Object.keys(PERSONA_COPY).forEach(function (cluster) {
  (PERSONA_COPY[cluster] || []).forEach(function (it) {
  var p = PRODUCT_MAP.get(it.handle);
  if (!p) return;
- if (it.short) { p.short = f(it.short); p.displayShort = f(it.short); }
- if (it.desc) p.desc = f(it.desc);
- if (it.material) p.material = f(it.material);
- if (it.fabric) p.fabric = f(it.fabric);
- if (it.handworkTime) p.handworkTime = f(it.handworkTime);
- if (it.dimensions) p.dimensions = f(it.dimensions);
- if (it.edition) { p.edition = f(it.edition); p.batch = f(it.edition); }
- if (it.whatFits) p.whatFits = f(it.whatFits);
- if (it.making) p.making = f(it.making);
+ if (it.short) { var _s = f(it.short, p.short); p.short = _s; p.displayShort = _s; }
+ if (it.desc) p.desc = f(it.desc, p.desc);
+ if (it.material) p.material = f(it.material, p.material);
+ if (it.fabric) p.fabric = f(it.fabric, p.fabric);
+ if (it.handworkTime) p.handworkTime = f(it.handworkTime, p.handworkTime);
+ if (it.dimensions) p.dimensions = f(it.dimensions, p.dimensions);
+ if (it.edition) { var _e = f(it.edition, p.edition); p.edition = _e; p.batch = _e; }
+ if (it.whatFits) p.whatFits = f(it.whatFits, p.whatFits);
+ if (it.making) p.making = f(it.making, p.making);
  if (it.fruitStoryTitle && it.fruitStoryBody) {
  p.fruitStory = {
  title: f(it.fruitStoryTitle),
