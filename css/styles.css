@@ -2356,7 +2356,7 @@ body.has-recovery-modal { overflow: hidden; }
  letter-spacing: 0;
  line-height: 1.4;
 }
-.hero--video .hero__content p:not(.eyebrow):not(.hero__subheading):not(.hero__editions) {
+.hero--video .hero__content p:not(.eyebrow):not(.hero__subheading):not(.hero__editions):not(.brand-mark-tri) {
  display: none;
 }
 .hero--video .btn--hero-secondary { display: none; }
@@ -3294,13 +3294,29 @@ body.has-cart-drawer .lead-chat { display: none; }
 /* Footer placement: a quiet line above the tagline */
 .footer__brand .brand-mark-tri { margin-block: 0.4rem 0.6rem; opacity: 0.85; }
 
-/* Homepage band — between hero and icon-strip, breathing room */
-.brand-mark-tri-band {
+/* Hero variant — sits above the headline, light orange on dark video.
+   Selector is doubled (.hero__content .brand-mark-tri--hero) to beat the
+   generic `.hero__content p` cascade rule for font-size + color. */
+.hero__content .brand-mark-tri--hero,
+.hero .brand-mark-tri--hero {
   display: flex;
   justify-content: center;
-  padding-block: clamp(1.25rem, 3vw, 2.2rem);
-  background: transparent;
+  align-items: baseline;
+  gap: 0.55rem;
+  font-family: "EB Garamond", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  font-style: italic;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: #e8a674;
+  margin: 0 auto 0.85rem;
+  max-width: none;
+  opacity: 1;
 }
+.hero__content .brand-mark-tri--hero .brand-mark-tri__lat,
+.hero__content .brand-mark-tri--hero .brand-mark-tri__tif,
+.hero__content .brand-mark-tri--hero .brand-mark-tri__ar { font-style: italic; color: #e8a674; }
+.hero__content .brand-mark-tri--hero .brand-mark-tri__sep { color: #e8a674; opacity: 0.55; }
 
 @media (prefers-reduced-motion: no-preference) {
   .brand-mark-tri { transition: opacity 0.4s ease; }
