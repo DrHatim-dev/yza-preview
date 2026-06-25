@@ -255,7 +255,7 @@ YZA.media = {
  {
  layout: 'wide',
  kicker: { fr: 'Edition limitee', en: 'Limited edition' },
- title: { fr: 'Quand une couleur part, elle part vraiment.', en: 'When a colour sells out, it is gone.' },
+ title: { fr: 'Une couleur, jamais deux fois.', en: 'One colour, never twice.' },
  images: [girlAsset('girls-snap-flowers.jpg')],
  },
  ],
@@ -384,7 +384,7 @@ YZA.media.editorialBreaks = [
  {
  layout: 'wide',
  kicker: { fr: 'Édition limitée', en: 'Limited edition' },
- title: { fr: 'Quand une couleur part, elle ne revient jamais !', en: 'When a colour sells out, it never comes back.' },
+ title: { fr: 'Une couleur, jamais deux fois.', en: 'One colour, never twice.' },
  images: [girlAsset('girls-snap-flowers.jpg')],
  },
 ];
@@ -451,7 +451,7 @@ YZA.media.bagsEditorialBreaks = [
  {
  layout: 'duo',
  kicker: { fr: 'Éditions limitées · Marrakech', en: 'Limited editions · Marrakech' },
- title: { fr: '15 par taille et par coloris. Ce qui part ne revient pas.', en: '15 per size per colour. What goes, stays gone.' },
+ title: { fr: 'Ce qui part, ne revient plus.', en: 'What goes, stays gone.' },
  text: {
  fr: "Fait main dans l'atelier de Guéliz, Marrakech. Structure en feuilles de bananier séchées, tressage raffia couche par couche, bordures en cuir cousues à l'aiguille, anses finies à la perle. Chaque panier est numéroté : 15 pièces par taille et par coloris.",
  en: "Hand-assembled in the Guéliz atelier, Marrakech. Dried banana-leaf core, layer-by-layer raffia weaving, needle-stitched leather trim, bead-finished handles. Each bag is numbered: 15 pieces per size and per colour.",

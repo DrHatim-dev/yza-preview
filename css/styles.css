@@ -3217,3 +3217,14 @@ body.has-cart-drawer .lead-chat { display: none; }
   opacity: 0.92;
 }
 .nav .mega__list a:hover { opacity: 0.68; }
+
+/* b2b hero h1 — wider max-width so the <br> gives exactly 2 lines */
+.b2b-hero h1 { max-width: 22ch; font-size: clamp(2.8rem, 8vw, 6.5rem); }
+
+/* video-band content: widen container so copy fits in 2 lines at large viewports */
+.video-band__content { max-width: min(600px, 90vw); }
+
+/* readability on photo/video dark backgrounds */
+.video-band__content h2 { text-shadow: 0 2px 20px rgba(0,0,0,0.55), 0 1px 4px rgba(0,0,0,0.45); }
+.product-story--wide .product-story__image::after { background: linear-gradient(to top, rgba(0,0,0,0.72), rgba(0,0,0,0.06) 55%, transparent); }
+.product-story--wide .product-story__copy--overlay h2 { text-shadow: 0 2px 16px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.4); }
