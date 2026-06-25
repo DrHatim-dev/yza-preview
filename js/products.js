@@ -15606,7 +15606,6 @@ const SCULPT_MEDIA = {
       { type: 'image', src: 'assets/products/la-sculpture/client/rouge-xs-05.jpg' },
       { type: 'image', src: 'assets/products/la-sculpture/client/rouge-xs-06.jpg' },
       { type: 'video', src: 'assets/lifestyle/bags/sculpt-96c4de8f62d8.mp4', poster: 'assets/lifestyle/bags/sculpt-96c4de8f62d8-poster.jpg' },
-      { type: 'video', src: 'assets/lifestyle/bags/sculpt-ac10c7a24b8a.mp4', poster: 'assets/lifestyle/bags/sculpt-ac10c7a24b8a-poster.jpg' },
     ],
     s: [
       { type: 'image', src: 'assets/products/la-sculpture/client/rouge-s-01.jpg' },
