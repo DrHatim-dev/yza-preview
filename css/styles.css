@@ -875,6 +875,9 @@ body.has-search-overlay { overflow: hidden; }
  display: block;
 }
 .footer-service__trust-item .service-card__icon svg { width: 44px; height: 44px; }
+/* Amazigh raster service icons — black-on-white art; multiply hides the white ground on the light bg */
+.service-card__symbol { width: 64px; height: 64px; object-fit: contain; display: block; mix-blend-mode: multiply; }
+.footer-service__trust-item .service-card__symbol { width: 52px; height: 52px; }
 .service-card h3 {
  font-family: var(--font-body);
  font-size: var(--fs-md);
@@ -1946,6 +1949,7 @@ body.is-footer-visible .store-widget {
 
 /* Pre-chat form */
 .lead-chat__form { display: grid; gap: var(--space-2); padding: var(--space-3) var(--space-4) var(--space-4); flex-shrink: 0; background: var(--white); border-top: 1px solid rgba(0,0,0,0.07); }
+.lead-chat__form[hidden] { display: none; }
 .lead-chat__field { width: 100%; border: 1px solid rgba(0,0,0,0.14); border-radius: 10px; padding: 0.55rem 0.8rem; background: var(--white); outline: none; font: var(--fs-sm) / 1.45 var(--font-body); transition: border-color var(--transition-fast); resize: none; }
 .lead-chat__field:focus { border-color: var(--brand-orange); }
 .lead-chat__field::placeholder { color: var(--color-muted); }

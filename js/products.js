@@ -234,13 +234,24 @@ YZA.serviceIcon = (name, className = 'service-symbol') => {
  return `<img aria-hidden="true" class="${className}" src="assets/brand/icons/${file}.png" alt="" width="88" height="88" loading="lazy" decoding="async">`;
 };
 
+// Amazigh geometric service icons (raster, black-on-white) for the footer/home
+// service strips. mix-blend-mode: multiply drops the white ground on light bg.
+YZA.serviceStripIcons = {
+ shipping: 'svc-amazigh-delivery.png',
+ returns: 'svc-amazigh-returns.jpg',
+ payment: 'svc-amazigh-payment.jpg',
+ limited: 'svc-amazigh-limited.png',
+ repair: 'svc-amazigh-repair.png',
+ international: 'svc-international.png',
+};
+
 YZA.serviceCard = (key, className = 'service-card') => {
  const item = YZA.serviceFeature(key);
  if (!item) return '';
  const classes = Array.from(new Set(['service-card', ...String(className).split(/\s+/).filter(Boolean)])).join(' ');
- const iconSvg = YZA.serviceIcons[item.icon] || YZA.serviceIcons.limited || '';
+ const iconFile = (YZA.serviceStripIcons && YZA.serviceStripIcons[item.icon]) || 'svc-amazigh-limited.png';
  return `<article class="${classes}" data-service-card="${item.key}">
- <span class="service-card__icon">${iconSvg}</span>
+ <span class="service-card__icon"><img class="service-card__symbol" src="assets/brand/icons/${iconFile}" alt="" aria-hidden="true" width="64" height="64" loading="lazy" decoding="async"></span>
  <h3>${YZA.pickText(item.title)}</h3>
  <p>${YZA.pickText(item.text)}</p>
  </article>`;

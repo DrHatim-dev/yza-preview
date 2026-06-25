@@ -935,6 +935,8 @@ YZA.chrome = {
  phonePh: 'Votre WhatsApp * (+212…)',
  submit: 'Démarrer la conversation →',
  err: 'Prénom et WhatsApp requis.',
+ ack: 'Parfait, merci ! Laissez-nous votre prénom et votre WhatsApp — on vous répond tout de suite.',
+ sendLabel: 'Envoyer',
  },
  en: {
  title: 'YZA Atelier', eyebrow: 'WhatsApp', close: 'Close',
@@ -944,6 +946,8 @@ YZA.chrome = {
  phonePh: 'Your WhatsApp * (+…)',
  submit: 'Start the conversation →',
  err: 'First name and WhatsApp required.',
+ ack: 'Perfect, thank you! Leave your first name and WhatsApp — we’ll reply right away.',
+ sendLabel: 'Send',
  },
  es: {
  title: 'YZA Atelier', eyebrow: 'WhatsApp', close: 'Cerrar',
@@ -953,6 +957,8 @@ YZA.chrome = {
  phonePh: 'Su WhatsApp * (+…)',
  submit: 'Iniciar la conversación →',
  err: 'Nombre y WhatsApp requeridos.',
+ ack: '¡Perfecto, gracias! Déjenos su nombre y WhatsApp — le respondemos enseguida.',
+ sendLabel: 'Enviar',
  },
  tr: {
  title: 'YZA Atelier', eyebrow: 'WhatsApp', close: 'Kapat',
@@ -962,6 +968,8 @@ YZA.chrome = {
  phonePh: 'WhatsApp * (+…)',
  submit: 'Konuşmayı başlat →',
  err: 'Ad ve WhatsApp gerekli.',
+ ack: 'Harika, teşekkürler! Adınızı ve WhatsApp’ınızı bırakın — hemen yanıtlıyoruz.',
+ sendLabel: 'Gönder',
  },
  ar: {
  title: 'YZA Atelier', eyebrow: 'WhatsApp', close: 'إغلاق',
@@ -971,6 +979,8 @@ YZA.chrome = {
  phonePh: 'WhatsApp * (+…)',
  submit: '← ابدأ المحادثة',
  err: 'الاسم و WhatsApp مطلوبان.',
+ ack: 'ممتاز، شكراً! اترك لنا اسمك ورقم WhatsApp — سنرد فوراً.',
+ sendLabel: 'إرسال',
  },
  };
  return copy[lang] || copy.fr;
@@ -1002,8 +1012,11 @@ YZA.chrome = {
  <p id="leadChatGreeting">${c.greeting}</p>
  </div>
  </div>
- <form class="lead-chat__form" id="leadChatForm" novalidate>
- <textarea class="lead-chat__field lead-chat__field--area" id="lcMsg" name="msg" placeholder="${c.msgPh}" rows="2"></textarea>
+ <form class="lead-chat__composer" id="leadChatComposer">
+ <textarea class="lead-chat__input" id="lcMsg" name="msg" placeholder="${c.msgPh}" rows="1"></textarea>
+ <button type="submit" class="lead-chat__send-btn" aria-label="${c.sendLabel}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h14M12 5l7 7-7 7"/></svg></button>
+ </form>
+ <form class="lead-chat__form" id="leadChatForm" hidden novalidate>
  <input class="lead-chat__field" id="lcName" name="name" type="text" placeholder="${c.namePh}" required autocomplete="given-name">
  <input class="lead-chat__field" id="lcPhone" name="phone" type="tel" placeholder="${c.phonePh}" required autocomplete="tel">
  <p class="lead-chat__err" id="lcErr" hidden></p>
@@ -1011,12 +1024,42 @@ YZA.chrome = {
  </form>`;
  document.body.append(chat);
  chat.querySelector('#leadChatClose')?.addEventListener('click', closeChat);
+
+ const composer = chat.querySelector('#leadChatComposer');
  const form = chat.querySelector('#leadChatForm');
+ const thread = chat.querySelector('#leadChatThread');
+ let firstMessage = '';
+ const addMsg = (text, who) => {
+ if (!thread) return;
+ const bubble = document.createElement('div');
+ bubble.className = `lead-chat__msg lead-chat__msg--${who} lead-chat__msg--appear`;
+ const p = document.createElement('p');
+ p.textContent = text;
+ bubble.appendChild(p);
+ thread.appendChild(bubble);
+ thread.scrollTop = thread.scrollHeight;
+ };
+
+ // Step 1 — the visitor must send a first message; only then do we reveal the
+ // name + WhatsApp fields (no contact form is shown up front).
+ composer?.addEventListener('submit', (e) => {
+ e.preventDefault();
+ const msgField = chat.querySelector('#lcMsg');
+ const msg = msgField?.value.trim();
+ if (!msg) { msgField?.focus(); return; }
+ firstMessage = msg;
+ addMsg(msg, 'user');
+ addMsg(chatCopy().ack, 'bot');
+ composer.hidden = true;
+ form.hidden = false;
+ setTimeout(() => chat.querySelector('#lcName')?.focus({ preventScroll: true }), 60);
+ });
+
+ // Step 2 — contact details, then hand off to WhatsApp with the first message.
  form?.addEventListener('submit', (e) => {
  e.preventDefault();
  const name = chat.querySelector('#lcName')?.value.trim();
  const phone = chat.querySelector('#lcPhone')?.value.trim();
- const msg = chat.querySelector('#lcMsg')?.value.trim();
  const err = chat.querySelector('#lcErr');
  const cc = chatCopy();
  if (!name || !phone) {
@@ -1033,7 +1076,7 @@ YZA.chrome = {
  const waMsg = [
  `Bonjour YZA ! Je m'appelle ${name} (WA: ${phone}).`,
  productLine,
- msg ? `Message: ${msg}` : '',
+ firstMessage ? `Message: ${firstMessage}` : '',
  `Lien: ${location.href}`,
  ].filter(Boolean).join('\n');
  YZA.analytics?.track('whatsapp_open', { source: chat.dataset.source || 'lead_chat' });
@@ -1055,6 +1098,7 @@ YZA.chrome = {
  if (q('#lcName')) q('#lcName').placeholder = c.namePh;
  if (q('#lcPhone')) q('#lcPhone').placeholder = c.phonePh;
  if (q('.lead-chat__send')) q('.lead-chat__send').textContent = c.submit;
+ if (q('.lead-chat__send-btn')) q('.lead-chat__send-btn').setAttribute('aria-label', c.sendLabel);
  q('#leadChatClose')?.setAttribute('aria-label', c.close);
  };
 
