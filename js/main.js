@@ -84,7 +84,7 @@
     const status = YZA.inventoryStatus?.(p) || { inventory: null, soldOut: false, almostGone: false };
     const stock = stockCopy();
     const wished = wishlistHas(p.handle);
-    const href = `produit.html?handle=${encodeURIComponent(p.handle)}`;
+    const href = p._href || `produit.html?handle=${encodeURIComponent(p.handle)}`;
     const limitedLine = status.almostGone
       ? `<span class="product-card__limited">${status.inventory} ${esc(stock.left)}</span>`
       : '';
@@ -1162,6 +1162,26 @@
     const also = YZA.related(p.handle, 16).filter(available).slice(0, 12);
 
   const lists = { similar, also: also.length ? also : similar };
+
+  // For bag pages with a selected color, inject that color into same-family sibling cards
+  const bagColorSlug = p.selectedBagVariant?.colorSlug || '';
+  const bagColor = bagColorSlug ? (p.color || null) : null;
+  const augmentCard = (q) => {
+    if (!bagColorSlug || q.familyHandle !== p.familyHandle) return q;
+    const base = q.displayName || q.name || {};
+    const augName = {};
+    ['fr', 'en', 'es', 'tr', 'ar'].forEach((lang) => {
+      const n = base[lang] || base.en || base.fr || '';
+      const c = bagColor ? (bagColor[lang] || bagColor.en || '') : '';
+      augName[lang] = c ? n + ' — ' + c : n;
+    });
+    return {
+      ...q,
+      _href: 'produit.html?handle=' + encodeURIComponent(q.handle) + '&color=' + encodeURIComponent(bagColorSlug),
+      displayName: augName,
+    };
+  };
+
   const tabs = $$('.product-tabs__tab');
   const renderTab = (name) => {
   tabs.forEach((tab) => {
@@ -1170,7 +1190,7 @@
   tab.setAttribute('aria-selected', active ? 'true' : 'false');
   });
   similarRail.dataset.activeTab = name;
-  buildSwiper(similarRail, lists[name] || similar, railCardHTML);
+  buildSwiper(similarRail, (lists[name] || similar).map(augmentCard), railCardHTML);
   };
   tabs.forEach((tab) => {
   tab.onclick = () => renderTab(tab.dataset.productTab || 'similar');

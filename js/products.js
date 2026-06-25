@@ -15693,7 +15693,6 @@ const SCULPT_MEDIA = {
       { type: 'image', src: 'assets/products/la-sculpture/client/noir-m-03.jpg' },
       { type: 'image', src: 'assets/products/la-sculpture/client/noir-m-04.jpg' },
       { type: 'image', src: 'assets/products/la-sculpture/client/noir-m-05.jpg' },
-      { type: 'video', src: 'assets/lifestyle/bags/sculpt-68a448af9a8f.mp4', poster: 'assets/lifestyle/bags/sculpt-68a448af9a8f-poster.jpg' },
       { type: 'video', src: 'assets/lifestyle/bags/sculpt-9bfeffb491ae.mp4', poster: 'assets/lifestyle/bags/sculpt-9bfeffb491ae-poster.jpg' },
       { type: 'video', src: 'assets/lifestyle/bags/sculpt-ad7ef6541720.mp4', poster: 'assets/lifestyle/bags/sculpt-ad7ef6541720-poster.jpg' },
     ],
