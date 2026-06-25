@@ -156,6 +156,11 @@ body[data-page="home"] main { margin-top: calc(-1 * var(--yza-bars-h, 7.5rem)); 
 body[data-page="home"] .hero--video::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 240px; background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0)); z-index: 1; pointer-events: none; }
 body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .announcement,
 body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: rgba(255,255,255,0.22); color: #fff; }
+/* Explicit 100% opaque solid when hovered or scrolled — overrides the transparent rule above */
+body[data-page="home"].is-scrolled .header,
+body[data-page="home"].is-scrolled .announcement,
+body[data-page="home"].is-header-hover .header,
+body[data-page="home"].is-header-hover .announcement { background: var(--color-bg); -webkit-backdrop-filter: none; backdrop-filter: none; color: var(--color-fg); border-bottom-color: var(--color-border); }
 body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .nav-item > a,
 body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .nav-trigger,
 body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .header-search,
