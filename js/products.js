@@ -15445,7 +15445,7 @@ const ACCESSORY_IMAGES = {
  // Jawhara RTW - real photography (client shoot + SS26 lookbook). Replaces the former
  // AI 'rtw-clean' nano-banana stills. These heroes are also the first entry in PRODUCT_MEDIA.
  'yza-scarf-top-jawhara-ss26': 'assets/lookbook-ss26-27/embedded/p33_img02_xref1247_4e3188b3ffc2.jpeg',
- 'yza-bateau-top-jawhara-ss26': 'assets/products/jawhara/rtw-real/bateau-top.jpg',
+ 'yza-bateau-top-jawhara-ss26': 'assets/lookbook-ss26-27/embedded/p30_img01_xref1219_8b2d1136309d.jpeg',
  'yza-button-up-shirt-jawhara-ss26': 'assets/lookbook-ss26-27/embedded/p29_img02_xref1213_fe747a323e9f.jpeg',
  'yza-pareo-skirt-short-jawhara-ss26': 'assets/lookbook-ss26-27/embedded/p29_img04_xref1215_ea0a78123e7b.jpeg',
  'yza-pareo-skirt-midi-jawhara-ss26': 'assets/lookbook-ss26-27/embedded/p30_img02_xref1220_f762d6e64853.jpeg',
@@ -15858,7 +15858,7 @@ const PRODUCT_MEDIA = {
     { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p32_img04_xref1239_3935f6e23a7c.jpeg' },
   ],
   'yza-bateau-top-jawhara-ss26': [
-    { type: 'image', src: 'assets/products/jawhara/rtw-real/bateau-top.jpg' },
+    { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p30_img01_xref1219_8b2d1136309d.jpeg' },
   ],
   'yza-button-up-shirt-jawhara-ss26': [
     { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p29_img02_xref1213_fe747a323e9f.jpeg' },
