@@ -77,8 +77,46 @@
  const scarcity = p.category === 'bags' ? c.bags : (p.bundle ? c.bundle : c.limited);
  return `<div class="product-card__meta" aria-label="${esc(craft)}"><span>${esc(craft)}</span><span>${esc(scarcity)}</span></div>`;
  }
-  function cardHTML(p, index = 0, eager = false) {
+  // Map a colour name (any of the 5 langs) to a representative hex for the
+  // Jacquemus-style swatch dots on listing tiles. Distinct hexes per family so
+  // a multi-colour piece reads as varied, not a row of identical dots.
+  function cardSwatchHex(name) {
+    const n = String(name || '').toLowerCase();
+    if (/noir|black/.test(n)) return '#1f1f1f';
+    if (/blanc|white|cream|creme|ecru|ivoire|ivory|naturel|natural/.test(n)) return '#efece4';
+    if (/bordeaux|burgundy|wine/.test(n)) return '#5e1f2a';
+    if (/rouge|\bred\b|brique|brick/.test(n)) return '#b1342f';
+    if (/rose|pink/.test(n)) return '#cf9aa3';
+    if (/moutarde|mustard/.test(n)) return '#c79a3a';
+    if (/jaune|yellow|gold|dore/.test(n)) return '#d9b443';
+    if (/majorelle/.test(n)) return '#2b4cb3';
+    if (/marine|navy/.test(n)) return '#27365e';
+    if (/bleu|blue|turquoise|cyan/.test(n)) return '#3a6ea5';
+    if (/profond|deep green|sapin|foret|forest/.test(n)) return '#1f3d2e';
+    if (/olive|kaki|khaki/.test(n)) return '#6b6b3a';
+    if (/vert|green/.test(n)) return '#5a7048';
+    if (/orange|terracotta|terre|clay|rouille|rust/.test(n)) return '#c45e29';
+    if (/violet|purple|lilas|lila|mauve|aubergine/.test(n)) return '#7a4b8a';
+    if (/beige|sable|sand|taupe|nude|camel|chameau/.test(n)) return '#cdbfa6';
+    if (/marron|brown|chocolat|chocolate|cafe/.test(n)) return '#6b4a32';
+    if (/gris|grey|gray|argent|silver/.test(n)) return '#9a9a9a';
+    return '#cdbfa6';
+  }
+  function cardSwatchesHTML(p) {
     const t = T();
+    const colors = (p.availableColors || []).map((c) => t.pick(c)).filter(Boolean);
+    if (colors.length < 2) return '';
+    const shown = colors.slice(0, 5);
+    const extra = colors.length - shown.length;
+    const dots = shown.map((name) =>
+      `<span class="product-card__swatch-dot" style="background:${cardSwatchHex(name)}" title="${esc(name)}"></span>`
+    ).join('');
+    const more = extra > 0 ? `<span class="product-card__more-colors">+${extra} ${esc(t.t('col.colors'))}</span>` : '';
+    return `<div class="product-card__swatches" aria-hidden="true">${dots}${more}</div>`;
+  }
+  function cardHTML(p, index = 0, eager = false, opts = {}) {
+    const t = T();
+    const tile = !!opts.tile;
     const name = t.pick(displayName(p));
     const hoverSrc = p.hoverImg || ((p.gallery && p.gallery[1] && p.gallery[1] !== p.img) ? p.gallery[1] : '');
     const status = YZA.inventoryStatus?.(p) || { inventory: null, soldOut: false, almostGone: false };
@@ -92,13 +130,24 @@
     const almostBadge = status.almostGone ? `<span class="product-card__stock">${esc(stock.almost)}</span>` : '';
     const fewBadge = (!status.soldOut && !status.almostGone) ? `<span class="product-card__few">${esc(stock.few)}</span>` : '';
     const imgLoad = eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
-    return `<article class="product-card${p.hoverImg ? ' product-card--vibe' : ''}${status.soldOut ? ' is-sold-out' : ''}" style="--i:${index}" data-product-handle="${esc(p.handle)}">
-      <button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(p.handle)}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${wished ? 'Remove from wishlist' : 'Add to wishlist'}">${heartIcon()}</button>
-      <a class="product-card__media" href="${href}" data-product-card-click="${esc(p.handle)}" aria-label="${esc(name)}">
+    const wishBtn = `<button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(p.handle)}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${wished ? 'Remove from wishlist' : 'Add to wishlist'}">${heartIcon()}</button>`;
+    const mediaLink = `<a class="product-card__media" href="${href}" data-product-card-click="${esc(p.handle)}" aria-label="${esc(name)}">
         ${fewBadge}${almostBadge}${soldOverlay}
         <img class="product-card__img" src="${esc(p.img)}" alt="${esc(t.pick(p.name))} - YZA" ${imgLoad} width="461" height="615" decoding="async">
         ${(hoverSrc && isPublicMedia(hoverSrc)) ? `<img class="product-card__img product-card__img--hover" src="${esc(hoverSrc)}" alt="" aria-hidden="true" loading="lazy" width="461" height="615" decoding="async">` : ''}
-      </a>
+      </a>`;
+    const quickAdd = (tile && !status.soldOut)
+      ? `<button class="product-card__add" type="button" data-quickbuy="${esc(p.handle)}" aria-label="${esc(t.t('col.quickadd'))}">+</button>`
+      : '';
+    // Tile mode wraps the heart + image + quick-add so the circular "+" anchors
+    // to the image bottom-right even though name/price sit statically below it.
+    const media = tile
+      ? `<div class="product-card__media-wrap">${wishBtn}${mediaLink}${quickAdd}</div>`
+      : `${wishBtn}${mediaLink}`;
+    const swatches = tile ? cardSwatchesHTML(p) : '';
+    return `<article class="product-card${tile ? ' product-card--tile' : ''}${p.hoverImg ? ' product-card--vibe' : ''}${status.soldOut ? ' is-sold-out' : ''}" style="--i:${index}" data-product-handle="${esc(p.handle)}">
+      ${media}
+      ${swatches}
       <a class="product-card__info" href="${href}" data-product-card-click="${esc(p.handle)}">
         <span class="product-card__name" title="${esc(name)}">${esc(name)}</span>
         <span class="product-card__price">${formatCardPrice(p)}</span>
@@ -609,7 +658,7 @@
  if ((i + 1) % interval === 0 && i < list.length - 1 && breakSeq < breakCount) {
  story = collectionBreakHTML(breakSeq); breakSeq += 1;
  }
- return cardHTML(p, i, i < 4) + story;
+ return cardHTML(p, i, i < 4, { tile: true }) + story;
  }).join('');
  for (; breakSeq < breakCount; breakSeq += 1) html += collectionBreakHTML(breakSeq);
  el.innerHTML = html;
@@ -899,7 +948,10 @@
  }
 
  /* ================= COLLECTIONS ================= */
- const collState = { cat: params.get('cat') || 'all', q: params.get('q') || '', sort: 'feat' };
+ const GRID_DENSITIES = ['3', '4', '6'];
+ let savedDensity = '4';
+ try { const d = localStorage.getItem('yza_grid_density'); if (GRID_DENSITIES.includes(d)) savedDensity = d; } catch (e) {}
+ const collState = { cat: params.get('cat') || 'all', q: params.get('q') || '', sort: 'feat', density: savedDensity };
  function collFiltered() {
  let list = YZA.byCategory(collState.cat);
  if (collState.q) {
@@ -952,10 +1004,22 @@
  function renderCollections() {
  const grid = $('#collectionGrid'); if (!grid) return;
  const list = collFiltered();
- grid.classList.toggle('collection-grid--bag-families', collState.cat === 'bags');
- if (collState.cat === 'bags') renderBagCollectionGrid(grid, list);
+ const isBags = collState.cat === 'bags';
+ grid.classList.toggle('collection-grid--bag-families', isBags);
+ // Bag families keep their own column layout; the View-by density only drives the standard clothing/charm grid.
+ if (isBags) grid.removeAttribute('data-density'); else grid.setAttribute('data-density', collState.density);
+ if (isBags) renderBagCollectionGrid(grid, list);
  else renderCollectionGrid(grid, list);
  renderCharmStyling();
+ const dWrap = $('#gridDensity');
+ if (dWrap) {
+ dWrap.hidden = isBags;
+ $$('#gridDensity .grid-density__btn').forEach((b) => {
+ const on = b.dataset.density === collState.density;
+ b.classList.toggle('is-active', on);
+ b.setAttribute('aria-pressed', on ? 'true' : 'false');
+ });
+ }
  const count = $('#resultCount'); if (count) count.textContent = list.length + ' ' + T().t('col.results');
  const titleKey = ({
  charms: 'col.charms',
@@ -969,7 +1033,8 @@
  bottoms: 'col.bottoms',
  bags: 'col.bags',
  })[collState.cat] || 'col.all';
- const tEl = $('#collectionTitle'); if (tEl) { tEl.setAttribute('data-i18n', titleKey); tEl.textContent = T().t(titleKey); }
+ const tEl = $('#collectionTitleText'); if (tEl) { tEl.setAttribute('data-i18n', titleKey); tEl.textContent = T().t(titleKey); }
+ const cEl = $('#collectionCount'); if (cEl) cEl.textContent = list.length;
  const descKey = ({ charms: 'col.desc.charms', earrings: 'col.desc.accessories', necklaces: 'col.desc.accessories', accessories: 'col.desc.accessories', bags: 'col.desc.bags', rtw: 'col.desc.rtw', tops: 'col.desc.rtw', pareos: 'col.desc.rtw', pants: 'col.desc.rtw', bottoms: 'col.desc.rtw' })[collState.cat] || 'col.desc.all';
  const dEl = $('#collectionDesc'); if (dEl) { dEl.setAttribute('data-i18n', descKey); dEl.textContent = T().t(descKey); }
  // Top-level pills mirror the site nav exactly (Charms · Accessories · Bags · Prêt-à-porter).
@@ -993,6 +1058,14 @@
  }));
  const sort = $('#sortSelect');
  if (sort) sort.addEventListener('change', () => { collState.sort = sort.value; renderCollections(); });
+ $$('#gridDensity .grid-density__btn').forEach((b) => b.addEventListener('click', () => {
+ const d = b.dataset.density;
+ if (!GRID_DENSITIES.includes(d) || d === collState.density) return;
+ collState.density = d;
+ try { localStorage.setItem('yza_grid_density', d); } catch (e) {}
+ YZA.analytics?.track('grid_density', { density: d });
+ renderCollections();
+ }));
  }
 
  /* ================= PAGE PRODUIT ================= */
@@ -2210,6 +2283,19 @@
           btn.setAttribute('aria-pressed', !exists ? 'true' : 'false');
         });
         YZA.analytics?.track(exists ? 'wishlist_remove' : 'wishlist_add', { handle });
+        return;
+      }
+      const quick = event.target.closest('[data-quickbuy]');
+      if (quick) {
+        event.preventDefault();
+        event.stopPropagation();
+        const handle = quick.getAttribute('data-quickbuy');
+        if (handle && YZA.cart) {
+          YZA.cart.add(handle, '', 1);
+          YZA.cart.refresh?.();
+          YZA.cart.open?.();
+          YZA.analytics?.track('quick_add', { handle });
+        }
         return;
       }
       const card = event.target.closest('[data-product-card-click]');

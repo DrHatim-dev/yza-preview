@@ -258,6 +258,9 @@ const STR = {
   'col.sort.asc':  { fr: 'Prix croissant', en: 'Price: low to high' },
   'col.sort.desc': { fr: 'Prix décroissant', en: 'Price: high to low' },
   'col.results':   { fr: 'pièces', en: 'pieces' },
+  'col.viewby':    { fr: 'Voir par', en: 'View by' },
+  'col.colors':    { fr: 'couleurs', en: 'colors' },
+  'col.quickadd':  { fr: 'Ajout rapide', en: 'Quick add' },
 
   /* — Badges — */
   'badge.bestseller': { fr: 'Préféré', en: 'Bestseller' },
@@ -425,6 +428,9 @@ const EXTRA = {
   'cat.accessories': { es: 'Accesorios fruit', tr: 'Meyve aksesuarları', ar: 'إكسسوارات الفاكهة' },
   'cat.accessories.txt': { es: 'Pendientes, collares y frutas hechas a mano.', tr: 'El işi küpeler, kolyeler ve meyveler.', ar: 'أقراط وقلائد وفواكه محبوكة يدوياً.' },
   'col.results': { es: 'piezas', tr: 'parça', ar: 'قطعة' },
+  'col.viewby': { es: 'Ver por', tr: 'Görünüm', ar: 'عرض حسب' },
+  'col.colors': { es: 'colores', tr: 'renk', ar: 'ألوان' },
+  'col.quickadd': { es: 'Añadir', tr: 'Hızlı ekle', ar: 'إضافة سريعة' },
   'badge.bestseller': { es: 'Favorito', tr: 'Çok satan', ar: 'الأكثر طلبا' },
   'badge.new': { es: 'Nuevo', tr: 'Yeni', ar: 'جديد' },
   'badge.limited': { es: 'Edición limitada', tr: 'Sınırlı', ar: 'إصدار محدود' },

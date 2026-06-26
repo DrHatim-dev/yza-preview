@@ -496,6 +496,73 @@ body.has-search-overlay { overflow: hidden; }
  .product-card__quick, .product-card__img--hover { transition: none; }
 }
 
+/* ============================================================
+   CLOTHING / READY-TO-WEAR LISTING GRID — Jacquemus reference
+   View-by 3/4/6 density · static name/price/swatch dots below
+   the image · circular quick-add "+" . Scoped to .product-card--tile
+   so home carousels keep their hover-overlay treatment.
+   ============================================================ */
+/* View-by density — desktop only (tablet stays 3-up, phone 2-up); bag families keep their own columns */
+@media (min-width: 1025px) {
+  .product-grid:not(.collection-grid--bag-families)[data-density="3"] { grid-template-columns: repeat(3, 1fr); }
+  .product-grid:not(.collection-grid--bag-families)[data-density="4"] { grid-template-columns: repeat(4, 1fr); }
+  .product-grid:not(.collection-grid--bag-families)[data-density="6"] { grid-template-columns: repeat(6, 1fr); }
+}
+
+/* View-by control (toolbar) */
+.grid-density { display: inline-flex; align-items: center; gap: 0.5rem; }
+.grid-density__label { font-size: var(--fs-xs); letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); }
+.grid-density__btn {
+  font-family: var(--font-display); font-size: 12px; line-height: 1; color: var(--color-muted);
+  width: 1.7rem; height: 1.7rem; display: grid; place-items: center; background: none;
+  border: 1px solid transparent; border-radius: 0; transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+.grid-density__btn:hover { color: var(--color-fg); }
+.grid-density__btn.is-active { color: var(--color-fg); border-color: var(--color-fg); }
+
+/* Tile media wrapper anchors the circular quick-add to the image bottom-right */
+.product-card__media-wrap { position: relative; display: block; }
+.product-card__add {
+  position: absolute; right: 9px; bottom: 9px; z-index: 5;
+  width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--color-bg); color: var(--color-fg); border: 1px solid var(--color-border-strong);
+  font-family: var(--font-display); font-size: 19px; font-weight: 300; line-height: 1; padding-bottom: 2px;
+  transition: opacity var(--transition-fast), background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast);
+}
+.product-card__add:hover { background: var(--color-fg); color: var(--color-bg); border-color: var(--color-fg); }
+
+/* Swatch dots + "+N colors" */
+.product-card__swatches { display: flex; align-items: center; flex-wrap: wrap; gap: 6px; padding: 10px 2px 0; min-height: 12px; }
+.product-card__swatch-dot { width: 11px; height: 11px; border-radius: 50%; flex: 0 0 auto; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.22); }
+.product-card__more-colors { font-family: var(--font-display); font-size: 11px; letter-spacing: 0.02em; color: var(--color-muted); margin-left: 2px; }
+
+/* Tile text sits statically below the image (Jacquemus listing) */
+.product-card--tile .product-card__info {
+  position: static; opacity: 1; pointer-events: auto; background: none;
+  flex-direction: column; align-items: flex-start; gap: 2px; padding: 6px 2px 0;
+}
+.product-card--tile .product-card__name { white-space: normal; }
+.product-card--tile .product-card__swatches + .product-card__info { padding-top: 4px; }
+
+/* Count superscript on the category banner (Jacquemus seoBanner) — small count tag, not scaled to the giant H1 */
+.collection-head__count { font-size: clamp(0.8rem, 1.3vw, 1.15rem); font-weight: 400; color: var(--color-muted); vertical-align: super; margin-left: 0.45em; letter-spacing: 0; }
+.collection-head__count:empty { display: none; }
+
+/* Desktop hover: keep tile text static (override the carousel overlay), fade the quick-add in like the heart */
+@media (min-width: 861px) and (hover: hover) {
+  .product-card--tile .product-card__info {
+    position: static; opacity: 1; pointer-events: auto; background: none; padding: 6px 2px 0;
+  }
+  .product-card--tile .product-card__swatches + .product-card__info { padding-top: 4px; }
+  .product-card__add { opacity: 0; }
+  .product-card:hover .product-card__add { opacity: 1; }
+}
+
+/* The View-by control is a desktop affordance — tablet/phone keep their fixed columns */
+@media (max-width: 1024px) {
+  .grid-density { display: none; }
+}
+
 .collection-grid--bag-families {
  display: block;
 }
