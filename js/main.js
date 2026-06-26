@@ -1824,15 +1824,13 @@
     const wrap = $('#pColorWrap');
     if (!wrap) return;
     const t = T();
-    const c = productUiCopy();
     const colors = product.availableColors?.length
       ? product.availableColors.map((item) => t.pick(item)).filter(Boolean)
       : [product.color && t.pick(product.color), product.variantLabel && t.pick(product.variantLabel)].filter(Boolean);
     if (!colors.length) { wrap.hidden = true; return; }
     wrap.hidden = false;
-    $('#pColorLabel').textContent = c.color;
     $('#pColorName').textContent = colors[0];
-    $('#pColorSwatches').innerHTML = colors.slice(0, 6).map((name, index) =>
+    $('#pColorSwatches').innerHTML = colors.slice(0, 8).map((name, index) =>
       `<button type="button" class="product-color__swatch${index === 0 ? ' is-active' : ''}" aria-label="${esc(name)}" title="${esc(name)}" style="${swatchStyle(name)}" data-color-name="${esc(name)}"></button>`
     ).join('');
     $('#pColorSwatches').onclick = (event) => {
@@ -1842,6 +1840,12 @@
       btn.classList.add('is-active');
       $('#pColorName').textContent = btn.dataset.colorName || '';
     };
+    const view = $('#pViewColors');
+    if (view) {
+      view.hidden = colors.length < 2;
+      view.textContent = ({ fr: 'Voir les couleurs', en: 'View the colors', es: 'Ver los colores', tr: 'Renkleri gör', ar: 'عرض الألوان' })[t.lang] || 'View the colors';
+      view.onclick = () => openProductModal(view.textContent, colors.join('  ·  '));
+    }
   }
 
   function openProductModal(title, body) {
@@ -1989,9 +1993,18 @@
  }
  };
 
+ // Gallery position dots only matter with >1 media; single image hides them.
+ $('#galThumbs').hidden = mediaItems.length <= 1;
+ const galWish = $('#pGalleryWish');
+ if (galWish) {
+ const wished = wishlistHas(p.handle);
+ galWish.innerHTML = `<button class="gallery__wish-btn${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(p.handle)}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${esc(T().t('a.wishlist') || 'Wishlist')}">${heartIcon()}</button>`;
+ }
+
  const ui = productUiCopy();
  $('#pName').textContent = pageName;
  $('#pPrice').innerHTML = productPriceCompact(purchaseProduct);
+ { const ap = $('#pAddPrice'); if (ap) ap.innerHTML = productPriceCompact(purchaseProduct); }
  $('#pShort').textContent = t.pick(displayShort(p));
  $('#pBreadcrumbName').textContent = pageName;
  $('#pBullets').innerHTML = productBullets(p).map((item) => `<li>${esc(item)}</li>`).join('');
@@ -2082,6 +2095,7 @@
  $$('#pVariantOpts .chip').forEach((chip) => chip.classList.remove('is-active'));
  btn.classList.add('is-active');
  $('#pPrice').innerHTML = productPriceCompact(purchaseProduct);
+ { const ap = $('#pAddPrice'); if (ap) ap.innerHTML = productPriceCompact(purchaseProduct); }
  YZA.analytics?.track('product_variant_select', {
  handle: purchaseProduct.handle,
  familyHandle: purchaseProduct.familyHandle || '',
@@ -2139,8 +2153,9 @@
  $('#accCare').innerHTML = `${esc(t.pick(p.care) || t.t('pp.care.txt'))}<br><br><strong>${buyingProofCopy().packaging} :</strong> ${esc(t.pick(p.packaging) || '')}`;
 
  const add = $('#pAdd');
+ const addLabelEl = add.querySelector('.product-add-main__label') || add;
  const addStatus = YZA.inventoryStatus?.(purchaseProduct) || { soldOut: false };
- add.textContent = addStatus.soldOut ? ui.sold : ui.add;
+ addLabelEl.textContent = addStatus.soldOut ? ui.sold : ui.add;
  add.disabled = !!addStatus.soldOut;
  const handleAdd = () => {
  if (add.disabled) return;
@@ -2156,8 +2171,8 @@
  const added = YZA.cart.add(purchaseProduct.handle, variant, qty);
  if (!added) return;
  YZA.cart.open();
- add.textContent = t.t('cta.added');
- setTimeout(() => { add.textContent = ui.add; }, 1500);
+ addLabelEl.textContent = t.t('cta.added');
+ setTimeout(() => { addLabelEl.textContent = ui.add; }, 1500);
  };
  add.onclick = handleAdd;
  wireProductAux(p, pageName, handleAdd);
