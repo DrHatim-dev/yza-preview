@@ -15,9 +15,9 @@
  <link rel="icon" href="assets/brand/yza-favicon.png" type="image/png" />
  <link rel="apple-touch-icon" href="assets/brand/yza-favicon.png" />
 
- <!-- Preload the LCP hero poster (matches the 767px desktop/mobile swap in initHomeVideoHero) -->
- <link rel="preload" as="image" href="assets/hero/la-sculpture-hero-desktop-poster.jpg" media="(min-width: 768px)" fetchpriority="high" />
- <link rel="preload" as="image" href="assets/hero/la-sculpture-hero-mobile-poster.jpg" media="(max-width: 767px)" fetchpriority="high" />
+ <!-- Preload the LCP hero images (two-image split: bags & charms / ready-to-wear) -->
+ <link rel="preload" as="image" href="assets/hero/home-bags.jpg" fetchpriority="high" />
+ <link rel="preload" as="image" href="assets/hero/home-rtw.jpg" />
 
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,40 +37,23 @@
 <body data-page="home">
 <main>
 
- <!-- ===== HERO VIDEO: LA SCULPTURE ===== -->
- <section class="hero hero--video" aria-labelledby="heroTitle" data-video-hero>
- <div class="hero__media" aria-hidden="true">
- <picture class="hero__poster">
- <source media="(max-width: 767px)" srcset="assets/hero/la-sculpture-hero-mobile-poster.jpg">
- <img src="assets/hero/la-sculpture-hero-desktop-poster.jpg" alt="" loading="eager" fetchpriority="high" width="1800" height="1200" decoding="async">
- </picture>
- <!-- Real, self-hosted hero reel from the brand's own footage (YZA Marrakech showroom). -->
- <video
- class="hero__video"
- poster="assets/hero/la-sculpture-hero-desktop-poster.jpg"
- data-desktop-src="assets/video/hero-sculpture-desktop.mp4"
- data-mobile-src="assets/video/hero-sculpture-mobile.mp4"
- data-desktop-poster="assets/hero/la-sculpture-hero-desktop-poster.jpg"
- data-mobile-poster="assets/hero/la-sculpture-hero-mobile-poster.jpg"
- preload="metadata"
- muted
- loop
- playsinline
- webkit-playsinline
- tabindex="-1"></video>
- </div>
- <div class="hero__scrim" aria-hidden="true"></div>
- <div class="container-wide hero__content">
- <p class="brand-mark-tri brand-mark-tri--hero" aria-label="YZA"><span class="brand-mark-tri__lat">YZA</span><span class="brand-mark-tri__sep" aria-hidden="true">·</span><span class="brand-mark-tri__tif" lang="zgh" aria-hidden="true">ⴰⵣⵉ</span><span class="brand-mark-tri__sep" aria-hidden="true">·</span><span class="brand-mark-tri__ar" lang="ar" aria-hidden="true">ييزة</span></p>
- <h1 id="heroTitle" data-i18n="hero.title">La Sculpture</h1>
- <p class="hero__subheading" data-i18n="hero.subheading">The new icon from Marrakech</p>
- <p data-i18n="hero.text">Handmade in raffia, banana leaves and beads by the women of our Guéliz atelier.</p>
- <div class="hero__cta" aria-label="La Sculpture actions">
- <a class="btn btn--hero-primary" href="collections.html?cat=bags" data-i18n="cta.shopSculpture">Shop La Sculpture</a>
- <a class="btn btn--hero-secondary" href="histoire.html" data-i18n="cta.discoverAtelier">Discover the atelier</a>
- </div>
- <p class="hero__editions" data-i18n="hero.editions">Éditions limitées - une fois parties, elles ne reviennent pas</p>
- </div>
+ <!-- ===== HERO: TWO-IMAGE SPLIT — bags & charms / ready-to-wear ===== -->
+ <section class="hero-split" aria-labelledby="heroTitle">
+ <h1 id="heroTitle" class="sr-only" data-i18n="hero.title">La Sculpture</h1>
+ <a class="hero-split__tile" href="collections.html?cat=bags" aria-label="Paniers, sacs & charms">
+ <img class="hero-split__img" src="assets/hero/home-bags.jpg" alt="Une femme tient un panier YZA tissé à la main au marché de Marrakech" loading="eager" fetchpriority="high" width="1067" height="1600" decoding="async">
+ <span class="hero-split__cap">
+ <span class="hero-split__title" data-i18n="cat.bags">Paniers & sacs</span>
+ <span class="hero-split__link" data-i18n="cta.shop">Voir la collection</span>
+ </span>
+ </a>
+ <a class="hero-split__tile" href="collections.html?cat=rtw" aria-label="Prêt-à-porter Jawhara">
+ <img class="hero-split__img" src="assets/hero/home-rtw.jpg" alt="Une femme porte un ensemble prêt-à-porter Jawhara YZA" loading="eager" fetchpriority="high" width="1067" height="1600" decoding="async">
+ <span class="hero-split__cap">
+ <span class="hero-split__title" data-i18n="cat.rtw">Prêt-à-porter</span>
+ <span class="hero-split__link" data-i18n="cta.shop">Voir la collection</span>
+ </span>
+ </a>
  </section>
 
  <!-- ===== BANDE ICÔNES / VALEURS ===== -->
@@ -95,36 +78,6 @@
  </div>
  </section>
 
- <!-- ===== CATÉGORIES ===== -->
- <section class="section">
- <div class="container-wide">
- <div class="section-head section-head--center" data-reveal>
- <p class="eyebrow" data-i18n="home.cats.eyebrow">L’univers YZA</p>
- <h2 data-i18n="home.cats.title">Quatre façons de glisser Marrakech dans votre sac</h2>
- </div>
- <div class="cat-grid" data-reveal>
- <a class="cat-card" href="collections.html?cat=charms">
- <div class="media"><img src="assets/products/charms-cluster.jpg" alt="Charms fruits en raphia, crochetés à la main à Marrakech" data-i18n-attr="alt:alt.cat.charms" loading="lazy" width="681" height="908" decoding="async"></div>
- <div class="cat-card__cap"><h3 data-i18n="cat.charms">Charms en raphia</h3><span data-i18n="cat.charms.txt">Un peu de Marrakech accroché au sac - un sac nu, c’est un peu triste.</span></div>
- </a>
- <a class="cat-card" href="collections.html?cat=rtw">
- <div class="media"><img src="assets/products/real/jawhara-palazzo-white.jpg" alt="Ensemble prêt-à-porter YZA — haut et pantalon palazzo en coton Jawhara" data-i18n-attr="alt:alt.cat.rtw" loading="lazy" width="1000" height="1500" decoding="async"></div>
- <div class="cat-card__cap"><h3 data-i18n="cat.rtw">Prêt-à-porter</h3><span data-i18n="cat.rtw.txt">Tops, jupes paréo et pantalons qui se répondent.</span></div>
- </a>
- <a class="cat-card cat-card--swap" href="collections.html?cat=bags">
- <div class="media">
- <img class="cat-card__base" src="assets/products/launch-shop-ref/la-sculpture-xs-hot-red.jpg" alt="Sac panier La Sculpture rouge ardent YZA, tressé main" data-i18n-attr="alt:alt.cat.sculpture" loading="lazy" width="1080" height="1350" decoding="async">
- <img class="cat-card__hover" src="assets/products/launch-shop-ref/la-sculpture-s-deep-violet.jpg" alt="" aria-hidden="true" loading="lazy" width="1080" height="1350" decoding="async">
- </div>
- <div class="cat-card__cap"><h3 data-i18n="cat.bags">Paniers & sacs</h3><span data-i18n="cat.bags.txt">Réalisés à la main. Le même atelier, les mêmes femmes, d'année en année. Pour des années, pas une saison.</span></div>
- </a>
- <a class="cat-card" href="collections.html?cat=accessories">
- <div class="media"><img src="assets/lookbook-ss26-27/embedded/p53_img01_xref1380_788fc851111b.jpeg" alt="Boucles et colliers fruits YZA SS26 en raphia" data-i18n-attr="alt:alt.cat.accessories" loading="lazy" width="1410" height="908" decoding="async"></div>
- <div class="cat-card__cap"><h3 data-i18n="cat.accessories">Accessoires</h3><span data-i18n="cat.accessories.txt">Des souvenirs de Marrakech qui ne prennent pas la poussière sur une étagère.</span></div>
- </a>
- </div>
- </div>
- </section>
 
  <!-- ===== À PROPOS DE L’IMPRIMÉ - LE MARCHÉ AUX FRUITS ===== -->
  <section class="section section--surface print-story-section" aria-labelledby="printStoryTitle">

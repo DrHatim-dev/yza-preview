@@ -150,25 +150,8 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; font-style:
 
 /* ===== Transparent header over the home hero video — solid once scrolled ===== */
 .header, .announcement { transition: background-color var(--transition), color var(--transition), border-color var(--transition), backdrop-filter var(--transition), box-shadow var(--transition); }
-/* tuck the full-bleed hero up behind the (sticky) bars so the video sits under them */
-body[data-page="home"] main { margin-top: calc(-1 * var(--yza-bars-h, 7.5rem)); }
-/* top scrim keeps white chrome legible over any bright frame of the video */
-body[data-page="home"] .hero--video::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 240px; background: linear-gradient(180deg, rgba(0,0,0,0.5), rgba(0,0,0,0)); z-index: 1; pointer-events: none; }
-body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .announcement,
-body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header { background: transparent; -webkit-backdrop-filter: none; backdrop-filter: none; border-bottom-color: rgba(255,255,255,0.22); color: #fff; }
-/* Explicit 100% opaque solid when hovered or scrolled — overrides the transparent rule above */
-body[data-page="home"].is-scrolled .header,
-body[data-page="home"].is-scrolled .announcement,
-body[data-page="home"].is-header-hover .header,
-body[data-page="home"].is-header-hover .announcement { background: var(--color-bg); -webkit-backdrop-filter: none; backdrop-filter: none; color: var(--color-fg); border-bottom-color: var(--color-border); }
-body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .nav-item > a,
-body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .nav-trigger,
-body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .header-search,
-body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .icon-btn,
-body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .lang-select__button,
-body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .announcement,
-body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .announcement a { color: #fff; }
-body[data-page="home"]:not(.is-scrolled):not(.is-header-hover) .header .logo__img { filter: brightness(0) invert(1); }
+/* Home header stays solid like every other page (no transparent-over-hero treatment);
+   the hero now sits below the bar rather than being tucked under it. */
 
 /* Desktop keeps the condensed nav when stuck; hamburger stays mobile-only */
 .header__actions .burger { order: 99; }
@@ -2493,10 +2476,26 @@ body[data-page="home"] .yza-girls-home { border-top: 1px solid var(--color-borde
 body[data-page="home"] footer.footer { background: var(--white); margin-top: 0; }
 body[data-page="home"] footer.footer .footer-service--trust { border-color: var(--color-border); }
 
-/* header sits on the cream base so the chrome speaks one language;
- frosted at rest (cream @ 70%), solid cream once stuck. */
-body[data-page="home"] .header { background: rgba(252, 247, 241, 0.7); }
-body[data-page="home"] .header.is-stuck { background: rgba(252, 247, 241, 0.7); box-shadow: 0 1px 24px -16px rgba(58, 38, 18, 0.5); }
+/* header sits on the cream base so the chrome speaks one language — solid cream, opaque. */
+body[data-page="home"] .header { background: var(--color-bg); }
+body[data-page="home"] .header.is-stuck { background: var(--color-bg); box-shadow: 0 1px 24px -16px rgba(58, 38, 18, 0.5); }
+
+/* ===== Home hero — two-image split (bags & charms / ready-to-wear) ===== */
+.hero-split { display: grid; grid-template-columns: 1fr; gap: 2px; background: var(--color-border); }
+.hero-split__tile { position: relative; display: block; overflow: hidden; aspect-ratio: 4 / 5; background: var(--color-bg); color: #fff; }
+.hero-split__img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.9s var(--ease-out); }
+.hero-split__tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 48%, rgba(0,0,0,0.5)); pointer-events: none; }
+.hero-split__tile:hover .hero-split__img, .hero-split__tile:focus-visible .hero-split__img { transform: scale(1.045); }
+.hero-split__cap { position: absolute; z-index: 1; left: clamp(1.1rem, 2.4vw, 2.75rem); bottom: clamp(1.1rem, 2.8vw, 2.5rem); display: flex; flex-direction: column; gap: 0.45rem; text-shadow: 0 1px 16px rgba(0,0,0,0.35); }
+.hero-split__title { font-family: var(--font-display); font-style: italic; font-weight: 500; font-size: clamp(1.7rem, 3.2vw, 2.9rem); line-height: 1.02; }
+.hero-split__link { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; }
+.hero-split__link::after { content: " \2192"; }
+@media (min-width: 768px) {
+ .hero-split { grid-template-columns: 1fr 1fr; }
+ .hero-split__tile { aspect-ratio: auto; height: min(86svh, 940px); }
+}
+[dir="rtl"] .hero-split__cap { left: auto; right: clamp(1.1rem, 2.4vw, 2.75rem); }
+[dir="rtl"] .hero-split__link::after { content: " \2190"; }
 
 /* ============================================================
  CARD & BORDER ELEVATION
