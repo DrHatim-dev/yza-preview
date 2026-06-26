@@ -245,13 +245,27 @@ YZA.serviceStripIcons = {
  international: 'svc-international.png',
 };
 
+// Thin-line Amazigh/Berber service glyphs (the original set Nawal had — vertical
+// totem, four-fold cross-star, woven band). Path-only SVGs: stroke/size/caps come
+// from `.service-card__icon svg` in styles.css, so they inherit the ink colour and
+// stay crisp at any scale. Visual order on the strip matches the brand-values screen.
+YZA.serviceStripGlyphs = {
+ // vertical totem
+ shipping: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6V27"/><path d="M26 11H38"/><path d="M32 18L25 24M32 18L39 24"/><path d="M32 27L41 36L32 45L23 36Z"/><path d="M32 45V50M32 50L24 58M32 50L40 58"/><path d="M21 58H27M37 58H43"/></svg>',
+ // four-fold cross-star
+ returns: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 24L40 32L32 40L24 32Z"/><path d="M32 24V8M27 12H37"/><path d="M32 40V56M27 52H37"/><path d="M24 32H8M12 27V37"/><path d="M40 32H56M52 27V37"/><path d="M40 24L45 19M24 24L19 19M40 40L45 45M24 40L19 45"/><path d="M32 29L35 32L32 35L29 32Z"/></svg>',
+ // woven band
+ payment: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 20L44 32L32 44L20 32Z"/><path d="M32 25V39M25 32H39"/><path d="M18 23L9 32L18 41"/><path d="M46 23L55 32L46 41"/><path d="M26 12V16M32 11V16M38 12V16"/><path d="M26 48V52M32 48V53M38 48V52"/></svg>',
+};
+YZA.serviceStripGlyphs.limited = YZA.serviceStripGlyphs.payment;
+YZA.serviceStripGlyph = (name) => YZA.serviceStripGlyphs[name] || YZA.serviceStripGlyphs.returns;
+
 YZA.serviceCard = (key, className = 'service-card') => {
  const item = YZA.serviceFeature(key);
  if (!item) return '';
  const classes = Array.from(new Set(['service-card', ...String(className).split(/\s+/).filter(Boolean)])).join(' ');
- const iconFile = (YZA.serviceStripIcons && YZA.serviceStripIcons[item.icon]) || 'svc-amazigh-limited.png';
  return `<article class="${classes}" data-service-card="${item.key}">
- <span class="service-card__icon"><img class="service-card__symbol" src="assets/brand/icons/${iconFile}" alt="" aria-hidden="true" width="64" height="64" loading="lazy" decoding="async"></span>
+ <span class="service-card__icon">${YZA.serviceStripGlyph(item.icon)}</span>
  <h3>${YZA.pickText(item.title)}</h3>
  <p>${YZA.pickText(item.text)}</p>
  </article>`;

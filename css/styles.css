@@ -826,9 +826,9 @@ body.has-search-overlay { overflow: hidden; }
 .yza-marquee--onband .yza-marquee__sep { color: var(--brand-yellow); }
 @media (max-width: 700px) { .video-band { min-height: 100dvh; } .video-band__overlay { align-items: flex-end; } }
 
-/* ---- Closing CTA (minimal dark-ink band, no video) ---- */
+/* ---- Closing CTA (YZA terracotta-orange band, no video) ---- */
 .closing-cta {
- background: var(--jq-ink);
+ background: var(--yza-orange);
  color: var(--white);
  display: flex; align-items: center; justify-content: center;
  padding-block: clamp(5rem, 12vw, 9rem);

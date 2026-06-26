@@ -26,6 +26,7 @@
  --jq-cream: #fffced;      /* real Jacquemus warm ground */
  --true-black: #000000;    /* overlays / selection only */
  --jq-navy: #1c2a4d;       /* occasional logo-variant accent */
+ --yza-orange: #c45e29;    /* YZA terracotta orange — used for accent bands (kept out of the monochrome ground) */
  --jq-bg: var(--color-bg);
 
  --brand-pink: var(--jq-pink);
