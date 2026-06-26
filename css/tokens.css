@@ -57,7 +57,7 @@
  --n-encre: var(--jq-ink);
 
  /* ---- SEMANTIC TOKENS ---- */
- --color-bg: var(--jq-cream);  /* GROUND — real Jacquemus warm ivory #FFFCED (user opted back into cream 2026-06-26) */
+ --color-bg: #ffffff;  /* GROUND — pure white (user preference 2026-06-26) */
  --color-surface: var(--color-bg);
  --color-surface-2: #ffffff;   /* cards / panels */
  --color-fg: var(--jq-ink);
