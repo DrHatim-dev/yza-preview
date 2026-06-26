@@ -15771,6 +15771,122 @@ SCULPT_SIZE_COPY.forEach((s) => {
  p.img = s.size === 'S' ? gallery[1] : s.size === 'M' ? gallery[2] : gallery[0];
 });
 
+// ============================================================
+// Client media parity (charms + palazzo + La Nouvelle Vague).
+// Real photography and product videos harvested from the client's
+// live store (yza-shop.com), shown in the same ordered multi-image +
+// inline-video gallery as La Sculpture. Cluster/wrong-product shots
+// and the generic "BAG CHARMS" banner video were dropped; a few weak
+// hero shots were re-shot via Higgsfield image-to-image (product kept
+// identical, photography only). Sets p.media (ordered), p.gallery
+// (image-only) and p.img (first image). Runs after the size/colour
+// reconciliations and before PERSONA_COPY (which never touches media).
+// ============================================================
+const PRODUCT_MEDIA = {
+  'raffia-avocado-half-charm-ss26': [
+    { type: 'image', src: 'assets/products/charms/client/avocado-half-01.jpg' },
+    { type: 'image', src: 'assets/products/charms/client/avocado-half-02.jpg' },
+    { type: 'video', src: 'assets/lifestyle/charms/charm-d08f3acaf82b.mp4', poster: 'assets/lifestyle/charms/charm-d08f3acaf82b-poster.jpg' },
+  ],
+  'raffia-tomato-charm-ss26': [
+    { type: 'image', src: 'assets/products/charms/client/tomato-01.jpg' },
+    { type: 'image', src: 'assets/products/charms/client/tomato-02.jpg' },
+    { type: 'video', src: 'assets/lifestyle/charms/charm-075e4ebee205.mp4', poster: 'assets/lifestyle/charms/charm-075e4ebee205-poster.jpg' },
+  ],
+  'raffia-whole-lemon-charm-ss26': [
+    { type: 'image', src: 'assets/products/charms/client/whole-lemon-01.jpg' },
+    { type: 'image', src: 'assets/products/charms/client/whole-lemon-02.jpg' },
+    { type: 'video', src: 'assets/lifestyle/charms/charm-72452055e49d.mp4', poster: 'assets/lifestyle/charms/charm-72452055e49d-poster.jpg' },
+  ],
+  'raffia-whole-orange-charm-ss26': [
+    { type: 'image', src: 'assets/products/charms/client/whole-orange-01.jpg' },
+    { type: 'image', src: 'assets/products/charms/client/whole-orange-02.jpg' },
+    { type: 'video', src: 'assets/lifestyle/charms/charm-dcf1596e0299.mp4', poster: 'assets/lifestyle/charms/charm-dcf1596e0299-poster.jpg' },
+  ],
+  'raffia-cherries-charm-ss26': [
+    { type: 'image', src: 'assets/products/charms/client/cherries-01.jpg' },
+    { type: 'image', src: 'assets/products/charms/client/cherries-02.jpg' },
+    { type: 'video', src: 'assets/lifestyle/charms/charm-c5fb0ffd41ab.mp4', poster: 'assets/lifestyle/charms/charm-c5fb0ffd41ab-poster.jpg' },
+  ],
+  'raffia-grapes-charm-ss26': [
+    { type: 'image', src: 'assets/products/charms/client/grapes-01.jpg' },
+    { type: 'image', src: 'assets/products/charms/client/grapes-02.jpg' },
+    { type: 'video', src: 'assets/lifestyle/charms/charm-a7c647c95af5.mp4', poster: 'assets/lifestyle/charms/charm-a7c647c95af5-poster.jpg' },
+  ],
+  'raffia-lemon-slice-charm-ss26': [
+    { type: 'image', src: 'assets/products/charms/client/lemon-slice-01.jpg' },
+    { type: 'video', src: 'assets/lifestyle/charms/charm-f09995fb69e4.mp4', poster: 'assets/lifestyle/charms/charm-f09995fb69e4-poster.jpg' },
+  ],
+  'raffia-orange-slice-charm-ss26': [
+    { type: 'image', src: 'assets/products/charms/client/orange-slice-01.jpg' },
+    { type: 'image', src: 'assets/products/charms/client/orange-slice-02.jpg' },
+    { type: 'image', src: 'assets/products/charms/client/orange-slice-04.jpg' },
+    { type: 'image', src: 'assets/products/charms/client/orange-slice-05.jpg' },
+    { type: 'video', src: 'assets/lifestyle/charms/charm-242b97edd7d8.mp4', poster: 'assets/lifestyle/charms/charm-242b97edd7d8-poster.jpg' },
+  ],
+  'raffia-kiwi-slice-charm-ss26': [
+    { type: 'image', src: 'assets/products/charms/client/kiwi-slice-01.jpg' },
+    { type: 'image', src: 'assets/products/charms/client/kiwi-slice-02.jpg' },
+    { type: 'video', src: 'assets/lifestyle/charms/charm-1019b2c088a4.mp4', poster: 'assets/lifestyle/charms/charm-1019b2c088a4-poster.jpg' },
+  ],
+  'raffia-watermelon-slice-charm-ss26': [
+    { type: 'image', src: 'assets/products/charms/client/watermelon-slice-01.jpg' },
+    { type: 'image', src: 'assets/products/charms/client/watermelon-slice-03.jpg' },
+    { type: 'image', src: 'assets/products/charms/client/watermelon-slice-04.jpg' },
+    { type: 'video', src: 'assets/lifestyle/charms/charm-922dd93c197c.mp4', poster: 'assets/lifestyle/charms/charm-922dd93c197c-poster.jpg' },
+  ],
+  'yza-palazzo-pants-jawhara-ss26': [
+    { type: 'image', src: 'assets/products/jawhara/client/palazzo-01.jpg' },
+    { type: 'image', src: 'assets/products/jawhara/client/palazzo-02.jpg' },
+    { type: 'image', src: 'assets/products/jawhara/client/palazzo-06.jpg' },
+    { type: 'image', src: 'assets/products/jawhara/client/palazzo-07.jpg' },
+    { type: 'image', src: 'assets/products/jawhara/client/palazzo-08.jpg' },
+    { type: 'image', src: 'assets/products/jawhara/client/palazzo-09.jpg' },
+    { type: 'image', src: 'assets/products/jawhara/client/palazzo-10.jpg' },
+    { type: 'image', src: 'assets/products/jawhara/client/palazzo-11.jpg' },
+    { type: 'image', src: 'assets/products/jawhara/client/palazzo-12.jpg' },
+    { type: 'video', src: 'assets/lifestyle/rtw/palazzo-0c3974e0ce54.mp4', poster: 'assets/lifestyle/rtw/palazzo-0c3974e0ce54-poster.jpg' },
+  ],
+  'la-nouvelle-vague-xs-basket-bag-ss26': [
+    { type: 'image', src: 'assets/products/la-vague/client/black-xs-01.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/client/black-xs-02.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/client/black-xs-03.jpg' },
+    { type: 'video', src: 'assets/lifestyle/bags/vague-3e649f7c202b.mp4', poster: 'assets/lifestyle/bags/vague-3e649f7c202b-poster.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/client/nude-xs-01.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/client/nude-xs-02.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/client/nude-xs-03.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/lv-camel-xs.jpg' },
+  ],
+  'la-nouvelle-vague-s-basket-bag-ss26': [
+    { type: 'image', src: 'assets/products/la-vague/client/black-s-01.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/client/black-s-02.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/client/black-s-03.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/client/black-s-04.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/client/black-s-05.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/client/black-s-06.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/lv-nude-s.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/lv-camel-s.jpg' },
+  ],
+  'la-nouvelle-vague-m-basket-bag-ss26': [
+    { type: 'image', src: 'assets/products/la-vague/client/black-m-01.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/client/black-m-02.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/client/black-m-03.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/client/black-m-04.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/client/black-m-05.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/lv-nude-m.jpg' },
+    { type: 'image', src: 'assets/products/la-vague/lv-camel-m.jpg' },
+  ],
+};
+Object.keys(PRODUCT_MEDIA).forEach((h) => {
+  const p = PRODUCT_MAP.get(h);
+  if (!p) return;
+  const media = PRODUCT_MEDIA[h];
+  if (!media || !media.length) return;
+  p.media = media;
+  p.gallery = media.filter((m) => m.type === 'image').map((m) => m.src);
+  if (p.gallery.length) p.img = p.gallery[0];
+});
+
 
 // ============================================================
 // PERSONA_COPY - Nawal Rmili voice rewrite (Phase C).
