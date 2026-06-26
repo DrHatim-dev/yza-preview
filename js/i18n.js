@@ -9,6 +9,7 @@ const STR = {
   /* — Annonce / header / nav — */
   "announce":        { fr: "Garantie 30 jours · Réparations à vie à l’atelier", en: "30-day guarantee · Lifetime atelier repairs" },
   'announce.editions': { fr: 'Éditions limitées · jamais refaites', en: 'Limited editions · never remade', es: 'Ediciones limitadas · nunca reproducidas', tr: 'Sınırlı sayı · asla yeniden üretilmez', ar: 'إصدارات محدودة · لا تُصنع من جديد' },
+  'announce.unique': { fr: 'Quand une édition est partie, elle ne revient jamais et on ne la refait pas. Votre pièce reste unique, rien qu’à vous.', en: 'Once an edition’s gone, it never comes back and we never remake it. Your piece stays one of a kind, yours alone.', es: 'Cuando una edición se agota, no vuelve jamás y no la volvemos a hacer. Tu pieza es única, solo tuya.', tr: 'Bir edisyon bittiğinde bir daha gelmez ve onu asla yeniden üretmeyiz. Parçan tek ve sana özeldir.', ar: 'حين تنتهي إصدارة لا تعود أبداً ولا نُعيد صنعها. قطعتكِ تبقى فريدة، لكِ وحدكِ.' },
   'hero.editions':     { fr: 'Éditions limitées — une fois parties, elles ne reviennent pas', en: 'Limited editions — once they’re gone, they’re gone', es: 'Ediciones limitadas — una vez agotadas, no vuelven', tr: 'Sınırlı sayı — tükendiğinde geri dönmez', ar: 'إصدارات محدودة — حين تنفد، لا تعود' },
   'meta.shipping':   { fr: 'Livraison Maroc offerte dès 500 DH', en: 'Free Morocco delivery from 500 DH' },
   'meta.sale':       { fr: 'Fruit Market — nos fruits en raphia', en: 'Fruit Market — our raffia fruits' },
@@ -62,8 +63,15 @@ const STR = {
   'charm.style.videoCap': { fr: 'L’orange, qui se balance', en: 'The orange, swinging' },
   'print.eyebrow': { fr: 'L’art du raphia', en: 'The art of raffia' },
   'print.title': { fr: 'Le Marché aux Fruits', en: 'The Fruit Market' },
-  'print.body': { fr: 'Pas d’imprimé, pas de machine : chaque fruit est crocheté à la main, un fil de raphia à la fois. Une technique lente et exigeante, que peu de mains maîtrisent encore. La couleur, le relief, la rondeur — tout naît du geste, ici, à Guéliz. Notre façon d’emporter le marché de Marrakech, ses agrumes, ses grenades et ses figues, au creux de la main.', en: 'No print, no machine: every fruit is crocheted by hand, one strand of raffia at a time. A slow, exacting technique that few hands still master. The colour, the texture, the curve — all of it comes from the gesture, here in Guéliz. Our way of carrying the Marrakech market — citrus, pomegranates, figs — in the palm of your hand.' },
+  'print.body': { fr: 'Pas d’imprimé, pas de machine : chaque fruit est crocheté à la main, un fil de raphia à la fois. Notre façon d’emporter le marché de Marrakech au creux de la main.', en: 'No print, no machine: every fruit is crocheted by hand, one strand of raffia at a time. Our way of carrying the Marrakech market in the palm of your hand.', es: 'Sin estampado, sin máquina: cada fruta se teje a mano, un hilo de rafia a la vez. Nuestra forma de llevar el mercado de Marrakech en la palma.', tr: 'Baskı yok, makine yok: her meyve elle, tek tek rafya ipliğiyle örülür. Marakeş pazarını avucunuza taşıma şeklimiz.', ar: 'لا طباعة ولا آلة: كل ثمرة تُحاك يدويًا، خيط رافيا تلو الآخر. طريقتنا في حمل سوق مراكش في راحة يدك.' },
   'print.caption': { fr: 'Cerise, pastèque, citron — crochetés à la main.', en: 'Cherry, watermelon, lemon — crocheted by hand.' },
+  'fm.bundleKicker':  { fr: 'Trio Marché', en: 'Market Trio', es: 'Trío Mercado', tr: 'Pazar Üçlüsü', ar: 'ثلاثي السوق' },
+  'fm.bundleKicker2': { fr: 'Trio Verger', en: 'Orchard Trio', es: 'Trío Huerto', tr: 'Meyve Bahçesi Üçlüsü', ar: 'ثلاثي البستان' },
+  'fm.bundleKicker3': { fr: 'Trio Soleil', en: 'Sun Trio', es: 'Trío Sol', tr: 'Güneş Üçlüsü', ar: 'ثلاثي الشمس' },
+  'fm.stylingYza':    { fr: 'Sur nos sacs YZA', en: 'On our YZA bags', es: 'Sobre nuestros bolsos YZA', tr: 'YZA çantalarımız üzerinde', ar: 'على حقائب YZA' },
+  'fm.stylingAny':    { fr: 'Sur n’importe quel sac', en: 'On any bag', es: 'Sobre cualquier bolso', tr: 'Her çanta üzerinde', ar: 'على أي حقيبة' },
+  'fm.stylingBasket': { fr: 'Sur les paniers', en: 'On baskets', es: 'Sobre los paniers', tr: 'Sepetlerin üzerinde', ar: 'على السلال' },
+  'fm.stylingCta':    { fr: 'Voir comment les porter', en: 'See how to wear them', es: 'Ver cómo llevarlos', tr: 'Nasıl takılır gör', ar: 'انظر كيف ترتديها' },
   'cta.discover': { fr: 'Découvrir', en: 'Explore' },
   'world.charms.eye': { fr: 'Charms', en: 'Charms' },
   'world.charms.title': { fr: 'Fruits crochetés en raphia', en: 'Crocheted raffia fruits' },
@@ -107,8 +115,8 @@ const STR = {
 
   /* — L'offre (bundles) — */
   'offer.eyebrow':   { fr: 'Par où commencer', en: 'Where to begin' },
-  'offer.title':     { fr: 'YZA en trois pièces', en: 'YZA in three pieces' },
-  'offer.text':      { fr: 'Un panier design, un look resort et quelques fruits crochetés — vous voilà habillée pour l’été ?', en: 'A design basket, a resort look and a few crocheted fruits — and you’re dressed for summer?' },
+  'offer.title':     { fr: 'YZA en quatre pièces', en: 'YZA in four pieces', es: 'YZA en cuatro piezas', tr: 'Dört parçada YZA', ar: 'YZA في أربع قطع' },
+  'offer.text':      { fr: 'Un panier, un haut, une jupe et un bijou — faites votre garde-robe d’été.', en: 'A basket, a top, a skirt and a piece of jewellery — build your summer wardrobe.', es: 'Una cesta, un top, una falda y una joya — compón tu vestuario de verano.', tr: 'Bir sepet, bir üst, bir etek ve bir takı — yaz gardırobunuzu kurun.', ar: 'سلة، توب، تنورة وقطعة مجوهرات — اصنعي خزانتك الصيفية.' },
   'offer.save':      { fr: 'Économisez', en: 'Save' },
   'offer.bundleNote':{ fr: 'Dans sa boîte, prête à offrir', en: 'Boxed, ready to gift' },
 
@@ -194,6 +202,7 @@ const STR = {
   'footer.house':  { fr: 'La maison', en: 'The house' },
   'footer.rights': { fr: 'Tous droits réservés.', en: 'All rights reserved.' },
   'footer.legal':  { fr: 'Mentions légales · Confidentialité', en: 'Legal · Privacy' },
+  'footer.follow': { fr: 'Suivez-nous', en: 'Follow us', es: 'Síguenos', tr: 'Bizi takip edin', ar: 'تابعنا' },
 
   /* — Panier (drawer) — */
   'cart.title':    { fr: 'Votre panier', en: 'Your cart' },

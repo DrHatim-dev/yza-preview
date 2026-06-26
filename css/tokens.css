@@ -1,64 +1,74 @@
 /* ============================================================
- YZA - DESIGN TOKENS · Brand charter
- Crème base, warm-neutral ramp, EB Garamond + Manrope + Overpass Mono.
- Crème #FCF7F1 · Encre #221C14 · Terre Cuite #de733d (accent) ·
- Olive #4B4A30 · Violet #55488C (secondary) · Safran #9C7C3A.
- Real, official brand colours from the YZA charter.
+ YZA - DESIGN TOKENS · Pure-white palette (user override 2026-06-26)
+ Backgrounds: pure white #ffffff (user removed all cream).
+ Ink: Mine Shaft #1f1f1f (soft near-black, brand still avoids pure #000).
+ Type: Jost as the single geometric sans, everywhere.
  ============================================================ */
 
 :root {
- /* ---- BRAND PALETTE (charter) ---- */
- --brand-pink: #d7cab1; /* was soft blush #e8bec0 - remapped to warm Grège; owner removed all pink */
- --brand-orange: #de733d; /* PRIMARY ACCENT · Terre Cuite family (owner-locked) */
- --brand-olive: #4b4a30; /* Olive (charter) */
- --brand-yellow: #9c7c3a; /* Safran - muted (charter) */
- --black: #221c14; /* Encre · warm near-black, not pure #000 */
- --white: #ffffff; /* true white - logos, rare highlights */
+ /* ---- PURE-WHITE PALETTE (user override, 2026-06-26) ----
+    User explicitly requested NO MORE CREAM — backgrounds are full white #ffffff.
+    Ink stays #1f1f1f Mine Shaft (the brand still avoids pure #000 for ink).
+    Coral flag (#ff6666) kept for "new"/sale tags, navy (#1c2a4d) as the
+    occasional logo accent. The warm grey ramp is desaturated to a neutral
+    cool grey ramp so layered surfaces read clean, not creamy. */
+ --jq-bg: #ffffff; /* pure white ground */
+ --jq-ink: #1f1f1f; /* Mine Shaft — soft near-black ink */
+ --jq-ink-hover: #111111; /* hover-darkened ink */
+ --jq-link: #444444; /* secondary link grey */
+ --jq-muted: #9a9a9a; /* neutral secondary label grey */
+ --jq-coral: #ff6666; /* "new"/sale flag */
+ --jq-navy: #1c2a4d; /* occasional logo-variant accent */
 
- /* charter accents */
- --terre-cuite: #a94c28; /* deep terracotta - rare deep accents */
- --brand-violet: #55488c; /* SECONDARY ACCENT · Violet (used sparingly) */
+ --brand-pink: #ededed; /* neutral light grey */
+ --brand-orange: #1f1f1f; /* PRIMARY ACCENT → ink (monochrome) */
+ --brand-olive: #1f1f1f;
+ --brand-yellow: #1f1f1f;
+ --black: #1f1f1f; /* ink (Mine Shaft, not pure #000) */
+ --white: #ffffff; /* pure white ground */
 
- /* ---- LEGACY ALIASES REMAPPED TO CHARTER ---- */
- --cream: #fcf7f1; /* Crème - Hermès-light brand base (main backgrounds) */
- --ink: var(--black); /* Encre */
- --terracotta: var(--brand-orange);
+ --terre-cuite: #1f1f1f; /* deep accent → ink */
+ --brand-violet: #1f1f1f; /* secondary accent → ink */
+
+ /* ---- LEGACY ALIASES — all cream maps to white ---- */
+ --cream: #ffffff; /* base ground is white */
+ --ink: var(--black);
+ --terracotta: var(--brand-orange); /* → ink (e.g. nav underline) */
  --olive: var(--brand-olive);
- --violet: var(--brand-violet); /* FIXED: previously mis-mapped to brand-pink */
+ --violet: var(--brand-violet);
  --saffron: var(--brand-yellow);
 
- /* ---- NEUTRAL ALIASES · WARM CHARTER RAMP ---- */
- --n-lin: #efe8da; /* Lin */
- --n-sable: #e5dcc8; /* Sable */
- --n-grege: #d7cab1; /* Grège */
- --n-argile: #c0b398; /* Argile */
- --n-taupe: #9a8e74; /* Taupe */
- --n-brun: #6e6450; /* Brun */
- --n-moka: #403828; /* Moka */
- --n-encre: #221c14; /* Encre */
+ /* ---- NEUTRAL ALIASES · COOL GREY RAMP (was warm; now desaturated) ----
+    The lightest two were flipped to pure white per user override; the rest
+    of the ramp keeps a cool-grey scale for borders, hover states, ink-on-grey. */
+ --n-lin: #ffffff;
+ --n-sable: #ffffff;
+ --n-grege: #e0e0e0;
+ --n-argile: #d0d0d0;
+ --n-taupe: #aaaaaa;
+ --n-brun: #777777;
+ --n-moka: #3a3a3a;
+ --n-encre: #1f1f1f;
 
  /* ---- SEMANTIC TOKENS ---- */
- --color-bg: var(--cream); /* cream base, not white */
- --color-surface: var(--n-sable); /* warm neutral surface (was pink) */
- --color-surface-2: var(--paper-card); /* warm near-white card / image base */
- --color-fg: var(--ink);
- --color-muted: #574e42;
- --color-border: rgba(46, 32, 18, 0.18);
- --color-border-strong: rgba(58, 40, 22, 0.30); /* defined warm hairline for card frames */
- --color-accent: var(--brand-orange);
- --color-accent-text: var(--terre-cuite); /* a11y: terracotta TEXT on light bg (#a94c28 ~5.3:1 on cream); buttons/large fills keep --brand-orange */
- --color-accent-fg: var(--black); /* encre on terracotta - best contrast (~5.3:1) */
- --color-accent-2: var(--saffron); /* muted saffron; violet stays deliberate via --violet */
- --color-dark: var(--ink);
- --color-dark-fg: var(--cream);
+ --color-bg: #ffffff; /* pure white ground */
+ --color-surface: #ffffff; /* alternating bands stay white */
+ --color-surface-2: #ffffff; /* cards are white with a hairline frame */
+ --color-fg: var(--jq-ink);
+ --color-muted: #666666; /* neutral secondary grey (AA on white) */
+ --color-border: rgba(31, 31, 31, 0.10); /* light hairline */
+ --color-border-strong: rgba(31, 31, 31, 0.18);
+ --color-accent: var(--jq-ink); /* solid fills/buttons → ink */
+ --color-accent-text: var(--jq-ink); /* accented text → ink */
+ --color-accent-fg: #ffffff; /* white text on ink fills */
+ --color-accent-2: var(--jq-muted);
+ --color-dark: var(--jq-ink);
+ --color-dark-fg: #ffffff;
 
- /* ---- WARM EDITORIAL SURFACES ----
- The cream the brand reads best on. --paper is a light card that lifts off
- the cream base; --sand a slightly deeper warm oat for alternating bands;
- --paper-card a warm near-white so product/quote cards read as crisp paper. */
- --paper: #fdfaf1;
- --sand: #f5ecdc;
- --paper-card: #fffdf8;
+ /* ---- EDITORIAL SURFACES (all white now) ---- */
+ --paper: #ffffff;
+ --sand: #ffffff; /* user override: no more off-white bands */
+ --paper-card: #ffffff;
 
  /* ---- TYPOGRAPHY ----
  Hermès-inspired system (experiment): EB Garamond (italic display serif) for
@@ -66,11 +76,19 @@
  and product titles · Manrope for body/UI. Loaded via Google Fonts <link> in
  each page <head>. Arabic falls back to a system Naskh/Kufi stack - see the
  [dir="rtl"] overrides in styles.css (EB Garamond/Overpass Mono lack Arabic). */
- --font-display: 'EB Garamond', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+ /* JACQUEMUS TYPOGRAPHY — one warm geometric sans everywhere, no serif/mono mix.
+    Jacquemus's real face is a custom proprietary sans (geometric/Futura-like
+    warmth in the 2025 identity) that can't be redistributed. Jost — the
+    open-source Futura clone — is the substitute, set as the PRIMARY face so it
+    actually renders for every visitor, on body, UI, headlines, menus, the lot.
+    No exceptions. (Futura PT only kicks in for the rare visitor who licenses it.)
+    For a condensed wordmark contrast we could layer Bebas Neue / Anton on
+    headlines later; for now the unified Jost system keeps the whole site coherent. */
+ --font-display: 'Jost', 'Futura PT', 'Helvetica Neue', Arial, sans-serif;
  --font-title: var(--font-display);
- --font-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
- --font-mono: 'Overpass Mono', 'Gill Sans MT', 'Calibri', ui-monospace, monospace;
- --font-hand: var(--font-mono);
+ --font-body: 'Jost', 'Futura PT', 'Helvetica Neue', Arial, sans-serif;
+ --font-mono: 'Jost', 'Futura PT', 'Helvetica Neue', Arial, sans-serif;
+ --font-hand: var(--font-display);
 
  /* ---- TYPE SCALE ---- */
  --fs-xs: 0.75rem;
@@ -100,16 +118,16 @@
  --container: 1320px;
  --container-wide: 1560px;
  --gutter: clamp(1.25rem, 4vw, 3.5rem);
- --radius: 2px;
- --radius-lg: 10px;
+ --radius: 0px; /* Jacquemus is flat — sharp corners */
+ --radius-lg: 0px;
  --header-h: 80px;
  --header-h-stuck: 56px;
 
  /* ---- MOTION / EFFECTS ---- */
  --transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
  --transition-fast: 0.2s ease;
- --shadow: 0 22px 55px -26px rgba(58, 38, 18, 0.42);
- --shadow-sm: 0 6px 20px -12px rgba(58, 38, 18, 0.34);
- --shadow-soft: 0 14px 36px -24px rgba(58, 38, 18, 0.30); /* gentle ambient lift for cards at rest */
+ --shadow: 0 20px 50px -28px rgba(0, 0, 0, 0.30); /* neutral, restrained */
+ --shadow-sm: 0 6px 18px -12px rgba(0, 0, 0, 0.22);
+ --shadow-soft: 0 12px 32px -24px rgba(0, 0, 0, 0.18);
  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }

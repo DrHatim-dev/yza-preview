@@ -5,6 +5,7 @@
 window.YZA = window.YZA || {};
 
 const WORDMARK = '<img class="logo__img" src="assets/brand/yza-logo-real.webp" alt="YZA" width="2930" height="865" decoding="async">';
+const FOOTER_CHEV = '<svg class="footer__col-chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.6 6 6.4 11 1.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const LANG_CODES = ['fr', 'en', 'es', 'tr', 'ar'];
 const flagImg = (cc) => `<img aria-hidden="true" class="lang-flag" src="assets/flags/${cc}.svg" alt="" width="22" height="16" decoding="async">`;
 const LANG_META_SAFE = {
@@ -302,11 +303,11 @@ const footerServiceCopy = () => {
 const footerFactsCopy = () => {
  const lang = YZA.i18n?.lang || 'fr';
  const copy = {
- fr: { studio: 'Studio', hours: 'Horaires', pickup: 'Retrait', delivery: 'Livraison offerte', guarantee: 'Garantie', b2b: 'B2B', stockists: 'Stockistes bienvenus', days: 'jours' },
- en: { studio: 'Studio', hours: 'Hours', pickup: 'Pickup', delivery: 'Free delivery', guarantee: 'Guarantee', b2b: 'B2B', stockists: 'Stockists welcome', days: 'days' },
- es: { studio: 'Studio', hours: 'Horario', pickup: 'Recogida', delivery: 'Envío gratis', guarantee: 'Garantía', b2b: 'B2B', stockists: 'Distribuidores bienvenidos', days: 'días' },
- tr: { studio: 'Stüdyo', hours: 'Saatler', pickup: 'Teslim alma', delivery: 'Ücretsiz teslimat', guarantee: 'Garanti', b2b: 'B2B', stockists: 'Bayiler bekleniyor', days: 'gün' },
- ar: { studio: 'الستوديو', hours: 'الأوقات', pickup: 'الاستلام', delivery: 'توصيل مجاني', guarantee: 'ضمان', b2b: 'B2B', stockists: 'نرحب بالموزعين', days: 'يوم' },
+ fr: { studio: 'Studio', hours: 'Horaires', pickup: 'Retrait', delivery: 'Livraison offerte', guarantee: 'Garantie', b2b: 'B2B', stockists: 'Stockistes bienvenus', days: 'jours', country: 'Maroc', lang: 'Français' },
+ en: { studio: 'Studio', hours: 'Hours', pickup: 'Pickup', delivery: 'Free delivery', guarantee: 'Guarantee', b2b: 'B2B', stockists: 'Stockists welcome', days: 'days', country: 'Morocco', lang: 'English' },
+ es: { studio: 'Studio', hours: 'Horario', pickup: 'Recogida', delivery: 'Envío gratis', guarantee: 'Garantía', b2b: 'B2B', stockists: 'Distribuidores bienvenidos', days: 'días', country: 'Marruecos', lang: 'Español' },
+ tr: { studio: 'Stüdyo', hours: 'Saatler', pickup: 'Teslim alma', delivery: 'Ücretsiz teslimat', guarantee: 'Garanti', b2b: 'B2B', stockists: 'Bayiler bekleniyor', days: 'gün', country: 'Fas', lang: 'Türkçe' },
+ ar: { studio: 'الستوديو', hours: 'الأوقات', pickup: 'الاستلام', delivery: 'توصيل مجاني', guarantee: 'ضمان', b2b: 'B2B', stockists: 'نرحب بالموزعين', days: 'يوم', country: 'المغرب', lang: 'العربية' },
  };
  return copy[lang] || copy.fr;
 };
@@ -323,12 +324,7 @@ YZA.chrome = {
  head.innerHTML = `
  <div class="announcement">
  <div class="container-wide announcement__inner">
- <span data-i18n="meta.shipping">${t.t('meta.shipping')}</span>
- <span class="announcement__cycle" aria-live="polite">
- <a href="collections.html?cat=charms" class="announcement__msg" data-i18n="meta.sale">${t.t('meta.sale')}</a>
- <span class="announcement__msg announcement__msg--alt" data-i18n="announce.editions">${t.t('announce.editions')}</span>
- </span>
- <span data-i18n="announce">${t.t('announce')}</span>
+ <p class="announcement__line" data-i18n="announce.unique">${t.t('announce.unique')}</p>
  </div>
  </div>
  <header class="header" id="header">
@@ -416,8 +412,11 @@ YZA.chrome = {
  </aside>`;
  document.body.append(drawers);
 
- const serviceKeys = ['morocco-delivery', 'returns', 'payment', 'limited', 'repairs'];
+ const serviceKeys = ['morocco-delivery', 'returns', 'payment'];
  const fc = footerFactsCopy();
+ const ns = footerServiceCopy();
+ // Pages that ship their own newsletter (e.g. the journal) skip the footer's news column.
+ const hasOwnNews = !!document.querySelector('.blog-newsletter, .newsletter');
  const footer = document.createElement('footer');
  footer.className = 'footer';
  footer.innerHTML = `
@@ -425,11 +424,33 @@ YZA.chrome = {
  <div class="footer-service footer-service--trust" data-service-strip="footer" aria-label="YZA services">
  ${serviceKeys.map((key) => YZA.serviceCard(key, 'footer-service__item footer-service__trust-item')).join('')}
  </div>
+ <div class="footer-engage${hasOwnNews ? ' footer-engage--solo' : ''}">
+ ${hasOwnNews ? '' : `<div class="footer-engage__col footer-news">
+ <h3>${ns.newsTitle}</h3>
+ <p>${ns.newsText}</p>
+ <form class="newsletter__form footer-news__form" novalidate>
+ <input type="email" required placeholder="${ns.placeholder}" aria-label="${ns.placeholder}">
+ <button class="btn btn--solid footer-news__btn" type="submit">${ns.submit}</button>
+ <p class="form-msg" data-news-msg hidden role="status" aria-live="polite"></p>
+ </form>
+ </div>`}
+ <div class="footer-engage__col footer-help">
+ <h3>${ns.helpTitle}</h3>
+ <p>${ns.helpText}</p>
+ <p class="footer-help__hours">${t.pick(YZA.brand.hours)}</p>
+ <div class="footer-help__links">
+ <a href="contact.html" data-i18n="nav.contact">${t.t('nav.contact')}</a>
+ <a href="https://wa.me/${YZA.brand.whatsapp.replace('+','')}" target="_blank" rel="noopener">WhatsApp</a>
+ <a href="faq.html#livraison" data-i18n="pp.acc.ship">${t.t('pp.acc.ship')}</a>
+ </div>
+ </div>
+ </div>
  <div class="footer__cols">
  <div class="footer__brand">
  <a class="logo logo--wordmark" href="index.html" aria-label="YZA">${WORDMARK}</a>
  <p class="brand-mark-tri" aria-label="YZA"><span class="brand-mark-tri__lat">YZA</span><span class="brand-mark-tri__sep" aria-hidden="true">·</span><span class="brand-mark-tri__tif" lang="zgh" aria-hidden="true">ⴰⵣⵉ</span><span class="brand-mark-tri__sep" aria-hidden="true">·</span><span class="brand-mark-tri__ar" lang="ar" aria-hidden="true">ييزة</span></p>
  <p class="footer__tag" data-i18n="footer.tagline">${t.t('footer.tagline')}</p>
+ <h4 class="footer__follow-h" data-i18n="footer.follow">${t.t('footer.follow')}</h4>
  <div class="footer__social">
  <a href="${YZA.brand.instagramUrl}" target="_blank" rel="noopener">Instagram</a>
  <a href="https://wa.me/${YZA.brand.whatsapp.replace('+','')}" target="_blank" rel="noopener">WhatsApp</a>
@@ -444,43 +465,73 @@ YZA.chrome = {
  </ul>
  <p class="footer__press"><span data-i18n="press.label">${t.t('press.label')}</span><br>${YZA.press.join(' / ')}</p>
  </div>
- <div class="footer__col">
- <h4 data-i18n="footer.shop">${t.t('footer.shop')}</h4>
- <ul>
+ <div class="footer__col footer__col--acc">
+ <button type="button" class="footer__col-toggle" aria-expanded="false"><span data-i18n="footer.shop">${t.t('footer.shop')}</span>${FOOTER_CHEV}</button>
+ <div class="footer__col-panel"><ul>
  <li><a href="collections.html?cat=charms" data-i18n="nav.charms">${t.t('nav.charms')}</a></li>
  <li><a href="collections.html?cat=rtw" data-i18n="nav.rtw">${t.t('nav.rtw')}</a></li>
  <li><a href="collections.html?cat=bags" data-i18n="nav.bags">${t.t('nav.bags')}</a></li>
  <li><a href="collections.html?cat=accessories" data-i18n="nav.accessories">${t.t('nav.accessories')}</a></li>
  <li><a href="collections.html" data-i18n="col.all">${t.t('col.all')}</a></li>
  <li><a href="b2b.html" data-i18n="nav.b2b">${t.t('nav.b2b')}</a></li>
- </ul>
+ </ul></div>
  </div>
- <div class="footer__col">
- <h4 data-i18n="footer.help">${t.t('footer.help')}</h4>
- <ul>
+ <div class="footer__col footer__col--acc">
+ <button type="button" class="footer__col-toggle" aria-expanded="false"><span data-i18n="footer.help">${t.t('footer.help')}</span>${FOOTER_CHEV}</button>
+ <div class="footer__col-panel"><ul>
  <li><a href="faq.html" data-i18n="nav.faq">${t.t('nav.faq')}</a></li>
  <li><a href="contact.html" data-i18n="nav.contact">${t.t('nav.contact')}</a></li>
  <li><a href="faq.html#livraison" data-i18n="pp.acc.ship">${t.t('pp.acc.ship')}</a></li>
- </ul>
+ </ul></div>
  </div>
- <div class="footer__col">
- <h4 data-i18n="footer.house">${t.t('footer.house')}</h4>
- <ul>
+ <div class="footer__col footer__col--acc">
+ <button type="button" class="footer__col-toggle" aria-expanded="false"><span data-i18n="footer.house">${t.t('footer.house')}</span>${FOOTER_CHEV}</button>
+ <div class="footer__col-panel"><ul>
  <li><a href="histoire.html" data-i18n="nav.story">${t.t('nav.story')}</a></li>
  <li><a href="studio.html" data-i18n="nav.studio">${t.t('nav.studio')}</a></li>
  <li><a href="yza-girls.html" data-i18n="nav.girls">${t.t('nav.girls')}</a></li>
  <li><a href="lookbook.html" data-i18n="nav.lookbook">${t.t('nav.lookbook')}</a></li>
  <li><a href="blogs/journal/" data-i18n="nav.journal">${t.t('nav.journal')}</a></li>
  <li><a href="mailto:${YZA.brand.email}">${YZA.brand.email}</a></li>
- </ul>
+ </ul></div>
  </div>
  </div>
  <div class="footer__bottom">
- <span>© <span id="year"></span> YZA / <span data-i18n="footer.rights">${t.t('footer.rights')}</span></span>
- <span>Marrakech / <span data-i18n="footer.legal">${t.t('footer.legal')}</span></span>
+ <span class="footer__copy">© <span id="year"></span> YZA / <span data-i18n="footer.rights">${t.t('footer.rights')}</span></span>
+ <a class="footer__wordmark logo logo--wordmark" href="index.html" aria-label="YZA">${WORDMARK}</a>
+ <span class="footer__meta">${fc.country} · ${fc.lang} / <span data-i18n="footer.legal">${t.t('footer.legal')}</span></span>
  </div>
  </div>`;
  document.body.append(footer);
+
+ // Collapsible footer columns (Jacquemus dropdown style): open on desktop,
+ // collapsed accordion on mobile, chevron toggles either way.
+ (function () {
+ const accs = Array.prototype.slice.call(footer.querySelectorAll('.footer__col--acc'));
+ if (!accs.length) return;
+ const wide = window.matchMedia('(min-width: 760px)');
+ const setOpen = (acc, open) => {
+ acc.classList.toggle('is-open', open);
+ const btn = acc.querySelector('.footer__col-toggle');
+ if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+ };
+ accs.forEach((acc) => {
+ setOpen(acc, wide.matches);
+ const btn = acc.querySelector('.footer__col-toggle');
+ if (btn) btn.addEventListener('click', () => setOpen(acc, !acc.classList.contains('is-open')));
+ });
+ const onBp = (e) => accs.forEach((acc) => setOpen(acc, e.matches));
+ if (wide.addEventListener) wide.addEventListener('change', onBp);
+ else if (wide.addListener) wide.addListener(onBp);
+ // Centred wordmark doubles as back-to-top
+ const wm = footer.querySelector('.footer__wordmark');
+ if (wm) wm.addEventListener('click', (e) => {
+ if (document.body.dataset.page === 'home' || location.pathname.endsWith('index.html') || location.pathname === '/') {
+ e.preventDefault();
+ window.scrollTo({ top: 0, behavior: 'smooth' });
+ }
+ });
+ })();
 
  this.mountConversionWidgets();
  this.wire();

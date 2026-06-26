@@ -46,11 +46,11 @@
   function stockCopy() {
     const lang = T().lang || 'fr';
     const copy = {
-      fr: { almost: 'Bientot epuise', sold: 'Epuise', left: 'piece restante' },
-      en: { almost: 'Almost gone', sold: 'Sold out', left: 'piece left' },
-      es: { almost: 'Casi agotado', sold: 'Agotado', left: 'pieza restante' },
-      tr: { almost: 'Tukenmek uzere', sold: 'Tukendi', left: 'adet kaldi' },
-      ar: { almost: 'ينفد قريبا', sold: 'نفد', left: 'قطعة متبقية' },
+      fr: { almost: 'Bientot epuise', sold: 'Epuise', left: 'piece restante', few: 'Plus que quelques pièces' },
+      en: { almost: 'Almost gone', sold: 'Sold out', left: 'piece left', few: 'A few pieces left' },
+      es: { almost: 'Casi agotado', sold: 'Agotado', left: 'pieza restante', few: 'Quedan pocas piezas' },
+      tr: { almost: 'Tukenmek uzere', sold: 'Tukendi', left: 'adet kaldi', few: 'Son birkaç parça' },
+      ar: { almost: 'ينفد قريبا', sold: 'نفد', left: 'قطعة متبقية', few: 'بقيت قطع قليلة' },
     };
     return copy[lang] || copy.fr;
   }
@@ -90,11 +90,12 @@
       : '';
     const soldOverlay = status.soldOut ? `<span class="product-card__sold">${esc(stock.sold)}</span>` : '';
     const almostBadge = status.almostGone ? `<span class="product-card__stock">${esc(stock.almost)}</span>` : '';
+    const fewBadge = (!status.soldOut && !status.almostGone) ? `<span class="product-card__few">${esc(stock.few)}</span>` : '';
     const imgLoad = eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
     return `<article class="product-card${p.hoverImg ? ' product-card--vibe' : ''}${status.soldOut ? ' is-sold-out' : ''}" style="--i:${index}" data-product-handle="${esc(p.handle)}">
       <button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(p.handle)}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${wished ? 'Remove from wishlist' : 'Add to wishlist'}">${heartIcon()}</button>
       <a class="product-card__media" href="${href}" data-product-card-click="${esc(p.handle)}" aria-label="${esc(name)}">
-        ${almostBadge}${soldOverlay}
+        ${fewBadge}${almostBadge}${soldOverlay}
         <img class="product-card__img" src="${esc(p.img)}" alt="${esc(t.pick(p.name))} - YZA" ${imgLoad} width="461" height="615" decoding="async">
         ${(hoverSrc && isPublicMedia(hoverSrc)) ? `<img class="product-card__img product-card__img--hover" src="${esc(hoverSrc)}" alt="" aria-hidden="true" loading="lazy" width="461" height="615" decoding="async">` : ''}
       </a>
@@ -117,6 +118,7 @@
     return `<article class="product-card product-card--bag-variant${status.soldOut ? ' is-sold-out' : ''}" data-size="${esc(String(item.size || '').toUpperCase())}" style="--i:${index}" data-product-handle="${esc(item.handle || '')}">
       <button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(item.handle || '')}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${wished ? 'Remove from wishlist' : 'Add to wishlist'}">${heartIcon()}</button>
       <a class="product-card__media" href="${esc(item.url)}" data-product-card-click="${esc(item.handle || '')}" aria-label="${esc(fullName)}">
+        ${(!status.soldOut && !status.almostGone) ? `<span class="product-card__few">${esc(stock.few)}</span>` : ''}
         ${status.almostGone ? `<span class="product-card__stock">${esc(stock.almost)}</span>` : ''}
         ${status.soldOut ? `<span class="product-card__sold">${esc(stock.sold)}</span>` : ''}
         <img class="product-card__img" src="${esc(item.img)}" alt="${esc(fullName)} - YZA" ${imgLoad} width="461" height="615" decoding="async">
@@ -161,7 +163,78 @@
  YZA._swiperPromise = Promise.all([cssP, jsP]).then(() => window.Swiper);
  return YZA._swiperPromise;
  }
- const navChev = (d) => `<svg viewBox="0 0 15 11" width="15" height="11" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d === 'prev' ? '<path d="M14 5.5H2"/><path d="M5.3 1 0.8 5.5 5.3 10"/>' : '<path d="M1 5.5h12"/><path d="M9.7 1 14.2 5.5 9.7 10"/>'}</svg>`;
+ const navChev = (d) => `<svg viewBox="0 0 9 16" width="9" height="16" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${d === 'prev' ? '<path d="M7.5 1 1.5 8l6 7"/>' : '<path d="M1.5 1 7.5 8l-6 7"/>'}</svg>`;
+
+ // Lightweight draggable carousel for offer-grid product cards.
+ // Click stays for short interactions (under 8px drag); >8px drag suppresses click
+ // so users can swipe images without accidentally navigating to the PDP.
+ function wireOfferCarousel(media) {
+ const count = parseInt(media.getAttribute('data-count'), 10) || 1;
+ if (count < 2) return;
+ const track = media.querySelector('.offer-card__track');
+ const card = media.closest('.offer-card');
+ const dots = card ? card.querySelectorAll('.offer-card__dot') : [];
+ const overlay = media.querySelector('.offer-card__overlay');
+ let idx = 0;
+ let startX = 0, startY = 0, dx = 0, dy = 0;
+ let dragging = false;
+ let didDrag = false;
+ let w = 0;
+ function setIdx(n) {
+ idx = Math.max(0, Math.min(count - 1, n));
+ track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+ dots.forEach((d, i) => d.classList.toggle('is-active', i === idx));
+ }
+ function down(e) {
+ const t = e.touches ? e.touches[0] : e;
+ startX = t.clientX; startY = t.clientY; dx = 0; dy = 0;
+ dragging = true; didDrag = false;
+ w = media.getBoundingClientRect().width;
+ track.classList.add('is-dragging');
+ if (!e.touches) e.preventDefault();
+ }
+ function move(e) {
+ if (!dragging) return;
+ const t = e.touches ? e.touches[0] : e;
+ dx = t.clientX - startX;
+ dy = t.clientY - startY;
+ // Vertical scroll wins — bail
+ if (!didDrag && Math.abs(dy) > Math.abs(dx) * 1.4) { up(); return; }
+ if (Math.abs(dx) > 8) didDrag = true;
+ if (didDrag) {
+ if (e.cancelable && e.touches) e.preventDefault();
+ track.style.transform = 'translateX(' + (-idx * w + dx) + 'px)';
+ }
+ }
+ function up() {
+ if (!dragging) return;
+ dragging = false;
+ track.classList.remove('is-dragging');
+ const threshold = Math.max(40, w * 0.15);
+ if (dx < -threshold && idx < count - 1) setIdx(idx + 1);
+ else if (dx > threshold && idx > 0) setIdx(idx - 1);
+ else setIdx(idx);
+ }
+ // Swallow click after a drag so the overlay <a> doesn't navigate
+ if (overlay) {
+ overlay.addEventListener('click', (e) => { if (didDrag) { e.preventDefault(); e.stopPropagation(); didDrag = false; } });
+ }
+ media.addEventListener('mousedown', down);
+ document.addEventListener('mousemove', move);
+ document.addEventListener('mouseup', up);
+ media.addEventListener('touchstart', down, { passive: true });
+ media.addEventListener('touchmove', move, { passive: false });
+ media.addEventListener('touchend', up);
+ media.addEventListener('touchcancel', up);
+ // Click on left/right halves of the media area to step through (when not dragged)
+ media.addEventListener('click', (e) => {
+ if (didDrag) return;
+ if (!e.target.closest('.offer-card__overlay')) return;
+ // overlay click is handled by the link
+ });
+ // Mouse wheel as a secondary affordance
+ setIdx(0);
+ }
 
  // Build a product carousel into `el` from `list`, using `cardFn` for each card.
  function buildSwiper(el, list, cardFn) {
@@ -616,21 +689,34 @@
  const press = $('#pressList');
  if (press) press.innerHTML = YZA.press.map(n => `<span>${n}</span>`).join('');
 
- // L'offre : 3 entrees de collection depuis le catalogue reel
+ // L'offre : 4 pièces clés du catalogue, chacune avec carrousel draggable
  const offer = $('#offerGrid');
  if (offer) {
- const picks = typeof YZA.offerPicks === 'function' ? YZA.offerPicks() : YZA.bundles();
+ // One pick per category, each with a multi-image runtime gallery for the draggable carousel.
+ const offerHandles = ['la-sculpture-xs-basket-bag-ss26', 'yza-palazzo-pants-jawhara-ss26', 'raffia-orange-slice-charm-ss26', 'grapes-raffia-earrings-ss26'];
+ const picks = offerHandles.map(h => YZA.getProduct ? YZA.getProduct(h) : null).filter(Boolean);
  offer.innerHTML = picks.map(p => {
- const save = p.compareAt ? t.formatPrice(p.compareAt - p.price) : '';
- return `<a class="offer-card" href="produit.html?handle=${p.handle}">
- <div class="offer-card__media"><img src="${p.img}" alt="${t.pick(displayName(p))} - YZA" loading="lazy" width="461" height="615" decoding="async">
- ${save ? `<span class="offer-card__save">${t.t('offer.save')} ${save}</span>` : ''}</div>
+ const name = t.pick(displayName(p));
+ const gallery = (p.gallery && p.gallery.length ? p.gallery : [p.img]).filter(Boolean);
+ const slides = gallery.map((src, i) => `<div class="offer-card__slide"><img src="${esc(src)}" alt="${esc(name)}${i === 0 ? ' - YZA' : ''}" loading="${i === 0 ? 'lazy' : 'lazy'}" width="461" height="615" decoding="async" draggable="false"></div>`).join('');
+ const dots = gallery.length > 1 ? `<div class="offer-card__dots" aria-hidden="true">${gallery.map((_, i) => `<span class="offer-card__dot${i === 0 ? ' is-active' : ''}"></span>`).join('')}</div>` : '';
+ return `<article class="offer-card" data-product-handle="${esc(p.handle)}">
+ <div class="offer-card__media" data-carousel data-count="${gallery.length}">
+ <div class="offer-card__track">${slides}</div>
+ <a class="offer-card__overlay" href="produit.html?handle=${esc(p.handle)}" aria-label="${esc(name)}"></a>
+ </div>
+ ${dots}
  <div class="offer-card__body">
- <h3>${t.pick(displayName(p))}</h3>
- <p>${t.pick(displayShort(p))}</p>
- <span class="offer-card__price">${p.compareAt ? `<s>${t.formatPrice(p.compareAt)}</s> ` : ''}${cardPriceText(p)}</span>
- </div></a>`;
+ <a class="offer-card__name" href="produit.html?handle=${esc(p.handle)}">${esc(name)}</a>
+ <span class="offer-card__price">${cardPriceText(p)}</span>
+ </div>
+ <button class="offer-card__wish" type="button" data-wishlist-toggle="${esc(p.handle)}" aria-label="${T().t('a.wishlist') || 'Favoris'}">
+ <svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><path d="M9.7 4.35l.55.64.56-.66L12.16 2.78C13.73 0.96 16.25 0.96 17.83 2.78c1.6 1.85 1.6 4.86 0 6.7L10.25 18.6 2.6 9.49C1 7.64 1 4.63 2.59 2.78 4.16 0.96 6.68 0.96 8.27 2.78l1.38 1.57Z" fill="none" stroke="currentColor" stroke-width="1"/></svg>
+ </button>
+ </article>`;
  }).join('');
+ // Wire draggable behaviour
+ offer.querySelectorAll('[data-carousel]').forEach(wireOfferCarousel);
  }
 
  // Témoignages - EXEMPLES à remplacer par de vrais avis (data-placeholder="reviews")
@@ -1357,7 +1443,7 @@
 
  function renderServiceStrips() {
  const defaultKeys = ['morocco-delivery', 'returns', 'payment', 'limited', 'repairs'];
- const footerKeys = ['morocco-delivery', 'returns', 'payment', 'limited', 'repairs'];
+ const footerKeys = ['morocco-delivery', 'returns', 'payment'];
  $$('[data-service-strip]').forEach((strip) => {
  const keys = strip.dataset.serviceStrip === 'footer' ? footerKeys : defaultKeys;
  const className = strip.dataset.serviceStrip === 'footer'
@@ -2187,4 +2273,125 @@
     document.querySelectorAll('.girls-home-grid, .girls-feed, [data-scroll-row]')
  .forEach((el) => enableDragScroll(el));
  });
+})();
+
+/* Jacquemus-minimal video-band player controls (play/pause · seek · mute · fullscreen) */
+(function () {
+  function wireBand(bar) {
+    var section = bar.closest('.video-band');
+    var video = section && section.querySelector('video');
+    if (!video) return;
+    var playBtn = bar.querySelector('[data-vb-play]');
+    var muteBtn = bar.querySelector('[data-vb-mute]');
+    var fsBtn = bar.querySelector('[data-vb-fullscreen]');
+    var seek = bar.querySelector('[data-vb-seek]');
+
+    function syncPlay() {
+      var paused = video.paused;
+      if (!playBtn) return;
+      playBtn.classList.toggle('is-paused', paused);
+      playBtn.setAttribute('aria-label', paused ? 'Lecture' : 'Pause');
+      playBtn.setAttribute('aria-pressed', String(!paused));
+    }
+    function syncMute() {
+      var on = !video.muted && video.volume > 0;
+      if (!muteBtn) return;
+      muteBtn.classList.toggle('is-on', on);
+      muteBtn.setAttribute('aria-label', on ? 'Couper le son' : 'Activer le son');
+      muteBtn.setAttribute('aria-pressed', String(on));
+    }
+    function syncProgress() {
+      if (!seek) return;
+      var d = video.duration;
+      if (d && isFinite(d)) {
+        var pct = Math.min(100, Math.max(0, (video.currentTime / d) * 100));
+        seek.value = String(pct);
+        bar.style.setProperty('--vb-pct', pct.toFixed(2) + '%');
+      }
+    }
+
+    if (playBtn) playBtn.addEventListener('click', function () {
+      if (video.paused) { var p = video.play(); if (p && p.catch) p.catch(function () {}); }
+      else { video.pause(); }
+    });
+    if (muteBtn) muteBtn.addEventListener('click', function () {
+      video.muted = !video.muted;
+      if (!video.muted && video.volume === 0) video.volume = 1;
+      syncMute();
+    });
+    if (fsBtn) fsBtn.addEventListener('click', function () {
+      try {
+        if (document.fullscreenElement) { document.exitFullscreen(); }
+        else if (section.requestFullscreen) { section.requestFullscreen(); }
+        else if (video.webkitEnterFullscreen) { video.webkitEnterFullscreen(); }
+      } catch (e) {}
+    });
+    if (seek) seek.addEventListener('input', function () {
+      var d = video.duration;
+      if (d && isFinite(d)) { video.currentTime = (parseFloat(seek.value) / 100) * d; syncProgress(); }
+    });
+
+    video.addEventListener('play', syncPlay);
+    video.addEventListener('pause', syncPlay);
+    video.addEventListener('volumechange', syncMute);
+    video.addEventListener('timeupdate', syncProgress);
+    video.addEventListener('loadedmetadata', syncProgress);
+    try { if (video.preload === 'none') video.preload = 'metadata'; } catch (e) {}
+    syncPlay(); syncMute(); syncProgress();
+  }
+  function init() {
+    var bars = document.querySelectorAll('[data-vb-controls]');
+    for (var i = 0; i < bars.length; i++) wireBand(bars[i]);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+// ── Fruit-Market autoplay rotators (Jacquemus 2-up crossfade) ──────────
+// Each [data-fm-rotator] crossfades through its .fm-slide children at
+// `data-fm-interval` ms (default 4200). `data-fm-offset` delays the first
+// flip so adjacent tiles don't switch in lockstep. Pauses on hover/focus
+// and when the tab is hidden, respects prefers-reduced-motion.
+(function () {
+  function wireRotator(tile) {
+    var slides = tile.querySelectorAll('.fm-slide');
+    if (slides.length < 2) return;
+    var interval = parseInt(tile.getAttribute('data-fm-interval'), 10) || 4200;
+    var offset = parseInt(tile.getAttribute('data-fm-offset'), 10) || 0;
+    var idx = 0;
+    var paused = false;
+    var timer = null;
+
+    function show(n) {
+      slides.forEach(function (s, i) {
+        var active = i === n;
+        s.classList.toggle('is-active', active);
+        s.setAttribute('aria-hidden', active ? 'false' : 'true');
+      });
+    }
+    function tick() {
+      if (paused || document.hidden) return;
+      idx = (idx + 1) % slides.length;
+      show(idx);
+    }
+    function start() { stop(); timer = setInterval(tick, interval); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+    tile.addEventListener('mouseenter', function () { paused = true; });
+    tile.addEventListener('mouseleave', function () { paused = false; });
+    tile.addEventListener('focusin', function () { paused = true; });
+    tile.addEventListener('focusout', function () { paused = false; });
+    document.addEventListener('visibilitychange', function () { if (!document.hidden) start(); });
+
+    show(0);
+    setTimeout(start, offset);
+  }
+  function init() {
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    var tiles = document.querySelectorAll('[data-fm-rotator]');
+    for (var i = 0; i < tiles.length; i++) wireRotator(tiles[i]);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
 })();

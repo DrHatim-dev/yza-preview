@@ -15848,7 +15848,6 @@ const PRODUCT_MEDIA = {
   ],
   'yza-button-up-shirt-jawhara-ss26': [
     { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p29_img02_xref1213_fe747a323e9f.jpeg' },
-    { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p32_img01_xref1236_2f6dca810a1e.png' },
   ],
   'yza-pareo-skirt-short-jawhara-ss26': [
     { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p29_img04_xref1215_ea0a78123e7b.jpeg' },
@@ -15865,7 +15864,6 @@ const PRODUCT_MEDIA = {
   ],
   'yza-wrap-pants-jawhara-ss26': [
     { type: 'image', src: 'assets/products/jawhara/client/palazzo-01.jpg' },
-    { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p37_img04_xref1280_207d00c7c41c.png' },
   ],
   'yza-palazzo-pants-jawhara-ss26': [
     { type: 'image', src: 'assets/products/jawhara/client/palazzo-02.jpg' },

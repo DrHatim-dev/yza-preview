@@ -11,7 +11,7 @@
  <meta property="og:description" content="Sacs, prêt-à-porter et accessoires faits main à Marrakech - raphia, doum, feuille de palmier et tissu Jawhara. Éditions limitées, atelier 100 % féminin." />
  <meta property="og:image" content="https://yza-shop.com/assets/hero/la-sculpture-hero-desktop-poster.jpg" />
  <meta name="twitter:card" content="summary_large_image" />
- <meta name="theme-color" content="#fcf7f1" />
+ <meta name="theme-color" content="#ffffff" />
  <link rel="icon" href="assets/brand/yza-favicon.png" type="image/png" />
  <link rel="apple-touch-icon" href="assets/brand/yza-favicon.png" />
 
@@ -21,7 +21,7 @@
 
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Manrope:wght@400;500;600;700&family=Overpass+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,400..600&display=swap" rel="stylesheet">
  <link rel="stylesheet" href="css/tokens.css" />
  <link rel="stylesheet" href="css/styles.css" />
 
@@ -79,28 +79,112 @@
  </section>
 
 
- <!-- ===== À PROPOS DE L’IMPRIMÉ - LE MARCHÉ AUX FRUITS ===== -->
- <section class="section section--surface print-story-section" aria-labelledby="printStoryTitle">
- <div class="container-wide">
- <div class="print-story" data-reveal>
- <div class="print-story__text">
- <p class="eyebrow" data-i18n="print.eyebrow">L’art du raphia</p>
- <h2 id="printStoryTitle" data-i18n="print.title">Le Marché aux Fruits</h2>
- <p data-i18n="print.body">Pas d’imprimé, pas de machine : chaque fruit est crocheté à la main, un fil de raphia à la fois. Une technique lente et exigeante, que peu de mains maîtrisent encore. La couleur, le relief, la rondeur - tout naît du geste, ici, à Guéliz. Notre façon d’emporter le marché de Marrakech, ses agrumes, ses grenades et ses figues, au creux de la main.</p>
- <a class="link-underline" href="collections.html?cat=charms" data-i18n="cta.shopCharms">Voir les charms</a>
+ <!-- ===== LE MARCHÉ AUX FRUITS — full-bleed 2-up, info on hover ===== -->
+ <section class="section section--surface fruit-market-section" aria-label="Le Marché aux Fruits — l'art du raphia">
+ <div class="fruit-market-grid" data-reveal>
+ <!-- LEFT : 10-bundle autoplay rotator (each slide = 3 charms together) -->
+ <a class="fm-tile fm-tile--bundle" href="collections.html?cat=charms" data-fm-rotator data-fm-interval="3800" aria-label="Voir les bundles de charms YZA">
+ <div class="fm-stage">
+ <article class="fm-slide is-active" aria-hidden="false">
+ <div class="fm-triptych">
+ <img src="assets/products/charms/client/cherries-01.jpg" alt="Charm cerises en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/lemon-slice-01.jpg" alt="Charm tranche de citron en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/watermelon-slice-01.jpg" alt="Charm tranche de pastèque en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
  </div>
- <div class="print-story__collage">
- <span class="print-story__toile" aria-hidden="true" style="background-image:url('assets/products/fruit-market/toile-marrakech.jpg')"></span>
- <figure class="print-story__photo print-story__photo--back">
- <img src="assets/products/real/charms-basket.jpg" alt="Charms fruits en raphia YZA accrochés sur un sac en paille, près d’un panier de fruits" data-i18n-attr="alt:alt.charms.basket" loading="lazy" width="900" height="1161" decoding="async">
- </figure>
- <figure class="print-story__photo print-story__photo--front">
- <img src="assets/products/real/charms-pouch.jpg" alt="Charms cerise, pastèque et citron crochetés en raphia, accrochés à un sac en paille" data-i18n-attr="alt:alt.charms.pouch" loading="lazy" width="900" height="1125" decoding="async">
- <figcaption data-i18n="print.caption">Cerise, pastèque, citron - crochetés à la main.</figcaption>
- </figure>
+ <div class="fm-slide__cap"><span class="fm-slide__kicker">Trio Marché</span><span class="fm-slide__name">Cerise · Citron · Pastèque</span></div>
+ </article>
+ <article class="fm-slide" aria-hidden="true">
+ <div class="fm-triptych">
+ <img src="assets/products/charms/client/tomato-01.jpg" alt="Charm tomate en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/whole-orange-01.jpg" alt="Charm orange entière en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/grapes-01.jpg" alt="Charm grappe de raisin en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
  </div>
+ <div class="fm-slide__cap"><span class="fm-slide__kicker">Trio Verger</span><span class="fm-slide__name">Tomate · Orange · Raisin</span></div>
+ </article>
+ <article class="fm-slide" aria-hidden="true">
+ <div class="fm-triptych">
+ <img src="assets/products/charms/client/kiwi-slice-01.jpg" alt="Charm tranche de kiwi en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/avocado-half-01.jpg" alt="Charm demi-avocat en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/whole-lemon-01.jpg" alt="Charm citron entier en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
  </div>
+ <div class="fm-slide__cap"><span class="fm-slide__kicker">Trio Soleil</span><span class="fm-slide__name">Kiwi · Avocat · Citron</span></div>
+ </article>
+ <article class="fm-slide" aria-hidden="true">
+ <div class="fm-triptych">
+ <img src="assets/products/charms/client/orange-slice-01.jpg" alt="Charm tranche d'orange en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/lemon-slice-01.jpg" alt="Charm tranche de citron en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/whole-orange-02.jpg" alt="Charm orange entière en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ </div>
+ <div class="fm-slide__cap"><span class="fm-slide__kicker">Trio Agrumes</span><span class="fm-slide__name">Orange · Citron · Orange entière</span></div>
+ </article>
+ <article class="fm-slide" aria-hidden="true">
+ <div class="fm-triptych">
+ <img src="assets/products/charms/client/cherries-02.jpg" alt="Charm cerises en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/tomato-02.jpg" alt="Charm tomate en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/watermelon-slice-03.jpg" alt="Charm tranche de pastèque en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ </div>
+ <div class="fm-slide__cap"><span class="fm-slide__kicker">Trio Carmin</span><span class="fm-slide__name">Cerise · Tomate · Pastèque</span></div>
+ </article>
+ <article class="fm-slide" aria-hidden="true">
+ <div class="fm-triptych">
+ <img src="assets/products/charms/client/avocado-half-02.jpg" alt="Charm demi-avocat en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/kiwi-slice-02.jpg" alt="Charm tranche de kiwi en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/grapes-02.jpg" alt="Charm grappe de raisin en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ </div>
+ <div class="fm-slide__cap"><span class="fm-slide__kicker">Trio Vert</span><span class="fm-slide__name">Avocat · Kiwi · Raisin</span></div>
+ </article>
+ <article class="fm-slide" aria-hidden="true">
+ <div class="fm-triptych">
+ <img src="assets/products/charms/client/watermelon-slice-04.jpg" alt="Charm tranche de pastèque en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/cherries-01.jpg" alt="Charm cerises en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/orange-slice-04.jpg" alt="Charm tranche d'orange en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ </div>
+ <div class="fm-slide__cap"><span class="fm-slide__kicker">Trio Été</span><span class="fm-slide__name">Pastèque · Cerise · Orange</span></div>
+ </article>
+ <article class="fm-slide" aria-hidden="true">
+ <div class="fm-triptych">
+ <img src="assets/products/charms/client/whole-lemon-02.jpg" alt="Charm citron entier en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/lemon-slice-01.jpg" alt="Charm tranche de citron en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/whole-orange-01.jpg" alt="Charm orange entière en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ </div>
+ <div class="fm-slide__cap"><span class="fm-slide__kicker">Trio Jaune</span><span class="fm-slide__name">Citron · Tranche · Orange</span></div>
+ </article>
+ <article class="fm-slide" aria-hidden="true">
+ <div class="fm-triptych">
+ <img src="assets/products/charms/client/tomato-01.jpg" alt="Charm tomate en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/whole-orange-02.jpg" alt="Charm orange entière en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/cherries-02.jpg" alt="Charm cerises en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ </div>
+ <div class="fm-slide__cap"><span class="fm-slide__kicker">Trio Médina</span><span class="fm-slide__name">Tomate · Orange · Cerise</span></div>
+ </article>
+ <article class="fm-slide" aria-hidden="true">
+ <div class="fm-triptych">
+ <img src="assets/products/charms/client/avocado-half-01.jpg" alt="Charm demi-avocat en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/cherries-02.jpg" alt="Charm cerises en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ <img src="assets/products/charms/client/whole-lemon-01.jpg" alt="Charm citron entier en raphia YZA" loading="lazy" width="600" height="800" decoding="async">
+ </div>
+ <div class="fm-slide__cap"><span class="fm-slide__kicker">Trio Pique-nique</span><span class="fm-slide__name">Avocat · Cerise · Citron</span></div>
+ </article>
+ </div>
+ <span class="fm-tile__shoplink" data-i18n="cta.shopCharms">Voir les charms</span>
+ </a>
 
+ <!-- RIGHT : 10 styling shots, charms on Cult Gaia bags (Higgsfield/nano-banana-pro) -->
+ <a class="fm-tile fm-tile--styling" href="collections.html?cat=charms" data-fm-rotator data-fm-interval="3800" data-fm-offset="1900" aria-label="Comment porter les charms YZA">
+ <div class="fm-stage">
+ <article class="fm-slide is-active" aria-hidden="false"><img src="assets/lifestyle/charms/cultgaia/cherry-ark.jpg" alt="Charm cerise en raphia YZA porté sur un sac" loading="lazy" width="900" height="1125" decoding="async"><div class="fm-slide__cap fm-slide__cap--over"><span class="fm-slide__kicker">Cerise</span></div></article>
+ <article class="fm-slide" aria-hidden="true"><img src="assets/lifestyle/charms/cultgaia/avocado-rattan.jpg" alt="Charm avocat en raphia YZA porté sur un sac" loading="lazy" width="900" height="1125" decoding="async"><div class="fm-slide__cap fm-slide__cap--over"><span class="fm-slide__kicker">Avocat</span></div></article>
+ <article class="fm-slide" aria-hidden="true"><img src="assets/lifestyle/charms/cultgaia/lemon-mochi.jpg" alt="Charm citron en raphia YZA porté sur un sac" loading="lazy" width="900" height="1125" decoding="async"><div class="fm-slide__cap fm-slide__cap--over"><span class="fm-slide__kicker">Citron</span></div></article>
+ <article class="fm-slide" aria-hidden="true"><img src="assets/lifestyle/charms/cultgaia/watermelon-tote.jpg" alt="Charm pastèque en raphia YZA porté sur un sac" loading="lazy" width="900" height="1125" decoding="async"><div class="fm-slide__cap fm-slide__cap--over"><span class="fm-slide__kicker">Pastèque</span></div></article>
+ <article class="fm-slide" aria-hidden="true"><img src="assets/lifestyle/charms/cultgaia/grapes-hera.jpg" alt="Charm raisin en raphia YZA porté sur un sac" loading="lazy" width="900" height="1125" decoding="async"><div class="fm-slide__cap fm-slide__cap--over"><span class="fm-slide__kicker">Raisin</span></div></article>
+ <article class="fm-slide" aria-hidden="true"><img src="assets/lifestyle/charms/cultgaia/orange-demi.jpg" alt="Charm orange en raphia YZA porté sur un sac" loading="lazy" width="900" height="1125" decoding="async"><div class="fm-slide__cap fm-slide__cap--over"><span class="fm-slide__kicker">Orange</span></div></article>
+ <article class="fm-slide" aria-hidden="true"><img src="assets/lifestyle/charms/cultgaia/kiwi-clutch.jpg" alt="Charm kiwi en raphia YZA porté sur un sac" loading="lazy" width="900" height="1125" decoding="async"><div class="fm-slide__cap fm-slide__cap--over"><span class="fm-slide__kicker">Kiwi</span></div></article>
+ <article class="fm-slide" aria-hidden="true"><img src="assets/lifestyle/charms/cultgaia/tomato-bamboo.jpg" alt="Charm tomate en raphia YZA porté sur un sac" loading="lazy" width="900" height="1125" decoding="async"><div class="fm-slide__cap fm-slide__cap--over"><span class="fm-slide__kicker">Tomate</span></div></article>
+ <article class="fm-slide" aria-hidden="true"><img src="assets/lifestyle/charms/cultgaia/lemon-raffia.jpg" alt="Charm citron entier en raphia YZA porté sur un sac" loading="lazy" width="900" height="1125" decoding="async"><div class="fm-slide__cap fm-slide__cap--over"><span class="fm-slide__kicker">Citron entier</span></div></article>
+ <article class="fm-slide" aria-hidden="true"><img src="assets/lifestyle/charms/cultgaia/cherries-acrylic.jpg" alt="Charm cerises en raphia YZA porté sur un sac" loading="lazy" width="900" height="1125" decoding="async"><div class="fm-slide__cap fm-slide__cap--over"><span class="fm-slide__kicker">Cerises</span></div></article>
+ </div>
+ <span class="fm-tile__shoplink" data-i18n="fm.stylingCta">Voir comment les porter</span>
+ </a>
  </div>
  </section>
 
@@ -118,9 +202,27 @@
  </div>
  </section>
 
+ <!-- ===== DUO BIG-IMAGE SECTION (after the carousel) — two signature lines ===== -->
+ <section class="hero-split hero-split--duo" aria-label="Le Marché aux Fruits & La Sculpture">
+ <a class="hero-split__tile" href="collections.html?cat=charms" aria-label="Le Marché aux Fruits — charms en raphia">
+ <img class="hero-split__img" src="assets/lifestyle/editorial-grapes.jpg" alt="Charms raisin en raphia YZA portés en éditorial" loading="lazy" width="681" height="908" decoding="async">
+ <span class="hero-split__cap">
+ <span class="hero-split__title" data-i18n="print.title">Le Marché aux Fruits</span>
+ <span class="hero-split__link" data-i18n="cta.shopCharms">Voir les charms</span>
+ </span>
+ </a>
+ <a class="hero-split__tile" href="collections.html?cat=bags" aria-label="La Sculpture — le sac it-bag YZA">
+ <img class="hero-split__img" src="assets/story/nawal-bag-garden.jpg" alt="Le sac Sculpture YZA en raphia tenu dans un jardin de Marrakech" loading="lazy" width="1280" height="853" decoding="async">
+ <span class="hero-split__cap">
+ <span class="hero-split__title" data-i18n="hero.title">La Sculpture</span>
+ <span class="hero-split__link" data-i18n="cta.shop">Voir la collection</span>
+ </span>
+ </a>
+ </section>
+
  <!-- ===== ATELIER CRAFT VIDEO BAND ===== -->
- <section class="video-band" aria-labelledby="craftBandTitle">
- <video class="video-band__media" src="assets/video/band-atelier-raffia.mp4" preload="none" autoplay muted loop playsinline poster="assets/atelier/atelier-raffia-poster.jpg" aria-label="Les artisanes de l’atelier YZA crochètent le raphia à Guéliz"></video>
+ <section class="video-band video-band--minimal" id="craftBand" aria-labelledby="craftBandTitle">
+ <video id="craftBandVideo" class="video-band__media" src="assets/video/band-raffia-handwork.mp4" preload="metadata" autoplay muted loop playsinline poster="assets/atelier/raffia-handwork-poster.jpg" aria-label="Les artisanes de l’atelier YZA crochètent le raphia à la main à Guéliz"></video>
  <div class="yza-marquee yza-marquee--onband yza-marquee--ontop" aria-hidden="true">
  <div class="yza-marquee__track">
  <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
@@ -136,10 +238,24 @@
  <div class="video-band__overlay">
  <div class="video-band__content" data-reveal>
  <p class="eyebrow" data-i18n="band.craft.eye">Le savoir-faire</p>
- <h2 id="craftBandTitle" data-i18n="band.craft.title">Tout commence à Guéliz</h2>
+ <h2 id="craftBandTitle" data-i18n="band.craft.title">Les détails qui font la différence.</h2>
  <p data-i18n="band.craft.text">De 2 à 70 h de travail manuel : toutes nos pièces sont réalisées par les artisanes de l’atelier YZA.</p>
- <a class="btn btn--light" href="collections.html?cat=charms" data-i18n="cta.shopCharms">Voir les charms</a>
+ <a class="video-band__link" href="collections.html?cat=charms" data-i18n="cta.shopCharms">Voir nos fruits en raphia</a>
  </div>
+ </div>
+ <div class="vb-controls" data-vb-controls role="group" aria-label="Contrôles de la vidéo">
+ <button type="button" class="vb-ctrl vb-ctrl--play" data-vb-play aria-label="Pause" aria-pressed="true">
+ <svg class="vb-ic vb-ic--pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1.5" width="2.6" height="9"></rect><rect x="7.4" y="1.5" width="2.6" height="9"></rect></svg>
+ <svg class="vb-ic vb-ic--play" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5L10.5 6L2.5 10.5Z"></path></svg>
+ </button>
+ <div class="vb-progress"><input class="vb-seek" type="range" min="0" max="100" step="0.1" value="0" data-vb-seek aria-label="Progression de la vidéo"></div>
+ <button type="button" class="vb-ctrl vb-ctrl--mute" data-vb-mute aria-label="Activer le son" aria-pressed="false">
+ <svg class="vb-ic vb-ic--off" viewBox="0 0 16 14" aria-hidden="true"><path d="M1 5h3l3.5-3v10L4 9H1z"></path><path d="M10.6 5.4l3.4 3.4M14 5.4l-3.4 3.4" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"></path></svg>
+ <svg class="vb-ic vb-ic--on" viewBox="0 0 16 14" aria-hidden="true"><path d="M1 5h3l3.5-3v10L4 9H1z"></path><path d="M10.6 4.6a3.4 3.4 0 0 1 0 4.8M12.5 3a6 6 0 0 1 0 8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"></path></svg>
+ </button>
+ <button type="button" class="vb-ctrl vb-ctrl--full" data-vb-fullscreen aria-label="Plein écran">
+ <svg class="vb-ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 4.5V1h3.5M9.5 1H13v3.5M13 9.5V13H9.5M4.5 13H1V9.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+ </button>
  </div>
  <div class="yza-marquee yza-marquee--onband" aria-hidden="true">
  <div class="yza-marquee__track">
@@ -155,22 +271,14 @@
  </div>
  </section>
 
- <!-- ===== L'OFFRE (BUNDLES) ===== -->
- <section class="section">
- <div class="container-wide">
- <div class="section-head section-head--center" data-reveal>
- <span class="glyph-deco" aria-hidden="true"><img aria-hidden="true" src="assets/brand/icons/less-waste.png" alt="" width="44" height="44" loading="lazy" decoding="async"></span>
- <p class="eyebrow" data-i18n="offer.eyebrow">L’offre</p>
- <h2 data-i18n="offer.title">Trois façons de commencer</h2>
- <p class="lede" style="margin-inline:auto" data-i18n="offer.text">Du duo à offrir au panier garni : composez votre Fruit Market.</p>
- </div>
+ <!-- ===== L'OFFRE — full-bleed 4-product grid, info on hover ===== -->
+ <section class="section offer-section" aria-label="YZA en quatre pièces — par où commencer">
  <div class="offer-grid" id="offerGrid" data-reveal></div>
- </div>
  </section>
 
  <!-- ===== ATELIER VIDEO BAND ===== -->
- <section class="video-band" aria-labelledby="atelierBandTitle">
- <video class="video-band__media" src="assets/video/band-atelier-women.mp4" preload="none" autoplay muted loop playsinline poster="assets/atelier/atelier-table.jpg"></video>
+ <section class="video-band video-band--minimal" id="atelierBand" aria-labelledby="atelierBandTitle">
+ <video id="atelierBandVideo" class="video-band__media" src="assets/video/band-atelier-women.mp4" preload="metadata" autoplay muted loop playsinline poster="assets/atelier/atelier-table.jpg"></video>
  <div class="yza-marquee yza-marquee--onband yza-marquee--ontop" aria-hidden="true">
  <div class="yza-marquee__track">
  <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
@@ -188,8 +296,22 @@
  <p class="eyebrow" data-i18n="home.story.eyebrow">L’atelier</p>
  <h2 id="atelierBandTitle" data-i18n="home.story.title">Fait par des femmes, à Guéliz</h2>
  <p data-i18n="home.story.text">Chaque pièce est crochetée en raphia par les femmes de notre atelier, à Marrakech.</p>
- <a class="btn btn--light" href="histoire.html" data-i18n="cta.learn">En savoir plus</a>
+ <a class="video-band__link" href="histoire.html" data-i18n="cta.learn">Comprendre comment</a>
  </div>
+ </div>
+ <div class="vb-controls" data-vb-controls role="group" aria-label="Contrôles de la vidéo">
+ <button type="button" class="vb-ctrl vb-ctrl--play" data-vb-play aria-label="Pause" aria-pressed="true">
+ <svg class="vb-ic vb-ic--pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1.5" width="2.6" height="9"></rect><rect x="7.4" y="1.5" width="2.6" height="9"></rect></svg>
+ <svg class="vb-ic vb-ic--play" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5L10.5 6L2.5 10.5Z"></path></svg>
+ </button>
+ <div class="vb-progress"><input class="vb-seek" type="range" min="0" max="100" step="0.1" value="0" data-vb-seek aria-label="Progression de la vidéo"></div>
+ <button type="button" class="vb-ctrl vb-ctrl--mute" data-vb-mute aria-label="Activer le son" aria-pressed="false">
+ <svg class="vb-ic vb-ic--off" viewBox="0 0 16 14" aria-hidden="true"><path d="M1 5h3l3.5-3v10L4 9H1z"></path><path d="M10.6 5.4l3.4 3.4M14 5.4l-3.4 3.4" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"></path></svg>
+ <svg class="vb-ic vb-ic--on" viewBox="0 0 16 14" aria-hidden="true"><path d="M1 5h3l3.5-3v10L4 9H1z"></path><path d="M10.6 4.6a3.4 3.4 0 0 1 0 4.8M12.5 3a6 6 0 0 1 0 8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"></path></svg>
+ </button>
+ <button type="button" class="vb-ctrl vb-ctrl--full" data-vb-fullscreen aria-label="Plein écran">
+ <svg class="vb-ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 4.5V1h3.5M9.5 1H13v3.5M13 9.5V13H9.5M4.5 13H1V9.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+ </button>
  </div>
  <div class="yza-marquee yza-marquee--onband" aria-hidden="true">
  <div class="yza-marquee__track">
@@ -325,18 +447,6 @@
  </div>
  </section>
 
- <!-- ===== NEWSLETTER ===== -->
- <section class="section section--surface">
- <div class="container newsletter" data-reveal>
- <h2 data-i18n="news.title">Rejoindre YZA</h2>
- <p data-i18n="news.text">Nouvelles pièces, réassorts et coulisses de l’atelier.</p>
- <form class="newsletter__form" novalidate>
- <input type="email" required data-i18n-attr="placeholder:news.ph" placeholder="Votre e-mail" aria-label="E-mail" />
- <button class="btn btn--solid" type="submit" data-i18n="news.btn">S’inscrire</button>
- </form>
- <p class="form-msg" data-news-msg hidden role="status" aria-live="polite"></p>
- </div>
- </section>
 
 </main>
 
