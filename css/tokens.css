@@ -6,69 +6,75 @@
  ============================================================ */
 
 :root {
- /* ---- PURE-WHITE PALETTE (user override, 2026-06-26) ----
-    User explicitly requested NO MORE CREAM — backgrounds are full white #ffffff.
-    Ink stays #1f1f1f Mine Shaft (the brand still avoids pure #000 for ink).
-    Coral flag (#ff6666) kept for "new"/sale tags, navy (#1c2a4d) as the
-    occasional logo accent. The warm grey ramp is desaturated to a neutral
-    cool grey ramp so layered surfaces read clean, not creamy. */
- --jq-bg: #ffffff; /* pure white ground */
- --jq-ink: #1f1f1f; /* Mine Shaft — soft near-black ink */
- --jq-ink-hover: #111111; /* hover-darkened ink */
- --jq-link: #444444; /* secondary link grey */
- --jq-muted: #9a9a9a; /* neutral secondary label grey */
- --jq-coral: #ff6666; /* "new"/sale flag */
- --jq-navy: #1c2a4d; /* occasional logo-variant accent */
+ /* ---- REAL JACQUEMUS PALETTE (extracted from jacquemus.com, 2026-06-26) ----
+    The 12 brand colours the user supplied, mapped to roles. Ink is the soft
+    #2E2E2E (Jacquemus never uses harsh pure black for running text); pure #000
+    is held in --true-black for overlays / ::selection only. Cream #FFFCED is
+    the REAL Jacquemus ground, parked in --jq-cream; --color-bg below decides
+    whether the site actually sits on cream or stays pure white (the user
+    earlier asked to remove all cream — flip one line to switch). */
+ --jq-ink: #2e2e2e;        /* primary text — soft near-black */
+ --jq-ink-2: #212529;      /* darker ink / dark-section ground */
+ --jq-ink-hover: #000000;  /* hover-darkened to true black */
+ --jq-link: #444444;       /* secondary link grey */
+ --jq-muted: #a4a4a4;      /* light caption / meta grey */
+ --jq-coral: #ff6666;      /* "new" / flag coral */
+ --jq-pink: #edb2dd;       /* Jacquemus pink accent */
+ --jq-gold: #d6a94f;       /* gold — premium + B2B accent */
+ --jq-sale: #d90b0b;       /* reduced-price red */
+ --jq-line: #dad7db;       /* hairline borders, soft card ground */
+ --jq-cream: #fffced;      /* real Jacquemus warm ground */
+ --true-black: #000000;    /* overlays / selection only */
+ --jq-navy: #1c2a4d;       /* occasional logo-variant accent */
+ --jq-bg: var(--color-bg);
 
- --brand-pink: #ededed; /* neutral light grey */
- --brand-orange: #1f1f1f; /* PRIMARY ACCENT → ink (monochrome) */
- --brand-olive: #1f1f1f;
- --brand-yellow: #1f1f1f;
- --black: #1f1f1f; /* ink (Mine Shaft, not pure #000) */
- --white: #ffffff; /* pure white ground */
+ --brand-pink: var(--jq-pink);
+ --brand-orange: var(--jq-ink);  /* PRIMARY ACCENT → ink (monochrome) */
+ --brand-olive: var(--jq-ink);
+ --brand-yellow: var(--jq-gold);
+ --black: var(--jq-ink);         /* ink (soft #2E2E2E, not pure #000) */
+ --white: #ffffff;
 
- --terre-cuite: #1f1f1f; /* deep accent → ink */
- --brand-violet: #1f1f1f; /* secondary accent → ink */
+ --terre-cuite: var(--jq-ink);   /* deep accent → ink */
+ --brand-violet: var(--jq-pink); /* secondary accent → pink */
 
- /* ---- LEGACY ALIASES — all cream maps to white ---- */
- --cream: #ffffff; /* base ground is white */
+ /* ---- LEGACY ALIASES ---- */
+ --cream: var(--color-bg);       /* base ground (see --color-bg) */
  --ink: var(--black);
  --terracotta: var(--brand-orange); /* → ink (e.g. nav underline) */
  --olive: var(--brand-olive);
- --violet: var(--brand-violet);
- --saffron: var(--brand-yellow);
+ --violet: var(--jq-pink);
+ --saffron: var(--jq-gold);
 
- /* ---- NEUTRAL ALIASES · COOL GREY RAMP (was warm; now desaturated) ----
-    The lightest two were flipped to pure white per user override; the rest
-    of the ramp keeps a cool-grey scale for borders, hover states, ink-on-grey. */
+ /* ---- NEUTRAL GREY RAMP (warm-neutral, tuned to the Jacquemus line greys) ---- */
  --n-lin: #ffffff;
- --n-sable: #ffffff;
- --n-grege: #e0e0e0;
- --n-argile: #d0d0d0;
- --n-taupe: #aaaaaa;
- --n-brun: #777777;
- --n-moka: #3a3a3a;
- --n-encre: #1f1f1f;
+ --n-sable: #fffced;       /* faintest warm tint */
+ --n-grege: #eeeeee;
+ --n-argile: var(--jq-line);
+ --n-taupe: var(--jq-muted);
+ --n-brun: #767676;
+ --n-moka: #444444;
+ --n-encre: var(--jq-ink);
 
  /* ---- SEMANTIC TOKENS ---- */
- --color-bg: #ffffff; /* pure white ground */
- --color-surface: #ffffff; /* alternating bands stay white */
- --color-surface-2: #ffffff; /* cards are white with a hairline frame */
+ --color-bg: var(--jq-cream);  /* GROUND — real Jacquemus warm ivory #FFFCED (user opted back into cream 2026-06-26) */
+ --color-surface: var(--color-bg);
+ --color-surface-2: #ffffff;   /* cards / panels */
  --color-fg: var(--jq-ink);
- --color-muted: #666666; /* neutral secondary grey (AA on white) */
- --color-border: rgba(31, 31, 31, 0.10); /* light hairline */
- --color-border-strong: rgba(31, 31, 31, 0.18);
+ --color-muted: #767676;       /* readable secondary grey (AA on white); light --jq-muted reserved for decorative labels */
+ --color-border: rgba(46, 46, 46, 0.10); /* light hairline */
+ --color-border-strong: rgba(46, 46, 46, 0.18);
  --color-accent: var(--jq-ink); /* solid fills/buttons → ink */
  --color-accent-text: var(--jq-ink); /* accented text → ink */
  --color-accent-fg: #ffffff; /* white text on ink fills */
  --color-accent-2: var(--jq-muted);
- --color-dark: var(--jq-ink);
+ --color-dark: var(--jq-ink-2); /* #212529 dark-section ground */
  --color-dark-fg: #ffffff;
 
- /* ---- EDITORIAL SURFACES (all white now) ---- */
- --paper: #ffffff;
- --sand: #ffffff; /* user override: no more off-white bands */
- --paper-card: #ffffff;
+ /* ---- EDITORIAL SURFACES ---- */
+ --paper: var(--color-bg);
+ --sand: var(--color-bg);
+ --paper-card: #f1efe9;        /* soft warm light-grey product-card ground (Jacquemus thumbnails) */
 
  /* ---- TYPOGRAPHY ----
  Hermès-inspired system (experiment): EB Garamond (italic display serif) for

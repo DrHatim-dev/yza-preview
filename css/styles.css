@@ -27,8 +27,9 @@ ul { list-style: none; padding: 0; }
 .skip-link:focus { left: 8px; top: 8px; outline: 2px solid var(--color-accent); outline-offset: 2px; }
 ::selection { background: var(--terracotta); color: var(--cream); }
 
-/* Hermès editorial signature: EB Garamond, italic, medium weight (~440). */
-h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; font-style: normal; line-height: var(--leading-tight); letter-spacing: 0; font-optical-sizing: auto; }
+/* Jacquemus type signature: Futura PT (Jost substitute), Regular 400 — never
+   bold — with a hair of positive tracking (real spec ≈0.56–0.8px). */
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; font-style: normal; line-height: var(--leading-tight); letter-spacing: 0.012em; font-optical-sizing: auto; }
 
 /* Arabic / RTL: the Latin display + mono faces carry no Arabic glyphs, and italic
  is wrong for Arabic script. Re-point the type tokens to a clean system Naskh/Kufi
@@ -96,7 +97,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 500; font-style:
  padding: 0.34em 0.7em; border-radius: 0; background: var(--black); color: var(--white); line-height: 1;
 }
 .badge--bestseller { background: var(--black); color: var(--white); }
-.badge--new { background: var(--olive); color: var(--black); }
+.badge--new { background: var(--jq-pink); color: var(--jq-ink); }
 .badge--limited { background: var(--white); color: var(--black); border: 1px solid rgba(0,0,0,0.32); }
 .badge--bespoke { background: var(--violet); color: var(--black); }
 
@@ -412,6 +413,9 @@ body.has-search-overlay { overflow: hidden; }
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .product-card__price { font-family: var(--font-display); font-weight: 400; font-size: 12px; letter-spacing: 0.4px; color: var(--color-fg); white-space: nowrap; }
+/* On a markdown the live (reduced) price turns Jacquemus sale-red; the struck
+   original keeps the muted treatment from .was below. */
+.product-card__price:has(s), .offer-card__price:has(s) { color: var(--jq-sale); }
 .product-card__limited { display: block; font-family: var(--font-display); font-size: 10px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--jq-coral); }
 
 /* Scarcity nudge — Jacquemus "coming soon" treatment: bare micro-caps, top-left of
@@ -1305,7 +1309,7 @@ body.has-search-overlay { overflow: hidden; }
 /* ============================================================
  FOOTER
  ============================================================ */
-.footer { background: var(--white); color: var(--color-fg); padding-block: var(--space-20) var(--space-8); margin-top: var(--space-12); border-top: 1px solid var(--color-border); }
+.footer { background: var(--color-bg); color: var(--color-fg); padding-block: var(--space-20) var(--space-8); margin-top: var(--space-12); border-top: 1px solid var(--color-border); }
 .footer .logo { color: var(--color-fg); }
 .footer-service {
  display: grid; grid-template-columns: 0.9fr 1.05fr 1.2fr; gap: var(--space-8); align-items: stretch;
@@ -2753,7 +2757,9 @@ body[data-page="home"] .glyph-divider,
 body[data-page="home"] .toile-divider,
 body[data-page="home"] .toile-accent,
 body[data-page="home"] .press-band { display: none; }
-body[data-page="home"] .section { padding-block: 0; }
+/* Small Jacquemus breathing gap between content sections (was flush at 0).
+   Full-bleed bands (hero/video/closing) aren't .section so they stay edge-to-edge. */
+body[data-page="home"] .section { padding-block: clamp(1.75rem, 4vw, 3rem); }
 body[data-page="home"] .offer-section,
 body[data-page="home"] .fruit-market-section { padding-block: 0; }
 /* testimonials grid renders empty until real reviews are enabled — drop the ghost band */
@@ -2761,6 +2767,11 @@ body[data-page="home"] #avis { display: none; }
 
 /* Everything full width on home — galleries and grids break out of the gutter. */
 body[data-page="home"] .container-wide { max-width: none; padding-inline: 0; }
+/* …except the chrome: header, announcement and mega panel keep their side gutter
+   so nav/logo/actions don't sit flush against the screen edge. */
+body[data-page="home"] .header .container-wide,
+body[data-page="home"] .announcement .container-wide,
+body[data-page="home"] .mega .container-wide { padding-inline: var(--gutter); }
 body[data-page="home"] .girls-feed { gap: 5px; }
 /* Journal cards are text-heavy: keep a side gutter so copy doesn't touch the screen edge. */
 body[data-page="home"] .section--accented .container-wide { padding-inline: var(--gutter); }
@@ -2787,9 +2798,9 @@ body[data-page="home"] .toile-divider { background: var(--cream); }
 /* hairline where two same-tone sections meet */
 body[data-page="home"] .yza-girls-home { border-top: 1px solid var(--color-border); }
 
-/* close the page on white so the footer reads as a clean paper base;
- scoped to home to match the global footer treatment */
-body[data-page="home"] footer.footer { background: var(--white); margin-top: 0; }
+/* close the page on the cream base so the footer reads as one ground with the
+ rest of the site (Jacquemus warm ivory); scoped to home to match globally */
+body[data-page="home"] footer.footer { background: var(--color-bg); margin-top: 0; }
 body[data-page="home"] footer.footer .footer-service--trust { border-color: var(--color-border); }
 
 /* header sits on the cream base so the chrome speaks one language — solid cream, opaque. */
@@ -3146,10 +3157,15 @@ body[data-page="home"] .header.is-stuck { background: var(--color-bg); box-shado
 
 .mega__inner {
  display: grid;
- grid-template-columns: repeat(var(--mega-cols, 4), minmax(0, 1fr));
- gap: clamp(var(--space-6), 3.5vw, var(--space-12));
+ grid-template-columns: minmax(150px, 200px) minmax(0, 1fr) minmax(290px, 360px);
+ gap: clamp(var(--space-8), 4vw, var(--space-16));
  padding-block: var(--space-8) var(--space-10);
  align-items: start;
+}
+/* Maison / Aide have no product grid — just rail + lifestyle image. */
+.mega__inner--noprod {
+ grid-template-columns: minmax(160px, 230px) minmax(280px, 560px);
+ justify-content: start;
 }
 .mega__col { display: flex; flex-direction: column; min-width: 0; }
 .mega__eyebrow {
@@ -3208,6 +3224,91 @@ body[data-page="home"] .header.is-stuck { background: var(--color-bg); box-shado
  text-shadow: 0 1px 4px rgba(0,0,0,0.5);
 }
 
+/* ============================================================
+   JACQUEMUS-STYLE MEGA MENU
+   Left text rail · centre product grid · right lifestyle image.
+   These rules appear after `.nav .mega a::after { content:none }`
+   (above) so the rail/name hover underlines win at equal specificity.
+   ============================================================ */
+/* Left category rail — stacked text links in visual groups. */
+.mega__nav { display: flex; flex-direction: column; gap: var(--space-6); min-width: 0; }
+.mega__nav-list { list-style: none; margin: 0; padding: 0; }
+.mega__nav-list li { margin: 0; }
+.nav .mega__nav-list a {
+ position: relative; display: inline-block;
+ padding: 0.34rem 0;
+ font-family: var(--font-display); font-size: 0.875rem; font-weight: 400;
+ letter-spacing: 0.035em; text-transform: none; line-height: 1.3;
+ color: var(--color-fg); white-space: normal;
+ transition: color var(--transition-fast);
+}
+.nav .mega__nav-list a::after {
+ content: ""; position: absolute; left: 0; bottom: 0.18rem;
+ width: 100%; height: 1px; background: currentColor;
+ transform: scaleX(0); transform-origin: left;
+ transition: transform 0.32s var(--ease-out);
+}
+.nav .mega__nav-list a:hover::after,
+.nav .mega__nav-list a[aria-current="page"]::after { transform: scaleX(1); }
+
+/* Centre product grid — square light thumbnails, name beneath. */
+.mega__products {
+ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+ gap: clamp(var(--space-3), 1.4vw, var(--space-5)) clamp(var(--space-3), 1.2vw, var(--space-4));
+ min-width: 0;
+}
+.nav a.mega-prod {
+ display: flex; flex-direction: column; gap: 0.5rem;
+ text-transform: none; letter-spacing: 0; color: var(--color-fg);
+}
+.nav a.mega-prod::after { content: none; }
+.mega-prod__media {
+ display: block; overflow: hidden; aspect-ratio: 4 / 5;
+ background: var(--paper-card, var(--color-surface-2));
+}
+.mega-prod__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.85s var(--ease-out); }
+.nav a.mega-prod:hover .mega-prod__media img { transform: scale(1.04); }
+.mega-prod__name {
+ font-family: var(--font-display); font-size: 0.8125rem; font-weight: 400;
+ letter-spacing: 0.03em; line-height: 1.25; color: var(--color-fg);
+}
+.nav a.mega-prod:hover .mega-prod__name { text-decoration: underline; text-underline-offset: 3px; }
+
+/* Right lifestyle image with caption + discover link.
+   In the product-grid mega the hero stretches to match the (tall) grid column —
+   the img is absolutely positioned so it never inflates the row, and we set NO
+   aspect-ratio so the width stays pinned to the 360px column. In the no-product
+   megas there is no tall column to match, so the hero defines its own height via
+   a fixed portrait ratio. */
+.nav a.mega__hero {
+ position: relative; display: block; overflow: hidden; align-self: stretch;
+ min-height: 320px; padding: 0;
+ text-transform: none; letter-spacing: 0;
+ background: var(--color-surface-2);
+}
+.mega__inner--noprod .mega__hero { align-self: start; aspect-ratio: 3 / 4; min-height: 0; }
+.nav a.mega__hero::after {
+ content: ""; position: absolute; inset: 0;
+ background: linear-gradient(rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0.6));
+}
+.mega__hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.9s var(--ease-out); }
+.nav a.mega__hero:hover img { transform: scale(1.04); }
+.mega__hero-cap {
+ position: absolute; left: var(--space-5); right: var(--space-5); bottom: var(--space-5);
+ z-index: 1; color: var(--white); display: flex; flex-direction: column; gap: 0.35rem;
+}
+.mega__hero-cap strong {
+ font-family: var(--font-display); font-size: 1.05rem; font-weight: 400; letter-spacing: 0.02em;
+ text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+}
+.mega__hero-link {
+ font-family: var(--font-body); font-size: 0.66rem; font-weight: 400;
+ letter-spacing: 0.18em; text-transform: uppercase; text-decoration: underline;
+ text-underline-offset: 4px; text-shadow: 0 1px 5px rgba(0,0,0,0.55);
+}
+.mega__studio-block { margin-top: var(--space-2); }
+
+[dir="rtl"] .nav .mega__nav-list a::after { transform-origin: right; }
 [dir="rtl"] .nav .mega__list a:hover { transform: translateX(-3px); }
 [dir="rtl"] .nav-item > a::after, [dir="rtl"] .nav-trigger::after { left: auto; right: 0; }
 

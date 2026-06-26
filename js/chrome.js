@@ -77,61 +77,87 @@ const formatProductPrice = (p) => {
 const navMega = (active) => {
  const t = YZA.i18n;
  const cur = (key) => (key === active ? ' aria-current="page"' : '');
- const li = (key, href, subKey) =>
- `<li><a href="${href}" data-i18n="${key}"${cur(key)}>${t.t(key)}</a>${
- subKey ? `<span class="mega__sub" data-i18n="${subKey}">${t.t(subKey)}</span>` : ''}</li>`;
- const col = (titleKey, items) =>
- `<div class="mega__col"><p class="mega__eyebrow" data-i18n="${titleKey}">${t.t(titleKey)}</p><ul class="mega__list">${items.join('')}</ul></div>`;
-  const feature = (href, img, labelKey, descKey, width = 720, height = 900) =>
-    `<a class="mega__col mega__feature" href="${href}"><img aria-hidden="true" src="${img}" alt="" width="${width}" height="${height}" decoding="async"><span class="mega__feature-body"><strong data-i18n="${labelKey}">${t.t(labelKey)}</strong><span data-i18n="${descKey}">${t.t(descKey)}</span></span></a>`;
+
+ // Left category rail — Jacquemus-style stacked text links, in visual groups
+ // (a "view all / new in" group, then the categories). Each entry is [i18nKey, href].
+ const railLink = (entry) => {
+   const [key, href] = entry;
+   return `<li><a href="${href}" data-i18n="${key}"${cur(key)}>${t.t(key)}</a></li>`;
+ };
+ const rail = (groups, extra = '') =>
+   `<nav class="mega__nav" aria-label="${t.t('a.menu')}">${groups
+     .map((items) => `<ul class="mega__nav-list">${items.map(railLink).join('')}</ul>`)
+     .join('')}${extra}</nav>`;
+
+ // Centre product grid — square light-grey thumbnails, piece name beneath.
+ // Real YZA products, deduped by family, pulled live from the catalogue.
+ const repOf = (p) => (typeof YZA.familyRepresentative === 'function' ? YZA.familyRepresentative(p) : p);
+ const megaPicks = () => {
+   const seen = new Set();
+   const out = [];
+   const take = (cat, n) => {
+     const list = typeof YZA.byCategory === 'function' ? YZA.byCategory(cat) : [];
+     let added = 0;
+     for (const item of list) {
+       const rep = repOf(item);
+       if (!rep || !rep.img) continue;
+       const key = rep.familyHandle || rep.handle;
+       if (seen.has(key)) continue;
+       seen.add(key);
+       out.push(rep);
+       if (++added >= n) break;
+     }
+   };
+   take('bags', 2); take('charms', 3); take('rtw', 2); take('accessories', 2);
+   return out.slice(0, 9);
+ };
+ const megaProd = (p) => {
+   const name = t.pick(productDisplayName(p));
+   return `<a class="mega-prod" href="produit.html?handle=${p.handle}">
+ <span class="mega-prod__media"><img src="${p.img}" alt="${name} - YZA" loading="lazy" width="360" height="450" decoding="async"></span>
+ <span class="mega-prod__name">${name}</span>
+ </a>`;
+ };
+ const products = (items) => `<div class="mega__products">${items.map(megaProd).join('')}</div>`;
+
+ // Right lifestyle image with caption + discover link.
+ const hero = (href, img, title, w, h) =>
+   `<a class="mega__hero" href="${href}">
+ <img aria-hidden="true" src="${img}" alt="" loading="lazy" width="${w}" height="${h}" decoding="async">
+ <span class="mega__hero-cap"><strong>${title}</strong><span class="mega__hero-link" data-i18n="cta.discover">${t.t('cta.discover')}</span></span>
+ </a>`;
+
  // Top-level item is a real link to the section landing page (click navigates),
  // while the mega panel still opens on hover/focus (CSS). Sub-pages stay reachable.
- const trigger = (labelKey, href, cols, megaCols) =>
+ const trigger = (labelKey, href, inner, noprod) =>
  `<div class="nav-item nav-item--mega">
  <a href="${href}" class="nav-trigger" aria-haspopup="true" aria-expanded="false" data-i18n="${labelKey}"${cur(labelKey)}>${t.t(labelKey)}<span class="nav-trigger__chev" aria-hidden="true"></span></a>
- <div class="mega"><div class="container-wide mega__inner" style="--mega-cols:${megaCols}">${cols.join('')}</div></div>
+ <div class="mega"><div class="container-wide mega__inner${noprod ? ' mega__inner--noprod' : ''}">${inner}</div></div>
  </div>`;
  const navLink = (labelKey, href) =>
  `<div class="nav-item"><a href="${href}" data-i18n="${labelKey}"${cur(labelKey)}>${t.t(labelKey)}</a></div>`;
 
- const boutique = trigger('footer.shop', 'collections.html', [
- col('mega.cat', [
- li('nav.charms', 'collections.html?cat=charms'),
- li('nav.rtw', 'collections.html?cat=rtw'),
- li('nav.bags', 'collections.html?cat=bags'),
- li('nav.accessories', 'collections.html?cat=accessories'),
- ]),
- col('mega.explore', [
- li('col.all', 'collections.html'),
- li('nav.fruitmarket', 'collections.html?cat=charms'),
- li('nav.sculpture', 'collections.html?cat=bags'),
- ]),
-    feature('collections.html', 'assets/story/nawal-bag-garden.jpg', 'nav.lookbook', 'mega.feat.lookbook', 1280, 853),
-    feature('collections.html?cat=bags', 'assets/products/la-sculpture/sculpture-deep-violet.jpg', 'nav.sculpture', 'mega.feat.sculpture', 640, 800),
- ], 4);
+ const boutique = trigger('footer.shop', 'collections.html',
+   rail([
+     [['col.all', 'collections.html'], ['badge.new', 'collections.html']],
+     [['nav.charms', 'collections.html?cat=charms'], ['nav.bags', 'collections.html?cat=bags'], ['nav.rtw', 'collections.html?cat=rtw'], ['nav.accessories', 'collections.html?cat=accessories'], ['nav.b2b', 'b2b.html']],
+   ]) +
+   products(megaPicks()) +
+   hero('collections.html?cat=bags', 'assets/story/nawal-bag-garden.jpg', 'La Sculpture', 1280, 853));
 
- const maison = trigger('footer.house', 'histoire.html', [
- col('mega.brand', [
- li('nav.story', 'histoire.html'),
- li('nav.studio', 'studio.html'),
- li('nav.girls', 'yza-girls.html'),
- ]),
- col('mega.editorial', [
- li('nav.lookbook', 'lookbook.html'),
- li('nav.journal', 'blogs/journal/'),
- ]),
-    feature('studio.html', 'assets/editorial/dataset/artisanes-atelier-raffia.jpg', 'nav.studio', 'mega.feat.studio', 1200, 800),
- ], 3);
+ const maison = trigger('footer.house', 'histoire.html',
+   rail([
+     [['nav.story', 'histoire.html'], ['nav.studio', 'studio.html']],
+     [['nav.girls', 'yza-girls.html'], ['nav.lookbook', 'lookbook.html'], ['nav.journal', 'blogs/journal/']],
+   ]) +
+   hero('studio.html', 'assets/editorial/dataset/artisanes-atelier-raffia.jpg', 'L’atelier', 1200, 800), true);
 
- const aide = trigger('footer.help', 'faq.html', [
- col('mega.service', [
- li('nav.faq', 'faq.html'),
- li('nav.contact', 'contact.html'),
- li('pp.acc.ship', 'faq.html#livraison'),
- ]),
- `<div class="mega__col"><p class="mega__eyebrow" data-i18n="nav.studio">${t.t('nav.studio')}</p><address class="mega__studio">${YZA.brand.address}<br>${t.pick(YZA.brand.hours)}</address><a class="mega__studio-link link-underline" href="studio.html" data-i18n="cta.discoverAtelier">${t.t('cta.discoverAtelier')}</a></div>`,
-    feature('contact.html', 'assets/yza-girls/girls-fanny-look.jpg', 'nav.contact', 'mega.feat.contact', 800, 1066),
- ], 3);
+ const aide = trigger('footer.help', 'faq.html',
+   rail([
+     [['nav.faq', 'faq.html'], ['nav.contact', 'contact.html']],
+     [['pp.acc.ship', 'faq.html#livraison']],
+   ], `<div class="mega__studio-block"><address class="mega__studio">${YZA.brand.address}<br>${t.pick(YZA.brand.hours)}</address></div>`) +
+   hero('contact.html', 'assets/yza-girls/girls-fanny-look.jpg', t.t('nav.contact'), 800, 1066), true);
 
  return boutique + maison + navLink('nav.b2b', 'b2b.html') + aide;
 };

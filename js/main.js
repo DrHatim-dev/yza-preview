@@ -1442,7 +1442,8 @@
  }
 
  function renderServiceStrips() {
- const defaultKeys = ['morocco-delivery', 'returns', 'payment', 'limited', 'repairs'];
+ // Home strip reverted to the original 3 (delivery · returns · payment), same texts.
+ const defaultKeys = ['morocco-delivery', 'returns', 'payment'];
  const footerKeys = ['morocco-delivery', 'returns', 'payment'];
  $$('[data-service-strip]').forEach((strip) => {
  const keys = strip.dataset.serviceStrip === 'footer' ? footerKeys : defaultKeys;
