@@ -83,15 +83,17 @@ const navMega = (active) => {
  `<div class="mega__col"><p class="mega__eyebrow" data-i18n="${titleKey}">${t.t(titleKey)}</p><ul class="mega__list">${items.join('')}</ul></div>`;
   const feature = (href, img, labelKey, descKey, width = 720, height = 900) =>
     `<a class="mega__col mega__feature" href="${href}"><img aria-hidden="true" src="${img}" alt="" width="${width}" height="${height}" decoding="async"><span class="mega__feature-body"><strong data-i18n="${labelKey}">${t.t(labelKey)}</strong><span data-i18n="${descKey}">${t.t(descKey)}</span></span></a>`;
- const trigger = (labelKey, cols, megaCols) =>
+ // Top-level item is a real link to the section landing page (click navigates),
+ // while the mega panel still opens on hover/focus (CSS). Sub-pages stay reachable.
+ const trigger = (labelKey, href, cols, megaCols) =>
  `<div class="nav-item nav-item--mega">
- <button type="button" class="nav-trigger" aria-haspopup="true" aria-expanded="false" data-i18n="${labelKey}">${t.t(labelKey)}<span class="nav-trigger__chev" aria-hidden="true"></span></button>
+ <a href="${href}" class="nav-trigger" aria-haspopup="true" aria-expanded="false" data-i18n="${labelKey}"${cur(labelKey)}>${t.t(labelKey)}<span class="nav-trigger__chev" aria-hidden="true"></span></a>
  <div class="mega"><div class="container-wide mega__inner" style="--mega-cols:${megaCols}">${cols.join('')}</div></div>
  </div>`;
  const navLink = (labelKey, href) =>
  `<div class="nav-item"><a href="${href}" data-i18n="${labelKey}"${cur(labelKey)}>${t.t(labelKey)}</a></div>`;
 
- const boutique = trigger('footer.shop', [
+ const boutique = trigger('footer.shop', 'collections.html', [
  col('mega.cat', [
  li('nav.charms', 'collections.html?cat=charms'),
  li('nav.rtw', 'collections.html?cat=rtw'),
@@ -107,7 +109,7 @@ const navMega = (active) => {
     feature('collections.html?cat=bags', 'assets/products/la-sculpture/sculpture-deep-violet.jpg', 'nav.sculpture', 'mega.feat.sculpture', 640, 800),
  ], 4);
 
- const maison = trigger('footer.house', [
+ const maison = trigger('footer.house', 'histoire.html', [
  col('mega.brand', [
  li('nav.story', 'histoire.html'),
  li('nav.studio', 'studio.html'),
@@ -120,7 +122,7 @@ const navMega = (active) => {
     feature('studio.html', 'assets/editorial/dataset/artisanes-atelier-raffia.jpg', 'nav.studio', 'mega.feat.studio', 1200, 800),
  ], 3);
 
- const aide = trigger('footer.help', [
+ const aide = trigger('footer.help', 'faq.html', [
  col('mega.service', [
  li('nav.faq', 'faq.html'),
  li('nav.contact', 'contact.html'),
@@ -739,9 +741,9 @@ YZA.chrome = {
  });
  });
 
- // Desktop mega menu: hover/focus open the panel via CSS. JS adds a
- // click-toggle (touch + explicit pin) and closes other panels on hover,
- // outside-click, and Escape.
+ // Desktop mega menu: hover/focus open the panel via CSS; the trigger itself is a
+ // link to the section landing page (click navigates). JS only closes sibling panels
+ // on hover, outside-click and Escape, and tracks aria-expanded on focus.
  const megaItems = Array.from(document.querySelectorAll('.nav-item--mega'));
  const closeMega = (except) => megaItems.forEach((item) => {
  if (item === except) return;
@@ -750,13 +752,8 @@ YZA.chrome = {
  });
  megaItems.forEach((item) => {
  const trig = item.querySelector('.nav-trigger');
- trig?.addEventListener('click', (event) => {
- event.preventDefault();
- const open = !item.classList.contains('is-open');
- closeMega(item);
- item.classList.toggle('is-open', open);
- trig.setAttribute('aria-expanded', open ? 'true' : 'false');
- });
+ // The trigger is now a real link: hover/focus opens the panel (CSS) and a click
+ // navigates to the section landing page. Just close sibling panels on enter.
  item.addEventListener('mouseenter', () => closeMega(item));
  item.addEventListener('focusin', () => trig?.setAttribute('aria-expanded', 'true'));
  item.addEventListener('focusout', (event) => {
