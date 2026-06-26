@@ -441,6 +441,7 @@ YZA.chrome = {
  const serviceKeys = ['morocco-delivery', 'returns', 'payment'];
  const fc = footerFactsCopy();
  const ns = footerServiceCopy();
+ const L = (t && t.lang) === 'fr'; // primary FR/EN labels for the newsletter form
  // Pages that ship their own newsletter (e.g. the journal) skip the footer's news column.
  const hasOwnNews = !!document.querySelector('.blog-newsletter, .newsletter');
  const footer = document.createElement('footer');
@@ -450,29 +451,52 @@ YZA.chrome = {
  <div class="footer-service footer-service--trust" data-service-strip="footer" aria-label="YZA services">
  ${serviceKeys.map((key) => YZA.serviceCard(key, 'footer-service__item footer-service__trust-item')).join('')}
  </div>
- <div class="footer-engage${hasOwnNews ? ' footer-engage--solo' : ''}">
- ${hasOwnNews ? '' : `<div class="footer-engage__col footer-news">
- <h3>${ns.newsTitle}</h3>
- <p>${ns.newsText}</p>
+ <div class="footer__top${hasOwnNews ? ' footer__top--solo' : ''}">
+ ${hasOwnNews ? '' : `<div class="footer__top-col footer__newsletter footer__col--acc" data-news-acc>
+ <button type="button" class="footer__col-toggle footer__newsletter-head" aria-expanded="false"><span>${ns.newsTitle}</span>${FOOTER_CHEV}</button>
+ <p class="footer__newsletter-desc">${ns.newsText}</p>
+ <div class="footer__col-panel footer__newsletter-panel">
  <form class="newsletter__form footer-news__form" novalidate>
- <input type="email" required placeholder="${ns.placeholder}" aria-label="${ns.placeholder}">
- <button class="btn btn--solid footer-news__btn" type="submit">${ns.submit}</button>
+ <div class="footer-field">
+ <label for="footerNewsEmail">${L ? 'E-mail *' : 'Email *'}</label>
+ <input id="footerNewsEmail" type="email" required placeholder="${ns.placeholder}" aria-label="${ns.placeholder}">
+ </div>
+ <div class="footer-field">
+ <span class="footer-field__label">${L ? 'Genre *' : 'Gender *'}</span>
+ <div class="footer-radios">
+ <label class="footer-radio"><input type="radio" name="footerNewsGender" value="mrs"><span class="footer-radio__dot"></span>${L ? 'Mme' : 'Mrs'}</label>
+ <label class="footer-radio"><input type="radio" name="footerNewsGender" value="mr"><span class="footer-radio__dot"></span>${L ? 'M.' : 'Mr'}</label>
+ <label class="footer-radio"><input type="radio" name="footerNewsGender" value="mx"><span class="footer-radio__dot"></span>Mx</label>
+ <label class="footer-radio"><input type="radio" name="footerNewsGender" value="na"><span class="footer-radio__dot"></span>${L ? 'Je préfère ne pas le dire' : 'I prefer not to say'}</label>
+ </div>
+ </div>
+ <div class="footer-field">
+ <label for="footerNewsLast">${L ? 'Nom *' : 'Last Name *'}</label>
+ <input id="footerNewsLast" type="text" autocomplete="family-name" placeholder="${L ? 'Nom *' : 'Last Name *'}">
+ </div>
+ <div class="footer-field">
+ <label for="footerNewsFirst">${L ? 'Prénom *' : 'First Name *'}</label>
+ <input id="footerNewsFirst" type="text" autocomplete="given-name" placeholder="${L ? 'Prénom *' : 'First Name *'}">
+ </div>
+ <button class="footer-news__btn footer-news__btn--register" type="submit">${ns.submit}</button>
  <p class="form-msg" data-news-msg hidden role="status" aria-live="polite"></p>
  </form>
+ </div>
+ <button type="button" class="footer-news__cta" data-news-cta>${ns.submit}</button>
  </div>`}
- <div class="footer-engage__col footer-help">
- <h3>${ns.helpTitle}</h3>
- <p>${ns.helpText}</p>
- <p class="footer-help__hours">${t.pick(YZA.brand.hours)}</p>
- <p class="footer-help__studio">${YZA.brand.address}</p>
- <div class="footer-help__links">
+ <div class="footer__top-col footer__contact">
+ <h3 class="footer__contact-title">${ns.helpTitle}</h3>
+ <p class="footer__contact-hours">${t.pick(YZA.brand.hours)}</p>
+ <p class="footer__contact-addr">${YZA.brand.address}</p>
+ <div class="footer__contact-links">
  <a href="contact.html" data-i18n="nav.contact">${t.t('nav.contact')}</a>
- <a href="https://wa.me/${YZA.brand.whatsapp.replace('+','')}" target="_blank" rel="noopener">WhatsApp</a>
+ <a href="https://wa.me/${phoneDigits()}" target="_blank" rel="noopener">WhatsApp</a>
  <a href="faq.html#livraison" data-i18n="pp.acc.ship">${t.t('pp.acc.ship')}</a>
  </div>
  </div>
  </div>
- <div class="footer__cols footer__cols--clean">
+ <div class="footer__nav">
+ <div class="footer__nav-cols">
  <div class="footer__col footer__col--acc">
  <button type="button" class="footer__col-toggle" aria-expanded="false"><span data-i18n="footer.shop">${t.t('footer.shop')}</span>${FOOTER_CHEV}</button>
  <div class="footer__col-panel"><ul>
@@ -503,11 +527,12 @@ YZA.chrome = {
  <li><a href="mailto:${YZA.brand.email}">${YZA.brand.email}</a></li>
  </ul></div>
  </div>
- <div class="footer__col footer__col--follow">
- <h4 class="footer__col-h" data-i18n="footer.follow">${t.t('footer.follow')}</h4>
- <ul>
+ </div>
+ <div class="footer__nav-follow">
+ <h3 class="footer__nav-follow-h" data-i18n="footer.follow">${t.t('footer.follow')}</h3>
+ <ul class="footer__nav-follow-list">
  <li><a href="${YZA.brand.instagramUrl}" target="_blank" rel="noopener">Instagram</a></li>
- <li><a href="https://wa.me/${YZA.brand.whatsapp.replace('+','')}" target="_blank" rel="noopener">WhatsApp</a></li>
+ <li><a href="https://wa.me/${phoneDigits()}" target="_blank" rel="noopener">WhatsApp</a></li>
  </ul>
  </div>
  </div>
@@ -530,12 +555,23 @@ YZA.chrome = {
  const btn = acc.querySelector('.footer__col-toggle');
  if (btn) btn.setAttribute('aria-expanded', open ? 'true' : 'false');
  };
+ const isNews = (acc) => acc.hasAttribute('data-news-acc');
  accs.forEach((acc) => {
- setOpen(acc, wide.matches);
+ // Nav columns open on desktop; the newsletter form stays collapsed everywhere
+ // (Jacquemus shows the black REGISTER CTA until you expand the form).
+ setOpen(acc, isNews(acc) ? false : wide.matches);
  const btn = acc.querySelector('.footer__col-toggle');
  if (btn) btn.addEventListener('click', () => setOpen(acc, !acc.classList.contains('is-open')));
  });
- const onBp = (e) => accs.forEach((acc) => setOpen(acc, e.matches));
+ // The collapsed black "REGISTER" CTA reveals the newsletter form.
+ const newsAcc = footer.querySelector('[data-news-acc]');
+ const newsCta = footer.querySelector('[data-news-cta]');
+ if (newsAcc && newsCta) newsCta.addEventListener('click', () => {
+ setOpen(newsAcc, true);
+ const email = newsAcc.querySelector('input[type="email"]');
+ if (email) email.focus();
+ });
+ const onBp = (e) => accs.forEach((acc) => { if (!isNews(acc)) setOpen(acc, e.matches); });
  if (wide.addEventListener) wide.addEventListener('change', onBp);
  else if (wide.addListener) wide.addListener(onBp);
  // Centred wordmark doubles as back-to-top

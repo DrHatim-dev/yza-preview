@@ -1438,6 +1438,93 @@ body.has-search-overlay { overflow: hidden; }
 @media (max-width: 760px) { .footer-engage { grid-template-columns: 1fr; gap: var(--space-8); } }
 
 /* ============================================================
+   JACQUEMUS 3-TIER FOOTER
+   Tier 1: collapsible newsletter | contact (vertical rule between)
+   Tier 2: three nav accordions + Follow on the right
+   Tier 3: meta bar (defined above)
+   ============================================================ */
+
+/* —— Tier 1 —— */
+.footer__top { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem);
+  padding-block: clamp(2.5rem, 5vw, 4rem); border-bottom: 1px solid var(--color-border); }
+.footer__top--solo { grid-template-columns: 1fr; max-width: 64ch; }
+.footer__top-col { min-width: 0; }
+.footer__newsletter { align-self: start; border-right: 1px solid var(--color-border);
+  padding-right: clamp(1.5rem, 5vw, 4rem); }
+
+/* newsletter title behaves as a toggle (chevron), but reads as a heading not a label */
+.footer__newsletter-head { padding: 0; text-transform: none; font-weight: 400;
+  font-family: var(--font-display); font-size: var(--fs-lg); letter-spacing: 0.01em;
+  color: var(--color-fg); }
+.footer__newsletter-head .footer__col-chev { width: 14px; height: 8px; color: var(--color-fg); }
+.footer__newsletter-desc { color: var(--color-muted); font-size: var(--fs-sm); line-height: 1.6;
+  max-width: 46ch; margin: var(--space-4) 0 0; }
+.footer__newsletter-panel { margin-top: var(--space-5); }
+.footer__col--acc.is-open .footer__newsletter-panel { max-height: 64rem; }
+
+/* form fields — clean Jacquemus underline inputs with a small label above */
+.footer-field { display: flex; flex-direction: column; gap: var(--space-1); margin-bottom: var(--space-5); }
+.footer-field > label, .footer-field__label { font-size: var(--fs-xs); color: var(--color-muted); letter-spacing: 0.04em; }
+.footer-radios { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); margin-top: var(--space-2); }
+.footer-radio { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--fs-sm);
+  color: var(--color-fg); cursor: pointer; position: relative; }
+.footer-news__form .footer-radio input { position: absolute; width: 1px; height: 1px; opacity: 0;
+  border: 0; padding: 0; margin: 0; pointer-events: none; }
+.footer-radio__dot { width: 18px; height: 18px; border: 1.5px solid var(--color-fg); border-radius: 50%;
+  display: inline-block; position: relative; flex: none; transition: border-color var(--transition-fast); }
+.footer-radio input:checked + .footer-radio__dot::after { content: ""; position: absolute; inset: 3.5px;
+  background: var(--color-fg); border-radius: 50%; }
+.footer-radio input:focus-visible + .footer-radio__dot { outline: 1px solid var(--color-fg); outline-offset: 2px; }
+
+/* expanded REGISTER — outlined; fills on hover */
+.footer-news__btn--register { display: block; width: 100%; margin-top: var(--space-2);
+  border: 1px solid var(--jq-ink); background: transparent; color: var(--jq-ink);
+  font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.14em;
+  font-size: var(--fs-xs); padding-block: var(--space-4); cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast); }
+.footer-news__btn--register:hover { background: var(--jq-ink); color: #fff; }
+
+/* collapsed REGISTER — solid black CTA that reveals the form */
+.footer-news__cta { display: block; width: 100%; margin-top: var(--space-6);
+  border: 0; background: var(--jq-ink); color: #fff; font-family: var(--font-body);
+  text-transform: uppercase; letter-spacing: 0.14em; font-size: var(--fs-xs);
+  padding-block: var(--space-4); cursor: pointer; transition: background var(--transition-fast); }
+.footer-news__cta:hover { background: var(--jq-ink-hover); }
+.footer__newsletter.is-open .footer-news__cta { display: none; }
+
+/* Tier 1 right — contact */
+.footer__contact-title { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-lg);
+  letter-spacing: 0.01em; margin-bottom: var(--space-4); color: var(--color-fg); }
+.footer__contact-hours, .footer__contact-addr { color: var(--color-muted); font-size: var(--fs-sm);
+  line-height: 1.7; margin: 0 0 var(--space-2); max-width: 42ch; }
+.footer__contact-links { display: flex; flex-wrap: wrap; gap: var(--space-3) var(--space-6); margin-top: var(--space-6); }
+.footer__contact-links a { font-size: var(--fs-sm); color: var(--color-fg); text-decoration: underline; text-underline-offset: 4px; }
+.footer__contact-links a:hover { color: var(--jq-ink-hover); }
+
+/* —— Tier 2 —— nav accordions (left) + Follow (right) */
+.footer__nav { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 1fr);
+  gap: clamp(2rem, 5vw, 4rem); padding-block: clamp(2.5rem, 5vw, 4rem); border-bottom: 1px solid var(--color-border); }
+.footer__nav-cols { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 4vw, 3rem); align-items: start; }
+/* Jacquemus nav headers: regular case, light weight, larger — not the uppercase chip style */
+.footer__nav-cols .footer__col-toggle { text-transform: none; font-weight: 400;
+  font-family: var(--font-display); font-size: var(--fs-md); letter-spacing: 0.01em; color: var(--color-fg); }
+.footer__nav-cols .footer__col-chev { color: var(--color-fg); }
+.footer__nav-follow { justify-self: end; text-align: left; }
+.footer__nav-follow-h { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-md);
+  letter-spacing: 0.01em; margin-bottom: var(--space-5); color: var(--color-fg); }
+.footer__nav-follow-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.footer__nav-follow-list a { font-size: var(--fs-sm); color: var(--color-fg); text-decoration: underline; text-underline-offset: 4px; }
+.footer__nav-follow-list a:hover { color: var(--jq-ink-hover); }
+
+@media (max-width: 760px) {
+  .footer__top { grid-template-columns: 1fr; gap: var(--space-8); }
+  .footer__newsletter { border-right: 0; padding-right: 0; }
+  .footer__nav { grid-template-columns: 1fr; gap: var(--space-8); }
+  .footer__nav-cols { grid-template-columns: 1fr; gap: 0; }
+  .footer__nav-follow { justify-self: start; }
+}
+
+/* ============================================================
  FIL D'ARIANE
  ============================================================ */
 .breadcrumb { font-size: var(--fs-xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-muted); padding-block: var(--space-6); }
