@@ -2774,6 +2774,7 @@ body[data-page="home"] .container-wide { max-width: none; padding-inline: 0; }
    so nav/logo/actions don't sit flush against the screen edge. */
 body[data-page="home"] .header .container-wide,
 body[data-page="home"] .announcement .container-wide,
+body[data-page="home"] footer.footer .container-wide,
 body[data-page="home"] .mega .container-wide { padding-inline: var(--gutter); }
 body[data-page="home"] .girls-feed { gap: 5px; }
 /* Journal cards are text-heavy: keep a side gutter so copy doesn't touch the screen edge. */
@@ -2860,6 +2861,11 @@ body[data-page="home"] .header.is-stuck { background: var(--color-bg); box-shado
 
 /* newsletter field on the warm band */
 .newsletter__form input { background: var(--paper-card); border-color: var(--color-border-strong); }
+/* …but the FOOTER newsletter stays a clean Jacquemus underline field (no muddy
+   grey fill): transparent ground, single bottom rule, generous label spacing. */
+.footer-news__form input { background: transparent; border-color: var(--color-fg); padding: var(--space-3) 0; font-size: var(--fs-base); }
+.footer-news__form input::placeholder { color: var(--color-muted); }
+.footer-news__btn { margin-top: var(--space-3); }
 
 /* closing video band - swap static image for video on tablet + mobile */
 .video-band__media--mobile { display: none; }
