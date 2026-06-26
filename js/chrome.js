@@ -438,6 +438,7 @@ YZA.chrome = {
  <h3>${ns.helpTitle}</h3>
  <p>${ns.helpText}</p>
  <p class="footer-help__hours">${t.pick(YZA.brand.hours)}</p>
+ <p class="footer-help__studio">${YZA.brand.address}</p>
  <div class="footer-help__links">
  <a href="contact.html" data-i18n="nav.contact">${t.t('nav.contact')}</a>
  <a href="https://wa.me/${YZA.brand.whatsapp.replace('+','')}" target="_blank" rel="noopener">WhatsApp</a>
@@ -445,26 +446,7 @@ YZA.chrome = {
  </div>
  </div>
  </div>
- <div class="footer__cols">
- <div class="footer__brand">
- <a class="logo logo--wordmark" href="index.html" aria-label="YZA">${WORDMARK}</a>
- <p class="brand-mark-tri" aria-label="YZA"><span class="brand-mark-tri__lat">YZA</span><span class="brand-mark-tri__sep" aria-hidden="true">·</span><span class="brand-mark-tri__tif" lang="zgh" aria-hidden="true">ⴰⵣⵉ</span><span class="brand-mark-tri__sep" aria-hidden="true">·</span><span class="brand-mark-tri__ar" lang="ar" aria-hidden="true">ييزة</span></p>
- <p class="footer__tag" data-i18n="footer.tagline">${t.t('footer.tagline')}</p>
- <h4 class="footer__follow-h" data-i18n="footer.follow">${t.t('footer.follow')}</h4>
- <div class="footer__social">
- <a href="${YZA.brand.instagramUrl}" target="_blank" rel="noopener">Instagram</a>
- <a href="https://wa.me/${YZA.brand.whatsapp.replace('+','')}" target="_blank" rel="noopener">WhatsApp</a>
- </div>
- <ul class="footer__facts">
- <li><span>${fc.studio}</span><strong>${YZA.brand.address}</strong></li>
- <li><span>${fc.hours}</span><strong>${t.pick(YZA.brand.hours)}</strong></li>
- <li><span>${fc.pickup}</span><strong>${t.pick(YZA.brand.pickup)}</strong></li>
- <li><span>${fc.delivery}</span><strong>${t.formatPrice(YZA.servicePolicy.freeShippingDh)}+</strong></li>
- <li><span>${fc.guarantee}</span><strong>${YZA.servicePolicy.returnsDays} ${fc.days}</strong></li>
- <li><span>${fc.b2b}</span><strong>${fc.stockists}</strong></li>
- </ul>
- <p class="footer__press"><span data-i18n="press.label">${t.t('press.label')}</span><br>${YZA.press.join(' / ')}</p>
- </div>
+ <div class="footer__cols footer__cols--clean">
  <div class="footer__col footer__col--acc">
  <button type="button" class="footer__col-toggle" aria-expanded="false"><span data-i18n="footer.shop">${t.t('footer.shop')}</span>${FOOTER_CHEV}</button>
  <div class="footer__col-panel"><ul>
@@ -494,6 +476,13 @@ YZA.chrome = {
  <li><a href="blogs/journal/" data-i18n="nav.journal">${t.t('nav.journal')}</a></li>
  <li><a href="mailto:${YZA.brand.email}">${YZA.brand.email}</a></li>
  </ul></div>
+ </div>
+ <div class="footer__col footer__col--follow">
+ <h4 class="footer__col-h" data-i18n="footer.follow">${t.t('footer.follow')}</h4>
+ <ul>
+ <li><a href="${YZA.brand.instagramUrl}" target="_blank" rel="noopener">Instagram</a></li>
+ <li><a href="https://wa.me/${YZA.brand.whatsapp.replace('+','')}" target="_blank" rel="noopener">WhatsApp</a></li>
+ </ul>
  </div>
  </div>
  <div class="footer__bottom">

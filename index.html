@@ -41,7 +41,7 @@
  <section class="hero-split" aria-labelledby="heroTitle">
  <h1 id="heroTitle" class="sr-only" data-i18n="hero.title">La Sculpture</h1>
  <a class="hero-split__tile" href="collections.html?cat=bags" aria-label="Paniers, sacs & charms">
- <img class="hero-split__img" src="assets/hero/home-bags.jpg" alt="Une femme tient un panier YZA tissé à la main au marché de Marrakech" loading="eager" fetchpriority="high" width="1067" height="1600" decoding="async">
+ <img class="hero-split__img" src="assets/hero/la-sculpture-lifestyle.jpg" alt="La Sculpture — femme en jupe fleurie portant le panier YZA dans un riad de Marrakech" loading="eager" fetchpriority="high" width="1080" height="1440" decoding="async">
  <span class="hero-split__cap">
  <span class="hero-split__title" data-i18n="cat.bags">Paniers & sacs</span>
  <span class="hero-split__link" data-i18n="cta.shop">Voir la collection</span>
@@ -410,40 +410,29 @@
  </div>
  </section>
 
- <!-- ===== CLOSING VIDEO BAND ===== -->
- <section class="video-band video-band--center" aria-labelledby="closingBandTitle">
- <img class="video-band__media video-band__media--desktop" src="assets/story/band-charm.jpg" alt="Charm orange en raphia sur un sac en cuir, lumière de Marrakech" data-i18n-attr="alt:alt.band.charm" loading="lazy" width="1600" height="900" decoding="async">
- <video class="video-band__media video-band__media--mobile" src="assets/video/band-charm.mp4" preload="none" autoplay muted loop playsinline poster="assets/story/band-charm.jpg"></video>
- <div class="yza-marquee yza-marquee--onband yza-marquee--ontop" aria-hidden="true">
- <div class="yza-marquee__track">
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- </div>
- </div>
+ <!-- ===== CLOSING VIDEO BAND — real YZA footage (founder + raffia basket) ===== -->
+ <section class="video-band video-band--center video-band--minimal" id="closingBand" aria-labelledby="closingBandTitle">
+ <video id="closingBandVideo" class="video-band__media" src="assets/video/band-nawal-bag.mp4" preload="metadata" autoplay muted loop playsinline poster="assets/story/band-nawal-bag-poster.jpg" aria-label="Nawal, fondatrice de YZA, avec un panier en raphia au studio de Guéliz"></video>
  <div class="video-band__overlay">
  <div class="video-band__content" data-reveal>
  <p class="eyebrow" data-i18n="band.closing.eye">Fruit Market</p>
  <h2 id="closingBandTitle" data-i18n="band.closing.title">L’été se porte en raffia</h2>
- <a class="btn btn--light" href="collections.html?cat=charms" data-i18n="cta.discover">Découvrir</a>
+ <a class="video-band__link" href="collections.html?cat=charms" data-i18n="cta.discover">Découvrir</a>
  </div>
  </div>
- <div class="yza-marquee yza-marquee--onband" aria-hidden="true">
- <div class="yza-marquee__track">
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
- </div>
+ <div class="vb-controls" data-vb-controls role="group" aria-label="Contrôles de la vidéo">
+ <button type="button" class="vb-ctrl vb-ctrl--play" data-vb-play aria-label="Pause" aria-pressed="true">
+ <svg class="vb-ic vb-ic--pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1.5" width="2.6" height="9"></rect><rect x="7.4" y="1.5" width="2.6" height="9"></rect></svg>
+ <svg class="vb-ic vb-ic--play" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5L10.5 6L2.5 10.5Z"></path></svg>
+ </button>
+ <div class="vb-progress"><input class="vb-seek" type="range" min="0" max="100" step="0.1" value="0" data-vb-seek aria-label="Progression de la vidéo"></div>
+ <button type="button" class="vb-ctrl vb-ctrl--mute" data-vb-mute aria-label="Activer le son" aria-pressed="false">
+ <svg class="vb-ic vb-ic--off" viewBox="0 0 16 14" aria-hidden="true"><path d="M1 5h3l3.5-3v10L4 9H1z"></path><path d="M10.6 5.4l3.4 3.4M14 5.4l-3.4 3.4" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"></path></svg>
+ <svg class="vb-ic vb-ic--on" viewBox="0 0 16 14" aria-hidden="true"><path d="M1 5h3l3.5-3v10L4 9H1z"></path><path d="M10.6 4.6a3.4 3.4 0 0 1 0 4.8M12.5 3a6 6 0 0 1 0 8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"></path></svg>
+ </button>
+ <button type="button" class="vb-ctrl vb-ctrl--full" data-vb-fullscreen aria-label="Plein écran">
+ <svg class="vb-ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 4.5V1h3.5M9.5 1H13v3.5M13 9.5V13H9.5M4.5 13H1V9.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+ </button>
  </div>
  </section>
 
