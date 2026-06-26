@@ -822,6 +822,20 @@ body.has-search-overlay { overflow: hidden; }
 .yza-marquee--onband .yza-marquee__sep { color: var(--brand-yellow); }
 @media (max-width: 700px) { .video-band { min-height: 100dvh; } .video-band__overlay { align-items: flex-end; } }
 
+/* ---- Closing CTA (minimal dark-ink band, no video) ---- */
+.closing-cta {
+ background: var(--jq-ink);
+ color: var(--white);
+ display: flex; align-items: center; justify-content: center;
+ padding-block: clamp(5rem, 12vw, 9rem);
+ text-align: center;
+}
+.closing-cta__inner { display: grid; gap: 1.5rem; justify-items: center; }
+.closing-cta__eye { color: rgba(255,255,255,0.62); font-size: var(--fs-xs); letter-spacing: var(--tracking-wider); text-transform: uppercase; margin: 0; }
+.closing-cta__title { font-family: var(--font-display); font-weight: 300; font-size: clamp(2rem,5vw,3.5rem); line-height: 1.05; color: var(--white); margin: 0; }
+.closing-cta__link { display: inline-block; font-size: 0.7rem; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.45); padding-bottom: 2px; transition: border-color var(--transition-fast); }
+.closing-cta__link:hover { border-bottom-color: var(--white); }
+
 /* Top marquee variant + bold colourful brand treatment for video-band marquees */
 .yza-marquee--ontop { position: absolute; left: 0; right: 0; top: 0; bottom: auto; z-index: 3; margin: 0; border-color: rgba(255,255,255,0.28); background: rgba(0,0,0,0.22); }
 .yza-marquee--ontop .yza-marquee__track { animation-direction: reverse; }
