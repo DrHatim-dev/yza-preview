@@ -511,10 +511,10 @@ YZA.chrome = {
  </ul>
  </div>
  </div>
- <div class="footer__bottom">
- <span class="footer__copy">© <span id="year"></span> YZA / <span data-i18n="footer.rights">${t.t('footer.rights')}</span></span>
- <a class="footer__wordmark logo logo--wordmark" href="index.html" aria-label="YZA">${WORDMARK}</a>
- <span class="footer__meta">${fc.country} · ${fc.lang} / <span data-i18n="footer.legal">${t.t('footer.legal')}</span></span>
+ <div class="footer__meta">
+ <div class="footer__meta__copy">© <span id="year"></span> YZA / <span data-i18n="footer.rights">${t.t('footer.rights')}</span></div>
+ <a class="footer__wordmark footer__meta__logo" href="index.html" aria-label="YZA – Back to top" role="button" tabindex="0">${WORDMARK}</a>
+ <div class="footer__meta__country">${fc.country} · ${fc.lang} / <a href="legal.html" data-i18n="footer.legal">${t.t('footer.legal')}</a></div>
  </div>
  </div>`;
  document.body.append(footer);
