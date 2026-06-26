@@ -15428,16 +15428,17 @@ const ACCESSORY_IMAGES = {
  'la-nouvelle-vague-xs-basket-bag-ss26': 'assets/products/la-vague/lv-black-xs.jpg',
  'la-nouvelle-vague-s-basket-bag-ss26': 'assets/products/la-vague/lv-nude-s.jpg',
  'la-nouvelle-vague-m-basket-bag-ss26': 'assets/products/la-vague/lv-camel-m.jpg',
- // Jawhara RTW - clean nano-banana 4K stills (referenced from the real lookbook), one per garment on an ivory studio backdrop.
- 'yza-scarf-top-jawhara-ss26': 'assets/products/rtw-clean/rtw-scarf-top.jpg',
- 'yza-bateau-top-jawhara-ss26': 'assets/products/rtw-clean/rtw-bateau-top.jpg',
- 'yza-button-up-shirt-jawhara-ss26': 'assets/products/rtw-clean/rtw-button-up-shirt.jpg',
- 'yza-pareo-skirt-short-jawhara-ss26': 'assets/products/rtw-clean/rtw-pareo-short.jpg',
- 'yza-pareo-skirt-midi-jawhara-ss26': 'assets/products/rtw-clean/rtw-pareo-midi.jpg',
- 'yza-pareo-skirt-long-jawhara-ss26': 'assets/products/rtw-clean/rtw-pareo-long.jpg',
- 'yza-pareo-skirt-x-long-jawhara-ss26': 'assets/products/rtw-clean/rtw-pareo-xlong.jpg',
- 'yza-palazzo-pants-jawhara-ss26': 'assets/products/rtw-clean/rtw-palazzo-pants.jpg',
- 'yza-wrap-pants-jawhara-ss26': 'assets/products/rtw-clean/rtw-wrap-pants.jpg',
+ // Jawhara RTW - real photography (client shoot + SS26 lookbook). Replaces the former
+ // AI 'rtw-clean' nano-banana stills. These heroes are also the first entry in PRODUCT_MEDIA.
+ 'yza-scarf-top-jawhara-ss26': 'assets/lookbook-ss26-27/embedded/p33_img02_xref1247_4e3188b3ffc2.jpeg',
+ 'yza-bateau-top-jawhara-ss26': 'assets/products/jawhara/rtw-real/bateau-top.jpg',
+ 'yza-button-up-shirt-jawhara-ss26': 'assets/lookbook-ss26-27/embedded/p29_img02_xref1213_fe747a323e9f.jpeg',
+ 'yza-pareo-skirt-short-jawhara-ss26': 'assets/lookbook-ss26-27/embedded/p29_img04_xref1215_ea0a78123e7b.jpeg',
+ 'yza-pareo-skirt-midi-jawhara-ss26': 'assets/lookbook-ss26-27/embedded/p30_img02_xref1220_f762d6e64853.jpeg',
+ 'yza-pareo-skirt-long-jawhara-ss26': 'assets/lookbook-ss26-27/embedded/p29_img03_xref1214_6b93fb974a48.jpeg',
+ 'yza-pareo-skirt-x-long-jawhara-ss26': 'assets/lookbook-ss26-27/embedded/p38_img01_xref1287_56cb4d596aa0.jpeg',
+ 'yza-palazzo-pants-jawhara-ss26': 'assets/products/jawhara/client/palazzo-02.jpg',
+ 'yza-wrap-pants-jawhara-ss26': 'assets/products/jawhara/client/palazzo-01.jpg',
 };
 PRODUCTS.forEach((p) => {
  const src = ACCESSORY_IMAGES[p.handle];
@@ -15835,12 +15836,41 @@ const PRODUCT_MEDIA = {
     { type: 'image', src: 'assets/products/charms/client/watermelon-slice-04.jpg' },
     { type: 'video', src: 'assets/lifestyle/charms/charm-922dd93c197c.mp4', poster: 'assets/lifestyle/charms/charm-922dd93c197c-poster.jpg' },
   ],
-  'yza-palazzo-pants-jawhara-ss26': [
+  // Ready-to-wear: real Jawhara photography from the client shoot + SS26 lookbook
+  // (replaces the original AI/stock 'rtw-clean' placeholders, which showed wrong
+  // fabrics/colourways and none of the signature gold tassels or Berber signs).
+  'yza-scarf-top-jawhara-ss26': [
+    { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p33_img02_xref1247_4e3188b3ffc2.jpeg' },
+    { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p32_img04_xref1239_3935f6e23a7c.jpeg' },
+  ],
+  'yza-bateau-top-jawhara-ss26': [
+    { type: 'image', src: 'assets/products/jawhara/rtw-real/bateau-top.jpg' },
+  ],
+  'yza-button-up-shirt-jawhara-ss26': [
+    { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p29_img02_xref1213_fe747a323e9f.jpeg' },
+    { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p32_img01_xref1236_2f6dca810a1e.png' },
+  ],
+  'yza-pareo-skirt-short-jawhara-ss26': [
+    { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p29_img04_xref1215_ea0a78123e7b.jpeg' },
+  ],
+  'yza-pareo-skirt-midi-jawhara-ss26': [
+    { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p30_img02_xref1220_f762d6e64853.jpeg' },
+  ],
+  'yza-pareo-skirt-long-jawhara-ss26': [
+    { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p29_img03_xref1214_6b93fb974a48.jpeg' },
+  ],
+  'yza-pareo-skirt-x-long-jawhara-ss26': [
+    { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p38_img01_xref1287_56cb4d596aa0.jpeg' },
+    { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p34_img04_xref1256_50e34c751e78.jpeg' },
+  ],
+  'yza-wrap-pants-jawhara-ss26': [
     { type: 'image', src: 'assets/products/jawhara/client/palazzo-01.jpg' },
+    { type: 'image', src: 'assets/lookbook-ss26-27/embedded/p37_img04_xref1280_207d00c7c41c.png' },
+  ],
+  'yza-palazzo-pants-jawhara-ss26': [
     { type: 'image', src: 'assets/products/jawhara/client/palazzo-02.jpg' },
     { type: 'image', src: 'assets/products/jawhara/client/palazzo-06.jpg' },
     { type: 'image', src: 'assets/products/jawhara/client/palazzo-07.jpg' },
-    { type: 'image', src: 'assets/products/jawhara/client/palazzo-08.jpg' },
     { type: 'image', src: 'assets/products/jawhara/client/palazzo-09.jpg' },
     { type: 'image', src: 'assets/products/jawhara/client/palazzo-10.jpg' },
     { type: 'image', src: 'assets/products/jawhara/client/palazzo-11.jpg' },

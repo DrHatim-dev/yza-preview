@@ -485,21 +485,17 @@
  };
  return copy[lang] || copy.fr;
  }
+ // Returns the editorial-break list for the active collection category.
+ function activeEditorialBreaks() {
+ const m = YZA.media || {};
+ if (collState.cat === 'charms' && (m.charmEditorialBreaks || []).length) return m.charmEditorialBreaks;
+ if (['accessories', 'earrings', 'necklaces'].includes(collState.cat) && (m.accessoryEditorialBreaks || []).length) return m.accessoryEditorialBreaks;
+ if (['rtw', 'tops', 'pareos', 'pants', 'bottoms'].includes(collState.cat) && (m.rtwEditorialBreaks || []).length) return m.rtwEditorialBreaks;
+ return m.editorialBreaks || [];
+ }
  function collectionBreakHTML(setIndex) {
- if (collState.cat === 'charms') {
- const charmBreaks = YZA.media?.charmEditorialBreaks || [];
- if (charmBreaks.length) return mediaBreakHTML(charmBreaks[setIndex % charmBreaks.length]);
- }
- if (['accessories', 'earrings', 'necklaces'].includes(collState.cat)) {
- const accessBreaks = YZA.media?.accessoryEditorialBreaks || [];
- if (accessBreaks.length) return mediaBreakHTML(accessBreaks[setIndex % accessBreaks.length]);
- }
- if (['rtw', 'tops', 'pareos', 'pants', 'bottoms'].includes(collState.cat)) {
- const rtwBreaks = YZA.media?.rtwEditorialBreaks || [];
- if (rtwBreaks.length) return mediaBreakHTML(rtwBreaks[setIndex % rtwBreaks.length]);
- }
- const mediaBreaks = YZA.media?.editorialBreaks || [];
- if (mediaBreaks.length) return mediaBreakHTML(mediaBreaks[setIndex % mediaBreaks.length]);
+ const catBreaks = activeEditorialBreaks();
+ if (catBreaks.length) return mediaBreakHTML(catBreaks[setIndex % catBreaks.length]);
  const c = storyCopy();
  const duoSets = [
  ['assets/yza-girls/girls-rin-look-1.jpg', 'assets/yza-girls/girls-rin-look-2.jpg'],
@@ -528,16 +524,22 @@
  }
  function renderCollectionGrid(el, list) {
  if (!el) return;
- // Cap editorial breaks to the number of UNIQUE sets so story images never repeat down the page.
- const breakCount = (YZA.media && YZA.media.editorialBreaks && YZA.media.editorialBreaks.length)
- ? YZA.media.editorialBreaks.length
- : 3;
- el.innerHTML = list.map((p, i) => {
- const setIndex = Math.floor(i / 4);
- const story = ((i + 1) % 4 === 0 && i < list.length - 1 && setIndex < breakCount)
- ? collectionBreakHTML(setIndex) : '';
+ // Render EVERY editorial break for this category: weave them between product rows
+ // (more often when there are many, so a short grid still shows them all), then
+ // append any that didn't fit so no selling-point block is ever dropped.
+ const catBreaks = activeEditorialBreaks();
+ const breakCount = catBreaks.length || 3;
+ const interval = breakCount > 3 ? 2 : 4;
+ let breakSeq = 0;
+ let html = list.map((p, i) => {
+ let story = '';
+ if ((i + 1) % interval === 0 && i < list.length - 1 && breakSeq < breakCount) {
+ story = collectionBreakHTML(breakSeq); breakSeq += 1;
+ }
  return cardHTML(p, i, i < 4) + story;
  }).join('');
+ for (; breakSeq < breakCount; breakSeq += 1) html += collectionBreakHTML(breakSeq);
+ el.innerHTML = html;
  if (document.documentElement.classList.contains('js')) requestAnimationFrame(wireReveal);
  }
 
