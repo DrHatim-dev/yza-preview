@@ -741,7 +741,10 @@
  const t = T();
  // best-sellers : charms hors coffrets - carrousel landing
  const promoOk = typeof YZA.isLaunchPromoProduct === 'function' ? YZA.isLaunchPromoProduct : (p) => p && p.launchPromo !== false;
- renderCarousel($('#bestGrid'), ['charms', 'bags', 'rtw', 'accessories'].flatMap(g => YZA.byCategory(g).filter(p => !p.bundle && promoOk(p)).slice(0, 3)).slice(0, 12));
+ // Fixed full-bleed product grid (Jacquemus "New In" style) instead of a carousel — 2 per category.
+ const bestList = ['charms', 'bags', 'rtw', 'accessories'].flatMap(g => YZA.byCategory(g).filter(p => !p.bundle && promoOk(p)).slice(0, 2)).slice(0, 8);
+ const bestGrid = $('#bestGrid');
+ if (bestGrid) bestGrid.innerHTML = bestList.map((p, i) => cardHTML(p, i)).join('');
 
  // bande presse (savoir-faire fondatrice)
  const press = $('#pressList');
@@ -753,28 +756,8 @@
  // One pick per category, each with a multi-image runtime gallery for the draggable carousel.
  const offerHandles = ['la-sculpture-xs-basket-bag-ss26', 'yza-palazzo-pants-jawhara-ss26', 'raffia-orange-slice-charm-ss26', 'grapes-raffia-earrings-ss26'];
  const picks = offerHandles.map(h => YZA.getProduct ? YZA.getProduct(h) : null).filter(Boolean);
- offer.innerHTML = picks.map(p => {
- const name = t.pick(displayName(p));
- const gallery = (p.gallery && p.gallery.length ? p.gallery : [p.img]).filter(Boolean);
- const slides = gallery.map((src, i) => `<div class="offer-card__slide"><img src="${esc(src)}" alt="${esc(name)}${i === 0 ? ' - YZA' : ''}" loading="${i === 0 ? 'lazy' : 'lazy'}" width="461" height="615" decoding="async" draggable="false"></div>`).join('');
- const dots = gallery.length > 1 ? `<div class="offer-card__dots" aria-hidden="true">${gallery.map((_, i) => `<span class="offer-card__dot${i === 0 ? ' is-active' : ''}"></span>`).join('')}</div>` : '';
- return `<article class="offer-card" data-product-handle="${esc(p.handle)}">
- <div class="offer-card__media" data-carousel data-count="${gallery.length}">
- <div class="offer-card__track">${slides}</div>
- <a class="offer-card__overlay" href="produit.html?handle=${esc(p.handle)}" aria-label="${esc(name)}"></a>
- </div>
- ${dots}
- <div class="offer-card__body">
- <a class="offer-card__name" href="produit.html?handle=${esc(p.handle)}">${esc(name)}</a>
- <span class="offer-card__price">${cardPriceText(p)}</span>
- </div>
- <button class="offer-card__wish" type="button" data-wishlist-toggle="${esc(p.handle)}" aria-label="${T().t('a.wishlist') || 'Favoris'}">
- <svg viewBox="0 0 20 20" width="14" height="14" aria-hidden="true"><path d="M9.7 4.35l.55.64.56-.66L12.16 2.78C13.73 0.96 16.25 0.96 17.83 2.78c1.6 1.85 1.6 4.86 0 6.7L10.25 18.6 2.6 9.49C1 7.64 1 4.63 2.59 2.78 4.16 0.96 6.68 0.96 8.27 2.78l1.38 1.57Z" fill="none" stroke="currentColor" stroke-width="1"/></svg>
- </button>
- </article>`;
- }).join('');
- // Wire draggable behaviour
- offer.querySelectorAll('[data-carousel]').forEach(wireOfferCarousel);
+ // Fixed product grid (Jacquemus style) — standard cards, single image + hover-swap, no per-card swipe.
+ offer.innerHTML = picks.map((p, i) => cardHTML(p, i)).join('');
  }
 
  // Témoignages - EXEMPLES à remplacer par de vrais avis (data-placeholder="reviews")
