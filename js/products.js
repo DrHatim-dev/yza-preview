@@ -148,7 +148,7 @@ YZA.brand = {
  address: '66 rue Yougoslavie, Guéliz, Marrakech, Maroc',
  addressShort: '66 rue Yougoslavie, Guéliz',
  mapsQuery: 'YZA Studio, 66 rue Yougoslavie, Guéliz, Marrakech, Maroc',
- hours: { fr: 'Lundi 12 h - 16 h · mardi fermé · mercredi - dimanche 12 h - 20 h', en: 'Monday 12 - 4pm · Tuesday closed · Wednesday - Sunday 12 - 8pm' },
+ hours: { fr: 'Lundi : 12 h - 16 h\nMardi : fermé\nMercredi - dimanche : 12 h - 20 h', en: 'Monday: 12 - 4pm\nTuesday: closed\nWednesday - Sunday: 12 - 8pm' },
  pickup: { fr: 'Retrait au studio à Guéliz, sur confirmation.', en: 'Studio pickup in Guéliz, on confirmation.' },
  masterIdea: 'Modern Marrakech wear™',
 };
@@ -15819,7 +15819,7 @@ const PRODUCT_MEDIA = {
     { type: 'video', src: 'assets/lifestyle/charms/charm-dcf1596e0299.mp4', poster: 'assets/lifestyle/charms/charm-dcf1596e0299-poster.jpg' },
   ],
   'raffia-cherries-charm-ss26': [
-    { type: 'image', src: 'assets/products/charms/client/cherries-01.jpg' },
+    { type: 'image', src: 'assets/products/fruit-market/charm-cherries.jpg' },
     { type: 'image', src: 'assets/products/charms/client/cherries-02.jpg' },
     { type: 'video', src: 'assets/lifestyle/charms/charm-c5fb0ffd41ab.mp4', poster: 'assets/lifestyle/charms/charm-c5fb0ffd41ab-poster.jpg' },
   ],

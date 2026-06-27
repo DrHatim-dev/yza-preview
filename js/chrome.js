@@ -108,8 +108,8 @@ const navMega = (active) => {
        if (++added >= n) break;
      }
    };
-   take('bags', 2); take('charms', 3); take('rtw', 2); take('accessories', 2);
-   return out.slice(0, 9);
+   take('bags', 2); take('charms', 2); take('rtw', 1); take('accessories', 1);
+   return out.slice(0, 6);
  };
  const megaProd = (p) => {
    const name = t.pick(productDisplayName(p));
@@ -159,7 +159,9 @@ const navMega = (active) => {
    ], `<div class="mega__studio-block"><address class="mega__studio">${YZA.brand.address}<br>${t.pick(YZA.brand.hours)}</address></div>`) +
    hero('contact.html', 'assets/yza-girls/girls-fanny-look.jpg', t.t('nav.contact'), 800, 1066), true);
 
- return boutique + maison + navLink('nav.b2b', 'b2b.html') + aide;
+ // "The House" mega replaced by a plain YZA Studio link → studio.html (no dropdown).
+ const studioLink = `<div class="nav-item"><a href="studio.html"${(active === 'nav.studio' || active === 'footer.house') ? ' aria-current="page"' : ''}>YZA Studio</a></div>`;
+ return navLink('badge.new', 'collections.html') + navLink('nav.charms', 'collections.html?cat=charms') + navLink('nav.bags', 'collections.html?cat=bags') + navLink('nav.rtw', 'collections.html?cat=rtw') + navLink('nav.accessories', 'collections.html?cat=accessories') + `<div class="nav-item"><a href="lookbook.html"${cur('nav.lookbook')}>Lookbook</a></div>` + navLink('nav.b2b', 'b2b.html');
 };
 
 /* Mobile drawer - nested accordion (uppercase heads, thin +/- toggles,
@@ -275,7 +277,7 @@ const footerServiceCopy = () => {
  fr: {
  shippingTitle: 'Livraison suivie',
  shippingText: 'Livraison Maroc offerte d\u00e8s 1 500 DH. Et si tu passes, le studio de Gu\u00e9liz t\u2019accueille pour le retrait.',
- helpTitle: 'On te r\u00e9pond, vraiment',
+ helpTitle: 'Besoin d\'aide ? Contactez-nous',
  helpText: 'Tailles, couleurs, id\u00e9es cadeau, ce qui reste en boutique \u2014 \u00e9cris-nous sur WhatsApp, une vraie personne r\u00e9pond.',
  newsTitle: 'Le cercle YZA',
  newsText: 'Les nouvelles pi\u00e8ces et les retours en stock, gliss\u00e9s dans ta bo\u00eete avant tout le monde.',
@@ -561,7 +563,7 @@ YZA.chrome = {
  // (Jacquemus shows the black REGISTER CTA until you expand the form).
  setOpen(acc, isNews(acc) ? false : wide.matches);
  const btn = acc.querySelector('.footer__col-toggle');
- if (btn) btn.addEventListener('click', () => setOpen(acc, !acc.classList.contains('is-open')));
+ if (btn) btn.addEventListener('click', () => { const open = !acc.classList.contains('is-open'); if (isNews(acc)) { setOpen(acc, open); } else { accs.forEach((c) => { if (!isNews(c)) setOpen(c, open); }); } });
  });
  // The collapsed black "REGISTER" CTA reveals the newsletter form.
  const newsAcc = footer.querySelector('[data-news-acc]');
@@ -571,7 +573,7 @@ YZA.chrome = {
  const email = newsAcc.querySelector('input[type="email"]');
  if (email) email.focus();
  });
- const onBp = (e) => accs.forEach((acc) => { if (!isNews(acc)) setOpen(acc, e.matches); });
+ const onBp = () => {}; // grouped re-sync removed — one footer toggle must not move sibling columns
  if (wide.addEventListener) wide.addEventListener('change', onBp);
  else if (wide.addListener) wide.addListener(onBp);
  // Centred wordmark doubles as back-to-top
@@ -792,7 +794,7 @@ YZA.chrome = {
  ].join('\n');
  },
 
- showRecovery(source = 'exit') {
+ showRecovery(source = 'exit') { return; /* 20% discount exit-popup disabled per owner request */
  if (sessionStorage.getItem('yza.recovery.shown')) return;
  const isProduct = document.body.dataset.page === 'product';
  const isCart = source === 'cart' || document.getElementById('cartDrawer')?.classList.contains('is-open');
@@ -895,9 +897,9 @@ YZA.chrome = {
  });
  });
 
- const header = document.getElementById('header');
+ const header = document.getElementById('header'); (function(){ var a=document.querySelector('.announcement'); var setH=function(){ if(a) document.documentElement.style.setProperty('--yza-ann-h', a.offsetHeight+'px'); }; setH(); window.addEventListener('resize', setH); window.addEventListener('load', setH); })();
  const onScroll = () => {
- const stuck = window.scrollY > 30;
+ const stuck = window.scrollY > 30; var _y=window.scrollY,_l=window.__yzaLastY||0; if(_y>_l+2&&_y>60) document.body.classList.add('is-scroll-down'); else if(_y<_l-2||_y<=60) document.body.classList.remove('is-scroll-down'); window.__yzaLastY=_y;
  header.classList.toggle('is-stuck', stuck);
  document.body.classList.toggle('is-scrolled', stuck);
  };
@@ -1035,7 +1037,7 @@ YZA.chrome = {
  phonePh: 'Votre WhatsApp * (+212…)',
  submit: 'Démarrer la conversation →',
  err: 'Prénom et WhatsApp requis.',
- ack: 'Parfait, merci ! Laissez-nous votre prénom et votre WhatsApp — on vous répond tout de suite.',
+ ack: 'Parfait, merci ! Laissez-nous votre prénom et votre WhatsApp, on vous répond tout de suite.',
  sendLabel: 'Envoyer',
  },
  en: {
@@ -1099,7 +1101,7 @@ YZA.chrome = {
  chat.innerHTML = `
  <div class="lead-chat__header">
  <div class="lead-chat__agent">
- <span class="lead-chat__avatar" aria-hidden="true">YZA</span>
+ <span class="lead-chat__avatar" aria-hidden="true"><img src="assets/brand/yza-logo-real.webp" alt="" width="120" height="35" decoding="async"></span>
  <div class="lead-chat__agent-info">
  <strong id="leadChatTitle">${c.title}</strong>
  <span class="lead-chat__online-status"><span class="lead-chat__dot"></span><span class="lead-chat__eyebrow">${c.eyebrow}</span></span>
@@ -1114,7 +1116,7 @@ YZA.chrome = {
  </div>
  <form class="lead-chat__composer" id="leadChatComposer">
  <textarea class="lead-chat__input" id="lcMsg" name="msg" placeholder="${c.msgPh}" rows="1"></textarea>
- <button type="submit" class="lead-chat__send-btn" aria-label="${c.sendLabel}"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 12h14M12 5l7 7-7 7"/></svg></button>
+ <button type="submit" class="lead-chat__send-btn" aria-label="${c.sendLabel}"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M3.4 20.4l17.45-7.48a1 1 0 0 0 0-1.84L3.4 3.6a.993.993 0 0 0-1.39.91L2 9.12c0 .5.37.93.87.99L17 12 2.87 13.88c-.5.07-.87.5-.87 1l.01 4.61c0 .67.71 1.12 1.39.91z"/></svg></button>
  </form>
  <form class="lead-chat__form" id="leadChatForm" hidden novalidate>
  <input class="lead-chat__field" id="lcName" name="name" type="text" placeholder="${c.namePh}" required autocomplete="given-name">

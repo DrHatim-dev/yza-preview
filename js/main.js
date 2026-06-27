@@ -1211,7 +1211,6 @@
     const icons = ['shipping', 'returns', 'repair'];
     return `<div class="product-support__reassurance">
       ${(copy[lang] || copy.fr).map((item, index) => `<article class="product-support__tile">
-        <span class="product-support__icon">${YZA.serviceIcons?.[icons[index]] || ''}</span>
         <h2>${esc(item[0])}</h2>
         <p>${esc(item[1])}</p>
       </article>`).join('')}
@@ -1844,10 +1843,73 @@
     return 'background:' + cardSwatchHex(name);
   }
 
+  // All distinct colour rows for a bag's family (La Sculpture -> Hot Red / Deep Violet /
+  // Black Olive). Lets the PDP colour swatches become real navigable shortcuts that swap
+  // the gallery image, exactly like the size chips already do.
+  function familyColorRows(product) {
+    if (!product || product.category !== 'bags' || !product.familyHandle) return [];
+    const seen = new Set();
+    const out = [];
+    (YZA.bagRows || []).forEach((row) => {
+      if (row.familyHandle !== product.familyHandle) return;
+      if (!(row.items || []).length) return;
+      const key = row.colorSlug || '';
+      if (seen.has(key)) return;
+      seen.add(key);
+      out.push(row);
+    });
+    return out;
+  }
+  // Canonical hue names so cardSwatchHex resolves the true colourway -- the brand row
+  // names "Noir"/"Rouge"/"Violet" alone would read pure black / generic red / purple.
+  const BAG_SWATCH_HUE = { noir: 'black olive', rouge: 'hot red', violet: 'deep violet' };
+
   function renderProductSwatches(product) {
     const wrap = $('#pColorWrap');
     if (!wrap) return;
     const t = T();
+
+    // Bags in a multi-colour family: every colour becomes a swatch that navigates to that
+    // colourway (keeping the current size where it exists), which swaps the gallery image.
+    const colorRows = familyColorRows(product);
+    if (colorRows.length > 1) {
+      const keysFromName = [product.color?.fr, product.color?.en, product.visualColor?.fr, product.visualColor?.en]
+        .map(slugLite).filter(Boolean);
+      const byName = colorRows.find((row) =>
+        [row.colorSlug, row.color?.fr, row.color?.en].map(slugLite).filter(Boolean).some((k) => keysFromName.includes(k)));
+      const activeSlug = product.selectedBagVariant?.colorSlug || byName?.colorSlug || colorRows[0].colorSlug;
+      const activeRow = colorRows.find((row) => row.colorSlug === activeSlug) || colorRows[0];
+      const currentSize = String(
+        product.selectedBagVariant?.size || product.visualSize || (product.availableSizes || [])[0] || ''
+      ).toUpperCase();
+      wrap.hidden = false;
+      $('#pColorName').textContent = t.pick(activeRow.color);
+      $('#pColorSwatches').innerHTML = colorRows.map((row) => {
+        const name = t.pick(row.color);
+        const hueName = BAG_SWATCH_HUE[row.colorSlug] || name;
+        const item = (row.items || []).find((it) => String(it.size).toUpperCase() === currentSize) || (row.items || [])[0];
+        const url = (item && item.url)
+          || ('produit.html?handle=' + encodeURIComponent((item && item.handle) || product.handle) + '&color=' + encodeURIComponent(row.colorSlug));
+        return `<button type="button" class="product-color__swatch${row.colorSlug === activeSlug ? ' is-active' : ''}" aria-label="${esc(name)}" title="${esc(name)}" style="background:${cardSwatchHex(hueName)}" data-color-name="${esc(name)}" data-color-url="${esc(url)}"></button>`;
+      }).join('');
+      $('#pColorSwatches').onmouseover = (event) => {
+        const btn = event.target.closest('[data-color-name]');
+        if (btn) $('#pColorName').textContent = btn.dataset.colorName || '';
+      };
+      $('#pColorSwatches').onmouseleave = () => { $('#pColorName').textContent = t.pick(activeRow.color); };
+      $('#pColorSwatches').onclick = (event) => {
+        const btn = event.target.closest('[data-color-url]');
+        if (!btn) return;
+        YZA.analytics?.track('product_variant_select', { handle: product.handle, familyHandle: product.familyHandle || '', category: 'bags', colorSwap: true });
+        location.href = btn.dataset.colorUrl;
+      };
+      const viewBag = $('#pViewColors');
+      if (viewBag) viewBag.hidden = true;
+      return;
+    }
+    $('#pColorSwatches').onmouseover = null;
+    $('#pColorSwatches').onmouseleave = null;
+
     const colors = product.availableColors?.length
       ? product.availableColors.map((item) => t.pick(item)).filter(Boolean)
       : [product.color && t.pick(product.color), product.variantLabel && t.pick(product.variantLabel)].filter(Boolean);
@@ -1965,6 +2027,7 @@
  price: item.price || product.price,
  variantLabel: textObj(item.size, item.size),
  bagUrl: item.url,
+ bagImg: item.img,
  bagColorSlug: item.colorSlug,
  isActiveBagVariant: item.handle === baseProduct.handle && item.colorSlug === selectedBagVariant.colorSlug,
  };
@@ -2117,43 +2180,56 @@
  const variantOpts = $('#pVariantOpts');
  if (members.length > 1 && variantWrap && variantOpts) {
  variantWrap.hidden = false;
- variantWrap.querySelector('[data-variant-label]').textContent = variantLabelFor(p, t);
+ const isBagRail = p.category === 'bags';
+ variantWrap.classList.toggle('option--size-rail', isBagRail);
+ variantWrap.querySelector('[data-variant-label]').textContent = isBagRail
+ ? (({ fr: 'Autres tailles', en: 'See other sizes', es: 'Otras tallas', tr: 'Diger bedenler', ar: 'مقاسات أخرى' })[t.lang] || 'See other sizes')
+ : variantLabelFor(p, t);
+ if (isBagRail) {
+ variantOpts.className = 'size-rail__track';
  variantOpts.innerHTML = members.map((item) => {
  const active = item.isActiveBagVariant || (!selectedBagVariant && item.handle === p.handle) ? ' is-active' : '';
  const soldOut = (YZA.inventoryStatus?.(item) || {}).soldOut ? ' is-soldout' : '';
+ const tileName = t.pick(displayName(item)) || t.pick(item.name);
+ const tileImg = item.bagImg || productGallery(item)[0] || item.img;
+ const tileUrl = item.bagUrl || ('produit.html?handle=' + encodeURIComponent(item.handle));
+ return '<a class="size-rail__tile' + active + soldOut + '" href="' + esc(tileUrl) + '" data-product-variant="' + esc(item.handle) + '" aria-label="' + esc(tileName) + '"' + (active ? ' aria-current="true"' : '') + '>'
+ + '<span class="size-rail__thumb"><img src="' + esc(tileImg) + '" alt="' + esc(tileName) + ' - YZA" loading="lazy" width="240" height="300" decoding="async"></span>'
+ + '<span class="size-rail__name">' + esc(tileName) + '</span>'
+ + '<span class="size-rail__price">' + t.formatPrice(item.price) + '</span>'
+ + '</a>';
+ }).join('');
+ variantOpts.onclick = (e) => {
+ const tile = e.target.closest('[data-product-variant]');
+ if (!tile) return;
+ YZA.analytics?.track('product_variant_select', { handle: tile.dataset.productVariant, familyHandle: p.familyHandle || '', category: 'bags', fullPageSwap: true });
+ };
+ } else {
+ variantOpts.className = 'chips chips--variants';
+ variantOpts.innerHTML = members.map((item) => {
+ const active = (!selectedBagVariant && item.handle === p.handle) ? ' is-active' : '';
+ const soldOut = (YZA.inventoryStatus?.(item) || {}).soldOut ? ' is-soldout' : '';
  const label = t.pick(item.variantLabel) || t.pick(item.size) || t.pick(item.name);
- return `<button class="chip chip--variant${active}${soldOut}" type="button" data-product-variant="${item.handle}"${soldOut ? ' aria-disabled="true"' : ''}${item.bagUrl ? ` data-product-url="${esc(item.bagUrl)}"` : ''}>
- <span>${esc(label)}</span><em aria-hidden="true">${t.formatPrice(item.price)}</em><span class="sr-only"> ${t.formatPrice(item.price)}</span>
- </button>`;
+ return '<button class="chip chip--variant' + active + soldOut + '" type="button" data-product-variant="' + esc(item.handle) + '"' + (soldOut ? ' aria-disabled="true"' : '') + '>'
+ + '<span>' + esc(label) + '</span><em aria-hidden="true">' + t.formatPrice(item.price) + '</em><span class="sr-only"> ' + t.formatPrice(item.price) + '</span>'
+ + '</button>';
  }).join('');
  variantOpts.onclick = (e) => {
  const btn = e.target.closest('[data-product-variant]');
  if (!btn) return;
  const selected = YZA.getProduct(btn.dataset.productVariant);
  if (!selected) return;
- if (p.category === 'bags') {
- YZA.analytics?.track('product_variant_select', {
- handle: selected.handle,
- familyHandle: selected.familyHandle || '',
- category: selected.category,
- fullPageSwap: true,
- });
- location.href = btn.dataset.productUrl || `produit.html?handle=${encodeURIComponent(selected.handle)}`;
- return;
- }
  purchaseProduct = selected;
  $$('#pVariantOpts .chip').forEach((chip) => chip.classList.remove('is-active'));
  btn.classList.add('is-active');
  $('#pPrice').innerHTML = productPriceCompact(purchaseProduct);
  { const ap = $('#pAddPrice'); if (ap) ap.innerHTML = productPriceCompact(purchaseProduct); }
- YZA.analytics?.track('product_variant_select', {
- handle: purchaseProduct.handle,
- familyHandle: purchaseProduct.familyHandle || '',
- category: purchaseProduct.category,
- });
+ YZA.analytics?.track('product_variant_select', { handle: purchaseProduct.handle, familyHandle: purchaseProduct.familyHandle || '', category: purchaseProduct.category });
  };
+ }
  } else if (variantWrap) {
  variantWrap.hidden = true;
+ variantWrap.classList.remove('option--size-rail');
  }
 
  const detailRows = [];

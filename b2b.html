@@ -112,32 +112,124 @@
  .b2b-quote__actions .btn { flex: 1 1 auto; }
  }
  </style>
+ <!-- ===== AMBIANCE — expressive tweaks + scroll chrome (b2b only) ===== -->
+ <style id="yza-amb-style">
+ body[data-page="b2b"] .header,
+ body[data-page="b2b"] .announcement,
+ body[data-page="b2b"] .b2b-section,
+ body[data-page="b2b"] .b2b-h2,
+ body[data-page="b2b"] .b2b-offer,
+ body[data-page="b2b"] .b2b-template,
+ body[data-page="b2b"] .b2b-fieldset,
+ body[data-page="b2b"] .b2b-matrix,
+ body[data-page="b2b"] .b2b-stockist,
+ body[data-page="b2b"] .b2b-banner,
+ body[data-page="b2b"] .btn,
+ body[data-page="b2b"] .b2b-field input,
+ body[data-page="b2b"] .b2b-field textarea {
+   transition: background-color var(--transition), color var(--transition),
+               border-color var(--transition), box-shadow var(--transition),
+               padding var(--transition), font-size var(--transition),
+               border-radius var(--transition);
+ }
+ html[data-accent="terre"] body[data-page="b2b"] { --color-accent:#c2592b; --color-accent-text:#b0521f; }
+ html[data-accent="terre"] body[data-page="b2b"] .b2b-status--warn { color:#c2592b; }
+ html[data-accent="terre"] body[data-page="b2b"] .b2b-status--bonus { color:#7c5a20; }
+ html[data-accent="terre"] body[data-page="b2b"] .b2b-section .btn--solid { background:#c2592b; border-color:#c2592b; color:#fff; }
+ html[data-accent="terre"] body[data-page="b2b"] .b2b-section .btn--solid:hover { background:transparent; color:#c2592b; }
+ html[data-accent="terre"] body[data-page="b2b"] .b2b-banner { border-color:rgba(194,89,43,.32); }
+ html[data-accent="terre"] body[data-page="b2b"] .b2b-h2 { color:#c2592b; }
+ html[data-accent="terre"] body[data-page="b2b"] .b2b-eyebrow { color:#b0521f; }
+ html[data-accent="or"] body[data-page="b2b"] { --color-accent:#9a7a28; --color-accent-text:#876a1d; }
+ html[data-accent="or"] body[data-page="b2b"] .b2b-status--warn { color:#9a7a28; }
+ html[data-accent="or"] body[data-page="b2b"] .b2b-status--bonus { color:#876a1d; }
+ html[data-accent="or"] body[data-page="b2b"] .b2b-section .btn--solid { background:#9a7a28; border-color:#9a7a28; color:#fff; }
+ html[data-accent="or"] body[data-page="b2b"] .b2b-section .btn--solid:hover { background:transparent; color:#876a1d; }
+ html[data-accent="or"] body[data-page="b2b"] .b2b-banner { border-color:rgba(154,122,40,.32); }
+ html[data-accent="or"] body[data-page="b2b"] .b2b-h2 { color:#9a7a28; }
+ html[data-accent="or"] body[data-page="b2b"] .b2b-eyebrow { color:#876a1d; }
+ html[data-rythme="aere"] body[data-page="b2b"] .b2b-section { padding-block: clamp(4rem, 9vw, 7.5rem); }
+ html[data-rythme="aere"] body[data-page="b2b"] .b2b-h2 { font-size: clamp(2.6rem, 5.5vw, 3.8rem); letter-spacing:-0.012em; line-height:1.02; }
+ html[data-rythme="aere"] body[data-page="b2b"] .b2b-eyebrow { letter-spacing: 0.26em; }
+ html[data-rythme="aere"] body[data-page="b2b"] .b2b-lead { font-size: var(--fs-md); max-width: 54ch; }
+ html[data-rythme="aere"] body[data-page="b2b"] .b2b-offer { padding: clamp(2rem, 5vw, 3.5rem); gap: var(--space-8); }
+ html[data-rythme="dense"] body[data-page="b2b"] .b2b-section { padding-block: clamp(1.25rem, 2.6vw, 2rem); }
+ html[data-rythme="dense"] body[data-page="b2b"] .b2b-h2 { font-size: var(--fs-xl); margin-block: var(--space-1) var(--space-2); }
+ html[data-rythme="dense"] body[data-page="b2b"] .b2b-eyebrow { letter-spacing: 0.05em; }
+ html[data-rythme="dense"] body[data-page="b2b"] .b2b-lead { font-size: var(--fs-sm); }
+ html[data-rythme="dense"] body[data-page="b2b"] .b2b-offer { padding: var(--space-6); gap: var(--space-3); }
+ html[data-rythme="dense"] body[data-page="b2b"] .b2b-templates { gap: var(--space-3); }
+ html[data-matiere="atelier"] body[data-page="b2b"] { --radius:14px; --radius-lg:18px; --color-border: rgba(46,46,46,.14); }
+ html[data-matiere="atelier"] body[data-page="b2b"] .b2b-offer,
+ html[data-matiere="atelier"] body[data-page="b2b"] .b2b-template,
+ html[data-matiere="atelier"] body[data-page="b2b"] .b2b-fieldset,
+ html[data-matiere="atelier"] body[data-page="b2b"] .b2b-matrix,
+ html[data-matiere="atelier"] body[data-page="b2b"] .b2b-stockist {
+   background:#f6f2ea; border-color: rgba(46,46,46,.08);
+   box-shadow: 0 22px 48px -34px rgba(58,38,18,.55);
+ }
+ html[data-matiere="atelier"] body[data-page="b2b"] .b2b-banner { box-shadow: 0 22px 48px -34px rgba(58,38,18,.55); }
+ html[data-matiere="atelier"] body[data-page="b2b"] .b2b-template { background:#faf7f1; }
+ html[data-matiere="atelier"] body[data-page="b2b"] .btn { border-radius: 999px; }
+ html[data-matiere="atelier"] body[data-page="b2b"] .b2b-field input,
+ html[data-matiere="atelier"] body[data-page="b2b"] .b2b-field textarea { border-radius: 12px; }
+ body[data-page="b2b"] .announcement { position: sticky; top: 0; z-index: 51; }
+ body[data-page="b2b"].is-scrolled .announcement { max-height: 4rem; opacity: 1; border-bottom-color: var(--color-border); }
+ body[data-page="b2b"] .header { top: var(--yza-ann-h, 40px); }
+ body[data-page="b2b"].b2b-scrolling-down .header { background: transparent; border-bottom-color: transparent; box-shadow: none; }
+ .yza-amb-fab {
+   position: fixed; left: 20px; bottom: 20px; z-index: 1200;
+   display: inline-flex; align-items: center; gap: .5rem;
+   font-family: var(--font-display); font-size: .72rem; font-weight: 500;
+   text-transform: uppercase; letter-spacing: .14em; color: var(--color-fg);
+   background: #fff; border: 1px solid var(--color-border-strong);
+   padding: .62rem .95rem; cursor: pointer; border-radius: 999px;
+   box-shadow: 0 14px 34px -20px rgba(0,0,0,.4);
+   transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+ }
+ .yza-amb-fab:hover { transform: translateY(-1px); box-shadow: 0 18px 40px -20px rgba(0,0,0,.5); }
+ .yza-amb-star { font-size: .85rem; line-height: 1; }
+ .yza-amb-panel {
+   position: fixed; left: 20px; bottom: 74px; z-index: 1200; width: 268px;
+   background: #fff; border: 1px solid var(--color-border-strong);
+   padding: var(--space-5); display: grid; gap: var(--space-5);
+   box-shadow: 0 30px 70px -34px rgba(0,0,0,.5);
+   opacity: 0; transform: translateY(8px) scale(.98); transform-origin: left bottom;
+   pointer-events: none; transition: opacity .22s var(--ease-out), transform .22s var(--ease-out);
+ }
+ .yza-amb-panel.is-open { opacity: 1; transform: none; pointer-events: auto; }
+ .yza-amb-head { display: flex; align-items: baseline; justify-content: space-between; }
+ .yza-amb-title { font-family: var(--font-display); font-size: var(--fs-md); letter-spacing: .02em; }
+ .yza-amb-reset { font-size: .66rem; text-transform: uppercase; letter-spacing: .12em; color: var(--color-muted); background: none; border: 0; cursor: pointer; padding: 0; }
+ .yza-amb-reset:hover { color: var(--color-fg); }
+ .yza-amb-group { display: grid; gap: .55rem; }
+ .yza-amb-label { font-size: .62rem; font-weight: 600; text-transform: uppercase; letter-spacing: .16em; color: var(--color-muted); }
+ .yza-amb-seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; border: 1px solid var(--color-border-strong); }
+ .yza-amb-seg button {
+   font-family: var(--font-display); font-size: .68rem; letter-spacing: .04em;
+   padding: .5rem .3rem; background: #fff; color: var(--color-muted); cursor: pointer;
+   border: 0; border-left: 1px solid var(--color-border); transition: background var(--transition-fast), color var(--transition-fast);
+ }
+ .yza-amb-seg button:first-child { border-left: 0; }
+ .yza-amb-seg button[aria-pressed="true"] { background: var(--color-fg); color: #fff; }
+ .yza-amb-note { font-size: .64rem; color: var(--color-muted); line-height: 1.5; }
+ @media (max-width: 540px) { .yza-amb-panel { left: 12px; right: 12px; width: auto; } .yza-amb-fab { left: 12px; } }
+ @media print { .yza-amb-fab, .yza-amb-panel { display: none !important; } }
+ </style>
 </head>
 <body data-page="b2b">
 <main>
  <section class="b2b-hero container b2b-wrap">
  <nav class="breadcrumb"><a href="index.html" data-i18n="breadcrumb.home">Accueil</a><span>/</span><span data-i18n="nav.b2b">B2B</span></nav>
  <p class="b2b-eyebrow"><span data-lang="fr">Wholesale SS26/27</span><span data-lang="en" hidden>Wholesale SS26/27</span><span data-lang="es" hidden>Wholesale SS26/27</span><span data-lang="tr" hidden>Wholesale SS26/27</span><span data-lang="ar" hidden>Wholesale SS26/27</span></p>
- <h1><span data-lang="fr">Guéliz<br>dans votre boutique.</span><span data-lang="en" hidden>Guéliz,<br>in your boutique.</span><span data-lang="es" hidden>Guéliz,<br>en tu boutique.</span><span data-lang="tr" hidden>Guéliz,<br>mağazanızda.</span><span data-lang="ar" hidden>Guéliz<br>في متجرك.</span></h1>
+ <h1><span data-lang="fr">Vendre YZA
+dans votre boutique.</span><span data-lang="en" hidden>Guéliz,<br>in your boutique.</span><span data-lang="es" hidden>Guéliz,<br>en tu boutique.</span><span data-lang="tr" hidden>Guéliz,<br>mağazanızda.</span><span data-lang="ar" hidden>Guéliz<br>في متجرك.</span></h1>
  <p class="b2b-lead"><span data-lang="fr">Des séries limitées, faites à la main à Guéliz - composez votre sélection, tailles et couleurs, puis écrivez-nous. Nous vous contacterons avec notre lookbook &amp; line sheet.</span><span data-lang="en" hidden>Limited series, handmade in Guéliz - build your selection, sizes and colours, then reach out. We'll come back to you with our lookbook &amp; line sheet.</span><span data-lang="es" hidden>Series limitadas, hechas a mano en Guéliz - compone tu selección, tallas y colores, y eschíbenos. Te contactaremos con nuestro lookbook &amp; line sheet.</span><span data-lang="tr" hidden>Sınırlı seriler, Guéliz'de el yapımı - beden ve renk seçimlerinizi yapın ve bize yazın. Lookbook &amp; line sheet ile size geri döneceğiz.</span><span data-lang="ar" hidden>إصدارات محدودة، مصنوعة يدويًا في Guéliz — اختاري تشكيلتك من المقاسات والألوان ثم تواصلي معنا. سنعود إليك بالـ lookbook وقائمة المنتجات.</span></p>
- <div class="b2b-hero__facts">
- <span><span data-lang="fr">Line sheets &amp; lookbooks sur demande</span><span data-lang="en" hidden>Line sheets &amp; lookbooks on request</span><span data-lang="es" hidden>Line sheets &amp; lookbooks a pedido</span><span data-lang="tr" hidden>Talep üzerine line sheets &amp; lookbooks</span><span data-lang="ar" hidden>Line sheets وlookbooks عند الطلب</span></span>
- <span><span data-lang="fr">Collections exclusives à votre boutique, sur demande</span><span data-lang="en" hidden>Exclusive collections for your boutique, on request</span><span data-lang="es" hidden>Colecciones exclusivas para tu boutique, bajo pedido</span><span data-lang="tr" hidden>Butiğınıza özel koleksiyonlar, talep üzerine</span><span data-lang="ar" hidden>تشكيلات حصرية لمتجرك، عند الطلب</span></span>
- <span><span data-lang="fr">Atelier 100 % féminin - Guéliz</span><span data-lang="en" hidden>100% women's atelier - Guéliz</span><span data-lang="es" hidden>Atelier 100 % femenino - Guéliz</span><span data-lang="tr" hidden>%100 kadın atölyesi - Guéliz</span><span data-lang="ar" hidden>أتيليه نسائي 100% - Guéliz</span></span>
- <span><span data-lang="fr">Expédition dans le monde entier</span><span data-lang="en" hidden>Shipping worldwide</span><span data-lang="es" hidden>Envío a todo el mundo</span><span data-lang="tr" hidden>Dünya genelinde kargo</span><span data-lang="ar" hidden>شحن إلى جميع أنحاء العالم</span></span>
- </div>
  </section>
 
- <figure class="b2b-banner">
- <img src="assets/editorial/dataset/artisanes-atelier-raffia.jpg" alt="L'atelier de femmes YZA à Guéliz, Marrakech" data-i18n-attr="alt:alt.story.atelier" loading="lazy" width="2016" height="1344" decoding="async">
- <figcaption><span data-lang="fr">Notre atelier 100 % féminin - Guéliz, Marrakech</span><span data-lang="en" hidden>Our 100% women-run atelier - Guéliz, Marrakech</span><span data-lang="es" hidden>Nuestro atelier 100 % femenino - Guéliz, Marrakech</span><span data-lang="tr" hidden>%100 kadın atölyemiz - Guéliz, Marrakech</span><span data-lang="ar" hidden>أتيليهنا النسائي 100% - Guéliz، مراكش</span></figcaption>
- </figure>
+ 
 
- <section class="b2b-section container b2b-wrap">
- <p class="b2b-eyebrow"><span data-lang="fr">Le partenariat revendeur</span><span data-lang="en" hidden>The reseller partnership</span><span data-lang="es" hidden>La asociación de reventa</span><span data-lang="tr" hidden>Bayi ortakığı</span><span data-lang="ar" hidden>شراكة الموزعين</span></p>
- <h2 class="b2b-h2"><span data-lang="fr">Ce qui vient avec YZA</span><span data-lang="en" hidden>What comes with YZA</span><span data-lang="es" hidden>Lo que viene con YZA</span><span data-lang="tr" hidden>YZA ile neler geliyor</span><span data-lang="ar" hidden>ما يأتي مع YZA</span></h2>
- <div class="b2b-offer" data-reveal><div class="b2b-offer__stack" id="b2bOffer"></div></div>
- </section>
+ 
 
  <section class="b2b-section container b2b-wrap">
  <p class="b2b-eyebrow"><span data-lang="fr">Pour commencer</span><span data-lang="en" hidden>To begin</span><span data-lang="es" hidden>Para empezar</span><span data-lang="tr" hidden>Başlamak için</span><span data-lang="ar" hidden>للبدء</span></p>
@@ -196,7 +288,7 @@
  </form>
  </section>
 
- <div class="b2b-wrap" style="text-align:center;padding-block:var(--space-6)" aria-hidden="true"><img aria-hidden="true" src="assets/illustrations/illu-vine-border.png" alt="" loading="lazy" width="1800" height="1005" style="width:min(560px,72%);height:auto;opacity:.9" decoding="async"></div>
+ 
 
  <section class="b2b-section container b2b-wrap">
  <p class="b2b-eyebrow"><span data-lang="fr">Nos garanties</span><span data-lang="en" hidden>Our guarantees</span><span data-lang="es" hidden>Nuestras garantías</span><span data-lang="tr" hidden>Garantilerimiz</span><span data-lang="ar" hidden>ضماناتنا</span></p>
@@ -264,7 +356,7 @@
  ['Séries courtes', 'Short runs', 'Series limitadas', 'Sınırlı seriler', 'إصدارات محدودة', 'Petites quantités, par choix : vos clientes ne retrouvent pas la même pièce partout.', 'Small batches, by choice: your clients won\'t find the same piece everywhere.', 'Cantidades pequeñas, por elección: tus clientes no encontrarán la misma pieza en todas partes.', 'Küçük miktarlar, tercihle: müşterileriniz aynı parçayı her yerde bulmaz.', 'كميات صغيرة باختيار واعٍ: زبوناتك لن يجدن نفس القطعة في كل مكان.', 'svc-limited'],
  ];
  var guarEl = document.getElementById('b2bGuarantees');
- if (guarEl) guarEl.innerHTML = GUAR.map(function (g) { return '<div class="b2b-guarantee">' + bIco(g[10]) + '<h4>' + L5(g[0], g[1], g[2], g[3], g[4]) + '</h4><p>' + L5(g[5], g[6], g[7], g[8], g[9]) + '</p></div>'; }).join('');
+ if (guarEl) guarEl.innerHTML = GUAR.map(function (g) { return '<div class="b2b-guarantee">' + '<h4>' + L5(g[0], g[1], g[2], g[3], g[4]) + '</h4><p>' + L5(g[5], g[6], g[7], g[8], g[9]) + '</p></div>'; }).join('');
 
  var STOCKISTS = [
  ['Hanout Boutique', 'Marrakech'], ['Jaad Riad Resort', 'Marrakech'], ['Atelier 44 - M Avenue', 'Marrakech'],
@@ -448,6 +540,80 @@
 
  refresh();
  });
+ </script>
+ <script id="yza-amb-script">
+ (function(){
+   var DOC = document.documentElement, BODY = document.body;
+   var KEY = 'yza:b2b:ambiance';
+   var DEF = { accent:'encre', rythme:'naturel', matiere:'plat' };
+   var state = Object.assign({}, DEF);
+   try { var saved = JSON.parse(localStorage.getItem(KEY) || '{}'); if (saved && typeof saved === 'object') state = Object.assign(state, saved); } catch (e) {}
+   function apply(){ DOC.setAttribute('data-accent', state.accent); DOC.setAttribute('data-rythme', state.rythme); DOC.setAttribute('data-matiere', state.matiere); }
+   function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+   apply();
+
+   var GROUPS = [
+     { key:'accent',  label:'Tempérament', opts:[['encre','Encre'],['terre','Terre cuite'],['or','Or']] },
+     { key:'rythme',  label:'Rythme',      opts:[['aere','Aéré'],['naturel','Naturel'],['dense','Dense']] },
+     { key:'matiere', label:'Matière',     opts:[['plat','Plat'],['atelier','Atelier']] }
+   ];
+
+   var fab = document.createElement('button');
+   fab.type = 'button'; fab.className = 'yza-amb-fab'; fab.setAttribute('aria-expanded','false');
+   fab.innerHTML = '<span class="yza-amb-star" aria-hidden="true">✦</span> Ambiance';
+
+   var panel = document.createElement('div');
+   panel.className = 'yza-amb-panel'; panel.setAttribute('role','dialog'); panel.setAttribute('aria-label','Ambiance de la page');
+   var html = '<div class="yza-amb-head"><span class="yza-amb-title">Ambiance</span><button type="button" class="yza-amb-reset">Réinitialiser</button></div>';
+   GROUPS.forEach(function(g){
+     html += '<div class="yza-amb-group"><span class="yza-amb-label">' + g.label + '</span><div class="yza-amb-seg" data-key="' + g.key + '">';
+     g.opts.forEach(function(o){ html += '<button type="button" data-val="' + o[0] + '">' + o[1] + '</button>'; });
+     html += '</div></div>';
+   });
+   html += '<p class="yza-amb-note">Trois réglages qui reforment le ton de la page — couleur, rythme et matière.</p>';
+   panel.innerHTML = html;
+
+   function sync(){
+     GROUPS.forEach(function(g){
+       panel.querySelectorAll('.yza-amb-seg[data-key="' + g.key + '"] button').forEach(function(b){
+         b.setAttribute('aria-pressed', b.getAttribute('data-val') === state[g.key] ? 'true' : 'false');
+       });
+     });
+   }
+   panel.addEventListener('click', function(e){
+     var seg = e.target.closest('.yza-amb-seg button');
+     if (seg){ var key = seg.parentElement.getAttribute('data-key'); state[key] = seg.getAttribute('data-val'); apply(); save(); sync(); return; }
+     if (e.target.closest('.yza-amb-reset')){ state = Object.assign({}, DEF); apply(); save(); sync(); }
+   });
+
+   var open = false;
+   function toggle(o){ open = (o == null) ? !open : o; panel.classList.toggle('is-open', open); fab.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+   fab.addEventListener('click', function(e){ e.stopPropagation(); toggle(); });
+   document.addEventListener('click', function(e){ if (open && !panel.contains(e.target) && e.target !== fab) toggle(false); });
+   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && open) toggle(false); });
+
+   BODY.appendChild(fab); BODY.appendChild(panel); sync();
+
+   // ---- sticky announcement height + directional (scroll-down) transparent header ----
+   function whenChrome(cb){
+     if (document.getElementById('header') && document.querySelector('.announcement')) return cb();
+     var o = new MutationObserver(function(){ if (document.getElementById('header') && document.querySelector('.announcement')){ o.disconnect(); cb(); } });
+     o.observe(document.body, { childList:true });
+   }
+   whenChrome(function(){
+     var ann = document.querySelector('.announcement');
+     function measure(){ if (ann) DOC.style.setProperty('--yza-ann-h', ann.offsetHeight + 'px'); }
+     measure(); window.addEventListener('resize', measure); window.addEventListener('load', measure);
+     var lastY = window.scrollY, ticking = false;
+     function update(){
+       var y = window.scrollY;
+       if (y > 60 && y > lastY + 2) BODY.classList.add('b2b-scrolling-down');
+       else if (y < lastY - 2 || y <= 60) BODY.classList.remove('b2b-scrolling-down');
+       lastY = y; ticking = false;
+     }
+     window.addEventListener('scroll', function(){ if (!ticking){ requestAnimationFrame(update); ticking = true; } }, { passive:true });
+   });
+ })();
  </script>
 </body>
 </html>
