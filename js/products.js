@@ -15441,7 +15441,7 @@ const ACCESSORY_IMAGES = {
  // La Vague / La Vaguelette - real photography per colourway (re-set below by the La Vague block).
  'la-nouvelle-vague-xs-basket-bag-ss26': 'assets/products/la-vague/lv-black-xs.jpg',
  'la-nouvelle-vague-s-basket-bag-ss26': 'assets/products/la-vague/lv-nude-s.jpg',
- 'la-nouvelle-vague-m-basket-bag-ss26': 'assets/products/la-vague/lv-camel-m.jpg',
+ 'la-nouvelle-vague-m-basket-bag-ss26': 'assets/products/la-vague/lv-black-m.jpg',
  // Jawhara RTW - real photography (client shoot + SS26 lookbook). Replaces the former
  // AI 'rtw-clean' nano-banana stills. These heroes are also the first entry in PRODUCT_MEDIA.
  'yza-scarf-top-jawhara-ss26': 'assets/lookbook-ss26-27/embedded/p33_img02_xref1247_4e3188b3ffc2.jpeg',
@@ -15520,13 +15520,51 @@ const lnvImg = (slug, size) => `${LNV_DIR}lv-${slug}-${String(size).toLowerCase(
 const LNV_COLORS = [
  { slug: 'black', fr: 'Noir', en: 'Black', es: 'Negro', tr: 'Siyah', ar: 'أسود', line: 'La Nouvelle Vague' },
  { slug: 'nude', fr: 'Nude', en: 'Nude', es: 'Nude', tr: 'Nude', ar: 'نود', line: 'La Nouvelle Vague' },
- { slug: 'camel', fr: 'Camel', en: 'Camel', es: 'Camel', tr: 'Camel', ar: 'كاميل', line: 'La Nouvelle Vague' },
+ // 'camel' removed: its images (lv-camel-*) were a different bag (a square scalloped tote),
+ // not La Nouvelle Vague. Re-add only with real camel photos of the actual bag.
 ];
 const LNV_SIZES = [
  { size: 'XS', handle: 'la-nouvelle-vague-xs-basket-bag-ss26' },
  { size: 'S', handle: 'la-nouvelle-vague-s-basket-bag-ss26' },
  { size: 'M', handle: 'la-nouvelle-vague-m-basket-bag-ss26' },
 ];
+// Per-colourway galleries so each colour shows ITS OWN photos on the PDP (previously
+// every colour fell back to the black-first base media). Black = full client shoot;
+// Nude = client XS shots + real stills for S/M.
+const LNV_GALLERY = {
+ black: {
+ XS: [
+ { type: 'image', src: 'assets/products/la-vague/client/black-xs-01.jpg' },
+ { type: 'image', src: 'assets/products/la-vague/client/black-xs-02.jpg' },
+ { type: 'image', src: 'assets/products/la-vague/client/black-xs-03.jpg' },
+ { type: 'video', src: 'assets/lifestyle/bags/vague-3e649f7c202b.mp4', poster: 'assets/lifestyle/bags/vague-3e649f7c202b-poster.jpg' },
+ ],
+ S: [
+ { type: 'image', src: 'assets/products/la-vague/client/black-s-01.jpg' },
+ { type: 'image', src: 'assets/products/la-vague/client/black-s-02.jpg' },
+ { type: 'image', src: 'assets/products/la-vague/client/black-s-03.jpg' },
+ { type: 'image', src: 'assets/products/la-vague/client/black-s-04.jpg' },
+ { type: 'image', src: 'assets/products/la-vague/client/black-s-05.jpg' },
+ { type: 'image', src: 'assets/products/la-vague/client/black-s-06.jpg' },
+ ],
+ M: [
+ { type: 'image', src: 'assets/products/la-vague/client/black-m-01.jpg' },
+ { type: 'image', src: 'assets/products/la-vague/client/black-m-02.jpg' },
+ { type: 'image', src: 'assets/products/la-vague/client/black-m-03.jpg' },
+ { type: 'image', src: 'assets/products/la-vague/client/black-m-04.jpg' },
+ { type: 'image', src: 'assets/products/la-vague/client/black-m-05.jpg' },
+ ],
+ },
+ nude: {
+ XS: [
+ { type: 'image', src: 'assets/products/la-vague/client/nude-xs-01.jpg' },
+ { type: 'image', src: 'assets/products/la-vague/client/nude-xs-02.jpg' },
+ { type: 'image', src: 'assets/products/la-vague/client/nude-xs-03.jpg' },
+ ],
+ S: [{ type: 'image', src: 'assets/products/la-vague/lv-nude-s.jpg' }],
+ M: [{ type: 'image', src: 'assets/products/la-vague/lv-nude-m.jpg' }],
+ },
+};
 // Preserve Batch-B es/tr/ar translations when only fr/en are provided.
 const _merge = (fr, en, prev) => {
   var es = (prev && prev.es && prev.es !== prev.en) ? prev.es : en;
@@ -15580,7 +15618,8 @@ LNV_COLORS.forEach((c) => {
  gallery: LNV_SIZES.map((sz) => lnvImg(c.slug, sz.size)),
  items: LNV_SIZES.map((sz) => {
  const prod = PRODUCT_MAP.get(sz.handle);
- const img = lnvImg(c.slug, sz.size);
+ const media = (LNV_GALLERY[c.slug] && LNV_GALLERY[c.slug][sz.size]) || [{ type: 'image', src: lnvImg(c.slug, sz.size) }];
+ const gal = media.filter((m) => m.type === 'image').map((m) => m.src);
  return {
  handle: sz.handle,
  size: sz.size,
@@ -15589,8 +15628,9 @@ LNV_COLORS.forEach((c) => {
  title: { fr: c.line + ' ' + sz.size + ' · ' + c.fr, en: c.line + ' ' + sz.size + ' · ' + c.en, es: c.line + ' ' + sz.size + ' · ' + c.es, tr: c.line + ' ' + sz.size + ' · ' + c.tr, ar: c.line + ' ' + sz.size + ' · ' + c.ar },
  short: { fr: 'Format ' + sz.size + ', couleur ' + c.fr + '.', en: sz.size + ' scale, ' + c.en + '.', es: 'Talla ' + sz.size + ', color ' + c.es + '.', tr: sz.size + ' beden, ' + c.tr + ' renk.', ar: 'مقاس ' + sz.size + '، لون ' + c.ar + '.' },
  price: prod ? prod.price : null,
- img: img,
- gallery: [img],
+ img: gal[0],
+ gallery: gal,
+ media: media,
  url: 'produit.html?handle=' + sz.handle + '&color=' + c.slug,
  };
  }),
@@ -15894,10 +15934,6 @@ const PRODUCT_MEDIA = {
     { type: 'image', src: 'assets/products/la-vague/client/black-xs-02.jpg' },
     { type: 'image', src: 'assets/products/la-vague/client/black-xs-03.jpg' },
     { type: 'video', src: 'assets/lifestyle/bags/vague-3e649f7c202b.mp4', poster: 'assets/lifestyle/bags/vague-3e649f7c202b-poster.jpg' },
-    { type: 'image', src: 'assets/products/la-vague/client/nude-xs-01.jpg' },
-    { type: 'image', src: 'assets/products/la-vague/client/nude-xs-02.jpg' },
-    { type: 'image', src: 'assets/products/la-vague/client/nude-xs-03.jpg' },
-    { type: 'image', src: 'assets/products/la-vague/lv-camel-xs.jpg' },
   ],
   'la-nouvelle-vague-s-basket-bag-ss26': [
     { type: 'image', src: 'assets/products/la-vague/client/black-s-01.jpg' },
@@ -15906,8 +15942,6 @@ const PRODUCT_MEDIA = {
     { type: 'image', src: 'assets/products/la-vague/client/black-s-04.jpg' },
     { type: 'image', src: 'assets/products/la-vague/client/black-s-05.jpg' },
     { type: 'image', src: 'assets/products/la-vague/client/black-s-06.jpg' },
-    { type: 'image', src: 'assets/products/la-vague/lv-nude-s.jpg' },
-    { type: 'image', src: 'assets/products/la-vague/lv-camel-s.jpg' },
   ],
   'la-nouvelle-vague-m-basket-bag-ss26': [
     { type: 'image', src: 'assets/products/la-vague/client/black-m-01.jpg' },
@@ -15915,8 +15949,6 @@ const PRODUCT_MEDIA = {
     { type: 'image', src: 'assets/products/la-vague/client/black-m-03.jpg' },
     { type: 'image', src: 'assets/products/la-vague/client/black-m-04.jpg' },
     { type: 'image', src: 'assets/products/la-vague/client/black-m-05.jpg' },
-    { type: 'image', src: 'assets/products/la-vague/lv-nude-m.jpg' },
-    { type: 'image', src: 'assets/products/la-vague/lv-camel-m.jpg' },
   ],
 };
 Object.keys(PRODUCT_MEDIA).forEach((h) => {
