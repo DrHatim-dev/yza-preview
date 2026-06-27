@@ -669,6 +669,11 @@ body.has-search-overlay { overflow: hidden; }
  position: absolute; left: var(--gutter); bottom: var(--space-10); color: var(--white); max-width: min(680px, 78vw); padding: 0;
 }
 .product-story--wide .eyebrow { color: var(--white); }
+/* Editorial "duo" breaks live inside the full-bleed product grid (rtw/charms/
+   accessories), so without a side gutter the copy clips at the viewport edge and
+   the images bleed off-screen. Add the standard gutter — but only in the full-bleed
+   context, since the bags grid is already contained (avoids a double indent). */
+.product-grid:not(.collection-grid--bag-families) .product-story--duo { padding-inline: var(--gutter); box-sizing: border-box; }
 
 .product-color-story { padding-block: clamp(2.5rem, 6vw, var(--space-20)); border-block: 1px solid var(--color-border); }
 .product-color-story__inner { display: grid; grid-template-columns: minmax(260px, 0.42fr) 1fr; gap: clamp(1.5rem, 5vw, var(--space-16)); align-items: center; }
