@@ -22,6 +22,7 @@
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,400..600&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&display=swap" rel="stylesheet">
  <link rel="stylesheet" href="css/tokens.css" />
  <link rel="stylesheet" href="css/styles.css" />
 
@@ -38,8 +39,7 @@
 <main>
 
  <!-- ===== HERO: TWO-IMAGE SPLIT — bags & charms / ready-to-wear ===== -->
- <section class="hero-split" aria-labelledby="heroTitle">
- <h1 id="heroTitle" class="sr-only" data-i18n="hero.title">La Sculpture</h1>
+ <section class="hero-split" aria-label="YZA — paniers, sacs & prêt-à-porter">
  <a class="hero-split__tile" href="collections.html?cat=bags" aria-label="Paniers, sacs & charms">
  <img class="hero-split__img" src="assets/hero/la-sculpture-lifestyle.jpg" alt="La Sculpture — femme en jupe fleurie portant le panier YZA dans un riad de Marrakech" loading="eager" fetchpriority="high" width="1080" height="1440" decoding="async">
  <span class="hero-split__cap">
@@ -54,6 +54,46 @@
  <span class="hero-split__link" data-i18n="cta.shop">Voir la collection</span>
  </span>
  </a>
+ </section>
+
+ <!-- ===== HOME INTRO — visible brand statement (what YZA is) ===== -->
+ <section class="section home-intro">
+ <div class="container section-head section-head--center home-intro__inner" data-reveal>
+ <p class="brand-mark-tri brand-mark-tri--center brand-mark-tri--lg" aria-label="YZA"><span class="brand-mark-tri__lat">YZA</span><span class="brand-mark-tri__sep" aria-hidden="true">·</span><span class="brand-mark-tri__tif" lang="zgh" aria-hidden="true">ⴰⵣⵉ</span><span class="brand-mark-tri__sep" aria-hidden="true">·</span><span class="brand-mark-tri__ar" lang="ar" aria-hidden="true">ييزة</span></p>
+ <h1 id="heroTitle" class="home-intro__title" data-i18n="hero.subheading">Tissé à la main à Guéliz, Marrakech. Jamais deux fois pareil.</h1>
+ <p class="home-intro__lede" data-i18n="hero.text">Raphia, feuille de bananier, perles. Tressée main par les femmes de l’atelier, à Guéliz, Marrakech — un sac à la fois, et jamais deux fois le même.</p>
+ </div>
+ </section>
+
+ <!-- ===== CATÉGORIES — what YZA makes, at a glance ===== -->
+ <section class="section home-cats">
+ <div class="container-wide">
+ <div class="section-head section-head--center" data-reveal>
+ <p class="eyebrow" data-i18n="home.cats.eyebrow">L’univers YZA</p>
+ <h2 data-i18n="home.cats.title">Quatre façons de glisser Marrakech dans votre sac</h2>
+ </div>
+ <div class="cat-grid" data-reveal>
+ <a class="cat-card" href="collections.html?cat=charms">
+ <div class="media"><img src="assets/products/charms-cluster.jpg" alt="Charms fruits en raphia, crochetés à la main à Marrakech" data-i18n-attr="alt:alt.cat.charms" loading="lazy" width="681" height="908" decoding="async"></div>
+ <div class="cat-card__cap"><h3 data-i18n="cat.charms">Charms en raphia</h3><span data-i18n="cat.charms.txt">Un peu de Marrakech accroché au sac — un sac nu, c’est un peu triste.</span></div>
+ </a>
+ <a class="cat-card cat-card--swap" href="collections.html?cat=bags">
+ <div class="media">
+ <img class="cat-card__base" src="assets/products/launch-shop-ref/la-sculpture-xs-hot-red.jpg" alt="Sac panier La Sculpture rouge ardent YZA, tressé main" data-i18n-attr="alt:alt.cat.sculpture" loading="lazy" width="1080" height="1350" decoding="async">
+ <img class="cat-card__hover" src="assets/products/launch-shop-ref/la-sculpture-s-deep-violet.jpg" alt="" aria-hidden="true" loading="lazy" width="1080" height="1350" decoding="async">
+ </div>
+ <div class="cat-card__cap"><h3 data-i18n="cat.bags">Paniers & sacs</h3><span data-i18n="cat.bags.txt">Réalisés à la main. Le même atelier, les mêmes femmes, d’année en année. Pour des années, pas une saison.</span></div>
+ </a>
+ <a class="cat-card" href="collections.html?cat=rtw">
+ <div class="media"><img src="assets/products/real/jawhara-palazzo-white.jpg" alt="Ensemble prêt-à-porter YZA — haut et pantalon palazzo en coton Jawhara" data-i18n-attr="alt:alt.cat.rtw" loading="lazy" width="1000" height="1500" decoding="async"></div>
+ <div class="cat-card__cap"><h3 data-i18n="cat.rtw">Prêt-à-porter</h3><span data-i18n="cat.rtw.txt">Tops, jupes paréo et pantalons qui se répondent.</span></div>
+ </a>
+ <a class="cat-card" href="collections.html?cat=accessories">
+ <div class="media"><img src="assets/lookbook-ss26-27/embedded/p53_img01_xref1380_788fc851111b.jpeg" alt="Boucles et colliers fruits YZA SS26 en raphia" data-i18n-attr="alt:alt.cat.accessories" loading="lazy" width="1410" height="908" decoding="async"></div>
+ <div class="cat-card__cap"><h3 data-i18n="cat.accessories">Accessoires</h3><span data-i18n="cat.accessories.txt">Des souvenirs de Marrakech qui ne prennent pas la poussière sur une étagère.</span></div>
+ </a>
+ </div>
+ </div>
  </section>
 
  <!-- ===== BANDE ICÔNES / VALEURS ===== -->

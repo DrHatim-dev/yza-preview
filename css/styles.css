@@ -25,11 +25,11 @@ ul { list-style: none; padding: 0; }
 :focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: 1px; }
 .skip-link { position: absolute; left: -9999px; top: 0; z-index: 200; background: var(--color-fg); color: var(--cream); padding: 0.7rem 1.1rem; font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
 .skip-link:focus { left: 8px; top: 8px; outline: 2px solid var(--color-accent); outline-offset: 2px; }
-::selection { background: var(--terracotta); color: var(--cream); }
+::selection { background: var(--accent-2); color: var(--jq-ink); }
 
 /* Jacquemus type signature: Futura PT (Jost substitute), Regular 400 — never
    bold — with a hair of positive tracking (real spec ≈0.56–0.8px). */
-h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; font-style: normal; line-height: var(--leading-tight); letter-spacing: 0.012em; font-optical-sizing: auto; }
+h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; font-style: normal; line-height: var(--leading-tight); letter-spacing: 0.012em; font-optical-sizing: auto; }
 
 /* Arabic / RTL: the Latin display + mono faces carry no Arabic glyphs, and italic
  is wrong for Arabic script. Re-point the type tokens to a clean system Naskh/Kufi
@@ -40,6 +40,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; font-style:
  --font-body: 'Noto Sans Arabic', 'Segoe UI', system-ui, sans-serif;
  --font-mono: 'Noto Kufi Arabic', 'Segoe UI', system-ui, sans-serif;
  --font-hand: var(--font-mono);
+ --font-serif: 'Noto Naskh Arabic', 'Geeza Pro', 'Segoe UI', serif;
 }
 [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4,
 [dir="rtl"] .eyebrow, [dir="rtl"] .btn, [dir="rtl"] .link-underline,
@@ -169,6 +170,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; font-style:
 .nav a:hover, .nav-more__btn:hover { color: var(--jq-ink-hover); }
 .nav a::after, .nav-more__btn::after { content: ""; position: absolute; left: 0; bottom: 6px; width: 0; height: 1px; background: currentColor; transition: width var(--transition); }
 .nav a:hover::after, .nav a[aria-current="page"]::after, .nav-more:hover .nav-more__btn::after, .nav-more__btn[aria-current="page"]::after { width: 100%; }
+.nav a[aria-current="page"], .nav-more__btn[aria-current="page"] { color: var(--accent); }
 .nav-more { position: relative; }
 .nav-more__btn { display: inline-flex; align-items: center; gap: 0.35rem; }
 .nav-more__btn::before { content: ""; width: 0.28rem; height: 0.28rem; border-right: 1px solid currentColor; border-bottom: 1px solid currentColor; transform: rotate(45deg) translateY(-1px); order: 2; }
@@ -697,7 +699,7 @@ body.has-search-overlay { overflow: hidden; }
 .scarcity-banner-section { padding-block: clamp(2rem, 5vw, var(--space-12)); }
 .scarcity-banner { max-width: 760px; margin-inline: auto; text-align: center; display: grid; gap: var(--space-4); justify-items: center; background: var(--paper); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: clamp(1.75rem, 4vw, var(--space-12)); }
 .scarcity-pill--lg { position: static; font-size: 0.66rem; padding: 0.5rem 0.9rem; background: var(--color-fg); border-color: transparent; }
-.scarcity-banner h2 { font-family: var(--font-display); font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.05; }
+.scarcity-banner h2 { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.05; }
 .scarcity-banner p { color: var(--color-muted); max-width: 56ch; }
 .product-color-story__copy h2 { font-size: clamp(2.3rem, 5.5vw, 5.2rem); font-weight: 400; line-height: 0.95; margin: var(--space-3) 0 var(--space-5); }
 .product-color-story__copy p:not(.eyebrow) { color: var(--color-muted); margin-bottom: var(--space-5); }
@@ -793,7 +795,7 @@ body.has-search-overlay { overflow: hidden; }
 .world-card::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,0.62), rgba(0,0,0,0.04) 60%); }
 .world-card__body { position: absolute; inset: auto 0 0 0; z-index: 2; color: var(--white); padding: clamp(1.25rem, 3vw, var(--space-10)); display: grid; gap: var(--space-2); justify-items: start; }
 .world-card__eyebrow { font-family: var(--font-body); font-weight: 600; font-size: var(--fs-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
-.world-card__title { font-family: var(--font-display); font-weight: 400; font-size: clamp(1.6rem, 3vw, var(--fs-xl)); line-height: 1.05; }
+.world-card__title { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.6rem, 3vw, var(--fs-xl)); line-height: 1.05; }
 .world-card__btn { margin-top: var(--space-3); display: inline-block; background: transparent; color: var(--white); border: 1px solid rgba(255,255,255,0.7); font-size: var(--fs-xs); font-weight: 400; letter-spacing: 0.13em; text-transform: uppercase; padding: 0.6rem 1.4rem; border-radius: 0; transition: background var(--transition-fast), color var(--transition-fast), border-color var(--transition-fast); }
 .world-card:hover .world-card__btn { background: var(--white); color: var(--black); border-color: var(--white); }
 
@@ -845,7 +847,7 @@ body.has-search-overlay { overflow: hidden; }
 .video-band__overlay { position: relative; z-index: 2; width: 100%; display: flex; align-items: center; padding: clamp(2rem, 6vw, var(--space-24)); padding-bottom: clamp(4rem, 9vw, 7rem); background: linear-gradient(to top, rgba(0,0,0,0.6), rgba(0,0,0,0.12) 55%, rgba(0,0,0,0.28)); }
 .video-band__content { max-width: 42ch; color: var(--white); display: grid; gap: var(--space-4); }
 .video-band__content .eyebrow { color: rgba(255, 255, 255, 0.82); }
-.video-band__content h2 { font-family: var(--font-display); font-weight: 400; font-size: var(--fs-3xl); line-height: 1.02; color: var(--white); }
+.video-band__content h2 { font-family: var(--font-serif); font-weight: 400; font-size: var(--fs-3xl); line-height: 1.02; color: var(--white); }
 .video-band__content p { color: rgba(255,255,255,0.9); max-width: 40ch; }
 .video-band--center .video-band__overlay { justify-content: center; text-align: center; }
 .video-band--center .video-band__content { justify-items: center; }
@@ -936,7 +938,7 @@ body.has-search-overlay { overflow: hidden; }
 }
 .closing-cta__inner { display: grid; gap: 1.5rem; justify-items: center; }
 .closing-cta__eye { color: rgba(255,255,255,0.62); font-size: var(--fs-xs); letter-spacing: var(--tracking-wider); text-transform: uppercase; margin: 0; }
-.closing-cta__title { font-family: var(--font-display); font-weight: 300; font-size: clamp(2rem,5vw,3.5rem); line-height: 1.05; color: var(--white); margin: 0; }
+.closing-cta__title { font-family: var(--font-serif); font-weight: 400; font-size: clamp(2rem,5vw,3.5rem); line-height: 1.05; color: var(--white); margin: 0; }
 .closing-cta__link { display: inline-block; font-size: 0.7rem; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.45); padding-bottom: 2px; transition: border-color var(--transition-fast); }
 .closing-cta__link:hover { border-bottom-color: var(--white); }
 
@@ -2986,6 +2988,15 @@ body[data-page="home"] .fruit-market-section { padding-block: 0; }
 /* testimonials grid renders empty until real reviews are enabled — drop the ghost band */
 body[data-page="home"] #avis { display: none; }
 
+/* 2026-06-27 — the home now OPENS with a visible brand statement + a 4-category
+   strip so first-time visitors immediately grasp what YZA sells (client feedback:
+   "on comprend moins vite ce que YZA vend"). These two intro blocks are the only
+   exception to the imagery-only "hide every .section-head" rule above. */
+body[data-page="home"] .home-intro { padding-block: clamp(2.75rem, 6vw, 4.5rem) clamp(0.75rem, 2vw, 1.25rem); }
+body[data-page="home"] .home-cats { padding-block: clamp(0.5rem, 1.5vw, 1rem) clamp(2.75rem, 6vw, 4.5rem); }
+body[data-page="home"] .home-intro .section-head,
+body[data-page="home"] .home-cats .section-head { display: block; }
+
 /* Everything full width on home — galleries and grids break out of the gutter. */
 body[data-page="home"] .container-wide { max-width: none; padding-inline: 0; }
 /* …except the chrome: header, announcement and mega panel keep their side gutter
@@ -3041,7 +3052,7 @@ body.is-scroll-down .header, body.is-scroll-down .header.is-stuck { background: 
 .hero-split__tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 48%, rgba(0,0,0,0.5)); pointer-events: none; }
 .hero-split__tile:hover .hero-split__img, .hero-split__tile:focus-visible .hero-split__img { transform: scale(1.045); }
 .hero-split__cap { position: absolute; z-index: 1; left: clamp(1.1rem, 2.4vw, 2.75rem); bottom: clamp(1.1rem, 2.8vw, 2.5rem); display: flex; flex-direction: column; gap: 0.45rem; text-shadow: 0 1px 16px rgba(0,0,0,0.35); }
-.hero-split__title { font-family: var(--font-display); font-style: normal; font-weight: 400; font-size: clamp(1.7rem, 3.2vw, 2.9rem); line-height: 1.02; }
+.hero-split__title { font-family: var(--font-serif); font-style: normal; font-weight: 400; font-size: clamp(1.7rem, 3.2vw, 2.9rem); line-height: 1.02; }
 .hero-split__link { font-family: var(--font-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; }
 .hero-split__link::after { content: " \2192"; }
 @media (min-width: 768px) {
@@ -3050,6 +3061,12 @@ body.is-scroll-down .header, body.is-scroll-down .header.is-stuck { background: 
 }
 [dir="rtl"] .hero-split__cap { left: auto; right: clamp(1.1rem, 2.4vw, 2.75rem); }
 [dir="rtl"] .hero-split__link::after { content: " \2190"; }
+
+/* ===== Home intro — visible brand statement under the split hero ===== */
+.home-intro { padding-block: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 2vw, 1.5rem); }
+.home-intro__inner { max-width: 62ch; }
+.home-intro__title { font-size: var(--fs-2xl); line-height: 1.1; margin-top: 0.5rem; text-wrap: balance; }
+.home-intro__lede { color: var(--color-muted); font-size: var(--fs-md); line-height: var(--leading-body); max-width: 52ch; margin: 0.9rem auto 0; }
 
 /* ============================================================
  CARD & BORDER ELEVATION
@@ -4140,7 +4157,7 @@ body.has-cart-drawer .lead-chat { display: none; }
 .blog-section__head h2,
 .bag-family-head h2,
 .girls-product-story__copy h3 {
-  font-family: var(--font-display);
+  font-family: var(--font-serif);
   font-size: clamp(1.1rem, 1.55vw, 1.45rem) !important;
   font-weight: 400;
   letter-spacing: 0.02em;

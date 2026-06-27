@@ -29,10 +29,19 @@
  --yza-orange: #c45e29;    /* YZA terracotta orange — used for accent bands (kept out of the monochrome ground) */
  --jq-bg: var(--color-bg);
 
+ /* ---- YZA BRAND ACCENTS (2026-06-27) — two warm accents on the pure-white base ----
+    terracotta = text / links / hover / borders / icons (#de733d on white ≈ 3.0:1 → OK
+      for large text + UI/graphics ≥3:1; below 4.5:1 for small body text, so only used
+      on hover/large/glyph/border here).
+    saffron = selection background / large display numbers / fills ONLY
+      (#fdc733 on white ≈ 1.3:1 → never use as text). */
+ --accent:   #de733d;   /* terracotta */
+ --accent-2: #fdc733;   /* saffron */
+
  --brand-pink: var(--jq-pink);
- --brand-orange: var(--jq-ink);  /* PRIMARY ACCENT → ink (monochrome) */
+ --brand-orange: var(--accent);  /* PRIMARY ACCENT → terracotta */
  --brand-olive: var(--jq-ink);
- --brand-yellow: var(--jq-gold);
+ --brand-yellow: var(--accent-2);
  --black: var(--jq-ink);         /* ink (soft #2E2E2E, not pure #000) */
  --white: #ffffff;
 
@@ -42,10 +51,10 @@
  /* ---- LEGACY ALIASES ---- */
  --cream: var(--color-bg);       /* base ground (see --color-bg) */
  --ink: var(--black);
- --terracotta: var(--brand-orange); /* → ink (e.g. nav underline) */
+ --terracotta: var(--accent); /* → terracotta (links / hovers / nav underline / numbers) */
  --olive: var(--brand-olive);
  --violet: var(--jq-pink);
- --saffron: var(--jq-gold);
+ --saffron: var(--accent-2);
 
  /* ---- NEUTRAL GREY RAMP (warm-neutral, tuned to the Jacquemus line greys) ---- */
  --n-lin: #ffffff;
@@ -96,6 +105,9 @@
  --font-body: 'Jost', 'Futura PT', 'Helvetica Neue', Arial, sans-serif;
  --font-mono: 'Jost', 'Futura PT', 'Helvetica Neue', Arial, sans-serif;
  --font-hand: var(--font-display);
+ /* Editorial display serif (2026-06-27) — big headings only; chrome stays on Jost.
+    Ogg-spirited; 'opsz' axis supplies the high-contrast display cut at large sizes. */
+ --font-serif: 'Fraunces', 'Georgia', 'Times New Roman', serif;
 
  /* ---- TYPE SCALE ---- */
  --fs-xs: 0.75rem;
