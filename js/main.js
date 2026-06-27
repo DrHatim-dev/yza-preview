@@ -82,6 +82,11 @@
   // a multi-colour piece reads as varied, not a row of identical dots.
   function cardSwatchHex(name) {
     const n = String(name || '').toLowerCase();
+    // Specific named colourways first (compound names that would otherwise match a
+    // generic rule, e.g. "Black Olive" → black, "Deep Violet" → mid purple).
+    if (/black ?olive|olive ?noir/.test(n)) return '#2c3020';
+    if (/deep violet|violet profond/.test(n)) return '#4a2d6b';
+    if (/hot red|rouge vif|rouge feu/.test(n)) return '#c0322c';
     if (/noir|black/.test(n)) return '#1f1f1f';
     if (/blanc|white|cream|creme|ecru|ivoire|ivory|naturel|natural/.test(n)) return '#efece4';
     if (/bordeaux|burgundy|wine/.test(n)) return '#5e1f2a';
@@ -1315,9 +1320,13 @@
   if (!similarRail) return;
 
     const promoOk = typeof YZA.isLaunchPromoProduct === 'function' ? YZA.isLaunchPromoProduct : (x) => x && x.launchPromo !== false;
-    const available = (x) => !YZA.inventoryStatus?.(x).soldOut && promoOk(x);
-    const sameCategory = YZA.byCategory(p.category).filter((x) => x.handle !== p.handle && available(x));
-    const sameGroup = p.group ? YZA.products.filter((x) => x.group === p.group && x.handle !== p.handle && available(x)) : [];
+    const inStock = (x) => !YZA.inventoryStatus?.(x).soldOut;
+    const available = (x) => inStock(x) && promoOk(x);
+    // "Similar products" = same-category / same-group siblings. Do NOT gate these on
+    // the launch-promo flag — that left bag pages with only 2 cards (the non-promo
+    // La Nouvelle Vague bags were excluded). Just drop sold-out pieces.
+    const sameCategory = YZA.byCategory(p.category).filter((x) => x.handle !== p.handle && inStock(x));
+    const sameGroup = p.group ? YZA.products.filter((x) => x.group === p.group && x.handle !== p.handle && inStock(x)) : [];
  const similar = [...sameCategory, ...sameGroup.filter((x) => !sameCategory.some((s) => s.handle === x.handle))]
  .slice(0, 12);
     const also = YZA.related(p.handle, 16).filter(available).slice(0, 12);
@@ -1810,14 +1819,10 @@
   }
 
   function swatchStyle(name) {
-    const n = String(name || '').toLowerCase();
-    if (/noir|black/.test(n)) return 'background:var(--black)';
-    if (/blanc|white|cream/.test(n)) return 'background:var(--paper-card)';
-    if (/rouge|red|clay|terracotta|orange/.test(n)) return 'background:var(--terracotta)';
-    if (/jaune|yellow|mustard|moutarde|gold/.test(n)) return 'background:var(--brand-yellow)';
-    if (/violet|purple/.test(n)) return 'background:var(--violet)';
-    if (/vert|green|olive/.test(n)) return 'background:var(--brand-olive)';
-    return 'background:var(--n-grege)';
+    // Use the accurate hex map (cardSwatchHex) instead of the remapped monochrome
+    // brand tokens — those aliased violet→pink and red→ink, so PDP swatches showed
+    // the wrong colour (e.g. "Deep Violet" rendered pink, "Hot Red" rendered black).
+    return 'background:' + cardSwatchHex(name);
   }
 
   function renderProductSwatches(product) {

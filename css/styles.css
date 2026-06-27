@@ -3494,7 +3494,10 @@ body[data-page="home"] .header.is-stuck { background: var(--color-bg); box-shado
  ============================================================ */
 /* Full-bleed carousel. margin-left/right use !important to beat Swiper's base
    `.swiper { margin: 0 auto }`, which would otherwise re-center it. */
-.yza-swiper { position: relative; width: 100vw; max-width: 100vw; margin-left: calc(50% - 50vw) !important; margin-right: calc(50% - 50vw) !important; padding: 5px; box-sizing: border-box; }
+/* Align the first card with the page content (left), and let the track bleed off
+   the right edge (Jacquemus pattern) instead of breaking out on both sides, which
+   pushed the first card past the viewport edge and out of line with the section. */
+.yza-swiper { position: relative; width: auto; max-width: none; margin-left: 0 !important; margin-right: calc(50% - 50vw) !important; padding: 5px 0; box-sizing: border-box; }
 .yza-swiper .swiper-wrapper { align-items: stretch; }
 .yza-swiper .swiper-slide { height: auto; display: flex; }
 .yza-swiper .swiper-slide > * { width: 100%; }
