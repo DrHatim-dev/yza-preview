@@ -107,11 +107,11 @@ const STR = {
   'social.title':    { fr: 'De Marrakech à Tokyo', en: 'From Marrakech to Tokyo' },
   'social.rating':   { fr: 'Ce que les YZA girls disent', en: 'What the YZA girls say' },
   'social.ratingOf': { fr: 'Note', en: 'Rating' },
-  'girls.shopLook':  { fr: 'Shop the look', en: 'Shop the look' },
+  'girls.shopLook':  { fr: 'Voir le look', en: 'Shop the look' },
   'girls.soldOut':   { fr: 'Cette édition est partie · on ne la refait pas', en: 'This edition is gone · we don’t remake it', es: 'Agotado · nunca se reproduce', tr: 'Tükendi · asla yeniden üretilmez', ar: 'نفد · لا يُصنع من جديد' },
   'girls.shopCurrent': { fr: 'Voir ce qu’on a en ce moment', en: 'See what we have now', es: 'Ver piezas actuales', tr: 'Güncel parçalar', ar: 'تسوّق القطع الحالية' },
   'girls.scarcity.title': { fr: 'Une édition, puis on passe à autre chose', en: 'One edition, then we move on', es: 'Series agotadas, nunca reproducidas', tr: 'Tükenen seriler, asla yeniden üretilmez', ar: 'دفعات نفدت، لا تُصنع من جديد' },
-  'girls.scarcity.text': { fr: 'Beaucoup de pièces portées ici…. On ne les refait pas, on aime que vous ayiez des pièces uniques.', en: 'A lot of what’s worn here…. We don’t remake it — we love that you have pieces that stay one of a kind.', es: 'Muchas de las piezas que se llevan aquí son de series ya agotadas, que nunca se reproducirán. Si te gusta una pieza actual, consíguela antes de que se agote: no encontrarás la misma otra vez.', tr: 'Burada giyilen parçaların çoğu çoktan tükenmiş serilerden — bir daha asla üretilmeyecek. Güncel bir parçayı beğendiyseniz, stok bitmeden alın: aynısını bir daha bulamazsınız.', ar: 'كثير من القطع المعروضة هنا من دفعات نفدت بالفعل ولن تُصنع من جديد. إذا أعجبتك قطعة حالية، فاحصل عليها قبل نفاد المخزون: لن تجد مثيلها مرة أخرى.' },
+  'girls.scarcity.text': { fr: 'Beaucoup des pièces portées ici viennent d’éditions déjà épuisées — jamais refaites. Si une pièce actuelle vous plaît, prenez-la avant la rupture : vous ne retrouverez pas la même.', en: 'Many of the pieces worn here are from editions already sold out — never remade. If a current piece speaks to you, take it before it’s gone: you won’t find the same one again.', es: 'Muchas de las piezas que se llevan aquí son de series ya agotadas, que nunca se reproducirán. Si te gusta una pieza actual, consíguela antes de que se agote: no encontrarás la misma otra vez.', tr: 'Burada giyilen parçaların çoğu çoktan tükenmiş serilerden — bir daha asla üretilmeyecek. Güncel bir parçayı beğendiyseniz, stok bitmeden alın: aynısını bir daha bulamazsınız.', ar: 'كثير من القطع المعروضة هنا من دفعات نفدت بالفعل ولن تُصنع من جديد. إذا أعجبتك قطعة حالية، فاحصل عليها قبل نفاد المخزون: لن تجد مثيلها مرة أخرى.' },
 
   /* — L'offre (bundles) — */
   'offer.eyebrow':   { fr: 'Par où commencer', en: 'Where to begin' },
@@ -343,7 +343,7 @@ const EXTRA = {
   'nav.girls': { es: 'YZA Girls', tr: 'YZA Girls', ar: 'YZA Girls' },
   'nav.b2b': { es: 'B2B', tr: 'B2B', ar: 'B2B' },
   'nav.lookbook': { es: 'Lookbook SS26/27', tr: 'Lookbook SS26/27', ar: 'Lookbook SS26/27' },
-  'girls.shopLook': { es: 'Shop the look', tr: 'Shop the look', ar: 'Shop the look' },
+  'girls.shopLook': { es: 'Ver el look', tr: 'Look’u keşfet', ar: 'تسوّقي الإطلالة' },
   'nav.bespoke': { es: 'A medida', tr: 'Özel üretim', ar: 'تفصيل خاص' },
   'nav.story': { es: 'Historia', tr: 'Hikayemiz', ar: 'قصتنا' },
   'nav.journal': { es: 'Diario', tr: 'Günlük', ar: 'دفتر' },

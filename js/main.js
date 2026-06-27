@@ -879,6 +879,11 @@
  (images || []).filter(isPublicMedia).forEach((src) => { if (out.length < n && !used.has(src)) { used.add(src); out.push(src); } });
  return out;
  };
+ // Each product-story tile shows its own first N public images, independent of the
+ // masonry and of other stories (repeats are fine — far better than half-empty
+ // modules: jaune/bags/violet were rendering empty because the masonry + a shared
+ // dedupe Set had already consumed their assets).
+ const pickStoryImages = (images, n) => (images || []).filter(isPublicMedia).slice(0, n);
 
  const storyMap = $('#girlsProductMap');
  if (storyMap) {
@@ -896,7 +901,7 @@
  <a class="link-underline" href="${story.cta || 'collections.html'}">${T().t('cta.shop')}</a>
  </div>
  <div class="girls-product-story__images">
- ${pickImages(story.images, 3).map((src) => `<span>${mediaImg(src, title, 'width="560" height="720"')}</span>`).join('')}
+ ${pickStoryImages(story.images, 3).map((src) => `<span>${mediaImg(src, title, 'width="560" height="720"')}</span>`).join('')}
  </div>
  </article>`;
  }).join('');
@@ -2272,6 +2277,12 @@
  });
  }
  wireAccordion();
+ // Re-measure open accordion panels after a language swap or resize (inline maxHeight
+ // is set from scrollHeight, which goes stale when AR/TR text length changes).
+ function remeasureOpenAccordions() {
+ document.querySelectorAll('.accordion__item.is-open .accordion__panel').forEach((p) => { p.style.maxHeight = p.scrollHeight + 'px'; });
+ }
+ window.addEventListener('resize', () => requestAnimationFrame(remeasureOpenAccordions));
  function wireReveal() {
  const io = new IntersectionObserver((entries) => {
  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
@@ -2300,6 +2311,7 @@
  $$('[data-contact-form]').forEach(form => form.addEventListener('submit', (e) => {
  e.preventDefault();
  const msg = form.querySelector('[data-form-msg]');
+ const okHTML = msg ? msg.innerHTML : ''; // cache the multilingual success markup
  const fields = Array.from(form.querySelectorAll('[required]'));
  const invalid = fields.find((field) => {
  const value = (field.value || '').trim();
@@ -2314,7 +2326,7 @@
  YZA.analytics?.track('contact_form_invalid', { source: document.body.dataset.page || '', field: invalid.name || invalid.id || '' });
  return;
  }
- if (msg) msg.hidden = false;
+ if (msg) { msg.innerHTML = okHTML; msg.hidden = false; } // restore success markup (error may have overwritten it)
  form.reset();
  YZA.analytics?.track('contact_form_submit', { source: document.body.dataset.page || '' });
     }));
@@ -2412,7 +2424,7 @@
  YZA.cart.init();
  wireCollections();
  YZA.i18n.init();
- YZA.i18n.onChange(() => { renderPage(); YZA.cart.refresh(); });
+ YZA.i18n.onChange(() => { renderPage(); YZA.cart.refresh(); requestAnimationFrame(remeasureOpenAccordions); });
     wireAccordion();
     wireReveal();
     wireForms();

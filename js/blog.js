@@ -178,10 +178,10 @@
  const active = params.get('cluster');
  const chips = document.querySelectorAll('[data-blog-filter]');
  if (active) {
- document.querySelectorAll('[data-blog-cluster]').forEach((card) => {
- const shouldShow = card.getAttribute('data-blog-cluster') === active;
- card.hidden = !shouldShow;
- });
+ const clusterCards = document.querySelectorAll('[data-cluster]');
+ clusterCards.forEach((card) => { card.hidden = card.getAttribute('data-cluster') !== active; });
+ // Fallback: a cluster with no matching cards must not blank the grid.
+ if (![...clusterCards].some((c) => !c.hidden)) clusterCards.forEach((c) => { c.hidden = false; });
  }
  chips.forEach((chip) => {
  if (chip.getAttribute('data-blog-filter') === active) chip.setAttribute('aria-current', 'true');
@@ -200,13 +200,13 @@
  form.addEventListener('submit', (event) => {
  event.preventDefault();
  const email = form.querySelector('input[type="email"]');
- const message = form.querySelector('[data-blog-newsletter-message]');
+ const message = (form.closest('.blog-newsletter') || document).querySelector('[data-blog-news-msg]');
  track('blog_newsletter_submit', {
  slug: document.body.dataset.blogPost || document.body.dataset.blogSlug || 'journal-index',
  filled: Boolean(email && email.value),
  });
  if (email) email.value = '';
- if (message) message.textContent = 'Merci. The next YZA story will arrive quietly.';
+ if (message) { message.textContent = 'Merci. The next YZA story will arrive quietly.'; message.hidden = false; }
  });
  }
 
