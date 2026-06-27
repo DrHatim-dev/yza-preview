@@ -35,8 +35,10 @@
       on hover/large/glyph/border here).
     saffron = selection background / large display numbers / fills ONLY
       (#fdc733 on white ≈ 1.3:1 → never use as text). */
- --accent:   #de733d;   /* terracotta */
- --accent-2: #fdc733;   /* saffron */
+ --accent:   #de733d;   /* terracotta — text / links / hover / eyebrows / badges */
+ --accent-2: #fdc733;   /* saffron — selection / "new" badge fill / large numbers (never small text) */
+ --accent-3: #b19f31;   /* olive — editorial link accent (~3.4:1 on white) */
+ --blush:    #e8bec0;   /* blush — soft panels / fills only, never text */
 
  --brand-pink: var(--jq-pink);
  --brand-orange: var(--accent);  /* PRIMARY ACCENT → terracotta */
@@ -108,6 +110,9 @@
  /* Editorial display serif (2026-06-27) — big headings only; chrome stays on Jost.
     Ogg-spirited; 'opsz' axis supplies the high-contrast display cut at large sizes. */
  --font-serif: 'Fraunces', 'Georgia', 'Times New Roman', serif;
+ /* Handwritten accent (2026-06-27) — section kickers / eyebrows only, the brand's
+    "en-tête de section" role (Tlab Lemongrass → Caveat as the free web stand-in). */
+ --font-hand-accent: 'Caveat', 'Segoe Script', 'Bradley Hand', cursive;
 
  /* ---- TYPE SCALE ---- */
  --fs-xs: 0.75rem;

@@ -41,6 +41,7 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; font-style: n
  --font-mono: 'Noto Kufi Arabic', 'Segoe UI', system-ui, sans-serif;
  --font-hand: var(--font-mono);
  --font-serif: 'Noto Naskh Arabic', 'Geeza Pro', 'Segoe UI', serif;
+ --font-hand-accent: 'Noto Naskh Arabic', 'Geeza Pro', 'Segoe UI', serif;
 }
 [dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3, [dir="rtl"] h4,
 [dir="rtl"] .eyebrow, [dir="rtl"] .btn, [dir="rtl"] .link-underline,
@@ -58,7 +59,7 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; font-style: n
 .section-head { max-width: 60ch; margin-bottom: var(--space-12); }
 .section-head--center { text-align: center; margin-inline: auto; }
 .section-head h2 { font-size: var(--fs-2xl); margin-top: var(--space-3); text-wrap: balance; }
-.eyebrow { font-family: var(--font-display); font-size: var(--fs-xs); font-weight: 400; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-accent-text); }
+.eyebrow { font-family: var(--font-hand-accent); font-size: 1.2rem; font-weight: 600; letter-spacing: 0; text-transform: none; line-height: 1.05; color: var(--accent); }
 .section--ink .eyebrow { color: var(--color-accent-2); }
 .lede { font-size: var(--fs-md); color: var(--color-muted); max-width: 56ch; }
 
@@ -81,7 +82,7 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; font-style: n
 .btn--block { width: 100%; }
 .btn--sm { padding: 0.6rem var(--space-6); }
 
-.link-underline { position: relative; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; padding-bottom: 3px; border-bottom: 1px solid currentColor; transition: var(--transition-fast); }
+.link-underline { position: relative; font-family: var(--font-mono); font-size: 0.72rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; padding-bottom: 3px; border-bottom: 1px solid currentColor; transition: var(--transition-fast); color: var(--accent-3); }
 .link-underline:hover { color: var(--terracotta); }
 
 /* ---- placeholder image (rare : tout est en vraies photos) ---- */
@@ -98,7 +99,7 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; font-style: n
  padding: 0.34em 0.7em; border-radius: 0; background: var(--black); color: var(--white); line-height: 1;
 }
 .badge--bestseller { background: var(--black); color: var(--white); }
-.badge--new { background: var(--jq-pink); color: var(--jq-ink); }
+.badge--new { background: var(--accent-2); color: var(--jq-ink); }
 .badge--limited { background: var(--white); color: var(--black); border: 1px solid rgba(0,0,0,0.32); }
 .badge--bespoke { background: var(--violet); color: var(--black); }
 
@@ -428,8 +429,8 @@ body.has-search-overlay { overflow: hidden; }
 .product-card__few {
   position: absolute; top: 10px; left: 11px; z-index: 4;
   font-family: var(--font-display); font-size: 9.5px; font-weight: 400;
-  letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-fg);
-  opacity: 0.78; pointer-events: none;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent);
+  opacity: 1; pointer-events: none;
 }
 
 /* Wishlist heart — bare charcoal, no chip. Visible top-right on touch; fades in
@@ -443,7 +444,7 @@ body.has-search-overlay { overflow: hidden; }
 }
 .product-card__wish:hover { transform: none; background: none; color: var(--jq-ink-hover); }
 .product-card__wish svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 1.2; }
-.product-card__wish.is-active { color: var(--color-fg); }
+.product-card__wish.is-active { color: var(--accent); }
 .product-card__wish.is-active svg { fill: currentColor; }
 
 /* Overlay + hover-reveal only on wide, hover-capable screens. Narrow widths
@@ -937,7 +938,7 @@ body.has-search-overlay { overflow: hidden; }
  text-align: center;
 }
 .closing-cta__inner { display: grid; gap: 1.5rem; justify-items: center; }
-.closing-cta__eye { color: rgba(255,255,255,0.62); font-size: var(--fs-xs); letter-spacing: var(--tracking-wider); text-transform: uppercase; margin: 0; }
+.closing-cta__eye { color: rgba(255,255,255,0.92); font-size: 1.2rem; letter-spacing: 0; text-transform: none; margin: 0; }
 .closing-cta__title { font-family: var(--font-serif); font-weight: 400; font-size: clamp(2rem,5vw,3.5rem); line-height: 1.05; color: var(--white); margin: 0; }
 .closing-cta__link { display: inline-block; font-size: 0.7rem; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.45); padding-bottom: 2px; transition: border-color var(--transition-fast); }
 .closing-cta__link:hover { border-bottom-color: var(--white); }
@@ -3028,7 +3029,7 @@ body[data-page="home"] .service-strip { padding-block: clamp(1.25rem, 3vw, 2rem)
 body[data-page="home"] .section--surface,
 body[data-page="home"] .service-strip-section { background: var(--color-bg); }
 
-body[data-page="home"] .press-band { background: var(--cream); }
+body[data-page="home"] .press-band { background: color-mix(in srgb, var(--blush) 60%, var(--color-bg)); border-block: 1px solid color-mix(in srgb, var(--blush) 80%, var(--color-bg)); }
 
 /* cream editorial features on the cream ground - framed by their own
  borders/imagery rather than a fill */
