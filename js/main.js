@@ -1014,12 +1014,22 @@
  const grid = $('#collectionGrid'); if (!grid) return;
  const list = collFiltered();
  const isBags = collState.cat === 'bags';
+ if (!list.length) {
+ // Empty / no-results state — show the searched term + a reset link (Jacquemus),
+ // instead of filling the grid with unrelated editorial blocks or going blank.
+ grid.classList.remove('collection-grid--bag-families');
+ grid.removeAttribute('data-density');
+ const term = collState.q ? ' « ' + esc(collState.q) + ' »' : '';
+ grid.innerHTML = `<div class="collection-empty"><p class="collection-empty__title">${esc(T().t('col.noresults'))}${term}</p><a class="link-underline" href="collections.html">${esc(T().t('col.all'))}</a></div>`;
+ const cs = $('#charmStyling'); if (cs) cs.hidden = true;
+ } else {
  grid.classList.toggle('collection-grid--bag-families', isBags);
  // Bag families keep their own column layout; the View-by density only drives the standard clothing/charm grid.
  if (isBags) grid.removeAttribute('data-density'); else grid.setAttribute('data-density', collState.density);
  if (isBags) renderBagCollectionGrid(grid, list);
  else renderCollectionGrid(grid, list);
  renderCharmStyling();
+ }
  const dWrap = $('#gridDensity');
  if (dWrap) {
  dWrap.hidden = isBags;

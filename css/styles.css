@@ -565,6 +565,8 @@ body.has-search-overlay { overflow: hidden; }
   .grid-density { display: none; }
 }
 
+.collection-empty { grid-column: 1 / -1; display: grid; place-items: center; gap: var(--space-4); text-align: center; padding: clamp(3rem, 8vw, var(--space-20)) 0; color: var(--color-muted); }
+.collection-empty__title { font-family: var(--font-display); font-size: var(--fs-lg); color: var(--color-fg); }
 .collection-grid--bag-families {
  display: block;
  /* Cancel the .product-grid full-bleed breakout (100vw + negative margins + 5px
@@ -2838,6 +2840,24 @@ body.has-recovery-modal { overflow: hidden; }
 .btn--hero-secondary { display: none; }
 .btn--hero-secondary:hover { background: transparent; color: var(--cream); }
 
+/* 404 hero — full-bleed cinematic image + scrim + white text/CTAs (was unstyled:
+   poster rendered in-flow and both CTAs were invisible white-on-white). */
+.hero--404 { position: relative; min-height: clamp(540px, 80vh, 760px); display: grid; align-items: center; overflow: hidden; }
+.hero--404 .hero__media { position: absolute; inset: 0; z-index: 0; }
+.hero--404 .hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; }
+.hero--404 .hero__scrim { position: absolute; inset: 0; z-index: 1; pointer-events: none; background: linear-gradient(180deg, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.58) 100%); }
+.hero--404 .hero__content { position: relative; z-index: 2; }
+.hero--404 .hero__content .eyebrow,
+.hero--404 .hero__content h1,
+.hero--404 .hero__content p { color: var(--white); }
+.hero--404 .hero__content h1 { font-size: clamp(4rem, 12vw, 7rem); line-height: 1; margin: var(--space-3) 0 var(--space-4); }
+.hero--404 .hero__content p { max-width: 46ch; }
+.hero--404 .hero__cta { display: flex; gap: clamp(1.25rem, 2.4vw, 2.4rem); margin-top: var(--space-6); flex-wrap: wrap; }
+.hero--404 .btn--hero-primary,
+.hero--404 .btn--hero-secondary { display: inline-block; min-height: auto; padding: 0 0 4px; border: 0; border-bottom: 1px solid rgba(246,246,246,0.9); border-radius: 0; background: transparent; color: var(--white); font-size: 12px; font-weight: 400; letter-spacing: 1px; text-transform: uppercase; transition: opacity var(--transition-fast); }
+.hero--404 .btn--hero-primary:hover,
+.hero--404 .btn--hero-secondary:hover { background: transparent; color: var(--white); opacity: 0.7; }
+
 @media (max-width: 767px) {
  .hero--video {
  min-height: 90vh;
@@ -2928,7 +2948,7 @@ body[data-page="home"] .glyph-deco,
 body[data-page="home"] .glyph-divider,
 body[data-page="home"] .toile-divider,
 body[data-page="home"] .toile-accent,
-body[data-page="home"] .press-band { display: none; }
+body[data-page="home"] .press-band:not(.icon-strip) { display: none; }
 /* Small Jacquemus breathing gap between content sections (was flush at 0).
    Full-bleed bands (hero/video/closing) aren't .section so they stay edge-to-edge. */
 body[data-page="home"] .section { padding-block: clamp(1.75rem, 4vw, 3rem); }
