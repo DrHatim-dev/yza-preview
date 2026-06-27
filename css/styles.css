@@ -3029,7 +3029,6 @@ body[data-page="home"] .service-strip { padding-block: clamp(1.25rem, 3vw, 2rem)
 body[data-page="home"] .section--surface,
 body[data-page="home"] .service-strip-section { background: var(--color-bg); }
 
-body[data-page="home"] .press-band { background: color-mix(in srgb, var(--blush) 60%, var(--color-bg)); border-block: 1px solid color-mix(in srgb, var(--blush) 80%, var(--color-bg)); }
 
 /* cream editorial features on the cream ground - framed by their own
  borders/imagery rather than a fill */
