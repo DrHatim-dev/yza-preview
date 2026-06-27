@@ -314,6 +314,10 @@
  slidesPerView: 1.4,
  slidesPerGroup: 1, // arrows move exactly one product
  spaceBetween: 5,
+ speed: 420, // momentum glide (Jacquemus-like) vs Swiper's stiff 300ms default
+ longSwipes: true,
+ longSwipesRatio: 0.5,
+ resistanceRatio: 0.85,
  loop: canLoop,
  loopAdditionalSlides: canLoop ? 4 : 0,
  watchOverflow: true, // hide arrows when everything already fits
@@ -1870,6 +1874,25 @@
     modal.classList.add('is-open');
   }
 
+  // Full-screen image zoom (PDP gallery). One reusable modal; close on backdrop / × / Esc.
+  function openGalleryZoom(src, alt) {
+    let modal = document.getElementById('galleryZoom');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.id = 'galleryZoom';
+      modal.className = 'gallery-zoom';
+      modal.innerHTML = '<button type="button" class="gallery-zoom__close" aria-label="Close">+</button><img class="gallery-zoom__img" alt="">';
+      document.body.appendChild(modal);
+      const close = () => { modal.classList.remove('is-open'); document.body.style.overflow = ''; };
+      modal.addEventListener('click', (ev) => { if (ev.target === modal || ev.target.closest('.gallery-zoom__close')) close(); });
+      document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape' && modal.classList.contains('is-open')) close(); });
+    }
+    const img = modal.querySelector('.gallery-zoom__img');
+    img.src = src; img.alt = alt || '';
+    modal.classList.add('is-open');
+    document.body.style.overflow = 'hidden';
+  }
+
   function wireProductAux(product, pageName, addHandler) {
     const c = productUiCopy();
     const pageUrl = `${location.origin}${location.pathname}?handle=${encodeURIComponent(product.handle)}`;
@@ -1970,7 +1993,7 @@
  );
  if (!mediaItems.length) mediaItems.push({ type: 'image', src: gal[0] });
  const videoMainMarkup = (src, poster) => `<video id="galMainVid" autoplay muted loop playsinline src="${esc(src)}"${poster ? ` poster="${esc(poster)}"` : ''} style="width:100%;height:100%;object-fit:contain;display:block;background:var(--black)"></video>`;
- const imageMainMarkup = (src) => `<img id="galMainImg" src="${esc(src)}" alt="${esc(pageName)} - YZA" fetchpriority="high" width="900" height="1180" decoding="async">`;
+ const imageMainMarkup = (src) => `<img id="galMainImg" src="${esc(src)}" alt="${esc(pageName)} - YZA" fetchpriority="high" width="900" height="1180" decoding="async" data-zoomable>`;
  $('#galMain').innerHTML = mediaItems[0].type === 'video' ? videoMainMarkup(mediaItems[0].src, mediaItems[0].poster) : imageMainMarkup(mediaItems[0].src);
  $('#galThumbs').innerHTML = mediaItems.map((it, i) => {
  const isVid = it.type === 'video';
@@ -1998,6 +2021,12 @@
  }
  };
 
+ // Click the main image to open the full-screen zoom (images only, not videos).
+ const galMainEl = $('#galMain');
+ if (galMainEl) galMainEl.onclick = (e) => {
+ const zi = e.target.closest('#galMainImg[data-zoomable]');
+ if (zi) openGalleryZoom(zi.getAttribute('src'), pageName);
+ };
  // Gallery position dots only matter with >1 media; single image hides them.
  $('#galThumbs').hidden = mediaItems.length <= 1;
  const galWish = $('#pGalleryWish');
@@ -2076,8 +2105,9 @@
  variantWrap.querySelector('[data-variant-label]').textContent = variantLabelFor(p, t);
  variantOpts.innerHTML = members.map((item) => {
  const active = item.isActiveBagVariant || (!selectedBagVariant && item.handle === p.handle) ? ' is-active' : '';
+ const soldOut = (YZA.inventoryStatus?.(item) || {}).soldOut ? ' is-soldout' : '';
  const label = t.pick(item.variantLabel) || t.pick(item.size) || t.pick(item.name);
- return `<button class="chip chip--variant${active}" type="button" data-product-variant="${item.handle}"${item.bagUrl ? ` data-product-url="${esc(item.bagUrl)}"` : ''}>
+ return `<button class="chip chip--variant${active}${soldOut}" type="button" data-product-variant="${item.handle}"${soldOut ? ' aria-disabled="true"' : ''}${item.bagUrl ? ` data-product-url="${esc(item.bagUrl)}"` : ''}>
  <span>${esc(label)}</span><em aria-hidden="true">${t.formatPrice(item.price)}</em><span class="sr-only"> ${t.formatPrice(item.price)}</span>
  </button>`;
  }).join('');
@@ -2235,7 +2265,7 @@
  function wireReveal() {
  const io = new IntersectionObserver((entries) => {
  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); } });
- }, { threshold: 0.08, rootMargin: '0px 0px -6% 0px' });
+ }, { threshold: 0.12, rootMargin: '0px 0px -10% 0px' });
  $$('[data-reveal]').forEach(el => io.observe(el));
  setTimeout(() => $$('[data-reveal]:not(.is-visible)').forEach(el => el.classList.add('is-visible')), 1600);
  }
