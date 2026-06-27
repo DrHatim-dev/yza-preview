@@ -565,6 +565,13 @@ body.has-search-overlay { overflow: hidden; }
 
 .collection-grid--bag-families {
  display: block;
+ /* Cancel the .product-grid full-bleed breakout (100vw + negative margins + 5px
+    padding) so the bag families sit inside the page container, with the standard
+    left/right gutter and aligned to the breadcrumb/header. */
+ width: auto;
+ max-width: none;
+ margin-inline: 0;
+ padding: 0;
 }
 .bag-family-section {
  border-top: 1px solid var(--color-border);
