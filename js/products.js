@@ -291,6 +291,7 @@ YZA.serviceLongText = () => {
 const PRODUCTS = [
  {
  "handle": "yza-scarf-top-jawhara-ss26",
+ "fewLeft": true,
  "legacyHandles": [],
  "sku": "T-FL-JWP-BL",
  "name": {
@@ -2146,6 +2147,7 @@ const PRODUCTS = [
  },
  {
  "handle": "yza-pareo-skirt-midi-jawhara-ss26",
+ "fewLeft": true,
  "legacyHandles": [
  "pareo-midi"
  ],
@@ -4056,6 +4058,7 @@ const PRODUCTS = [
  },
  {
  "handle": "la-sculpture-xs-basket-bag-ss26",
+ "fewLeft": true,
  "legacyHandles": [
  "sculpture-xs-noir",
  "sculpture-xs-rouge",
@@ -5997,6 +6000,7 @@ const PRODUCTS = [
  },
  {
  "handle": "la-nouvelle-vague-m-basket-bag-ss26",
+ "fewLeft": true,
  "legacyHandles": [],
  "sku": null,
  "name": {
@@ -6368,6 +6372,7 @@ const PRODUCTS = [
  },
  {
  "handle": "raffia-cherries-charm-ss26",
+ "fewLeft": true,
  "legacyHandles": [
  "cerises"
  ],
@@ -6722,6 +6727,7 @@ const PRODUCTS = [
  },
  {
  "handle": "raffia-grapes-charm-ss26",
+ "fewLeft": true,
  "legacyHandles": [
  "raisin",
  "raisins"
@@ -8829,6 +8835,7 @@ const PRODUCTS = [
  },
  {
  "handle": "raffia-kiwi-slice-charm-ss26",
+ "fewLeft": true,
  "legacyHandles": [
  "kiwi"
  ],
@@ -9530,6 +9537,7 @@ const PRODUCTS = [
  },
  {
  "handle": "raffia-avocado-half-charm-ss26",
+ "fewLeft": true,
  "legacyHandles": [
  "avocat",
  "avocado"

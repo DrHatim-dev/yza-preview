@@ -133,7 +133,7 @@
       : '';
     const soldOverlay = status.soldOut ? `<span class="product-card__sold">${esc(stock.sold)}</span>` : '';
     const almostBadge = status.almostGone ? `<span class="product-card__stock">${esc(stock.almost)}</span>` : '';
-    const fewBadge = (!status.soldOut && !status.almostGone) ? `<span class="product-card__few">${esc(stock.few)}</span>` : '';
+    const fewBadge = (p.fewLeft && !status.soldOut && !status.almostGone) ? `<span class="product-card__few">${esc(stock.few)}</span>` : '';
     const imgLoad = eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
     const wishBtn = `<button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(p.handle)}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${wished ? 'Remove from wishlist' : 'Add to wishlist'}">${heartIcon()}</button>`;
     const mediaLink = `<a class="product-card__media" href="${href}" data-product-card-click="${esc(p.handle)}" aria-label="${esc(name)}">
@@ -172,7 +172,7 @@
     return `<article class="product-card product-card--bag-variant${status.soldOut ? ' is-sold-out' : ''}" data-size="${esc(String(item.size || '').toUpperCase())}" style="--i:${index}" data-product-handle="${esc(item.handle || '')}">
       <button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(item.handle || '')}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${wished ? 'Remove from wishlist' : 'Add to wishlist'}">${heartIcon()}</button>
       <a class="product-card__media" href="${esc(item.url)}" data-product-card-click="${esc(item.handle || '')}" aria-label="${esc(fullName)}">
-        ${(!status.soldOut && !status.almostGone) ? `<span class="product-card__few">${esc(stock.few)}</span>` : ''}
+        ${(product.fewLeft && !status.soldOut && !status.almostGone) ? `<span class="product-card__few">${esc(stock.few)}</span>` : ''}
         ${status.almostGone ? `<span class="product-card__stock">${esc(stock.almost)}</span>` : ''}
         ${status.soldOut ? `<span class="product-card__sold">${esc(stock.sold)}</span>` : ''}
         <img class="product-card__img" src="${esc(item.img)}" alt="${esc(fullName)} - YZA" ${imgLoad} width="461" height="615" decoding="async">
