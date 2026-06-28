@@ -59,7 +59,7 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; font-style: n
 .section-head { max-width: 60ch; margin-bottom: var(--space-12); }
 .section-head--center { text-align: center; margin-inline: auto; }
 .section-head h2 { font-size: var(--fs-2xl); margin-top: var(--space-3); text-wrap: balance; }
-.eyebrow { font-family: var(--font-hand-accent); font-size: 1.2rem; font-weight: 600; letter-spacing: 0; text-transform: none; line-height: 1.05; color: var(--accent); }
+.eyebrow { font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; font-weight: 400; letter-spacing: 0; text-transform: none; line-height: 1.2; color: var(--accent); }
 .section--ink .eyebrow { color: var(--color-accent-2); }
 .lede { font-size: var(--fs-md); color: var(--color-muted); max-width: 56ch; }
 
