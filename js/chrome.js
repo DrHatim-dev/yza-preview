@@ -279,8 +279,8 @@ const footerServiceCopy = () => {
  shippingText: 'Livraison Maroc offerte d\u00e8s 1 500 DH. Et si tu passes, le studio de Gu\u00e9liz t\u2019accueille pour le retrait.',
  helpTitle: 'Besoin d\'aide ? Contactez-nous',
  helpText: 'Tailles, couleurs, id\u00e9es cadeau, ce qui reste en boutique \u2014 \u00e9cris-nous sur WhatsApp, une vraie personne r\u00e9pond.',
- newsTitle: 'Le cercle YZA',
- newsText: 'Les nouveaux drops en avant-premi\u00e8re \u2014 et nos d\u00e9stockages sur les collections pass\u00e9es, \u00e0 prix r\u00e9duit. Dans ta bo\u00eete avant tout le monde.',
+ newsTitle: 'Le club YZA Girls',
+ newsText: 'Rejoins les YZA Girls : les nouveaux drops en avant-premi\u00e8re, et nos d\u00e9stockages sur les collections pass\u00e9es \u00e0 prix r\u00e9duit. Dans ta bo\u00eete avant tout le monde.',
  placeholder: 'Ton e-mail',
  submit: 'Je rejoins',
  },
@@ -289,8 +289,8 @@ const footerServiceCopy = () => {
  shippingText: 'Free Morocco delivery from 1,500 DH. And if you are in town, the Gu\u00e9liz studio is open for pickup.',
  helpTitle: 'We actually answer',
  helpText: 'Sizes, colours, gift ideas, what is still on the shelf \u2014 write to us on WhatsApp, a real person replies.',
- newsTitle: 'The YZA circle',
- newsText: 'New drops in early access — plus clearance on past collections at reduced prices. In your inbox before anyone else.',
+ newsTitle: 'The YZA Girls club',
+ newsText: 'Join the YZA Girls: new drops in early access, plus clearance on past collections at reduced prices. In your inbox before anyone else.',
  placeholder: 'Your e-mail',
  submit: 'Join us',
  },
@@ -299,7 +299,7 @@ const footerServiceCopy = () => {
  shippingText: 'Envio gratis en Marruecos desde 1.500 DH. Y si pasas por aqui, el estudio de Gu\u00e9liz te espera para recoger.',
  helpTitle: 'Respondemos de verdad',
  helpText: 'Tallas, colores, ideas de regalo, lo que queda en tienda \u2014 escribenos por WhatsApp, contesta una persona de verdad.',
- newsTitle: 'El circulo YZA',
+ newsTitle: 'El club YZA Girls',
  newsText: 'Nuevos drops en preventa — y destock de colecciones pasadas a precio reducido. En tu correo antes que nadie.',
  placeholder: 'Tu e-mail',
  submit: 'Me uno',
@@ -309,7 +309,7 @@ const footerServiceCopy = () => {
  shippingText: 'Fas ici 1.500 DH uzeri ucretsiz kargo. Sehirdeysen Gu\u00e9liz studyosu teslim almak icin acik.',
  helpTitle: 'Gercekten cevap veriyoruz',
  helpText: 'Beden, renk, hediye fikri, rafta ne kaldigi \u2014 WhatsApp uzerinden yaz, gercek bir insan cevaplar.',
- newsTitle: 'YZA cevresi',
+ newsTitle: 'YZA Girls kulübü',
  newsText: 'Yeni droplar herkesten once — ve gecmis koleksiyonlarda indirimli destok, kutuna.',
  placeholder: 'E-posta',
  submit: 'Katiliyorum',
@@ -319,7 +319,7 @@ const footerServiceCopy = () => {
  shippingText: 'توصيل مجاني في المغرب ابتداء من 1,500 درهم. وإن مررت بالمدينة، ستوديو كليز يستقبلك للاستلام.',
  helpTitle: 'نجيبك فعلا',
  helpText: 'المقاسات، الالوان، فكرة هدية، ما تبقى في المحل - راسلينا على واتساب، يرد عليك انسان حقيقي.',
- newsTitle: 'دائرة YZA',
+ newsTitle: 'نادي YZA Girls',
  newsText: 'أحدث الإصدارات أولاً — وتخفيضات على المجموعات السابقة بأسعار مخفّضة، تصلك قبل الجميع.',
  placeholder: 'بريدك الالكتروني',
  submit: 'انضم إلينا',
@@ -464,21 +464,8 @@ YZA.chrome = {
  <input id="footerNewsEmail" type="email" required placeholder="${ns.placeholder}" aria-label="${ns.placeholder}">
  </div>
  <div class="footer-field">
- <span class="footer-field__label">${L ? 'Genre *' : 'Gender *'}</span>
- <div class="footer-radios">
- <label class="footer-radio"><input type="radio" name="footerNewsGender" value="mrs"><span class="footer-radio__dot"></span>${L ? 'Mme' : 'Mrs'}</label>
- <label class="footer-radio"><input type="radio" name="footerNewsGender" value="mr"><span class="footer-radio__dot"></span>${L ? 'M.' : 'Mr'}</label>
- <label class="footer-radio"><input type="radio" name="footerNewsGender" value="mx"><span class="footer-radio__dot"></span>Mx</label>
- <label class="footer-radio"><input type="radio" name="footerNewsGender" value="na"><span class="footer-radio__dot"></span>${L ? 'Je préfère ne pas le dire' : 'I prefer not to say'}</label>
- </div>
- </div>
- <div class="footer-field">
- <label for="footerNewsLast">${L ? 'Nom *' : 'Last Name *'}</label>
- <input id="footerNewsLast" type="text" autocomplete="family-name" placeholder="${L ? 'Nom *' : 'Last Name *'}">
- </div>
- <div class="footer-field">
- <label for="footerNewsFirst">${L ? 'Prénom *' : 'First Name *'}</label>
- <input id="footerNewsFirst" type="text" autocomplete="given-name" placeholder="${L ? 'Prénom *' : 'First Name *'}">
+ <label for="footerNewsName">${L ? 'Nom & prénom *' : 'Full name *'}</label>
+ <input id="footerNewsName" type="text" autocomplete="name" placeholder="${L ? 'Nom & prénom' : 'Full name'}">
  </div>
  <button class="footer-news__btn footer-news__btn--register" type="submit">${ns.submit}</button>
  <p class="form-msg" data-news-msg hidden role="status" aria-live="polite"></p>

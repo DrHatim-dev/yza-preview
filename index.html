@@ -225,7 +225,7 @@
  <p class="eyebrow" data-i18n="band.craft.eye">Le savoir-faire</p>
  <h2 id="craftBandTitle" data-i18n="band.craft.title">Les détails qui font la différence.</h2>
  <p data-i18n="band.craft.text">De 2 à 70 h de travail manuel : toutes nos pièces sont réalisées par les artisanes de l’atelier YZA.</p>
- <a class="video-band__link" href="collections.html?cat=charms" data-i18n="cta.shopCharms">Voir nos fruits en raphia</a>
+ <a class="video-band__link" href="collections.html" data-i18n="cta.discoverCollections">Découvrir les collections YZA</a>
  </div>
  </div>
  <div class="vb-controls" data-vb-controls role="group" aria-label="Contrôles de la vidéo">
@@ -263,7 +263,11 @@
 
  <!-- ===== ATELIER VIDEO BAND ===== -->
  <section class="video-band video-band--minimal" id="atelierBand" aria-labelledby="atelierBandTitle">
- <video id="atelierBandVideo" class="video-band__media" src="assets/video/band-atelier-women.mp4" preload="metadata" autoplay muted loop playsinline poster="assets/atelier/atelier-table.jpg"></video>
+ <video class="video-band__media video-band__media--mobile" src="assets/video/band-toits-main.mp4" preload="metadata" autoplay muted loop playsinline poster="assets/video/band-toits-poster.jpg" aria-label="L’atelier YZA — créations en cours"></video>
+ <div class="video-band__media video-band__media--desktop video-band__split" aria-hidden="true">
+ <video class="video-band__split-vid" src="assets/video/band-toits-main.mp4" preload="metadata" autoplay muted loop playsinline poster="assets/video/band-toits-poster.jpg"></video>
+ <video class="video-band__split-vid" src="assets/video/band-toits-second.mp4" preload="metadata" autoplay muted loop playsinline></video>
+ </div>
  <div class="yza-marquee yza-marquee--onband yza-marquee--ontop" aria-hidden="true">
  <div class="yza-marquee__track">
  <span class="yza-marquee__item" data-i18n="marquee.marrakech">C’est mieux à Marrakech</span><span class="yza-marquee__sep">✦</span>
@@ -283,20 +287,6 @@
  <p data-i18n="home.story.text">Chaque pièce est crochetée en raphia par les femmes de notre atelier, à Marrakech.</p>
  <a class="video-band__link" href="histoire.html" data-i18n="cta.learn">Comprendre comment</a>
  </div>
- </div>
- <div class="vb-controls" data-vb-controls role="group" aria-label="Contrôles de la vidéo">
- <button type="button" class="vb-ctrl vb-ctrl--play" data-vb-play aria-label="Pause" aria-pressed="true">
- <svg class="vb-ic vb-ic--pause" viewBox="0 0 12 12" aria-hidden="true"><rect x="2" y="1.5" width="2.6" height="9"></rect><rect x="7.4" y="1.5" width="2.6" height="9"></rect></svg>
- <svg class="vb-ic vb-ic--play" viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 1.5L10.5 6L2.5 10.5Z"></path></svg>
- </button>
- <div class="vb-progress"><input class="vb-seek" type="range" min="0" max="100" step="0.1" value="0" data-vb-seek aria-label="Progression de la vidéo"></div>
- <button type="button" class="vb-ctrl vb-ctrl--mute" data-vb-mute aria-label="Activer le son" aria-pressed="false">
- <svg class="vb-ic vb-ic--off" viewBox="0 0 16 14" aria-hidden="true"><path d="M1 5h3l3.5-3v10L4 9H1z"></path><path d="M10.6 5.4l3.4 3.4M14 5.4l-3.4 3.4" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"></path></svg>
- <svg class="vb-ic vb-ic--on" viewBox="0 0 16 14" aria-hidden="true"><path d="M1 5h3l3.5-3v10L4 9H1z"></path><path d="M10.6 4.6a3.4 3.4 0 0 1 0 4.8M12.5 3a6 6 0 0 1 0 8" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round"></path></svg>
- </button>
- <button type="button" class="vb-ctrl vb-ctrl--full" data-vb-fullscreen aria-label="Plein écran">
- <svg class="vb-ic" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 4.5V1h3.5M9.5 1H13v3.5M13 9.5V13H9.5M4.5 13H1V9.5" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
- </button>
  </div>
  <div class="yza-marquee yza-marquee--onband" aria-hidden="true">
  <div class="yza-marquee__track">
@@ -366,7 +356,8 @@
  <div class="closing-cta__inner" data-reveal>
  <p class="eyebrow closing-cta__eye" data-i18n="band.closing.eye">Fruit Market</p>
  <h2 id="closingCtaTitle" class="closing-cta__title" data-i18n="band.closing.title">L’été se porte en raffia</h2>
- <a class="closing-cta__link" href="collections.html?cat=charms" data-i18n="cta.discover">Découvrir →</a>
+ <p class="closing-cta__sub" data-i18n="band.closing.sub">Charms à croquer, paniers tressés main et prêt-à-porter solaire — éditions limitées, jamais refaites.</p>
+ <a class="closing-cta__link closing-cta__link--btn" href="collections.html" data-i18n="band.closing.cta">Découvrir la collection →</a>
  </div>
  </section>
 

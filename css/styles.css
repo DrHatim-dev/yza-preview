@@ -942,6 +942,9 @@ body.has-search-overlay { overflow: hidden; }
 .closing-cta__title { font-family: var(--font-serif); font-weight: 400; font-size: clamp(2rem,5vw,3.5rem); line-height: 1.05; color: var(--white); margin: 0; }
 .closing-cta__link { display: inline-block; font-size: 0.7rem; letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.45); padding-bottom: 2px; transition: border-color var(--transition-fast); }
 .closing-cta__link:hover { border-bottom-color: var(--white); }
+.closing-cta__sub { color: rgba(255,255,255,0.94); font-size: clamp(0.95rem,1.6vw,1.1rem); line-height: 1.5; max-width: 46ch; margin: -0.5rem auto 0.4rem; }
+.closing-cta__link--btn { background: var(--white); color: var(--jq-ink); padding: 0.95rem 2rem; border-bottom: 0; }
+.closing-cta__link--btn:hover { opacity: 0.86; border-bottom-color: transparent; }
 
 /* Top marquee variant + bold colourful brand treatment for video-band marquees */
 .yza-marquee--ontop { position: absolute; left: 0; right: 0; top: 0; bottom: auto; z-index: 3; margin: 0; border-color: rgba(255,255,255,0.28); background: rgba(0,0,0,0.22); }
@@ -3111,6 +3114,10 @@ body.is-scroll-down .header, body.is-scroll-down .header.is-stuck { background: 
 .footer-news__form input { background: transparent; border-color: var(--color-fg); padding: var(--space-3) 0; font-size: var(--fs-base); }
 .footer-news__form input::placeholder { color: var(--color-muted); }
 .footer-news__btn { margin-top: var(--space-3); }
+
+/* Atelier band — two vertical videos side by side on desktop, single on mobile */
+.video-band__split { display: flex; }
+.video-band__split-vid { width: 50%; height: 100%; object-fit: cover; display: block; }
 
 /* closing video band - swap static image for video on tablet + mobile */
 .video-band__media--mobile { display: none; }
