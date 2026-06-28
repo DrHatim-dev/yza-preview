@@ -1856,6 +1856,7 @@ body.has-search-overlay { overflow: hidden; }
 .story-section { padding-block: clamp(4rem, 8vw, var(--space-24)); }
 .story-family { max-width: min(1120px, 100%); margin: var(--space-12) auto 0; overflow: hidden; }
 .story-family img { width: 100%; max-height: min(1280px, 160vh); height: auto; object-fit: contain; object-position: top center; display: block; }
+.manifesto-title { font-size: clamp(3rem, 13vw, 7rem) !important; font-weight: 400; letter-spacing: 0.04em; line-height: 0.95; margin: 0; }
 .story-section--founder {
  background: var(--brand-pink);
  border-block: 1px solid var(--color-border);
@@ -4081,6 +4082,9 @@ body.has-cart-drawer .lead-chat { display: none; }
   text-decoration: none; color: var(--color-fg);
 }
 .fm-stage { position: absolute; inset: 0; }
+.fm-tile[data-fm-rotator] { cursor: grab; -webkit-user-select: none; user-select: none; touch-action: pan-y; }
+.fm-tile[data-fm-rotator]:active { cursor: grabbing; }
+.fm-tile[data-fm-rotator] img { -webkit-user-drag: none; user-drag: none; }
 .fm-slide {
   position: absolute; inset: 0; opacity: 0;
   transition: opacity 0.9s var(--ease-out);

@@ -2579,6 +2579,7 @@
     var idx = 0;
     var paused = false;
     var timer = null;
+    var down = false, dragging = false, didDrag = false, sx = 0, sy = 0;
 
     function show(n) {
       slides.forEach(function (s, i) {
@@ -2587,8 +2588,9 @@
         s.setAttribute('aria-hidden', active ? 'false' : 'true');
       });
     }
+    function go(n) { idx = (n % slides.length + slides.length) % slides.length; show(idx); }
     function tick() {
-      if (paused || document.hidden) return;
+      if (paused || dragging || document.hidden) return;
       idx = (idx + 1) % slides.length;
       show(idx);
     }
@@ -2596,10 +2598,30 @@
     function stop() { if (timer) { clearInterval(timer); timer = null; } }
 
     tile.addEventListener('mouseenter', function () { paused = true; });
-    tile.addEventListener('mouseleave', function () { paused = false; });
+    tile.addEventListener('mouseleave', function () { if (!down) paused = false; });
     tile.addEventListener('focusin', function () { paused = true; });
     tile.addEventListener('focusout', function () { paused = false; });
     document.addEventListener('visibilitychange', function () { if (!document.hidden) start(); });
+
+    // Drag / swipe to change slide — mouse on desktop, finger on mobile.
+    function pt(e) { return e.changedTouches ? e.changedTouches[0] : (e.touches ? e.touches[0] : e); }
+    function dStart(e) { var p = pt(e); down = true; dragging = false; didDrag = false; sx = p.clientX; sy = p.clientY; paused = true; }
+    function dMove(e) { if (!down) return; var p = pt(e); if (Math.abs(p.clientX - sx) > 8 && Math.abs(p.clientX - sx) > Math.abs(p.clientY - sy)) dragging = true; }
+    function dEnd(e) {
+      if (!down) return; down = false;
+      var p = pt(e), dx = p.clientX - sx, dy = p.clientY - sy;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { didDrag = true; go(idx + (dx < 0 ? 1 : -1)); }
+      dragging = false;
+      setTimeout(function () { paused = false; }, 500);
+    }
+    tile.addEventListener('dragstart', function (e) { e.preventDefault(); });
+    tile.addEventListener('click', function (e) { if (didDrag) { e.preventDefault(); e.stopPropagation(); didDrag = false; } }, true);
+    tile.addEventListener('touchstart', dStart, { passive: true });
+    tile.addEventListener('touchmove', dMove, { passive: true });
+    tile.addEventListener('touchend', dEnd);
+    tile.addEventListener('mousedown', dStart);
+    window.addEventListener('mousemove', dMove);
+    window.addEventListener('mouseup', dEnd);
 
     show(0);
     setTimeout(start, offset);
