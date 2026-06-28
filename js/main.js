@@ -2226,7 +2226,7 @@
  }
 
  const detailRows = [];
- if (p.sku) detailRows.push(`<strong>SKU:</strong> ${esc(p.sku)}`);
+ // SKU intentionally hidden from customers (client request) — kept in data for internal use.
  if (p.color) detailRows.push(`<strong>${t.t('pp.color')}:</strong> ${esc(t.pick(p.color))}`);
  if (p.availableColors?.length) detailRows.push(`<strong>${t.t('pp.colors')}:</strong> ${p.availableColors.map(c => esc(t.pick(c))).join(', ')}`);
  if (p.availableSizes?.length) detailRows.push(`<strong>${t.t('pp.availableSizes')}:</strong> ${p.availableSizes.map(esc).join(', ')}`);

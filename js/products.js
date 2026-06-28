@@ -599,15 +599,15 @@ const PRODUCTS = [
  "yza-scarf-top-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara poly & silk, details faits main",
- "en": "Jawhara poly & silk with handmade details",
+ "fr": "Jawhara viscose & silk, details faits main",
+ "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
  "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
- "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "fr": "Jawhara (viscose & silk)",
+ "en": "Jawhara (viscose & silk)",
  "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
  "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
  "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
@@ -1011,15 +1011,15 @@ const PRODUCTS = [
  "yza-bateau-top-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara poly & silk, details faits main",
- "en": "Jawhara poly & silk with handmade details",
+ "fr": "Jawhara viscose & silk, details faits main",
+ "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
  "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
- "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "fr": "Jawhara (viscose & silk)",
+ "en": "Jawhara (viscose & silk)",
  "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
  "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
  "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
@@ -1626,15 +1626,15 @@ const PRODUCTS = [
  "yza-button-up-shirt-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara poly & silk, details faits main",
- "en": "Jawhara poly & silk with handmade details",
+ "fr": "Jawhara viscose & silk, details faits main",
+ "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
  "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
- "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "fr": "Jawhara (viscose & silk)",
+ "en": "Jawhara (viscose & silk)",
  "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
  "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
  "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
@@ -2041,15 +2041,15 @@ const PRODUCTS = [
  "yza-pareo-skirt-short-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara poly & silk, details faits main",
- "en": "Jawhara poly & silk with handmade details",
+ "fr": "Jawhara viscose & silk, details faits main",
+ "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
  "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
- "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "fr": "Jawhara (viscose & silk)",
+ "en": "Jawhara (viscose & silk)",
  "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
  "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
  "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
@@ -2457,15 +2457,15 @@ const PRODUCTS = [
  "yza-pareo-skirt-midi-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara poly & silk, details faits main",
- "en": "Jawhara poly & silk with handmade details",
+ "fr": "Jawhara viscose & silk, details faits main",
+ "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
  "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
- "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "fr": "Jawhara (viscose & silk)",
+ "en": "Jawhara (viscose & silk)",
  "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
  "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
  "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
@@ -2872,15 +2872,15 @@ const PRODUCTS = [
  "yza-pareo-skirt-long-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara poly & silk, details faits main",
- "en": "Jawhara poly & silk with handmade details",
+ "fr": "Jawhara viscose & silk, details faits main",
+ "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
  "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
- "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "fr": "Jawhara (viscose & silk)",
+ "en": "Jawhara (viscose & silk)",
  "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
  "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
  "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
@@ -3287,15 +3287,15 @@ const PRODUCTS = [
  "yza-pareo-skirt-x-long-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara poly & silk, details faits main",
- "en": "Jawhara poly & silk with handmade details",
+ "fr": "Jawhara viscose & silk, details faits main",
+ "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
  "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
- "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "fr": "Jawhara (viscose & silk)",
+ "en": "Jawhara (viscose & silk)",
  "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
  "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
  "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
@@ -3702,15 +3702,15 @@ const PRODUCTS = [
  "yza-palazzo-pants-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara poly & silk, details faits main",
- "en": "Jawhara poly & silk with handmade details",
+ "fr": "Jawhara viscose & silk, details faits main",
+ "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
  "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
- "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
+ "fr": "Jawhara (viscose & silk)",
+ "en": "Jawhara (viscose & silk)",
  "es": "Jawhara (poly y seda) — o co-creación a partir de 100 piezas por tejido",
  "tr": "Jawhara (poly ve ipek) — ya da kumaş başına 100 parçadan başlayan ortak üretim",
  "ar": "Jawhara (بولي وحرير) — أو إنتاج مشترك ابتداءً من 100 قطعة لكل قماش"
@@ -3952,18 +3952,18 @@ const PRODUCTS = [
  "yza-wrap-pants-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara poly & silk, details faits main",
- "en": "Jawhara poly & silk with handmade details",
+ "fr": "Jawhara viscose & silk, details faits main",
+ "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
  "ar": "Jawhara بولي وحرير مع تفاصيل مصنوعة يدوياً"
  },
  "fabric": {
- "fr": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "en": "Jawhara (poly & silk) - or co-creation starting 100 pieces per fabric",
- "es": "Jawhara (poly & silk) - or co-creación a partir de 100 piezas por tejido",
- "tr": "Jawhara (poly & silk) - veya kumaş başına 100 parçadan başlayan ko-kreasyonlar",
- "ar": "Jawhara (poly & silk) - أو تعاون إبداعي يبدأ من 100 قطعة لكل قماش"
+ "fr": "Jawhara (viscose & silk)",
+ "en": "Jawhara (viscose & silk)",
+ "es": "Jawhara (viscose & silk) - or co-creación a partir de 100 piezas por tejido",
+ "tr": "Jawhara (viscose & silk) - veya kumaş başına 100 parçadan başlayan ko-kreasyonlar",
+ "ar": "Jawhara (viscose & silk) - أو تعاون إبداعي يبدأ من 100 قطعة لكل قماش"
  },
  "color": null,
  "size": {
@@ -15991,12 +15991,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "No clasp, no fixed size: a single square of Jawhara you wrap and knot straight onto the body. The soft drape does the rest, and your knot draws the neckline. Cut and finished by hand in Guéliz. Tie it high for the day, loosen it when the heat lifts. Knotted twice, never quite the same twice."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - polyester et soie, tombé souple et fluide.",
- "en": "Jawhara, our house fabric - poly and silk, with a soft, fluid drape."
+ "fr": "Jawhara, notre tissu maison - viscose et soie, tombé souple et fluide.",
+ "en": "Jawhara, our house fabric - viscose and silk, with a soft, fluid drape."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; sa coupe et ses finitions passent toutes par nos mains. Co-création de tissu possible à partir de 100 pièces.",
- "en": "Jawhara is ours; its cut and finishing all pass through our hands. Fabric co-creation possible from 100 pieces."
+ "fr": "Jawhara naît chez nous ; sa coupe et ses finitions passent toutes par nos mains.",
+ "en": "Jawhara is ours; its cut and finishing all pass through our hands."
  },
  "handworkTime": {
  "fr": "Coupé et fini main à l'atelier, sans presser le geste.",
@@ -16007,8 +16007,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Size-free - the knot makes the measure."
  },
  "edition": {
- "fr": "Édition limitée Jawhara, faite main ; selon les arrivages, le tissu peut changer.",
- "en": "Limited Jawhara edition, handmade; with each delivery the fabric may shift."
+ "fr": "Édition limitée Jawhara, faite main.",
+ "en": "Limited Jawhara edition, handmade."
  }
  },
  {
@@ -16022,12 +16022,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "It all lives in the neckline: a frank horizontal that uncovers the collarbones and lets the shoulders breathe. The rest is left deliberately quiet. Soft-draping Jawhara, size-free, cut and finished by hand in Guéliz. It pairs with a pareo skirt as readily as with palazzo trousers. A hand passed through it - from one to the next, the line breathes a touch differently."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - polyester et soie, fluide et léger.",
- "en": "Jawhara, our house fabric - poly and silk, fluid and light."
+ "fr": "Jawhara, notre tissu maison - viscose et soie, fluide et léger.",
+ "en": "Jawhara, our house fabric - viscose and silk, fluid and light."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe, finitions et détails ne quittent jamais nos mains. Co-création de tissu possible à partir de 100 pièces.",
- "en": "Jawhara is ours; cut, finishing and details never leave our hands. Fabric co-creation possible from 100 pieces."
+ "fr": "Jawhara naît chez nous ; coupe, finitions et détails ne quittent jamais nos mains.",
+ "en": "Jawhara is ours; cut, finishing and details never leave our hands."
  },
  "handworkTime": {
  "fr": "Coupé et fini main à l'atelier, le temps qu'il faut.",
@@ -16038,8 +16038,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Size-free - it settles around you."
  },
  "edition": {
- "fr": "Édition limitée Jawhara, faite main ; le tissu peut changer au gré des arrivages.",
- "en": "Limited Jawhara edition, handmade; the fabric may change with what comes in."
+ "fr": "Édition limitée Jawhara, faite main.",
+ "en": "Limited Jawhara edition, handmade."
  }
  },
  {
@@ -16053,12 +16053,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A row of buttons, a drape that slides, the morning light coming through: the shirt sits almost like skin. Jawhara, cut and finished by hand in Guéliz, in S, M and L. Open it over a swimsuit for the beach, close it to the collar when the wind picks up. One piece for the market and the evening terrace alike."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - polyester et soie, au tombé souple.",
- "en": "Jawhara, our house fabric - poly and silk, with a soft drape."
+ "fr": "Jawhara, notre tissu maison - viscose et soie, au tombé souple.",
+ "en": "Jawhara, our house fabric - viscose and silk, with a soft drape."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe et finitions se contrôlent à la main. Co-création de tissu possible à partir de 100 pièces.",
- "en": "Jawhara is ours; cut and finishing are checked by hand. Fabric co-creation possible from 100 pieces."
+ "fr": "Jawhara naît chez nous ; coupe et finitions se contrôlent à la main.",
+ "en": "Jawhara is ours; cut and finishing are checked by hand."
  },
  "handworkTime": {
  "fr": "Coupée et finie main à l'atelier, sans hâte.",
@@ -16069,8 +16069,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Three sizes: S, M, L."
  },
  "edition": {
- "fr": "Édition limitée Jawhara, faite main ; le tissu suit les arrivages.",
- "en": "Limited Jawhara edition, handmade; the fabric follows what arrives."
+ "fr": "Édition limitée Jawhara, faite main.",
+ "en": "Limited Jawhara edition, handmade."
  }
  },
  {
@@ -16084,12 +16084,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The gesture is old: a square of cloth, a knot at the hip, and the legs stay free. Our version keeps that spirit, in soft-draping Jawhara, cut by hand in Guéliz. Size-free, it sets from XS to XXL depending on where you tie the knot. Over a wet swimsuit or under a bateau top, it waits for the sun - not much else."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - polyester et soie, fluide et léger.",
- "en": "Jawhara, our house fabric - poly and silk, fluid and light."
+ "fr": "Jawhara, notre tissu maison - viscose et soie, fluide et léger.",
+ "en": "Jawhara, our house fabric - viscose and silk, fluid and light."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe et finitions restent dans nos mains. Co-création de tissu possible à partir de 100 pièces.",
- "en": "Jawhara is ours; cut and finishing stay in our hands. Fabric co-creation possible from 100 pieces."
+ "fr": "Jawhara naît chez nous ; coupe et finitions restent dans nos mains.",
+ "en": "Jawhara is ours; cut and finishing stay in our hands."
  },
  "handworkTime": {
  "fr": "Coupée et finie main à l'atelier, au calme.",
@@ -16101,7 +16101,7 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  "edition": {
  "fr": "Édition limitée Jawhara, faite main ; le tissu peut varier selon les arrivages.",
- "en": "Limited Jawhara edition, handmade; the fabric may vary with deliveries."
+ "en": "Limited Jawhara edition, handmade."
  }
  },
  {
@@ -16115,12 +16115,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "At midi length the pareo skirt gains a little hold without losing its ease: one knot, and you forget about it. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, XS to XXL - your knot decides. The cloth catches the slightest breeze - at the market in the morning, on the doorstep at dusk."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - polyester et soie, au tombé souple.",
- "en": "Jawhara, our house fabric - poly and silk, with a soft drape."
+ "fr": "Jawhara, notre tissu maison - viscose et soie, au tombé souple.",
+ "en": "Jawhara, our house fabric - viscose and silk, with a soft drape."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe et finitions ne quittent pas nos mains. Co-création de tissu possible à partir de 100 pièces.",
- "en": "Jawhara is ours; cut and finishing don't leave our hands. Fabric co-creation possible from 100 pieces."
+ "fr": "Jawhara naît chez nous ; coupe et finitions ne quittent pas nos mains.",
+ "en": "Jawhara is ours; cut and finishing don't leave our hands."
  },
  "handworkTime": {
  "fr": "Coupée et finie main à l'atelier, sans précipitation.",
@@ -16146,12 +16146,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The length drops to the ankle and gives the cloth room to open - it trails the leg, parts as you walk, closes when you stop. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, the knot carries it from XS to XXL. A plain piece that holds the whole day and slips into evening unchanged."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - polyester et soie, fluide et léger.",
- "en": "Jawhara, our house fabric - poly and silk, fluid and light."
+ "fr": "Jawhara, notre tissu maison - viscose et soie, fluide et léger.",
+ "en": "Jawhara, our house fabric - viscose and silk, fluid and light."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe et finitions se font à la main. Co-création de tissu possible à partir de 100 pièces.",
- "en": "Jawhara is ours; cut and finishing are done by hand. Fabric co-creation possible from 100 pieces."
+ "fr": "Jawhara naît chez nous ; coupe et finitions se font à la main.",
+ "en": "Jawhara is ours; cut and finishing are done by hand."
  },
  "handworkTime": {
  "fr": "Coupée et finie main à l'atelier, posément.",
@@ -16162,8 +16162,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Size-free - the knot carries it XS to XXL."
  },
  "edition": {
- "fr": "Édition limitée Jawhara, faite main ; selon les arrivages, le tissu peut changer.",
- "en": "Limited Jawhara edition, handmade; with deliveries, the fabric may change."
+ "fr": "Édition limitée Jawhara, faite main.",
+ "en": "Limited Jawhara edition, handmade."
  }
  },
  {
@@ -16177,12 +16177,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The cloth reaches the floor and grazes it at every step - the Marrakech light snags right at the hem. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, XS to XXL by your knot. For the days you want to trail a little length behind you without giving up an inch of stride."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - polyester et soie, au tombé souple.",
- "en": "Jawhara, our house fabric - poly and silk, with a soft drape."
+ "fr": "Jawhara, notre tissu maison - viscose et soie, au tombé souple.",
+ "en": "Jawhara, our house fabric - viscose and silk, with a soft drape."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe et finitions restent manuelles. Co-création de tissu possible à partir de 100 pièces.",
- "en": "Jawhara is ours; cut and finishing stay manual. Fabric co-creation possible from 100 pieces."
+ "fr": "Jawhara naît chez nous ; coupe et finitions restent manuelles.",
+ "en": "Jawhara is ours; cut and finishing stay manual."
  },
  "handworkTime": {
  "fr": "Coupée et finie main à l'atelier, sans courir.",
@@ -16193,8 +16193,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Size-free - XS to XXL depending on the knot."
  },
  "edition": {
- "fr": "Édition limitée Jawhara, faite main ; le tissu peut changer d'un arrivage à l'autre.",
- "en": "Limited Jawhara edition, handmade; the fabric may change from one delivery to the next."
+ "fr": "Édition limitée Jawhara, faite main.",
+ "en": "Limited Jawhara edition, handmade."
  }
  },
  {
@@ -16208,12 +16208,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The leg opens wide and the cloth ripples behind each step - almost a skirt. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, XS to XXL. We made it deliberately long: a quick hem and it lands right at your ankle. Bare feet or sandals, it asks nothing of you from morning to night."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - polyester et soie, fluide et léger.",
- "en": "Jawhara, our house fabric - poly and silk, fluid and light."
+ "fr": "Jawhara, notre tissu maison - viscose et soie, fluide et léger.",
+ "en": "Jawhara, our house fabric - viscose and silk, fluid and light."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe et finitions restent dans nos mains. Co-création de tissu possible à partir de 100 pièces.",
- "en": "Jawhara is ours; cut and finishing stay in our hands. Fabric co-creation possible from 100 pieces."
+ "fr": "Jawhara naît chez nous ; coupe et finitions restent dans nos mains.",
+ "en": "Jawhara is ours; cut and finishing stay in our hands."
  },
  "handworkTime": {
  "fr": "Coupé et fini main à l'atelier, sans se presser.",
@@ -16224,8 +16224,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Size-free - XS to XXL, cut very long, easy to hem."
  },
  "edition": {
- "fr": "Édition limitée Jawhara, faite main ; le tissu suit les arrivages.",
- "en": "Limited Jawhara edition, handmade; the fabric follows what comes in."
+ "fr": "Édition limitée Jawhara, faite main.",
+ "en": "Limited Jawhara edition, handmade."
  }
  },
  {
@@ -16239,12 +16239,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "No button, no zip: two panels that cross and tie, so the waist opens or draws in as the day asks. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, XS to XXL - the knot leads. Nothing grips the belly - from the morning market to the evening terrace, you forget you have them on."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - polyester et soie, au tombé souple.",
- "en": "Jawhara, our house fabric - poly and silk, with a soft drape."
+ "fr": "Jawhara, notre tissu maison - viscose et soie, au tombé souple.",
+ "en": "Jawhara, our house fabric - viscose and silk, with a soft drape."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe et finitions restent à la main. Co-création de tissu possible à partir de 100 pièces.",
- "en": "Jawhara is ours; cut and finishing stay by hand. Fabric co-creation possible from 100 pieces."
+ "fr": "Jawhara naît chez nous ; coupe et finitions restent à la main.",
+ "en": "Jawhara is ours; cut and finishing stay by hand."
  },
  "handworkTime": {
  "fr": "Coupé et fini main à l'atelier, à son rythme.",
