@@ -758,6 +758,8 @@ body.has-search-overlay { overflow: hidden; }
 .charm-styling { margin-top: var(--space-16); padding-top: var(--space-12); border-top: 1px solid var(--color-border); }
 .charm-styling__head { max-width: 60ch; margin-bottom: var(--space-10); display: grid; gap: var(--space-3); }
 .charm-styling__head h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 400; line-height: 1.02; }
+/* "YZA Fruit Market" — its own typo: branded uppercase market label, not the italic-serif eyebrow */
+.charm-styling__head .eyebrow { font-family: var(--font-display); font-style: normal; text-transform: uppercase; letter-spacing: 0.26em; font-size: 0.74rem; font-weight: 500; }
 .charm-styling__text { color: var(--color-muted); max-width: 56ch; }
 .charm-styling__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-8) var(--space-6); }
 .charm-styling__item { position: relative; overflow: hidden; background: var(--color-surface-2); display: grid; gap: var(--space-3); }

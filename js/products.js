@@ -6681,8 +6681,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
  "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
@@ -7038,8 +7038,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
  "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
@@ -7389,8 +7389,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
  "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
@@ -7739,8 +7739,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
  "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
@@ -8089,8 +8089,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l’artisane qui a réalisé la pièce gravé sur l’étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l’artisane qui l’a réalisée est inscrit sur l’étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
  "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
@@ -8439,8 +8439,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
  "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
@@ -8789,8 +8789,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
  "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
@@ -9139,8 +9139,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
  "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
@@ -9491,8 +9491,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
  "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
@@ -9831,8 +9831,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنبي الماء؛ إذا ابتلت، جففيها في الهواء الطلق بعيداً عن أشعة الشمس المباشرة. تجنبي التعرض المطوّل للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Lista para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediye için hazır; parçayı yapan ustanın adı YZA etiketine kazınmıştır.",
  "ar": "جاهزة للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشاً على بطاقة YZA."
@@ -10080,8 +10080,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنب الماء؛ إذا ابتلت، جففها في الهواء الطلق بعيدًا عن أشعة الشمس المباشرة. تجنب التعرض المطول للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l’artisane qui a réalisé la pièce gravé sur l’étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l’artisane qui l’a réalisée est inscrit sur l’étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Listo para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediyeye hazır, parçayı yapan zanaatkarın adı YZA etiketine kazınmış.",
  "ar": "جاهز للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشًا على بطاقة YZA."
@@ -10324,11 +10324,11 @@ const PRODUCTS = [
  "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "es": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "tr": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "ar": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
@@ -10572,8 +10572,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنب الماء؛ إذا ابتلت، جففها في الهواء الطلق بعيدًا عن أشعة الشمس المباشرة. تجنب التعرض المطول للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l’artisane qui a réalisé la pièce gravé sur l’étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l’artisane qui l’a réalisée est inscrit sur l’étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Listo para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediyeye hazır, parçayı yapan zanaatkarın adı YZA etiketine kazınmış.",
  "ar": "جاهز للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشًا على بطاقة YZA."
@@ -10818,8 +10818,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنب الماء؛ إذا ابتلت، جففها في الهواء الطلق بعيدًا عن أشعة الشمس المباشرة. تجنب التعرض المطول للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l’artisane qui a réalisé la pièce gravé sur l’étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l’artisane qui l’a réalisée est inscrit sur l’étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Listo para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediyeye hazır, parçayı yapan zanaatkarın adı YZA etiketine kazınmış.",
  "ar": "جاهز للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشًا على بطاقة YZA."
@@ -11071,11 +11071,11 @@ const PRODUCTS = [
  "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "es": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "tr": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "ar": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
@@ -11322,11 +11322,11 @@ const PRODUCTS = [
  "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "es": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "tr": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "ar": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
@@ -11569,11 +11569,11 @@ const PRODUCTS = [
  "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "es": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "tr": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "ar": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
@@ -11818,8 +11818,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنب الماء؛ إذا ابتلت، جففها في الهواء الطلق بعيدًا عن أشعة الشمس المباشرة. تجنب التعرض المطول للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l’artisane qui a réalisé la pièce gravé sur l’étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l’artisane qui l’a réalisée est inscrit sur l’étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Listo para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediyeye hazır, parçayı yapan zanaatkarın adı YZA etiketine kazınmış.",
  "ar": "جاهز للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشًا على بطاقة YZA."
@@ -12066,8 +12066,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنب الماء؛ إذا ابتلت، جففها في الهواء الطلق بعيدًا عن أشعة الشمس المباشرة. تجنب التعرض المطول للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l’artisane qui a réalisé la pièce gravé sur l’étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l’artisane qui l’a réalisée est inscrit sur l’étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Listo para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediyeye hazır, parçayı yapan zanaatkarın adı YZA etiketine kazınmış.",
  "ar": "جاهز للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشًا على بطاقة YZA."
@@ -12316,8 +12316,8 @@ const PRODUCTS = [
  "ar": "الرافيا لا تحتاج إلى عناية خاصة. تجنب الماء؛ إذا ابتلت، جففها في الهواء الطلق بعيدًا عن أشعة الشمس المباشرة. تجنب التعرض المطول للشمس للحفاظ على الألوان. إذا فقد العنصر الذهبي لونه، يمكن استبداله."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l’artisane qui a réalisé la pièce gravé sur l’étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l’artisane qui l’a réalisée est inscrit sur l’étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
  "es": "Listo para regalar, con el nombre de la artesana que realizó la pieza grabado en la etiqueta YZA.",
  "tr": "Hediyeye hazır, parçayı yapan zanaatkarın adı YZA etiketine kazınmış.",
  "ar": "جاهز للإهداء، مع اسم الحرفية التي صنعت القطعة منقوشًا على بطاقة YZA."
@@ -12568,11 +12568,11 @@ const PRODUCTS = [
  "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "es": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "tr": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "ar": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
@@ -12822,11 +12822,11 @@ const PRODUCTS = [
  "ar": "Raffia needs no special care. Avoid water; if it gets wet, dry in open air away from direct sunlight. Avoid prolonged sun exposure to preserve the colours. If the gold element loses its colour, it can be replaced."
  },
  "packaging": {
- "fr": "Prêt à offrir, avec le prénom de l'artisane qui a réalisé la pièce gravé sur l'étiquette YZA.",
- "en": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "es": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "tr": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag.",
- "ar": "Gift-ready, with the first name of the artisan who made the piece engraved on the YZA tag."
+ "fr": "Prêt à offrir : la pièce arrive dans une jolie boîte noire signée YZA, et le prénom de l'artisane qui l'a réalisée est inscrit sur l'étiquette (hand tag).",
+ "en": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "es": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "tr": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag.",
+ "ar": "Gift-ready: the piece comes in a pretty black box signed YZA, and the first name of the artisan who made it is written on the hand tag."
  },
  "shipping": {
  "fr": "Expédition suivie sous 2 à 5 jours ouvrés. Retrait studio possible à Guéliz.",
@@ -16595,8 +16595,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Two small red rounds and their stem, crocheted in raffia by the Guéliz women. Count about two hours of crochet to round them and join them - a slow gesture no machine knows how to copy. Clipped to a bag or keys, they swing a little of the Marrakech market with each step."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
  },
  "fabric": {
  "fr": "Le rouge monte maille après maille ; sous les doigts, chaque cerise trouve sa propre rondeur.",
@@ -16676,12 +16676,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A bunch of grapes, grape by grape. The longest of our fruits to crochet."
  },
  "desc": {
- "fr": "Chaque grain est crocheté à part, puis cousu aux autres jusqu'à former la grappe - c'est ce qui peut demander jusqu'à six heures de travail. Tout ce temps pour qu'elle reste ronde et pleine, qu'elle ait le poids d'une vraie grappe. Pendue à un sac ou à une ceinture, elle se balance au soleil, grain contre grain.",
- "en": "Each grape is crocheted on its own, then sewn to the others until the bunch takes shape - which can run up to six hours of work. All that time so it stays round and full, with the weight of a real bunch. Hung from a bag or a belt, it sways in the sun, grape against grape."
+ "fr": "Chaque grain est crocheté à part, puis cousu aux autres jusqu'à former la grappe - c'est ce qui peut demander jusqu'à six heures de travail. Tout ce temps pour qu'elle reste ronde et pleine, avec le volume d'une vraie grappe, sans jamais le poids - le raffia reste très léger. Pendue à un sac ou à une ceinture, elle se balance au soleil, grain contre grain.",
+ "en": "Each grape is crocheted on its own, then sewn to the others until the bunch takes shape - which can run up to six hours of work. All that time so it stays round and full, with the volume of a real bunch but never the weight - raffia stays very light. Hung from a bag or a belt, it sways in the sun, grape against grape."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
  },
  "fabric": {
  "fr": "Grain par grain, chacun crocheté seul puis cousu à la grappe : c'est de là que vient le volume.",
@@ -16749,8 +16749,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Crocheted in the round and then filled, the lemon keeps its full shape - about three hours to get there, a clean clear yellow. In Guéliz it's turned stitch by stitch until it sits in the palm like the real thing. Clipped to a bag or keys, it's a flash of light within reach."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
  },
  "fabric": {
  "fr": "Travaillé en rond et légèrement garni, il tient sa rondeur jour après jour.",
@@ -16818,8 +16818,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Three hours of crochet in the round, a little stuffing, and the orange holds its full shape, warm as the late-afternoon sky. Fatima and the Guéliz women turn it stitch after stitch until it has the curve of a real fruit. To clip wherever you want a little warmth at hand."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
  },
  "fabric": {
  "fr": "Tournée en rond, légèrement garnie, sa couleur chaude monte maille à maille.",
@@ -16887,8 +16887,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Red body crocheted in the round, a little green crown made separately then sewn on top: about three hours so it keeps its full curve. A fruit from the garden, passed through the atelier women's hands. To clip on a bag, a belt or the keys - the ripe red is enough to catch the eye."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
  },
  "fabric": {
  "fr": "Corps rouge et couronne verte crochetés à part, réunis ensuite à l'aiguille.",
@@ -16952,12 +16952,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A round of lemon, pale segments and rind all round. Not a print: crochet."
  },
  "desc": {
- "fr": "Les quartiers se dessinent en clair sur le jaune, le zeste les cercle d'un dernier rang - tout vient du crochet, jamais de l'impression. Compte près de deux heures pour ce travail plat et précis, où chaque section doit se lire. Légère, elle se clipse n'importe où et apporte sa pointe acidulée.",
- "en": "The segments are drawn pale against the yellow, the rind ringing them with a last round - all of it crochet, never print. Count close to two hours for this flat, precise work, where every section has to read. Light, it clips anywhere and brings its tart little edge."
+ "fr": "Les quartiers se dessinent en clair sur le jaune, le zeste les cercle d'un dernier rang - tout vient du crochet, jamais de l'impression. Compte près de deux heures pour ce travail minutieux et précis, où chaque section doit se lire. Légère, elle se clipse n'importe où et apporte sa pointe acidulée.",
+ "en": "The segments are drawn pale against the yellow, the rind ringing them with a last round - all of it crochet, never print. Count close to two hours for this exacting, precise work, where every section has to read. Light, it clips anywhere and brings its tart little edge."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
  },
  "fabric": {
  "fr": "Quartiers et zeste naissent de changements de couleur au crochet - aucune impression.",
@@ -16988,8 +16988,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Wearing the lemon slice"
  },
  "howToWearIntro": {
- "fr": "Plate, légère, vive - elle se faufile sans peser.",
- "en": "Flat, light, lively - it slips in without weighing in."
+ "fr": "Légère, vive, à peine rembourrée - elle se faufile sans peser.",
+ "en": "Light, lively, barely padded - it slips in without weighing in."
  },
  "howToWearItems": [
  {
@@ -17006,8 +17006,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  }
  ],
  "howToWearStyleTip": {
- "fr": "Avec la tranche d'orange, c'est un petit étal de fruits au poignet.",
- "en": "With the orange slice, it's a little fruit stall at the wrist."
+ "fr": "Avec la tranche d'orange, c'est un petit étal de fruits à porter.",
+ "en": "With the orange slice, it's a little fruit stall to wear."
  },
  "howToWearNote": {
  "fr": "Faite main, aucune tranche ne trace ses quartiers comme la précédente.",
@@ -17021,12 +17021,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A round of orange, segments fanning under the ring of peel. All the orange of the south."
  },
  "desc": {
- "fr": "Les quartiers s'ouvrent en éventail, l'écorce les referme d'un dernier rang : autour de deux heures pour ce travail plat où rien ne pardonne. Elle tient tout l'orange chaud du sud. À clipser sur un sac, une trousse ou les clés, partout où il manque un peu de soleil.",
- "en": "The segments fan open, the peel closing them with a last round: around two hours for this flat work where nothing is forgiven. It holds all the warm orange of the south. To clip on a bag, a pouch or the keys, wherever a little sun is missing."
+ "fr": "Les quartiers s'ouvrent en éventail, l'écorce les referme d'un dernier rang : autour de deux heures pour ce travail minutieux où rien ne pardonne. Elle tient tout l'orange chaud du sud. À clipser sur un sac, une trousse ou les clés, partout où il manque un peu de soleil.",
+ "en": "The segments fan open, the peel closing them with a last round: around two hours for this exacting work where nothing is forgiven. It holds all the warm orange of the south. To clip on a bag, a pouch or the keys, wherever a little sun is missing."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
  },
  "fabric": {
  "fr": "Les quartiers s'ouvrent par les changements de couleur, l'écorce les cercle d'un dernier rang.",
@@ -17057,8 +17057,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Wearing the orange slice"
  },
  "howToWearIntro": {
- "fr": "Une rondelle de soleil, plate et facile à vivre.",
- "en": "A round of sun, flat and easy to live with."
+ "fr": "Une rondelle de soleil, souple et facile à vivre.",
+ "en": "A round of sun, supple and easy to live with."
  },
  "howToWearItems": [
  {
@@ -17090,16 +17090,16 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A kiwi slice, tender green, pale heart, a crown of seeds at the centre."
  },
  "desc": {
- "fr": "C'est la couronne de graines qui prend le temps : il faut autour de deux heures pour placer ce cœur clair et ces points sombres au milieu du vert tendre. Tout est crocheté, rien n'est imprimé. Plate et légère, elle glisse une couleur qu'on n'attend pas - celle qui surprend entre les agrumes.",
- "en": "It's the crown of seeds that takes the time: around two hours to set that pale heart and those dark dots in the middle of the tender green. All crocheted, nothing printed. Flat and light, it slips in a colour you don't expect - the one that surprises among the citrus."
+ "fr": "C'est la couronne de graines qui prend le temps : il faut autour de deux heures pour broder ces points sombres un à un autour du cœur clair, sur le disque déjà crocheté en vert tendre. Tout est fait main, rien n'est imprimé. Légère et à peine rembourrée, elle glisse une couleur qu'on n'attend pas - celle qui surprend entre les agrumes.",
+ "en": "It's the crown of seeds that takes the time: around two hours to embroider those dark dots one by one around the pale heart, onto the disc already crocheted in tender green. All handmade, nothing printed. Light and barely padded, it slips in a colour you don't expect - the one that surprises among the citrus."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
  },
  "fabric": {
- "fr": "Le vert, le cœur clair et les graines : tout au crochet, sans la moindre impression.",
- "en": "The green, the pale heart and the seeds: all in crochet, without the slightest print."
+ "fr": "Le vert et le cœur clair au crochet, les graines brodées par-dessus : aucune impression.",
+ "en": "The green and pale heart in crochet, the seeds embroidered on top: no print at all."
  },
  "handworkTime": {
  "fr": "Environ deux heures de crochet.",
@@ -17118,8 +17118,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The surprise of the stall"
  },
  "fruitStoryBody": {
- "fr": "Le kiwi surprend l'étal - ce vert qu'on n'attend pas entre les agrumes et les melons. On a aimé crocheter sa couronne de graines, ce dessin minuscule qui demande tant de patience.",
- "en": "Kiwi catches the stall off guard - that green you don't expect among the citrus and melons. We loved crocheting its crown of seeds, that tiny pattern that asks for such patience."
+ "fr": "Le kiwi surprend l'étal - ce vert qu'on n'attend pas entre les agrumes et les melons. On a aimé broder sa couronne de graines, ce dessin minuscule qui demande tant de patience.",
+ "en": "Kiwi catches the stall off guard - that green you don't expect among the citrus and melons. We loved embroidering its crown of seeds, that tiny pattern that asks for such patience."
  },
  "howToWearTitle": {
  "fr": "Porter la tranche de kiwi",
@@ -17159,12 +17159,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A watermelon wedge, bright pink, white edge, green rind, a few pips. Pure summer."
  },
  "desc": {
- "fr": "Trois couleurs qui s'enchaînent par rangs - rose, blanc, vert - et des pépins brodés un à un : compte autour de deux heures pour un triangle bien net. Plate et gaie, c'est tout l'été à clipser sur un sac de plage ou les clés, le genre de détail qui fait sourire au passage.",
- "en": "Three colours running on in rows - pink, white, green - with pips stitched in one by one: count around two hours for a clean triangle. Flat and cheerful, it's the whole of summer to clip on a beach bag or the keys, the kind of detail that earns a passing smile."
+ "fr": "Trois couleurs qui s'enchaînent par rangs - rose, blanc, vert - et des pépins brodés un à un : compte autour de deux heures pour un triangle bien net. Gaie et à peine rembourrée, c'est tout l'été à clipser sur un sac de plage ou les clés, le genre de détail qui fait sourire au passage.",
+ "en": "Three colours running on in rows - pink, white, green - with pips stitched in one by one: count around two hours for a clean triangle. Cheerful and barely padded, it's the whole of summer to clip on a beach bag or the keys, the kind of detail that earns a passing smile."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
  },
  "fabric": {
  "fr": "Rose, blanc et vert montent par rangs de couleur ; les pépins sont brodés au point.",
@@ -17232,8 +17232,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Three tones to bring together - pale flesh, dark skin, a round brown stone at the centre - so about two hours of crochet. It's that smooth stone in the hollow that makes the whole picture. Soft and a little unexpected, it clips to a bag or the keys like a small sign between those who know."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l'une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
  },
  "fabric": {
  "fr": "Trois tons - chair claire, écorce foncée, noyau brun - réunis au crochet puis à l'aiguille.",
@@ -17299,16 +17299,16 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Two watermelon slices on gold-tone hoops - pink at the heart, green at the rind."
  },
  "desc": {
- "fr": "Rose au cœur, blanc puis vert vers l’écorce, quelques graines semées : la tranche se construit fil de raffia par fil de raffia, jamais imprimée. Les femmes de Guéliz la fixent ensuite à une créole dorée. À l’oreille elle ne pèse rien et bouge à chaque mot - l’étal de pastèque emporté avec soi.",
- "en": "Pink at the heart, white then green toward the rind, a scatter of seeds: the slice is built raffia thread by raffia thread, never printed. The Guéliz women then fix it to a gold-tone hoop. On the ear it weighs nothing and moves with every word - the watermelon stall carried along."
+ "fr": "Rose au cœur, blanc puis vert vers l’écorce, quelques pépins brodés par-dessus : la tranche se construit fil de raffia par fil de raffia, jamais imprimée. Les femmes de Guéliz la fixent ensuite à une créole dorée. À l’oreille elle ne pèse rien et bouge à chaque mot - l’étal de pastèque emporté avec soi.",
+ "en": "Pink at the heart, white then green toward the rind, a scatter of pips embroidered on top: the slice is built raffia thread by raffia thread, never printed. The Guéliz women then fix it to a gold-tone hoop. On the ear it weighs nothing and moves with every word - the watermelon stall carried along."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l’une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l’eau. Chaque fruit est d’ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
  },
  "fabric": {
- "fr": "Rose, vert et graines naissent tous du fil de raffia noué à la main - aucune impression.",
- "en": "Pink, green and seeds all come from raffia thread knotted by hand - no printing."
+ "fr": "Rose et vert naissent du fil de raffia noué à la main, les pépins brodés par-dessus - aucune impression.",
+ "en": "Pink and green come from raffia thread knotted by hand, the pips embroidered on top - no printing."
  },
  "handworkTime": {
  "fr": "Crocheté puis monté en bijou, pièce par pièce, à la main.",
@@ -17368,16 +17368,16 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Kiwi in cross-section - pale heart, ring of seeds, on gold-tone hoops."
  },
  "desc": {
- "fr": "Vert tendre vers les bords, cœur clair au centre, et la couronne de petites graines qui demande tout le soin : c’est elle qui fait le kiwi. Crochetée fil à fil à Guéliz, puis montée sur créole dorée. À l’oreille, c’est doux et un peu décalé - un fruit ouvert au matin.",
- "en": "Tender green toward the edges, a pale heart at the centre, and the ring of little seeds that takes all the care: it's the seeds that make the kiwi. Crocheted thread by thread in Guéliz, then set on a gold-tone hoop. On the ear it's soft and a touch offbeat - a fruit opened in the morning."
+ "fr": "Vert tendre vers les bords, cœur clair au centre, et la couronne de petites graines brodées une à une, qui demande tout le soin : c’est elle qui fait le kiwi. Le disque est crocheté fil à fil à Guéliz, puis monté sur créole dorée. À l’oreille, c’est doux et un peu décalé - un fruit ouvert au matin.",
+ "en": "Tender green toward the edges, a pale heart at the centre, and the ring of little seeds embroidered one by one that takes all the care: it's the seeds that make the kiwi. The disc is crocheted thread by thread in Guéliz, then set on a gold-tone hoop. On the ear it's soft and a touch offbeat - a fruit opened in the morning."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l’une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l’eau. Chaque fruit est d’ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
  },
  "fabric": {
- "fr": "Le passage de verts et la couronne de graines, crochetés fil à fil - un vrai petit ouvrage.",
- "en": "The shift of greens and the ring of seeds, crocheted thread by thread - true small handwork."
+ "fr": "Le passage de verts crocheté fil à fil, puis la couronne de graines brodée par-dessus - un vrai petit ouvrage.",
+ "en": "The shift of greens crocheted thread by thread, then the ring of seeds embroidered over it - true small handwork."
  },
  "handworkTime": {
  "fr": "Crocheté puis monté en bijou, pièce par pièce, à la main.",
@@ -17437,16 +17437,16 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Lemon on gold-tone hoops - clear yellow, a little light at the ear. One whole, one slice."
  },
  "desc": {
- "fr": "Un jaune franc, gorgé de soleil, qui vient tout entier du raffia teint, sans rembourrage : crocheté serré, le citron garde sa rondeur tout seul. Façonné et monté sur créole dorée à Guéliz. C’est la couleur qui réveille un teint le matin - il en faut peu pour qu’elle suffise.",
- "en": "A clear, sun-soaked yellow that comes entirely from dyed raffia, no padding: crocheted tight, the lemon holds its roundness on its own. Shaped and set on a gold-tone hoop in Guéliz. It's the colour that wakes a complexion in the morning - it takes little for it to be enough."
+ "fr": "Un jaune franc, gorgé de soleil, qui vient tout entier du raffia teint : crocheté serré puis rembourré de ses propres brins de raffia, le citron garde sa rondeur pleine. Façonné et monté sur créole dorée à Guéliz. C’est la couleur qui réveille un teint le matin - il en faut peu pour qu’elle suffise.",
+ "en": "A clear, sun-soaked yellow that comes entirely from dyed raffia: crocheted tight then stuffed with its own raffia strands, the lemon holds its full roundness. Shaped and set on a gold-tone hoop in Guéliz. It's the colour that wakes a complexion in the morning - it takes little for it to be enough."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l’une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l’eau. Chaque fruit est d’ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
  },
  "fabric": {
- "fr": "Le jaune vient du raffia teint, crocheté serré pour tenir sa rondeur - aucun rembourrage.",
- "en": "The yellow comes from dyed raffia, crocheted tight to hold its round shape - no padding."
+ "fr": "Le jaune vient du raffia teint, crocheté serré puis rembourré de raffia pour tenir sa rondeur pleine.",
+ "en": "The yellow comes from dyed raffia, crocheted tight then stuffed with raffia to hold its full round shape."
  },
  "handworkTime": {
  "fr": "Crocheté puis monté en bijou, pièce par pièce, à la main.",
@@ -17506,12 +17506,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Orange on gold-tone hoops - the colour of juice pressed on the street corner. One whole, one slice."
  },
  "desc": {
- "fr": "Chaude et ronde, sa couleur vient du raffia teint et rien d’autre ; crochetée en rond, l’orange garde son galbe sans rembourrage. Montée à Guéliz sur créole dorée. À l’oreille, elle pose cette chaleur d’agrume près du visage - un fruit fait de fil, qui suit la fin de journée.",
- "en": "Warm and round, its colour comes from dyed raffia and nothing else; crocheted in the round, the orange keeps its curve without padding. Set in Guéliz on a gold-tone hoop. On the ear it lays that citrus warmth near the face - a fruit made of thread, following the end of the day."
+ "fr": "Chaude et ronde, sa couleur vient du raffia teint et rien d’autre ; crochetée en rond puis rembourrée de ses brins de raffia, l’orange garde son galbe plein. Montée à Guéliz sur créole dorée. À l’oreille, elle pose cette chaleur d’agrume près du visage - un fruit fait de fil, qui suit la fin de journée.",
+ "en": "Warm and round, its colour comes from dyed raffia and nothing else; crocheted in the round then stuffed with its raffia strands, the orange keeps its full curve. Set in Guéliz on a gold-tone hoop. On the ear it lays that citrus warmth near the face - a fruit made of thread, following the end of the day."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l’une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l’eau. Chaque fruit est d’ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
  },
  "fabric": {
  "fr": "L’orange vient du raffia teint, crocheté en rond pour garder son galbe - un fruit en fil.",
@@ -17579,8 +17579,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Each grape is crocheted apart, then knotted to the others until the cluster hangs from the hoop - assembled entirely by hand. That's what sets them moving: on the ear the grapes brush together and catch the light. A soft sway that wakes the moment you turn your head."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l’une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l’eau. Chaque fruit est d’ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
  },
  "fabric": {
  "fr": "Chaque grain crocheté seul, puis noué à la grappe - tout à la main.",
@@ -17648,8 +17648,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Two small red rounds, crocheted plump and joined by a hand-knotted stem, hanging from the gold-tone hoop. A gourmand red, a touch playful - the detail that pulls a smile. In Guéliz each cherry is made then mounted to the next, with none quite matching the other."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l’une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l’eau. Chaque fruit est d’ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
  },
  "fabric": {
  "fr": "Deux cerises crochetées rondes, reliées par une tige nouée à la main.",
@@ -17717,8 +17717,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Round, red, its little green calyx set on top like a cap: the garden tomato, crocheted in raffia and mounted on a gold-tone hoop. Body and calyx are born apart, then meet at the thread. On the ear, nothing fussy - just the frank red of the Guéliz stalls and tables, level with the cheek."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Le raffia est l’une des matières les plus difficiles à crocheter : il se casse facilement et est irrégulier, ce qui demande un travail lent et précis. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
- "en": "Natural raffia, hand-dyed the artisanal way. Raffia is one of the most difficult materials to crochet: it breaks easily and is irregular, which calls for slow, precise work. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
+ "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l’eau. Chaque fruit est d’ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
+ "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - these jewels could not be made any other way. Set on gold-tone hoops of 1.5 to 2 cm."
  },
  "fabric": {
  "fr": "Corps rouge et calice vert crochetés à part, puis réunis au fil.",
@@ -17784,20 +17784,20 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A crocheted lemon slice against the skin - a wedge of yellow at the neck."
  },
  "desc": {
- "fr": "Un demi-rond de citron, le grain des quartiers monté point par point, noué sur un cordon avec sa petite boucle. À Guéliz, Fatima crochète la tranche pendant qu'à côté on coud les cordons - deux gestes, une même table. Posée à même la peau ou sur un col de lin, elle pose un seul quartier de jaune et n'en demande pas plus.",
- "en": "A lemon half-round, the grain of the segments built stitch by stitch, knotted on a cord with its small clasp. In Guéliz, Fatima crochets the slice while the cords are sewn alongside - two gestures, one table. Worn against bare skin or on a linen collar, it lays down a single wedge of yellow and asks for nothing more."
+ "fr": "Un demi-rond de citron, le grain des quartiers monté point par point, noué sur un cordon en cuir avec sa petite boucle. À Guéliz, Fatima crochète la tranche pendant qu'à côté on coud les cordons - deux gestes, une même table. Posée à même la peau ou sur un col de lin, elle pose un seul quartier de jaune et n'en demande pas plus.",
+ "en": "A lemon half-round, the grain of the segments built stitch by stitch, knotted on a leather cord with its small clasp. In Guéliz, Fatima crochets the slice while the cords are sewn alongside - two gestures, one table. Worn against bare skin or on a linen collar, it lays down a single wedge of yellow and asks for nothing more."
  },
  "material": {
- "fr": "Raffia crocheté à la main sur cordon, boucle de finition.",
- "en": "Hand-crocheted raffia on a cord, finishing clasp."
+ "fr": "Raffia crocheté à la main sur cordon en cuir, boucle de finition.",
+ "en": "Hand-crocheted raffia on a leather cord, finishing clasp."
  },
  "fabric": {
  "fr": "Le crochet creuse les quartiers et lève leur relief, fil après fil.",
  "en": "The crochet hollows the segments and raises their ridge, thread after thread."
  },
  "handworkTime": {
- "fr": "Crochetée puis nouée sur le cordon, pièce par pièce, à la main.",
- "en": "Crocheted then knotted onto the cord, piece by piece, by hand."
+ "fr": "Crochetée puis nouée sur le cordon en cuir, pièce par pièce, à la main.",
+ "en": "Crocheted then knotted onto the leather cord, piece by piece, by hand."
  },
  "dimensions": {
  "fr": "Un petit bijou textile, léger - bien posé contre la peau ou un col de lin.",
@@ -17853,20 +17853,20 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A crocheted orange slice, segment after segment - a warm round at the neck."
  },
  "desc": {
- "fr": "Une rondelle d'orange montée quartier après quartier au crochet, nouée sur un cordon avec sa boucle. À Guéliz, les femmes la construisent un quartier à la fois, jusqu'à ce que le rond se ferme. Contre la peau ou sur un col de lin, elle porte la chaleur du jus pressé à l'angle de la place, sans en faire trop.",
- "en": "An orange round built segment after segment at the hook, knotted on a cord with its clasp. In Guéliz the women raise it one wedge at a time, until the round closes. Against the skin or on a linen collar, it carries the warmth of juice pressed at the corner of the square, without overdoing it."
+ "fr": "Une rondelle d'orange montée quartier après quartier au crochet, nouée sur un cordon en cuir avec sa boucle. À Guéliz, les femmes la construisent un quartier à la fois, jusqu'à ce que le rond se ferme. Contre la peau ou sur un col de lin, elle porte la chaleur du jus pressé à l'angle de la place, sans en faire trop.",
+ "en": "An orange round built segment after segment at the hook, knotted on a leather cord with its clasp. In Guéliz the women raise it one wedge at a time, until the round closes. Against the skin or on a linen collar, it carries the warmth of juice pressed at the corner of the square, without overdoing it."
  },
  "material": {
- "fr": "Raffia crocheté à la main sur cordon, boucle de finition.",
- "en": "Hand-crocheted raffia on a cord, finishing clasp."
+ "fr": "Raffia crocheté à la main sur cordon en cuir, boucle de finition.",
+ "en": "Hand-crocheted raffia on a leather cord, finishing clasp."
  },
  "fabric": {
  "fr": "Les quartiers se crochètent un à un, jusqu'à ce que le rond se ferme.",
  "en": "The segments are crocheted one by one, until the round closes."
  },
  "handworkTime": {
- "fr": "Crochetée puis nouée sur le cordon, pièce par pièce, à la main.",
- "en": "Crocheted then knotted onto the cord, piece by piece, by hand."
+ "fr": "Crochetée puis nouée sur le cordon en cuir, pièce par pièce, à la main.",
+ "en": "Crocheted then knotted onto the leather cord, piece by piece, by hand."
  },
  "dimensions": {
  "fr": "Un petit bijou textile, léger - bien posé contre la peau ou un col de lin.",
@@ -17922,20 +17922,20 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A crocheted watermelon slice, from pink heart to green rind - at the neck."
  },
  "desc": {
- "fr": "Une part de pastèque crochetée par bandes : le rose du cœur, le liseré clair, le vert de l'écorce, montée sur un cordon avec sa boucle. Fatima la mène couche après couche, dans cet ordre, jusqu'à la pointe. Contre la peau ou sur un col de lin, elle garde un quartier d'été qui se porte aussi en plein hiver.",
- "en": "A wedge of watermelon crocheted in bands: the pink heart, the pale line, the green rind, mounted on a cord with its clasp. Fatima carries it layer after layer, in that order, down to the point. Against the skin or on a linen collar, it holds a wedge of summer you can wear in deep winter too."
+ "fr": "Une part de pastèque crochetée par bandes : le rose du cœur, le liseré clair, le vert de l'écorce, montée sur un cordon en cuir avec sa boucle. Fatima la mène couche après couche, dans cet ordre, jusqu'à la pointe. Contre la peau ou sur un col de lin, elle garde un quartier d'été qui se porte aussi en plein hiver.",
+ "en": "A wedge of watermelon crocheted in bands: the pink heart, the pale line, the green rind, mounted on a leather cord with its clasp. Fatima carries it layer after layer, in that order, down to the point. Against the skin or on a linen collar, it holds a wedge of summer you can wear in deep winter too."
  },
  "material": {
- "fr": "Raffia crocheté à la main sur cordon, boucle de finition.",
- "en": "Hand-crocheted raffia on a cord, finishing clasp."
+ "fr": "Raffia crocheté à la main sur cordon en cuir, boucle de finition.",
+ "en": "Hand-crocheted raffia on a leather cord, finishing clasp."
  },
  "fabric": {
  "fr": "Rose, liseré clair, vert : trois bandes crochetées dans l'ordre, du cœur à l'écorce.",
  "en": "Pink, pale line, green: three bands crocheted in order, heart to rind."
  },
  "handworkTime": {
- "fr": "Crochetée puis nouée sur le cordon, pièce par pièce, à la main.",
- "en": "Crocheted then knotted onto the cord, piece by piece, by hand."
+ "fr": "Crochetée puis nouée sur le cordon en cuir, pièce par pièce, à la main.",
+ "en": "Crocheted then knotted onto the leather cord, piece by piece, by hand."
  },
  "dimensions": {
  "fr": "Un petit bijou textile, léger - bien posé contre la peau ou un col de lin.",
@@ -17991,19 +17991,19 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A crocheted grape cluster, berry by berry - it moves with you."
  },
  "desc": {
- "fr": "Une grappe dont chaque grain est crocheté à part, puis rassemblé sur un cordon avec sa boucle. À Guéliz, les femmes en font un grain, puis le suivant, jusqu'à ce que la grappe pèse juste ce qu'il faut. Contre la peau ou sur un col de lin, elle a du volume et balance doucement au pas - deux grappes ne comptent jamais le même nombre de grains.",
- "en": "A cluster whose every berry is crocheted apart, then gathered onto a cord with its clasp. In Guéliz the women make one berry, then the next, until the cluster weighs just enough. Against the skin or on a linen collar, it has body and sways gently as you walk - no two clusters count the same number of grapes."
+ "fr": "Une grappe dont chaque grain est crocheté à part, puis rassemblé sur un cordon en cuir avec sa boucle. À Guéliz, les femmes en font un grain, puis le suivant, jusqu'à ce que la grappe ait juste le volume qu'il faut. Contre la peau ou sur un col de lin, elle a du volume et balance doucement au pas - deux grappes ne comptent jamais le même nombre de grains.",
+ "en": "A cluster whose every berry is crocheted apart, then gathered onto a leather cord with its clasp. In Guéliz the women make one berry, then the next, until the cluster has just the right body. Against the skin or on a linen collar, it has body and sways gently as you walk - no two clusters count the same number of grapes."
  },
  "material": {
- "fr": "Raffia crocheté à la main sur cordon, boucle de finition.",
- "en": "Hand-crocheted raffia on a cord, finishing clasp."
+ "fr": "Raffia crocheté à la main sur cordon en cuir, boucle de finition.",
+ "en": "Hand-crocheted raffia on a leather cord, finishing clasp."
  },
  "fabric": {
  "fr": "Chaque grain naît seul, puis rejoint les autres jusqu'à former la grappe.",
  "en": "Each berry is born alone, then joins the rest until the cluster forms."
  },
  "handworkTime": {
- "fr": "Crochetée puis montée en grappe sur le cordon, à la main ; comptez jusqu'à six heures.",
+ "fr": "Crochetée puis montée en grappe sur le cordon en cuir, à la main ; comptez jusqu'à six heures.",
  "en": "Crocheted then gathered into a cluster on the cord, by hand; allow up to six hours."
  },
  "dimensions": {
@@ -18060,20 +18060,20 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Two crocheted cherries on their stem - a mischievous red at the hollow of the neck."
  },
  "desc": {
- "fr": "Deux boules rouges crochetées en rond, reliées par leur tige, posées sur un cordon avec sa boucle. Fatima fait l'une, puis l'autre, et les noue par la queue - alors la paire n'est jamais tout à fait jumelle. Contre la peau ou sur un col de lin, c'est le rouge espiègle qui décroche un sourire, n'importe quel jour.",
- "en": "Two red rounds crocheted in the round, joined at their stem, set on a cord with its clasp. Fatima makes one, then the other, and knots them by the tail - so the pair is never quite twin. Against the skin or on a linen collar, it is the mischievous red that pulls a smile, any day."
+ "fr": "Deux boules rouges crochetées en rond, reliées par leur tige, posées sur un cordon en cuir avec sa boucle. Fatima fait l'une, puis l'autre, et les noue par la queue - alors la paire n'est jamais tout à fait jumelle. Contre la peau ou sur un col de lin, c'est le rouge espiègle qui décroche un sourire, n'importe quel jour.",
+ "en": "Two red rounds crocheted in the round, joined at their stem, set on a leather cord with its clasp. Fatima makes one, then the other, and knots them by the tail - so the pair is never quite twin. Against the skin or on a linen collar, it is the mischievous red that pulls a smile, any day."
  },
  "material": {
- "fr": "Raffia crocheté à la main sur cordon, boucle de finition.",
- "en": "Hand-crocheted raffia on a cord, finishing clasp."
+ "fr": "Raffia crocheté à la main sur cordon en cuir, boucle de finition.",
+ "en": "Hand-crocheted raffia on a leather cord, finishing clasp."
  },
  "fabric": {
  "fr": "Chaque cerise se crochète en rond, puis se noue à sa tige.",
  "en": "Each cherry is crocheted in the round, then knotted to its stem."
  },
  "handworkTime": {
- "fr": "Crochetées puis nouées sur le cordon, pièce par pièce, à la main.",
- "en": "Crocheted then knotted onto the cord, piece by piece, by hand."
+ "fr": "Crochetées puis nouées sur le cordon en cuir, pièce par pièce, à la main.",
+ "en": "Crocheted then knotted onto the leather cord, piece by piece, by hand."
  },
  "dimensions": {
  "fr": "Un petit bijou textile, léger - bien posé contre la peau ou un col de lin.",
@@ -18197,8 +18197,8 @@ PRODUCTS.forEach(function(p) {
 // Fix necklace making.fr: base data is unaccented raw text
 PRODUCTS.forEach(function(p) {
  if (p.category === 'necklaces' && p.making && typeof p.making.fr === 'string' && p.making.fr.indexOf('Chaque') === -1) {
- p.making.fr = "Chaque bijou est crocheté à la main dans l'atelier de Guéliz, puis monté sur cordon avant la pose de l'étiquette YZA.";
- p.making.en = 'Each jewel is hand-crocheted in the Guéliz atelier, then set on a cord before the YZA tag is added.';
+ p.making.fr = "Chaque bijou est crocheté à la main dans l'atelier de Guéliz, puis monté sur cordon en cuir avant la pose de l'étiquette YZA.";
+ p.making.en = 'Each jewel is hand-crocheted in the Guéliz atelier, then set on a leather cord before the YZA tag is added.';
  }
 });
 
