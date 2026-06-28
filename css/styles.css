@@ -1857,6 +1857,17 @@ body.has-search-overlay { overflow: hidden; }
 .story-family { max-width: min(1120px, 100%); margin: var(--space-12) auto 0; overflow: hidden; }
 .story-family img { width: 100%; max-height: min(1280px, 160vh); height: auto; object-fit: contain; object-position: top center; display: block; }
 .manifesto-title { font-size: clamp(3rem, 13vw, 7rem) !important; font-weight: 400; letter-spacing: 0.04em; line-height: 0.95; margin: 0; }
+/* Lookbook editorial magazine (real photos) */
+.lookmag { display: flex; flex-direction: column; gap: 5px; max-width: 1400px; margin: 0 auto; padding: 0 5px clamp(3rem, 7vw, 6rem); }
+.lookmag figure { margin: 0; overflow: hidden; background: var(--paper-card); }
+.lookmag img { width: 100%; height: auto; display: block; }
+.lookmag-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; }
+.lookmag-cover { position: relative; }
+.lookmag-cover figcaption { position: absolute; left: clamp(1.4rem, 4vw, 3.5rem); bottom: clamp(1.4rem, 4vw, 3.5rem); color: #fff; display: grid; gap: 6px; }
+.lookmag-kicker { font-family: var(--font-serif); font-style: italic; font-size: clamp(1rem, 2vw, 1.5rem); text-shadow: 0 2px 18px rgba(0,0,0,0.5); }
+.lookmag-h { font-family: var(--font-serif); font-weight: 400; font-size: clamp(2.2rem, 6vw, 5rem); line-height: 0.98; text-shadow: 0 2px 30px rgba(0,0,0,0.45); }
+.lookmag-label { font-family: var(--font-serif); font-style: italic; font-size: clamp(1.15rem, 2.6vw, 1.7rem); text-align: center; color: var(--accent); margin: clamp(1.4rem, 4vw, 3rem) 0 0.3rem; }
+@media (max-width: 700px) { .lookmag-duo { grid-template-columns: 1fr; } }
 .story-section--founder {
  background: var(--brand-pink);
  border-block: 1px solid var(--color-border);
