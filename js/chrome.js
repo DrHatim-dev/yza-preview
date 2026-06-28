@@ -494,7 +494,6 @@ YZA.chrome = {
  <li><a href="collections.html?cat=bags" data-i18n="nav.bags">${t.t('nav.bags')}</a></li>
  <li><a href="collections.html?cat=accessories" data-i18n="nav.accessories">${t.t('nav.accessories')}</a></li>
  <li><a href="collections.html" data-i18n="col.all">${t.t('col.all')}</a></li>
- <li><a href="b2b.html" data-i18n="nav.b2b">${t.t('nav.b2b')}</a></li>
  </ul></div>
  </div>
  <div class="footer__col footer__col--acc">
@@ -513,6 +512,7 @@ YZA.chrome = {
  <li><a href="yza-girls.html" data-i18n="nav.girls">${t.t('nav.girls')}</a></li>
  <li><a href="lookbook.html" data-i18n="nav.lookbook">${t.t('nav.lookbook')}</a></li>
  <li><a href="blogs/journal/" data-i18n="nav.journal">${t.t('nav.journal')}</a></li>
+ <li><a href="b2b.html" data-i18n="nav.b2b">${t.t('nav.b2b')}</a></li>
  <li><a href="mailto:${YZA.brand.email}">${YZA.brand.email}</a></li>
  </ul></div>
  </div>
