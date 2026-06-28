@@ -834,12 +834,22 @@
  </a>`;
  }
 
+ // Round-robin by name so the same girl's photos never bunch together.
+ function interleaveByName(arr) {
+ const groups = [];
+ const byName = {};
+ arr.forEach((g) => { if (!byName[g.name]) { byName[g.name] = []; groups.push(byName[g.name]); } byName[g.name].push(g); });
+ const out = [];
+ let added = true;
+ while (added) { added = false; groups.forEach((b) => { if (b.length) { out.push(b.shift()); added = true; } }); }
+ return out;
+ }
  function renderGirlsPreview() {
  const el = $('#girlsPreviewGrid');
  if (!el || !YZA.media?.yzaGirls?.length) return;
- const publicGirls = YZA.media.yzaGirls
+ const publicGirls = interleaveByName(YZA.media.yzaGirls
  .filter((girl) => isPublicMedia(girl.src))
- .filter((girl) => !/la vague/i.test([girl.product, girl.alt, girl.id].filter(Boolean).join(' ')));
+ .filter((girl) => !/la vague/i.test([girl.product, girl.alt, girl.id].filter(Boolean).join(' '))));
  el.innerHTML = publicGirls.slice(0, 12).map((girl, index) => girlsFeedCardHTML(girl, index)).join('');
  el.querySelectorAll('[data-shop-look]').forEach((link) => {
  link.addEventListener('click', () => YZA.analytics?.track('yza_girls_shop_look_click', { handle: link.dataset.shopLook || '', source: 'home_preview' }));
@@ -849,7 +859,7 @@
  function renderGirlsPage() {
  const wall = $('#girlsMasonry');
  if (!wall || !YZA.media?.yzaGirls?.length) return;
- const publicGirls = YZA.media.yzaGirls.filter((girl) => isPublicMedia(girl.src));
+ const publicGirls = interleaveByName(YZA.media.yzaGirls.filter((girl) => isPublicMedia(girl.src)));
  wall.innerHTML = publicGirls.map((girl, index) => girlsCardHTML(girl, index)).join('');
  wall.querySelectorAll('[data-shop-look]').forEach((link) => {
  link.addEventListener('click', () => YZA.analytics?.track('yza_girls_shop_look_click', { handle: link.dataset.shopLook || '', source: 'girls_page' }));
