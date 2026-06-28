@@ -1008,6 +1008,21 @@
  <a class="link-underline charm-styling__cta" href="collections.html?cat=charms">${esc(t.t('cta.shopCharms'))}</a>`;
  if (document.documentElement.classList.contains('js')) requestAnimationFrame(wireReveal);
  }
+ // Category storytelling (charms craft-time, Jawhara fabric story) — shown only on those collections.
+ function renderCollectionStory() {
+ const el = $('#colStory'); if (!el) return;
+ const t = T();
+ const map = { charms: 'charms', rtw: 'rtw', tops: 'rtw', pareos: 'rtw', pants: 'rtw', bottoms: 'rtw' };
+ const stories = {
+ charms: { eye: { fr: 'Le geste', en: 'The craft' }, h: { fr: 'Chaque fruit, crocheté main', en: 'Each fruit, crocheted by hand' }, p: { fr: 'Le raphia est une fibre exigeante — difficile à crocheter, lente à dompter. Il faut de 2 à 6 heures de travail par fruit, à la bonne tension, pour qu\'il garde sa rondeur. Petites séries faites main par les femmes de l\'atelier, à Guéliz — jamais deux fois tout à fait pareil.', en: 'Raffia is a demanding fibre — hard to crochet, slow to tame. It takes 2 to 6 hours of work per fruit, at the right tension, to hold its roundness. Small batches handmade by the women of the atelier in Guéliz — never quite the same twice.' } },
+ rtw: { eye: { fr: 'Le tissu', en: 'The fabric' }, h: { fr: 'Jawhara — sans tailles, fait pour durer', en: 'Jawhara — size-free, made to last' }, p: { fr: 'Le Jawhara est un tissu nord-africain très chic. Nous l\'avons choisi en viscose, une matière semi-naturelle qui empêche la soie de se froisser, et nous le détournons pour des pièces ultra modernes. Sans tailles : chaque pièce s\'adapte à toutes, se prête entre amies, se transmet. On y réfléchit longtemps — pour ne garder que des pièces comme ça.', en: 'Jawhara is a very chic North African fabric. We chose it in viscose — a semi-natural material that keeps the silk from creasing — and reinterpret it for ultra-modern pieces. Size-free: each piece adapts to everyone, is lent between friends, passed on. We think long and hard — to keep only pieces like these.' } },
+ };
+ const s = stories[map[collState.cat]];
+ if (!s || collState.q) { el.hidden = true; el.innerHTML = ''; return; }
+ el.hidden = false;
+ el.innerHTML = '<div class="container col-story__inner" data-reveal><p class="eyebrow">' + esc(t.pick(s.eye)) + '</p><h2>' + esc(t.pick(s.h)) + '</h2><p>' + esc(t.pick(s.p)) + '</p></div>';
+ if (document.documentElement.classList.contains('js')) requestAnimationFrame(wireReveal);
+ }
  function renderCollections() {
  const grid = $('#collectionGrid'); if (!grid) return;
  const list = collFiltered();
@@ -1020,6 +1035,7 @@
  const term = collState.q ? ' « ' + esc(collState.q) + ' »' : '';
  grid.innerHTML = `<div class="collection-empty"><p class="collection-empty__title">${esc(T().t('col.noresults'))}${term}</p><a class="link-underline" href="collections.html">${esc(T().t('col.all'))}</a></div>`;
  const cs = $('#charmStyling'); if (cs) cs.hidden = true;
+ const st = $('#colStory'); if (st) st.hidden = true;
  } else {
  grid.classList.toggle('collection-grid--bag-families', isBags);
  // Bag families keep their own column layout; the View-by density only drives the standard clothing/charm grid.
@@ -1027,6 +1043,7 @@
  if (isBags) renderBagCollectionGrid(grid, list);
  else renderCollectionGrid(grid, list);
  renderCharmStyling();
+ renderCollectionStory();
  }
  const dWrap = $('#gridDensity');
  if (dWrap) {
