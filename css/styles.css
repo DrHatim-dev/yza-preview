@@ -3074,7 +3074,7 @@ body.is-scroll-down .header, body.is-scroll-down .header.is-stuck { background: 
 .home-intro { padding-block: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 2vw, 1.5rem); }
 .home-intro__inner { max-width: 62ch; }
 .home-intro__title { font-size: var(--fs-2xl); line-height: 1.1; margin-top: 0.5rem; text-wrap: balance; }
-.home-intro__lede { color: var(--color-muted); font-size: var(--fs-md); line-height: var(--leading-body); max-width: 52ch; margin: 0.9rem auto 0; }
+.home-intro__lede { color: var(--color-muted); font-size: var(--fs-md); line-height: var(--leading-body); max-width: 52ch; margin: 0.9rem auto 0; text-align: left; }
 
 /* ============================================================
  CARD & BORDER ELEVATION
