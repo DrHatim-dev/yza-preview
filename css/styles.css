@@ -3038,8 +3038,9 @@ body[data-page="home"] .press-band:not(.icon-strip) { display: none; }
 body[data-page="home"] .section { padding-block: 5px; }
 body[data-page="home"] .offer-section,
 body[data-page="home"] .fruit-market-section { padding-block: 0; }
-/* testimonials grid renders empty until real reviews are enabled — drop the ghost band */
-body[data-page="home"] #avis { display: none; }
+/* Reviews are live (real ReviewXpo + Instagram testimonials) — show the band with
+   its own breathing room instead of the squashed 5px the generic .section gets. */
+body[data-page="home"] #avis { display: block; padding-block: clamp(3rem, 7vw, 5.5rem); }
 
 /* 2026-06-27 — the home now OPENS with a visible brand statement + a 4-category
    strip so first-time visitors immediately grasp what YZA sells (client feedback:

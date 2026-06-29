@@ -814,10 +814,15 @@
  bandVideoIO = new IntersectionObserver((entries) => {
  entries.forEach((e) => {
  const v = e.target;
- if (e.isIntersecting) { const p = v.play && v.play(); if (p && p.catch) p.catch(() => {}); }
+ if (e.isIntersecting) {
+ // Lazy load: the heavy band clips ship as data-src + preload="none" so they cost
+ // zero bytes on first paint; promote to a real src only as they near the viewport.
+ if (!v.getAttribute('src') && v.dataset.src) { v.src = v.dataset.src; v.load(); }
+ const p = v.play && v.play(); if (p && p.catch) p.catch(() => {});
+ }
  else if (v.pause) v.pause();
  });
- }, { threshold: 0.2 });
+ }, { threshold: 0.2, rootMargin: '300px 0px' });
  vids.forEach((v) => bandVideoIO.observe(v));
  }
 
