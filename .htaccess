@@ -2,6 +2,18 @@
 Options -Indexes
 DirectoryIndex index.html index.htm
 
+# Legacy Shopify URLs -> new static site (so old Google results / bookmarks
+# don't hit a 404). Patterns require a slash after the keyword, so the real
+# files (collections.html, produit.html) and /blogs/journal/ are untouched.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^collections/?$            /collections.html [R=301,L]
+  RewriteRule ^collections/.+$           /collections.html [R=301,L]
+  RewriteRule ^products/.+$              /collections.html [R=301,L]
+  RewriteRule ^pages/.+$                 /                 [R=301,L]
+  RewriteRule ^(cart|account|checkout)(/.*)?$ /            [R=301,L]
+</IfModule>
+
 ErrorDocument 404 /404.html
 
 # Gzip
