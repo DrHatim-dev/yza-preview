@@ -3088,6 +3088,10 @@ body.is-scroll-down .header, body.is-scroll-down .header.is-stuck { background: 
 .hero-split__tile[href*="cat=bags"] .hero-split__img { object-position: 50% 20%; }
 .hero-split__tile[href*="cat=rtw"] .hero-split__img { object-position: 50% 10%; }
 .hero-split__tile::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,0) 48%, rgba(0,0,0,0.5)); pointer-events: none; }
+/* La Sculpture tile: deeper bottom shadow so the caption stays very readable
+   over a bright editorial image. */
+.hero-split__tile--deep::after { background: linear-gradient(180deg, rgba(0,0,0,0) 28%, rgba(0,0,0,0.30) 60%, rgba(0,0,0,0.74) 100%); }
+.hero-split__tile--deep .hero-split__cap { text-shadow: 0 1px 3px rgba(0,0,0,0.55), 0 2px 24px rgba(0,0,0,0.5); }
 .hero-split__tile:hover .hero-split__img, .hero-split__tile:focus-visible .hero-split__img { transform: scale(1.045); }
 .hero-split__cap { position: absolute; z-index: 1; left: clamp(1.1rem, 2.4vw, 2.75rem); bottom: clamp(1.1rem, 2.8vw, 2.5rem); display: flex; flex-direction: column; gap: 0.45rem; text-shadow: 0 1px 16px rgba(0,0,0,0.35); }
 .hero-split__title { font-family: var(--font-serif); font-style: normal; font-weight: 400; font-size: clamp(1.7rem, 3.2vw, 2.9rem); line-height: 1.02; }

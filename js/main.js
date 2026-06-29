@@ -2082,7 +2082,7 @@
  );
  if (!mediaItems.length) mediaItems.push({ type: 'image', src: gal[0] });
  const videoMainMarkup = (src, poster) => `<video id="galMainVid" autoplay muted loop playsinline src="${esc(src)}"${poster ? ` poster="${esc(poster)}"` : ''} style="width:100%;height:100%;object-fit:contain;display:block;background:var(--black)"></video>`;
- const imageMainMarkup = (src) => `<img id="galMainImg" src="${esc(src)}" alt="${esc(pageName)} - YZA" fetchpriority="high" width="900" height="1180" decoding="async" data-zoomable>`;
+ const imageMainMarkup = (src, altName) => `<img id="galMainImg" src="${esc(src)}" alt="${esc(altName || pageName)} - YZA" fetchpriority="high" width="900" height="1180" decoding="async" data-zoomable>`;
  $('#galMain').innerHTML = mediaItems[0].type === 'video' ? videoMainMarkup(mediaItems[0].src, mediaItems[0].poster) : imageMainMarkup(mediaItems[0].src);
  $('#galThumbs').innerHTML = mediaItems.map((it, i) => {
  const isVid = it.type === 'video';
@@ -2118,6 +2118,23 @@
  };
  // Gallery position dots only matter with >1 media; single image hides them.
  $('#galThumbs').hidden = mediaItems.length <= 1;
+ // Re-render the gallery for a chosen size/length variant, so picking "Midi" etc.
+ // shows that variant's real product images instead of the first variant's. The
+ // delegated #galMain/#galThumbs click handlers stay wired (they live on the parents).
+ function swapGalleryToVariant(prod, altName) {
+ const g = productGallery(prod);
+ const items = (Array.isArray(prod.media) && prod.media.length)
+ ? prod.media.filter((m) => m && m.src && (m.type === 'video' || isPublicMedia(m.src)))
+ : g.map((src) => ({ type: 'image', src })).concat(prod.lifestyleVideo ? [{ type: 'video', src: prod.lifestyleVideo, poster: g[g.length - 1] }] : []);
+ if (!items.length) items.push({ type: 'image', src: g[0] });
+ $('#galMain').innerHTML = items[0].type === 'video' ? videoMainMarkup(items[0].src, items[0].poster) : imageMainMarkup(items[0].src, altName);
+ $('#galThumbs').innerHTML = items.map((it, i) => {
+ const isVid = it.type === 'video';
+ const thumbSrc = isVid ? (it.poster || g[0] || it.src) : it.src;
+ return `<button class="gallery__thumb${i === 0 ? ' is-active' : ''}${isVid ? ' gallery__thumb--play' : ''}" data-src="${esc(it.src)}" data-poster="${esc(isVid ? (it.poster || '') : '')}" data-gtype="${isVid ? 'video' : 'img'}"${isVid ? ' aria-label="Voir en mouvement"' : ''}><img aria-hidden="true" src="${esc(thumbSrc)}" alt="" loading="lazy" width="76" height="100" decoding="async">${isVid ? '<span class="gallery__play-icon" aria-hidden="true"></span>' : ''}</button>`;
+ }).join('');
+ $('#galThumbs').hidden = items.length <= 1;
+ }
  const galWish = $('#pGalleryWish');
  if (galWish) {
  const wished = wishlistHas(p.handle);
@@ -2235,6 +2252,7 @@
  btn.classList.add('is-active');
  $('#pPrice').innerHTML = productPriceCompact(purchaseProduct);
  { const ap = $('#pAddPrice'); if (ap) ap.innerHTML = productPriceCompact(purchaseProduct); }
+ swapGalleryToVariant(selected, t.pick(displayName(selected)));
  YZA.analytics?.track('product_variant_select', { handle: purchaseProduct.handle, familyHandle: purchaseProduct.familyHandle || '', category: purchaseProduct.category });
  };
  }
