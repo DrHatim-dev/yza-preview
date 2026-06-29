@@ -415,7 +415,8 @@ body.has-search-overlay { overflow: hidden; }
 .product-card__name {
   font-family: var(--font-display); font-weight: 400; text-transform: none;
   font-size: 14px; letter-spacing: 0.4px; line-height: 1.2; color: var(--color-fg);
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  /* Never crop the product name — let it wrap fully (esp. on mobile/tablet). */
+  white-space: normal; overflow: visible; text-overflow: clip; overflow-wrap: break-word;
 }
 .product-card__price { font-family: var(--font-display); font-weight: 400; font-size: 12px; letter-spacing: 0.4px; color: var(--color-fg); white-space: nowrap; }
 /* On a markdown the live (reduced) price turns Jacquemus sale-red; the struck

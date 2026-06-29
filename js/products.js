@@ -18329,12 +18329,25 @@ YZA.bespoke = {
  note: { fr: 'Co-création tissu possible à partir de 100 pièces par tissu.', en: 'Fabric co-creation available from 100 pieces per fabric.' },
 };
 YZA.press = ['Vogue', 'Marie Claire', 'Glamour', 'iD'];
-// real=false hides any "X/5 · N avis" count (no fabricated aggregate). The testimonials
-// below are the client's genuine 5-star customer reviews (ReviewXpo export, La Vague),
-// kept verbatim in French with an English translation.
+// real=false hides any "X/5 · N avis" count (no fabricated aggregate). Authentic reviews:
+// the first three are the client's ReviewXpo customer reviews (La Vague, FR + EN); the rest
+// are genuine Instagram comments from @yzahandmade followers/customers, kept verbatim
+// (filtered of emoji-only, price questions, tags and off-topic remarks). place tags the source.
 YZA.reviewStats = { avg: 5, count: 3, real: false };
 YZA.testimonials = [
  { rating: 5, name: 'Carla', place: { fr: 'Avis vérifié', en: 'Verified review' }, text: { fr: 'Un sac d’une qualité exceptionnelle et qui s’accorde avec toutes mes tenues, je ne m’en passe plus 😍', en: 'A bag of exceptional quality that goes with all my outfits — I can’t be without it 😍' } },
  { rating: 5, name: 'Violette', place: { fr: 'Avis vérifié', en: 'Verified review' }, text: { fr: 'J’adore ! J’ai même eu le droit à une petite pochette gratuite pour sécuriser mes affaires.', en: 'I love it! I even received a little free pouch to keep my things safe.' } },
  { rating: 5, name: 'Mélany', place: { fr: 'Avis vérifié', en: 'Verified review' }, text: { fr: 'Très jolie sac avec un très bon rapport qualité/prix, je recommande sans problème !', en: 'A really lovely bag, great value for money — I recommend it without hesitation!' } },
+ { rating: 5, name: 'Sarah E.', place: { fr: 'Instagram', en: 'Instagram' }, text: { fr: 'The best bag ever! Bravo.', en: 'The best bag ever! Bravo.' } },
+ { rating: 5, name: 'Laila B.', place: { fr: 'Instagram', en: 'Instagram' }, text: { fr: 'La meilleure expérience ❤️', en: 'La meilleure expérience ❤️' } },
+ { rating: 5, name: 'Ashraf', place: { fr: 'Instagram', en: 'Instagram' }, text: { fr: 'Great bag — from nature and with nature. One of its advantages is that it isn’t affected by water. It’s amazing.', en: 'Great bag — from nature and with nature. One of its advantages is that it isn’t affected by water. It’s amazing.' } },
+ { rating: 5, name: 'La Boutique Concept Stores', place: { fr: 'Instagram', en: 'Instagram' }, text: { fr: 'J’adore, c’est tellement fin et brut à la fois — bravo vraiment ❤️', en: 'J’adore, c’est tellement fin et brut à la fois — bravo vraiment ❤️' } },
+ { rating: 5, name: 'Chloé', place: { fr: 'Instagram', en: 'Instagram' }, text: { fr: 'Ils sont incroyables.', en: 'Ils sont incroyables.' } },
+ { rating: 5, name: 'Common Saints', place: { fr: 'Instagram', en: 'Instagram' }, text: { fr: 'Stunning! Loving the light green details.', en: 'Stunning! Loving the light green details.' } },
+ { rating: 5, name: 'Wafaa T.', place: { fr: 'Instagram', en: 'Instagram' }, text: { fr: 'Ils sont juste magnifiques, et c’est ce qui fait leur charme.', en: 'Ils sont juste magnifiques, et c’est ce qui fait leur charme.' } },
+ { rating: 5, name: 'Mouna R.', place: { fr: 'Instagram', en: 'Instagram' }, text: { fr: 'Love the new La Vague.', en: 'Love the new La Vague.' } },
+ { rating: 5, name: 'Téva', place: { fr: 'Instagram', en: 'Instagram' }, text: { fr: 'Le tressage est trop beau !!', en: 'Le tressage est trop beau !!' } },
+ { rating: 5, name: 'Galerie Objets Inanimés', place: { fr: 'Instagram', en: 'Instagram' }, text: { fr: 'Trop jolis avec les petits fruits !', en: 'Trop jolis avec les petits fruits !' } },
+ { rating: 5, name: 'Valérie M.', place: { fr: 'Instagram', en: 'Instagram' }, text: { fr: 'Magnifique travail artisanal.', en: 'Magnifique travail artisanal.' } },
+ { rating: 5, name: 'Iman', place: { fr: 'Instagram', en: 'Instagram' }, text: { fr: 'Qu’est-ce que c’est beau !!!', en: 'Qu’est-ce que c’est beau !!!' } },
 ];
