@@ -36,6 +36,14 @@ ErrorDocument 404 /404.html
   ExpiresByType image/x-icon "access plus 1 year"
 </IfModule>
 
+# Force a short cache on code (mod_expires alone is overridden by the host's
+# 7-day static default). mod_headers "set" takes final precedence.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(js|css)$">
+    Header set Cache-Control "public, max-age=600, must-revalidate"
+  </FilesMatch>
+</IfModule>
+
 # Note: HTTPS is handled at the Hostinger panel level ("Force HTTPS").
 # A redirect rule is intentionally omitted here to avoid a loop if SSL
 # is still provisioning.
