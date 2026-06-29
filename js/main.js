@@ -1032,11 +1032,12 @@
  const t = T();
  const tagline = { fr: 'Tressée main à Marrakech, en feuille de palmier et raphia — jamais deux fois pareille.', en: 'Hand-woven in Marrakech, in palm leaf and raffia — never twice the same.' };
  el.hidden = false;
- el.innerHTML = '<div class="col-bag-hero__inner" data-reveal>'
+ // No data-reveal: this banner sits above the fold, where the scroll-reveal
+ // observer never fires, which would leave it stuck at opacity 0.
+ el.innerHTML = '<div class="col-bag-hero__inner">'
  + '<video class="col-bag-hero__vid" autoplay muted loop playsinline preload="metadata" poster="assets/products/bag-sculpture-red-seated.jpg"><source src="assets/lifestyle/bags/sculpt-sculpture-hd.mp4" type="video/mp4"></video>'
  + '<div class="col-bag-hero__cap"><p class="eyebrow">La Sculpture</p><p class="col-bag-hero__line">' + esc(t.pick(tagline)) + '</p></div>'
  + '</div>';
- if (document.documentElement.classList.contains('js')) requestAnimationFrame(wireReveal);
  }
  function renderCollections() {
  const grid = $('#collectionGrid'); if (!grid) return;
