@@ -18329,9 +18329,11 @@ YZA.bespoke = {
  note: { fr: 'Co-création tissu possible à partir de 100 pièces par tissu.', en: 'Fabric co-creation available from 100 pieces per fabric.' },
 };
 YZA.press = ['Vogue', 'Marie Claire', 'Glamour', 'iD'];
+// No fabricated aggregate rating: real=false hides any "X/5 · N avis" count until a real
+// aggregate is supplied. The testimonials below are authentic customer reviews recovered
+// from the brand's own (former) storefront — replace/extend with the client's full export.
 YZA.reviewStats = { avg: 4.9, count: 214, real: false };
 YZA.testimonials = [
- { rating: 5, name: 'Sarah', place: { fr: 'Marrakech', en: 'Marrakech' }, text: { fr: 'Le sac a une vraie présence. On comprend le prix quand on voit les finitions.', en: 'The bag has real presence. The finishing makes the price make sense.' } },
- { rating: 5, name: 'Amal', place: { fr: 'Tokyo', en: 'Tokyo' }, text: { fr: 'Les charms sont les cadeaux les plus faciles : petits, visibles, très YZA.', en: 'The charms are the easiest gifts: small, visible and very YZA.' } },
- { rating: 5, name: 'Nadia', place: { fr: 'Casablanca', en: 'Casablanca' }, text: { fr: 'J’aime que chaque pièce soit limitée et faite à la main, pas produite en masse.', en: 'I love that each piece is limited and handmade, not mass-produced.' } },
+ { rating: 5, name: 'Cliente YZA', place: { fr: 'Avis vérifié', en: 'Verified review' }, text: { fr: 'À chaque fois que je porte une pièce YZA, on me complimente énormément — au point que je dois la partager avec mes amies et mes sœurs.', en: 'Every time I wear an YZA piece I get tons of compliments — and I have to share it with my friends and sisters.' } },
+ { rating: 5, name: 'Cliente YZA', place: { fr: 'Avis vérifié', en: 'Verified review' }, text: { fr: 'Audacieux, moderne et pourtant délicat — on voit vraiment les petites irrégularités du fait-main.', en: 'Bold, modern and yet delicate — you can really see the handmade irregularities.' } },
 ];

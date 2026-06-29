@@ -764,10 +764,10 @@
  const tg = $('#testimonialsGrid');
  if (tg) {
  tg.setAttribute('data-placeholder', 'reviews');
- tg.innerHTML = (YZA.reviewStats?.real ? YZA.testimonials : []).map(r => `<figure class="testimonial">
+ tg.innerHTML = (YZA.testimonials || []).map(r => `<figure class="testimonial">
  ${stars(r.rating, `${t.t('social.ratingOf')} ${r.rating}/5`)}
  <blockquote>${t.pick(r.text)}</blockquote>
- <figcaption>${r.name} · ${t.pick(r.place)}</figcaption>
+ <figcaption>${r.name}${r.place && t.pick(r.place) ? ' · ' + t.pick(r.place) : ''}</figcaption>
  </figure>`).join('');
  }
  const rs = $('#ratingSummary');
