@@ -18329,11 +18329,12 @@ YZA.bespoke = {
  note: { fr: 'Co-création tissu possible à partir de 100 pièces par tissu.', en: 'Fabric co-creation available from 100 pieces per fabric.' },
 };
 YZA.press = ['Vogue', 'Marie Claire', 'Glamour', 'iD'];
-// No fabricated aggregate rating: real=false hides any "X/5 · N avis" count until a real
-// aggregate is supplied. The testimonials below are authentic customer reviews recovered
-// from the brand's own (former) storefront — replace/extend with the client's full export.
-YZA.reviewStats = { avg: 4.9, count: 214, real: false };
+// real=false hides any "X/5 · N avis" count (no fabricated aggregate). The testimonials
+// below are the client's genuine 5-star customer reviews (ReviewXpo export, La Vague),
+// kept verbatim in French with an English translation.
+YZA.reviewStats = { avg: 5, count: 3, real: false };
 YZA.testimonials = [
- { rating: 5, name: 'Cliente YZA', place: { fr: 'Avis vérifié', en: 'Verified review' }, text: { fr: 'À chaque fois que je porte une pièce YZA, on me complimente énormément — au point que je dois la partager avec mes amies et mes sœurs.', en: 'Every time I wear an YZA piece I get tons of compliments — and I have to share it with my friends and sisters.' } },
- { rating: 5, name: 'Cliente YZA', place: { fr: 'Avis vérifié', en: 'Verified review' }, text: { fr: 'Audacieux, moderne et pourtant délicat — on voit vraiment les petites irrégularités du fait-main.', en: 'Bold, modern and yet delicate — you can really see the handmade irregularities.' } },
+ { rating: 5, name: 'Carla', place: { fr: 'Avis vérifié', en: 'Verified review' }, text: { fr: 'Un sac d’une qualité exceptionnelle et qui s’accorde avec toutes mes tenues, je ne m’en passe plus 😍', en: 'A bag of exceptional quality that goes with all my outfits — I can’t be without it 😍' } },
+ { rating: 5, name: 'Violette', place: { fr: 'Avis vérifié', en: 'Verified review' }, text: { fr: 'J’adore ! J’ai même eu le droit à une petite pochette gratuite pour sécuriser mes affaires.', en: 'I love it! I even received a little free pouch to keep my things safe.' } },
+ { rating: 5, name: 'Mélany', place: { fr: 'Avis vérifié', en: 'Verified review' }, text: { fr: 'Très jolie sac avec un très bon rapport qualité/prix, je recommande sans problème !', en: 'A really lovely bag, great value for money — I recommend it without hesitation!' } },
 ];
