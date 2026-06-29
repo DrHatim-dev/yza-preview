@@ -29,8 +29,10 @@ ErrorDocument 404 /404.html
   ExpiresByType image/webp   "access plus 1 month"
   ExpiresByType image/svg+xml "access plus 1 month"
   ExpiresByType video/mp4    "access plus 1 month"
-  ExpiresByType text/css     "access plus 7 days"
-  ExpiresByType application/javascript "access plus 7 days"
+  # Short TTL on code so site updates go live in minutes, not a week
+  # (assets carry a ?v= version query that is bumped when they change).
+  ExpiresByType text/css     "access plus 10 minutes"
+  ExpiresByType application/javascript "access plus 10 minutes"
   ExpiresByType image/x-icon "access plus 1 year"
 </IfModule>
 
