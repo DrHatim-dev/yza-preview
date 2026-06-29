@@ -526,7 +526,7 @@ dans votre boutique.</span><span data-lang="en" hidden>Guéliz,<br>in your bouti
  var w = document.getElementById('b2bWhats');
  if (w) w.addEventListener('click', function () { if (!validateBuyer()) return; var phone = ((YZA.brand && YZA.brand.whatsapp) || '').replace(/\D/g, ''); YZA.analytics?.track('b2b_quote_whatsapp', { count: total() }); window.open('https://wa.me/' + phone + '?text=' + encodeURIComponent(buildMessage()), '_blank', 'noopener'); });
  var em = document.getElementById('b2bEmail');
- if (em) em.addEventListener('click', function () { if (!validateBuyer()) return; YZA.analytics?.track('b2b_quote_email', { count: total() }); window.location.href = 'mailto:contact@yza-shop.com?subject=' + encodeURIComponent('Demande de devis B2B - YZA') + '&body=' + encodeURIComponent(buildMessage()); });
+ if (em) em.addEventListener('click', function () { if (!validateBuyer()) return; YZA.analytics?.track('b2b_quote_email', { count: total() }); window.location.href = 'mailto:b2b@yza-shop.com?subject=' + encodeURIComponent('Demande de devis B2B - YZA') + '&body=' + encodeURIComponent(buildMessage()); });
 
  var salonBtn = document.getElementById('b2bSalonBtn');
  if (salonBtn) salonBtn.addEventListener('click', function () {

@@ -1,0 +1,27 @@
+# YZA — static site (yza-shop.com)
+Options -Indexes
+DirectoryIndex index.html index.htm
+
+ErrorDocument 404 /404.html
+
+# Gzip
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/plain text/xml application/javascript application/json image/svg+xml
+</IfModule>
+
+# Cache static assets
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg   "access plus 1 month"
+  ExpiresByType image/png    "access plus 1 month"
+  ExpiresByType image/webp   "access plus 1 month"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType video/mp4    "access plus 1 month"
+  ExpiresByType text/css     "access plus 7 days"
+  ExpiresByType application/javascript "access plus 7 days"
+  ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>
+
+# Note: HTTPS is handled at the Hostinger panel level ("Force HTTPS").
+# A redirect rule is intentionally omitted here to avoid a loop if SSL
+# is still provisioning.
