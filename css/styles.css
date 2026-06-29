@@ -761,6 +761,7 @@ body.has-search-overlay { overflow: hidden; }
 /* "YZA Fruit Market" — its own typo: branded uppercase market label, not the italic-serif eyebrow */
 .charm-styling__head .eyebrow { font-family: var(--font-display); font-style: normal; text-transform: uppercase; letter-spacing: 0.26em; font-size: 0.74rem; font-weight: 500; }
 .charm-styling__text { color: var(--color-muted); max-width: 56ch; }
+.charm-styling__tag { font-family: var(--font-serif); font-style: italic; color: var(--accent); margin-top: var(--space-2); }
 .charm-styling__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-8) var(--space-6); }
 .charm-styling__item { position: relative; overflow: hidden; background: var(--color-surface-2); display: grid; gap: var(--space-3); }
 .charm-styling__item img, .charm-styling__item video { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; transition: transform 0.9s var(--ease-out); }
@@ -1715,7 +1716,7 @@ body.has-search-overlay { overflow: hidden; }
 /* Tifinagh decorative sign - replaces botanical illustrations */
 .product-tifinagh { display: block; font-size: 2.8rem; color: var(--terracotta); line-height: 1; margin-bottom: var(--space-4); opacity: 0.55; letter-spacing: 0; }
 .accordion__panel-inner { padding-bottom: var(--space-5); color: var(--color-muted); max-width: 54ch; }
-.charm-wear { display: grid; gap: var(--space-3); }
+.charm-wear { display: grid; gap: var(--space-4); line-height: 1.65; }
 .charm-wear h3 {
  font-family: var(--font-body);
  font-size: var(--fs-base);
@@ -1735,6 +1736,9 @@ body.has-search-overlay { overflow: hidden; }
  border-top: 1px solid var(--color-border);
  padding-top: var(--space-3);
  color: var(--color-muted);
+ display: grid;
+ gap: 0.6rem;
+ line-height: 1.55;
 }
 
 .product-support {

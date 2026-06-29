@@ -986,6 +986,7 @@
  <p class="eyebrow">${esc(t.t('charm.style.eyebrow'))}</p>
  <h2>${esc(t.t('charm.style.title'))}</h2>
  <p class="charm-styling__text">${esc(t.t('charm.style.text'))}</p>
+ <p class="charm-styling__tag">${esc(t.t('charm.style.tag'))}</p>
  </div>
  <div class="charm-styling__grid">
  ${shots.map((s, i) => i === 0 ? `<figure class="charm-styling__item charm-styling__item--first" data-reveal style="--i:0">
@@ -2267,7 +2268,7 @@
  <ul>${wearItems.map((item) => `<li>${esc(t.pick(item))}</li>`).join('')}</ul>
  <p><strong>${buyingProofCopy().styleTip} :</strong> ${esc(t.pick(wear.styleTip))}</p>
  <p><strong>${buyingProofCopy().note} :</strong> ${esc(t.pick(wear.note))}</p>
- ${detailRows.length ? `<div class="charm-wear__specs">${detailRows.join('<br>')}</div>` : ''}
+ ${detailRows.length ? `<div class="charm-wear__specs">${detailRows.map((r) => `<span>${r}</span>`).join('')}</div>` : ''}
  </div>`;
  } else {
  $('#accDetails').innerHTML = `${esc(t.pick(p.desc))}${detailRows.length ? `<br><br>${detailRows.join('<br>')}` : ''}`;

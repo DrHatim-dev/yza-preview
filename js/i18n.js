@@ -61,6 +61,7 @@ const STR = {
   'charm.style.cap2': { fr: 'Crochetés un à un à Guéliz', en: 'Crocheted one by one in Guéliz' },
   'charm.style.cap3': { fr: 'Un petit étal à emporter', en: 'A little stall to take along' },
   'charm.style.videoCap': { fr: 'L’orange, qui se balance', en: 'The orange, swinging' },
+  'charm.style.tag': { fr: 'Faits main en matières naturelles', en: 'Handmade in natural materials' },
   'print.eyebrow': { fr: 'L’art du raphia', en: 'The art of raffia' },
   'print.title': { fr: 'Le Marché aux Fruits', en: 'The Fruit Market' },
   'print.body': { fr: 'Pas d’imprimé, pas de machine : chaque fruit est crocheté à la main, un fil de raphia à la fois. Notre façon d’emporter le marché de Marrakech au creux de la main.', en: 'No print, no machine: every fruit is crocheted by hand, one strand of raffia at a time. Our way of carrying the Marrakech market in the palm of your hand.', es: 'Sin estampado, sin máquina: cada fruta se teje a mano, un hilo de rafia a la vez. Nuestra forma de llevar el mercado de Marrakech en la palma.', tr: 'Baskı yok, makine yok: her meyve elle, tek tek rafya ipliğiyle örülür. Marakeş pazarını avucunuza taşıma şeklimiz.', ar: 'لا طباعة ولا آلة: كل ثمرة تُحاك يدويًا، خيط رافيا تلو الآخر. طريقتنا في حمل سوق مراكش في راحة يدك.' },
