@@ -1032,6 +1032,11 @@
  const t = T();
  const tagline = { fr: 'Tressée main à Marrakech, en feuille de palmier et raphia — jamais deux fois pareille.', en: 'Hand-woven in Marrakech, in palm leaf and raffia — never twice the same.' };
  el.hidden = false;
+ // If the banner is already built (e.g. a language toggle re-renders the page),
+ // only relocalize the tagline — never rebuild the <video>, which would restart
+ // playback from frame 0 and re-fetch the clip on every FR/EN switch.
+ const existingLine = el.querySelector('.col-bag-hero__line');
+ if (existingLine) { existingLine.textContent = t.pick(tagline); return; }
  // No data-reveal: this banner sits above the fold, where the scroll-reveal
  // observer never fires, which would leave it stuck at opacity 0.
  el.innerHTML = '<div class="col-bag-hero__inner">'
@@ -2100,6 +2105,9 @@
  if (!mediaItems.length) mediaItems.push({ type: 'image', src: gal[0] });
  const videoMainMarkup = (src, poster) => `<video id="galMainVid" autoplay muted loop playsinline src="${esc(src)}"${poster ? ` poster="${esc(poster)}"` : ''} style="width:100%;height:100%;object-fit:contain;display:block;background:var(--black)"></video>`;
  const imageMainMarkup = (src, altName) => `<img id="galMainImg" src="${esc(src)}" alt="${esc(altName || pageName)} - YZA" fetchpriority="high" width="900" height="1180" decoding="async" data-zoomable>`;
+ // Tracks the name for the image currently in the gallery; updated on variant swap so
+ // zoom + thumb-rebuild label the SELECTED variant, not the base product.
+ let currentGalleryAlt = pageName;
  $('#galMain').innerHTML = mediaItems[0].type === 'video' ? videoMainMarkup(mediaItems[0].src, mediaItems[0].poster) : imageMainMarkup(mediaItems[0].src);
  $('#galThumbs').innerHTML = mediaItems.map((it, i) => {
  const isVid = it.type === 'video';
@@ -2115,7 +2123,7 @@
  } else {
  let mainImg = $('#galMainImg');
  if (!mainImg) {
- $('#galMain').innerHTML = imageMainMarkup(b.dataset.src);
+ $('#galMain').innerHTML = imageMainMarkup(b.dataset.src, currentGalleryAlt);
  } else {
  if (mainImg.getAttribute('src') === b.dataset.src) return;
  mainImg.classList.add('is-swapping');
@@ -2131,7 +2139,7 @@
  const galMainEl = $('#galMain');
  if (galMainEl) galMainEl.onclick = (e) => {
  const zi = e.target.closest('#galMainImg[data-zoomable]');
- if (zi) openGalleryZoom(zi.getAttribute('src'), pageName);
+ if (zi) openGalleryZoom(zi.getAttribute('src'), currentGalleryAlt);
  };
  // Gallery position dots only matter with >1 media; single image hides them.
  $('#galThumbs').hidden = mediaItems.length <= 1;
@@ -2139,6 +2147,7 @@
  // shows that variant's real product images instead of the first variant's. The
  // delegated #galMain/#galThumbs click handlers stay wired (they live on the parents).
  function swapGalleryToVariant(prod, altName) {
+ currentGalleryAlt = altName || pageName;
  const g = productGallery(prod);
  const items = (Array.isArray(prod.media) && prod.media.length)
  ? prod.media.filter((m) => m && m.src && (m.type === 'video' || isPublicMedia(m.src)))
