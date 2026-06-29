@@ -2116,9 +2116,31 @@
  // Click the main image to open the full-screen zoom (images only, not videos).
  const galMainEl = $('#galMain');
  if (galMainEl) galMainEl.onclick = (e) => {
+ if (galMainEl.dataset.didSwipe) return; // a swipe just happened - don't open zoom
  const zi = e.target.closest('#galMainImg[data-zoomable]');
  if (zi) openGalleryZoom(zi.getAttribute('src'), currentGalleryAlt);
  };
+ // Horizontal swipe (mobile) / drag (desktop) moves through the gallery left & right.
+ // Vertical gestures still scroll the page (touch-action: pan-y on .gallery__main).
+ if (galMainEl && !galMainEl.dataset.swipeWired) {
+ galMainEl.dataset.swipeWired = '1';
+ const galNav = (dir) => {
+ const thumbs = $$('#galThumbs .gallery__thumb');
+ if (thumbs.length < 2) return;
+ let idx = thumbs.findIndex((t) => t.classList.contains('is-active'));
+ if (idx < 0) idx = 0;
+ thumbs[(idx + dir + thumbs.length) % thumbs.length].click();
+ };
+ const markSwipe = () => { galMainEl.dataset.didSwipe = '1'; setTimeout(() => { delete galMainEl.dataset.didSwipe; }, 60); };
+ let sx = 0, sy = 0, active = false;
+ galMainEl.addEventListener('touchstart', (e) => { const t = e.touches[0]; sx = t.clientX; sy = t.clientY; active = true; }, { passive: true });
+ galMainEl.addEventListener('touchend', (e) => { if (!active) return; active = false; const t = e.changedTouches[0]; const dx = t.clientX - sx, dy = t.clientY - sy; if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { markSwipe(); galNav(dx < 0 ? 1 : -1); } }, { passive: true });
+ galMainEl.addEventListener('dragstart', (e) => e.preventDefault());
+ let mdown = false, mx = 0, my = 0, mmoved = false;
+ galMainEl.addEventListener('mousedown', (e) => { mdown = true; mx = e.clientX; my = e.clientY; mmoved = false; });
+ window.addEventListener('mousemove', (e) => { if (mdown && Math.abs(e.clientX - mx) > 6) mmoved = true; });
+ window.addEventListener('mouseup', (e) => { if (!mdown) return; mdown = false; const dx = e.clientX - mx, dy = e.clientY - my; if (mmoved && Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { markSwipe(); galNav(dx < 0 ? 1 : -1); } });
+ }
  // Gallery position dots only matter with >1 media; single image hides them.
  $('#galThumbs').hidden = mediaItems.length <= 1;
  // Re-render the gallery for a chosen size/length variant, so picking "Midi" etc.
