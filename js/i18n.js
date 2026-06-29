@@ -111,6 +111,7 @@ const STR = {
   'social.title':    { fr: 'De Marrakech à Tokyo', en: 'From Marrakech to Tokyo' },
   'social.rating':   { fr: 'Ce que les YZA girls disent', en: 'What the YZA girls say' },
   'social.ratingOf': { fr: 'Note', en: 'Rating' },
+  'social.more':     { fr: 'Voir plus d’avis', en: 'Show more reviews', es: 'Ver más opiniones', tr: 'Daha fazla yorum', ar: 'المزيد من الآراء' },
   'home.faq.eyebrow': { fr: 'Bon à savoir', en: 'Good to know', es: 'Bueno saber', tr: 'Bilmekte fayda var', ar: 'معلومات مفيدة' },
   'home.faq.title':   { fr: 'Questions fréquentes', en: 'Frequent questions', es: 'Preguntas frecuentes', tr: 'Sık sorulan sorular', ar: 'الأسئلة الشائعة' },
   'home.faq.all':     { fr: 'Toutes les questions →', en: 'All questions →', es: 'Todas las preguntas →', tr: 'Tüm sorular →', ar: 'كل الأسئلة →' },

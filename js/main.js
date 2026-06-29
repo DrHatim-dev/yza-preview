@@ -764,11 +764,40 @@
  const tg = $('#testimonialsGrid');
  if (tg) {
  tg.setAttribute('data-placeholder', 'reviews');
- tg.innerHTML = (YZA.testimonials || []).map(r => `<figure class="testimonial">
+ const allReviews = YZA.testimonials || [];
+ const REV_PAGE = 10;
+ const reviewCard = (r) => `<figure class="testimonial">
  ${stars(r.rating, `${t.t('social.ratingOf')} ${r.rating}/5`)}
  <blockquote>${t.pick(r.text)}</blockquote>
  <figcaption>${r.name}${r.place && t.pick(r.place) ? ' · ' + t.pick(r.place) : ''}</figcaption>
- </figure>`).join('');
+ </figure>`;
+ // Rotating window: each "show more" swaps in the next REV_PAGE reviews and the
+ // previous ones disappear, wrapping around so the set keeps cycling.
+ const drawReviews = (off) => {
+ const out = [];
+ const n = Math.min(REV_PAGE, allReviews.length);
+ for (let k = 0; k < n; k++) out.push(reviewCard(allReviews[(off + k) % allReviews.length]));
+ tg.innerHTML = out.join('');
+ };
+ let revOff = 0;
+ drawReviews(0);
+ const moreBtn = $('#reviewsMore');
+ if (moreBtn) {
+ if (allReviews.length > REV_PAGE) {
+ moreBtn.hidden = false;
+ moreBtn.onclick = () => {
+ revOff = (revOff + REV_PAGE) % allReviews.length;
+ tg.classList.add('is-rotating');
+ setTimeout(() => {
+ drawReviews(revOff);
+ tg.classList.remove('is-rotating');
+ tg.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+ }, 200);
+ };
+ } else {
+ moreBtn.hidden = true;
+ }
+ }
  }
  const rs = $('#ratingSummary');
  if (rs) {

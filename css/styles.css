@@ -2121,6 +2121,13 @@ body.has-search-overlay { overflow: hidden; }
 .rating-summary { margin-top: var(--space-4); display: flex; gap: var(--space-2); align-items: center; justify-content: center; font-size: var(--fs-sm); color: var(--color-muted); }
 .rating-summary .stars { font-size: var(--fs-md); }
 .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-6); }
+/* Rotating reviews: fade the grid out/in as "show more" swaps the visible set. */
+#testimonialsGrid { transition: opacity .2s ease; }
+#testimonialsGrid.is-rotating { opacity: 0; }
+.reviews-more-wrap { margin-top: var(--space-7); display: flex; justify-content: center; }
+.reviews-more { font-family: var(--font-display); font-size: var(--fs-sm); letter-spacing: .12em; text-transform: uppercase; color: var(--color-ink, #1f1f1f); background: transparent; border: 1px solid var(--color-border); border-radius: 999px; padding: .8rem 2rem; cursor: pointer; transition: background var(--transition), color var(--transition), border-color var(--transition); }
+.reviews-more:hover { background: var(--color-ink, #1f1f1f); color: #fff; border-color: var(--color-ink, #1f1f1f); }
+.reviews-more[hidden] { display: none; }
 .testimonial { background: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--radius); padding: var(--space-8); display: grid; gap: var(--space-4); }
 .testimonial .stars { font-size: var(--fs-sm); }
 .testimonial blockquote { font-family: var(--font-display); font-size: var(--fs-md); line-height: 1.45; }
