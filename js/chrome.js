@@ -4,6 +4,26 @@
  ============================================================ */
 window.YZA = window.YZA || {};
 
+/* Self-heal: the previous site on this domain (a WordPress/page-builder placeholder)
+   may have registered a service worker that keeps serving its old cached "trans-*"
+   shell from the visitor's browser, ignoring what the server now returns. The moment
+   the real YZA site loads, tear down any leftover worker + offline caches so the
+   stale page can never come back. Harmless when there's nothing to clean. */
+(function killStaleServiceWorker() {
+  try {
+    if ('serviceWorker' in navigator && navigator.serviceWorker.getRegistrations) {
+      navigator.serviceWorker.getRegistrations()
+        .then(function (regs) { regs.forEach(function (r) { r.unregister(); }); })
+        .catch(function () {});
+    }
+    if (window.caches && caches.keys) {
+      caches.keys()
+        .then(function (keys) { keys.forEach(function (k) { caches.delete(k); }); })
+        .catch(function () {});
+    }
+  } catch (e) {}
+})();
+
 const WORDMARK = '<img class="logo__img" src="assets/brand/yza-logo-real.webp" alt="YZA" width="2930" height="865" decoding="async">';
 const FOOTER_CHEV = '<svg class="footer__col-chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.6 6 6.4 11 1.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const LANG_CODES = ['fr', 'en', 'es', 'tr', 'ar'];
