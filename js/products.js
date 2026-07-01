@@ -147,9 +147,9 @@ YZA.brand = {
  instagram: 'yzahandmade',
  instagramUrl: 'https://instagram.com/yzahandmade',
  city: 'Marrakech',
- address: '80 rue Yougoslavie, Guéliz, Marrakech, Maroc',
- addressShort: '80 rue Yougoslavie, Guéliz',
- mapsQuery: 'YZA Studio, 80 rue Yougoslavie, Guéliz, Marrakech, Maroc',
+ address: '66 rue Yougoslavie, Guéliz, Marrakech, Maroc',
+ addressShort: '66 rue Yougoslavie, Guéliz',
+ mapsQuery: 'YZA Studio, 66 rue Yougoslavie, Guéliz, Marrakech, Maroc',
  hours: { fr: 'Lundi : 12 h - 16 h\nMardi : fermé\nMercredi - dimanche : 12 h - 20 h', en: 'Monday: 12 - 4pm\nTuesday: closed\nWednesday - Sunday: 12 - 8pm' },
  pickup: { fr: 'Retrait au studio à Guéliz, sur confirmation.', en: 'Studio pickup in Guéliz, on confirmation.' },
  masterIdea: 'Modern Marrakech wear™',
@@ -18985,7 +18985,7 @@ YZA.bespoke = {
  minFabricPieces: 100,
  note: { fr: 'Co-création tissu possible à partir de 100 pièces par tissu.', en: 'Fabric co-creation available from 100 pieces per fabric.' },
 };
-YZA.press = ['Vogue', 'Marie Claire', 'Glamour', 'iD'];
+YZA.press = ['Vogue', 'Grazia'];
 // real=false hides any "X/5 · N avis" count (no fabricated aggregate). Authentic reviews:
 // the first three are the client's ReviewXpo customer reviews (La Vague, FR + EN); the rest
 // are genuine Instagram comments from @yzahandmade followers/customers, kept verbatim
