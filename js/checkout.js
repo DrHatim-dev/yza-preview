@@ -184,13 +184,14 @@
         { id: 'cod', name: T('co.pay.cod'), txt: T('co.pay.codTxt'), logo: 'assets/brand/payment/cod.svg' },
         { id: 'rib', name: T('co.pay.rib'), txt: T('co.pay.ribTxt'), logo: 'assets/brand/payment/bank.svg' },
         { id: 'iban', name: T('co.pay.iban'), txt: T('co.pay.ibanTxt'), logo: 'assets/brand/payment/bank.svg' },
-        { id: 'paypal', name: T('co.pay.paypal'), txt: T('co.pay.paypalTxt'), logo: 'assets/brand/payment/paypal.svg' },
+        { id: 'paypal', name: T('co.pay.paypal'), txt: T('co.pay.paypalTxt'), logos: ['assets/brand/payment/paypal.svg', 'assets/brand/payment/visa.svg', 'assets/brand/payment/mastercard.svg', 'assets/brand/payment/amex.svg'] },
       ];
       var opts = methods.map(function (m) {
         var on = state.method === m.id;
+        var logos = (m.logos || [m.logo]).map(function (src) { return '<img src="' + esc(src) + '" alt="" height="20">'; }).join('');
         return '<label class="pay-option' + (on ? ' is-selected' : '') + '">' +
           '<input type="radio" name="pay" value="' + m.id + '"' + (on ? ' checked' : '') + '>' +
-          '<span class="pay-option__logo"><img src="' + esc(m.logo) + '" alt="" height="20"></span>' +
+          '<span class="pay-option__logo">' + logos + '</span>' +
           '<span class="pay-option__body"><span class="pay-option__name">' + esc(m.name) + '</span><span class="pay-option__txt">' + esc(m.txt) + '</span></span>' +
           '</label>' + (on ? payDetails(m.id) : '');
       }).join('');

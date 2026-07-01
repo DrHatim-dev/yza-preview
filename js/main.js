@@ -2088,6 +2088,8 @@
       if ('IntersectionObserver' in window && mainAdd) {
         const io = new IntersectionObserver(([entry]) => {
           mobileBar.hidden = entry.isIntersecting || window.innerWidth > 860;
+          // Lets CSS lift the floating chat/store widgets above the bar (no overlap).
+          document.body.classList.toggle('has-product-bar', !mobileBar.hidden);
         }, { threshold: 0.08 });
         io.observe(mainAdd);
       }

@@ -403,8 +403,9 @@ body.has-search-overlay { overflow: hidden; }
 .pay-option:hover { border-color: var(--color-border-strong); }
 .pay-option.is-selected { border-color: var(--color-fg); }
 .pay-option input { accent-color: var(--color-fg); width: 16px; height: 16px; }
-.pay-option__logo { display: grid; place-items: center; min-width: 40px; }
+.pay-option__logo { display: flex; align-items: center; justify-content: flex-start; gap: 5px; min-width: 40px; flex-wrap: wrap; max-width: 96px; }
 .pay-option__logo img { max-height: 22px; width: auto; }
+.cart-acc__note { margin-top: var(--space-1); font-size: var(--fs-xs); color: var(--color-muted); line-height: 1.55; }
 .pay-option__name { display: block; font-size: var(--fs-sm); }
 .pay-option__txt { display: block; font-size: var(--fs-xs); color: var(--color-muted); margin-top: 2px; }
 .pay-details { border: 1px solid var(--color-border); border-top: 0; padding: var(--space-5); background: var(--paper-card); display: grid; gap: var(--space-3); }
@@ -2438,7 +2439,7 @@ body.has-search-overlay { overflow: hidden; }
  position: fixed; left: clamp(12px, 2vw, 28px); bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 75;
  display: grid; justify-items: start; gap: 0.32rem;
  animation: store-widget-in 0.72s var(--ease-out) 0.35s both;
- transition: opacity var(--transition-fast), visibility var(--transition-fast), transform var(--transition-fast);
+ transition: opacity var(--transition-fast), visibility var(--transition-fast), transform var(--transition-fast), bottom var(--transition-fast);
 }
 body.is-footer-visible .store-widget {
  opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(10px);
@@ -2488,7 +2489,7 @@ body.is-footer-visible .store-widget {
  position: fixed; right: clamp(14px, 2vw, 28px); bottom: calc(18px + env(safe-area-inset-bottom)); z-index: 86;
  width: 48px; height: 48px; display: inline-flex; align-items: center; justify-content: center;
  border-radius: 999px; border: 1px solid var(--black); background: var(--black); color: var(--white);
- box-shadow: 0 12px 28px rgba(0,0,0,0.18); transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast);
+ box-shadow: 0 12px 28px rgba(0,0,0,0.18); transition: transform var(--transition-fast), background var(--transition-fast), color var(--transition-fast), bottom var(--transition-fast);
 }
 .lead-chat-fab:hover { transform: translateY(-2px); background: var(--white); color: var(--black); }
 .lead-chat-fab svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; }
@@ -4403,3 +4404,13 @@ body[data-page="product"] .size-rail__name,
 body[data-page="product"] label { font-size: 0.875rem; line-height: 1.05; letter-spacing: 0.56px; font-weight: 400; }
 body[data-page="product"] .product-info__price,
 body[data-page="product"] .product-add-main__label { letter-spacing: 0.56px; font-weight: 400; }
+
+/* ─── Floating widgets vs sticky buy bar (kept LAST in the file) ───
+   While the product page's sticky ADD-TO-CART bar is visible
+   (body.has-product-bar, toggled by the same IntersectionObserver that
+   shows the bar in main.js), lift the chat bubble + store pill above it
+   so they can never cover the button. !important on purpose: these
+   floats must always yield to the primary CTA, at every breakpoint. */
+body.has-product-bar .lead-chat-fab { bottom: calc(88px + env(safe-area-inset-bottom)) !important; }
+body.has-product-bar .lead-chat { bottom: calc(148px + env(safe-area-inset-bottom)) !important; }
+body.has-product-bar .store-widget { bottom: calc(88px + env(safe-area-inset-bottom)) !important; }
