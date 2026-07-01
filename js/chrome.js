@@ -384,7 +384,7 @@ YZA.chrome = {
  <header class="header" id="header">
  <div class="container-wide header__inner">
  <div class="header__left">
- <a class="logo logo--wordmark" href="index.html" aria-label="YZA - ${t.t('breadcrumb.home')}">${WORDMARK}</a>
+ <a class="logo logo--wordmark" href="/" aria-label="YZA - ${t.t('breadcrumb.home')}">${WORDMARK}</a>
  </div>
  <nav class="nav" aria-label="Navigation">${navMega(active)}</nav>
  <div class="header__actions">
@@ -429,7 +429,7 @@ YZA.chrome = {
  <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="${t.t('a.search')}">
  <div class="search-mega">
  <div class="search-mega__top">
- <a class="logo logo--wordmark" href="index.html" aria-label="YZA">${WORDMARK}</a>
+ <a class="logo logo--wordmark" href="/" aria-label="YZA">${WORDMARK}</a>
  <form class="search-box" id="searchForm">
  <input type="search" id="searchInput" name="q" autocomplete="off" placeholder="${sc.placeholder}" aria-label="${sc.title}">
  <button type="submit" class="icon-btn" aria-label="${sc.title}">${ICON.search}</button>
@@ -553,7 +553,7 @@ YZA.chrome = {
  </div>
  <div class="footer__meta">
  <div class="footer__meta__copy">© <span id="year"></span> YZA / <span data-i18n="footer.rights">${t.t('footer.rights')}</span></div>
- <a class="footer__wordmark footer__meta__logo" href="index.html" aria-label="YZA – Back to top" role="button" tabindex="0">${WORDMARK}</a>
+ <a class="footer__wordmark footer__meta__logo" href="/" aria-label="YZA – Back to top" role="button" tabindex="0">${WORDMARK}</a>
  <div class="footer__meta__country">${fc.country} · ${fc.lang} / <a href="mentions-legales" data-i18n="footer.legal">${t.t('footer.legal')}</a></div>
  </div>
  </div>`;

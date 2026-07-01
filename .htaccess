@@ -5,6 +5,12 @@ DirectoryIndex index.html index.htm
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
+  # ---- Canonical: strip a bare "index.html" from the visible URL (old
+  # internal links, bookmarks, shared links) so it never outranks "/" ----
+  RewriteRule ^index\.html$                              /                          [R=301,L]
+  RewriteRule ^blogs/journal/index\.html$                 /journal                   [R=301,L]
+  RewriteRule ^blogs/journal/([a-zA-Z0-9-]+)/index\.html$ /blogs/journal/$1/         [R=301,L]
+
   # ---- Clean URLs: category pages (extensionless, query-string driven) ----
   RewriteRule ^collections/charms/?$             collections.html?cat=charms [QSA,L]
   RewriteRule ^collections/sacs/?$                collections.html?cat=bags [QSA,L]
