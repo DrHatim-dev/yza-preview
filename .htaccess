@@ -31,6 +31,11 @@ DirectoryIndex index.html index.htm
   RewriteRule ^mentions-legales/?$  legal.html [L]
   RewriteRule ^journal/?$           blogs/journal/ [L]
 
+  # ---- WordPress back-office lives in /wp (orders inbox for the WooCommerce
+  # app). People type /wp-admin by habit — send them to the real login. ----
+  RewriteRule ^wp-admin(/.*)?$   /wp/wp-admin/ [R=301,L]
+  RewriteRule ^wp-login\.php$    /wp/wp-login.php [R=301,L]
+
   # ---- Clean URLs: generic — /{name} serves {name}.html when that file exists.
   # Covers /collections, /lookbook, /studio, /histoire, /yza-girls, /contact, /faq
   # without a rule per page. /dashboard is excluded on purpose (stays .html-only).
