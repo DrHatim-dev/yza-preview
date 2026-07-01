@@ -72,6 +72,15 @@ ErrorDocument 404 /404.html
   <FilesMatch "\.(js|css)$">
     Header set Cache-Control "public, max-age=600, must-revalidate"
   </FilesMatch>
+  # HTML must never be cached at the server/CDN layer (LiteSpeed's own LSCache,
+  # separate from the hcdn edge, was found serving a stale pre-migration
+  # WordPress snapshot of "/" to some browsers weeks after the WP install was
+  # removed — X-LiteSpeed-Cache-Control is the documented way to opt an
+  # .htaccess-only site out of LSCache without the WP plugin present).
+  <FilesMatch "\.(html|htm)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+    Header set X-LiteSpeed-Cache-Control "no-cache"
+  </FilesMatch>
 </IfModule>
 
 # Note: HTTPS is handled at the Hostinger panel level ("Force HTTPS").
