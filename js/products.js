@@ -15985,94 +15985,148 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  {
  "handle": "yza-scarf-top-jawhara-ss26",
  "short": {
- "fr": "Un foulard qui devient haut, noué à même la peau. Tu décides du serrage.",
- "en": "A scarf that becomes a top, knotted against the skin. You set the hold."
+  "fr": "Un foulard qui devient haut, noué dans le dos. Dos nu, et toi qui décides du serrage.",
+  "en": "A scarf that becomes a top, tied at the back. Bare back, and you set the hold.",
+  "es": "Un pañuelo que se vuelve top, anudado en la espalda. Espalda al aire, y tú decides el ajuste.",
+  "tr": "Eşarptan doğan bir üst, sırtta bağlanır. Açık sırt, sıkılığına sen karar verirsin.",
+  "ar": "وشاح يتحوّل إلى بلوزة، يُعقد عند الظهر. ظهر مكشوف، وأنتِ من تحدّد شدّ العقدة."
  },
  "desc": {
- "fr": "Pas de fermeture, pas de taille imposée : un seul carré de Jawhara que tu enroules et noues à même le corps. Le tombé souple du tissu fait le reste, et c'est ton nœud qui dessine le décolleté. Coupé et fini main à Guéliz. Serre-le haut pour le jour, desserre-le quand la chaleur tombe. Deux fois noué, jamais deux fois pareil.",
- "en": "No clasp, no fixed size: a single square of Jawhara you wrap and knot straight onto the body. The soft drape does the rest, and your knot draws the neckline. Cut and finished by hand in Guéliz. Tie it high for the day, loosen it when the heat lifts. Knotted twice, never quite the same twice."
+  "fr": "Il ressemble à un foulard, il se porte comme un secret : on l'enroule sur le buste, on croise le cordon et on le noue dans le dos, à la mode licou, dos nu et petite ouverture sur le côté. Au bout des cordons, des pampilles perlées d'or que La Fatima façonne une à une à Guéliz. Le tombé souple du Jawhara fait le reste, et c'est ton nœud qui dessine la ligne : serré haut pour le jour, dénoué quand la chaleur tombe. Coupé et fini main. Deux fois noué, jamais deux fois la même silhouette.",
+  "en": "It looks like a scarf and wears like a secret: you wrap it over the bust, cross the cords and tie them at the back, halter-style, bare back and a small opening at the side. At the ends of the cords, gold beaded pampilles that La Fatima shapes one by one in Guéliz. The soft drape of the Jawhara does the rest, and your knot draws the line: tied high for the day, loosened when the heat lifts. Cut and finished by hand. Knotted twice, never the same silhouette twice.",
+  "es": "Parece un pañuelo y se lleva como un secreto: se enrolla sobre el busto, se cruzan los cordones y se anudan en la espalda, estilo halter, espalda al aire y una pequeña abertura al costado. En las puntas de los cordones, borlas de cuentas doradas que La Fatima forma una a una en Guéliz. La caída suave del Jawhara hace el resto, y tu nudo dibuja la línea: ceñido arriba de día, aflojado cuando cae el calor. Cortado y acabado a mano. Anudado dos veces, nunca la misma silueta dos veces.",
+  "tr": "Bir eşarba benzer, bir sır gibi taşınır: göğsün üzerine sarılır, ipler çaprazlanıp sırtta bağlanır, halter tarzı, açık sırt ve yanda küçük bir açıklık. İplerin uçlarında, La Fatima'nın Guéliz'de tek tek şekillendirdiği altın boncuklu püsküller. Jawhara'nın yumuşak dökümü gerisini halleder, çizgiyi senin düğümün çizer: gündüz yukarıdan sıkı, sıcak dindiğinde gevşek. Elde kesilip bitirilir. İki kez bağlanır, hiçbir zaman aynı siluet iki kez olmaz.",
+  "ar": "يبدو كوشاح ويُلبَس كسرّ: يُلَفّ حول الصدر، تُعقد الأربطة متقاطعةً عند الظهر على طريقة الرسن، بظهر مكشوف وفتحة صغيرة على الجانب. عند أطراف الأربطة شراريب مطرّزة بالخرز الذهبي تصوغها لافاطمة واحدةً واحدة في كليز. دُوزان قماش الجوهرة الناعم يفعل الباقي، وعقدتكِ هي من ترسم الخط: مشدود عالياً للنهار، مُرخى حين يهدأ الحرّ. مقصوص ومُنجَز يدوياً. يُعقد مرّتين، ولا يتكرّر القوام مرّتين."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - viscose et soie, tombé souple et fluide.",
- "en": "Jawhara, our house fabric - viscose and silk, with a soft, fluid drape."
+  "fr": "Jawhara, notre tissu maison - soie et viscose, avec un fil de lurex discret qui fond dans la couleur. Tombé souple et fluide, lavable en machine à 30°C, ne se froisse presque pas.",
+  "en": "Jawhara, our house fabric - silk and viscose, with a discreet lurex thread that melts into the colour. Soft, fluid drape, machine-washable at 30°C, almost crease-free.",
+  "es": "Jawhara, nuestro tejido de la casa - seda y viscosa, con un discreto hilo de lúrex que se funde en el color. Caída suave y fluida, lavable a máquina a 30°C, casi no se arruga.",
+  "tr": "Jawhara, kendi kumaşımız - ipek ve viskon, renge karışan gizli bir lureks ipliğiyle. Yumuşak ve akışkan döküm, 30°C'de makinede yıkanabilir, neredeyse hiç kırışmaz.",
+  "ar": "الجوهرة، قماشنا الخاص - حرير وفيسكوز، مع خيط لوريكس خفيّ يذوب في اللون. دُوزان ناعم وانسيابي، قابل للغسل في الغسالة عند 30°م، ولا يتجعّد تقريباً."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; sa coupe et ses finitions passent toutes par nos mains.",
- "en": "Jawhara is ours; its cut and finishing all pass through our hands."
+  "fr": "Le Jawhara traditionnel est une soie tissée main, réservée aux caftans de fête portés une fois puis rangés. Le nôtre naît chez nous en dix couleurs, chacune avec un nom qui vient de Marrakech et son fil signature, or ou argent ; coupe et finitions passent toutes par nos mains.",
+  "en": "Traditional Jawhara is a hand-woven silk kept for festive caftans, worn once and then stored away. Ours is made in-house in ten colours, each with a name drawn from Marrakech and its signature thread, gold or silver; its cut and finishing all pass through our hands.",
+  "es": "El Jawhara tradicional es una seda tejida a mano reservada a los caftanes de fiesta, que se llevan una vez y se guardan. El nuestro nace en casa en diez colores, cada uno con un nombre venido de Marrakech y su hilo distintivo, oro o plata; su corte y sus acabados pasan todos por nuestras manos.",
+  "tr": "Geleneksel Jawhara, bir kez giyilip kaldırılan bayramlık kaftanlara ayrılmış, elde dokunan bir ipektir. Bizimki atölyemizde on renkte doğar, her biri Marakeş'ten gelen bir isim ve altın ya da gümüş imza ipliğiyle; kesimi ve bitişleri tümüyle ellerimizden geçer.",
+  "ar": "الجوهرة التقليدية حرير منسوج يدوياً يُخصَّص للقفاطين الاحتفالية، تُلبَس مرّة ثم تُصان. أمّا جوهرتنا فتُصنع عندنا بعشرة ألوان، لكلٍّ منها اسم مستوحى من مراكش وخيطه المميّز، ذهبي أو فضّي؛ قصّها وتشطيبها يمرّان جميعاً بأيدينا."
  },
  "handworkTime": {
- "fr": "Coupé et fini main à l'atelier, sans presser le geste.",
- "en": "Cut and finished by hand at the atelier, never rushing the gesture."
+  "fr": "Coupé et fini main à l'atelier de Guéliz, et les pampilles perlées façonnées une à une par La Fatima - sans presser le geste.",
+  "en": "Cut and finished by hand at the Guéliz atelier, with the beaded pampilles shaped one by one by La Fatima - never rushing the gesture.",
+  "es": "Cortado y acabado a mano en el taller de Guéliz, con las borlas de cuentas formadas una a una por La Fatima - sin apresurar el gesto.",
+  "tr": "Guéliz atölyesinde elde kesilip bitirilir, boncuklu püsküller La Fatima tarafından tek tek şekillendirilir - hareketi hiç aceleye getirmeden.",
+  "ar": "مقصوص ومُنجَز يدوياً في مشغل كليز، والشراريب المطرّزة بالخرز تصوغها لافاطمة واحدةً واحدة - دون استعجالٍ للحركة."
  },
  "dimensions": {
  "fr": "Sans taille - c'est le nœud qui fait la mesure.",
  "en": "Size-free - the knot makes the measure."
  },
  "edition": {
- "fr": "Édition limitée Jawhara, faite main.",
- "en": "Limited Jawhara edition, handmade."
+  "fr": "Édition limitée Jawhara, faite main à Guéliz.",
+  "en": "Limited Jawhara edition, handmade in Guéliz.",
+  "es": "Edición limitada Jawhara, hecha a mano en Guéliz.",
+  "tr": "Sınırlı Jawhara serisi, Guéliz'de el yapımı.",
+  "ar": "إصدار محدود من الجوهرة، مصنوع يدوياً في كليز."
  }
  },
  {
  "handle": "yza-bateau-top-jawhara-ss26",
  "short": {
- "fr": "Une encolure bateau qui dégage les épaules. Une ligne, et rien à ajouter.",
- "en": "A boat neckline that bares the shoulders. One line, nothing to add."
+  "fr": "Une encolure bateau qui dégage les épaules, nouée d'un petit nœud sur le côté. De la plage au soir.",
+  "en": "A boat neckline that bares the shoulders, tied with a small knot at the side. Beach to evening.",
+  "es": "Un escote barco que despeja los hombros, atado con un pequeño nudo al costado. De la playa a la noche.",
+  "tr": "Omuzları açan bir kayık yaka, yanda küçük bir düğümle bağlanır. Plajdan akşama.",
+  "ar": "ياقة قاربية تكشف الكتفين، تُربط بعقدة صغيرة على الجانب. من الشاطئ إلى المساء."
  },
  "desc": {
- "fr": "Tout tient dans l'encolure : une horizontale franche qui découvre les clavicules et laisse les épaules respirer. Le reste est volontairement tu. Jawhara au tombé souple, sans taille, coupé et fini main à Guéliz. Il s'accorde à une jupe paréo aussi bien qu'à un palazzo. Une main est passée par là - d'un exemplaire à l'autre, la ligne respire un peu différemment.",
- "en": "It all lives in the neckline: a frank horizontal that uncovers the collarbones and lets the shoulders breathe. The rest is left deliberately quiet. Soft-draping Jawhara, size-free, cut and finished by hand in Guéliz. It pairs with a pareo skirt as readily as with palazzo trousers. A hand passed through it - from one to the next, the line breathes a touch differently."
+  "fr": "Tout tient dans l'encolure : une horizontale franche qui découvre les clavicules et laisse les épaules respirer. Il s'ouvre sur les côtés et se ferme de petits nœuds - à toi de régler l'aisance. Porte-le seul ou par-dessus une brassière, du bain du matin à la terrasse du soir. Jawhara au tombé souple, sans taille, coupé et fini main à Guéliz. Il s'accorde à une jupe paréo comme à un palazzo. Une main est passée par là : d'un exemplaire à l'autre, la ligne respire un peu différemment.",
+  "en": "It all lives in the neckline: a frank horizontal that uncovers the collarbones and lets the shoulders breathe. It opens at the sides and closes with small knots - the ease is yours to set. Wear it alone or over a bralette, from the morning swim to the evening terrace. Soft-draping Jawhara, size-free, cut and finished by hand in Guéliz. It pairs with a pareo skirt as readily as with palazzo trousers. A hand passed through it: from one to the next, the line breathes a touch differently.",
+  "es": "Todo vive en el escote: una horizontal franca que descubre las clavículas y deja respirar los hombros. Se abre por los costados y se cierra con pequeños nudos - la holgura la decides tú. Llévalo solo o sobre un top de sujeción, del baño de la mañana a la terraza de la noche. Jawhara de caída suave, sin talla, cortado y acabado a mano en Guéliz. Combina con una falda pareo tanto como con un palazzo. Una mano pasó por aquí: de una prenda a otra, la línea respira un poco distinta.",
+  "tr": "Her şey yakada yaşar: köprücük kemiklerini açığa çıkaran ve omuzların nefes almasını sağlayan net bir yatay çizgi. Yanlardan açılır ve küçük düğümlerle kapanır - rahatlığı sen ayarlarsın. Tek başına ya da bir bralet üstüne giy, sabah yüzüşünden akşam terasına. Yumuşak dökümlü Jawhara, bedensiz, Guéliz'de elde kesilip bitirilmiştir. Bir pareo etekle de palazzo pantolonla da uyum sağlar. Buradan bir el geçmiştir: her parçada çizgi biraz farklı nefes alır.",
+  "ar": "كلّ شيء يكمن في الياقة: خط أفقي واضح يكشف عظمتَي التّرقوة ويترك الكتفين يتنفّسان. يُفتح من الجانبين ويُغلق بعقدٍ صغيرة - أنتِ من تضبط الاتّساع. البسيه وحده أو فوق حمّالة صدرية، من سباحة الصباح إلى شرفة المساء. جوهرة ناعمة الدُّوزان، بلا مقاس، مقصوصة ومُنجَزة يدوياً في كليز. تنسجم مع تنّورة باريو كما مع بنطال بالازو. مرّت به يدٌ: من قطعة إلى أخرى، يتنفّس الخط باختلافٍ طفيف."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - viscose et soie, fluide et léger.",
- "en": "Jawhara, our house fabric - viscose and silk, fluid and light."
+  "fr": "Jawhara, notre tissu maison - soie et viscose, avec un fil de lurex discret qui fond dans la couleur. Fluide et léger, lavable en machine à 30°C, ne se froisse presque pas.",
+  "en": "Jawhara, our house fabric - silk and viscose, with a discreet lurex thread that melts into the colour. Fluid and light, machine-washable at 30°C, almost crease-free.",
+  "es": "Jawhara, nuestro tejido de la casa - seda y viscosa, con un discreto hilo de lúrex que se funde en el color. Fluido y ligero, lavable a máquina a 30°C, casi no se arruga.",
+  "tr": "Jawhara, kendi kumaşımız - ipek ve viskon, renge karışan gizli bir lureks ipliğiyle. Akışkan ve hafif, 30°C'de makinede yıkanabilir, neredeyse hiç kırışmaz.",
+  "ar": "الجوهرة، قماشنا الخاص - حرير وفيسكوز، مع خيط لوريكس خفيّ يذوب في اللون. انسيابي وخفيف، قابل للغسل في الغسالة عند 30°م، ولا يتجعّد تقريباً."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe, finitions et détails ne quittent jamais nos mains.",
- "en": "Jawhara is ours; cut, finishing and details never leave our hands."
+  "fr": "Le Jawhara traditionnel est une soie tissée main, réservée aux caftans de fête portés une fois puis rangés. Le nôtre naît chez nous en dix couleurs, chacune avec un nom venu de Marrakech et son fil signature, or ou argent ; coupe, finitions et détails ne quittent jamais nos mains.",
+  "en": "Traditional Jawhara is a hand-woven silk kept for festive caftans, worn once and then stored away. Ours is made in-house in ten colours, each with a name drawn from Marrakech and its signature thread, gold or silver; cut, finishing and details never leave our hands.",
+  "es": "El Jawhara tradicional es una seda tejida a mano reservada a los caftanes de fiesta, que se llevan una vez y se guardan. El nuestro nace en casa en diez colores, cada uno con un nombre venido de Marrakech y su hilo distintivo, oro o plata; corte, acabados y detalles nunca dejan nuestras manos.",
+  "tr": "Geleneksel Jawhara, bir kez giyilip kaldırılan bayramlık kaftanlara ayrılmış, elde dokunan bir ipektir. Bizimki atölyemizde on renkte doğar, her biri Marakeş'ten gelen bir isim ve altın ya da gümüş imza ipliğiyle; kesim, bitiş ve ayrıntılar ellerimizden hiç ayrılmaz.",
+  "ar": "الجوهرة التقليدية حرير منسوج يدوياً يُخصَّص للقفاطين الاحتفالية، تُلبَس مرّة ثم تُصان. أمّا جوهرتنا فتُصنع عندنا بعشرة ألوان، لكلٍّ منها اسم مستوحى من مراكش وخيطه المميّز، ذهبي أو فضّي؛ القصّ والتشطيب والتفاصيل لا تفارق أيدينا أبداً."
  },
  "handworkTime": {
- "fr": "Coupé et fini main à l'atelier, le temps qu'il faut.",
- "en": "Cut and finished by hand at the atelier, in the time it takes."
+  "fr": "Coupé et fini main à l'atelier de Guéliz, le temps qu'il faut.",
+  "en": "Cut and finished by hand at the Guéliz atelier, in the time it takes.",
+  "es": "Cortado y acabado a mano en el taller de Guéliz, el tiempo que haga falta.",
+  "tr": "Guéliz atölyesinde elde kesilip bitirilir, gerektiği kadar zamanla.",
+  "ar": "مقصوص ومُنجَز يدوياً في مشغل كليز، بالوقت الذي يلزم."
  },
  "dimensions": {
  "fr": "Sans taille - il se règle sur toi.",
  "en": "Size-free - it settles around you."
  },
  "edition": {
- "fr": "Édition limitée Jawhara, faite main.",
- "en": "Limited Jawhara edition, handmade."
+  "fr": "Édition limitée Jawhara, faite main à Guéliz.",
+  "en": "Limited Jawhara edition, handmade in Guéliz.",
+  "es": "Edición limitada Jawhara, hecha a mano en Guéliz.",
+  "tr": "Sınırlı Jawhara serisi, Guéliz'de el yapımı.",
+  "ar": "إصدار محدود من الجوهرة، مصنوع يدوياً في كليز."
  }
  },
  {
  "handle": "yza-button-up-shirt-jawhara-ss26",
  "short": {
- "fr": "Une chemise boutonnée, fluide sous les doigts. Du col fermé au col ouvert.",
- "en": "A button-up that's fluid under the fingers. Buttoned to the throat or wide open."
+  "fr": "Une chemise boutonnée de nacre, fluide sous les doigts. Du col fermé au col ouvert.",
+  "en": "A button-up with mother-of-pearl, fluid under the fingers. Buttoned to the throat or wide open.",
+  "es": "Una camisa abotonada de nácar, fluida bajo los dedos. Del cuello cerrado al cuello abierto.",
+  "tr": "Sedef düğmeli, parmakların altında akışkan bir gömlek. Yakası kapalıdan yakası açığa.",
+  "ar": "قميص بأزرار من صدف اللؤلؤ، انسيابي تحت الأصابع. من ياقة مغلقة إلى ياقة مفتوحة."
  },
  "desc": {
- "fr": "Une rangée de boutons, un tombé qui glisse, et la lumière du matin qui passe au travers : la chemise se porte presque comme une peau. Jawhara coupée et finie main à Guéliz, en S, M et L. Ouvre-la sur un maillot pour la plage, ferme-la jusqu'au col quand le vent se lève. Une seule pièce pour le marché et pour la terrasse du soir.",
- "en": "A row of buttons, a drape that slides, the morning light coming through: the shirt sits almost like skin. Jawhara, cut and finished by hand in Guéliz, in S, M and L. Open it over a swimsuit for the beach, close it to the collar when the wind picks up. One piece for the market and the evening terrace alike."
+  "fr": "Une rangée de boutons de nacre, un tombé qui glisse, et la lumière du matin qui passe au travers : la chemise se porte presque comme une peau. Sur le col, un signe amazigh brodé et perlé à la main par La Fatima, discret comme une signature. Jawhara coupée et finie main à Guéliz, en S, M et L - la seule pièce vraiment taillée. Ouvre-la sur un maillot pour la plage, ferme-la jusqu'au col quand le vent se lève. Une seule pièce pour le marché et pour la terrasse du soir.",
+  "en": "A row of mother-of-pearl buttons, a drape that slides, the morning light coming through: the shirt sits almost like skin. On the collar, an Amazigh sign embroidered and beaded by hand by La Fatima, discreet as a signature. Jawhara, cut and finished by hand in Guéliz, in S, M and L - the one piece that is truly sized. Open it over a swimsuit for the beach, close it to the collar when the wind picks up. One piece for the market and the evening terrace alike.",
+  "es": "Una hilera de botones de nácar, una caída que se desliza, y la luz de la mañana que atraviesa: la camisa se lleva casi como una piel. En el cuello, un signo amazigh bordado y con cuentas a mano por La Fatima, discreto como una firma. Jawhara cortada y acabada a mano en Guéliz, en S, M y L - la única prenda verdaderamente entallada. Ábrela sobre un bañador para la playa, ciérrala hasta el cuello cuando se levanta el viento. Una sola prenda para el mercado y para la terraza de la noche.",
+  "tr": "Bir sıra sedef düğme, kayan bir döküm ve içinden geçen sabah ışığı: gömlek neredeyse bir ten gibi oturur. Yakada, La Fatima'nın elle işleyip boncukladığı bir Amazig işareti, bir imza kadar sade. Jawhara, Guéliz'de elde kesilip bitirilir, S, M ve L - gerçekten bedenlenmiş tek parça. Plaj için mayonun üstüne aç, rüzgâr çıktığında yakaya kadar kapat. Hem pazar hem akşam terası için tek bir parça.",
+  "ar": "صفٌّ من أزرار صدف اللؤلؤ، دُوزان ينساب، وضوء الصباح يعبر من خلاله: يُلبَس القميص كأنّه بشرة. على الياقة، رمز أمازيغي مطرّز ومُزيّن بالخرز يدوياً بيد لافاطمة، خفيّ كتوقيع. جوهرة مقصوصة ومُنجَزة يدوياً في كليز، بمقاسات S وM وL - القطعة الوحيدة ذات المقاس الحقيقي. افتحيه فوق لباس السباحة للشاطئ، وأغلقيه حتى الياقة حين يهبّ الريح. قطعة واحدة للسوق ولشرفة المساء معاً."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - viscose et soie, au tombé souple.",
- "en": "Jawhara, our house fabric - viscose and silk, with a soft drape."
+  "fr": "Jawhara, notre tissu maison - soie et viscose, avec un fil de lurex discret qui fond dans la couleur. Tombé souple, lavable en machine à 30°C, ne se froisse presque pas ; boutons de nacre.",
+  "en": "Jawhara, our house fabric - silk and viscose, with a discreet lurex thread that melts into the colour. Soft drape, machine-washable at 30°C, almost crease-free; mother-of-pearl buttons.",
+  "es": "Jawhara, nuestro tejido de la casa - seda y viscosa, con un discreto hilo de lúrex que se funde en el color. Caída suave, lavable a máquina a 30°C, casi no se arruga; botones de nácar.",
+  "tr": "Jawhara, kendi kumaşımız - ipek ve viskon, renge karışan gizli bir lureks ipliğiyle. Yumuşak döküm, 30°C'de makinede yıkanabilir, neredeyse hiç kırışmaz; sedef düğmeler.",
+  "ar": "الجوهرة، قماشنا الخاص - حرير وفيسكوز، مع خيط لوريكس خفيّ يذوب في اللون. دُوزان ناعم، قابل للغسل في الغسالة عند 30°م، ولا يتجعّد تقريباً؛ أزرار من صدف اللؤلؤ."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe et finitions se contrôlent à la main.",
- "en": "Jawhara is ours; cut and finishing are checked by hand."
+  "fr": "Le Jawhara traditionnel est une soie tissée main, réservée aux caftans de fête portés une fois puis rangés. Le nôtre naît chez nous en dix couleurs, chacune avec un nom venu de Marrakech et son fil signature, or ou argent ; coupe et finitions se contrôlent à la main, du col brodé au dernier bouton de nacre.",
+  "en": "Traditional Jawhara is a hand-woven silk kept for festive caftans, worn once and then stored away. Ours is made in-house in ten colours, each with a name drawn from Marrakech and its signature thread, gold or silver; cut and finishing are checked by hand, from the embroidered collar to the last mother-of-pearl button.",
+  "es": "El Jawhara tradicional es una seda tejida a mano reservada a los caftanes de fiesta, que se llevan una vez y se guardan. El nuestro nace en casa en diez colores, cada uno con un nombre venido de Marrakech y su hilo distintivo, oro o plata; corte y acabados se controlan a mano, del cuello bordado al último botón de nácar.",
+  "tr": "Geleneksel Jawhara, bir kez giyilip kaldırılan bayramlık kaftanlara ayrılmış, elde dokunan bir ipektir. Bizimki atölyemizde on renkte doğar, her biri Marakeş'ten gelen bir isim ve altın ya da gümüş imza ipliğiyle; kesim ve bitiş elde denetlenir, işlemeli yakadan son sedef düğmeye dek.",
+  "ar": "الجوهرة التقليدية حرير منسوج يدوياً يُخصَّص للقفاطين الاحتفالية، تُلبَس مرّة ثم تُصان. أمّا جوهرتنا فتُصنع عندنا بعشرة ألوان، لكلٍّ منها اسم مستوحى من مراكش وخيطه المميّز، ذهبي أو فضّي؛ القصّ والتشطيب يُراقبان يدوياً، من الياقة المطرّزة إلى آخر زرٍّ من صدف اللؤلؤ."
  },
  "handworkTime": {
- "fr": "Coupée et finie main à l'atelier, sans hâte.",
- "en": "Cut and finished by hand at the atelier, without haste."
+  "fr": "Coupée et finie main à l'atelier de Guéliz, avec le signe amazigh du col brodé à la main par La Fatima - sans hâte.",
+  "en": "Cut and finished by hand at the Guéliz atelier, with the collar's Amazigh sign hand-embroidered by La Fatima - without haste.",
+  "es": "Cortada y acabada a mano en el taller de Guéliz, con el signo amazigh del cuello bordado a mano por La Fatima - sin prisa.",
+  "tr": "Guéliz atölyesinde elde kesilip bitirilir, yakadaki Amazig işareti La Fatima tarafından elle işlenir - acelesiz.",
+  "ar": "مقصوصة ومُنجَزة يدوياً في مشغل كليز، ورمز الياقة الأمازيغي مطرّز يدوياً بيد لافاطمة - دون عجل."
  },
  "dimensions": {
  "fr": "Trois tailles : S, M, L.",
  "en": "Three sizes: S, M, L."
  },
  "edition": {
- "fr": "Édition limitée Jawhara, faite main.",
- "en": "Limited Jawhara edition, handmade."
+  "fr": "Édition limitée Jawhara, faite main à Guéliz.",
+  "en": "Limited Jawhara edition, handmade in Guéliz.",
+  "es": "Edición limitada Jawhara, hecha a mano en Guéliz.",
+  "tr": "Sınırlı Jawhara serisi, Guéliz'de el yapımı.",
+  "ar": "إصدار محدود من الجوهرة، مصنوع يدوياً في كليز."
  }
  },
  {
@@ -16082,20 +16136,32 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A short pareo skirt, knotted in one move. A single cloth, free over the legs."
  },
  "desc": {
- "fr": "Le geste est ancien : un carré de tissu, un nœud à la hanche, et les jambes restent libres. Notre version garde cet esprit, en Jawhara au tombé souple, coupée main à Guéliz. Sans taille, elle se règle du XS au XXL selon la hauteur du nœud. Sur un maillot mouillé ou sous un top bateau, elle attend le soleil - pas grand-chose d'autre.",
- "en": "The gesture is old: a square of cloth, a knot at the hip, and the legs stay free. Our version keeps that spirit, in soft-draping Jawhara, cut by hand in Guéliz. Size-free, it sets from XS to XXL depending on where you tie the knot. Over a wet swimsuit or under a bateau top, it waits for the sun - not much else."
+  "fr": "Le geste est ancien : on l'enroule, on croise, on noue à la taille - et c'est mis, en quelques secondes, comme un vrai paréo. Longueur courte, ceinture haute et large qui tient bien, et des volants au bas qui donnent au tissu un vrai mouvement, presque dansant. Une fente presque invisible ne se révèle que quand on marche. Sur la ceinture, La Fatima brode ou perle main un signe amazigh. Jawhara au tombé souple - soie et viscose, un fil de lurex discret - se lave en machine, ne marque pas au repassage, reste quasi infroissable. Coupée main à Guéliz, sans taille, du XS au XXL selon le nœud. Sur un maillot ou sous un top bateau, elle attend le soleil - pas grand-chose d'autre.",
+  "en": "The gesture is old: wrap it, cross it, knot at the waist - and it's on in seconds, like a real pareo. Short length, a wide high belt that holds, and ruffles at the hem that give the cloth real movement, almost dancing. A near-invisible slit shows only when you walk. On the belt, La Fatima hand-embroiders or beads an Amazigh sign. Soft-draping Jawhara - silk and viscose, a discreet lurex thread - is machine-washable, doesn't mark under the iron, stays nearly wrinkle-free. Cut by hand in Guéliz, size-free, XS to XXL by your knot. Over a swimsuit or under a bateau top, it waits for the sun - not much else.",
+  "es": "El gesto es antiguo: se enrolla, se cruza, se anuda a la cintura - y ya está puesta, en segundos, como un pareo de verdad. Largo corto, cinturón alto y ancho que sujeta bien, y volantes en el bajo que dan a la tela un movimiento real, casi danzante. Una abertura casi invisible solo se revela al caminar. En el cinturón, La Fatima borda o borda con cuentas a mano un signo amazigh. Jawhara de caída suave - seda y viscosa, un hilo de lúrex discreto - se lava a máquina, no se marca al planchar y queda casi inarrugable. Cortada a mano en Guéliz, sin talla, de la XS a la XXL según el nudo. Sobre un bañador o bajo un top barco, espera al sol - poco más.",
+  "tr": "Hareket eski: sararsın, çaprazlarsın, belde bağlarsın - ve saniyeler içinde giyilir, gerçek bir pareo gibi. Kısa boy, iyi tutan yüksek ve geniş bir kuşak, ve eteğinde kumaşa gerçek bir hareket, neredeyse dans eden bir hava katan farbalalar. Neredeyse görünmez bir yırtmaç yalnızca yürürken belli olur. Kuşağın üzerine La Fatima elle bir Amazigh işareti işler ya da boncukla süsler. Yumuşak dökümlü Jawhara - ipek ve viskon, ince bir lüreks ipliği - makinede yıkanır, ütüde iz bırakmaz, neredeyse hiç buruşmaz. Guéliz'de elle kesilir, bedensiz, düğüme göre XS'ten XXL'e. Bir mayonun üstüne ya da bir kayık yaka bluzun altına, güneşi bekler - başka pek bir şey değil.",
+  "ar": "الحركة قديمة: تلفّينه، تعقدينه عند الخصر - فيُرتدى في ثوانٍ، كباريو حقيقي. طول قصير، حزام عريض ومرتفع يمسك جيداً، وكشاكش عند الحاشية تمنح القماش حركة حقيقية تكاد ترقص. شقّ يكاد لا يُرى لا يظهر إلا حين تمشين. على الحزام، تطرّز لافاطمة أو تُرصّع يدوياً رمزاً أمازيغياً. جوهرة ناعم الانسدال - حرير وفيسكوز، مع خيط لوريكس خفيف - يُغسل في الغسالة، ولا يترك أثراً عند الكي، ويبقى شبه خالٍ من التجاعيد. تُقصّ يدوياً في كليز، بلا مقاس، من XS إلى XXL حسب العقدة. فوق ثوب سباحة أو تحت بلوزة بياقة قارب، تنتظر الشمس - ولا شيء آخر تقريباً."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - viscose et soie, fluide et léger.",
- "en": "Jawhara, our house fabric - viscose and silk, fluid and light."
+  "fr": "Jawhara, notre tissu maison - soie et viscose, avec un fil de lurex discret ; tombe souple, se lave en machine, quasi infroissable.",
+  "en": "Jawhara, our house fabric - silk and viscose, with a discreet lurex thread; soft drape, machine-washable, nearly wrinkle-free.",
+  "es": "Jawhara, nuestro tejido de la casa - seda y viscosa, con un hilo de lúrex discreto; caída suave, lavable a máquina, casi inarrugable.",
+  "tr": "Jawhara, kendi kumaşımız - ipek ve viskon, ince bir lüreks ipliğiyle; yumuşak döküm, makinede yıkanabilir, neredeyse hiç buruşmaz.",
+  "ar": "جوهرة، قماشنا الخاص - حرير وفيسكوز، مع خيط لوريكس خفيف؛ انسدال ناعم، يُغسل في الغسالة، شبه خالٍ من التجاعيد."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe et finitions restent dans nos mains.",
- "en": "Jawhara is ours; cut and finishing stay in our hands."
+  "fr": "Jawhara naît chez nous ; coupe, volants et signe amazigh sur la ceinture restent à la main, à Guéliz.",
+  "en": "Jawhara is ours; cut, ruffles and the Amazigh sign on the belt stay by hand, in Guéliz.",
+  "es": "Jawhara nace en casa; corte, volantes y el signo amazigh del cinturón quedan a mano, en Guéliz.",
+  "tr": "Jawhara bizim elimizden çıkar; kesim, farbalalar ve kuşaktaki Amazigh işareti Guéliz'de elle kalır.",
+  "ar": "جوهرة يُصنع عندنا؛ القص والكشاكش والرمز الأمازيغي على الحزام تبقى يدوية، في كليز."
  },
  "handworkTime": {
- "fr": "Coupée et finie main à l'atelier, au calme.",
- "en": "Cut and finished by hand at the atelier, unhurried."
+  "fr": "Coupée et finie main à l'atelier ; le signe amazigh est brodé ou perlé par La Fatima.",
+  "en": "Cut and finished by hand at the atelier; the Amazigh sign is embroidered or beaded by La Fatima.",
+  "es": "Cortada y acabada a mano en el taller; el signo amazigh lo borda o borda con cuentas La Fatima.",
+  "tr": "Atölyede elle kesilip bitirilir; Amazigh işaretini La Fatima işler ya da boncukla süsler.",
+  "ar": "تُقصّ وتُنهى يدوياً في الورشة؛ والرمز الأمازيغي تطرّزه أو تُرصّعه لافاطمة."
  },
  "dimensions": {
  "fr": "Sans taille - le nœud règle du XS au XXL.",
@@ -16113,20 +16179,32 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A midi pareo skirt, knotted once for the day. The wind does the rest."
  },
  "desc": {
- "fr": "En longueur midi, la jupe paréo gagne un peu de tenue sans rien perdre de sa nonchalance : un nœud, et tu n'y penses plus. Jawhara au tombé souple, coupée main à Guéliz. Sans taille, du XS au XXL, c'est ton nœud qui décide. Le tissu prend le vent à la moindre brise - au marché le matin, sur le pas de la porte au crépuscule.",
- "en": "At midi length the pareo skirt gains a little hold without losing its ease: one knot, and you forget about it. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, XS to XXL - your knot decides. The cloth catches the slightest breeze - at the market in the morning, on the doorstep at dusk."
+  "fr": "En longueur midi, la jupe paréo gagne un peu de tenue sans rien perdre de sa nonchalance : on l'enroule, on croise, on noue - c'est mis en quelques secondes comme un vrai paréo, et on n'y pense plus. Ceinture haute et large qui tient bien, volants au bas pour un vrai mouvement presque dansant, et une fente presque invisible qui ne se révèle qu'au pas. Sur la ceinture, La Fatima brode ou perle main un signe amazigh. Jawhara au tombé souple - soie et viscose, un fil de lurex discret - se lave en machine, ne marque pas au repassage, reste quasi infroissable. Coupée main à Guéliz, sans taille, du XS au XXL selon le nœud. Elle prend le vent à la moindre brise - au marché le matin, sur le pas de la porte au crépuscule.",
+  "en": "At midi length the pareo skirt gains a little hold without losing its ease: wrap it, cross it, knot it - it's on in seconds like a real pareo, and you forget about it. A wide high belt that holds, ruffles at the hem for real, almost-dancing movement, and a near-invisible slit that shows only as you walk. On the belt, La Fatima hand-embroiders or beads an Amazigh sign. Soft-draping Jawhara - silk and viscose, a discreet lurex thread - is machine-washable, doesn't mark under the iron, stays nearly wrinkle-free. Cut by hand in Guéliz, size-free, XS to XXL by your knot. It catches the slightest breeze - at the market in the morning, on the doorstep at dusk.",
+  "es": "En largo midi, la falda pareo gana un poco de cuerpo sin perder nada de su desenfado: se enrolla, se cruza, se anuda - queda puesta en segundos como un pareo de verdad, y te olvidas de ella. Cinturón alto y ancho que sujeta bien, volantes en el bajo para un movimiento real casi danzante, y una abertura casi invisible que solo se revela al andar. En el cinturón, La Fatima borda o borda con cuentas a mano un signo amazigh. Jawhara de caída suave - seda y viscosa, un hilo de lúrex discreto - se lava a máquina, no se marca al planchar y queda casi inarrugable. Cortada a mano en Guéliz, sin talla, de la XS a la XXL según el nudo. Atrapa la menor brisa - en el mercado por la mañana, en el umbral al atardecer.",
+  "tr": "Midi boyda pareo etek, rahatlığından hiçbir şey yitirmeden biraz duruş kazanır: sararsın, çaprazlarsın, bağlarsın - gerçek bir pareo gibi saniyeler içinde giyilir ve onu unutursun. İyi tutan yüksek ve geniş bir kuşak, eteğinde gerçek, neredeyse dans eden bir hareket için farbalalar, ve yalnızca yürürken belli olan neredeyse görünmez bir yırtmaç. Kuşağın üzerine La Fatima elle bir Amazigh işareti işler ya da boncukla süsler. Yumuşak dökümlü Jawhara - ipek ve viskon, ince bir lüreks ipliği - makinede yıkanır, ütüde iz bırakmaz, neredeyse hiç buruşmaz. Guéliz'de elle kesilir, bedensiz, düğüme göre XS'ten XXL'e. En hafif esintiyi yakalar - sabah pazarda, alacakaranlıkta kapı eşiğinde.",
+  "ar": "بطولٍ ميدي، تكتسب تنورة الباريو قليلاً من الثبات دون أن تفقد شيئاً من عفويّتها: تلفّينها، تعقدينها - تُرتدى في ثوانٍ كباريو حقيقي، ثم تنسينها. حزام عريض ومرتفع يمسك جيداً، وكشاكش عند الحاشية لحركة حقيقية تكاد ترقص، وشقّ يكاد لا يُرى لا يظهر إلا مع المشي. على الحزام، تطرّز لافاطمة أو تُرصّع يدوياً رمزاً أمازيغياً. جوهرة ناعم الانسدال - حرير وفيسكوز، مع خيط لوريكس خفيف - يُغسل في الغسالة، ولا يترك أثراً عند الكي، ويبقى شبه خالٍ من التجاعيد. تُقصّ يدوياً في كليز، بلا مقاس، من XS إلى XXL حسب العقدة. تلتقط أخفّ نسمة - في السوق صباحاً، وعلى عتبة الباب عند الغسق."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - viscose et soie, au tombé souple.",
- "en": "Jawhara, our house fabric - viscose and silk, with a soft drape."
+  "fr": "Jawhara, notre tissu maison - soie et viscose, avec un fil de lurex discret ; tombe souple, se lave en machine, quasi infroissable.",
+  "en": "Jawhara, our house fabric - silk and viscose, with a discreet lurex thread; soft drape, machine-washable, nearly wrinkle-free.",
+  "es": "Jawhara, nuestro tejido de la casa - seda y viscosa, con un hilo de lúrex discreto; caída suave, lavable a máquina, casi inarrugable.",
+  "tr": "Jawhara, kendi kumaşımız - ipek ve viskon, ince bir lüreks ipliğiyle; yumuşak döküm, makinede yıkanabilir, neredeyse hiç buruşmaz.",
+  "ar": "جوهرة، قماشنا الخاص - حرير وفيسكوز، مع خيط لوريكس خفيف؛ انسدال ناعم، يُغسل في الغسالة، شبه خالٍ من التجاعيد."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe et finitions ne quittent pas nos mains.",
- "en": "Jawhara is ours; cut and finishing don't leave our hands."
+  "fr": "Jawhara naît chez nous ; coupe, volants et signe amazigh sur la ceinture restent à la main, à Guéliz.",
+  "en": "Jawhara is ours; cut, ruffles and the Amazigh sign on the belt stay by hand, in Guéliz.",
+  "es": "Jawhara nace en casa; corte, volantes y el signo amazigh del cinturón quedan a mano, en Guéliz.",
+  "tr": "Jawhara bizim elimizden çıkar; kesim, farbalalar ve kuşaktaki Amazigh işareti Guéliz'de elle kalır.",
+  "ar": "جوهرة يُصنع عندنا؛ القص والكشاكش والرمز الأمازيغي على الحزام تبقى يدوية، في كليز."
  },
  "handworkTime": {
- "fr": "Coupée et finie main à l'atelier, sans précipitation.",
- "en": "Cut and finished by hand at the atelier, without rushing."
+  "fr": "Coupée et finie main à l'atelier ; le signe amazigh est brodé ou perlé par La Fatima.",
+  "en": "Cut and finished by hand at the atelier; the Amazigh sign is embroidered or beaded by La Fatima.",
+  "es": "Cortada y acabada a mano en el taller; el signo amazigh lo borda o borda con cuentas La Fatima.",
+  "tr": "Atölyede elle kesilip bitirilir; Amazigh işaretini La Fatima işler ya da boncukla süsler.",
+  "ar": "تُقصّ وتُنهى يدوياً في الورشة؛ والرمز الأمازيغي تطرّزه أو تُرصّعه لافاطمة."
  },
  "dimensions": {
  "fr": "Sans taille - du XS au XXL, au gré du nœud.",
@@ -16144,20 +16222,32 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A long pareo skirt to the ankle. The cloth runs along with each step."
  },
  "desc": {
- "fr": "La longueur descend jusqu'à la cheville et donne au tissu de quoi se déployer - il suit la jambe, s'ouvre au pas, se referme à l'arrêt. Jawhara au tombé souple, coupée main à Guéliz. Sans taille, le nœud fait passer du XS au XXL. Une pièce sobre qui tient le jour entier et glisse vers le soir sans qu'on la change.",
- "en": "The length drops to the ankle and gives the cloth room to open - it trails the leg, parts as you walk, closes when you stop. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, the knot carries it from XS to XXL. A plain piece that holds the whole day and slips into evening unchanged."
+  "fr": "La longueur descend jusqu'à la cheville et donne au tissu de quoi se déployer - il suit la jambe, s'ouvre au pas, se referme à l'arrêt. On l'enroule, on croise, on noue : mise en quelques secondes comme un vrai paréo. Ceinture haute et large qui tient bien, volants au bas pour un mouvement presque dansant, et une fente presque invisible qui ne se révèle qu'à la marche. Sur la ceinture, La Fatima brode ou perle main un signe amazigh. Jawhara au tombé souple - soie et viscose, un fil de lurex discret - se lave en machine, ne marque pas au repassage, reste quasi infroissable. Coupée main à Guéliz, sans taille, du XS au XXL selon le nœud. Une pièce sobre qui tient le jour entier et glisse vers le soir sans qu'on la change.",
+  "en": "The length drops to the ankle and gives the cloth room to open - it trails the leg, parts as you walk, closes when you stop. Wrap it, cross it, knot it: on in seconds like a real pareo. A wide high belt that holds, ruffles at the hem for an almost-dancing movement, and a near-invisible slit that shows only as you walk. On the belt, La Fatima hand-embroiders or beads an Amazigh sign. Soft-draping Jawhara - silk and viscose, a discreet lurex thread - is machine-washable, doesn't mark under the iron, stays nearly wrinkle-free. Cut by hand in Guéliz, size-free, XS to XXL by your knot. A plain piece that holds the whole day and slips into evening unchanged.",
+  "es": "El largo baja hasta el tobillo y da a la tela espacio para desplegarse - sigue la pierna, se abre al andar, se cierra al detenerse. Se enrolla, se cruza, se anuda: puesta en segundos como un pareo de verdad. Cinturón alto y ancho que sujeta bien, volantes en el bajo para un movimiento casi danzante, y una abertura casi invisible que solo se revela al caminar. En el cinturón, La Fatima borda o borda con cuentas a mano un signo amazigh. Jawhara de caída suave - seda y viscosa, un hilo de lúrex discreto - se lava a máquina, no se marca al planchar y queda casi inarrugable. Cortada a mano en Guéliz, sin talla, de la XS a la XXL según el nudo. Una pieza sobria que aguanta el día entero y se desliza hacia la noche sin cambiarla.",
+  "tr": "Boy bileğe iner ve kumaşa açılacak yer verir - bacağı izler, yürürken açılır, durunca kapanır. Sararsın, çaprazlarsın, bağlarsın: gerçek bir pareo gibi saniyeler içinde giyilir. İyi tutan yüksek ve geniş bir kuşak, neredeyse dans eden bir hareket için eteğinde farbalalar, ve yalnızca yürürken belli olan neredeyse görünmez bir yırtmaç. Kuşağın üzerine La Fatima elle bir Amazigh işareti işler ya da boncukla süsler. Yumuşak dökümlü Jawhara - ipek ve viskon, ince bir lüreks ipliği - makinede yıkanır, ütüde iz bırakmaz, neredeyse hiç buruşmaz. Guéliz'de elle kesilir, bedensiz, düğüme göre XS'ten XXL'e. Bütün gün dayanan ve değiştirilmeden akşama kayan sade bir parça.",
+  "ar": "ينزل الطول حتى الكاحل ويمنح القماش متّسعاً لينفرد - يتبع الساق، ينفتح مع الخطوة، ينغلق عند الوقوف. تلفّينه، تعقدينه: يُرتدى في ثوانٍ كباريو حقيقي. حزام عريض ومرتفع يمسك جيداً، وكشاكش عند الحاشية لحركة تكاد ترقص، وشقّ يكاد لا يُرى لا يظهر إلا مع المشي. على الحزام، تطرّز لافاطمة أو تُرصّع يدوياً رمزاً أمازيغياً. جوهرة ناعم الانسدال - حرير وفيسكوز، مع خيط لوريكس خفيف - يُغسل في الغسالة، ولا يترك أثراً عند الكي، ويبقى شبه خالٍ من التجاعيد. تُقصّ يدوياً في كليز، بلا مقاس، من XS إلى XXL حسب العقدة. قطعة بسيطة تصمد اليوم بأكمله وتنساب إلى المساء دون تبديل."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - viscose et soie, fluide et léger.",
- "en": "Jawhara, our house fabric - viscose and silk, fluid and light."
+  "fr": "Jawhara, notre tissu maison - soie et viscose, avec un fil de lurex discret ; tombe souple, se lave en machine, quasi infroissable.",
+  "en": "Jawhara, our house fabric - silk and viscose, with a discreet lurex thread; soft drape, machine-washable, nearly wrinkle-free.",
+  "es": "Jawhara, nuestro tejido de la casa - seda y viscosa, con un hilo de lúrex discreto; caída suave, lavable a máquina, casi inarrugable.",
+  "tr": "Jawhara, kendi kumaşımız - ipek ve viskon, ince bir lüreks ipliğiyle; yumuşak döküm, makinede yıkanabilir, neredeyse hiç buruşmaz.",
+  "ar": "جوهرة، قماشنا الخاص - حرير وفيسكوز، مع خيط لوريكس خفيف؛ انسدال ناعم، يُغسل في الغسالة، شبه خالٍ من التجاعيد."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe et finitions se font à la main.",
- "en": "Jawhara is ours; cut and finishing are done by hand."
+  "fr": "Jawhara naît chez nous ; coupe, volants et signe amazigh sur la ceinture restent à la main, à Guéliz.",
+  "en": "Jawhara is ours; cut, ruffles and the Amazigh sign on the belt stay by hand, in Guéliz.",
+  "es": "Jawhara nace en casa; corte, volantes y el signo amazigh del cinturón quedan a mano, en Guéliz.",
+  "tr": "Jawhara bizim elimizden çıkar; kesim, farbalalar ve kuşaktaki Amazigh işareti Guéliz'de elle kalır.",
+  "ar": "جوهرة يُصنع عندنا؛ القص والكشاكش والرمز الأمازيغي على الحزام تبقى يدوية، في كليز."
  },
  "handworkTime": {
- "fr": "Coupée et finie main à l'atelier, posément.",
- "en": "Cut and finished by hand at the atelier, calmly."
+  "fr": "Coupée et finie main à l'atelier ; le signe amazigh est brodé ou perlé par La Fatima.",
+  "en": "Cut and finished by hand at the atelier; the Amazigh sign is embroidered or beaded by La Fatima.",
+  "es": "Cortada y acabada a mano en el taller; el signo amazigh lo borda o borda con cuentas La Fatima.",
+  "tr": "Atölyede elle kesilip bitirilir; Amazigh işaretini La Fatima işler ya da boncukla süsler.",
+  "ar": "تُقصّ وتُنهى يدوياً في الورشة؛ والرمز الأمازيغي تطرّزه أو تُرصّعه لافاطمة."
  },
  "dimensions": {
  "fr": "Sans taille - le nœud porte du XS au XXL.",
@@ -16175,20 +16265,32 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "An extra-long pareo skirt that grazes the floor. Length, and plenty of ease."
  },
  "desc": {
- "fr": "Le tissu va jusqu'au sol et l'effleure à chaque pas - la lumière de Marrakech s'y accroche tout en bas. Jawhara au tombé souple, coupée main à Guéliz. Sans taille, du XS au XXL selon ton nœud. Pour les jours où l'on a envie de traîner un peu de longueur derrière soi sans rien sacrifier à la liberté du pas.",
- "en": "The cloth reaches the floor and grazes it at every step - the Marrakech light snags right at the hem. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, XS to XXL by your knot. For the days you want to trail a little length behind you without giving up an inch of stride."
+  "fr": "Le tissu va jusqu'au sol et l'effleure à chaque pas - la lumière de Marrakech s'y accroche tout en bas. On l'enroule, on croise, on noue : mise en quelques secondes comme un vrai paréo. Ceinture haute et large qui tient bien, volants au bas pour un mouvement presque dansant, et une fente presque invisible qui ne se révèle qu'à la marche. Sur la ceinture, La Fatima brode ou perle main un signe amazigh. Jawhara au tombé souple - soie et viscose, un fil de lurex discret - se lave en machine, ne marque pas au repassage, reste quasi infroissable. Coupée main à Guéliz, sans taille, du XS au XXL selon le nœud. Pour les jours où l'on a envie de traîner un peu de longueur derrière soi sans rien sacrifier à la liberté du pas.",
+  "en": "The cloth reaches the floor and grazes it at every step - the Marrakech light snags right at the hem. Wrap it, cross it, knot it: on in seconds like a real pareo. A wide high belt that holds, ruffles at the hem for an almost-dancing movement, and a near-invisible slit that shows only as you walk. On the belt, La Fatima hand-embroiders or beads an Amazigh sign. Soft-draping Jawhara - silk and viscose, a discreet lurex thread - is machine-washable, doesn't mark under the iron, stays nearly wrinkle-free. Cut by hand in Guéliz, size-free, XS to XXL by your knot. For the days you want to trail a little length behind you without giving up an inch of stride.",
+  "es": "La tela llega hasta el suelo y lo roza a cada paso - la luz de Marrakech se engancha justo abajo. Se enrolla, se cruza, se anuda: puesta en segundos como un pareo de verdad. Cinturón alto y ancho que sujeta bien, volantes en el bajo para un movimiento casi danzante, y una abertura casi invisible que solo se revela al caminar. En el cinturón, La Fatima borda o borda con cuentas a mano un signo amazigh. Jawhara de caída suave - seda y viscosa, un hilo de lúrex discreto - se lava a máquina, no se marca al planchar y queda casi inarrugable. Cortada a mano en Guéliz, sin talla, de la XS a la XXL según el nudo. Para los días en que apetece arrastrar un poco de largo tras de sí sin sacrificar nada de la libertad del paso.",
+  "tr": "Kumaş yere kadar iner ve her adımda yeri okşar - Marakeş ışığı tam eteğin ucunda takılır. Sararsın, çaprazlarsın, bağlarsın: gerçek bir pareo gibi saniyeler içinde giyilir. İyi tutan yüksek ve geniş bir kuşak, neredeyse dans eden bir hareket için eteğinde farbalalar, ve yalnızca yürürken belli olan neredeyse görünmez bir yırtmaç. Kuşağın üzerine La Fatima elle bir Amazigh işareti işler ya da boncukla süsler. Yumuşak dökümlü Jawhara - ipek ve viskon, ince bir lüreks ipliği - makinede yıkanır, ütüde iz bırakmaz, neredeyse hiç buruşmaz. Guéliz'de elle kesilir, bedensiz, düğüme göre XS'ten XXL'e. Adımın özgürlüğünden bir parça bile ödün vermeden ardında biraz uzunluk sürüklemek istediğin günler için.",
+  "ar": "يصل القماش حتى الأرض ويلامسها مع كل خطوة - يعلق ضوء مراكش في أسفله تماماً. تلفّينه، تعقدينه: يُرتدى في ثوانٍ كباريو حقيقي. حزام عريض ومرتفع يمسك جيداً، وكشاكش عند الحاشية لحركة تكاد ترقص، وشقّ يكاد لا يُرى لا يظهر إلا مع المشي. على الحزام، تطرّز لافاطمة أو تُرصّع يدوياً رمزاً أمازيغياً. جوهرة ناعم الانسدال - حرير وفيسكوز، مع خيط لوريكس خفيف - يُغسل في الغسالة، ولا يترك أثراً عند الكي، ويبقى شبه خالٍ من التجاعيد. تُقصّ يدوياً في كليز، بلا مقاس، من XS إلى XXL حسب العقدة. لأيامٍ ترغبين فيها بجرّ قليل من الطول خلفك دون التنازل عن ذرّة من حرية الخطوة."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - viscose et soie, au tombé souple.",
- "en": "Jawhara, our house fabric - viscose and silk, with a soft drape."
+  "fr": "Jawhara, notre tissu maison - soie et viscose, avec un fil de lurex discret ; tombe souple, se lave en machine, quasi infroissable.",
+  "en": "Jawhara, our house fabric - silk and viscose, with a discreet lurex thread; soft drape, machine-washable, nearly wrinkle-free.",
+  "es": "Jawhara, nuestro tejido de la casa - seda y viscosa, con un hilo de lúrex discreto; caída suave, lavable a máquina, casi inarrugable.",
+  "tr": "Jawhara, kendi kumaşımız - ipek ve viskon, ince bir lüreks ipliğiyle; yumuşak döküm, makinede yıkanabilir, neredeyse hiç buruşmaz.",
+  "ar": "جوهرة، قماشنا الخاص - حرير وفيسكوز، مع خيط لوريكس خفيف؛ انسدال ناعم، يُغسل في الغسالة، شبه خالٍ من التجاعيد."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe et finitions restent manuelles.",
- "en": "Jawhara is ours; cut and finishing stay manual."
+  "fr": "Jawhara naît chez nous ; coupe, volants et signe amazigh sur la ceinture restent à la main, à Guéliz.",
+  "en": "Jawhara is ours; cut, ruffles and the Amazigh sign on the belt stay by hand, in Guéliz.",
+  "es": "Jawhara nace en casa; corte, volantes y el signo amazigh del cinturón quedan a mano, en Guéliz.",
+  "tr": "Jawhara bizim elimizden çıkar; kesim, farbalalar ve kuşaktaki Amazigh işareti Guéliz'de elle kalır.",
+  "ar": "جوهرة يُصنع عندنا؛ القص والكشاكش والرمز الأمازيغي على الحزام تبقى يدوية، في كليز."
  },
  "handworkTime": {
- "fr": "Coupée et finie main à l'atelier, sans courir.",
- "en": "Cut and finished by hand at the atelier, without running."
+  "fr": "Coupée et finie main à l'atelier ; le signe amazigh est brodé ou perlé par La Fatima.",
+  "en": "Cut and finished by hand at the atelier; the Amazigh sign is embroidered or beaded by La Fatima.",
+  "es": "Cortada y acabada a mano en el taller; el signo amazigh lo borda o borda con cuentas La Fatima.",
+  "tr": "Atölyede elle kesilip bitirilir; Amazigh işaretini La Fatima işler ya da boncukla süsler.",
+  "ar": "تُقصّ وتُنهى يدوياً في الورشة؛ والرمز الأمازيغي تطرّزه أو تُرصّعه لافاطمة."
  },
  "dimensions": {
  "fr": "Sans taille - du XS au XXL selon le nœud.",
@@ -16206,20 +16308,32 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A wide palazzo that follows your stride like a wave. Cut long, set to your height."
  },
  "desc": {
- "fr": "La jambe s'ouvre large et le tissu ondule derrière chaque pas - on dirait presque une jupe. Jawhara au tombé souple, coupé main à Guéliz. Sans taille, du XS au XXL. On l'a fait volontairement très long : un ourlet rapide et il tombe pile à ta cheville. Pieds nus ou en sandales, il ne change rien à ton allure du matin au soir.",
- "en": "The leg opens wide and the cloth ripples behind each step - almost a skirt. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, XS to XXL. We made it deliberately long: a quick hem and it lands right at your ankle. Bare feet or sandals, it asks nothing of you from morning to night."
+  "fr": "La jambe s'ouvre en XXL et le tissu ondule derrière chaque pas - on dirait presque une jupe. Taille haute, coulisse à nouer, et un pli tulipe qu'on a gardé volontairement au-dessus du cordon pour donner du mouvement au ventre. Au bout de la coulisse, La Fatima fixe main deux pampilles perlées d'or qui dansent quand on marche. Des poches invisibles, un tombé souple : soie et viscose, un fil de lurex discret qui capte la lumière de Marrakech. Jawhara se lave en machine, ne marque pas au repassage, reste quasi infroissable. Coupé et fini main à Guéliz. Sans taille, du XS au XXL. On l'a fait très long à dessein : un ourlet rapide, sur mesure à la commande, et il tombe pile à ta cheville. Pieds nus ou en sandales, du matin au soir, il ne demande rien.",
+  "en": "The leg opens to an XXL width and the cloth ripples behind each step - almost a skirt. High waist, drawstring to tie, and a tulip pleat we deliberately kept above the cord to give the front some movement. At the cord ends, La Fatima hand-fixes two golden beaded pampilles that dance as you walk. Invisible pockets, a soft drape: silk and viscose, a discreet lurex thread that catches the Marrakech light. Jawhara is machine-washable, doesn't mark under the iron, stays nearly wrinkle-free. Cut and finished by hand in Guéliz. Size-free, XS to XXL. We made it very long on purpose: a quick hem, custom on order, and it lands right at your ankle. Bare feet or sandals, morning to night, it asks nothing of you.",
+  "es": "La pierna se abre en un ancho XXL y la tela ondula tras cada paso - casi una falda. Talle alto, cordón para anudar y un pliegue tulipa que dejamos a propósito por encima del cordón para dar movimiento al frente. En los extremos del cordón, La Fatima fija a mano dos pampallitas doradas con cuentas que bailan al caminar. Bolsillos invisibles y una caída suave: seda y viscosa, con un hilo de lúrex discreto que atrapa la luz de Marrakech. Jawhara se lava a máquina, no se marca al planchar y queda casi inarrugable. Cortado y acabado a mano en Guéliz. Sin talla, de la XS a la XXL. Lo hicimos muy largo a propósito: un dobladillo rápido, a medida bajo pedido, y cae justo en el tobillo. Descalza o en sandalias, de la mañana a la noche, no te pide nada.",
+  "tr": "Paça XXL genişliğinde açılır ve kumaş her adımda arkadan dalgalanır - neredeyse bir etek. Yüksek bel, bağlanan bir büzgü ipi ve öne hareket katmak için ipin üstünde bilerek bıraktığımız bir lale pilisi. İp uçlarında La Fatima, yürürken dans eden iki altın boncuklu püskülü elle tutturur. Görünmez cepler, yumuşak bir dökümlülük: ipek ve viskon, Marakeş ışığını yakalayan ince bir lüreks ipliği. Jawhara makinede yıkanır, ütüde iz bırakmaz, neredeyse hiç buruşmaz. Guéliz'de elle kesilip bitirilir. Bedensiz, XS'ten XXL'e. Bilerek çok uzun yaptık: hızlı bir baskı dikişi, siparişe özel, ve tam bileğine iner. Yalın ayak ya da sandaletle, sabahtan akşama, senden hiçbir şey istemez.",
+  "ar": "تنفتح الساق باتساع XXL ويتموّج القماش خلف كل خطوة - يكاد يشبه التنورة. خصر مرتفع، ورباط يُعقد، وثنية على شكل زهرة التوليب أبقيناها عمداً فوق الرباط لتمنح المقدمة بعض الحركة. عند طرفي الرباط، تثبّت لافاطمة يدوياً شرّابتين ذهبيتين مرصّعتين بالخرز ترقصان مع المشي. جيوب خفية وانسدال ناعم: حرير وفيسكوز، مع خيط لوريكس خفيف يلتقط ضوء مراكش. يُغسل جوهرة في الغسالة، ولا يترك أثراً عند الكي، ويبقى شبه خالٍ من التجاعيد. يُقصّ ويُنهى يدوياً في كليز. بلا مقاس، من XS إلى XXL. صنعناه طويلاً جداً عن قصد: تنّورة سريعة، مفصّلة عند الطلب، فيستقر تماماً عند كاحلك. حافية أو بصندل، من الصباح إلى المساء، لا يطلب منك شيئاً."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - viscose et soie, fluide et léger.",
- "en": "Jawhara, our house fabric - viscose and silk, fluid and light."
+  "fr": "Jawhara, notre tissu maison - soie et viscose, avec un fil de lurex discret ; tombe souple, se lave en machine, quasi infroissable.",
+  "en": "Jawhara, our house fabric - silk and viscose, with a discreet lurex thread; soft drape, machine-washable, nearly wrinkle-free.",
+  "es": "Jawhara, nuestro tejido de la casa - seda y viscosa, con un hilo de lúrex discreto; caída suave, lavable a máquina, casi inarrugable.",
+  "tr": "Jawhara, kendi kumaşımız - ipek ve viskon, ince bir lüreks ipliğiyle; yumuşak döküm, makinede yıkanabilir, neredeyse hiç buruşmaz.",
+  "ar": "جوهرة، قماشنا الخاص - حرير وفيسكوز، مع خيط لوريكس خفيف؛ انسدال ناعم، يُغسل في الغسالة، شبه خالٍ من التجاعيد."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe et finitions restent dans nos mains.",
- "en": "Jawhara is ours; cut and finishing stay in our hands."
+  "fr": "Jawhara naît chez nous ; coupe, ourlet et pampilles perlées restent dans nos mains, à Guéliz.",
+  "en": "Jawhara is ours; cut, hem and beaded pampilles stay in our hands, in Guéliz.",
+  "es": "Jawhara nace en casa; corte, dobladillo y pampallitas con cuentas quedan en nuestras manos, en Guéliz.",
+  "tr": "Jawhara bizim elimizden çıkar; kesim, baskı dikişi ve boncuklu püsküller Guéliz'de bizim ellerimizde kalır.",
+  "ar": "جوهرة يُصنع عندنا؛ القص والتنّورة والشرّابات المرصّعة تبقى بين أيدينا، في كليز."
  },
  "handworkTime": {
- "fr": "Coupé et fini main à l'atelier, sans se presser.",
- "en": "Cut and finished by hand at the atelier, taking its time."
+  "fr": "Coupé et fini main à l'atelier ; les pampilles perlées sont posées une à une par La Fatima.",
+  "en": "Cut and finished by hand at the atelier; the beaded pampilles are set one by one by La Fatima.",
+  "es": "Cortado y acabado a mano en el taller; las pampallitas con cuentas las coloca una a una La Fatima.",
+  "tr": "Atölyede elle kesilip bitirilir; boncuklu püskülleri La Fatima tek tek yerleştirir.",
+  "ar": "يُقصّ ويُنهى يدوياً في الورشة؛ والشرّابات المرصّعة تضعها لافاطمة واحدةً واحدة."
  },
  "dimensions": {
  "fr": "Sans taille - du XS au XXL, coupé très long, ourlet facile.",
@@ -16237,20 +16351,32 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Wrap trousers tied at the waist. No button, no pressure on the belly."
  },
  "desc": {
- "fr": "Pas de bouton ni de zip : deux pans qui se croisent et se nouent, et la taille s'ouvre ou se resserre selon le jour. Jawhara au tombé souple, coupé main à Guéliz. Sans taille, du XS au XXL, c'est le nœud qui mène. Rien qui serre le ventre - du marché du matin à la terrasse du soir, on oublie qu'on le porte.",
- "en": "No button, no zip: two panels that cross and tie, so the waist opens or draws in as the day asks. Soft-draping Jawhara, cut by hand in Guéliz. Size-free, XS to XXL - the knot leads. Nothing grips the belly - from the morning market to the evening terrace, you forget you have them on."
+  "fr": "Notre pantalon sans taille par excellence : pas de bouton ni de zip, deux pans qui se croisent, un dos plat à cordon et une ceinture qui se noue devant. La taille s'ouvre ou se resserre selon le jour, rien ne serre le ventre. Sur la ceinture, La Fatima brode ou perle main un signe amazigh, ton sur ton, discret comme une signature. Jawhara au tombé souple - soie et viscose, un fil de lurex discret - se lave en machine, ne marque pas au repassage, reste quasi infroissable. Coupé et fini main à Guéliz. Sans taille, du XS au XXL : c'est le nœud qui mène. Du marché du matin à la terrasse du soir, on oublie qu'on le porte.",
+  "en": "Our no-size basic par excellence: no button, no zip, two panels that cross, a flat corded back and a belt that ties in front. The waist opens or draws in as the day asks, nothing grips the belly. On the belt, La Fatima hand-embroiders or beads an Amazigh sign, tone on tone, discreet as a signature. Soft-draping Jawhara - silk and viscose, a discreet lurex thread - is machine-washable, doesn't mark under the iron, stays nearly wrinkle-free. Cut and finished by hand in Guéliz. Size-free, XS to XXL: the knot leads. From the morning market to the evening terrace, you forget you have them on.",
+  "es": "Nuestro básico sin talla por excelencia: sin botón ni cremallera, dos paños que se cruzan, una espalda plana con cordón y un cinturón que se anuda delante. El talle se abre o se ajusta según el día, nada aprieta el vientre. En el cinturón, La Fatima borda o borda con cuentas a mano un signo amazigh, tono sobre tono, discreto como una firma. Jawhara de caída suave - seda y viscosa, un hilo de lúrex discreto - se lava a máquina, no se marca al planchar y queda casi inarrugable. Cortado y acabado a mano en Guéliz. Sin talla, de la XS a la XXL: manda el nudo. Del mercado de la mañana a la terraza de la noche, te olvidas de que lo llevas.",
+  "tr": "Bedensiz temel parçamızın en hası: düğme yok, fermuar yok, çaprazlanan iki pan, ipli düz bir arka ve önden bağlanan bir kuşak. Bel, günün isteğine göre açılır ya da toplanır, hiçbir şey karnı sıkmaz. Kuşağın üzerine La Fatima, imza kadar ince, ton sıra ton bir Amazigh işareti elle işler ya da boncukla süsler. Yumuşak dökümlü Jawhara - ipek ve viskon, ince bir lüreks ipliği - makinede yıkanır, ütüde iz bırakmaz, neredeyse hiç buruşmaz. Guéliz'de elle kesilip bitirilir. Bedensiz, XS'ten XXL'e: düğüm yönetir. Sabah pazarından akşam terasına, üzerinde olduğunu unutursun.",
+  "ar": "بنطالنا بلا مقاس بامتياز: بلا زر ولا سحّاب، طيّتان تتقاطعان، ظهر مسطّح برباط، وحزام يُعقد من الأمام. يتّسع الخصر أو يضيق حسب اليوم، ولا شيء يضغط على البطن. على الحزام، تطرّز لافاطمة أو تُرصّع يدوياً رمزاً أمازيغياً، لوناً على لون، خفياً كتوقيع. جوهرة ناعم الانسدال - حرير وفيسكوز، مع خيط لوريكس خفيف - يُغسل في الغسالة، ولا يترك أثراً عند الكي، ويبقى شبه خالٍ من التجاعيد. يُقصّ ويُنهى يدوياً في كليز. بلا مقاس، من XS إلى XXL: العقدة هي التي تقود. من سوق الصباح إلى شرفة المساء، تنسى أنك ترتديه."
  },
  "material": {
- "fr": "Jawhara, notre tissu maison - viscose et soie, au tombé souple.",
- "en": "Jawhara, our house fabric - viscose and silk, with a soft drape."
+  "fr": "Jawhara, notre tissu maison - soie et viscose, avec un fil de lurex discret ; tombe souple, se lave en machine, quasi infroissable.",
+  "en": "Jawhara, our house fabric - silk and viscose, with a discreet lurex thread; soft drape, machine-washable, nearly wrinkle-free.",
+  "es": "Jawhara, nuestro tejido de la casa - seda y viscosa, con un hilo de lúrex discreto; caída suave, lavable a máquina, casi inarrugable.",
+  "tr": "Jawhara, kendi kumaşımız - ipek ve viskon, ince bir lüreks ipliğiyle; yumuşak döküm, makinede yıkanabilir, neredeyse hiç buruşmaz.",
+  "ar": "جوهرة، قماشنا الخاص - حرير وفيسكوز، مع خيط لوريكس خفيف؛ انسدال ناعم، يُغسل في الغسالة، شبه خالٍ من التجاعيد."
  },
  "fabric": {
- "fr": "Jawhara naît chez nous ; coupe et finitions restent à la main.",
- "en": "Jawhara is ours; cut and finishing stay by hand."
+  "fr": "Jawhara naît chez nous ; coupe, finitions et signe amazigh sur la ceinture restent à la main, à Guéliz.",
+  "en": "Jawhara is ours; cut, finishing and the Amazigh sign on the belt stay by hand, in Guéliz.",
+  "es": "Jawhara nace en casa; corte, acabados y el signo amazigh del cinturón quedan a mano, en Guéliz.",
+  "tr": "Jawhara bizim elimizden çıkar; kesim, bitişler ve kuşaktaki Amazigh işareti Guéliz'de elle kalır.",
+  "ar": "جوهرة يُصنع عندنا؛ القص والتشطيب والرمز الأمازيغي على الحزام تبقى يدوية، في كليز."
  },
  "handworkTime": {
- "fr": "Coupé et fini main à l'atelier, à son rythme.",
- "en": "Cut and finished by hand at the atelier, at its own pace."
+  "fr": "Coupé et fini main à l'atelier ; le signe amazigh est brodé ou perlé par La Fatima.",
+  "en": "Cut and finished by hand at the atelier; the Amazigh sign is embroidered or beaded by La Fatima.",
+  "es": "Cortado y acabado a mano en el taller; el signo amazigh lo borda o borda con cuentas La Fatima.",
+  "tr": "Atölyede elle kesilip bitirilir; Amazigh işaretini La Fatima işler ya da boncukla süsler.",
+  "ar": "يُقصّ ويُنهى يدوياً في الورشة؛ والرمز الأمازيغي تطرّزه أو تُرصّعه لافاطمة."
  },
  "dimensions": {
  "fr": "Sans taille - le nœud règle du XS au XXL.",
@@ -16266,33 +16392,39 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  {
  "handle": "la-sculpture-xs-basket-bag-ss26",
  "short": {
- "fr": "Le plus petit panier de la famille - et pourtant, il en avale : téléphone, carnet, lunettes, un foulard, tous vos essentiels du jour.",
- "en": "The smallest basket in the family - and yet it swallows it all: phone, notebook, sunglasses, a scarf, your whole day's essentials."
+  "fr": "Le plus petit panier de la famille - et pourtant il en avale : téléphone, carnet, lunettes, un foulard, tous vos essentiels du jour. Raphia et feuille de bananier, rien que ce que la terre a donné.",
+  "en": "The smallest basket in the family - and yet it swallows it all: phone, notebook, sunglasses, a scarf, your whole day's essentials. Raffia and banana leaf, nothing but what the earth gave.",
+  "es": "El cesto más pequeño de la familia y, aun así, se lo traga todo: móvil, cuaderno, gafas, un pañuelo, todos tus imprescindibles del día. Rafia y hoja de banano, nada más que lo que dio la tierra.",
+  "tr": "Ailenin en küçük sepeti ama yine de hepsini yutuyor: telefon, defter, gözlük, bir eşarp, günün tüm gerekliliği. Rafya ve muz yaprağı, yalnızca toprağın verdiği.",
+  "ar": "أصغر سلة في العائلة، ومع ذلك تبتلع كل شيء: الهاتف، دفتر، النظارات، وشاح، كل أساسيات يومك. رافيا وورق الموز، لا شيء سوى ما جادت به الأرض."
  },
  "desc": {
- "fr": "Assez petit pour tenir dans la paume, et bien plus contenant qu'on ne le croit. La Sculpture XS se porte à la main ou sur une courte bandoulière. À Guéliz, les feuilles de bananier passent entre les doigts de Fatima et de son équipe, les anses sont enveloppées, les perles posées une à une. Téléphone, porte-cartes, clés, lunettes, un petit foulard : tout y trouve sa place, on referme et on part les mains libres. Deux paniers ne se ressemblent jamais tout à fait.",
- "en": "Small enough to sit in the palm, and far roomier than you'd think. La Sculpture XS goes in the hand or on a short shoulder strap. In Guéliz the banana leaves pass through Fatima's hands and her team's, the handles are wrapped, the beads set one by one. Phone, card holder, keys, sunglasses, a small scarf: it all finds a place, close it and leave hands free. No two baskets are ever quite alike."
+  "fr": "Assez petit pour tenir dans la paume, et bien plus contenant qu'on ne le croit. Ici, rien que du raphia et de la feuille de bananier - pas un gramme de cuir, rien que ce que la terre a donné, façonné à la main. Les anses cachent une âme en fil de fer que Fatima cintre à la main avant de l'envelopper de raphia, comme un sculpteur travaille le métal avant d'y poser l'argile : vous pouvez les recourber, les repositionner à votre gré. Les formes rappellent les arches des portes de la médina, le tracé sinueux des ruelles ; les couleurs, celles des vieilles portes marocaines - rouge, noir, violet. À l'intérieur, un pochon doublé de Jawhara, ponctué de pompons de raphia. Téléphone, porte-cartes, clés, lunettes, un petit foulard : tout y trouve sa place, on referme et on part les mains libres. Deux anses ne sont jamais tout à fait pareilles, deux paniers non plus.",
+  "en": "Small enough to sit in the palm, and far roomier than you'd think. Here it's raffia and banana leaf only - not a gram of leather, nothing but what the earth gave, shaped by hand. The handles hide a wire core that Fatima bends by hand before wrapping it in raffia, the way a sculptor works the metal before laying on the clay: you can curve them, reposition them as you like. The shapes echo the arches of the medina doors, the winding line of the alleys; the colours, those of old Moroccan doors - red, black, purple. Inside, a Jawhara-lined pouch dotted with raffia pompoms. Phone, card holder, keys, sunglasses, a small scarf: it all finds a place, close it and leave hands free. No two handles are ever quite alike, and no two baskets either.",
+  "es": "Lo bastante pequeño para caber en la palma, y mucho más amplio de lo que parece. Aquí solo hay rafia y hoja de banano - ni un gramo de cuero, nada más que lo que dio la tierra, moldeado a mano. Las asas esconden un alma de alambre que Fatima curva a mano antes de envolverla en rafia, como un escultor trabaja el metal antes de posar la arcilla: puedes doblarlas, recolocarlas a tu gusto. Las formas evocan los arcos de las puertas de la medina, el trazado sinuoso de las callejuelas; los colores, los de las viejas puertas marroquíes - rojo, negro, violeta. Dentro, una bolsita forrada de Jawhara, salpicada de pompones de rafia. Móvil, tarjetero, llaves, gafas, un pañuelo pequeño: todo encuentra su sitio, se cierra y sales con las manos libres. No hay dos asas iguales, ni dos cestos tampoco.",
+  "tr": "Avuca sığacak kadar küçük, sandığınızdan çok daha ferah. Burada yalnızca rafya ve muz yaprağı var - bir gram deri yok, yalnızca toprağın verdiği, elle biçimlenmiş. Saplar, Fatima'nın rafyayla sarmadan önce elle büktüğü bir tel özü saklıyor; tıpkı bir heykeltıraşın kili koymadan önce metali işlemesi gibi: dilediğiniz gibi kıvırabilir, yeniden konumlandırabilirsiniz. Biçimler medina kapılarının kemerlerini, sokakların kıvrımlı çizgisini anımsatır; renkler ise eski Fas kapılarının renklerini - kırmızı, siyah, mor. İçinde, rafya ponponlarla süslü, Jawhara astarlı bir kese. Telefon, kartlık, anahtar, gözlük, küçük bir eşarp: hepsi yerini buluyor, kapatıp elleriniz serbest çıkıyorsunuz. İki sap asla tam olarak birbirine benzemez, iki sepet de öyle.",
+  "ar": "صغيرة بما يكفي لتستقر في راحة اليد، وأوسع بكثير مما تظن. هنا رافيا وورق الموز فقط - لا غرام واحد من الجلد، لا شيء سوى ما جادت به الأرض، مُشكَّل باليد. تُخفي المقابض روحًا من السلك تُقوّسها فاطمة بيدها قبل أن تلفّها بالرافيا، كما ينحت النحّات المعدن قبل أن يضع الطين: يمكنك ثنيها وإعادة تشكيلها كما يحلو لك. تستحضر الأشكال أقواس أبواب المدينة القديمة وخط الأزقة المتعرّج؛ أما الألوان فألوان الأبواب المغربية العتيقة - الأحمر والأسود والبنفسجي. في الداخل، كيس مبطّن بـ Jawhara مرصّع بكرات الرافيا. الهاتف، حامل البطاقات، المفاتيح، النظارات، وشاح صغير: كل شيء يجد مكانه، تُغلقها وتمضي ويداك حرّتان. لا يتشابه مقبضان تمامًا، ولا سلّتان كذلك."
  },
  "material": {
- "fr": "Feuilles de bananier tissées main, anse sculptée en métal léger inspirée de l'architecture de Marrakech, gainée de raphia naturel et teinté et finie de perles - Hot Red, Deep Violet ou Black Olive.",
- "en": "Hand-woven banana leaves with a sculpted lightweight metal handle inspired by Marrakech architecture, wrapped in natural and dyed raffia and finished with beads - Hot Red, Deep Violet or Black Olive.",
- "es": "Hojas de banano tejidas a mano con un asa esculpida de metal ligero inspirada en la arquitectura de Marrakech, envuelta en rafia natural y teñida y rematada con cuentas - Hot Red, Deep Violet o Black Olive.",
- "tr": "Elde dokunmuş muz yaprağı; Marakeş mimarisinden esinlenen, doğal ve boyalı rafyayla sarılıp boncuklarla bitirilen hafif heykelsi metal sap - Hot Red, Deep Violet veya Black Olive.",
- "ar": "أوراق الموز المنسوجة يدويًا مع مقبض معدني خفيف منحوت مستوحى من عمارة مراكش، ملفوف برافيا طبيعية ومصبوغة ومزيّن بالخرز - Hot Red أو Deep Violet أو Black Olive."
+  "fr": "Raphia et feuille de bananier uniquement - aucun cuir. Anses à âme en fil de fer cintrée main puis gainée de raphia, que l'on peut recourber à volonté ; intérieur avec pochon doublé de Jawhara et pompons de raphia. Coloris Hot Red, Deep Violet ou Black Olive.",
+  "en": "Raffia and banana leaf only - no leather. Handles built on a hand-bent wire core sheathed in raffia, which you can reshape at will; interior with a Jawhara-lined pouch and raffia pompoms. In Hot Red, Deep Violet or Black Olive.",
+  "es": "Solo rafia y hoja de banano - sin cuero. Asas con alma de alambre curvada a mano y envuelta en rafia, que puedes remodelar a voluntad; interior con bolsita forrada de Jawhara y pompones de rafia. En Hot Red, Deep Violet o Black Olive.",
+  "tr": "Yalnızca rafya ve muz yaprağı - deri yok. Elde bükülüp rafyayla sarılan tel özlü saplar dilediğiniz gibi yeniden biçimlenir; içeride Jawhara astarlı kese ve rafya ponponlar. Hot Red, Deep Violet veya Black Olive renklerinde.",
+  "ar": "رافيا وورق الموز فقط - بلا جلد. مقابض بروح من السلك تُقوّس باليد ثم تُغلَّف بالرافيا، ويمكنك إعادة تشكيلها كما تشاء؛ الداخل بكيس مبطّن بـ Jawhara وكرات رافيا. بألوان Hot Red أو Deep Violet أو Black Olive."
  },
  "fabric": {
- "fr": "Un tissage serré et solaire, broderie de raphia sur les bords et anses gainées main : la signature de La Sculpture.",
- "en": "A tight, sun-warm weave with raffia embroidery along the edges and hand-wrapped handles: the La Sculpture signature.",
- "es": "Un tejido apretado y cálido, con bordado de rafia en los bordes y asas envueltas a mano: la firma de La Sculpture.",
- "tr": "Sıkı ve güneş sıcaklığında bir dokuma; kenarlarda rafya işlemesi ve elde sarılmış saplar: La Sculpture imzası.",
- "ar": "نسيج محكم ودافئ مع تطريز من الرافيا على الحواف ومقابض ملفوفة يدويًا: توقيع La Sculpture."
+  "fr": "La signature de La Sculpture, c'est l'anse : une âme en fil de fer cintrée à la main puis gainée de raphia, qu'on recourbe à sa guise, sur un tissage serré et solaire de feuille de bananier.",
+  "en": "The La Sculpture signature is the handle: a wire core bent by hand then sheathed in raffia, curved however you like, over a tight, sun-warm banana-leaf weave.",
+  "es": "La firma de La Sculpture es el asa: un alma de alambre curvada a mano y luego envuelta en rafia, que se dobla a tu antojo, sobre un tejido de hoja de banano apretado y cálido.",
+  "tr": "La Sculpture'ün imzası saptır: elde bükülüp rafyayla sarılan, dilediğiniz gibi kıvrılan bir tel öz; sıkı ve güneş sıcaklığında muz yaprağı dokuma üzerinde.",
+  "ar": "توقيع La Sculpture هو المقبض: روح من السلك تُقوّس باليد ثم تُغلَّف بالرافيا، تنثنيها كما تشاء، فوق نسيج محكم ودافئ من ورق الموز."
  },
  "handworkTime": {
- "fr": "Tout fait main - près de 48 heures réparties sur six jours, du tissage au dernier contrôle.",
- "en": "All by hand - close to 48 hours across six days, from the weave to the last check.",
- "es": "Todo a mano: cerca de 48 horas repartidas en seis días, del tejido al último control.",
- "tr": "Tümüyle elde: dokumadan son kontrole, altı güne yayılan yaklaşık 48 saat.",
- "ar": "كل شيء يدويًا: نحو 48 ساعة موزعة على ستة أيام، من النسج حتى الفحص الأخير."
+  "fr": "Tout fait main par Fatima et son équipe à Guéliz - entre 35 et 85 heures selon la pièce, du cintrage des anses au dernier contrôle.",
+  "en": "All made by hand by Fatima and her team in Guéliz - between 35 and 85 hours depending on the piece, from bending the handles to the last check.",
+  "es": "Todo hecho a mano por Fatima y su equipo en Guéliz - entre 35 y 85 horas según la pieza, desde el curvado de las asas hasta el último control.",
+  "tr": "Tümü Guéliz'de Fatima ve ekibi tarafından elde yapılır - parçaya göre 35 ila 85 saat, sapların bükülmesinden son kontrole kadar.",
+  "ar": "كل شيء يُصنع يدويًا على يد فاطمة وفريقها في كليز - بين 35 و85 ساعة حسب القطعة، من تقويس المقابض حتى الفحص الأخير."
  },
  "dimensions": {
  "fr": "Le plus petit format - un mini panier à la main ou en courte bandoulière. Dimensions : 36 × 22 × 11 cm.",
@@ -16327,40 +16459,49 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Phone, notebook, card holder, keys, sunglasses and a scarf - far more than you'd think."
  },
  "making": {
- "fr": "Monté à partir de feuilles de bananier, de raffia et de perles.",
- "en": "Built from banana leaves, raffia and beads."
+  "fr": "Chaque panier naît sous les mains de Fatima, à Guéliz : elle cintre l'âme en fil de fer des anses avant de l'envelopper de raphia, comme un sculpteur travaille le métal, puis noue la feuille de bananier brin à brin - de 35 à 85 heures de travail, sans un gramme de cuir.",
+  "en": "Each basket comes to life under Fatima's hands in Guéliz: she bends the wire core of the handles before wrapping it in raffia, the way a sculptor works the metal, then ties the banana leaf strand by strand - 35 to 85 hours of work, without a gram of leather.",
+  "es": "Cada cesto nace bajo las manos de Fatima, en Guéliz: curva el alma de alambre de las asas antes de envolverla en rafia, como un escultor trabaja el metal, y luego anuda la hoja de banano hebra a hebra - de 35 a 85 horas de trabajo, sin un gramo de cuero.",
+  "tr": "Her sepet Guéliz'de Fatima'nın elleri altında hayat bulur: sapların tel özünü, bir heykeltıraşın metali işlemesi gibi rafyayla sarmadan önce büker, ardından muz yaprağını lif lif düğümler - 35 ila 85 saatlik emek, bir gram deri olmadan.",
+  "ar": "تُولد كل سلة تحت يدي فاطمة في كليز: تُقوّس روح السلك في المقابض قبل أن تلفّها بالرافيا، كما ينحت النحّات المعدن، ثم تعقد ورق الموز خيطًا خيطًا - من 35 إلى 85 ساعة عمل، دون غرام واحد من الجلد."
  }
  },
  {
  "handle": "la-sculpture-s-basket-bag-ss26",
  "short": {
- "fr": "Le format du milieu, celui qu'on prend sans réfléchir. Léger, et il porte la journée.",
- "en": "The middle size, the one you grab without thinking. Light, and it carries the day."
+  "fr": "Le format du milieu, celui qu'on prend sans réfléchir. Léger, il porte la journée - raphia et feuille de bananier, rien que ce que la terre a donné.",
+  "en": "The middle size, the one you grab without thinking. Light, it carries the day - raffia and banana leaf, nothing but what the earth gave.",
+  "es": "La talla intermedia, la que coges sin pensar. Ligero, lleva la jornada - rafia y hoja de banano, nada más que lo que dio la tierra.",
+  "tr": "Orta beden, düşünmeden aldığınız. Hafif, günü taşıyor - rafya ve muz yaprağı, yalnızca toprağın verdiği.",
+  "ar": "المقاس المتوسط، الذي تأخذه دون تفكير. خفيف، يحمل يومك كاملًا - رافيا وورق الموز، لا شيء سوى ما جادت به الأرض."
  },
  "desc": {
- "fr": "Le compromis juste : compact mais pas exigu, il suit la journée sans tirer sur l'épaule. Comme tous nos paniers, il prend forme entre les mains des femmes de Guéliz - tissage des feuilles de bananier, anses habillées, perles posées, contrôle final. Téléphone, portefeuille, lunettes, un foulard fin, les petites choses du jour : tout y trouve sa place. Le tissage garde la trace de la main qui l'a fait.",
- "en": "The right middle ground: compact but not cramped, it follows the day without dragging on the shoulder. Like all our baskets, it takes shape in the hands of the Guéliz women - banana leaves woven, handles dressed, beads set, a final check. Phone, wallet, sunglasses, a thin scarf, the small things of the day: it all finds a place. The weave keeps the mark of the hand that made it."
+  "fr": "Le compromis juste : compact mais pas exigu, il suit la journée sans tirer sur l'épaule. Ici, rien que du raphia et de la feuille de bananier - aucun cuir, rien que ce que la terre a donné, façonné à la main. Les anses cachent une âme en fil de fer que Fatima cintre à la main avant de la gainer de raphia, comme un sculpteur travaille le métal avant d'y poser l'argile : recourbez-les, déplacez-les à votre gré. Leur dessin rappelle les arches des portes de la médina et le tracé sinueux des ruelles ; les coloris, ceux des vieilles portes marocaines. À l'intérieur, un pochon doublé de Jawhara et ses pompons de raphia. Téléphone, portefeuille, lunettes, un foulard fin : tout y trouve sa place. Le tissage garde la trace de la main qui l'a fait.",
+  "en": "The right middle ground: compact but not cramped, it follows the day without dragging on the shoulder. Here it's raffia and banana leaf only - no leather, nothing but what the earth gave, shaped by hand. The handles hide a wire core Fatima bends by hand before sheathing it in raffia, the way a sculptor works the metal before laying on the clay: curve them, move them as you like. Their drawing echoes the arches of the medina doors and the winding line of the alleys; the colours, those of old Moroccan doors. Inside, a Jawhara-lined pouch and its raffia pompoms. Phone, wallet, sunglasses, a thin scarf: it all finds a place. The weave keeps the mark of the hand that made it.",
+  "es": "El punto medio justo: compacto pero no estrecho, sigue la jornada sin tirar del hombro. Aquí solo hay rafia y hoja de banano - sin cuero, nada más que lo que dio la tierra, moldeado a mano. Las asas esconden un alma de alambre que Fatima curva a mano antes de envolverla en rafia, como un escultor trabaja el metal antes de posar la arcilla: cúrvalas, muévelas a tu gusto. Su dibujo evoca los arcos de las puertas de la medina y el trazado sinuoso de las callejuelas; los colores, los de las viejas puertas marroquíes. Dentro, una bolsita forrada de Jawhara y sus pompones de rafia. Móvil, cartera, gafas, un pañuelo fino: todo encuentra su sitio. El tejido guarda la huella de la mano que lo hizo.",
+  "tr": "Tam ortada doğru denge: kompakt ama sıkışık değil, omuzu çekmeden günü izler. Burada yalnızca rafya ve muz yaprağı var - deri yok, yalnızca toprağın verdiği, elle biçimlenmiş. Saplar, Fatima'nın rafyayla sarmadan önce elle büktüğü bir tel özü saklar; tıpkı bir heykeltıraşın kili koymadan önce metali işlemesi gibi: dilediğiniz gibi kıvırın, kaydırın. Çizgileri medina kapılarının kemerlerini ve sokakların kıvrımlı hattını anımsatır; renkler eski Fas kapılarının renkleri. İçinde, Jawhara astarlı bir kese ve rafya ponponları. Telefon, cüzdan, gözlük, ince bir eşarp: hepsi yerini bulur. Dokuma, onu yapan elin izini taşır.",
+  "ar": "التوازن الصحيح تمامًا: مدمجة لكن غير ضيّقة، تُرافق يومك دون أن تشدّ الكتف. هنا رافيا وورق الموز فقط - بلا جلد، لا شيء سوى ما جادت به الأرض، مُشكَّل باليد. تُخفي المقابض روحًا من السلك تُقوّسها فاطمة بيدها قبل أن تغلّفها بالرافيا، كما ينحت النحّات المعدن قبل أن يضع الطين: قوّسها وحرّكها كما تشاء. يستحضر رسمها أقواس أبواب المدينة القديمة وخط الأزقة المتعرّج؛ وألوانها ألوان الأبواب المغربية العتيقة. في الداخل، كيس مبطّن بـ Jawhara وكرات الرافيا. الهاتف، المحفظة، النظارات، وشاح رفيع: كل شيء يجد مكانه. يحتفظ النسيج بأثر اليد التي صنعته."
  },
  "material": {
- "fr": "Feuilles de bananier tissées main, anse sculptée en métal léger inspirée de l'architecture de Marrakech, gainée de raphia naturel et teinté et finie de perles - Hot Red, Deep Violet ou Black Olive.",
- "en": "Hand-woven banana leaves with a sculpted lightweight metal handle inspired by Marrakech architecture, wrapped in natural and dyed raffia and finished with beads - Hot Red, Deep Violet or Black Olive.",
- "es": "Hojas de banano tejidas a mano con un asa esculpida de metal ligero inspirada en la arquitectura de Marrakech, envuelta en rafia natural y teñida y rematada con cuentas - Hot Red, Deep Violet o Black Olive.",
- "tr": "Elde dokunmuş muz yaprağı; Marakeş mimarisinden esinlenen, doğal ve boyalı rafyayla sarılıp boncuklarla bitirilen hafif heykelsi metal sap - Hot Red, Deep Violet veya Black Olive.",
- "ar": "أوراق الموز المنسوجة يدويًا مع مقبض معدني خفيف منحوت مستوحى من عمارة مراكش، ملفوف برافيا طبيعية ومصبوغة ومزيّن بالخرز - Hot Red أو Deep Violet أو Black Olive."
+  "fr": "Raphia et feuille de bananier uniquement - aucun cuir. Anses à âme en fil de fer cintrée main puis gainée de raphia, que l'on peut recourber à volonté ; intérieur avec pochon doublé de Jawhara et pompons de raphia. Coloris Hot Red, Deep Violet ou Black Olive.",
+  "en": "Raffia and banana leaf only - no leather. Handles built on a hand-bent wire core sheathed in raffia, which you can reshape at will; interior with a Jawhara-lined pouch and raffia pompoms. In Hot Red, Deep Violet or Black Olive.",
+  "es": "Solo rafia y hoja de banano - sin cuero. Asas con alma de alambre curvada a mano y envuelta en rafia, que puedes remodelar a voluntad; interior con bolsita forrada de Jawhara y pompones de rafia. En Hot Red, Deep Violet o Black Olive.",
+  "tr": "Yalnızca rafya ve muz yaprağı - deri yok. Elde bükülüp rafyayla sarılan tel özlü saplar dilediğiniz gibi yeniden biçimlenir; içeride Jawhara astarlı kese ve rafya ponponlar. Hot Red, Deep Violet veya Black Olive renklerinde.",
+  "ar": "رافيا وورق الموز فقط - بلا جلد. مقابض بروح من السلك تُقوّس باليد ثم تُغلَّف بالرافيا، ويمكنك إعادة تشكيلها كما تشاء؛ الداخل بكيس مبطّن بـ Jawhara وكرات رافيا. بألوان Hot Red أو Deep Violet أو Black Olive."
  },
  "fabric": {
- "fr": "Un tissage serré et solaire, broderie de raphia sur les bords et anses gainées main : la signature de La Sculpture.",
- "en": "A tight, sun-warm weave with raffia embroidery along the edges and hand-wrapped handles: the La Sculpture signature.",
- "es": "Un tejido apretado y cálido, con bordado de rafia en los bordes y asas envueltas a mano: la firma de La Sculpture.",
- "tr": "Sıkı ve güneş sıcaklığında bir dokuma; kenarlarda rafya işlemesi ve elde sarılmış saplar: La Sculpture imzası.",
- "ar": "نسيج محكم ودافئ مع تطريز من الرافيا على الحواف ومقابض ملفوفة يدويًا: توقيع La Sculpture."
+  "fr": "La signature de La Sculpture, c'est l'anse : une âme en fil de fer cintrée à la main puis gainée de raphia, qu'on recourbe à sa guise, sur un tissage serré et solaire de feuille de bananier.",
+  "en": "The La Sculpture signature is the handle: a wire core bent by hand then sheathed in raffia, curved however you like, over a tight, sun-warm banana-leaf weave.",
+  "es": "La firma de La Sculpture es el asa: un alma de alambre curvada a mano y luego envuelta en rafia, que se dobla a tu antojo, sobre un tejido de hoja de banano apretado y cálido.",
+  "tr": "La Sculpture'ün imzası saptır: elde bükülüp rafyayla sarılan, dilediğiniz gibi kıvrılan bir tel öz; sıkı ve güneş sıcaklığında muz yaprağı dokuma üzerinde.",
+  "ar": "توقيع La Sculpture هو المقبض: روح من السلك تُقوّس باليد ثم تُغلَّف بالرافيا، تنثنيها كما تشاء، فوق نسيج محكم ودافئ من ورق الموز."
  },
  "handworkTime": {
- "fr": "Entièrement monté à la main : environ 48 heures sur six jours, du premier brin au contrôle final.",
- "en": "Built entirely by hand: about 48 hours over six days, from first strand to final check.",
- "es": "Montado enteramente a mano: unas 48 horas en seis días, de la primera hebra al control final.",
- "tr": "Tümüyle elde montaj: ilk lifinden son kontrole, altı günde yaklaşık 48 saat.",
- "ar": "مُجمَّع يدويًا بالكامل: نحو 48 ساعة في ستة أيام، من أول خيط حتى الفحص النهائي."
+  "fr": "Entièrement monté à la main par Fatima et son équipe à Guéliz - de 35 à 85 heures selon la pièce, du cintrage des anses au contrôle final.",
+  "en": "Built entirely by hand by Fatima and her team in Guéliz - 35 to 85 hours depending on the piece, from bending the handles to the final check.",
+  "es": "Montado enteramente a mano por Fatima y su equipo en Guéliz - de 35 a 85 horas según la pieza, del curvado de las asas al control final.",
+  "tr": "Tümüyle Guéliz'de Fatima ve ekibi tarafından elde monte edilir - parçaya göre 35 ila 85 saat, sapların bükülmesinden son kontrole.",
+  "ar": "مُجمَّعة يدويًا بالكامل على يد فاطمة وفريقها في كليز - من 35 إلى 85 ساعة حسب القطعة، من تقويس المقابض حتى الفحص النهائي."
  },
  "dimensions": {
  "fr": "Le format du milieu - un panier compact, fait pour tous les jours. Dimensions : 40 × 31 × 14 cm.",
@@ -16395,40 +16536,49 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Phone, wallet, sunglasses, a thin scarf and the day's small things."
  },
  "making": {
- "fr": "Monté à partir de feuilles de bananier, de raffia et de perles.",
- "en": "Built from banana leaves, raffia and beads."
+  "fr": "Chaque panier naît sous les mains de Fatima, à Guéliz : elle cintre l'âme en fil de fer des anses avant de l'envelopper de raphia, comme un sculpteur travaille le métal, puis noue la feuille de bananier brin à brin - de 35 à 85 heures de travail, sans un gramme de cuir.",
+  "en": "Each basket comes to life under Fatima's hands in Guéliz: she bends the wire core of the handles before wrapping it in raffia, the way a sculptor works the metal, then ties the banana leaf strand by strand - 35 to 85 hours of work, without a gram of leather.",
+  "es": "Cada cesto nace bajo las manos de Fatima, en Guéliz: curva el alma de alambre de las asas antes de envolverla en rafia, como un escultor trabaja el metal, y luego anuda la hoja de banano hebra a hebra - de 35 a 85 horas de trabajo, sin un gramo de cuero.",
+  "tr": "Her sepet Guéliz'de Fatima'nın elleri altında hayat bulur: sapların tel özünü, bir heykeltıraşın metali işlemesi gibi rafyayla sarmadan önce büker, ardından muz yaprağını lif lif düğümler - 35 ila 85 saatlik emek, bir gram deri olmadan.",
+  "ar": "تُولد كل سلة تحت يدي فاطمة في كليز: تُقوّس روح السلك في المقابض قبل أن تلفّها بالرافيا، كما ينحت النحّات المعدن، ثم تعقد ورق الموز خيطًا خيطًا - من 35 إلى 85 ساعة عمل، دون غرام واحد من الجلد."
  }
  },
  {
  "handle": "la-sculpture-m-basket-bag-ss26",
  "short": {
- "fr": "Le grand format, celui des journées pleines. Un livre, un foulard, une trousse - il suit.",
- "en": "The large size, for the full days. A book, a scarf, a pouch - it keeps up."
+  "fr": "Le grand format, celui des journées pleines. Un livre, un foulard, une trousse - il suit. Raphia et feuille de bananier, rien que ce que la terre a donné.",
+  "en": "The large size, for the full days. A book, a scarf, a pouch - it keeps up. Raffia and banana leaf, nothing but what the earth gave.",
+  "es": "La talla grande, la de los días llenos. Un libro, un pañuelo, un neceser - sigue el ritmo. Rafia y hoja de banano, nada más que lo que dio la tierra.",
+  "tr": "Büyük beden, dolu günler için. Bir kitap, bir eşarp, bir çanta - ayak uydurur. Rafya ve muz yaprağı, yalnızca toprağın verdiği.",
+  "ar": "المقاس الكبير، لأيامك المزدحمة. كتاب، وشاح، حقيبة صغيرة - يواكبك. رافيا وورق الموز، لا شيء سوى ما جادت به الأرض."
  },
  "desc": {
- "fr": "Le plus grand de la lignée, avec du volume pour les jours qui débordent. Marché, plage, départ improvisé : il prend les essentiels, une pochette, un livre fin, un foulard, une petite trousse. Sous le tissage, les heures des femmes de Guéliz - feuilles de bananier nouées brin à brin, anses enveloppées, perles posées, pièce vérifiée. La régularité du tissage n'est jamais mécanique : c'est une main qui l'a tenue.",
- "en": "The largest of the line, with room for the days that spill over. Market, beach, a last-minute departure: it takes the essentials, a pouch, a slim book, a scarf, a little kit. Under the weave, the hours of the Guéliz women - banana leaves tied strand by strand, handles wrapped, beads set, the piece checked. The evenness of the weave is never mechanical: a hand held it."
+  "fr": "Le plus grand de la lignée, avec du volume pour les jours qui débordent. Marché, plage, départ improvisé : il prend les essentiels, une pochette, un livre fin, un foulard, une petite trousse. Ici, rien que du raphia et de la feuille de bananier - aucun cuir, rien que ce que la terre a donné, façonné à la main. Les anses cachent une âme en fil de fer que Fatima cintre à la main avant de la gainer de raphia, comme un sculpteur travaille le métal avant d'y poser l'argile : recourbez-les à votre gré. Leur galbe rappelle les arches des portes de la médina et le tracé sinueux des ruelles ; les coloris, ceux des vieilles portes marocaines. À l'intérieur, un pochon doublé de Jawhara et ses pompons de raphia. La régularité du tissage n'est jamais mécanique : c'est une main qui l'a tenue.",
+  "en": "The largest of the line, with room for the days that spill over. Market, beach, a last-minute departure: it takes the essentials, a pouch, a slim book, a scarf, a little kit. Here it's raffia and banana leaf only - no leather, nothing but what the earth gave, shaped by hand. The handles hide a wire core Fatima bends by hand before sheathing it in raffia, the way a sculptor works the metal before laying on the clay: curve them however you like. Their line echoes the arches of the medina doors and the winding trace of the alleys; the colours, those of old Moroccan doors. Inside, a Jawhara-lined pouch and its raffia pompoms. The evenness of the weave is never mechanical: a hand held it.",
+  "es": "El más grande de la línea, con volumen para los días que se desbordan. Mercado, playa, escapada improvisada: se lleva lo esencial, una funda, un libro fino, un pañuelo, un neceser pequeño. Aquí solo hay rafia y hoja de banano - sin cuero, nada más que lo que dio la tierra, moldeado a mano. Las asas esconden un alma de alambre que Fatima curva a mano antes de envolverla en rafia, como un escultor trabaja el metal antes de posar la arcilla: cúrvalas a tu gusto. Su silueta evoca los arcos de las puertas de la medina y el trazado sinuoso de las callejuelas; los colores, los de las viejas puertas marroquíes. Dentro, una bolsita forrada de Jawhara y sus pompones de rafia. La regularidad del tejido nunca es mecánica: la sostuvo una mano.",
+  "tr": "Serinin en büyüğü, taşan günler için yer var. Pazar, plaj, son dakika kaçamağı: gereklilikleri alır, bir kılıf, ince bir kitap, bir eşarp, küçük bir çanta. Burada yalnızca rafya ve muz yaprağı var - deri yok, yalnızca toprağın verdiği, elle biçimlenmiş. Saplar, Fatima'nın rafyayla sarmadan önce elle büktüğü bir tel özü saklar; tıpkı bir heykeltıraşın kili koymadan önce metali işlemesi gibi: dilediğiniz gibi kıvırın. Hatları medina kapılarının kemerlerini ve sokakların kıvrımlı izini anımsatır; renkler eski Fas kapılarının renkleri. İçinde, Jawhara astarlı bir kese ve rafya ponponları. Dokumanın düzgünlüğü asla mekanik değildir: onu bir el tuttu.",
+  "ar": "الأكبر في العائلة، بحجم يتّسع للأيام الفائضة. السوق، الشاطئ، رحلة مفاجئة: يستوعب الأساسيات، حقيبة صغيرة، كتابًا رفيعًا، وشاحًا، طقم أدوات صغير. هنا رافيا وورق الموز فقط - بلا جلد، لا شيء سوى ما جادت به الأرض، مُشكَّل باليد. تُخفي المقابض روحًا من السلك تُقوّسها فاطمة بيدها قبل أن تغلّفها بالرافيا، كما ينحت النحّات المعدن قبل أن يضع الطين: قوّسها كما تشاء. تستحضر انحناءاتها أقواس أبواب المدينة القديمة وخط الأزقة المتعرّج؛ وألوانها ألوان الأبواب المغربية العتيقة. في الداخل، كيس مبطّن بـ Jawhara وكرات الرافيا. انتظام النسيج ليس آليًا أبدًا: يدٌ هي التي أمسكته."
  },
  "material": {
- "fr": "Feuilles de bananier tissées main, anse sculptée en métal léger inspirée de l'architecture de Marrakech, gainée de raphia naturel et teinté et finie de perles - Hot Red, Deep Violet ou Black Olive.",
- "en": "Hand-woven banana leaves with a sculpted lightweight metal handle inspired by Marrakech architecture, wrapped in natural and dyed raffia and finished with beads - Hot Red, Deep Violet or Black Olive.",
- "es": "Hojas de banano tejidas a mano con un asa esculpida de metal ligero inspirada en la arquitectura de Marrakech, envuelta en rafia natural y teñida y rematada con cuentas - Hot Red, Deep Violet o Black Olive.",
- "tr": "Elde dokunmuş muz yaprağı; Marakeş mimarisinden esinlenen, doğal ve boyalı rafyayla sarılıp boncuklarla bitirilen hafif heykelsi metal sap - Hot Red, Deep Violet veya Black Olive.",
- "ar": "أوراق الموز المنسوجة يدويًا مع مقبض معدني خفيف منحوت مستوحى من عمارة مراكش، ملفوف برافيا طبيعية ومصبوغة ومزيّن بالخرز - Hot Red أو Deep Violet أو Black Olive."
+  "fr": "Raphia et feuille de bananier uniquement - aucun cuir. Anses à âme en fil de fer cintrée main puis gainée de raphia, que l'on peut recourber à volonté ; intérieur avec pochon doublé de Jawhara et pompons de raphia. Coloris Hot Red, Deep Violet ou Black Olive.",
+  "en": "Raffia and banana leaf only - no leather. Handles built on a hand-bent wire core sheathed in raffia, which you can reshape at will; interior with a Jawhara-lined pouch and raffia pompoms. In Hot Red, Deep Violet or Black Olive.",
+  "es": "Solo rafia y hoja de banano - sin cuero. Asas con alma de alambre curvada a mano y envuelta en rafia, que puedes remodelar a voluntad; interior con bolsita forrada de Jawhara y pompones de rafia. En Hot Red, Deep Violet o Black Olive.",
+  "tr": "Yalnızca rafya ve muz yaprağı - deri yok. Elde bükülüp rafyayla sarılan tel özlü saplar dilediğiniz gibi yeniden biçimlenir; içeride Jawhara astarlı kese ve rafya ponponlar. Hot Red, Deep Violet veya Black Olive renklerinde.",
+  "ar": "رافيا وورق الموز فقط - بلا جلد. مقابض بروح من السلك تُقوّس باليد ثم تُغلَّف بالرافيا، ويمكنك إعادة تشكيلها كما تشاء؛ الداخل بكيس مبطّن بـ Jawhara وكرات رافيا. بألوان Hot Red أو Deep Violet أو Black Olive."
  },
  "fabric": {
- "fr": "Un tissage serré et solaire, broderie de raphia sur les bords et anses gainées main : la signature de La Sculpture.",
- "en": "A tight, sun-warm weave with raffia embroidery along the edges and hand-wrapped handles: the La Sculpture signature.",
- "es": "Un tejido apretado y cálido, con bordado de rafia en los bordes y asas envueltas a mano: la firma de La Sculpture.",
- "tr": "Sıkı ve güneş sıcaklığında bir dokuma; kenarlarda rafya işlemesi ve elde sarılmış saplar: La Sculpture imzası.",
- "ar": "نسيج محكم ودافئ مع تطريز من الرافيا على الحواف ومقابض ملفوفة يدويًا: توقيع La Sculpture."
+  "fr": "La signature de La Sculpture, c'est l'anse : une âme en fil de fer cintrée à la main puis gainée de raphia, qu'on recourbe à sa guise, sur un tissage serré et solaire de feuille de bananier.",
+  "en": "The La Sculpture signature is the handle: a wire core bent by hand then sheathed in raffia, curved however you like, over a tight, sun-warm banana-leaf weave.",
+  "es": "La firma de La Sculpture es el asa: un alma de alambre curvada a mano y luego envuelta en rafia, que se dobla a tu antojo, sobre un tejido de hoja de banano apretado y cálido.",
+  "tr": "La Sculpture'ün imzası saptır: elde bükülüp rafyayla sarılan, dilediğiniz gibi kıvrılan bir tel öz; sıkı ve güneş sıcaklığında muz yaprağı dokuma üzerinde.",
+  "ar": "توقيع La Sculpture هو المقبض: روح من السلك تُقوّس باليد ثم تُغلَّف بالرافيا، تنثنيها كما تشاء، فوق نسيج محكم ودافئ من ورق الموز."
  },
  "handworkTime": {
- "fr": "Fait main de bout en bout : à peu près 48 heures sur six jours, tissage compris.",
- "en": "Handmade end to end: roughly 48 hours over six days, weaving included.",
- "es": "Hecho a mano de principio a fin: alrededor de 48 horas en seis días, tejido incluido.",
- "tr": "Baştan sona elde yapım: dokuma dahil, altı güne yayılan yaklaşık 48 saat.",
- "ar": "مصنوع يدويًا من البداية إلى النهاية: نحو 48 ساعة في ستة أيام، بما في ذلك النسج."
+  "fr": "Fait main de bout en bout par Fatima et son équipe à Guéliz - de 35 à 85 heures selon la pièce, tissage et cintrage des anses compris.",
+  "en": "Handmade end to end by Fatima and her team in Guéliz - 35 to 85 hours depending on the piece, weaving and handle-bending included.",
+  "es": "Hecho a mano de principio a fin por Fatima y su equipo en Guéliz - de 35 a 85 horas según la pieza, tejido y curvado de las asas incluidos.",
+  "tr": "Guéliz'de Fatima ve ekibi tarafından baştan sona elde yapılır - parçaya göre 35 ila 85 saat, dokuma ve sap bükme dahil.",
+  "ar": "مصنوعة يدويًا من البداية إلى النهاية على يد فاطمة وفريقها في كليز - من 35 إلى 85 ساعة حسب القطعة، بما في ذلك النسج وتقويس المقابض."
  },
  "dimensions": {
  "fr": "Le plus grand format - un panier de caractère, plus de volume. Dimensions : 40 × 31 × 14 cm.",
@@ -16463,31 +16613,49 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The essentials, a pouch, a slim book, a scarf and a small kit."
  },
  "making": {
- "fr": "Monté à partir de feuilles de bananier, de raffia et de perles.",
- "en": "Built from banana leaves, raffia and beads."
+  "fr": "Chaque panier naît sous les mains de Fatima, à Guéliz : elle cintre l'âme en fil de fer des anses avant de l'envelopper de raphia, comme un sculpteur travaille le métal, puis noue la feuille de bananier brin à brin - de 35 à 85 heures de travail, sans un gramme de cuir.",
+  "en": "Each basket comes to life under Fatima's hands in Guéliz: she bends the wire core of the handles before wrapping it in raffia, the way a sculptor works the metal, then ties the banana leaf strand by strand - 35 to 85 hours of work, without a gram of leather.",
+  "es": "Cada cesto nace bajo las manos de Fatima, en Guéliz: curva el alma de alambre de las asas antes de envolverla en rafia, como un escultor trabaja el metal, y luego anuda la hoja de banano hebra a hebra - de 35 a 85 horas de trabajo, sin un gramo de cuero.",
+  "tr": "Her sepet Guéliz'de Fatima'nın elleri altında hayat bulur: sapların tel özünü, bir heykeltıraşın metali işlemesi gibi rafyayla sarmadan önce büker, ardından muz yaprağını lif lif düğümler - 35 ila 85 saatlik emek, bir gram deri olmadan.",
+  "ar": "تُولد كل سلة تحت يدي فاطمة في كليز: تُقوّس روح السلك في المقابض قبل أن تلفّها بالرافيا، كما ينحت النحّات المعدن، ثم تعقد ورق الموز خيطًا خيطًا - من 35 إلى 85 ساعة عمل، دون غرام واحد من الجلد."
  }
  },
  {
  "handle": "la-nouvelle-vague-xs-basket-bag-ss26",
  "short": {
- "fr": "Le mini panier bordé de cuir. Le cuir adoucit le tissage, et il contient bien plus qu'on ne le croit.",
- "en": "The mini basket trimmed in leather. Leather softens the weave, and it holds far more than you'd think."
+  "fr": "Notre plus petit panier du jour, tressé en feuilles de bananier et bordé de cuir, ses anses enroulées de perles de rocaille.",
+  "en": "Our smallest everyday basket, woven from banana leaves and edged in leather, its handles wrapped in seed beads.",
+  "es": "Nuestra cesta más pequeña para el día a día, tejida en hojas de banano y ribeteada en piel, con asas envueltas en cuentas de rocalla.",
+  "tr": "En küçük günlük sepetimiz; muz yaprağından örülmüş, deriyle çevrelenmiş ve sapları rocaille boncuklarıyla sarılmış.",
+  "ar": "أصغر سلّاتنا لليوم، منسوجة من أوراق الموز ومحاطة بالجلد، ومقابضها ملفوفة بخرز الرقايل."
  },
  "desc": {
- "fr": "Même petite échelle que la XS, mais ici le cuir vient border le tissage et habiller les anses : la prise en main se fait plus douce. À Guéliz, les feuilles de bananier sont nouées à la main, le cuir cousu, les perles posées, chaque panier vérifié avant de partir. Téléphone, porte-cartes, clés, lunettes, un foulard : bien plus qu'on ne le croit, et toujours les mains libres. Le cuir prend la lumière différemment sur chaque pièce.",
- "en": "The same small scale as the XS, but here leather edges the weave and dresses the handles: the grip turns softer. In Guéliz the banana leaves are tied by hand, the leather stitched, the beads set, each basket checked before it leaves. Phone, card holder, keys, sunglasses, a scarf: far more than you'd think, and always hands free. The leather catches the light a little differently on each one."
+  "fr": "La Nouvelle Vague en XS, c'est le panier que l'on glisse au poignet pour aller au marché ou filer au café : de quoi tenir le téléphone, les clés et un rouge à lèvres, rien de plus. Le corps est tressé à la main en feuilles de bananier, en un point matelassé souple comme un petit édredon, puis bordé de cuir brodé sur le pourtour, surtout le long du bord supérieur. Autour des anses de cuir, nous enroulons des perles de rocaille dont les motifs répondent aux bijoux du sud du Maroc et à notre héritage africain. Sous chaque perle court une fine bande de cuir cachée : elle protège le fil et fait qu'une perle égarée ne se voit jamais. Deux lanières de cuir de chaque côté le laissent se porter à la main, au creux du coude ou à l'épaule. Trois coloris — un bleu ciel, un vert, et un naturel pêche-rose-orangé qui change d'un exemplaire à l'autre. Fait main par Fatima dans notre atelier de Guéliz, à Marrakech ; jamais deux paniers identiques.",
+  "en": "La Nouvelle Vague in XS is the basket you slip onto your wrist for the market or a quick coffee: room for your phone, your keys and a lipstick, and little more. The body is hand-woven from banana leaves in a soft matelassé weave, quilted like a tiny eiderdown, then edged with leather embroidery all around, especially along the top rim. Around the leather handles we roll seed beads whose motifs answer to the jewellery of southern Morocco and to our African heritage. Beneath every bead runs a hidden strip of leather: it protects the thread and means a lost bead never shows. Two leather lanyards on each side let it be carried in the hand, in the crook of the elbow or on the shoulder. Three colourways — a sky blue, a green, and a natural peach-pink-orange that shifts from one piece to the next. Handmade by Fatima in our Guéliz atelier in Marrakech; never two baskets alike.",
+  "es": "La Nouvelle Vague en XS es la cesta que te cuelgas en la muñeca para ir al mercado o a por un café: sitio para el móvil, las llaves y un pintalabios, poco más. El cuerpo se teje a mano en hojas de banano con un punto matelassé blando como un pequeño edredón, y luego se ribetea con bordado de piel por todo el contorno, sobre todo en el borde superior. Alrededor de las asas de cuero enrollamos cuentas de rocalla cuyos motivos dialogan con la joyería del sur de Marruecos y con nuestra herencia africana. Bajo cada cuenta corre una fina tira de cuero oculta: protege el hilo y hace que una cuenta perdida no se note nunca. Dos correas de cuero a cada lado permiten llevarla en la mano, en el hueco del codo o al hombro. Tres colores — un azul cielo, un verde y un natural melocotón-rosa-naranja que cambia de una pieza a otra. Hecha a mano por Fatima en nuestro taller de Guéliz, en Marrakech; nunca dos cestas iguales.",
+  "tr": "XS bedendeki La Nouvelle Vague, pazara ya da hızlı bir kahveye giderken bileğinize geçirdiğiniz sepet: telefonunuza, anahtarlarınıza ve bir rujunuza yer var, fazlası değil. Gövde, küçük bir yorgan gibi yumuşacık bir matlase örgüyle muz yaprağından elde örülür, ardından çepeçevre, özellikle üst kenar boyunca deri işlemeyle çevrelenir. Deri sapların etrafına, motifleri güney Fas'ın takılarına ve Afrika mirasımıza selam duran rocaille boncuklarını sararız. Her boncuğun altında gizli bir deri şerit uzanır: ipliği korur ve kaybolan bir boncuğun asla belli olmamasını sağlar. Her iki yandaki ikişer deri kayış, sepeti elde, dirsek kıvrımında ya da omuzda taşımanıza olanak tanır. Üç renk — bir gök mavisi, bir yeşil ve parçadan parçaya değişen doğal bir şeftali-pembe-turuncu. Marakeş'teki Guéliz atölyemizde Fatima tarafından elde yapılır; hiçbir sepet bir diğerinin aynısı değildir.",
+  "ar": "لا نوفيل فاغ بمقاس XS هي السلّة التي تعلّقينها على معصمك للذهاب إلى السوق أو لاحتساء قهوة سريعة: تتّسع لهاتفك ومفاتيحك وأحمر شفاه، لا أكثر. يُنسج الجسم يدويًا من أوراق الموز بنسجة مبطّنة ناعمة كلحاف صغير، ثم يُحاط بتطريز جلدي على كامل الحافة، خاصةً عند الطرف العلوي. حول مقابض الجلد نلفّ خرز الرقايل، الذي تستحضر زخارفه حُليّ جنوب المغرب وإرثنا الإفريقي. تحت كل خرزة يمتدّ شريط جلدي خفيّ: يحمي الخيط ويضمن ألّا يظهر أثر لأي خرزة مفقودة. سيرَان من الجلد على كل جانب يتيحان حملها باليد أو في ثنية المرفق أو على الكتف. ثلاثة ألوان — أزرق سماوي، وأخضر، ولون طبيعي يميل إلى الخوخي-الوردي-البرتقالي يختلف من قطعة إلى أخرى. مصنوعة يدويًا على يد فاطمة في محترفنا بحي غيليز في مراكش؛ ولا تتشابه سلّتان أبدًا."
  },
  "material": {
- "fr": "Feuilles de bananier tissées, cuir et perles - Black, Nude ou Camel.",
- "en": "Woven banana leaves, leather and beads - Black, Nude or Camel."
+  "fr": "Corps en feuilles de bananier tressées main. Bordures, anses et lanières en cuir. Perles de rocaille enroulées sur les anses, sur une bande de cuir cachée.",
+  "en": "Body of hand-woven banana leaves. Borders, handles and lanyards in leather. Seed beads rolled onto the handles over a hidden strip of leather.",
+  "es": "Cuerpo de hojas de banano tejidas a mano. Ribetes, asas y correas de cuero. Cuentas de rocalla enrolladas sobre las asas, sobre una tira de cuero oculta.",
+  "tr": "Gövde elde örülmüş muz yaprağından. Kenarlar, saplar ve kayışlar deri. Rocaille boncuklar, gizli bir deri şerit üzerine, sapların etrafına sarılıdır.",
+  "ar": "الجسم من أوراق الموز المنسوجة يدويًا. الحواف والمقابض والسيور من الجلد. خرز الرقايل ملفوف حول المقابض فوق شريط جلدي خفيّ."
  },
  "fabric": {
- "fr": "C'est le cuir qui signe La Vague : il borde le tissage et gaine les anses, pour une tenue plus douce.",
- "en": "Leather is what signs La Vague: it edges the weave and sheathes the handles, for a softer hold."
+  "fr": "Feuilles de bananier en point matelassé, cuir naturel, perles de rocaille en verre.",
+  "en": "Banana leaf in a matelassé weave, natural leather, glass seed beads.",
+  "es": "Hoja de banano en punto matelassé, cuero natural, cuentas de rocalla de vidrio.",
+  "tr": "Matlase örgüde muz yaprağı, doğal deri, cam rocaille boncuklar.",
+  "ar": "أوراق موز بنسجة مبطّنة، جلد طبيعي، خرز رقايل زجاجي."
  },
  "handworkTime": {
- "fr": "Tout à la main - autour de 48 heures sur six jours, tissage et pose du cuir compris.",
- "en": "All by hand - around 48 hours over six days, weaving and leatherwork included."
+  "fr": "Plusieurs jours de travail à la main pour le petit format : le tressage, la bordure de cuir et l'enroulage des perles se font entièrement à la main.",
+  "en": "Several days of handwork for the small format: the weaving, the leather border and the bead-wrapping are all done entirely by hand.",
+  "es": "Varios días de trabajo a mano para el formato pequeño: el tejido, el ribete de cuero y el enrollado de las cuentas se hacen enteramente a mano.",
+  "tr": "Küçük boy için birkaç günlük el işçiliği: örgü, deri kenar ve boncuk sarımı tamamen elde yapılır.",
+  "ar": "عدّة أيام من العمل اليدوي للمقاس الصغير: النسج، والحافة الجلدية، ولفّ الخرز تُنجز كلّها يدويًا بالكامل."
  },
  "dimensions": {
  "fr": "Le plus petit format - un mini panier à la main ou en courte bandoulière.",
@@ -16502,31 +16670,49 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Phone, card holder, keys, sunglasses, a scarf - more than it looks."
  },
  "making": {
- "fr": "Monté à partir de feuilles de bananier, de cuir et de perles.",
- "en": "Built from banana leaves, leather and beads."
+  "fr": "Chaque panier est fait main par Fatima dans notre atelier de Guéliz, à Marrakech. Elle tresse le corps en feuilles de bananier, borde le tour de cuir, puis enroule les perles de rocaille autour des anses — une à une, sur une fine bande de cuir cachée qui protège l'ouvrage et fait qu'une perle perdue ne se remarque jamais. Un travail lent, patient : il n'existe jamais deux paniers identiques.",
+  "en": "Each basket is handmade by Fatima in our Guéliz atelier in Marrakech. She weaves the body from banana leaves, edges it in leather, then rolls the seed beads around the handles — one by one, over a hidden strip of leather that protects the work and keeps a lost bead from ever showing. Slow, patient work: no two baskets are ever the same.",
+  "es": "Cada cesta está hecha a mano por Fatima en nuestro taller de Guéliz, en Marrakech. Teje el cuerpo en hojas de banano, lo ribetea de cuero y luego enrolla las cuentas de rocalla alrededor de las asas — una a una, sobre una fina tira de cuero oculta que protege la labor y hace que una cuenta perdida no se note nunca. Un trabajo lento y paciente: nunca hay dos cestas iguales.",
+  "tr": "Her sepet, Marakeş'teki Guéliz atölyemizde Fatima tarafından elde yapılır. Gövdeyi muz yaprağından örer, kenarını deriyle çevreler, ardından rocaille boncukları sapların etrafına birer birer sarar — işi koruyan ve kaybolan bir boncuğun asla belli olmamasını sağlayan gizli bir deri şeridin üzerine. Yavaş ve sabırlı bir emek: hiçbir sepet bir diğerinin aynısı değildir.",
+  "ar": "كل سلّة مصنوعة يدويًا على يد فاطمة في محترفنا بحي غيليز في مراكش. تنسج الجسم من أوراق الموز، وتحيطه بالجلد، ثم تلفّ خرز الرقايل حول المقابض — خرزةً خرزة، فوق شريط جلدي خفيّ يحمي العمل ويضمن ألّا يظهر أثر لأي خرزة مفقودة. عمل بطيء وصبور: ولا تتشابه سلّتان أبدًا."
  }
  },
  {
  "handle": "la-nouvelle-vague-s-basket-bag-ss26",
  "short": {
- "fr": "Le compact de tous les jours, bordé de cuir. Téléphone, portefeuille, lunettes, un foulard.",
- "en": "The everyday compact, trimmed in leather. Phone, wallet, sunglasses, a scarf."
+  "fr": "Notre panier de tous les jours, format juste : feuilles de bananier tressées, bordures de cuir et anses enroulées de perles de rocaille.",
+  "en": "Our everyday basket in a just-right size: woven banana leaves, leather borders and handles wrapped in seed beads.",
+  "es": "Nuestra cesta de diario en el tamaño justo: hojas de banano tejidas, ribetes de cuero y asas envueltas en cuentas de rocalla.",
+  "tr": "Tam kıvamında günlük sepetimiz: örülmüş muz yaprağı, deri kenarlar ve rocaille boncuklarıyla sarılı saplar.",
+  "ar": "سلّتنا اليومية بالمقاس الأنسب: أوراق موز منسوجة، وحواف جلدية، ومقابض ملفوفة بخرز الرقايل."
  },
  "desc": {
- "fr": "Le format intermédiaire de La Vague : assez de place pour la journée, le cuir qui en lisse les bords et adoucit la prise. Tissé à Guéliz par les femmes de l'atelier - feuilles de bananier, cuir cousu, perles, contrôle pièce à pièce. Téléphone, portefeuille, lunettes, un foulard fin, les petites choses : tout rentre sans forcer. Le grain du cuir et le tissage ne tombent jamais exactement pareil d'un panier à l'autre.",
- "en": "La Vague's in-between size: room for the day, with leather smoothing the edges and softening the grip. Woven in Guéliz by the atelier women - banana leaves, stitched leather, beads, checked piece by piece. Phone, wallet, sunglasses, a thin scarf, the small things: it all goes in without forcing. The grain of the leather and the weave never fall exactly the same from one basket to the next."
+  "fr": "La Nouvelle Vague en S, c'est le format que l'on prend sans réfléchir : assez grand pour un carnet, un portefeuille et une bouteille d'eau, assez léger pour ne jamais peser. Le corps est tressé à la main en feuilles de bananier, en un point matelassé souple comme un édredon, puis bordé de cuir brodé sur le pourtour, surtout le long du bord supérieur. Autour des anses de cuir, nous enroulons des perles de rocaille dont les motifs répondent aux bijoux du sud du Maroc et à notre héritage africain. Sous chaque perle court une fine bande de cuir cachée : elle protège le fil et fait qu'une perle égarée ne se voit jamais. Deux lanières de cuir de chaque côté le laissent se porter à la main, au creux du coude ou à l'épaule, selon l'humeur du jour. Trois coloris — un bleu ciel, un vert, et un naturel pêche-rose-orangé qui change d'un exemplaire à l'autre. Fait main par Fatima dans notre atelier de Guéliz, à Marrakech ; jamais deux paniers identiques.",
+  "en": "La Nouvelle Vague in S is the size you reach for without thinking: big enough for a notebook, a wallet and a bottle of water, light enough never to weigh you down. The body is hand-woven from banana leaves in a soft matelassé weave, quilted like an eiderdown, then edged with leather embroidery all around, especially along the top rim. Around the leather handles we roll seed beads whose motifs answer to the jewellery of southern Morocco and to our African heritage. Beneath every bead runs a hidden strip of leather: it protects the thread and means a lost bead never shows. Two leather lanyards on each side let it be carried in the hand, in the crook of the elbow or on the shoulder, as the day suits. Three colourways — a sky blue, a green, and a natural peach-pink-orange that shifts from one piece to the next. Handmade by Fatima in our Guéliz atelier in Marrakech; never two baskets alike.",
+  "es": "La Nouvelle Vague en S es el tamaño que coges sin pensar: lo bastante grande para un cuaderno, una cartera y una botella de agua, lo bastante ligero para no pesar nunca. El cuerpo se teje a mano en hojas de banano con un punto matelassé blando como un edredón, y luego se ribetea con bordado de piel por todo el contorno, sobre todo en el borde superior. Alrededor de las asas de cuero enrollamos cuentas de rocalla cuyos motivos dialogan con la joyería del sur de Marruecos y con nuestra herencia africana. Bajo cada cuenta corre una fina tira de cuero oculta: protege el hilo y hace que una cuenta perdida no se note nunca. Dos correas de cuero a cada lado permiten llevarla en la mano, en el hueco del codo o al hombro, según el día. Tres colores — un azul cielo, un verde y un natural melocotón-rosa-naranja que cambia de una pieza a otra. Hecha a mano por Fatima en nuestro taller de Guéliz, en Marrakech; nunca dos cestas iguales.",
+  "tr": "S bedendeki La Nouvelle Vague, düşünmeden uzandığınız boy: bir defter, bir cüzdan ve bir şişe su için yeterince büyük, sizi hiç yormayacak kadar hafif. Gövde, bir yorgan gibi yumuşak bir matlase örgüyle muz yaprağından elde örülür, ardından çepeçevre, özellikle üst kenar boyunca deri işlemeyle çevrelenir. Deri sapların etrafına, motifleri güney Fas'ın takılarına ve Afrika mirasımıza selam duran rocaille boncuklarını sararız. Her boncuğun altında gizli bir deri şerit uzanır: ipliği korur ve kaybolan bir boncuğun asla belli olmamasını sağlar. Her iki yandaki ikişer deri kayış, günün havasına göre sepeti elde, dirsek kıvrımında ya da omuzda taşımanıza olanak tanır. Üç renk — bir gök mavisi, bir yeşil ve parçadan parçaya değişen doğal bir şeftali-pembe-turuncu. Marakeş'teki Guéliz atölyemizde Fatima tarafından elde yapılır; hiçbir sepet bir diğerinin aynısı değildir.",
+  "ar": "لا نوفيل فاغ بمقاس S هو المقاس الذي تختارينه دون تفكير: واسع بما يكفي لدفتر ومحفظة وقارورة ماء، وخفيف بما يكفي ألّا يثقل عليك أبدًا. يُنسج الجسم يدويًا من أوراق الموز بنسجة مبطّنة ناعمة كاللحاف، ثم يُحاط بتطريز جلدي على كامل الحافة، خاصةً عند الطرف العلوي. حول مقابض الجلد نلفّ خرز الرقايل، الذي تستحضر زخارفه حُليّ جنوب المغرب وإرثنا الإفريقي. تحت كل خرزة يمتدّ شريط جلدي خفيّ: يحمي الخيط ويضمن ألّا يظهر أثر لأي خرزة مفقودة. سيرَان من الجلد على كل جانب يتيحان حملها باليد أو في ثنية المرفق أو على الكتف، حسب مزاج اليوم. ثلاثة ألوان — أزرق سماوي، وأخضر، ولون طبيعي يميل إلى الخوخي-الوردي-البرتقالي يختلف من قطعة إلى أخرى. مصنوعة يدويًا على يد فاطمة في محترفنا بحي غيليز في مراكش؛ ولا تتشابه سلّتان أبدًا."
  },
  "material": {
- "fr": "Feuilles de bananier tissées, cuir et perles - Black, Nude ou Camel.",
- "en": "Woven banana leaves, leather and beads - Black, Nude or Camel."
+  "fr": "Corps en feuilles de bananier tressées main. Bordures, anses et lanières en cuir. Perles de rocaille enroulées sur les anses, sur une bande de cuir cachée.",
+  "en": "Body of hand-woven banana leaves. Borders, handles and lanyards in leather. Seed beads rolled onto the handles over a hidden strip of leather.",
+  "es": "Cuerpo de hojas de banano tejidas a mano. Ribetes, asas y correas de cuero. Cuentas de rocalla enrolladas sobre las asas, sobre una tira de cuero oculta.",
+  "tr": "Gövde elde örülmüş muz yaprağından. Kenarlar, saplar ve kayışlar deri. Rocaille boncuklar, gizli bir deri şerit üzerine, sapların etrafına sarılıdır.",
+  "ar": "الجسم من أوراق الموز المنسوجة يدويًا. الحواف والمقابض والسيور من الجلد. خرز الرقايل ملفوف حول المقابض فوق شريط جلدي خفيّ."
  },
  "fabric": {
- "fr": "C'est le cuir qui signe La Vague : il borde le tissage et gaine les anses, pour une tenue plus douce.",
- "en": "Leather is what signs La Vague: it edges the weave and sheathes the handles, for a softer hold."
+  "fr": "Feuilles de bananier en point matelassé, cuir naturel, perles de rocaille en verre.",
+  "en": "Banana leaf in a matelassé weave, natural leather, glass seed beads.",
+  "es": "Hoja de banano en punto matelassé, cuero natural, cuentas de rocalla de vidrio.",
+  "tr": "Matlase örgüde muz yaprağı, doğal deri, cam rocaille boncuklar.",
+  "ar": "أوراق موز بنسجة مبطّنة، جلد طبيعي، خرز رقايل زجاجي."
  },
  "handworkTime": {
- "fr": "Monté entièrement à la main : environ 48 heures sur six jours, cuir et perles inclus.",
- "en": "Built entirely by hand: about 48 hours over six days, leather and beads included."
+  "fr": "Plusieurs jours de travail à la main : le tressage des feuilles de bananier, la bordure de cuir et l'enroulage des perles se font entièrement à la main.",
+  "en": "Several days of handwork: the weaving of the banana leaves, the leather border and the bead-wrapping are all done entirely by hand.",
+  "es": "Varios días de trabajo a mano: el tejido de las hojas de banano, el ribete de cuero y el enrollado de las cuentas se hacen enteramente a mano.",
+  "tr": "Birkaç günlük el işçiliği: muz yapraklarının örülmesi, deri kenar ve boncuk sarımı tamamen elde yapılır.",
+  "ar": "عدّة أيام من العمل اليدوي: نسج أوراق الموز، والحافة الجلدية، ولفّ الخرز تُنجز كلّها يدويًا بالكامل."
  },
  "dimensions": {
  "fr": "Le format du milieu - un panier compact pour tous les jours.",
@@ -16541,31 +16727,49 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Phone, wallet, sunglasses, a thin scarf and the day's small things."
  },
  "making": {
- "fr": "Monté à partir de feuilles de bananier, de cuir et de perles.",
- "en": "Built from banana leaves, leather and beads."
+  "fr": "Chaque panier est fait main par Fatima dans notre atelier de Guéliz, à Marrakech. Elle tresse le corps en feuilles de bananier, borde le tour de cuir, puis enroule les perles de rocaille autour des anses — une à une, sur une fine bande de cuir cachée qui protège l'ouvrage et fait qu'une perle perdue ne se remarque jamais. Un travail lent, patient : il n'existe jamais deux paniers identiques.",
+  "en": "Each basket is handmade by Fatima in our Guéliz atelier in Marrakech. She weaves the body from banana leaves, edges it in leather, then rolls the seed beads around the handles — one by one, over a hidden strip of leather that protects the work and keeps a lost bead from ever showing. Slow, patient work: no two baskets are ever the same.",
+  "es": "Cada cesta está hecha a mano por Fatima en nuestro taller de Guéliz, en Marrakech. Teje el cuerpo en hojas de banano, lo ribetea de cuero y luego enrolla las cuentas de rocalla alrededor de las asas — una a una, sobre una fina tira de cuero oculta que protege la labor y hace que una cuenta perdida no se note nunca. Un trabajo lento y paciente: nunca hay dos cestas iguales.",
+  "tr": "Her sepet, Marakeş'teki Guéliz atölyemizde Fatima tarafından elde yapılır. Gövdeyi muz yaprağından örer, kenarını deriyle çevreler, ardından rocaille boncukları sapların etrafına birer birer sarar — işi koruyan ve kaybolan bir boncuğun asla belli olmamasını sağlayan gizli bir deri şeridin üzerine. Yavaş ve sabırlı bir emek: hiçbir sepet bir diğerinin aynısı değildir.",
+  "ar": "كل سلّة مصنوعة يدويًا على يد فاطمة في محترفنا بحي غيليز في مراكش. تنسج الجسم من أوراق الموز، وتحيطه بالجلد، ثم تلفّ خرز الرقايل حول المقابض — خرزةً خرزة، فوق شريط جلدي خفيّ يحمي العمل ويضمن ألّا يظهر أثر لأي خرزة مفقودة. عمل بطيء وصبور: ولا تتشابه سلّتان أبدًا."
  }
  },
  {
  "handle": "la-nouvelle-vague-m-basket-bag-ss26",
  "short": {
- "fr": "Le grand panier bordé de cuir, du volume pour les jours pleins. Marché, plage, voyage.",
- "en": "The large leather-trimmed basket, room for the full days. Market, beach, travel."
+  "fr": "Notre grand panier qui dit tout : feuilles de bananier tressées, bordures de cuir et anses enroulées de perles de rocaille.",
+  "en": "Our roomy statement basket: woven banana leaves, leather borders and handles wrapped in seed beads.",
+  "es": "Nuestra cesta grande que lo dice todo: hojas de banano tejidas, ribetes de cuero y asas envueltas en cuentas de rocalla.",
+  "tr": "İddiasını ortaya koyan geniş sepetimiz: örülmüş muz yaprağı, deri kenarlar ve rocaille boncuklarıyla sarılı saplar.",
+  "ar": "سلّتنا الكبيرة التي تقول كل شيء: أوراق موز منسوجة، وحواف جلدية، ومقابض ملفوفة بخرز الرقايل."
  },
  "desc": {
- "fr": "Le plus grand de La Vague : le volume d'un panier de voyage, adouci par le cuir qui en cercle le bord. Né à Guéliz, sous les mains des femmes de l'atelier qui nouent les feuilles de bananier, cousent le cuir, posent les perles et passent chaque pièce en revue. Essentiels, pochette, livre fin, foulard, petite trousse : il avale la journée sans broncher. Aucun ne sort identique au précédent - c'est le signe qu'aucune machine n'est passée par là.",
- "en": "The largest of La Vague: the room of a travel basket, softened by the leather ringing its rim. Born in Guéliz, under the hands of the atelier women who tie the banana leaves, stitch the leather, set the beads and look over every piece. Essentials, pouch, slim book, scarf, little kit: it swallows the day without flinching. None comes out identical to the last - the sign that no machine touched it."
+  "fr": "La Nouvelle Vague en M, c'est le grand panier des journées pleines : la plage avec un paréo et un livre, le marché du samedi, le week-end qui déborde. Assez vaste pour tout emporter, et assez beau pour être la seule pièce que l'on remarque. Le corps est tressé à la main en feuilles de bananier, en un point matelassé souple comme un édredon, puis bordé de cuir brodé sur le pourtour, surtout le long du bord supérieur. Autour des anses de cuir, nous enroulons des perles de rocaille dont les motifs répondent aux bijoux du sud du Maroc et à notre héritage africain. Sous chaque perle court une fine bande de cuir cachée : elle protège le fil et fait qu'une perle égarée ne se voit jamais. Deux lanières de cuir de chaque côté le laissent se porter à la main, au creux du coude ou à l'épaule, même quand il est bien rempli. Trois coloris — un bleu ciel, un vert, et un naturel pêche-rose-orangé qui change d'un exemplaire à l'autre. Fait main par Fatima dans notre atelier de Guéliz, à Marrakech ; jamais deux paniers identiques.",
+  "en": "La Nouvelle Vague in M is the big basket for full days: the beach with a sarong and a book, the Saturday market, the weekend that spills over. Roomy enough to carry everything, and beautiful enough to be the only piece anyone notices. The body is hand-woven from banana leaves in a soft matelassé weave, quilted like an eiderdown, then edged with leather embroidery all around, especially along the top rim. Around the leather handles we roll seed beads whose motifs answer to the jewellery of southern Morocco and to our African heritage. Beneath every bead runs a hidden strip of leather: it protects the thread and means a lost bead never shows. Two leather lanyards on each side let it be carried in the hand, in the crook of the elbow or on the shoulder, even when it is well filled. Three colourways — a sky blue, a green, and a natural peach-pink-orange that shifts from one piece to the next. Handmade by Fatima in our Guéliz atelier in Marrakech; never two baskets alike.",
+  "es": "La Nouvelle Vague en M es la cesta grande para los días completos: la playa con un pareo y un libro, el mercado del sábado, el fin de semana que se desborda. Lo bastante amplia para llevarlo todo, y lo bastante bonita para ser la única pieza que se mira. El cuerpo se teje a mano en hojas de banano con un punto matelassé blando como un edredón, y luego se ribetea con bordado de piel por todo el contorno, sobre todo en el borde superior. Alrededor de las asas de cuero enrollamos cuentas de rocalla cuyos motivos dialogan con la joyería del sur de Marruecos y con nuestra herencia africana. Bajo cada cuenta corre una fina tira de cuero oculta: protege el hilo y hace que una cuenta perdida no se note nunca. Dos correas de cuero a cada lado permiten llevarla en la mano, en el hueco del codo o al hombro, incluso bien llena. Tres colores — un azul cielo, un verde y un natural melocotón-rosa-naranja que cambia de una pieza a otra. Hecha a mano por Fatima en nuestro taller de Guéliz, en Marrakech; nunca dos cestas iguales.",
+  "tr": "M bedendeki La Nouvelle Vague, dolu dolu günlerin büyük sepeti: bir pareo ve bir kitapla plaj, cumartesi pazarı, taşan hafta sonu. Her şeyi taşıyacak kadar geniş ve tek başına dikkat çekecek kadar güzel. Gövde, bir yorgan gibi yumuşak bir matlase örgüyle muz yaprağından elde örülür, ardından çepeçevre, özellikle üst kenar boyunca deri işlemeyle çevrelenir. Deri sapların etrafına, motifleri güney Fas'ın takılarına ve Afrika mirasımıza selam duran rocaille boncuklarını sararız. Her boncuğun altında gizli bir deri şerit uzanır: ipliği korur ve kaybolan bir boncuğun asla belli olmamasını sağlar. Her iki yandaki ikişer deri kayış, iyice dolduğunda bile sepeti elde, dirsek kıvrımında ya da omuzda taşımanıza olanak tanır. Üç renk — bir gök mavisi, bir yeşil ve parçadan parçaya değişen doğal bir şeftali-pembe-turuncu. Marakeş'teki Guéliz atölyemizde Fatima tarafından elde yapılır; hiçbir sepet bir diğerinin aynısı değildir.",
+  "ar": "لا نوفيل فاغ بمقاس M هي السلّة الكبيرة للأيام الحافلة: الشاطئ مع باريو وكتاب، وسوق السبت، وعطلة نهاية أسبوع تفيض بالأشياء. واسعة بما يكفي لحمل كل شيء، وجميلة بما يكفي لتكون القطعة الوحيدة التي تلفت الأنظار. يُنسج الجسم يدويًا من أوراق الموز بنسجة مبطّنة ناعمة كاللحاف، ثم يُحاط بتطريز جلدي على كامل الحافة، خاصةً عند الطرف العلوي. حول مقابض الجلد نلفّ خرز الرقايل، الذي تستحضر زخارفه حُليّ جنوب المغرب وإرثنا الإفريقي. تحت كل خرزة يمتدّ شريط جلدي خفيّ: يحمي الخيط ويضمن ألّا يظهر أثر لأي خرزة مفقودة. سيرَان من الجلد على كل جانب يتيحان حملها باليد أو في ثنية المرفق أو على الكتف، حتى وهي ممتلئة. ثلاثة ألوان — أزرق سماوي، وأخضر، ولون طبيعي يميل إلى الخوخي-الوردي-البرتقالي يختلف من قطعة إلى أخرى. مصنوعة يدويًا على يد فاطمة في محترفنا بحي غيليز في مراكش؛ ولا تتشابه سلّتان أبدًا."
  },
  "material": {
- "fr": "Feuilles de bananier tissées, cuir et perles - Black, Nude ou Camel.",
- "en": "Woven banana leaves, leather and beads - Black, Nude or Camel."
+  "fr": "Corps en feuilles de bananier tressées main. Bordures, anses et lanières en cuir. Perles de rocaille enroulées sur les anses, sur une bande de cuir cachée.",
+  "en": "Body of hand-woven banana leaves. Borders, handles and lanyards in leather. Seed beads rolled onto the handles over a hidden strip of leather.",
+  "es": "Cuerpo de hojas de banano tejidas a mano. Ribetes, asas y correas de cuero. Cuentas de rocalla enrolladas sobre las asas, sobre una tira de cuero oculta.",
+  "tr": "Gövde elde örülmüş muz yaprağından. Kenarlar, saplar ve kayışlar deri. Rocaille boncuklar, gizli bir deri şerit üzerine, sapların etrafına sarılıdır.",
+  "ar": "الجسم من أوراق الموز المنسوجة يدويًا. الحواف والمقابض والسيور من الجلد. خرز الرقايل ملفوف حول المقابض فوق شريط جلدي خفيّ."
  },
  "fabric": {
- "fr": "C'est le cuir qui signe La Vague : il borde le tissage et gaine les anses, pour une tenue plus douce.",
- "en": "Leather is what signs La Vague: it edges the weave and sheathes the handles, for a softer hold."
+  "fr": "Feuilles de bananier en point matelassé, cuir naturel, perles de rocaille en verre.",
+  "en": "Banana leaf in a matelassé weave, natural leather, glass seed beads.",
+  "es": "Hoja de banano en punto matelassé, cuero natural, cuentas de rocalla de vidrio.",
+  "tr": "Matlase örgüde muz yaprağı, doğal deri, cam rocaille boncuklar.",
+  "ar": "أوراق موز بنسجة مبطّنة، جلد طبيعي، خرز رقايل زجاجي."
  },
  "handworkTime": {
- "fr": "Fait main de A à Z : à peu près 48 heures sur six jours, du tissage à la couture du cuir.",
- "en": "Handmade start to finish: roughly 48 hours over six days, from the weave to the leather stitching."
+  "fr": "Plusieurs jours de travail à la main pour le grand format : plus de surface à tresser, plus de perles à enrouler — tout se fait entièrement à la main.",
+  "en": "Several days of handwork for the large format: more surface to weave, more beads to roll — all done entirely by hand.",
+  "es": "Varios días de trabajo a mano para el formato grande: más superficie que tejer, más cuentas que enrollar — todo se hace enteramente a mano.",
+  "tr": "Büyük boy için birkaç günlük el işçiliği: örülecek daha çok yüzey, sarılacak daha çok boncuk — hepsi tamamen elde yapılır.",
+  "ar": "عدّة أيام من العمل اليدوي للمقاس الكبير: مساحة أكبر للنسج، وخرز أكثر للفّ — كل ذلك يُنجَز يدويًا بالكامل."
  },
  "dimensions": {
  "fr": "Le plus grand format - un panier de caractère, plus de volume.",
@@ -16580,8 +16784,11 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The essentials, a pouch, a slim book, a scarf and a small kit."
  },
  "making": {
- "fr": "Monté à partir de feuilles de bananier, de cuir et de perles.",
- "en": "Built from banana leaves, leather and beads."
+  "fr": "Chaque panier est fait main par Fatima dans notre atelier de Guéliz, à Marrakech. Elle tresse le corps en feuilles de bananier, borde le tour de cuir, puis enroule les perles de rocaille autour des anses — une à une, sur une fine bande de cuir cachée qui protège l'ouvrage et fait qu'une perle perdue ne se remarque jamais. Un travail lent, patient : il n'existe jamais deux paniers identiques.",
+  "en": "Each basket is handmade by Fatima in our Guéliz atelier in Marrakech. She weaves the body from banana leaves, edges it in leather, then rolls the seed beads around the handles — one by one, over a hidden strip of leather that protects the work and keeps a lost bead from ever showing. Slow, patient work: no two baskets are ever the same.",
+  "es": "Cada cesta está hecha a mano por Fatima en nuestro taller de Guéliz, en Marrakech. Teje el cuerpo en hojas de banano, lo ribetea de cuero y luego enrolla las cuentas de rocalla alrededor de las asas — una a una, sobre una fina tira de cuero oculta que protege la labor y hace que una cuenta perdida no se note nunca. Un trabajo lento y paciente: nunca hay dos cestas iguales.",
+  "tr": "Her sepet, Marakeş'teki Guéliz atölyemizde Fatima tarafından elde yapılır. Gövdeyi muz yaprağından örer, kenarını deriyle çevreler, ardından rocaille boncukları sapların etrafına birer birer sarar — işi koruyan ve kaybolan bir boncuğun asla belli olmamasını sağlayan gizli bir deri şeridin üzerine. Yavaş ve sabırlı bir emek: hiçbir sepet bir diğerinin aynısı değildir.",
+  "ar": "كل سلّة مصنوعة يدويًا على يد فاطمة في محترفنا بحي غيليز في مراكش. تنسج الجسم من أوراق الموز، وتحيطه بالجلد، ثم تلفّ خرز الرقايل حول المقابض — خرزةً خرزة، فوق شريط جلدي خفيّ يحمي العمل ويضمن ألّا يظهر أثر لأي خرزة مفقودة. عمل بطيء وصبور: ولا تتشابه سلّتان أبدًا."
  }
  }
  ],
@@ -16746,25 +16953,44 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "raffia-whole-lemon-charm-ss26",
+"making": {
+ "fr": "Chaque citron est crocheté en rond dans notre raffia teint main, rembourré de ses propres chutes de raffia, puis fini à l'atelier de Guéliz par La Fatima, dont le prénom figure sur l'étiquette, avant la pose de la petite plaque dorée YZA gravée.",
+ "en": "Each lemon is crocheted in the round in our hand-dyed raffia, padded with its own raffia offcuts, then finished in the Guéliz atelier by La Fatima, whose first name appears on the hand tag, before the little engraved gold YZA plate is added.",
+ "es": "Cada limón se teje a ganchillo en redondo con nuestra rafia teñida a mano, se rellena con sus propios recortes de rafia y luego lo termina en el taller de Guéliz La Fatima, cuyo nombre aparece en la etiqueta, antes de colocar la plaquita dorada YZA grabada.",
+ "tr": "Her limon, elde boyadığımız rafyayla yuvarlak örülür, kendi rafya kırpıntılarıyla doldurulur, ardından Guéliz atölyesinde adı etiketin üzerinde yer alan La Fatima tarafından tamamlanır ve son olarak kazınmış küçük altın YZA plakası eklenir.",
+ "ar": "كل ليمونة تُحاك بالكروشيه على شكل دائري من رافيتنا المصبوغة يدويًا، وتُحشى ببقايا الرافيا الخاصة بها، ثم تُنهى في ورشة جيليز على يد لا فاطمة التي يظهر اسمها على الشارة، قبل تثبيت لوحة YZA الذهبية الصغيرة المحفورة."
+},
  "short": {
- "fr": "Un citron entier, tout en rondeur. Un jaune franc qui sent le soleil de Marrakech.",
- "en": "A whole lemon, all roundness. A clear yellow that smells of Marrakech sun."
+  "fr": "Un citron entier, tout en rondeur. Un jaune franc, teint à la main, qui sent le soleil de Guéliz.",
+  "en": "A whole lemon, all roundness. A clear yellow, hand-dyed, that smells of the Guéliz sun.",
+  "es": "Un limón entero, todo redondez. Un amarillo franco, teñido a mano, que huele al sol de Guéliz.",
+  "tr": "Bir bütün limon, baştan sona yuvarlak. Elde boyanmış, Guéliz güneşi kokan berrak bir sarı.",
+  "ar": "ليمونة كاملة، كلها استدارة. أصفر صافٍ مصبوغ يدويًا، تفوح منه شمس جيليز."
  },
  "desc": {
- "fr": "Crocheté en rond puis rembourré, le citron garde sa forme pleine - environ trois heures pour y arriver, jaune franc et net. À Guéliz, on le tourne maille à maille jusqu'à ce qu'il tienne dans la paume comme un vrai. Clipsé au sac ou aux clés, c'est un éclat de lumière à portée de doigts.",
- "en": "Crocheted in the round and then filled, the lemon keeps its full shape - about three hours to get there, a clean clear yellow. In Guéliz it's turned stitch by stitch until it sits in the palm like the real thing. Clipped to a bag or keys, it's a flash of light within reach."
+  "fr": "Né des étals de fruits de Guéliz, ce citron se crochète en rond puis se rembourre pour garder sa forme pleine - environ deux heures d'un jaune teint à la main, franc et net. Le raffia, on le teint nous-mêmes dans nos teintes emblématiques ; le crocheter est l'un des gestes les plus délicats qui soient. On le tourne maille à maille jusqu'à ce qu'il tienne dans la paume comme un vrai, rembourré de ses propres chutes de raffia, jamais de mousse. Fini par l'étiquette dorée YZA gravée, il se clipse à un sac, se glisse sur un bijou, ou se porte en sautoir avec les petits anneaux dorés offerts à l'achat des boucles d'oreilles.",
+  "en": "Born of the Guéliz fruit stalls, this lemon is crocheted in the round then filled to keep its full shape - about two hours of a hand-dyed yellow, clean and clear. We dye the raffia ourselves in our signature shades; crocheting it is one of the most delicate crafts there is. We turn it stitch by stitch until it sits in the palm like the real thing, padded with its own raffia offcuts, never foam. Finished with the engraved gold YZA tag, it clips to a bag, slips onto a piece of jewellery, or wears as a necklace with the little gold rings gifted when you buy the earrings.",
+  "es": "Nacido de los puestos de fruta de Guéliz, este limón se teje a ganchillo en redondo y se rellena para conservar su forma plena - unas dos horas de un amarillo teñido a mano, franco y nítido. La rafia la teñimos nosotras mismas en nuestros tonos emblemáticos; tejerla a ganchillo es uno de los gestos más delicados que existen. La damos vuelta punto a punto hasta que cabe en la palma como uno de verdad, rellena con sus propios recortes de rafia, nunca con espuma. Rematado con la etiqueta dorada YZA grabada, se engancha a un bolso, se desliza en una joya o se lleva como colgante con las anillitas doradas que regalamos al comprar los pendientes.",
+  "tr": "Guéliz'in meyve tezgâhlarından doğan bu limon, dolgun biçimini koruması için önce yuvarlak örülüp sonra doldurulur - elde boyanmış, berrak ve net bir sarıyla yaklaşık iki saat. Rafyayı kendi ikonik tonlarımızda kendimiz boyuyoruz; onu tığla örmek var olan en ince işlerden biridir. İlmek ilmek çevirerek, kendi rafya kırpıntılarıyla doldurup asla sünger kullanmadan, avuca gerçeği gibi oturana dek işliyoruz. Kazınmış altın rengi YZA etiketiyle tamamlanır; bir çantaya takılır, bir takıya geçirilir ya da küpe alırken hediye edilen küçük altın halkalarla kolye gibi taşınır.",
+  "ar": "وُلدت هذه الليمونة من بسطات الفاكهة في جيليز، تُحاك بالكروشيه على شكل دائري ثم تُحشى لتحافظ على شكلها الممتلئ - نحو ساعتين من أصفر مصبوغ يدويًا، صافٍ وواضح. نصبغ الرافيا بأنفسنا بألواننا المميزة؛ وحياكتها بالكروشيه من أدقّ الحرف على الإطلاق. نديرها غرزةً غرزة حتى تستقرّ في راحة اليد كأنها حقيقية، محشوّةً ببقايا الرافيا الخاصة بها، لا بالإسفنج أبدًا. تُختَم بشارة YZA الذهبية المحفورة، فتُعلَّق على حقيبة، أو تُدخَل في قطعة مجوهرات، أو تُلبس كقلادة مع الحلقات الذهبية الصغيرة المُهداة عند شراء الأقراط."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+  "fr": "Raffia naturel teint à la main par nos soins dans nos teintes emblématiques. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - l'un des gestes les plus délicats qui soient - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique : rien ne se perd. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+  "en": "Natural raffia, hand-dyed by us in our signature shades. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - one of the most delicate crafts there is - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is padded with its own raffia offcuts, never synthetic foam: nothing is wasted. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way.",
+  "es": "Rafia natural, teñida a mano por nosotras en nuestros tonos emblemáticos. Son las hebras de rafia natural las que se rompen con facilidad durante el trabajo, lo que hace el ganchillo lento y preciso - uno de los gestos más delicados que existen - pero una vez tejida, entrelazada o cosida, la pieza se vuelve muy resistente y duradera, y apenas sensible al agua. Cada fruta se rellena con sus propios recortes de rafia, nunca con espuma sintética: nada se desperdicia. El ganchillo es una de las pocas técnicas del mundo que ninguna máquina puede reproducir - este objeto no podría fabricarse de otra manera.",
+  "tr": "Doğal rafya, kendi ikonik tonlarımızda elimizle boyanmıştır. İşlenirken kolayca kopan, doğal rafya lifleridir; bu da tığ işini yavaş ve titiz kılar - var olan en ince işlerden biri - ama bir kez örülüp, dokunup ya da dikildiğinde parça tam tersine çok sağlam, uzun ömürlü ve suya karşı neredeyse duyarsız hâle gelir. Her meyve kendi rafya kırpıntılarıyla doldurulur, asla sentetik süngerle değil: hiçbir şey israf olmaz. Tığ işi, dünyada hiçbir makinenin taklit edemediği ender tekniklerden biridir - bu nesne başka türlü yapılamazdı.",
+  "ar": "رافيا طبيعية مصبوغة يدويًا على أيدينا بألواننا المميزة. خيوط الرافيا الطبيعية هي التي تتكسّر بسهولة أثناء العمل، مما يجعل الكروشيه بطيئًا ودقيقًا - وهو من أدقّ الحرف على الإطلاق - لكن بمجرد حياكتها أو نسجها أو خياطتها تصبح القطعة على العكس متينة جدًا ومعمّرة وقليلة التأثّر بالماء. تُحشى كل ثمرة ببقايا الرافيا الخاصة بها، لا بالإسفنج الصناعي أبدًا: لا شيء يُهدر. الكروشيه من التقنيات القليلة في العالم التي لا تستطيع أي آلة محاكاتها - ولا يمكن صنع هذه القطعة بطريقة أخرى."
  },
  "fabric": {
  "fr": "Travaillé en rond et légèrement garni, il tient sa rondeur jour après jour.",
  "en": "Worked in the round and lightly stuffed, it keeps its roundness day after day."
  },
  "handworkTime": {
- "fr": "Environ trois heures de crochet.",
- "en": "About three hours of crochet."
+  "fr": "Environ deux heures de crochet.",
+  "en": "About two hours of crochet.",
+  "es": "Cerca de dos horas de ganchillo.",
+  "tr": "Yaklaşık iki saatlik tığ işi.",
+  "ar": "نحو ساعتين من الحياكة بالكروشيه."
  },
  "dimensions": {
  "fr": "Environ 4,5 cm de diamètre.",
@@ -16779,8 +17005,11 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The yellow pyramid"
  },
  "fruitStoryBody": {
- "fr": "Empilés en pyramides sur l'étal, les citrons attrapent toute la lumière du matin. C'est ce jaune-là qu'on a voulu garder : celui qui réveille une table et lance la journée.",
- "en": "Stacked into pyramids on the stall, the lemons catch all the morning light. That's the yellow we wanted to keep: the one that wakes a table and starts the day."
+  "fr": "Empilés en pyramides sur les étals de Guéliz, les citrons attrapent toute la lumière du matin. C'est ce jaune-là qu'on a voulu garder, teint à la main dans notre raffia : celui qui réveille une table et lance la journée.",
+  "en": "Stacked into pyramids on the Guéliz stalls, the lemons catch all the morning light. That's the yellow we wanted to keep, hand-dyed into our raffia: the one that wakes a table and starts the day.",
+  "es": "Apilados en pirámides sobre los puestos de Guéliz, los limones atrapan toda la luz de la mañana. Ese es el amarillo que quisimos conservar, teñido a mano en nuestra rafia: el que despierta una mesa y arranca el día.",
+  "tr": "Guéliz tezgâhlarında piramitler hâlinde yığılan limonlar, sabahın bütün ışığını yakalar. İşte rafyamıza elde boyadığımız o sarıyı korumak istedik: bir sofrayı uyandıran ve güne başlatan sarı.",
+  "ar": "مكدّسةً على شكل أهرام فوق بسطات جيليز، تلتقط الليمونات كل ضوء الصباح. هذا الأصفر أردنا أن نحتفظ به، مصبوغًا يدويًا في رافيتنا: الأصفر الذي يوقظ المائدة ويبدأ النهار."
  },
  "howToWearTitle": {
  "fr": "Porter le citron",
@@ -16815,25 +17044,44 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "raffia-whole-orange-charm-ss26",
+"making": {
+ "fr": "Chaque orange est crochetée en rond dans notre raffia teint main, rembourrée de ses propres chutes de raffia, puis finie à l'atelier de Guéliz par La Fatima, dont le prénom figure sur l'étiquette, avant la pose de la petite plaque dorée YZA gravée.",
+ "en": "Each orange is crocheted in the round in our hand-dyed raffia, padded with its own raffia offcuts, then finished in the Guéliz atelier by La Fatima, whose first name appears on the hand tag, before the little engraved gold YZA plate is added.",
+ "es": "Cada naranja se teje a ganchillo en redondo con nuestra rafia teñida a mano, se rellena con sus propios recortes de rafia y luego la termina en el taller de Guéliz La Fatima, cuyo nombre aparece en la etiqueta, antes de colocar la plaquita dorada YZA grabada.",
+ "tr": "Her portakal, elde boyadığımız rafyayla yuvarlak örülür, kendi rafya kırpıntılarıyla doldurulur, ardından Guéliz atölyesinde adı etiketin üzerinde yer alan La Fatima tarafından tamamlanır ve son olarak kazınmış küçük altın YZA plakası eklenir.",
+ "ar": "كل برتقالة تُحاك بالكروشيه على شكل دائري من رافيتنا المصبوغة يدويًا، وتُحشى ببقايا الرافيا الخاصة بها، ثم تُنهى في ورشة جيليز على يد لا فاطمة التي يظهر اسمها على الشارة، قبل تثبيت لوحة YZA الذهبية الصغيرة المحفورة."
+},
  "short": {
- "fr": "Une orange entière, ronde et pleine. La couleur d'un coucher de soleil sur la place.",
- "en": "A whole orange, round and full. The colour of sunset over the square."
+  "fr": "Une orange entière, ronde et pleine. La couleur d'un coucher de soleil, teinte à la main.",
+  "en": "A whole orange, round and full. The colour of a sunset, hand-dyed.",
+  "es": "Una naranja entera, redonda y plena. El color de un atardecer, teñido a mano.",
+  "tr": "Bir bütün portakal, yuvarlak ve dolgun. Elde boyanmış bir gün batımının rengi.",
+  "ar": "برتقالة كاملة، مستديرة وممتلئة. لون غروب الشمس، مصبوغ يدويًا."
  },
  "desc": {
- "fr": "Trois heures de crochet en rond, un peu de rembourrage, et l'orange tient sa forme pleine, chaude comme le ciel de fin d'après-midi. Fatima et les femmes de Guéliz la tournent maille après maille jusqu'à ce qu'elle ait le galbe d'un vrai fruit. À accrocher partout où l'on veut un peu de chaleur sous la main.",
- "en": "Three hours of crochet in the round, a little stuffing, and the orange holds its full shape, warm as the late-afternoon sky. Fatima and the Guéliz women turn it stitch after stitch until it has the curve of a real fruit. To clip wherever you want a little warmth at hand."
+  "fr": "Deux heures de crochet en rond, un peu de rembourrage, et l'orange tient sa forme pleine, chaude comme le ciel de fin d'après-midi sur les étals de Guéliz. Le raffia, on le teint nous-mêmes dans nos teintes emblématiques ; La Fatima et les femmes de l'atelier la tournent maille après maille - l'un des gestes les plus délicats qui soient - jusqu'à ce qu'elle ait le galbe d'un vrai fruit, rembourrée de ses seules chutes de raffia. Fini par l'étiquette dorée YZA gravée, il se clipse au sac, se glisse sur un bijou ou se porte en sautoir avec les petits anneaux dorés offerts avec les boucles d'oreilles.",
+  "en": "Two hours of crochet in the round, a little stuffing, and the orange holds its full shape, warm as the late-afternoon sky over the Guéliz stalls. We dye the raffia ourselves in our signature shades; La Fatima and the atelier women turn it stitch after stitch - one of the most delicate crafts there is - until it has the curve of a real fruit, padded with its raffia offcuts alone. Finished with the engraved gold YZA tag, it clips to a bag, slips onto a piece of jewellery, or wears as a necklace with the little gold rings gifted with the earrings.",
+  "es": "Dos horas de ganchillo en redondo, algo de relleno, y la naranja conserva su forma plena, cálida como el cielo de media tarde sobre los puestos de Guéliz. La rafia la teñimos nosotras mismas en nuestros tonos emblemáticos; La Fatima y las mujeres del taller la dan vuelta punto tras punto - uno de los gestos más delicados que existen - hasta que tiene la curva de una fruta de verdad, rellena solo con sus recortes de rafia. Rematada con la etiqueta dorada YZA grabada, se engancha al bolso, se desliza en una joya o se lleva como colgante con las anillitas doradas que regalamos con los pendientes.",
+  "tr": "İki saatlik yuvarlak tığ işi, biraz dolgu ve portakal, Guéliz tezgâhlarının üzerindeki ikindi göğü gibi sıcak, dolgun biçimini korur. Rafyayı kendi ikonik tonlarımızda kendimiz boyuyoruz; La Fatima ve atölyenin kadınları onu ilmek ilmek çevirir - var olan en ince işlerden biri - gerçek bir meyvenin kıvrımını alana dek, yalnızca kendi rafya kırpıntılarıyla doldurarak. Kazınmış altın YZA etiketiyle tamamlanır; çantaya takılır, bir takıya geçirilir ya da küpelerle hediye edilen küçük altın halkalarla kolye gibi taşınır.",
+  "ar": "ساعتان من الحياكة الدائرية بالكروشيه، وقليل من الحشو، فتحافظ البرتقالة على شكلها الممتلئ، دافئةً كسماء آخر العصر فوق بسطات جيليز. نصبغ الرافيا بأنفسنا بألواننا المميزة؛ وتديرها لا فاطمة ونساء الورشة غرزةً بعد غرزة - وهو من أدقّ الحرف على الإطلاق - حتى تأخذ انحناء ثمرة حقيقية، محشوّةً ببقايا رافيتها وحدها. تُختَم بشارة YZA الذهبية المحفورة، فتُعلَّق على الحقيبة، أو تُدخَل في قطعة مجوهرات، أو تُلبس كقلادة مع الحلقات الذهبية الصغيرة المُهداة مع الأقراط."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+  "fr": "Raffia naturel teint à la main par nos soins dans nos teintes emblématiques. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - l'un des gestes les plus délicats qui soient - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique : rien ne se perd. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+  "en": "Natural raffia, hand-dyed by us in our signature shades. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - one of the most delicate crafts there is - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is padded with its own raffia offcuts, never synthetic foam: nothing is wasted. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way.",
+  "es": "Rafia natural, teñida a mano por nosotras en nuestros tonos emblemáticos. Son las hebras de rafia natural las que se rompen con facilidad durante el trabajo, lo que hace el ganchillo lento y preciso - uno de los gestos más delicados que existen - pero una vez tejida, entrelazada o cosida, la pieza se vuelve muy resistente y duradera, y apenas sensible al agua. Cada fruta se rellena con sus propios recortes de rafia, nunca con espuma sintética: nada se desperdicia. El ganchillo es una de las pocas técnicas del mundo que ninguna máquina puede reproducir - este objeto no podría fabricarse de otra manera.",
+  "tr": "Doğal rafya, kendi ikonik tonlarımızda elimizle boyanmıştır. İşlenirken kolayca kopan, doğal rafya lifleridir; bu da tığ işini yavaş ve titiz kılar - var olan en ince işlerden biri - ama bir kez örülüp, dokunup ya da dikildiğinde parça tam tersine çok sağlam, uzun ömürlü ve suya karşı neredeyse duyarsız hâle gelir. Her meyve kendi rafya kırpıntılarıyla doldurulur, asla sentetik süngerle değil: hiçbir şey israf olmaz. Tığ işi, dünyada hiçbir makinenin taklit edemediği ender tekniklerden biridir - bu nesne başka türlü yapılamazdı.",
+  "ar": "رافيا طبيعية مصبوغة يدويًا على أيدينا بألواننا المميزة. خيوط الرافيا الطبيعية هي التي تتكسّر بسهولة أثناء العمل، مما يجعل الكروشيه بطيئًا ودقيقًا - وهو من أدقّ الحرف على الإطلاق - لكن بمجرد حياكتها أو نسجها أو خياطتها تصبح القطعة على العكس متينة جدًا ومعمّرة وقليلة التأثّر بالماء. تُحشى كل ثمرة ببقايا الرافيا الخاصة بها، لا بالإسفنج الصناعي أبدًا: لا شيء يُهدر. الكروشيه من التقنيات القليلة في العالم التي لا تستطيع أي آلة محاكاتها - ولا يمكن صنع هذه القطعة بطريقة أخرى."
  },
  "fabric": {
  "fr": "Tournée en rond, légèrement garnie, sa couleur chaude monte maille à maille.",
  "en": "Turned in the round, lightly filled, its warm colour rising stitch by stitch."
  },
  "handworkTime": {
- "fr": "Environ trois heures de crochet.",
- "en": "About three hours of crochet."
+  "fr": "Environ deux heures de crochet.",
+  "en": "About two hours of crochet.",
+  "es": "Cerca de dos horas de ganchillo.",
+  "tr": "Yaklaşık iki saatlik tığ işi.",
+  "ar": "نحو ساعتين من الحياكة بالكروشيه."
  },
  "dimensions": {
  "fr": "Environ 4,5 cm de diamètre.",
@@ -16848,8 +17096,11 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The juice-cart colour"
  },
  "fruitStoryBody": {
- "fr": "Sur les charrettes à jus, les oranges roulent par dizaines, leur couleur se mêlant au ciel de fin d'après-midi. On l'a crochetée chaude et ronde pour la garder même hors saison.",
- "en": "On the juice carts the oranges roll by the dozen, their colour mixing into the late-afternoon sky. We crocheted it warm and round to keep it even out of season."
+  "fr": "Sur les charrettes à jus de Guéliz, les oranges roulent par dizaines, leur couleur se mêlant au ciel de fin d'après-midi. On l'a teinte à la main puis crochetée chaude et ronde pour la garder même hors saison.",
+  "en": "On the Guéliz juice carts the oranges roll by the dozen, their colour mixing into the late-afternoon sky. We hand-dyed it then crocheted it warm and round to keep it even out of season.",
+  "es": "En las carretas de zumo de Guéliz las naranjas ruedan por docenas, su color mezclándose con el cielo de media tarde. La teñimos a mano y la tejimos a ganchillo, cálida y redonda, para conservarla incluso fuera de temporada.",
+  "tr": "Guéliz'in meyve suyu arabalarında portakallar düzinelerle yuvarlanır, renkleri ikindi göğüne karışır. Onu elde boyadık, sonra sıcak ve yuvarlak örerek mevsimi geçse bile korumak istedik.",
+  "ar": "على عربات العصير في جيليز، تتدحرج البرتقالات بالعشرات، فيمتزج لونها بسماء آخر العصر. صبغناها يدويًا ثم حِكناها بالكروشيه دافئةً ومستديرة لنحتفظ بها حتى خارج موسمها."
  },
  "howToWearTitle": {
  "fr": "Porter l'orange",
@@ -16884,25 +17135,44 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "raffia-tomato-charm-ss26",
+"making": {
+ "fr": "Chaque tomate est crochetée en rond dans notre raffia teint main, sa couronne verte montée à part puis cousue, rembourrée de ses propres chutes de raffia, puis finie à l'atelier de Guéliz par La Fatima, dont le prénom figure sur l'étiquette, avant la pose de la petite plaque dorée YZA gravée.",
+ "en": "Each tomato is crocheted in the round in our hand-dyed raffia, its green crown made separately then sewn on, padded with its own raffia offcuts, then finished in the Guéliz atelier by La Fatima, whose first name appears on the hand tag, before the little engraved gold YZA plate is added.",
+ "es": "Cada tomate se teje a ganchillo en redondo con nuestra rafia teñida a mano, su corona verde montada aparte y luego cosida, se rellena con sus propios recortes de rafia y lo termina en el taller de Guéliz La Fatima, cuyo nombre aparece en la etiqueta, antes de colocar la plaquita dorada YZA grabada.",
+ "tr": "Her domates, elde boyadığımız rafyayla yuvarlak örülür, yeşil tacı ayrı yapılıp dikilir, kendi rafya kırpıntılarıyla doldurulur, ardından Guéliz atölyesinde adı etiketin üzerinde yer alan La Fatima tarafından tamamlanır ve son olarak kazınmış küçük altın YZA plakası eklenir.",
+ "ar": "كل طماطم تُحاك بالكروشيه على شكل دائري من رافيتنا المصبوغة يدويًا، ويُصنَع تاجها الأخضر على حدة ثم يُخاط، وتُحشى ببقايا الرافيا الخاصة بها، ثم تُنهى في ورشة جيليز على يد لا فاطمة التي يظهر اسمها على الشارة، قبل تثبيت لوحة YZA الذهبية الصغيرة المحفورة."
+},
  "short": {
- "fr": "Une tomate bien ronde, rouge mûr, coiffée de sa couronne verte. Droit du potager.",
- "en": "A nicely round tomato, ripe red, topped with its green crown. Straight from the garden."
+  "fr": "Une tomate bien ronde, rouge mûr teint à la main, coiffée de sa couronne verte. Droit du potager.",
+  "en": "A nicely round tomato, hand-dyed ripe red, topped with its green crown. Straight from the garden.",
+  "es": "Un tomate bien redondo, rojo maduro teñido a mano, coronado con su corona verde. Directo del huerto.",
+  "tr": "Güzelce yuvarlak bir domates, elde boyanmış olgun kırmızı, yeşil tacıyla taçlanmış. Doğrudan bahçeden.",
+  "ar": "طماطم مستديرة تمامًا، حمراء ناضجة مصبوغة يدويًا، بتاجها الأخضر. مباشرةً من البستان."
  },
  "desc": {
- "fr": "Corps rouge crocheté en rond, petite couronne verte montée à part puis cousue dessus : environ trois heures pour qu'elle garde son galbe plein. Un fruit du potager passé entre les mains des femmes de l'atelier. À clipser sur un sac, une ceinture ou les clés - le rouge mûr suffit à attirer l'œil.",
- "en": "Red body crocheted in the round, a little green crown made separately then sewn on top: about three hours so it keeps its full curve. A fruit from the garden, passed through the atelier women's hands. To clip on a bag, a belt or the keys - the ripe red is enough to catch the eye."
+  "fr": "Corps rouge crocheté en rond, petite couronne verte montée à part puis cousue dessus : environ deux heures pour qu'elle garde son galbe plein. Un fruit des étals de Guéliz passé entre les mains des femmes de l'atelier, dans un raffia qu'on teint nous-mêmes - le crocheter est l'un des gestes les plus délicats qui soient. Rembourrée de ses seules chutes de raffia et finie par l'étiquette dorée YZA gravée, elle se clipse sur un sac, une ceinture ou les clés, se glisse sur un bijou, ou se porte en sautoir avec les petits anneaux dorés offerts avec les boucles d'oreilles - le rouge mûr suffit à attirer l'œil.",
+  "en": "Red body crocheted in the round, a little green crown made separately then sewn on top: about two hours so it keeps its full curve. A fruit from the Guéliz stalls, passed through the atelier women's hands, in a raffia we dye ourselves - crocheting it is one of the most delicate crafts there is. Padded with its raffia offcuts alone and finished with the engraved gold YZA tag, it clips to a bag, a belt or the keys, slips onto a piece of jewellery, or wears as a necklace with the little gold rings gifted with the earrings - the ripe red is enough to catch the eye.",
+  "es": "Cuerpo rojo tejido a ganchillo en redondo, corona verde montada aparte y luego cosida encima: unas dos horas para que conserve su curva plena. Una fruta de los puestos de Guéliz pasada por las manos de las mujeres del taller, en una rafia que teñimos nosotras mismas - tejerla a ganchillo es uno de los gestos más delicados que existen. Rellena solo con sus recortes de rafia y rematada con la etiqueta dorada YZA grabada, se engancha a un bolso, un cinturón o las llaves, se desliza en una joya o se lleva como colgante con las anillitas doradas que regalamos con los pendientes - el rojo maduro basta para atraer la mirada.",
+  "tr": "Kırmızı gövde yuvarlak örülür, küçük yeşil taç ayrı yapılıp üzerine dikilir: dolgun kıvrımını koruması için yaklaşık iki saat. Guéliz tezgâhlarından bir meyve, atölye kadınlarının elinden geçmiş, kendi boyadığımız bir rafyayla - onu tığla örmek var olan en ince işlerden biridir. Yalnızca kendi rafya kırpıntılarıyla doldurulup kazınmış altın YZA etiketiyle tamamlanır; bir çantaya, bir kemere ya da anahtarlara takılır, bir takıya geçirilir veya küpelerle hediye edilen küçük altın halkalarla kolye gibi taşınır - olgun kırmızısı gözü yakalamaya yeter.",
+  "ar": "جسم أحمر يُحاك بالكروشيه على شكل دائري، وتاج أخضر صغير يُصنَع على حدة ثم يُخاط فوقه: نحو ساعتين لتحافظ على انحنائها الممتلئ. ثمرة من بسطات جيليز مرّت بين أيدي نساء الورشة، في رافيا نصبغها بأنفسنا - وحياكتها بالكروشيه من أدقّ الحرف على الإطلاق. محشوّةً ببقايا رافيتها وحدها ومختومةً بشارة YZA الذهبية المحفورة، تُعلَّق على حقيبة أو حزام أو المفاتيح، أو تُدخَل في قطعة مجوهرات، أو تُلبس كقلادة مع الحلقات الذهبية الصغيرة المُهداة مع الأقراط - يكفي أحمرها الناضج ليلفت النظر."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+  "fr": "Raffia naturel teint à la main par nos soins dans nos teintes emblématiques. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - l'un des gestes les plus délicats qui soient - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique : rien ne se perd. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+  "en": "Natural raffia, hand-dyed by us in our signature shades. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - one of the most delicate crafts there is - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is padded with its own raffia offcuts, never synthetic foam: nothing is wasted. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way.",
+  "es": "Rafia natural, teñida a mano por nosotras en nuestros tonos emblemáticos. Son las hebras de rafia natural las que se rompen con facilidad durante el trabajo, lo que hace el ganchillo lento y preciso - uno de los gestos más delicados que existen - pero una vez tejida, entrelazada o cosida, la pieza se vuelve muy resistente y duradera, y apenas sensible al agua. Cada fruta se rellena con sus propios recortes de rafia, nunca con espuma sintética: nada se desperdicia. El ganchillo es una de las pocas técnicas del mundo que ninguna máquina puede reproducir - este objeto no podría fabricarse de otra manera.",
+  "tr": "Doğal rafya, kendi ikonik tonlarımızda elimizle boyanmıştır. İşlenirken kolayca kopan, doğal rafya lifleridir; bu da tığ işini yavaş ve titiz kılar - var olan en ince işlerden biri - ama bir kez örülüp, dokunup ya da dikildiğinde parça tam tersine çok sağlam, uzun ömürlü ve suya karşı neredeyse duyarsız hâle gelir. Her meyve kendi rafya kırpıntılarıyla doldurulur, asla sentetik süngerle değil: hiçbir şey israf olmaz. Tığ işi, dünyada hiçbir makinenin taklit edemediği ender tekniklerden biridir - bu nesne başka türlü yapılamazdı.",
+  "ar": "رافيا طبيعية مصبوغة يدويًا على أيدينا بألواننا المميزة. خيوط الرافيا الطبيعية هي التي تتكسّر بسهولة أثناء العمل، مما يجعل الكروشيه بطيئًا ودقيقًا - وهو من أدقّ الحرف على الإطلاق - لكن بمجرد حياكتها أو نسجها أو خياطتها تصبح القطعة على العكس متينة جدًا ومعمّرة وقليلة التأثّر بالماء. تُحشى كل ثمرة ببقايا الرافيا الخاصة بها، لا بالإسفنج الصناعي أبدًا: لا شيء يُهدر. الكروشيه من التقنيات القليلة في العالم التي لا تستطيع أي آلة محاكاتها - ولا يمكن صنع هذه القطعة بطريقة أخرى."
  },
  "fabric": {
  "fr": "Corps rouge et couronne verte crochetés à part, réunis ensuite à l'aiguille.",
  "en": "Red body and green crown crocheted apart, then brought together with the needle."
  },
  "handworkTime": {
- "fr": "Environ trois heures de crochet.",
- "en": "About three hours of crochet."
+  "fr": "Environ deux heures de crochet.",
+  "en": "About two hours of crochet.",
+  "es": "Cerca de dos horas de ganchillo.",
+  "tr": "Yaklaşık iki saatlik tığ işi.",
+  "ar": "نحو ساعتين من الحياكة بالكروشيه."
  },
  "dimensions": {
  "fr": "Environ 4,5 cm de diamètre.",
@@ -16917,8 +17187,11 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The crown detail"
  },
  "fruitStoryBody": {
- "fr": "Les tomates arrivent au marché tièdes encore, rouges et lourdes, posées près des herbes fraîches. On a tenu à leur petite couronne verte - le détail qui dit qu'elles viennent d'être cueillies.",
- "en": "Tomatoes reach the market still warm, red and heavy, set near the fresh herbs. We kept their little green crown - the detail that says they were just picked."
+  "fr": "Les tomates arrivent aux étals de Guéliz tièdes encore, rouges et lourdes, posées près des herbes fraîches. On a tenu à leur petite couronne verte - le détail qui dit qu'elles viennent d'être cueillies - et teint le tout à la main dans notre raffia.",
+  "en": "Tomatoes reach the Guéliz stalls still warm, red and heavy, set near the fresh herbs. We kept their little green crown - the detail that says they were just picked - and hand-dyed the whole thing into our raffia.",
+  "es": "Los tomates llegan a los puestos de Guéliz todavía tibios, rojos y pesados, junto a las hierbas frescas. Conservamos su pequeña corona verde - el detalle que dice que acaban de cosecharse - y lo teñimos todo a mano en nuestra rafia.",
+  "tr": "Domatesler Guéliz tezgâhlarına hâlâ ılık, kırmızı ve ağır gelir, taze otların yanına konur. Küçük yeşil taçlarını korumakta ısrar ettik - yeni koparıldıklarını söyleyen ayrıntı - ve hepsini rafyamıza elde boyadık.",
+  "ar": "تصل الطماطم إلى بسطات جيليز وهي لا تزال دافئة، حمراء وثقيلة، موضوعةً قرب الأعشاب الطازجة. حرصنا على تاجها الأخضر الصغير - التفصيل الذي يقول إنها قُطفت للتوّ - وصبغنا الكل يدويًا في رافيتنا."
  },
  "howToWearTitle": {
  "fr": "Porter la tomate",
@@ -16953,25 +17226,44 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "raffia-lemon-slice-charm-ss26",
+"making": {
+ "fr": "Chaque tranche est crochetée dans notre raffia teint main, ses quartiers et son zeste tracés par changements de couleur, puis finie à l'atelier de Guéliz par La Fatima, dont le prénom figure sur l'étiquette, avant la pose de la petite plaque dorée YZA gravée.",
+ "en": "Each slice is crocheted in our hand-dyed raffia, its segments and rind drawn through colour changes, then finished in the Guéliz atelier by La Fatima, whose first name appears on the hand tag, before the little engraved gold YZA plate is added.",
+ "es": "Cada rodaja se teje a ganchillo con nuestra rafia teñida a mano, sus gajos y su ralladura trazados con cambios de color, y luego la termina en el taller de Guéliz La Fatima, cuyo nombre aparece en la etiqueta, antes de colocar la plaquita dorada YZA grabada.",
+ "tr": "Her dilim, elde boyadığımız rafyayla örülür, dilimleri ve kabuğu renk değişimleriyle çizilir, ardından Guéliz atölyesinde adı etiketin üzerinde yer alan La Fatima tarafından tamamlanır ve son olarak kazınmış küçük altın YZA plakası eklenir.",
+ "ar": "كل شريحة تُحاك بالكروشيه من رافيتنا المصبوغة يدويًا، وتُرسَم فصوصها وقشرتها بتغيّرات اللون، ثم تُنهى في ورشة جيليز على يد لا فاطمة التي يظهر اسمها على الشارة، قبل تثبيت لوحة YZA الذهبية الصغيرة المحفورة."
+},
  "short": {
- "fr": "Une rondelle de citron, quartiers clairs et zeste tout autour. Pas une impression : du crochet.",
- "en": "A round of lemon, pale segments and rind all round. Not a print: crochet."
+  "fr": "Une rondelle de citron, quartiers clairs et zeste tout autour. Pas une impression : du crochet teint main.",
+  "en": "A round of lemon, pale segments and rind all round. Not a print: hand-dyed crochet.",
+  "es": "Una rodaja de limón, gajos claros y ralladura alrededor. No es un estampado: ganchillo teñido a mano.",
+  "tr": "Bir dilim limon, açık dilimler ve etrafını saran kabuk. Baskı değil: elde boyanmış tığ işi.",
+  "ar": "شريحة ليمون، فصوص فاتحة وقشرة تحيط بها. ليست طبعة: كروشيه مصبوغ يدويًا."
  },
  "desc": {
- "fr": "Les quartiers se dessinent en clair sur le jaune, le zeste les cercle d'un dernier rang - tout vient du crochet, jamais de l'impression. Compte près de deux heures pour ce travail minutieux et précis, où chaque section doit se lire. Légère, elle se clipse n'importe où et apporte sa pointe acidulée.",
- "en": "The segments are drawn pale against the yellow, the rind ringing them with a last round - all of it crochet, never print. Count close to two hours for this exacting, precise work, where every section has to read. Light, it clips anywhere and brings its tart little edge."
+  "fr": "Les quartiers se dessinent en clair sur le jaune, le zeste les cercle d'un dernier rang - tout vient du crochet et de notre raffia teint à la main, jamais de l'impression. Compte près d'une heure pour ce travail minutieux et précis, l'un des gestes les plus délicats qui soient, où chaque section doit se lire. Née des étals de Guéliz et finie par l'étiquette dorée YZA gravée, elle est légère : elle se clipse sur un sac, se glisse sur un bijou, ou se porte en sautoir avec les petits anneaux dorés offerts avec les boucles d'oreilles, et apporte sa pointe acidulée.",
+  "en": "The segments are drawn pale against the yellow, the rind ringing them with a last round - all of it crochet in our hand-dyed raffia, never print. Count close to an hour for this exacting, precise work, one of the most delicate crafts there is, where every section has to read. Born of the Guéliz stalls and finished with the engraved gold YZA tag, it is light: it clips to a bag, slips onto a piece of jewellery, or wears as a necklace with the little gold rings gifted with the earrings, and brings its tart little edge.",
+  "es": "Los gajos se dibujan claros sobre el amarillo, la ralladura los rodea con una última vuelta - todo es ganchillo en nuestra rafia teñida a mano, nunca estampado. Cuenta cerca de una hora para este trabajo minucioso y preciso, uno de los gestos más delicados que existen, donde cada sección debe leerse. Nacida de los puestos de Guéliz y rematada con la etiqueta dorada YZA grabada, es ligera: se engancha a un bolso, se desliza en una joya o se lleva como colgante con las anillitas doradas que regalamos con los pendientes, y aporta su punta ácida.",
+  "tr": "Dilimler sarının üzerine açık renkle çizilir, kabuk son bir sırayla onları çevreler - hepsi elde boyadığımız rafyayla tığ işi, asla baskı değil. Bu titiz ve hassas iş için yaklaşık bir saat sayın - var olan en ince işlerden biri - burada her bölmenin okunması gerekir. Guéliz tezgâhlarından doğmuş ve kazınmış altın YZA etiketiyle tamamlanmış, hafiftir: çantaya takılır, bir takıya geçirilir ya da küpelerle hediye edilen küçük altın halkalarla kolye gibi taşınır ve o ekşimsi dokunuşunu katar.",
+  "ar": "تُرسَم الفصوص فاتحةً على الأصفر، وتحيط بها القشرة بصفٍّ أخير - كله كروشيه من رافيتنا المصبوغة يدويًا، لا طباعة أبدًا. احسب نحو ساعة لهذا العمل الدقيق المتقن، وهو من أدقّ الحرف على الإطلاق، حيث يجب أن يظهر كل قسم بوضوح. وُلدت من بسطات جيليز وخُتمت بشارة YZA الذهبية المحفورة، وهي خفيفة: تُعلَّق على حقيبة، أو تُدخَل في قطعة مجوهرات، أو تُلبس كقلادة مع الحلقات الذهبية الصغيرة المُهداة مع الأقراط، وتضيف لمستها الحامضة."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+  "fr": "Raffia naturel teint à la main par nos soins dans nos teintes emblématiques. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - l'un des gestes les plus délicats qui soient - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique : rien ne se perd. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+  "en": "Natural raffia, hand-dyed by us in our signature shades. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - one of the most delicate crafts there is - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is padded with its own raffia offcuts, never synthetic foam: nothing is wasted. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way.",
+  "es": "Rafia natural, teñida a mano por nosotras en nuestros tonos emblemáticos. Son las hebras de rafia natural las que se rompen con facilidad durante el trabajo, lo que hace el ganchillo lento y preciso - uno de los gestos más delicados que existen - pero una vez tejida, entrelazada o cosida, la pieza se vuelve muy resistente y duradera, y apenas sensible al agua. Cada fruta se rellena con sus propios recortes de rafia, nunca con espuma sintética: nada se desperdicia. El ganchillo es una de las pocas técnicas del mundo que ninguna máquina puede reproducir - este objeto no podría fabricarse de otra manera.",
+  "tr": "Doğal rafya, kendi ikonik tonlarımızda elimizle boyanmıştır. İşlenirken kolayca kopan, doğal rafya lifleridir; bu da tığ işini yavaş ve titiz kılar - var olan en ince işlerden biri - ama bir kez örülüp, dokunup ya da dikildiğinde parça tam tersine çok sağlam, uzun ömürlü ve suya karşı neredeyse duyarsız hâle gelir. Her meyve kendi rafya kırpıntılarıyla doldurulur, asla sentetik süngerle değil: hiçbir şey israf olmaz. Tığ işi, dünyada hiçbir makinenin taklit edemediği ender tekniklerden biridir - bu nesne başka türlü yapılamazdı.",
+  "ar": "رافيا طبيعية مصبوغة يدويًا على أيدينا بألواننا المميزة. خيوط الرافيا الطبيعية هي التي تتكسّر بسهولة أثناء العمل، مما يجعل الكروشيه بطيئًا ودقيقًا - وهو من أدقّ الحرف على الإطلاق - لكن بمجرد حياكتها أو نسجها أو خياطتها تصبح القطعة على العكس متينة جدًا ومعمّرة وقليلة التأثّر بالماء. تُحشى كل ثمرة ببقايا الرافيا الخاصة بها، لا بالإسفنج الصناعي أبدًا: لا شيء يُهدر. الكروشيه من التقنيات القليلة في العالم التي لا تستطيع أي آلة محاكاتها - ولا يمكن صنع هذه القطعة بطريقة أخرى."
  },
  "fabric": {
  "fr": "Quartiers et zeste naissent de changements de couleur au crochet - aucune impression.",
  "en": "Segments and rind come from colour changes in the crochet - no printing."
  },
  "handworkTime": {
- "fr": "Environ deux heures de crochet.",
- "en": "About two hours of crochet."
+  "fr": "Environ une heure de crochet.",
+  "en": "About one hour of crochet.",
+  "es": "Cerca de una hora de ganchillo.",
+  "tr": "Yaklaşık bir saatlik tığ işi.",
+  "ar": "نحو ساعة من الحياكة بالكروشيه."
  },
  "dimensions": {
  "fr": "Environ 6 x 4 cm.",
@@ -16986,8 +17278,11 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The one slipped beside the tea"
  },
  "fruitStoryBody": {
- "fr": "Une tranche de citron, c'est une cuisine de Marrakech en plein été - celle qu'on presse sur le poisson, qu'on pose près du verre de thé. On en a tracé les quartiers un à un, au crochet, pour en tenir la fraîcheur.",
- "en": "A lemon slice is a Marrakech kitchen in high summer - the one squeezed over the fish, set beside the glass of tea. We traced its segments one by one, in crochet, to hold that freshness."
+  "fr": "Une tranche de citron, c'est une cuisine de Marrakech en plein été - celle qu'on presse sur le poisson, qu'on pose près du verre de thé. On en a tracé les quartiers un à un, au crochet, dans notre raffia teint main, pour en tenir la fraîcheur.",
+  "en": "A lemon slice is a Marrakech kitchen in high summer - the one squeezed over the fish, set beside the glass of tea. We traced its segments one by one, in crochet, in our hand-dyed raffia, to hold that freshness.",
+  "es": "Una rodaja de limón es una cocina de Marrakech en pleno verano - la que se exprime sobre el pescado, la que se posa junto al vaso de té. Trazamos sus gajos uno a uno, a ganchillo, en nuestra rafia teñida a mano, para retener esa frescura.",
+  "tr": "Bir dilim limon, yaz ortasında bir Marakeş mutfağıdır - balığın üzerine sıkılan, çay bardağının yanına konan. Dilimlerini birer birer, tığ işiyle, elde boyadığımız rafyada çizdik ki o tazeliği tutalım.",
+  "ar": "شريحة الليمون هي مطبخ مراكشي في عزّ الصيف - تلك التي تُعصَر على السمك، وتوضع قرب كأس الشاي. رسمنا فصوصها واحدًا واحدًا بالكروشيه، في رافيتنا المصبوغة يدويًا، لنمسك بتلك النضارة."
  },
  "howToWearTitle": {
  "fr": "Porter la tranche de citron",
@@ -17022,25 +17317,44 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "raffia-orange-slice-charm-ss26",
+"making": {
+ "fr": "Chaque tranche est crochetée dans notre raffia teint main, ses quartiers ouverts et son écorce cerclée par changements de couleur, puis finie à l'atelier de Guéliz par La Fatima, dont le prénom figure sur l'étiquette, avant la pose de la petite plaque dorée YZA gravée.",
+ "en": "Each slice is crocheted in our hand-dyed raffia, its segments opened and its peel ringed through colour changes, then finished in the Guéliz atelier by La Fatima, whose first name appears on the hand tag, before the little engraved gold YZA plate is added.",
+ "es": "Cada rodaja se teje a ganchillo con nuestra rafia teñida a mano, sus gajos abiertos y su corteza rodeada con cambios de color, y luego la termina en el taller de Guéliz La Fatima, cuyo nombre aparece en la etiqueta, antes de colocar la plaquita dorada YZA grabada.",
+ "tr": "Her dilim, elde boyadığımız rafyayla örülür, dilimleri açılır ve kabuğu renk değişimleriyle çevrelenir, ardından Guéliz atölyesinde adı etiketin üzerinde yer alan La Fatima tarafından tamamlanır ve son olarak kazınmış küçük altın YZA plakası eklenir.",
+ "ar": "كل شريحة تُحاك بالكروشيه من رافيتنا المصبوغة يدويًا، وتُفتَح فصوصها وتُحاط قشرتها بتغيّرات اللون، ثم تُنهى في ورشة جيليز على يد لا فاطمة التي يظهر اسمها على الشارة، قبل تثبيت لوحة YZA الذهبية الصغيرة المحفورة."
+},
  "short": {
- "fr": "Une rondelle d'orange, quartiers en éventail sous le cercle de l'écorce. Tout l'orange du sud.",
- "en": "A round of orange, segments fanning under the ring of peel. All the orange of the south."
+  "fr": "Une rondelle d'orange, quartiers en éventail sous le cercle de l'écorce. Tout l'orange du sud, teint main.",
+  "en": "A round of orange, segments fanning under the ring of peel. All the orange of the south, hand-dyed.",
+  "es": "Una rodaja de naranja, gajos en abanico bajo el aro de la corteza. Todo el naranja del sur, teñido a mano.",
+  "tr": "Bir dilim portakal, kabuğun halkası altında yelpaze gibi açılan dilimler. Güneyin tüm turuncusu, elde boyanmış.",
+  "ar": "شريحة برتقال، فصوص متروحة تحت حلقة القشرة. كل برتقال الجنوب، مصبوغ يدويًا."
  },
  "desc": {
- "fr": "Les quartiers s'ouvrent en éventail, l'écorce les referme d'un dernier rang : autour de deux heures pour ce travail minutieux où rien ne pardonne. Elle tient tout l'orange chaud du sud. À clipser sur un sac, une trousse ou les clés, partout où il manque un peu de soleil.",
- "en": "The segments fan open, the peel closing them with a last round: around two hours for this exacting work where nothing is forgiven. It holds all the warm orange of the south. To clip on a bag, a pouch or the keys, wherever a little sun is missing."
+  "fr": "Les quartiers s'ouvrent en éventail, l'écorce les referme d'un dernier rang : autour d'une heure pour ce travail minutieux où rien ne pardonne, l'un des gestes les plus délicats qui soient. Née des étals de Guéliz, dans notre raffia teint à la main, elle tient tout l'orange chaud du sud. Finie par l'étiquette dorée YZA gravée, elle se clipse sur un sac, une trousse ou les clés, se glisse sur un bijou, ou se porte en sautoir avec les petits anneaux dorés offerts avec les boucles d'oreilles - partout où il manque un peu de soleil.",
+  "en": "The segments fan open, the peel closing them with a last round: around an hour for this exacting work where nothing is forgiven, one of the most delicate crafts there is. Born of the Guéliz stalls, in our hand-dyed raffia, it holds all the warm orange of the south. Finished with the engraved gold YZA tag, it clips to a bag, a pouch or the keys, slips onto a piece of jewellery, or wears as a necklace with the little gold rings gifted with the earrings - wherever a little sun is missing.",
+  "es": "Los gajos se abren en abanico, la corteza los cierra con una última vuelta: alrededor de una hora para este trabajo minucioso donde nada se perdona, uno de los gestos más delicados que existen. Nacida de los puestos de Guéliz, en nuestra rafia teñida a mano, guarda todo el naranja cálido del sur. Rematada con la etiqueta dorada YZA grabada, se engancha a un bolso, un neceser o las llaves, se desliza en una joya o se lleva como colgante con las anillitas doradas que regalamos con los pendientes - allí donde falta un poco de sol.",
+  "tr": "Dilimler yelpaze gibi açılır, kabuk son bir sırayla onları kapatır: hiçbir hatayı affetmeyen bu titiz iş için yaklaşık bir saat - var olan en ince işlerden biri. Guéliz tezgâhlarından doğmuş, elde boyadığımız rafyayla, güneyin tüm sıcak turuncusunu taşır. Kazınmış altın YZA etiketiyle tamamlanır; bir çantaya, bir kese ya da anahtarlara takılır, bir takıya geçirilir veya küpelerle hediye edilen küçük altın halkalarla kolye gibi taşınır - biraz güneşin eksik olduğu her yerde.",
+  "ar": "تنفتح الفصوص كالمروحة، وتغلقها القشرة بصفٍّ أخير: نحو ساعة لهذا العمل الدقيق الذي لا يغتفر خطأً، وهو من أدقّ الحرف على الإطلاق. وُلدت من بسطات جيليز، في رافيتنا المصبوغة يدويًا، فحملت كل برتقال الجنوب الدافئ. تُختَم بشارة YZA الذهبية المحفورة، وتُعلَّق على حقيبة أو محفظة أو المفاتيح، أو تُدخَل في قطعة مجوهرات، أو تُلبس كقلادة مع الحلقات الذهبية الصغيرة المُهداة مع الأقراط - أينما نقص القليل من الشمس."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+  "fr": "Raffia naturel teint à la main par nos soins dans nos teintes emblématiques. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - l'un des gestes les plus délicats qui soient - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique : rien ne se perd. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+  "en": "Natural raffia, hand-dyed by us in our signature shades. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - one of the most delicate crafts there is - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is padded with its own raffia offcuts, never synthetic foam: nothing is wasted. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way.",
+  "es": "Rafia natural, teñida a mano por nosotras en nuestros tonos emblemáticos. Son las hebras de rafia natural las que se rompen con facilidad durante el trabajo, lo que hace el ganchillo lento y preciso - uno de los gestos más delicados que existen - pero una vez tejida, entrelazada o cosida, la pieza se vuelve muy resistente y duradera, y apenas sensible al agua. Cada fruta se rellena con sus propios recortes de rafia, nunca con espuma sintética: nada se desperdicia. El ganchillo es una de las pocas técnicas del mundo que ninguna máquina puede reproducir - este objeto no podría fabricarse de otra manera.",
+  "tr": "Doğal rafya, kendi ikonik tonlarımızda elimizle boyanmıştır. İşlenirken kolayca kopan, doğal rafya lifleridir; bu da tığ işini yavaş ve titiz kılar - var olan en ince işlerden biri - ama bir kez örülüp, dokunup ya da dikildiğinde parça tam tersine çok sağlam, uzun ömürlü ve suya karşı neredeyse duyarsız hâle gelir. Her meyve kendi rafya kırpıntılarıyla doldurulur, asla sentetik süngerle değil: hiçbir şey israf olmaz. Tığ işi, dünyada hiçbir makinenin taklit edemediği ender tekniklerden biridir - bu nesne başka türlü yapılamazdı.",
+  "ar": "رافيا طبيعية مصبوغة يدويًا على أيدينا بألواننا المميزة. خيوط الرافيا الطبيعية هي التي تتكسّر بسهولة أثناء العمل، مما يجعل الكروشيه بطيئًا ودقيقًا - وهو من أدقّ الحرف على الإطلاق - لكن بمجرد حياكتها أو نسجها أو خياطتها تصبح القطعة على العكس متينة جدًا ومعمّرة وقليلة التأثّر بالماء. تُحشى كل ثمرة ببقايا الرافيا الخاصة بها، لا بالإسفنج الصناعي أبدًا: لا شيء يُهدر. الكروشيه من التقنيات القليلة في العالم التي لا تستطيع أي آلة محاكاتها - ولا يمكن صنع هذه القطعة بطريقة أخرى."
  },
  "fabric": {
  "fr": "Les quartiers s'ouvrent par les changements de couleur, l'écorce les cercle d'un dernier rang.",
  "en": "The segments open through colour changes, the peel ringing them with a final round."
  },
  "handworkTime": {
- "fr": "Environ deux heures de crochet.",
- "en": "About two hours of crochet."
+  "fr": "Environ une heure de crochet.",
+  "en": "About one hour of crochet.",
+  "es": "Cerca de una hora de ganchillo.",
+  "tr": "Yaklaşık bir saatlik tığ işi.",
+  "ar": "نحو ساعة من الحياكة بالكروشيه."
  },
  "dimensions": {
  "fr": "Environ 6 x 4 cm.",
@@ -17055,8 +17369,11 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The Jemaa el-Fna smell"
  },
  "fruitStoryBody": {
- "fr": "Sur Jemaa el-Fna, les charrettes pressent les oranges du matin au soir et l'air sent le sucre et le soleil. Une tranche posée sur le bord du verre : c'est ce souvenir-là qu'on a crocheté.",
- "en": "On Jemaa el-Fna the carts press oranges from morning to night and the air smells of sugar and sun. A slice on the rim of the glass: that's the memory we crocheted."
+  "fr": "Sur les étals de Guéliz, les charrettes pressent les oranges du matin au soir et l'air sent le sucre et le soleil. Une tranche posée sur le bord du verre : c'est ce souvenir-là qu'on a crocheté, dans notre raffia teint à la main.",
+  "en": "On the Guéliz stalls the carts press oranges from morning to night and the air smells of sugar and sun. A slice on the rim of the glass: that's the memory we crocheted, in our hand-dyed raffia.",
+  "es": "En los puestos de Guéliz las carretas exprimen naranjas de la mañana a la noche y el aire huele a azúcar y sol. Una rodaja en el borde del vaso: ese es el recuerdo que tejimos a ganchillo, en nuestra rafia teñida a mano.",
+  "tr": "Guéliz tezgâhlarında arabalar sabahtan akşama portakal sıkar ve hava şeker ile güneş kokar. Bardağın kenarına konmuş bir dilim: işte elde boyadığımız rafyada tığla ördüğümüz o anı.",
+  "ar": "على بسطات جيليز، تعصر العربات البرتقال من الصباح إلى المساء ويفوح الهواء بالسكر والشمس. شريحة على حافة الكأس: هذه هي الذكرى التي حِكناها بالكروشيه، في رافيتنا المصبوغة يدويًا."
  },
  "howToWearTitle": {
  "fr": "Porter la tranche d'orange",
@@ -17091,25 +17408,44 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "raffia-kiwi-slice-charm-ss26",
+"making": {
+ "fr": "Chaque tranche est crochetée en vert tendre dans notre raffia teint main, sa couronne de graines brodée point par point autour du cœur clair, puis finie à l'atelier de Guéliz par La Fatima, dont le prénom figure sur l'étiquette, avant la pose de la petite plaque dorée YZA gravée.",
+ "en": "Each slice is crocheted in tender green in our hand-dyed raffia, its crown of seeds embroidered stitch by stitch around the pale heart, then finished in the Guéliz atelier by La Fatima, whose first name appears on the hand tag, before the little engraved gold YZA plate is added.",
+ "es": "Cada rodaja se teje a ganchillo en verde tierno con nuestra rafia teñida a mano, su corona de semillas bordada punto a punto alrededor del corazón claro, y luego la termina en el taller de Guéliz La Fatima, cuyo nombre aparece en la etiqueta, antes de colocar la plaquita dorada YZA grabada.",
+ "tr": "Her dilim, elde boyadığımız rafyayla yumuşak yeşilde örülür, çekirdek tacı açık göbeğin çevresine ilmek ilmek işlenir, ardından Guéliz atölyesinde adı etiketin üzerinde yer alan La Fatima tarafından tamamlanır ve son olarak kazınmış küçük altın YZA plakası eklenir.",
+ "ar": "كل شريحة تُحاك بالكروشيه بالأخضر الناعم من رافيتنا المصبوغة يدويًا، ويُطرَّز تاج بذورها غرزةً غرزة حول القلب الفاتح، ثم تُنهى في ورشة جيليز على يد لا فاطمة التي يظهر اسمها على الشارة، قبل تثبيت لوحة YZA الذهبية الصغيرة المحفورة."
+},
  "short": {
- "fr": "Une tranche de kiwi, vert tendre, cœur clair, couronne de graines au centre.",
- "en": "A kiwi slice, tender green, pale heart, a crown of seeds at the centre."
+  "fr": "Une tranche de kiwi, vert tendre teint main, cœur clair, couronne de graines au centre.",
+  "en": "A kiwi slice, hand-dyed tender green, pale heart, a crown of seeds at the centre.",
+  "es": "Una rodaja de kiwi, verde tierno teñido a mano, corazón claro, corona de semillas en el centro.",
+  "tr": "Bir dilim kivi, elde boyanmış yumuşak yeşil, açık göbek, ortasında çekirdek tacı.",
+  "ar": "شريحة كيوي، أخضر ناعم مصبوغ يدويًا، قلب فاتح، وتاج من البذور في الوسط."
  },
  "desc": {
- "fr": "C'est la couronne de graines qui prend le temps : il faut autour de deux heures pour broder ces points sombres un à un autour du cœur clair, sur le disque déjà crocheté en vert tendre. Tout est fait main, rien n'est imprimé. Légère et à peine rembourrée, elle glisse une couleur qu'on n'attend pas - celle qui surprend entre les agrumes.",
- "en": "It's the crown of seeds that takes the time: around two hours to embroider those dark dots one by one around the pale heart, onto the disc already crocheted in tender green. All handmade, nothing printed. Light and barely padded, it slips in a colour you don't expect - the one that surprises among the citrus."
+  "fr": "C'est la couronne de graines qui prend le temps : il faut autour d'une heure et demie pour broder ces points sombres un à un autour du cœur clair, sur le disque déjà crocheté en vert tendre - dans notre raffia teint à la main, l'un des gestes les plus délicats qui soient. Tout est fait main, rien n'est imprimé. Née des étals de Guéliz et finie par l'étiquette dorée YZA gravée, légère et à peine rembourrée, elle glisse une couleur qu'on n'attend pas : elle se clipse sur un sac, se glisse sur un bijou, ou se porte en sautoir avec les petits anneaux dorés offerts avec les boucles d'oreilles.",
+  "en": "It's the crown of seeds that takes the time: around an hour and a half to embroider those dark dots one by one around the pale heart, onto the disc already crocheted in tender green - in our hand-dyed raffia, one of the most delicate crafts there is. All handmade, nothing printed. Born of the Guéliz stalls and finished with the engraved gold YZA tag, light and barely padded, it slips in a colour you don't expect: it clips to a bag, slips onto a piece of jewellery, or wears as a necklace with the little gold rings gifted with the earrings.",
+  "es": "Es la corona de semillas la que lleva tiempo: hace falta alrededor de una hora y media para bordar esos puntos oscuros uno a uno alrededor del corazón claro, sobre el disco ya tejido a ganchillo en verde tierno - en nuestra rafia teñida a mano, uno de los gestos más delicados que existen. Todo está hecho a mano, nada estampado. Nacida de los puestos de Guéliz y rematada con la etiqueta dorada YZA grabada, ligera y apenas rellena, desliza un color que no se espera: se engancha a un bolso, se desliza en una joya o se lleva como colgante con las anillitas doradas que regalamos con los pendientes.",
+  "tr": "Zaman alan, çekirdek tacıdır: açık göbeğin çevresine o koyu noktaları birer birer işlemek, önceden yumuşak yeşil örülmüş disk üzerine - elde boyadığımız rafyada - yaklaşık bir buçuk saat sürer; var olan en ince işlerden biri. Her şey elle yapılır, hiçbiri basılı değildir. Guéliz tezgâhlarından doğmuş ve kazınmış altın YZA etiketiyle tamamlanmış, hafif ve az dolgulu, beklenmedik bir renk katar: çantaya takılır, bir takıya geçirilir ya da küpelerle hediye edilen küçük altın halkalarla kolye gibi taşınır.",
+  "ar": "تاج البذور هو ما يأخذ الوقت: يلزم نحو ساعة ونصف لتطريز تلك النقاط الداكنة واحدةً واحدة حول القلب الفاتح، على القرص المحاك سلفًا بالأخضر الناعم - في رافيتنا المصبوغة يدويًا، وهو من أدقّ الحرف على الإطلاق. كل شيء مصنوع يدويًا، لا شيء مطبوع. وُلدت من بسطات جيليز وخُتمت بشارة YZA الذهبية المحفورة، خفيفة وقليلة الحشو، تُدخِل لونًا غير متوقّع: تُعلَّق على حقيبة، أو تُدخَل في قطعة مجوهرات، أو تُلبس كقلادة مع الحلقات الذهبية الصغيرة المُهداة مع الأقراط."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+  "fr": "Raffia naturel teint à la main par nos soins dans nos teintes emblématiques. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - l'un des gestes les plus délicats qui soient - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique : rien ne se perd. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+  "en": "Natural raffia, hand-dyed by us in our signature shades. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - one of the most delicate crafts there is - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is padded with its own raffia offcuts, never synthetic foam: nothing is wasted. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way.",
+  "es": "Rafia natural, teñida a mano por nosotras en nuestros tonos emblemáticos. Son las hebras de rafia natural las que se rompen con facilidad durante el trabajo, lo que hace el ganchillo lento y preciso - uno de los gestos más delicados que existen - pero una vez tejida, entrelazada o cosida, la pieza se vuelve muy resistente y duradera, y apenas sensible al agua. Cada fruta se rellena con sus propios recortes de rafia, nunca con espuma sintética: nada se desperdicia. El ganchillo es una de las pocas técnicas del mundo que ninguna máquina puede reproducir - este objeto no podría fabricarse de otra manera.",
+  "tr": "Doğal rafya, kendi ikonik tonlarımızda elimizle boyanmıştır. İşlenirken kolayca kopan, doğal rafya lifleridir; bu da tığ işini yavaş ve titiz kılar - var olan en ince işlerden biri - ama bir kez örülüp, dokunup ya da dikildiğinde parça tam tersine çok sağlam, uzun ömürlü ve suya karşı neredeyse duyarsız hâle gelir. Her meyve kendi rafya kırpıntılarıyla doldurulur, asla sentetik süngerle değil: hiçbir şey israf olmaz. Tığ işi, dünyada hiçbir makinenin taklit edemediği ender tekniklerden biridir - bu nesne başka türlü yapılamazdı.",
+  "ar": "رافيا طبيعية مصبوغة يدويًا على أيدينا بألواننا المميزة. خيوط الرافيا الطبيعية هي التي تتكسّر بسهولة أثناء العمل، مما يجعل الكروشيه بطيئًا ودقيقًا - وهو من أدقّ الحرف على الإطلاق - لكن بمجرد حياكتها أو نسجها أو خياطتها تصبح القطعة على العكس متينة جدًا ومعمّرة وقليلة التأثّر بالماء. تُحشى كل ثمرة ببقايا الرافيا الخاصة بها، لا بالإسفنج الصناعي أبدًا: لا شيء يُهدر. الكروشيه من التقنيات القليلة في العالم التي لا تستطيع أي آلة محاكاتها - ولا يمكن صنع هذه القطعة بطريقة أخرى."
  },
  "fabric": {
  "fr": "Le vert et le cœur clair au crochet, les graines brodées par-dessus : aucune impression.",
  "en": "The green and pale heart in crochet, the seeds embroidered on top: no print at all."
  },
  "handworkTime": {
- "fr": "Environ deux heures de crochet.",
- "en": "About two hours of crochet."
+  "fr": "Environ une heure et demie de crochet.",
+  "en": "About one and a half hours of crochet.",
+  "es": "Cerca de una hora y media de ganchillo.",
+  "tr": "Yaklaşık bir buçuk saatlik tığ işi.",
+  "ar": "نحو ساعة ونصف من الحياكة بالكروشيه."
  },
  "dimensions": {
  "fr": "Environ 6 x 4 cm.",
@@ -17124,8 +17460,11 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The surprise of the stall"
  },
  "fruitStoryBody": {
- "fr": "Le kiwi surprend l'étal - ce vert qu'on n'attend pas entre les agrumes et les melons. On a aimé broder sa couronne de graines, ce dessin minuscule qui demande tant de patience.",
- "en": "Kiwi catches the stall off guard - that green you don't expect among the citrus and melons. We loved embroidering its crown of seeds, that tiny pattern that asks for such patience."
+  "fr": "Le kiwi surprend les étals de Guéliz - ce vert qu'on n'attend pas entre les agrumes et les melons. On a aimé teindre son vert à la main et broder sa couronne de graines, ce dessin minuscule qui demande tant de patience.",
+  "en": "Kiwi catches the Guéliz stalls off guard - that green you don't expect among the citrus and melons. We loved hand-dyeing its green and embroidering its crown of seeds, that tiny pattern that asks for such patience.",
+  "es": "El kiwi sorprende a los puestos de Guéliz - ese verde que no se espera entre los cítricos y los melones. Nos encantó teñir su verde a mano y bordar su corona de semillas, ese dibujo minúsculo que pide tanta paciencia.",
+  "tr": "Kivi Guéliz tezgâhlarını gafil avlar - narenciye ve kavunlar arasında beklenmeyen o yeşil. Yeşilini elde boyamayı ve çekirdek tacını işlemeyi çok sevdik; bunca sabır isteyen o minik deseni.",
+  "ar": "يفاجئ الكيوي بسطات جيليز - ذلك الأخضر غير المتوقّع بين الحمضيات والبطيخ. أحببنا صبغ أخضره يدويًا وتطريز تاج بذوره، ذلك الرسم الدقيق الذي يتطلّب صبرًا كبيرًا."
  },
  "howToWearTitle": {
  "fr": "Porter la tranche de kiwi",
@@ -17160,25 +17499,44 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "raffia-watermelon-slice-charm-ss26",
+"making": {
+ "fr": "Chaque part est crochetée par rangs de couleur dans notre raffia teint main - rose, blanc, vert - ses pépins brodés un à un, puis finie à l'atelier de Guéliz par La Fatima, dont le prénom figure sur l'étiquette, avant la pose de la petite plaque dorée YZA gravée.",
+ "en": "Each wedge is crocheted in rows of colour in our hand-dyed raffia - pink, white, green - its pips embroidered one by one, then finished in the Guéliz atelier by La Fatima, whose first name appears on the hand tag, before the little engraved gold YZA plate is added.",
+ "es": "Cada trozo se teje a ganchillo por hileras de color con nuestra rafia teñida a mano - rosa, blanco, verde - sus pepitas bordadas una a una, y luego lo termina en el taller de Guéliz La Fatima, cuyo nombre aparece en la etiqueta, antes de colocar la plaquita dorada YZA grabada.",
+ "tr": "Her dilim, elde boyadığımız rafyayla renk sıraları hâlinde örülür - pembe, beyaz, yeşil - çekirdekleri birer birer işlenir, ardından Guéliz atölyesinde adı etiketin üzerinde yer alan La Fatima tarafından tamamlanır ve son olarak kazınmış küçük altın YZA plakası eklenir.",
+ "ar": "كل قطعة تُحاك بالكروشيه بصفوف من الألوان من رافيتنا المصبوغة يدويًا - وردي، أبيض، أخضر - وتُطرَّز بذورها واحدةً واحدة، ثم تُنهى في ورشة جيليز على يد لا فاطمة التي يظهر اسمها على الشارة، قبل تثبيت لوحة YZA الذهبية الصغيرة المحفورة."
+},
  "short": {
- "fr": "Une part de pastèque, rose vif, liseré blanc, écorce verte, quelques pépins. L'été pur.",
- "en": "A watermelon wedge, bright pink, white edge, green rind, a few pips. Pure summer."
+  "fr": "Une part de pastèque, rose vif teint main, liseré blanc, écorce verte, quelques pépins. L'été pur.",
+  "en": "A watermelon wedge, hand-dyed bright pink, white edge, green rind, a few pips. Pure summer.",
+  "es": "Un trozo de sandía, rosa vivo teñido a mano, borde blanco, corteza verde, algunas pepitas. Verano puro.",
+  "tr": "Bir dilim karpuz, elde boyanmış canlı pembe, beyaz kenar, yeşil kabuk, birkaç çekirdek. Saf yaz.",
+  "ar": "قطعة بطيخ، وردي زاهٍ مصبوغ يدويًا، حاشية بيضاء، قشرة خضراء، وبعض البذور. الصيف الخالص."
  },
  "desc": {
- "fr": "Trois couleurs qui s'enchaînent par rangs - rose, blanc, vert - et des pépins brodés un à un : compte autour de deux heures pour un triangle bien net. Gaie et à peine rembourrée, c'est tout l'été à clipser sur un sac de plage ou les clés, le genre de détail qui fait sourire au passage.",
- "en": "Three colours running on in rows - pink, white, green - with pips stitched in one by one: count around two hours for a clean triangle. Cheerful and barely padded, it's the whole of summer to clip on a beach bag or the keys, the kind of detail that earns a passing smile."
+  "fr": "Trois couleurs qui s'enchaînent par rangs - rose, blanc, vert - et des pépins brodés un à un : compte autour d'une heure et demie pour un triangle bien net, dans notre raffia teint à la main, l'un des gestes les plus délicats qui soient. Née des étals de Guéliz, gaie et à peine rembourrée, finie par l'étiquette dorée YZA gravée, c'est tout l'été : elle se clipse sur un sac de plage ou les clés, se glisse sur un bijou, ou se porte en sautoir avec les petits anneaux dorés offerts avec les boucles d'oreilles - le genre de détail qui fait sourire au passage.",
+  "en": "Three colours running on in rows - pink, white, green - with pips stitched in one by one: count around an hour and a half for a clean triangle, in our hand-dyed raffia, one of the most delicate crafts there is. Born of the Guéliz stalls, cheerful and barely padded, finished with the engraved gold YZA tag, it's the whole of summer: it clips to a beach bag or the keys, slips onto a piece of jewellery, or wears as a necklace with the little gold rings gifted with the earrings - the kind of detail that earns a passing smile.",
+  "es": "Tres colores que se encadenan por hileras - rosa, blanco, verde - y pepitas bordadas una a una: cuenta alrededor de una hora y media para un triángulo bien nítido, en nuestra rafia teñida a mano, uno de los gestos más delicados que existen. Nacida de los puestos de Guéliz, alegre y apenas rellena, rematada con la etiqueta dorada YZA grabada, es todo el verano: se engancha a un bolso de playa o las llaves, se desliza en una joya o se lleva como colgante con las anillitas doradas que regalamos con los pendientes - de esos detalles que sacan una sonrisa al pasar.",
+  "tr": "Sıralar hâlinde birbirini izleyen üç renk - pembe, beyaz, yeşil - ve birer birer işlenen çekirdekler: temiz bir üçgen için yaklaşık bir buçuk saat sayın, elde boyadığımız rafyada, var olan en ince işlerden biri. Guéliz tezgâhlarından doğmuş, neşeli ve az dolgulu, kazınmış altın YZA etiketiyle tamamlanmış, tam anlamıyla yaz: bir plaj çantasına ya da anahtarlara takılır, bir takıya geçirilir veya küpelerle hediye edilen küçük altın halkalarla kolye gibi taşınır - geçerken gülümseten türden bir ayrıntı.",
+  "ar": "ثلاثة ألوان تتتابع بالصفوف - وردي، أبيض، أخضر - وبذور تُطرَّز واحدةً واحدة: احسب نحو ساعة ونصف لمثلث نظيف، في رافيتنا المصبوغة يدويًا، وهو من أدقّ الحرف على الإطلاق. وُلدت من بسطات جيليز، مرحةً وقليلة الحشو، مختومةً بشارة YZA الذهبية المحفورة، إنها الصيف كله: تُعلَّق على حقيبة شاطئ أو المفاتيح، أو تُدخَل في قطعة مجوهرات، أو تُلبس كقلادة مع الحلقات الذهبية الصغيرة المُهداة مع الأقراط - من التفاصيل التي تُضحك عابر السبيل."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+  "fr": "Raffia naturel teint à la main par nos soins dans nos teintes emblématiques. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - l'un des gestes les plus délicats qui soient - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique : rien ne se perd. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+  "en": "Natural raffia, hand-dyed by us in our signature shades. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - one of the most delicate crafts there is - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is padded with its own raffia offcuts, never synthetic foam: nothing is wasted. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way.",
+  "es": "Rafia natural, teñida a mano por nosotras en nuestros tonos emblemáticos. Son las hebras de rafia natural las que se rompen con facilidad durante el trabajo, lo que hace el ganchillo lento y preciso - uno de los gestos más delicados que existen - pero una vez tejida, entrelazada o cosida, la pieza se vuelve muy resistente y duradera, y apenas sensible al agua. Cada fruta se rellena con sus propios recortes de rafia, nunca con espuma sintética: nada se desperdicia. El ganchillo es una de las pocas técnicas del mundo que ninguna máquina puede reproducir - este objeto no podría fabricarse de otra manera.",
+  "tr": "Doğal rafya, kendi ikonik tonlarımızda elimizle boyanmıştır. İşlenirken kolayca kopan, doğal rafya lifleridir; bu da tığ işini yavaş ve titiz kılar - var olan en ince işlerden biri - ama bir kez örülüp, dokunup ya da dikildiğinde parça tam tersine çok sağlam, uzun ömürlü ve suya karşı neredeyse duyarsız hâle gelir. Her meyve kendi rafya kırpıntılarıyla doldurulur, asla sentetik süngerle değil: hiçbir şey israf olmaz. Tığ işi, dünyada hiçbir makinenin taklit edemediği ender tekniklerden biridir - bu nesne başka türlü yapılamazdı.",
+  "ar": "رافيا طبيعية مصبوغة يدويًا على أيدينا بألواننا المميزة. خيوط الرافيا الطبيعية هي التي تتكسّر بسهولة أثناء العمل، مما يجعل الكروشيه بطيئًا ودقيقًا - وهو من أدقّ الحرف على الإطلاق - لكن بمجرد حياكتها أو نسجها أو خياطتها تصبح القطعة على العكس متينة جدًا ومعمّرة وقليلة التأثّر بالماء. تُحشى كل ثمرة ببقايا الرافيا الخاصة بها، لا بالإسفنج الصناعي أبدًا: لا شيء يُهدر. الكروشيه من التقنيات القليلة في العالم التي لا تستطيع أي آلة محاكاتها - ولا يمكن صنع هذه القطعة بطريقة أخرى."
  },
  "fabric": {
  "fr": "Rose, blanc et vert montent par rangs de couleur ; les pépins sont brodés au point.",
  "en": "Pink, white and green rise in colour rows; the pips are stitched in by hand."
  },
  "handworkTime": {
- "fr": "Environ deux heures de crochet.",
- "en": "About two hours of crochet."
+  "fr": "Environ une heure et demie de crochet.",
+  "en": "About one and a half hours of crochet.",
+  "es": "Cerca de una hora y media de ganchillo.",
+  "tr": "Yaklaşık bir buçuk saatlik tığ işi.",
+  "ar": "نحو ساعة ونصف من الحياكة بالكروشيه."
  },
  "dimensions": {
  "fr": "Environ 6 x 4 cm.",
@@ -17193,8 +17551,11 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Big wedges in the shade"
  },
  "fruitStoryBody": {
- "fr": "Aux heures les plus chaudes, on tranche la pastèque en grandes parts roses qu'on partage à l'ombre. On l'a refaite au crochet - rose, blanc, vert, pépins - pour en garder un peu de fraîcheur.",
- "en": "In the hottest hours the watermelon is sliced into big pink wedges shared in the shade. We rebuilt it in crochet - pink, white, green, pips - to keep a little of its coolness."
+  "fr": "Aux heures les plus chaudes, sur les étals de Guéliz, on tranche la pastèque en grandes parts roses qu'on partage à l'ombre. On l'a refaite au crochet dans notre raffia teint main - rose, blanc, vert, pépins - pour en garder un peu de fraîcheur.",
+  "en": "In the hottest hours, on the Guéliz stalls, the watermelon is sliced into big pink wedges shared in the shade. We rebuilt it in crochet in our hand-dyed raffia - pink, white, green, pips - to keep a little of its coolness.",
+  "es": "En las horas de más calor, en los puestos de Guéliz, se corta la sandía en grandes trozos rosados que se comparten a la sombra. La rehicimos a ganchillo en nuestra rafia teñida a mano - rosa, blanco, verde, pepitas - para conservar algo de su frescor.",
+  "tr": "En sıcak saatlerde, Guéliz tezgâhlarında karpuz, gölgede paylaşılan iri pembe dilimlere ayrılır. Onu elde boyadığımız rafyada tığla yeniden ördük - pembe, beyaz, yeşil, çekirdekler - serinliğinden bir tutam korumak için.",
+  "ar": "في أشدّ الساعات حرًّا، على بسطات جيليز، يُقطَّع البطيخ إلى قطع وردية كبيرة تُتقاسَم في الظل. أعدنا صنعه بالكروشيه في رافيتنا المصبوغة يدويًا - وردي، أبيض، أخضر، بذور - لنحتفظ بشيء من برودته."
  },
  "howToWearTitle": {
  "fr": "Porter la pastèque",
@@ -17229,25 +17590,44 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "raffia-avocado-half-charm-ss26",
+"making": {
+ "fr": "Chaque demi-avocat réunit trois tons de notre raffia teint main - chair claire, écorce sombre, noyau brun - crochetés puis assemblés à l'aiguille, avant d'être fini à l'atelier de Guéliz par La Fatima, dont le prénom figure sur l'étiquette, et de recevoir la petite plaque dorée YZA gravée.",
+ "en": "Each avocado half brings together three tones of our hand-dyed raffia - pale flesh, dark skin, brown stone - crocheted then joined with the needle, before being finished in the Guéliz atelier by La Fatima, whose first name appears on the hand tag, and receiving the little engraved gold YZA plate.",
+ "es": "Cada medio aguacate reúne tres tonos de nuestra rafia teñida a mano - pulpa clara, piel oscura, hueso marrón - tejidos a ganchillo y luego ensamblados a aguja, antes de ser terminado en el taller de Guéliz por La Fatima, cuyo nombre aparece en la etiqueta, y recibir la plaquita dorada YZA grabada.",
+ "tr": "Her yarım avokado, elde boyadığımız rafyanın üç tonunu bir araya getirir - açık et, koyu kabuk, kahverengi çekirdek - önce örülür sonra iğneyle birleştirilir, ardından Guéliz atölyesinde adı etiketin üzerinde yer alan La Fatima tarafından tamamlanır ve kazınmış küçük altın YZA plakasını alır.",
+ "ar": "كل نصف أفوكادو يجمع ثلاث درجات من رافيتنا المصبوغة يدويًا - لبّ فاتح، قشرة داكنة، نواة بنية - تُحاك بالكروشيه ثم تُجمَع بالإبرة، قبل أن يُنهى في ورشة جيليز على يد لا فاطمة التي يظهر اسمها على الشارة، ويتلقّى لوحة YZA الذهبية الصغيرة المحفورة."
+},
  "short": {
- "fr": "Un demi-avocat, chair vert tendre, écorce sombre, noyau brun au creux. Doux et inattendu.",
- "en": "An avocado half, tender green flesh, dark skin, a brown stone in the hollow. Soft and unexpected."
+  "fr": "Un demi-avocat, chair vert tendre teinte main, écorce sombre, noyau brun au creux. Doux et inattendu.",
+  "en": "An avocado half, hand-dyed tender green flesh, dark skin, a brown stone in the hollow. Soft and unexpected.",
+  "es": "Medio aguacate, pulpa verde tierno teñida a mano, piel oscura, hueso marrón en el hueco. Suave e inesperado.",
+  "tr": "Yarım avokado, elde boyanmış yumuşak yeşil et, koyu kabuk, oyukta kahverengi çekirdek. Yumuşak ve beklenmedik.",
+  "ar": "نصف أفوكادو، لبّ أخضر ناعم مصبوغ يدويًا، قشرة داكنة، نواة بنية في التجويف. ناعم وغير متوقّع."
  },
  "desc": {
- "fr": "Trois tons à réunir - chair claire, écorce sombre, noyau brun bien rond au centre - soit environ deux heures de crochet. C'est ce noyau lisse posé dans le creux qui fait toute l'image. Doux et un peu inattendu, il se clipse sur un sac ou les clés comme un petit signe entre celles qui savent.",
- "en": "Three tones to bring together - pale flesh, dark skin, a round brown stone at the centre - so about two hours of crochet. It's that smooth stone in the hollow that makes the whole picture. Soft and a little unexpected, it clips to a bag or the keys like a small sign between those who know."
+  "fr": "Trois tons à réunir - chair claire, écorce sombre, noyau brun bien rond au centre - soit environ deux heures de crochet dans notre raffia teint à la main, l'un des gestes les plus délicats qui soient. C'est ce noyau lisse posé dans le creux qui fait toute l'image. Né des étals de Guéliz et fini par l'étiquette dorée YZA gravée, doux et un peu inattendu, il se clipse sur un sac ou les clés, se glisse sur un bijou, ou se porte en sautoir avec les petits anneaux dorés offerts avec les boucles d'oreilles - comme un petit signe entre celles qui savent.",
+  "en": "Three tones to bring together - pale flesh, dark skin, a round brown stone at the centre - so about two hours of crochet in our hand-dyed raffia, one of the most delicate crafts there is. It's that smooth stone in the hollow that makes the whole picture. Born of the Guéliz stalls and finished with the engraved gold YZA tag, soft and a little unexpected, it clips to a bag or the keys, slips onto a piece of jewellery, or wears as a necklace with the little gold rings gifted with the earrings - like a small sign between those who know.",
+  "es": "Tres tonos que reunir - pulpa clara, piel oscura, hueso marrón bien redondo en el centro - unas dos horas de ganchillo en nuestra rafia teñida a mano, uno de los gestos más delicados que existen. Es ese hueso liso posado en el hueco el que hace toda la imagen. Nacido de los puestos de Guéliz y rematado con la etiqueta dorada YZA grabada, suave y algo inesperado, se engancha a un bolso o las llaves, se desliza en una joya o se lleva como colgante con las anillitas doradas que regalamos con los pendientes - como una pequeña señal entre las que saben.",
+  "tr": "Bir araya getirilecek üç ton - açık et, koyu kabuk, ortada yuvarlak kahverengi çekirdek - yani elde boyadığımız rafyada yaklaşık iki saatlik tığ işi, var olan en ince işlerden biri. Bütün görüntüyü yaratan, oyuğa yerleşmiş o pürüzsüz çekirdektir. Guéliz tezgâhlarından doğmuş ve kazınmış altın YZA etiketiyle tamamlanmış, yumuşak ve biraz beklenmedik; bir çantaya ya da anahtarlara takılır, bir takıya geçirilir veya küpelerle hediye edilen küçük altın halkalarla kolye gibi taşınır - bilenler arasında küçük bir işaret gibi.",
+  "ar": "ثلاثة درجات لونية تُجمَع - لبّ فاتح، قشرة داكنة، نواة بنية مستديرة في الوسط - أي نحو ساعتين من الحياكة بالكروشيه في رافيتنا المصبوغة يدويًا، وهو من أدقّ الحرف على الإطلاق. تلك النواة الملساء المستقرّة في التجويف هي التي تصنع الصورة كلها. وُلد من بسطات جيليز وخُتم بشارة YZA الذهبية المحفورة، ناعمًا وغير متوقّع قليلًا، يُعلَّق على حقيبة أو المفاتيح، أو يُدخَل في قطعة مجوهرات، أو يُلبس كقلادة مع الحلقات الذهبية الصغيرة المُهداة مع الأقراط - كإشارة صغيرة بين العارفات."
  },
  "material": {
- "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
- "en": "Natural raffia, hand-dyed the artisanal way. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is also stuffed with its own raffia offcuts, never synthetic foam. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way."
+  "fr": "Raffia naturel teint à la main par nos soins dans nos teintes emblématiques. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - l'un des gestes les plus délicats qui soient - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique : rien ne se perd. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
+  "en": "Natural raffia, hand-dyed by us in our signature shades. It is the strands of natural raffia that snap easily as they are worked, which makes the crochet slow and precise - one of the most delicate crafts there is - but once crocheted, woven or sewn, the piece becomes very strong and long-lasting, and barely sensitive to water. Each fruit is padded with its own raffia offcuts, never synthetic foam: nothing is wasted. Crochet is one of the only techniques in the world that no machine can replicate - this piece could not be made any other way.",
+  "es": "Rafia natural, teñida a mano por nosotras en nuestros tonos emblemáticos. Son las hebras de rafia natural las que se rompen con facilidad durante el trabajo, lo que hace el ganchillo lento y preciso - uno de los gestos más delicados que existen - pero una vez tejida, entrelazada o cosida, la pieza se vuelve muy resistente y duradera, y apenas sensible al agua. Cada fruta se rellena con sus propios recortes de rafia, nunca con espuma sintética: nada se desperdicia. El ganchillo es una de las pocas técnicas del mundo que ninguna máquina puede reproducir - este objeto no podría fabricarse de otra manera.",
+  "tr": "Doğal rafya, kendi ikonik tonlarımızda elimizle boyanmıştır. İşlenirken kolayca kopan, doğal rafya lifleridir; bu da tığ işini yavaş ve titiz kılar - var olan en ince işlerden biri - ama bir kez örülüp, dokunup ya da dikildiğinde parça tam tersine çok sağlam, uzun ömürlü ve suya karşı neredeyse duyarsız hâle gelir. Her meyve kendi rafya kırpıntılarıyla doldurulur, asla sentetik süngerle değil: hiçbir şey israf olmaz. Tığ işi, dünyada hiçbir makinenin taklit edemediği ender tekniklerden biridir - bu nesne başka türlü yapılamazdı.",
+  "ar": "رافيا طبيعية مصبوغة يدويًا على أيدينا بألواننا المميزة. خيوط الرافيا الطبيعية هي التي تتكسّر بسهولة أثناء العمل، مما يجعل الكروشيه بطيئًا ودقيقًا - وهو من أدقّ الحرف على الإطلاق - لكن بمجرد حياكتها أو نسجها أو خياطتها تصبح القطعة على العكس متينة جدًا ومعمّرة وقليلة التأثّر بالماء. تُحشى كل ثمرة ببقايا الرافيا الخاصة بها، لا بالإسفنج الصناعي أبدًا: لا شيء يُهدر. الكروشيه من التقنيات القليلة في العالم التي لا تستطيع أي آلة محاكاتها - ولا يمكن صنع هذه القطعة بطريقة أخرى."
  },
  "fabric": {
  "fr": "Trois tons - chair claire, écorce foncée, noyau brun - réunis au crochet puis à l'aiguille.",
  "en": "Three tones - pale flesh, dark skin, brown stone - joined in crochet then with the needle."
  },
  "handworkTime": {
- "fr": "Environ deux heures de crochet.",
- "en": "About two hours of crochet."
+  "fr": "Environ deux heures de crochet.",
+  "en": "About two hours of crochet.",
+  "es": "Cerca de dos horas de ganchillo.",
+  "tr": "Yaklaşık iki saatlik tığ işi.",
+  "ar": "نحو ساعتين من الحياكة بالكروشيه."
  },
  "dimensions": {
  "fr": "Environ 6 x 3 cm.",
@@ -17262,8 +17642,11 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A small dark sun"
  },
  "fruitStoryBody": {
- "fr": "Coupé en deux, l'avocat montre son noyau lisse et brun au creux de la chair verte - un petit soleil sombre. On a aimé cette image et l'avons crochetée telle quelle, noyau compris.",
- "en": "Cut in two, the avocado shows its smooth brown stone in the hollow of the green flesh - a small dark sun. We liked that image and crocheted it just so, stone and all."
+  "fr": "Coupé en deux, l'avocat des étals de Guéliz montre son noyau lisse et brun au creux de la chair verte - un petit soleil sombre. On a aimé cette image et l'avons crochetée telle quelle, dans notre raffia teint main, noyau compris.",
+  "en": "Cut in two, the avocado from the Guéliz stalls shows its smooth brown stone in the hollow of the green flesh - a small dark sun. We liked that image and crocheted it just so, in our hand-dyed raffia, stone and all.",
+  "es": "Cortado en dos, el aguacate de los puestos de Guéliz muestra su hueso liso y marrón en el hueco de la pulpa verde - un pequeño sol oscuro. Nos gustó esa imagen y la tejimos a ganchillo tal cual, en nuestra rafia teñida a mano, hueso incluido.",
+  "tr": "İkiye bölünen, Guéliz tezgâhlarının avokadosu, yeşil etin oyuğunda pürüzsüz kahverengi çekirdeğini gösterir - küçük karanlık bir güneş. Bu görüntüyü sevdik ve olduğu gibi, elde boyadığımız rafyada, çekirdeğiyle birlikte tığla ördük.",
+  "ar": "حين يُقطَع نصفين، يُظهر أفوكادو بسطات جيليز نواته الملساء البنية في تجويف اللبّ الأخضر - شمسًا صغيرة داكنة. أحببنا هذه الصورة وحِكناها كما هي بالكروشيه، في رافيتنا المصبوغة يدويًا، مع النواة."
  },
  "howToWearTitle": {
  "fr": "Porter le demi-avocat",
@@ -17300,6 +17683,13 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "earrings": [
  {
  "handle": "watermelon-raffia-earrings-ss26",
+"making": {
+ "fr": "Chaque tranche se construit fil de raffia par fil de raffia : le rose au cœur, le blanc, puis le vert de l'écorce, et les pépins brodés un à un par-dessus - jamais imprimés. Une fois crochetée, La Fatima et les femmes de l'atelier de Guéliz la montent sur une créole dorée, avec un petit anneau doré qui permet de la combiner à d'autres fruits, ou même de la porter en pendentif.",
+ "en": "Each slice is built up raffia thread by raffia thread: pink at the heart, then white, then the green of the rind, with the pips embroidered on one by one - never printed. Once crocheted, La Fatima and the women of the Guéliz atelier set it on a gold-tone hoop, with a little gold ring so it can be combined with other fruits, or even worn as a pendant.",
+ "es": "Cada rodaja se construye hilo de rafia a hilo de rafia: rosa en el corazón, luego blanco, después el verde de la corteza, con las pepitas bordadas una a una por encima - nunca estampadas. Una vez tejida a ganchillo, La Fatima y las mujeres del taller de Guéliz la montan sobre un aro dorado, con una pequeña anilla dorada que permite combinarla con otras frutas, o incluso llevarla como colgante.",
+ "tr": "Her dilim, rafya ipliği ipliğine örülür: ortasında pembe, sonra beyaz, ardından kabuğun yeşili ve üzerine tek tek işlenen çekirdekler - asla baskı değil. Örüldükten sonra La Fatima ve Guéliz atölyesindeki kadınlar onu altın rengi bir halkaya monte eder; küçük altın bir yüzük sayesinde başka meyvelerle birleştirilebilir, hatta kolye ucu olarak takılabilir.",
+ "ar": "كل شريحة تُبنى خيط رافيا تلو الآخر: الوردي في القلب، ثم الأبيض، ثم الأخضر عند القشرة، والبذور مطرزة واحدة واحدة فوقها - لا طباعة أبداً. بعد الحياكة، تُركّبها الفاطمة ونساء ورشة كليز على حلق دائري ذهبي اللون، مع حلقة ذهبية صغيرة تتيح دمجها مع فواكه أخرى، أو حتى ارتداءها كتعليقة."
+},
  "short": {
  "fr": "Deux tranches de pastèque sur créoles dorées - rose au cœur, vert à l’écorce.",
  "en": "Two watermelon slices on gold-tone hoops - pink at the heart, green at the rind."
@@ -17369,6 +17759,13 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "kiwi-raffia-earrings-ss26",
+"making": {
+ "fr": "Chaque disque de kiwi passe du vert tendre des bords au cœur clair, crocheté fil à fil, puis reçoit sa couronne de petites graines brodées une à une - la partie la plus longue, celle qui fait vraiment le kiwi. La Fatima et l'atelier de Guéliz le montent ensuite sur créole dorée, avec un petit anneau doré qui permet de l'associer à d'autres fruits ou de le porter en pendentif.",
+ "en": "Each kiwi disc shifts from the tender green of the edges to a pale heart, crocheted thread by thread, then gets its ring of little seeds embroidered one by one - the longest part, the one that truly makes the kiwi. La Fatima and the Guéliz atelier then set it on a gold-tone hoop, with a little gold ring so it can be paired with other fruits or worn as a pendant.",
+ "es": "Cada disco de kiwi pasa del verde tierno de los bordes al corazón claro, tejido a ganchillo hilo a hilo, y luego recibe su corona de pequeñas semillas bordadas una a una - la parte más larga, la que de verdad hace el kiwi. La Fatima y el taller de Guéliz lo montan después sobre un aro dorado, con una pequeña anilla dorada que permite asociarlo a otras frutas o llevarlo como colgante.",
+ "tr": "Her kivi diski, kenarların yumuşak yeşilinden açık renkli kalbe geçer, iplik iplik örülür, ardından tek tek işlenen küçük çekirdeklerden oluşan halkasını alır - en uzun süren, kiviyi gerçekten kivi yapan kısım. La Fatima ve Guéliz atölyesi sonra onu altın rengi bir halkaya monte eder; küçük altın bir yüzük sayesinde başka meyvelerle eşleştirilebilir ya da kolye ucu olarak takılabilir.",
+ "ar": "كل قرص كيوي ينتقل من الأخضر الرقيق عند الحواف إلى القلب الفاتح، محاك خيطاً خيطاً، ثم يتلقى إكليله من البذور الصغيرة المطرزة واحدة واحدة - الجزء الأطول، وهو الذي يصنع الكيوي حقاً. ثم تركّبه الفاطمة وورشة كليز على حلق دائري ذهبي، مع حلقة ذهبية صغيرة تتيح دمجه مع فواكه أخرى أو ارتداءه كتعليقة."
+},
  "short": {
  "fr": "Le kiwi en coupe - cœur clair, couronne de graines, sur créoles dorées.",
  "en": "Kiwi in cross-section - pale heart, ring of seeds, on gold-tone hoops."
@@ -17438,6 +17835,13 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "lemon-raffia-earrings-ss26",
+"making": {
+ "fr": "Chaque citron vient tout entier du raffia teint : crocheté serré, puis rembourré de ses propres brins pour garder sa rondeur pleine - jamais de mousse. La Fatima et les femmes de Guéliz le façonnent et le montent sur créole dorée, avec un petit anneau doré qui permet de l'associer à d'autres fruits ou de le porter en pendentif.",
+ "en": "Each lemon comes entirely from dyed raffia: crocheted tight, then stuffed with its own strands to hold its full roundness - never foam. La Fatima and the Guéliz women shape it and set it on a gold-tone hoop, with a little gold ring so it can be paired with other fruits or worn as a pendant.",
+ "es": "Cada limón nace por completo de la rafia teñida: tejido a ganchillo bien apretado, y luego relleno con sus propias hebras para mantener su redondez plena - nunca espuma. La Fatima y las mujeres de Guéliz lo modelan y lo montan sobre un aro dorado, con una pequeña anilla dorada que permite asociarlo a otras frutas o llevarlo como colgante.",
+ "tr": "Her limon tümüyle boyalı rafyadan doğar: sıkıca örülür, ardından dolgun yuvarlaklığını koruması için kendi tellerinden dolgu alır - asla sünger değil. La Fatima ve Guéliz'in kadınları onu biçimlendirip altın rengi bir halkaya monte eder; küçük altın bir yüzük sayesinde başka meyvelerle eşleştirilebilir ya da kolye ucu olarak takılabilir.",
+ "ar": "كل ليمونة تأتي بأكملها من الرافيا المصبوغة: محاكة بإحكام، ثم محشوّة بخيوطها الخاصة لتحافظ على استدارتها الممتلئة - لا إسفنج أبداً. تشكّلها الفاطمة ونساء كليز وتركّبنها على حلق دائري ذهبي، مع حلقة ذهبية صغيرة تتيح دمجها مع فواكه أخرى أو ارتداءها كتعليقة."
+},
  "short": {
  "fr": "Le citron sur créoles dorées - jaune franc, un peu de lumière à l’oreille. Une boucle entière, une tranche.",
  "en": "Lemon on gold-tone hoops - clear yellow, a little light at the ear. One whole, one slice."
@@ -17507,6 +17911,13 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "orange-raffia-earrings-ss26",
+"making": {
+ "fr": "Chaque orange tient sa couleur chaude du seul raffia teint : crochetée en rond, puis rembourrée de ses propres brins pour garder son galbe plein. La Fatima et l'atelier de Guéliz la montent sur créole dorée, avec un petit anneau doré qui permet de la combiner à d'autres fruits ou de la porter en pendentif.",
+ "en": "Each orange takes its warm colour from dyed raffia alone: crocheted in the round, then stuffed with its own strands to keep its full curve. La Fatima and the Guéliz atelier set it on a gold-tone hoop, with a little gold ring so it can be combined with other fruits or worn as a pendant.",
+ "es": "Cada naranja saca su color cálido únicamente de la rafia teñida: tejida a ganchillo en redondo, y luego rellena con sus propias hebras para mantener su curva plena. La Fatima y el taller de Guéliz la montan sobre un aro dorado, con una pequeña anilla dorada que permite combinarla con otras frutas o llevarla como colgante.",
+ "tr": "Her portakal sıcak rengini yalnızca boyalı rafyadan alır: yuvarlak örülür, ardından dolgun kavisini koruması için kendi tellerinden dolgu alır. La Fatima ve Guéliz atölyesi onu altın rengi bir halkaya monte eder; küçük altın bir yüzük sayesinde başka meyvelerle birleştirilebilir ya da kolye ucu olarak takılabilir.",
+ "ar": "كل برتقالة تستمد لونها الدافئ من الرافيا المصبوغة وحدها: محاكة على شكل دائري، ثم محشوّة بخيوطها الخاصة لتحافظ على تكوّرها الممتلئ. تركّبها الفاطمة وورشة كليز على حلق دائري ذهبي، مع حلقة ذهبية صغيرة تتيح دمجها مع فواكه أخرى أو ارتداءها كتعليقة."
+},
  "short": {
  "fr": "L’orange sur créoles dorées - la couleur du jus pressé au coin de la rue. Une boucle entière, une tranche.",
  "en": "Orange on gold-tone hoops - the colour of juice pressed on the street corner. One whole, one slice."
@@ -17576,13 +17987,23 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "grapes-raffia-earrings-ss26",
+"making": {
+ "fr": "Chaque grain naît seul au crochet, en raffia teint, avant d'être noué à la grappe entière et suspendu à la créole dorée. Certains reprennent l'aakad, le bouton de caftan tressé main de Sefrou, inscrit au patrimoine du caftan marocain. La Fatima et les femmes de Guéliz assemblent le tout à la main, avec un petit anneau doré qui permet de combiner la grappe à d'autres fruits ou de la porter en pendentif.",
+ "en": "Each grape is born on its own at the hook, in dyed raffia, before being knotted into the whole cluster and hung from the gold-tone hoop. Some take up the aakad, the hand-braided Sefrou caftan button, listed in the heritage of the Moroccan caftan. La Fatima and the Guéliz women assemble it all by hand, with a little gold ring so the cluster can be combined with other fruits or worn as a pendant.",
+ "es": "Cada grano nace solo al ganchillo, en rafia teñida, antes de anudarse al racimo entero y colgarse del aro dorado. Algunos retoman el aakad, el botón de caftán trenzado a mano de Sefrou, inscrito en el patrimonio del caftán marroquí. La Fatima y las mujeres de Guéliz lo ensamblan todo a mano, con una pequeña anilla dorada que permite combinar el racimo con otras frutas o llevarlo como colgante.",
+ "tr": "Her tane, boyalı rafyadan, önce tığ üzerinde tek başına doğar; sonra bütün salkıma düğümlenip altın rengi halkaya asılır. Bazıları, Fas kaftanı mirasına kayıtlı, elde örülmüş Sefrou kaftan düğmesi aakad'ı benimser. La Fatima ve Guéliz'in kadınları her şeyi elde birleştirir; küçük altın bir yüzük sayesinde salkım başka meyvelerle birleştirilebilir ya da kolye ucu olarak takılabilir.",
+ "ar": "كل حبة تولد وحدها بالصنارة، من رافيا مصبوغة، قبل أن تُعقد إلى العنقود بأكمله وتُعلّق على الحلق الذهبي. بعضها يستعيد العَقّاد، زر القفطان المضفور يدوياً من صفرو، المُدرَج ضمن تراث القفطان المغربي. تجمّع الفاطمة ونساء كليز كل ذلك يدوياً، مع حلقة ذهبية صغيرة تتيح دمج العنقود مع فواكه أخرى أو ارتداءه كتعليقة."
+},
  "short": {
  "fr": "Une petite grappe sur créoles dorées - des grains ronds qui dansent au moindre geste.",
  "en": "A little cluster on gold-tone hoops - round grapes that dance at the slightest move."
  },
  "desc": {
- "fr": "Chaque grain est crocheté à part, puis noué aux autres jusqu’à former la grappe suspendue à la créole - un assemblage entièrement manuel. C’est ce qui les fait bouger : à l’oreille, les grains se frôlent et attrapent la lumière. Un balancement doux qui se réveille dès qu’on tourne la tête.",
- "en": "Each grape is crocheted apart, then knotted to the others until the cluster hangs from the hoop - assembled entirely by hand. That's what sets them moving: on the ear the grapes brush together and catch the light. A soft sway that wakes the moment you turn your head."
+  "fr": "Chaque grain est crocheté à part, puis noué aux autres jusqu'à former la grappe suspendue à la créole - un assemblage entièrement manuel. Certains grains empruntent l'aakad, ce bouton de caftan tressé main venu de Sefrou, à l'origine en forme de cerise, inscrit au patrimoine du caftan marocain. C'est ce qui les fait bouger : à l'oreille, les grains se frôlent et attrapent la lumière, un balancement doux qui se réveille dès qu'on tourne la tête.",
+  "en": "Each grape is crocheted apart, then knotted to the others until the cluster hangs from the hoop - assembled entirely by hand. Some grapes borrow the aakad, the hand-braided Moroccan caftan button from Sefrou, cherry-shaped in origin and listed in the heritage of the Moroccan caftan. That's what sets them moving: on the ear the grapes brush together and catch the light, a soft sway that wakes the moment you turn your head.",
+  "es": "Cada grano se teje a ganchillo por separado y luego se anuda a los demás hasta formar el racimo que cuelga del aro - un ensamblaje enteramente manual. Algunos granos toman prestado el aakad, ese botón de caftán trenzado a mano de Sefrou, con forma de cereza en su origen, inscrito en el patrimonio del caftán marroquí. Eso es lo que los hace moverse: en la oreja los granos se rozan y atrapan la luz, un balanceo suave que despierta en cuanto giras la cabeza.",
+  "tr": "Her tane ayrı ayrı örülür, sonra diğerlerine düğümlenerek halkadan sarkan salkımı oluşturur - tamamen elde birleştirilir. Bazı taneler, Sefrou'dan gelen, kökeninde kiraz biçimli, Fas kaftanı mirasına kayıtlı, elde örülmüş kaftan düğmesi aakad'ı ödünç alır. Onları hareket ettiren de budur: kulakta taneler birbirine değer ve ışığı yakalar, başını çevirir çevirmez uyanan yumuşak bir salınım.",
+  "ar": "كل حبة تُحاك على حدة، ثم تُعقد إلى الأخريات حتى تتشكّل العنقود المتدلّي من الحلق - تجميع يدوي بالكامل. بعض الحبات تستعير العَقّاد، ذاك زر القفطان المضفور يدوياً القادم من صفرو، الذي كان في أصله على شكل حبة كرز، والمُدرَج ضمن تراث القفطان المغربي. هذا ما يجعلها تتحرّك: عند الأذن تتلامس الحبات وتلتقط الضوء، تأرجح ناعم يستيقظ ما إن تديري رأسك."
  },
  "material": {
  "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l’eau. Chaque fruit est d’ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
@@ -17645,13 +18066,23 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "cherries-raffia-earrings-ss26",
+"making": {
+ "fr": "Chaque cerise est crochetée ronde en raffia teint, puis reliée à sa jumelle par une tige nouée à la main avant d'être suspendue à la créole dorée. La cerise reprend l'aakad, le bouton de caftan tressé main de Sefrou en forme de cerise, inscrit au patrimoine du caftan marocain. La Fatima et l'atelier de Guéliz montent le tout à la main, avec un petit anneau doré qui permet de les combiner à d'autres fruits ou de les porter en pendentif.",
+ "en": "Each cherry is crocheted round in dyed raffia, then joined to its twin by a hand-knotted stem before being hung from the gold-tone hoop. The cherry takes up the aakad, the cherry-shaped hand-braided Sefrou caftan button, listed in the heritage of the Moroccan caftan. La Fatima and the Guéliz atelier mount it all by hand, with a little gold ring so they can be combined with other fruits or worn as a pendant.",
+ "es": "Cada cereza se teje a ganchillo bien redonda en rafia teñida, y luego se une a su gemela por un tallo anudado a mano antes de colgarse del aro dorado. La cereza retoma el aakad, el botón de caftán trenzado a mano de Sefrou con forma de cereza, inscrito en el patrimonio del caftán marroquí. La Fatima y el taller de Guéliz lo montan todo a mano, con una pequeña anilla dorada que permite combinarlas con otras frutas o llevarlas como colgante.",
+ "tr": "Her kiraz boyalı rafyadan yuvarlak örülür, sonra elde düğümlenmiş bir sapla ikizine bağlanır ve altın rengi halkaya asılır. Kiraz, kiraz biçimli, elde örülmüş Sefrou kaftan düğmesi aakad'ı benimser; Fas kaftanı mirasına kayıtlıdır. La Fatima ve Guéliz atölyesi her şeyi elde monte eder; küçük altın bir yüzük sayesinde başka meyvelerle birleştirilebilir ya da kolye ucu olarak takılabilirler.",
+ "ar": "كل كرزة تُحاك مستديرة من رافيا مصبوغة، ثم تُوصل بتوأمها عبر ساق معقودة يدوياً قبل أن تُعلّق على الحلق الذهبي. تستعيد الكرزة العَقّاد، زر القفطان المضفور يدوياً من صفرو على شكل كرزة، المُدرَج ضمن تراث القفطان المغربي. تركّب الفاطمة وورشة كليز كل ذلك يدوياً، مع حلقة ذهبية صغيرة تتيح دمجهما مع فواكه أخرى أو ارتداءهما كتعليقة."
+},
  "short": {
  "fr": "Deux cerises reliées par la tige, sur créoles dorées - un rouge joueur à l’oreille.",
  "en": "Two cherries joined at the stem, on gold-tone hoops - a playful red at the ear."
  },
  "desc": {
- "fr": "Deux petites boules rouges, crochetées rondes et reliées par une tige nouée main, qui pendent à la créole dorée. Un rouge gourmand, un brin joueur - le détail qui décroche un sourire. À Guéliz, chaque cerise est faite puis montée à la suivante, sans qu’aucune ne ressemble tout à fait à l’autre.",
- "en": "Two small red rounds, crocheted plump and joined by a hand-knotted stem, hanging from the gold-tone hoop. A gourmand red, a touch playful - the detail that pulls a smile. In Guéliz each cherry is made then mounted to the next, with none quite matching the other."
+  "fr": "Deux petites boules rouges, crochetées rondes et reliées par une tige nouée main, qui pendent à la créole dorée. La cerise reprend l'aakad, ce bouton de caftan tressé main venu de Sefrou dont la forme d'origine est justement une cerise - un geste inscrit au patrimoine du caftan marocain. Un rouge gourmand, un brin joueur, le détail qui décroche un sourire. À Guéliz, chaque cerise est faite puis montée à la suivante, sans qu'aucune ne ressemble tout à fait à l'autre.",
+  "en": "Two small red rounds, crocheted plump and joined by a hand-knotted stem, hanging from the gold-tone hoop. The cherry takes up the aakad, the hand-braided Moroccan caftan button from Sefrou whose original shape is a cherry itself - a gesture listed in the heritage of the Moroccan caftan. A gourmand red, a touch playful, the detail that pulls a smile. In Guéliz each cherry is made then mounted to the next, with none quite matching the other.",
+  "es": "Dos pequeñas bolas rojas, tejidas a ganchillo bien redondas y unidas por un tallo anudado a mano, que cuelgan del aro dorado. La cereza retoma el aakad, ese botón de caftán trenzado a mano de Sefrou cuya forma original es precisamente una cereza - un gesto inscrito en el patrimonio del caftán marroquí. Un rojo goloso, algo juguetón, el detalle que arranca una sonrisa. En Guéliz cada cereza se hace y luego se monta con la siguiente, sin que ninguna se parezca del todo a la otra.",
+  "tr": "İki küçük kırmızı yuvarlak, tombul örülmüş ve elde düğümlenmiş bir sapla birbirine bağlı, altın rengi halkadan sarkar. Kiraz, kökeninde bir kiraz biçiminde olan, Sefrou'dan gelen elde örülmüş Fas kaftan düğmesi aakad'ı benimser - Fas kaftanı mirasına kayıtlı bir el işi. Şımarık, biraz oyunbaz bir kırmızı, gülümseten ayrıntı. Guéliz'de her kiraz yapılıp bir sonrakine monte edilir, hiçbiri tam olarak ötekine benzemez.",
+  "ar": "كرتان حمراوان صغيرتان، محاكتان مستديرتين ممتلئتين ومربوطتان بساق معقود يدوياً، تتدلّيان من الحلق الذهبي. تستعيد الكرزة العَقّاد، ذاك زر القفطان المضفور يدوياً القادم من صفرو الذي كان شكله الأصلي كرزةً بالضبط - صنعة مُدرَجة ضمن تراث القفطان المغربي. أحمر شهيّ، لعوب قليلاً، التفصيل الذي ينتزع ابتسامة. في كليز، تُصنع كل كرزة ثم تُركَّب إلى التالية، دون أن تشبه أيّ واحدة الأخرى تماماً."
  },
  "material": {
  "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l’eau. Chaque fruit est d’ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l’une des seules techniques au monde qu’aucune machine ne peut reproduire - ces bijoux ne pourraient pas être fabriqués autrement. Montées sur créoles dorées de 1,5 à 2 cm.",
@@ -17714,6 +18145,13 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "tomatoes-raffia-earrings-ss26",
+"making": {
+ "fr": "Chaque tomate naît en deux temps : le corps rouge crocheté en rond, puis le petit calice vert, faits à part et réunis au fil. En raffia teint, jamais imprimée, elle est ensuite montée sur créole dorée par La Fatima et les femmes de Guéliz, avec un petit anneau doré qui permet de la combiner à d'autres fruits ou de la porter en pendentif.",
+ "en": "Each tomato is born in two stages: the red body crocheted in the round, then the little green calyx, made apart and joined at the thread. In dyed raffia, never printed, it is then set on a gold-tone hoop by La Fatima and the Guéliz women, with a little gold ring so it can be combined with other fruits or worn as a pendant.",
+ "es": "Cada tomate nace en dos tiempos: el cuerpo rojo tejido a ganchillo en redondo, y luego el pequeño cáliz verde, hechos por separado y reunidos al hilo. En rafia teñida, nunca estampado, se monta después sobre un aro dorado por La Fatima y las mujeres de Guéliz, con una pequeña anilla dorada que permite combinarlo con otras frutas o llevarlo como colgante.",
+ "tr": "Her domates iki aşamada doğar: yuvarlak örülen kırmızı gövde, sonra küçük yeşil çanak yaprak, ayrı yapılıp iplikle birleştirilir. Boyalı rafyadan, asla baskı değil, ardından La Fatima ve Guéliz'in kadınları tarafından altın rengi bir halkaya monte edilir; küçük altın bir yüzük sayesinde başka meyvelerle birleştirilebilir ya da kolye ucu olarak takılabilir.",
+ "ar": "كل طماطة تولد على مرحلتين: الجسم الأحمر محاك على شكل دائري، ثم الكأس الأخضر الصغير، يُصنعان على حدة ويُجمعان بالخيط. من رافيا مصبوغة، لا طباعة أبداً، ثم تركّبها الفاطمة ونساء كليز على حلق دائري ذهبي، مع حلقة ذهبية صغيرة تتيح دمجها مع فواكه أخرى أو ارتداءها كتعليقة."
+},
  "short": {
  "fr": "La tomate au crochet, coiffée de son calice vert - rouge de potager à l’oreille.",
  "en": "Tomato at the crochet hook, capped with its green calyx - garden red at the ear."
@@ -17785,25 +18223,47 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "necklaces": [
  {
  "handle": "lemon-slice-raffia-necklace-ss26",
+"making": {
+ "fr": "Chaque tranche est crochetée quartier après quartier dans un raffia teint main, puis nouée sur le cordon en cuir.",
+ "en": "Each slice is crocheted segment after segment in hand-dyed raffia, then knotted onto the leather cord.",
+ "es": "Cada rodaja se teje a crochet gajo tras gajo en rafia teñida a mano, y luego se anuda al cordón de cuero.",
+ "tr": "Her dilim, elde boyanmış rafyada dilim dilim tığla örülür, sonra deri korda düğümlenir.",
+ "ar": "كل شريحة تُكرّش فلقةً بعد فلقة من رافيا مصبوغة يدوياً، ثم تُعقد على السير الجلدي."
+},
  "short": {
- "fr": "Une tranche de citron au crochet, contre la peau - un quartier de jaune au cou.",
- "en": "A crocheted lemon slice against the skin - a wedge of yellow at the neck."
+  "fr": "Une tranche de citron au crochet de raffia teint main, contre la peau - un quartier de jaune au cou.",
+  "en": "A lemon slice crocheted in hand-dyed raffia against the skin - a wedge of yellow at the neck.",
+  "es": "Una rodaja de limón a crochet en rafia teñida a mano, contra la piel - un gajo de amarillo en el cuello.",
+  "tr": "Elde boyanmış rafyadan tığla örülmüş bir limon dilimi, tenin üstünde - boyunda bir sarı dilim.",
+  "ar": "شريحة ليمون مكرّوشيه من رافيا مصبوغة يدوياً، على البشرة - فلقة صفراء عند العنق."
  },
  "desc": {
- "fr": "Un demi-rond de citron, le grain des quartiers monté point par point, noué sur un cordon en cuir avec sa petite boucle. À Guéliz, Fatima crochète la tranche pendant qu'à côté on coud les cordons - deux gestes, une même table. Posée à même la peau ou sur un col de lin, elle pose un seul quartier de jaune et n'en demande pas plus.",
- "en": "A lemon half-round, the grain of the segments built stitch by stitch, knotted on a leather cord with its small clasp. In Guéliz, Fatima crochets the slice while the cords are sewn alongside - two gestures, one table. Worn against bare skin or on a linen collar, it lays down a single wedge of yellow and asks for nothing more."
+  "fr": "Un demi-rond de citron, le grain des quartiers monté point par point dans un raffia teint main, noué sur un cordon en cuir avec sa petite boucle. À Guéliz, La Fatima crochète la tranche pendant qu'à côté on coud les cordons - deux gestes, une même table. Posée à même la peau ou sur un col de lin, elle pose un seul quartier de jaune et n'en demande pas plus.",
+  "en": "A lemon half-round, the grain of the segments built stitch by stitch in hand-dyed raffia, knotted on a leather cord with its small clasp. In Guéliz, La Fatima crochets the slice while the cords are sewn alongside - two gestures, one table. Worn against bare skin or on a linen collar, it lays down a single wedge of yellow and asks for nothing more.",
+  "es": "Un medio-redondo de limón, la textura de los gajos montada punto a punto en rafia teñida a mano, anudado en un cordón de cuero con su pequeño cierre. En Guéliz, La Fatima teje la rodaja a crochet mientras al lado se cosen los cordones - dos gestos, una misma mesa. Contra la piel desnuda o sobre un cuello de lino, pone un solo gajo de amarillo y no pide nada más.",
+  "tr": "Yarım daire bir limon; dilimlerin dokusu elde boyanmış rafyada ilmek ilmek örülmüş, küçük tokalı deri bir korda düğümlenmiş. Guéliz'de La Fatima dilimi tığla örerken hemen yanında kordlar dikilir - iki el işi, tek bir masa. Çıplak tenin üstünde ya da keten bir yakada, tek bir sarı dilim koyar ve daha fazlasını istemez.",
+  "ar": "نصف دائرة من الليمون، حبيبات الفلقات مبنية غرزةً غرزة من رافيا مصبوغة يدوياً، معقودة على سير جلدي بمشبكه الصغير. في غيليز، تكرّش لافاطمة الشريحة بينما تُخاط الأسيار إلى جانبها - حركتان، طاولة واحدة. على البشرة العارية أو على ياقة من الكتّان، تضع فلقة صفراء واحدة ولا تطلب أكثر."
  },
  "material": {
- "fr": "Raffia crocheté à la main sur cordon en cuir, boucle de finition.",
- "en": "Hand-crocheted raffia on a leather cord, finishing clasp."
+  "fr": "Raffia teint main crocheté sur cordon en cuir, boucle de finition.",
+  "en": "Hand-dyed raffia crocheted on a leather cord, finishing clasp.",
+  "es": "Rafia teñida a mano tejida a crochet sobre cordón de cuero, cierre de acabado.",
+  "tr": "Deri korda tığla örülmüş elde boyanmış rafya, tamamlayıcı toka.",
+  "ar": "رافيا مصبوغة يدوياً مكرّوشيه على سير جلدي، مع مشبك تشطيب."
  },
  "fabric": {
- "fr": "Le crochet creuse les quartiers et lève leur relief, fil après fil.",
- "en": "The crochet hollows the segments and raises their ridge, thread after thread."
+  "fr": "Le crochet creuse les quartiers et lève leur relief, fil après fil.",
+  "en": "The crochet hollows the segments and raises their ridge, thread after thread.",
+  "es": "El crochet ahueca los gajos y levanta su relieve, hilo tras hilo.",
+  "tr": "Tığ, dilimleri oyar ve kabartılarını iplik iplik yükseltir.",
+  "ar": "الكروشيه يجوّف الفلقات ويرفع نتوءها، خيطاً بعد خيط."
  },
  "handworkTime": {
- "fr": "Crochetée puis nouée sur le cordon en cuir, pièce par pièce, à la main.",
- "en": "Crocheted then knotted onto the leather cord, piece by piece, by hand."
+  "fr": "Crochetée dans un raffia teint main puis nouée sur le cordon en cuir, pièce par pièce.",
+  "en": "Crocheted in hand-dyed raffia then knotted onto the leather cord, piece by piece.",
+  "es": "Tejida a crochet en rafia teñida a mano y luego anudada al cordón de cuero, pieza por pieza.",
+  "tr": "Elde boyanmış rafyada tığla örülür, sonra deri korda tek tek düğümlenir.",
+  "ar": "تُكرّش من رافيا مصبوغة يدوياً ثم تُعقد على السير الجلدي، قطعةً قطعة."
  },
  "dimensions": {
  "fr": "Un petit bijou textile, léger - bien posé contre la peau ou un col de lin.",
@@ -17818,8 +18278,11 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Yellow pyramids of morning"
  },
  "fruitStoryBody": {
- "fr": "Dès le lever du jour, les citrons s'empilent en pyramides sur les étals et prennent la première lumière. On a gardé cette acidité claire et nouée un quartier au cordon.",
- "en": "From first light the lemons stack into pyramids on the stalls and take the day's first sun. We kept that clear acidity and knotted one wedge to the cord."
+  "fr": "Dès le lever du jour, les citrons s'empilent en pyramides sur les étals et prennent la première lumière. On a gardé cette acidité claire et crocheté un quartier de raffia teint main, noué au cordon.",
+  "en": "From first light the lemons stack into pyramids on the stalls and take the day's first sun. We kept that clear acidity and crocheted one wedge of hand-dyed raffia, knotted to the cord.",
+  "es": "Desde el amanecer, los limones se apilan en pirámides sobre los puestos y toman la primera luz. Conservamos esa acidez clara y tejimos a crochet un gajo de rafia teñida a mano, anudado al cordón.",
+  "tr": "Gün ağarır ağarmaz limonlar tezgâhlarda piramitler hâlinde yığılır ve günün ilk ışığını alır. O berrak ekşiliği koruduk ve elde boyanmış rafyadan bir dilim örüp korda düğümledik.",
+  "ar": "مع أول ضوء، تتراكم الليمونات أهراماً على البسطات وتلتقط أول نور النهار. احتفظنا بتلك الحموضة الصافية وكرّشنا فلقة من رافيا مصبوغة يدوياً، معقودة على السير."
  },
  "howToWearTitle": {
  "fr": "Comment la porter",
@@ -17854,25 +18317,47 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "orange-slice-raffia-necklace-ss26",
+"making": {
+ "fr": "Chaque rondelle est crochetée quartier après quartier dans un raffia teint main, jusqu'à ce que le rond se ferme, puis nouée sur le cordon en cuir.",
+ "en": "Each round is crocheted segment after segment in hand-dyed raffia, until the round closes, then knotted onto the leather cord.",
+ "es": "Cada redondo se teje a crochet gajo tras gajo en rafia teñida a mano, hasta que el redondo se cierra, y luego se anuda al cordón de cuero.",
+ "tr": "Her daire, elde boyanmış rafyada dilim dilim tığla örülür, daire kapanana dek, sonra deri korda düğümlenir.",
+ "ar": "كل دائرة تُكرّش فلقةً بعد فلقة من رافيا مصبوغة يدوياً، حتى تُغلَق الدائرة، ثم تُعقد على السير الجلدي."
+},
  "short": {
- "fr": "Une tranche d'orange au crochet, quartier après quartier - un rond chaud au cou.",
- "en": "A crocheted orange slice, segment after segment - a warm round at the neck."
+  "fr": "Une tranche d'orange au crochet de raffia teint main, quartier après quartier - un rond chaud au cou.",
+  "en": "An orange slice crocheted in hand-dyed raffia, segment after segment - a warm round at the neck.",
+  "es": "Una rodaja de naranja a crochet en rafia teñida a mano, gajo tras gajo - un redondo cálido en el cuello.",
+  "tr": "Elde boyanmış rafyadan tığla örülmüş bir portakal dilimi, dilim dilim - boyunda sıcak bir daire.",
+  "ar": "شريحة برتقال مكرّوشيه من رافيا مصبوغة يدوياً، فلقةً بعد فلقة - دائرة دافئة عند العنق."
  },
  "desc": {
- "fr": "Une rondelle d'orange montée quartier après quartier au crochet, nouée sur un cordon en cuir avec sa boucle. À Guéliz, les femmes la construisent un quartier à la fois, jusqu'à ce que le rond se ferme. Contre la peau ou sur un col de lin, elle porte la chaleur du jus pressé à l'angle de la place, sans en faire trop.",
- "en": "An orange round built segment after segment at the hook, knotted on a leather cord with its clasp. In Guéliz the women raise it one wedge at a time, until the round closes. Against the skin or on a linen collar, it carries the warmth of juice pressed at the corner of the square, without overdoing it."
+  "fr": "Une rondelle d'orange montée quartier après quartier au crochet, dans un raffia teint main, nouée sur un cordon en cuir avec sa boucle. À Guéliz, les femmes la construisent un quartier à la fois, jusqu'à ce que le rond se ferme. Contre la peau ou sur un col de lin, elle porte la chaleur du jus pressé à l'angle de la place, sans en faire trop.",
+  "en": "An orange round built segment after segment at the hook, in hand-dyed raffia, knotted on a leather cord with its clasp. In Guéliz the women raise it one wedge at a time, until the round closes. Against the skin or on a linen collar, it carries the warmth of juice pressed at the corner of the square, without overdoing it.",
+  "es": "Un redondo de naranja montado gajo tras gajo a crochet, en rafia teñida a mano, anudado en un cordón de cuero con su cierre. En Guéliz las mujeres lo levantan un gajo cada vez, hasta que el redondo se cierra. Contra la piel o sobre un cuello de lino, lleva el calor del zumo exprimido en la esquina de la plaza, sin exagerar.",
+  "tr": "Elde boyanmış rafyadan, dilim dilim tığla örülmüş bir portakal dairesi, tokalı deri bir korda düğümlenmiş. Guéliz'de kadınlar onu her seferinde bir dilim yükseltir, ta ki daire kapanana dek. Tenin üstünde ya da keten bir yakada, meydanın köşesinde sıkılan suyun sıcaklığını taşır, abartmadan.",
+  "ar": "دائرة برتقال مبنيّة فلقةً بعد فلقة بالكروشيه، من رافيا مصبوغة يدوياً، معقودة على سير جلدي بمشبكه. في غيليز، تبنيها النساء فلقةً في كل مرة، حتى تُغلَق الدائرة. على البشرة أو على ياقة من الكتّان، تحمل دفء العصير المعصور عند زاوية الساحة، دون مبالغة."
  },
  "material": {
- "fr": "Raffia crocheté à la main sur cordon en cuir, boucle de finition.",
- "en": "Hand-crocheted raffia on a leather cord, finishing clasp."
+  "fr": "Raffia teint main crocheté sur cordon en cuir, boucle de finition.",
+  "en": "Hand-dyed raffia crocheted on a leather cord, finishing clasp.",
+  "es": "Rafia teñida a mano tejida a crochet sobre cordón de cuero, cierre de acabado.",
+  "tr": "Deri korda tığla örülmüş elde boyanmış rafya, tamamlayıcı toka.",
+  "ar": "رافيا مصبوغة يدوياً مكرّوشيه على سير جلدي، مع مشبك تشطيب."
  },
  "fabric": {
- "fr": "Les quartiers se crochètent un à un, jusqu'à ce que le rond se ferme.",
- "en": "The segments are crocheted one by one, until the round closes."
+  "fr": "Les quartiers se crochètent un à un dans le raffia teint main, jusqu'à ce que le rond se ferme.",
+  "en": "The segments are crocheted one by one in hand-dyed raffia, until the round closes.",
+  "es": "Los gajos se tejen a crochet uno a uno en rafia teñida a mano, hasta que el redondo se cierra.",
+  "tr": "Dilimler, elde boyanmış rafyada tek tek tığla örülür, daire kapanana dek.",
+  "ar": "الفلقات تُكرّش واحدةً واحدة من رافيا مصبوغة يدوياً، حتى تُغلَق الدائرة."
  },
  "handworkTime": {
- "fr": "Crochetée puis nouée sur le cordon en cuir, pièce par pièce, à la main.",
- "en": "Crocheted then knotted onto the leather cord, piece by piece, by hand."
+  "fr": "Crochetée dans un raffia teint main puis nouée sur le cordon en cuir, pièce par pièce.",
+  "en": "Crocheted in hand-dyed raffia then knotted onto the leather cord, piece by piece.",
+  "es": "Tejida a crochet en rafia teñida a mano y luego anudada al cordón de cuero, pieza por pieza.",
+  "tr": "Elde boyanmış rafyada tığla örülür, sonra deri korda tek tek düğümlenir.",
+  "ar": "تُكرّش من رافيا مصبوغة يدوياً ثم تُعقد على السير الجلدي، قطعةً قطعة."
  },
  "dimensions": {
  "fr": "Un petit bijou textile, léger - bien posé contre la peau ou un col de lin.",
@@ -17887,8 +18372,11 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Juice pressed at the corner of the square"
  },
  "fruitStoryBody": {
- "fr": "L'après-midi, l'orange devient le jus pressé au coin de la place, l'odeur sucrée dans l'air chaud. On a gardé la rondelle entière, montée quartier après quartier.",
- "en": "In the afternoon the orange becomes the juice pressed at the corner of the square, the sweet scent in the warm air. We kept the whole round, built segment after segment."
+  "fr": "L'après-midi, l'orange devient le jus pressé au coin de la place, l'odeur sucrée dans l'air chaud. On a gardé la rondelle entière, crochetée quartier après quartier dans un raffia teint main.",
+  "en": "In the afternoon the orange becomes the juice pressed at the corner of the square, the sweet scent in the warm air. We kept the whole round, crocheted segment after segment in hand-dyed raffia.",
+  "es": "Por la tarde, la naranja se vuelve el zumo exprimido en la esquina de la plaza, el olor dulce en el aire cálido. Conservamos el redondo entero, tejido a crochet gajo tras gajo en rafia teñida a mano.",
+  "tr": "Öğleden sonra portakal, meydanın köşesinde sıkılan suya dönüşür; sıcak havada tatlı kokuya. Bütün daireyi koruduk, elde boyanmış rafyada dilim dilim örülmüş.",
+  "ar": "بعد الظهر، يصير البرتقال العصير المعصور عند زاوية الساحة، والرائحة الحلوة في الهواء الدافئ. احتفظنا بالدائرة كاملة، مكرّوشيه فلقةً بعد فلقة من رافيا مصبوغة يدوياً."
  },
  "howToWearTitle": {
  "fr": "Comment la porter",
@@ -17923,25 +18411,47 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "watermelon-slice-raffia-necklace-ss26",
+"making": {
+ "fr": "Chaque part est crochetée par bandes dans un raffia teint main - rose, liseré clair, vert - du cœur à l'écorce, puis nouée sur le cordon en cuir.",
+ "en": "Each wedge is crocheted in bands in hand-dyed raffia - pink, pale line, green - from heart to rind, then knotted onto the leather cord.",
+ "es": "Cada tajada se teje a crochet por franjas en rafia teñida a mano - rosa, línea clara, verde - del corazón a la cáscara, y luego se anuda al cordón de cuero.",
+ "tr": "Her dilim, elde boyanmış rafyada bantlar hâlinde tığla örülür - pembe, açık çizgi, yeşil - yürekten kabuğa, sonra deri korda düğümlenir.",
+ "ar": "كل قطعة تُكرّش على شكل أشرطة من رافيا مصبوغة يدوياً - وردي، خط فاتح، أخضر - من القلب إلى القشرة، ثم تُعقد على السير الجلدي."
+},
  "short": {
- "fr": "Une tranche de pastèque au crochet, du cœur rose à l'écorce verte - au cou.",
- "en": "A crocheted watermelon slice, from pink heart to green rind - at the neck."
+  "fr": "Une tranche de pastèque au crochet de raffia teint main, du cœur rose à l'écorce verte - au cou.",
+  "en": "A watermelon slice crocheted in hand-dyed raffia, from pink heart to green rind - at the neck.",
+  "es": "Una tajada de sandía a crochet en rafia teñida a mano, del corazón rosa a la cáscara verde - en el cuello.",
+  "tr": "Elde boyanmış rafyadan tığla örülmüş bir karpuz dilimi, pembe yürekten yeşil kabuğa - boyunda.",
+  "ar": "شريحة بطّيخ مكرّوشيه من رافيا مصبوغة يدوياً، من القلب الوردي إلى القشرة الخضراء - عند العنق."
  },
  "desc": {
- "fr": "Une part de pastèque crochetée par bandes : le rose du cœur, le liseré clair, le vert de l'écorce, montée sur un cordon en cuir avec sa boucle. Fatima la mène couche après couche, dans cet ordre, jusqu'à la pointe. Contre la peau ou sur un col de lin, elle garde un quartier d'été qui se porte aussi en plein hiver.",
- "en": "A wedge of watermelon crocheted in bands: the pink heart, the pale line, the green rind, mounted on a leather cord with its clasp. Fatima carries it layer after layer, in that order, down to the point. Against the skin or on a linen collar, it holds a wedge of summer you can wear in deep winter too."
+  "fr": "Une part de pastèque crochetée par bandes, dans un raffia teint main : le rose du cœur, le liseré clair, le vert de l'écorce, montée sur un cordon en cuir avec sa boucle. La Fatima la mène couche après couche, dans cet ordre, jusqu'à la pointe. Contre la peau ou sur un col de lin, elle garde un quartier d'été qui se porte aussi en plein hiver.",
+  "en": "A wedge of watermelon crocheted in bands, in hand-dyed raffia: the pink heart, the pale line, the green rind, mounted on a leather cord with its clasp. La Fatima carries it layer after layer, in that order, down to the point. Against the skin or on a linen collar, it holds a wedge of summer you can wear in deep winter too.",
+  "es": "Una tajada de sandía tejida a crochet por franjas, en rafia teñida a mano: el rosa del corazón, la línea clara, el verde de la cáscara, montada en un cordón de cuero con su cierre. La Fatima la lleva capa a capa, en ese orden, hasta la punta. Contra la piel o sobre un cuello de lino, guarda un trozo de verano que se lleva también en pleno invierno.",
+  "tr": "Elde boyanmış rafyadan bantlar hâlinde tığla örülmüş bir karpuz dilimi: yüreğin pembesi, açık çizgi, kabuğun yeşili, tokalı deri bir korda monte edilmiş. La Fatima onu kat kat, bu sırayla, uca kadar örer. Tenin üstünde ya da keten bir yakada, kışın ortasında da taşınabilen bir yaz dilimi tutar.",
+  "ar": "قطعة بطّيخ مكرّوشيه على شكل أشرطة، من رافيا مصبوغة يدوياً: وردة القلب، الخط الفاتح، خُضرة القشرة، مركّبة على سير جلدي بمشبكه. تقودها لافاطمة طبقةً بعد طبقة، بهذا الترتيب، حتى الطرف. على البشرة أو على ياقة من الكتّان، تحفظ فلقة صيف تُلبَس حتى في عمق الشتاء."
  },
  "material": {
- "fr": "Raffia crocheté à la main sur cordon en cuir, boucle de finition.",
- "en": "Hand-crocheted raffia on a leather cord, finishing clasp."
+  "fr": "Raffia teint main crocheté sur cordon en cuir, boucle de finition.",
+  "en": "Hand-dyed raffia crocheted on a leather cord, finishing clasp.",
+  "es": "Rafia teñida a mano tejida a crochet sobre cordón de cuero, cierre de acabado.",
+  "tr": "Deri korda tığla örülmüş elde boyanmış rafya, tamamlayıcı toka.",
+  "ar": "رافيا مصبوغة يدوياً مكرّوشيه على سير جلدي، مع مشبك تشطيب."
  },
  "fabric": {
- "fr": "Rose, liseré clair, vert : trois bandes crochetées dans l'ordre, du cœur à l'écorce.",
- "en": "Pink, pale line, green: three bands crocheted in order, heart to rind."
+  "fr": "Rose, liseré clair, vert : trois bandes de raffia teint main crochetées dans l'ordre, du cœur à l'écorce.",
+  "en": "Pink, pale line, green: three bands of hand-dyed raffia crocheted in order, heart to rind.",
+  "es": "Rosa, línea clara, verde: tres franjas de rafia teñida a mano tejidas en orden, del corazón a la cáscara.",
+  "tr": "Pembe, açık çizgi, yeşil: elde boyanmış rafyadan üç bant, sırayla örülmüş, yürekten kabuğa.",
+  "ar": "وردي، خط فاتح، أخضر: ثلاثة أشرطة من رافيا مصبوغة يدوياً مكرّوشيه بالترتيب، من القلب إلى القشرة."
  },
  "handworkTime": {
- "fr": "Crochetée puis nouée sur le cordon en cuir, pièce par pièce, à la main.",
- "en": "Crocheted then knotted onto the leather cord, piece by piece, by hand."
+  "fr": "Crochetée dans un raffia teint main puis nouée sur le cordon en cuir, pièce par pièce.",
+  "en": "Crocheted in hand-dyed raffia then knotted onto the leather cord, piece by piece.",
+  "es": "Tejida a crochet en rafia teñida a mano y luego anudada al cordón de cuero, pieza por pieza.",
+  "tr": "Elde boyanmış rafyada tığla örülür, sonra deri korda tek tek düğümlenir.",
+  "ar": "تُكرّش من رافيا مصبوغة يدوياً ثم تُعقد على السير الجلدي، قطعةً قطعة."
  },
  "dimensions": {
  "fr": "Un petit bijou textile, léger - bien posé contre la peau ou un col de lin.",
@@ -17956,8 +18466,11 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The wedge shared in the shade"
  },
  "fruitStoryBody": {
- "fr": "Quand le soleil tape fort, on ouvre la pastèque en grandes parts qu'on se passe à l'ombre. On en a gardé une, du cœur rose à l'écorce, à nouer au cou.",
- "en": "When the sun beats hard, the watermelon is opened into big wedges passed around in the shade. We kept one, pink heart to rind, to knot at the neck."
+  "fr": "Quand le soleil tape fort, on ouvre la pastèque en grandes parts qu'on se passe à l'ombre. On en a gardé une, crochetée du cœur rose à l'écorce dans un raffia teint main, à nouer au cou.",
+  "en": "When the sun beats hard, the watermelon is opened into big wedges passed around in the shade. We kept one, crocheted from pink heart to rind in hand-dyed raffia, to knot at the neck.",
+  "es": "Cuando el sol aprieta fuerte, se abre la sandía en grandes tajadas que se pasan a la sombra. Guardamos una, tejida a crochet del corazón rosa a la cáscara en rafia teñida a mano, para anudar al cuello.",
+  "tr": "Güneş sert vurunca karpuz, gölgede elden ele dolaşan büyük dilimlere açılır. Birini sakladık, elde boyanmış rafyada pembe yürekten kabuğa örülmüş, boyunda düğümlenmek için.",
+  "ar": "حين تشتدّ الشمس، يُفتَح البطّيخ إلى فلقات كبيرة تُتَداوَل في الظل. احتفظنا بواحدة، مكرّوشيه من القلب الوردي إلى القشرة من رافيا مصبوغة يدوياً، لتُعقَد عند العنق."
  },
  "howToWearTitle": {
  "fr": "Comment la porter",
@@ -18061,25 +18574,47 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  },
  {
  "handle": "cherries-raffia-necklace-ss26",
+"making": {
+ "fr": "Chaque cerise est façonnée à l'aakad - le tressage main des boutons de caftan - dans un raffia teint main, puis nouée par la tige sur le cordon en cuir.",
+ "en": "Each cherry is shaped in aakad - the hand-braiding of caftan buttons - in hand-dyed raffia, then knotted by the stem onto the leather cord.",
+ "es": "Cada cereza se moldea en aakad - el trenzado a mano de los botones de caftán - en rafia teñida a mano, y luego se anuda por el tallo en el cordón de cuero.",
+ "tr": "Her kiraz, elde boyanmış rafyadan aakad - kaftan düğmelerinin elle örülmesi - tekniğiyle biçimlendirilir, sonra sapından deri korda düğümlenir.",
+ "ar": "كل كرزة تُشكَّل بتقنية العقاد - ضفر أزرار القفطان يدوياً - من رافيا مصبوغة يدوياً، ثم تُعقد من الساق على السير الجلدي."
+},
  "short": {
- "fr": "Deux cerises au crochet, reliées par la tige - un rouge espiègle au creux du cou.",
- "en": "Two crocheted cherries on their stem - a mischievous red at the hollow of the neck."
+  "fr": "Deux cerises au crochet en aakad, reliées par la tige - un rouge espiègle au creux du cou.",
+  "en": "Two cherries hand-braided in aakad, joined at the stem - a mischievous red at the hollow of the neck.",
+  "es": "Dos cerezas trenzadas a mano en aakad, unidas por el tallo - un rojo travieso en el hueco del cuello.",
+  "tr": "Aakad tekniğiyle elde örülmüş iki kiraz, saplarından birleşik - boyun çukurunda muzip bir kırmızı.",
+  "ar": "كرزتان مضفورتان يدوياً بتقنية العقاد، متّصلتان بالساق - أحمر مرِح عند منحنى العنق."
  },
  "desc": {
- "fr": "Deux boules rouges crochetées en rond, reliées par leur tige, posées sur un cordon en cuir avec sa boucle. Fatima fait l'une, puis l'autre, et les noue par la queue - alors la paire n'est jamais tout à fait jumelle. Contre la peau ou sur un col de lin, c'est le rouge espiègle qui décroche un sourire, n'importe quel jour.",
- "en": "Two red rounds crocheted in the round, joined at their stem, set on a leather cord with its clasp. Fatima makes one, then the other, and knots them by the tail - so the pair is never quite twin. Against the skin or on a linen collar, it is the mischievous red that pulls a smile, any day."
+  "fr": "Deux boules de raffia teint main, rouge cerise, travaillées à l'aakad - le tressage à la main des boutons de caftan, façonné en cerise, hérité de Sefrou et inscrit au dossier UNESCO du caftan (2025). La Fatima fait l'une, puis l'autre, et les noue par la tige sur un cordon en cuir avec sa boucle - alors la paire n'est jamais tout à fait jumelle. Contre la peau ou sur un col de lin, c'est le rouge espiègle qui décroche un sourire, n'importe quel jour.",
+  "en": "Two spheres of hand-dyed cherry-red raffia, worked in aakad - the hand-braiding of caftan buttons, shaped into a cherry, handed down from Sefrou and listed in the UNESCO caftan file (2025). La Fatima makes one, then the other, and knots them by the stem onto a leather cord with its clasp - so the pair is never quite twin. Against the skin or on a linen collar, it is the mischievous red that pulls a smile, any day.",
+  "es": "Dos esferas de rafia teñida a mano, rojo cereza, trabajadas en aakad - el trenzado a mano de los botones de caftán, moldeado en cereza, heredado de Sefrou e inscrito en el expediente UNESCO del caftán (2025). La Fatima hace una, luego la otra, y las anuda por el tallo en un cordón de cuero con su cierre - así el par nunca es del todo gemelo. Contra la piel o sobre un cuello de lino, es el rojo travieso el que arranca una sonrisa, cualquier día.",
+  "tr": "Elde boyanmış kiraz kırmızısı rafyadan iki küre, aakad tekniğiyle işlenmiş - kaftan düğmelerinin elle örülmesi, kiraz biçiminde, Sefrou'dan miras kalan ve UNESCO kaftan dosyasına (2025) kaydedilen bir teknik. La Fatima önce birini, sonra ötekini örer ve tokalı deri bir korda saplarından düğümler - böylece çift hiçbir zaman tam ikiz olmaz. Tenin üstünde ya da keten bir yakada, herhangi bir gün bir gülümseme koparan o muzip kırmızıdır.",
+  "ar": "كرتان من الرافيا المصبوغة يدوياً بلون الكرز الأحمر، مشغولتان بتقنية العقاد - ضفر أزرار القفطان يدوياً على هيئة كرزة، موروث من صفرو ومُدرَج في ملف القفطان لدى اليونسكو (2025). تصنع لافاطمة واحدةً ثم الأخرى، وتعقدهما من الساق على سير جلدي بمشبكه - فلا يكون الزوج توأماً تماماً أبداً. على البشرة أو على ياقة من الكتّان، هو الأحمر المرِح الذي ينتزع ابتسامة، في أي يوم."
  },
  "material": {
- "fr": "Raffia crocheté à la main sur cordon en cuir, boucle de finition.",
- "en": "Hand-crocheted raffia on a leather cord, finishing clasp."
+  "fr": "Raffia teint main, travaillé à l'aakad, sur cordon en cuir, boucle de finition.",
+  "en": "Hand-dyed raffia worked in aakad, on a leather cord, finishing clasp.",
+  "es": "Rafia teñida a mano, trabajada en aakad, sobre cordón de cuero, cierre de acabado.",
+  "tr": "Aakad tekniğiyle işlenmiş elde boyanmış rafya, deri korda, tamamlayıcı toka.",
+  "ar": "رافيا مصبوغة يدوياً ومشغولة بالعقاد، على سير جلدي، مع مشبك تشطيب."
  },
  "fabric": {
- "fr": "Chaque cerise se crochète en rond, puis se noue à sa tige.",
- "en": "Each cherry is crocheted in the round, then knotted to its stem."
+  "fr": "Chaque cerise se tresse en rond à l'aakad, puis se noue à sa tige.",
+  "en": "Each cherry is braided in the round in aakad, then knotted to its stem.",
+  "es": "Cada cereza se trenza en redondo en aakad, y luego se anuda a su tallo.",
+  "tr": "Her kiraz aakad tekniğiyle daire biçiminde örülür, sonra sapına düğümlenir.",
+  "ar": "كل كرزة تُضفَر دائرياً بالعقاد، ثم تُعقد بساقها."
  },
  "handworkTime": {
- "fr": "Crochetées puis nouées sur le cordon en cuir, pièce par pièce, à la main.",
- "en": "Crocheted then knotted onto the leather cord, piece by piece, by hand."
+  "fr": "Tressées à l'aakad puis nouées sur le cordon en cuir, pièce par pièce, à la main.",
+  "en": "Braided in aakad then knotted onto the leather cord, piece by piece, by hand.",
+  "es": "Trenzadas en aakad y luego anudadas al cordón de cuero, pieza por pieza, a mano.",
+  "tr": "Aakad tekniğiyle örülür, sonra deri korda tek tek elle düğümlenir.",
+  "ar": "تُضفَر بالعقاد ثم تُعقد على السير الجلدي، قطعةً قطعة، يدوياً."
  },
  "dimensions": {
  "fr": "Un petit bijou textile, léger - bien posé contre la peau ou un col de lin.",
@@ -18094,8 +18629,11 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The first of spring"
  },
  "fruitStoryBody": {
- "fr": "Au printemps, les cerises arrivent les premières, vendues en petits tas brillants qui font tourner la tête. On les a refaites par paire pour garder ce rouge espiègle au creux du cou.",
- "en": "In spring, cherries arrive first, sold in little shining heaps that turn your head. We remade them in pairs to keep that mischievous red at the hollow of the neck."
+  "fr": "Au printemps, les cerises arrivent les premières, vendues en petits tas brillants qui font tourner la tête. On les a refaites par paire, à l'aakad, pour garder ce rouge espiègle au creux du cou.",
+  "en": "In spring, cherries arrive first, sold in little shining heaps that turn your head. We remade them in pairs, in aakad, to keep that mischievous red at the hollow of the neck.",
+  "es": "En primavera, las cerezas llegan las primeras, vendidas en pequeños montones brillantes que hacen girar la cabeza. Las rehicimos por pares, en aakad, para conservar ese rojo travieso en el hueco del cuello.",
+  "tr": "İlkbaharda kirazlar ilk gelir, başını döndüren küçük parlak yığınlar hâlinde satılır. Boyun çukurundaki o muzip kırmızıyı korumak için onları aakad tekniğiyle çift çift yeniden yaptık.",
+  "ar": "في الربيع، تصل الكرزات أولاً، تُباع في أكوام صغيرة لامعة تُدير الرأس. أعدنا صنعها أزواجاً، بالعقاد، لنحتفظ بذلك الأحمر المرِح عند منحنى العنق."
  },
  "howToWearTitle": {
  "fr": "Comment les porter",
