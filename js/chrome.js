@@ -24,6 +24,12 @@ window.YZA = window.YZA || {};
   } catch (e) {}
 })();
 
+// Clean-URL slugs — mirrors the map in main.js and the rewrites in .htaccess.
+// Duplicated locally (not read from YZA.collectionUrl) because chrome.js executes
+// before main.js in script load order, so main.js's globals aren't set yet here.
+const CAT_SLUGS_REV = { bags: 'sacs', accessories: 'bijoux', rtw: 'pret-a-porter', charms: 'charms', earrings: 'boucles-d-oreilles', necklaces: 'colliers', tops: 'hauts', pareos: 'jupes-pareo', pants: 'pantalons', bottoms: 'bas' };
+const collectionUrl = (cat) => { const slug = CAT_SLUGS_REV[cat]; return slug ? `/collections/${slug}` : '/collections'; };
+const productUrl = (handle) => handle ? `/produits/${encodeURIComponent(handle)}` : 'produit.html';
 const WORDMARK = '<img class="logo__img" src="assets/brand/yza-logo-real.webp" alt="YZA" width="2930" height="865" decoding="async">';
 const FOOTER_CHEV = '<svg class="footer__col-chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.6 6 6.4 11 1.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const LANG_CODES = ['fr', 'en', 'es', 'tr', 'ar'];
@@ -133,7 +139,7 @@ const navMega = (active) => {
  };
  const megaProd = (p) => {
    const name = t.pick(productDisplayName(p));
-   return `<a class="mega-prod" href="produit.html?handle=${p.handle}">
+   return `<a class="mega-prod" href="${productUrl(p.handle)}">
  <span class="mega-prod__media"><img src="${p.img}" alt="${name} - YZA" loading="lazy" width="360" height="450" decoding="async"></span>
  <span class="mega-prod__name">${name}</span>
  </a>`;
@@ -157,31 +163,31 @@ const navMega = (active) => {
  const navLink = (labelKey, href) =>
  `<div class="nav-item"><a href="${href}" data-i18n="${labelKey}"${cur(labelKey)}>${t.t(labelKey)}</a></div>`;
 
- const boutique = trigger('footer.shop', 'collections.html',
+ const boutique = trigger('footer.shop', '/collections',
    rail([
-     [['col.all', 'collections.html'], ['badge.new', 'collections.html']],
-     [['nav.charms', 'collections.html?cat=charms'], ['nav.bags', 'collections.html?cat=bags'], ['nav.rtw', 'collections.html?cat=rtw'], ['nav.accessories', 'collections.html?cat=accessories'], ['nav.b2b', 'b2b.html']],
+     [['col.all', '/collections'], ['badge.new', '/collections']],
+     [['nav.charms', collectionUrl('charms')], ['nav.bags', collectionUrl('bags')], ['nav.rtw', collectionUrl('rtw')], ['nav.accessories', collectionUrl('accessories')], ['nav.b2b', 'grossistes']],
    ]) +
    products(megaPicks()) +
-   hero('collections.html?cat=bags', 'assets/story/nawal-bag-garden.jpg', 'La Sculpture', 1280, 853));
+   hero(collectionUrl('bags'), 'assets/story/nawal-bag-garden.jpg', 'La Sculpture', 1280, 853));
 
- const maison = trigger('footer.house', 'histoire.html',
+ const maison = trigger('footer.house', 'histoire',
    rail([
-     [['nav.story', 'histoire.html'], ['nav.studio', 'studio.html']],
-     [['nav.girls', 'yza-girls.html'], ['nav.lookbook', 'lookbook.html'], ['nav.journal', 'blogs/journal/']],
+     [['nav.story', 'histoire'], ['nav.studio', 'studio']],
+     [['nav.girls', 'yza-girls'], ['nav.lookbook', 'lookbook'], ['nav.journal', 'journal']],
    ]) +
-   hero('studio.html', 'assets/editorial/dataset/artisanes-atelier-raffia.jpg', 'L’atelier', 1200, 800), true);
+   hero('studio', 'assets/editorial/dataset/artisanes-atelier-raffia.jpg', 'L’atelier', 1200, 800), true);
 
- const aide = trigger('footer.help', 'faq.html',
+ const aide = trigger('footer.help', 'faq',
    rail([
-     [['nav.faq', 'faq.html'], ['nav.contact', 'contact.html']],
-     [['pp.acc.ship', 'faq.html#livraison']],
+     [['nav.faq', 'faq'], ['nav.contact', 'contact']],
+     [['pp.acc.ship', 'faq#livraison']],
    ], `<div class="mega__studio-block"><address class="mega__studio">${YZA.brand.address}<br>${t.pick(YZA.brand.hours)}</address></div>`) +
-   hero('contact.html', 'assets/yza-girls/girls-fanny-look.jpg', t.t('nav.contact'), 800, 1066), true);
+   hero('contact', 'assets/yza-girls/girls-fanny-look.jpg', t.t('nav.contact'), 800, 1066), true);
 
- // "The House" mega replaced by a plain YZA Studio link → studio.html (no dropdown).
- const studioLink = `<div class="nav-item"><a href="studio.html"${(active === 'nav.studio' || active === 'footer.house') ? ' aria-current="page"' : ''}>YZA Studio</a></div>`;
- return navLink('badge.new', 'collections.html') + navLink('nav.charms', 'collections.html?cat=charms') + navLink('nav.bags', 'collections.html?cat=bags') + navLink('nav.rtw', 'collections.html?cat=rtw') + navLink('nav.accessories', 'collections.html?cat=accessories') + `<div class="nav-item"><a href="lookbook.html"${cur('nav.lookbook')}>Lookbook</a></div>` + studioLink + navLink('nav.b2b', 'b2b.html');
+ // "The House" mega replaced by a plain YZA Studio link → studio (no dropdown).
+ const studioLink = `<div class="nav-item"><a href="studio"${(active === 'nav.studio' || active === 'footer.house') ? ' aria-current="page"' : ''}>YZA Studio</a></div>`;
+ return navLink('badge.new', '/collections') + navLink('nav.charms', collectionUrl('charms')) + navLink('nav.bags', collectionUrl('bags')) + navLink('nav.rtw', collectionUrl('rtw')) + navLink('nav.accessories', collectionUrl('accessories')) + `<div class="nav-item"><a href="lookbook"${cur('nav.lookbook')}>Lookbook</a></div>` + studioLink + navLink('nav.b2b', 'grossistes');
 };
 
 /* Mobile drawer - nested accordion (uppercase heads, thin +/- toggles,
@@ -199,32 +205,32 @@ const drawerAccordion = () => {
  </li>`;
 
  const feature = `
- <a class="acc__feature" href="collections.html">
+ <a class="acc__feature" href="/collections">
           <img aria-hidden="true" src="assets/story/nawal-bag-garden.jpg" alt="" loading="lazy" width="1280" height="853" decoding="async">
  <span class="acc__feature-label" data-i18n="nav.lookbook">${t.t('nav.lookbook')}</span>
  </a>`;
 
  const boutique = [
- link('nav.charms', 'collections.html?cat=charms'),
- link('nav.rtw', 'collections.html?cat=rtw'),
- link('nav.bags', 'collections.html?cat=bags'),
- link('nav.accessories', 'collections.html?cat=accessories'),
- link('col.all', 'collections.html'),
- link('nav.b2b', 'b2b.html'),
+ link('nav.charms', collectionUrl('charms')),
+ link('nav.rtw', collectionUrl('rtw')),
+ link('nav.bags', collectionUrl('bags')),
+ link('nav.accessories', collectionUrl('accessories')),
+ link('col.all', '/collections'),
+ link('nav.b2b', 'grossistes'),
  feature,
  ].join('');
 
  const maison = [
- link('nav.story', 'histoire.html'),
- link('nav.studio', 'studio.html'),
- link('nav.girls', 'yza-girls.html'),
- link('nav.lookbook', 'lookbook.html'),
- link('nav.journal', 'blogs/journal/'),
+ link('nav.story', 'histoire'),
+ link('nav.studio', 'studio'),
+ link('nav.girls', 'yza-girls'),
+ link('nav.lookbook', 'lookbook'),
+ link('nav.journal', 'journal'),
  ].join('');
 
  const aide = [
- link('nav.faq', 'faq.html'),
- link('nav.contact', 'contact.html'),
+ link('nav.faq', 'faq'),
+ link('nav.contact', 'contact'),
  ].join('');
 
  return `<ul class="acc-list">
@@ -438,7 +444,7 @@ YZA.chrome = {
  <section class="search-mega__results" aria-live="polite">
  <p class="search-mega__hint" id="searchHint">${sc.hint}</p>
  <div class="search-result-grid" id="searchResults"></div>
- <a class="search-mega__all" id="searchAll" href="collections.html">${sc.viewAll}</a>
+ <a class="search-mega__all" id="searchAll" href="/collections">${sc.viewAll}</a>
  </section>
  </div>
  </div>
@@ -498,9 +504,9 @@ YZA.chrome = {
  <p class="footer__contact-hours">${t.pick(YZA.brand.hours)}</p>
  <p class="footer__contact-addr">${YZA.brand.address}</p>
  <div class="footer__contact-links">
- <a href="contact.html" data-i18n="nav.contact">${t.t('nav.contact')}</a>
+ <a href="contact" data-i18n="nav.contact">${t.t('nav.contact')}</a>
  <a href="https://wa.me/${phoneDigits()}" target="_blank" rel="noopener">WhatsApp</a>
- <a href="faq.html#livraison" data-i18n="pp.acc.ship">${t.t('pp.acc.ship')}</a>
+ <a href="faq#livraison" data-i18n="pp.acc.ship">${t.t('pp.acc.ship')}</a>
  </div>
  </div>
  </div>
@@ -509,30 +515,30 @@ YZA.chrome = {
  <div class="footer__col footer__col--acc">
  <button type="button" class="footer__col-toggle" aria-expanded="false"><span data-i18n="footer.shop">${t.t('footer.shop')}</span>${FOOTER_CHEV}</button>
  <div class="footer__col-panel"><ul>
- <li><a href="collections.html?cat=charms" data-i18n="nav.charms">${t.t('nav.charms')}</a></li>
- <li><a href="collections.html?cat=rtw" data-i18n="nav.rtw">${t.t('nav.rtw')}</a></li>
- <li><a href="collections.html?cat=bags" data-i18n="nav.bags">${t.t('nav.bags')}</a></li>
- <li><a href="collections.html?cat=accessories" data-i18n="nav.accessories">${t.t('nav.accessories')}</a></li>
- <li><a href="collections.html" data-i18n="col.all">${t.t('col.all')}</a></li>
+ <li><a href="${collectionUrl('charms')}" data-i18n="nav.charms">${t.t('nav.charms')}</a></li>
+ <li><a href="${collectionUrl('rtw')}" data-i18n="nav.rtw">${t.t('nav.rtw')}</a></li>
+ <li><a href="${collectionUrl('bags')}" data-i18n="nav.bags">${t.t('nav.bags')}</a></li>
+ <li><a href="${collectionUrl('accessories')}" data-i18n="nav.accessories">${t.t('nav.accessories')}</a></li>
+ <li><a href="/collections" data-i18n="col.all">${t.t('col.all')}</a></li>
  </ul></div>
  </div>
  <div class="footer__col footer__col--acc">
  <button type="button" class="footer__col-toggle" aria-expanded="false"><span data-i18n="footer.help">${t.t('footer.help')}</span>${FOOTER_CHEV}</button>
  <div class="footer__col-panel"><ul>
- <li><a href="faq.html" data-i18n="nav.faq">${t.t('nav.faq')}</a></li>
- <li><a href="contact.html" data-i18n="nav.contact">${t.t('nav.contact')}</a></li>
- <li><a href="faq.html#livraison" data-i18n="pp.acc.ship">${t.t('pp.acc.ship')}</a></li>
+ <li><a href="faq" data-i18n="nav.faq">${t.t('nav.faq')}</a></li>
+ <li><a href="contact" data-i18n="nav.contact">${t.t('nav.contact')}</a></li>
+ <li><a href="faq#livraison" data-i18n="pp.acc.ship">${t.t('pp.acc.ship')}</a></li>
  </ul></div>
  </div>
  <div class="footer__col footer__col--acc">
  <button type="button" class="footer__col-toggle" aria-expanded="false"><span data-i18n="footer.house">${t.t('footer.house')}</span>${FOOTER_CHEV}</button>
  <div class="footer__col-panel"><ul>
- <li><a href="histoire.html" data-i18n="nav.story">${t.t('nav.story')}</a></li>
- <li><a href="studio.html" data-i18n="nav.studio">${t.t('nav.studio')}</a></li>
- <li><a href="yza-girls.html" data-i18n="nav.girls">${t.t('nav.girls')}</a></li>
- <li><a href="lookbook.html" data-i18n="nav.lookbook">${t.t('nav.lookbook')}</a></li>
- <li><a href="blogs/journal/" data-i18n="nav.journal">${t.t('nav.journal')}</a></li>
- <li><a href="b2b.html" data-i18n="nav.b2b">${t.t('nav.b2b')}</a></li>
+ <li><a href="histoire" data-i18n="nav.story">${t.t('nav.story')}</a></li>
+ <li><a href="studio" data-i18n="nav.studio">${t.t('nav.studio')}</a></li>
+ <li><a href="yza-girls" data-i18n="nav.girls">${t.t('nav.girls')}</a></li>
+ <li><a href="lookbook" data-i18n="nav.lookbook">${t.t('nav.lookbook')}</a></li>
+ <li><a href="journal" data-i18n="nav.journal">${t.t('nav.journal')}</a></li>
+ <li><a href="grossistes" data-i18n="nav.b2b">${t.t('nav.b2b')}</a></li>
  <li><a href="mailto:${YZA.brand.email}">${YZA.brand.email}</a></li>
  </ul></div>
  </div>
@@ -548,7 +554,7 @@ YZA.chrome = {
  <div class="footer__meta">
  <div class="footer__meta__copy">© <span id="year"></span> YZA / <span data-i18n="footer.rights">${t.t('footer.rights')}</span></div>
  <a class="footer__wordmark footer__meta__logo" href="index.html" aria-label="YZA – Back to top" role="button" tabindex="0">${WORDMARK}</a>
- <div class="footer__meta__country">${fc.country} · ${fc.lang} / <a href="legal.html" data-i18n="footer.legal">${t.t('footer.legal')}</a></div>
+ <div class="footer__meta__country">${fc.country} · ${fc.lang} / <a href="mentions-legales" data-i18n="footer.legal">${t.t('footer.legal')}</a></div>
  </div>
  </div>`;
  document.body.append(footer);
@@ -621,16 +627,19 @@ YZA.chrome = {
  const page = document.body.dataset.page || '';
  let path = url.pathname || '/';
  if (path.endsWith('/index.html')) path = path.slice(0, -10) || '/';
+ // Canonicalize to the clean /produits/{handle} and /collections/{slug} URLs regardless
+ // of which form the page was actually reached through (old ?handle=/?cat= query links
+ // keep working via .htaccess, but every page must declare ONE canonical). Filter/search
+ // query params (?q=, ?sort=, ...) always canonicalize up to the clean base — never their own URL.
  if (path === '/produit.html') {
  const handle = params.get('handle');
- path = handle ? `/produit.html?handle=${encodeURIComponent(handle)}` : '/produit.html';
+ path = handle ? `/produits/${encodeURIComponent(handle)}` : '/produit.html';
  } else if (path === '/collections.html') {
  const cat = params.get('cat');
- const q = params.get('q');
- const next = new URLSearchParams();
- if (cat) next.set('cat', cat);
- if (q) next.set('q', q);
- path = next.toString() ? `/collections.html?${next.toString()}` : '/collections.html';
+ const slug = cat && CAT_SLUGS_REV[cat];
+ path = slug ? `/collections/${slug}` : '/collections';
+ } else if (/^\/produits\/[a-zA-Z0-9-]+\/?$/.test(path) || /^\/collections\/[a-z-]+\/?$/.test(path)) {
+ path = path.replace(/\/$/, ''); // already clean — just drop any stray query/trailing slash
  }
  const canonical = base + path;
 
@@ -706,7 +715,7 @@ YZA.chrome = {
  inLanguage: lang,
  potentialAction: {
  '@type': 'SearchAction',
- target: `${base}/collections.html?q={search_term_string}`,
+ target: `${base}/collections?q={search_term_string}`,
  'query-input': 'required name=search_term_string',
  },
  },
@@ -965,7 +974,7 @@ YZA.chrome = {
  btn.dataset.searchSuggestion = term;
  });
  };
- const searchCard = (p, idx) => `<a class="search-result-card" href="produit.html?handle=${p.handle}" style="--i:${idx}">
+ const searchCard = (p, idx) => `<a class="search-result-card" href="${productUrl(p.handle)}" style="--i:${idx}">
  <img src="${p.img}" alt="${YZA.i18n.pick(productDisplayName(p))} - YZA" loading="lazy" width="260" height="330" decoding="async">
  <span>${YZA.i18n.t('badge.' + (p.badge || 'limited'))}</span>
  <strong>${YZA.i18n.pick(productDisplayName(p))}</strong>
@@ -978,7 +987,7 @@ YZA.chrome = {
  ? YZA.searchProducts(query, 6)
  : (YZA.products || []).slice(0, 6).map((product) => ({ product }));
  if (searchHint) searchHint.textContent = rows.length ? (query ? scNow.proof : scNow.hint) : scNow.empty;
- if (searchAll) searchAll.href = 'collections.html' + (query ? '?q=' + encodeURIComponent(query) : '');
+ if (searchAll) searchAll.href = '/collections' + (query ? '?q=' + encodeURIComponent(query) : '');
  if (searchResults) searchResults.innerHTML = rows.map((row, idx) => searchCard(row.product || row, idx)).join('');
  if (query && query !== lastTrackedSearch) {
  lastTrackedSearch = query;
@@ -1013,7 +1022,7 @@ YZA.chrome = {
  e.preventDefault();
  const q = searchInput?.value.trim() || '';
  YZA.analytics?.track('search_submit', { query: q });
- location.href = 'collections.html' + (q ? '?q=' + encodeURIComponent(q) : '');
+ location.href = '/collections' + (q ? '?q=' + encodeURIComponent(q) : '');
  });
  document.addEventListener('keydown', e => {
  if (e.key === 'Escape') {

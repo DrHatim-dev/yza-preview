@@ -10,6 +10,34 @@
  const params = new URLSearchParams(location.search);
  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[ch]));
 
+ // ---- Clean-URL routing ----
+ // The server rewrites /collections/{slug} and /produits/{handle} to
+ // collections.html?cat=... / produit.html?handle=... internally (see .htaccess),
+ // so the address bar keeps the pretty path but location.search stays empty. Every
+ // params.get('cat')/params.get('handle') call below already reads from `params` —
+ // synthesize the equivalent keys here, once, from the pathname as a fallback so
+ // nothing downstream has to change. Legacy ?cat=/?handle= links keep working
+ // unchanged (checked first).
+ const CAT_SLUGS = { charms: 'charms', sacs: 'bags', 'pret-a-porter': 'rtw', bijoux: 'accessories', 'boucles-d-oreilles': 'earrings', colliers: 'necklaces', hauts: 'tops', 'jupes-pareo': 'pareos', pantalons: 'pants', bas: 'bottoms' };
+ const CAT_SLUGS_REV = Object.fromEntries(Object.entries(CAT_SLUGS).map(([slug, cat]) => [cat, slug]));
+ (function parseCleanPath() {
+ const path = location.pathname.replace(/\/+$/, '') || '/';
+ let m;
+ if (!params.get('cat') && (m = path.match(/^\/collections\/([a-z-]+)$/))) {
+ const mapped = CAT_SLUGS[m[1]];
+ if (mapped) params.set('cat', mapped);
+ } else if (!params.get('handle') && (m = path.match(/^\/produits\/([a-zA-Z0-9-]+)$/))) {
+ params.set('handle', m[1]);
+ }
+ })();
+ // Build the clean URL for a category ('bags', 'accessories', ...) or a product handle.
+ // Falls back to the old ?cat=/?handle= form for any category not in the slug map
+ // (e.g. 'all') so nothing ever links to a broken path.
+ function collectionUrl(cat) { const slug = CAT_SLUGS_REV[cat]; return slug ? `/collections/${slug}` : (cat && cat !== 'all' ? `collections.html?cat=${encodeURIComponent(cat)}` : '/collections'); }
+ function productUrl(handle) { return handle ? `/produits/${encodeURIComponent(handle)}` : 'produit.html'; }
+ YZA.collectionUrl = collectionUrl;
+ YZA.productUrl = productUrl;
+
  /* ---- Carte produit ---- */
  function displayName(p) {
  return p?.displayName || p?.name || {};
@@ -127,7 +155,7 @@
     const status = YZA.inventoryStatus?.(p) || { inventory: null, soldOut: false, almostGone: false };
     const stock = stockCopy();
     const wished = wishlistHas(p.handle);
-    const href = p._href || `produit.html?handle=${encodeURIComponent(p.handle)}`;
+    const href = p._href || productUrl(p.handle);
     const limitedLine = status.almostGone
       ? `<span class="product-card__limited">${status.inventory} ${esc(stock.left)}</span>`
       : '';
@@ -817,7 +845,7 @@
  function girlsCardHTML(girl, index = 0, compact = false) {
  const handles = girl.lookProductHandles || [];
  const handle = handles[0] || '';
- const href = handle ? `produit.html?handle=${handle}` : (girl.lookHref || `yza-girls.html#${esc(girl.color || 'girls')}`);
+ const href = handle ? productUrl(handle) : (girl.lookHref || `yza-girls#${esc(girl.color || 'girls')}`);
  const soldOut = girlSoldOut(girl);
  const cta = soldOut ? T().t('girls.shopCurrent') : T().t('girls.shopLook');
  return `<a class="${compact ? 'girls-home-card' : 'girls-card'}${soldOut ? ' is-soldout' : ''}" href="${href}" data-shop-look="${esc(handle || girl.id || '')}" style="--i:${index}">
@@ -859,7 +887,7 @@
  function girlsFeedCardHTML(girl, index = 0) {
  const handles = girl.lookProductHandles || [];
  const handle = handles[0] || '';
- const href = handle ? `produit.html?handle=${handle}` : (girl.lookHref || `yza-girls.html#${esc(girl.color || 'girls')}`);
+ const href = handle ? productUrl(handle) : (girl.lookHref || `yza-girls#${esc(girl.color || 'girls')}`);
  const soldOut = girlSoldOut(girl);
  const cta = soldOut ? T().t('girls.shopCurrent') : T().t('girls.shopLook');
  return `<a class="girls-feed__item${soldOut ? ' is-soldout' : ''}" href="${href}" data-shop-look="${esc(handle || girl.id || '')}" style="--i:${index}">
@@ -925,7 +953,7 @@
  <p class="eyebrow">${esc(mediaText(story.label))}</p>
  <h3>${esc(title)}</h3>
  <p>${esc(text)}</p>
- <a class="link-underline" href="${story.cta || 'collections.html'}">${T().t('cta.shop')}</a>
+ <a class="link-underline" href="${story.cta || '/collections'}">${T().t('cta.shop')}</a>
  </div>
  <div class="girls-product-story__images">
  ${pickStoryImages(story.images, 3).map((src) => `<span>${mediaImg(src, title, 'width="560" height="720"')}</span>`).join('')}
@@ -1040,7 +1068,7 @@
  <figcaption>${esc(t.t('charm.style.videoCap'))}</figcaption>
  </figure>
  </div>
- <a class="link-underline charm-styling__cta" href="collections.html?cat=charms">${esc(t.t('cta.shopCharms'))}</a>`;
+ <a class="link-underline charm-styling__cta" href="${collectionUrl('charms')}">${esc(t.t('cta.shopCharms'))}</a>`;
  if (document.documentElement.classList.contains('js')) requestAnimationFrame(wireReveal);
  }
  // Category storytelling (charms craft-time, Jawhara fabric story) — shown only on those collections.
@@ -1073,7 +1101,7 @@
  grid.classList.remove('collection-grid--bag-families');
  grid.removeAttribute('data-density');
  const term = collState.q ? ' « ' + esc(collState.q) + ' »' : '';
- grid.innerHTML = `<div class="collection-empty"><p class="collection-empty__title">${esc(T().t('col.noresults'))}${term}</p><a class="link-underline" href="collections.html">${esc(T().t('col.all'))}</a></div>`;
+ grid.innerHTML = `<div class="collection-empty"><p class="collection-empty__title">${esc(T().t('col.noresults'))}${term}</p><a class="link-underline" href="/collections">${esc(T().t('col.all'))}</a></div>`;
  const cs = $('#charmStyling'); if (cs) cs.hidden = true;
  const st = $('#colStory'); if (st) st.hidden = true;
  } else {
@@ -1125,7 +1153,7 @@
  if (!$('#collectionGrid')) return;
  $$('[data-cat]').forEach(b => b.addEventListener('click', () => {
  collState.cat = b.dataset.cat;
- history.replaceState(null, '', 'collections.html' + (collState.cat !== 'all' ? '?cat=' + collState.cat : ''));
+ history.replaceState(null, '', collectionUrl(collState.cat));
  collState.q = ''; const si = $('#collSearch'); if (si) si.value = '';
  YZA.analytics?.track('category_filter', { category: collState.cat });
  renderCollections();
@@ -1311,7 +1339,7 @@
  <span>${p.hours ? `${String(p.hours).replace('.', ',')} h crochet` : t.t('pp.limited')}</span>
  <span>${p.dimensions ? esc(t.pick(p.dimensions)).split('(')[0].trim() : t.t('pp.limited')}</span>
  </div>
- <a class="link-underline" href="collections.html?cat=charms">${esc(t.t('cta.shopCharms') || t.t('cta.shop'))}</a>
+ <a class="link-underline" href="${collectionUrl('charms')}">${esc(t.t('cta.shopCharms') || t.t('cta.shop'))}</a>
  </div>
  <div class="product-color-story__grid">
  ${images.map((src, index) => `<figure class="product-color-story__image product-color-story__image--${index}">
@@ -1343,7 +1371,7 @@
  <span>${p.hours ? `${String(p.hours).replace('.', ',')} h crochet` : t.t('pp.limited')}</span>
  <span>${p.edition ? esc(t.pick(p.edition)).split('.')[0] : t.t('pp.limited')}</span>
  </div>
- <a class="link-underline" href="${story.cta || 'collections.html'}">${esc(t.t('cta.shop'))}</a>
+ <a class="link-underline" href="${story.cta || '/collections'}">${esc(t.t('cta.shop'))}</a>
  </div>
  <div class="product-color-story__grid">
  ${images.map((src, index) => `<figure class="product-color-story__image product-color-story__image--${index}">
@@ -1415,7 +1443,7 @@
     });
     return {
       ...q,
-      _href: 'produit.html?handle=' + encodeURIComponent(q.handle) + '&color=' + encodeURIComponent(bagColorSlug),
+      _href: productUrl(q.handle) + '?color=' + encodeURIComponent(bagColorSlug),
       displayName: augName,
     };
   };
@@ -1457,7 +1485,7 @@
  </div>
  <p>${esc(t.pick(bundle.note))}</p>
  <div class="bundle-panel__items" aria-label="${t.t('pp.bundle.includes')}">
- ${bundle.items.map((item) => `<a href="produit.html?handle=${item.handle}">
+ ${bundle.items.map((item) => `<a href="${productUrl(item.handle)}">
  <img aria-hidden="true" src="${item.img}" alt="" width="54" height="72" loading="lazy" decoding="async">
  <span>${esc(t.pick(displayName(item)))}<small>${t.formatPrice(item.price)}</small></span>
  </a>`).join('')}
@@ -1939,7 +1967,7 @@
         const hueName = BAG_SWATCH_HUE[row.colorSlug] || name;
         const item = (row.items || []).find((it) => String(it.size).toUpperCase() === currentSize) || (row.items || [])[0];
         const url = (item && item.url)
-          || ('produit.html?handle=' + encodeURIComponent((item && item.handle) || product.handle) + '&color=' + encodeURIComponent(row.colorSlug));
+          || (productUrl((item && item.handle) || product.handle) + '?color=' + encodeURIComponent(row.colorSlug));
         return `<button type="button" class="product-color__swatch${row.colorSlug === activeSlug ? ' is-active' : ''}" aria-label="${esc(name)}" title="${esc(name)}" style="background:${cardSwatchHex(hueName)}" data-color-name="${esc(name)}" data-color-url="${esc(url)}"></button>`;
       }).join('');
       $('#pColorSwatches').onmouseover = (event) => {
@@ -2108,7 +2136,7 @@
       try {
         const abs = (u) => (u && String(u).indexOf('http') === 0) ? u : ('https://yza-shop.com/' + String(u || '').replace(/^\//, ''));
         const schemaDesc = (t.pick(p.short || p.displayShort || p.description || {}) || '').toString().replace(/\s+/g, ' ').trim().slice(0, 320);
-        const ld = { '@context': 'https://schema.org', '@type': 'Product', name: pageName, image: gal.slice(0, 4).map(abs), brand: { '@type': 'Brand', name: 'YZA' }, category: p.category || undefined, offers: { '@type': 'Offer', price: Number((((p.price || 0)) / 100).toFixed(2)), priceCurrency: 'MAD', availability: 'https://schema.org/InStock', url: 'https://yza-shop.com/produit.html?handle=' + encodeURIComponent(p.handle) } };
+        const ld = { '@context': 'https://schema.org', '@type': 'Product', name: pageName, image: gal.slice(0, 4).map(abs), brand: { '@type': 'Brand', name: 'YZA' }, category: p.category || undefined, offers: { '@type': 'Offer', price: Number((((p.price || 0)) / 100).toFixed(2)), priceCurrency: 'MAD', availability: 'https://schema.org/InStock', url: 'https://yza-shop.com' + productUrl(p.handle) } };
         if (schemaDesc) ld.description = schemaDesc;
         let tag = document.getElementById('productSchema');
         if (!tag) { tag = document.createElement('script'); tag.type = 'application/ld+json'; tag.id = 'productSchema'; document.head.appendChild(tag); }
@@ -2243,7 +2271,7 @@
  $('#accDeliveryLabel').textContent = ui.returns;
  $('#accQuestionsLabel').textContent = ui.questions;
  $('#accShareLabel').textContent = ui.share;
- const catInfo = typeof YZA.categoryInfo === 'function' ? YZA.categoryInfo(p) : { key: 'nav.charms', href: 'collections.html?cat=charms' };
+ const catInfo = typeof YZA.categoryInfo === 'function' ? YZA.categoryInfo(p) : { key: 'nav.charms', href: collectionUrl('charms') };
  const catCrumb = $('#pBreadcrumbCat');
  if (catCrumb) {
  catCrumb.href = catInfo.href;
@@ -2270,7 +2298,7 @@
  const next = YZA.related(p.handle, 1)[0];
  if (next) {
  cross.hidden = false;
- cross.innerHTML = `<a href="produit.html?handle=${next.handle}">${t.t('pp.crosssell')} ${esc(t.pick(displayName(next)))} &rarr;</a>`;
+ cross.innerHTML = `<a href="${productUrl(next.handle)}">${t.t('pp.crosssell')} ${esc(t.pick(displayName(next)))} &rarr;</a>`;
  } else {
  cross.hidden = true;
  }
@@ -2307,7 +2335,7 @@
  const soldOut = (YZA.inventoryStatus?.(item) || {}).soldOut ? ' is-soldout' : '';
  const tileName = t.pick(displayName(item)) || t.pick(item.name);
  const tileImg = item.bagImg || productGallery(item)[0] || item.img;
- const tileUrl = item.bagUrl || ('produit.html?handle=' + encodeURIComponent(item.handle));
+ const tileUrl = item.bagUrl || productUrl(item.handle);
  return '<a class="size-rail__tile' + active + soldOut + '" href="' + esc(tileUrl) + '" data-product-variant="' + esc(item.handle) + '" aria-label="' + esc(tileName) + '"' + (active ? ' aria-current="true"' : '') + '>'
  + '<span class="size-rail__thumb"><img src="' + esc(tileImg) + '" alt="' + esc(tileName) + ' - YZA" loading="lazy" width="240" height="300" decoding="async"></span>'
  + '<span class="size-rail__name">' + esc(tileName) + '</span>'
@@ -2441,9 +2469,11 @@
  const metaDesc = t.pick(p.desc);
  const ogTitle = `${pageName} - YZA`;
  const setMeta = (sel, val) => { const el = document.head.querySelector(sel); if (el && val) el.setAttribute('content', val); };
+ const canonicalUrl = 'https://yza-shop.com' + productUrl(p.handle);
  const canon = document.head.querySelector('link[rel="canonical"]');
- if (canon) canon.setAttribute('href', 'https://yza-shop.com/produit.html?handle=' + encodeURIComponent(p.handle));
+ if (canon) canon.setAttribute('href', canonicalUrl);
  setMeta('meta[name="description"]', metaDesc);
+ setMeta('meta[property="og:url"]', canonicalUrl);
  setMeta('meta[property="og:title"]', ogTitle);
  setMeta('meta[property="og:description"]', metaDesc);
  setMeta('meta[property="og:image"]', absImg);

@@ -12948,7 +12948,7 @@ const BAG_ROWS = [
  "assets/lookbook-ss26-27/embedded/p43_img01_xref1325_6be88260cccd.jpeg",
  "assets/lookbook-ss26-27/embedded/p48_img01_xref1345_c06ef6230440.jpeg"
  ],
- "url": "produit.html?handle=la-sculpture-xs-basket-bag-ss26&color=rouge"
+ "url": "/produits/la-sculpture-xs-basket-bag-ss26?color=rouge"
  },
  {
  "handle": "la-sculpture-s-basket-bag-ss26",
@@ -12983,7 +12983,7 @@ const BAG_ROWS = [
  "assets/lookbook-ss26-27/embedded/p43_img01_xref1325_6be88260cccd.jpeg",
  "assets/lookbook-ss26-27/embedded/p48_img01_xref1345_c06ef6230440.jpeg"
  ],
- "url": "produit.html?handle=la-sculpture-s-basket-bag-ss26&color=rouge"
+ "url": "/produits/la-sculpture-s-basket-bag-ss26?color=rouge"
  },
  {
  "handle": "la-sculpture-m-basket-bag-ss26",
@@ -13018,7 +13018,7 @@ const BAG_ROWS = [
  "assets/lookbook-ss26-27/embedded/p43_img01_xref1325_6be88260cccd.jpeg",
  "assets/lookbook-ss26-27/embedded/p48_img01_xref1345_c06ef6230440.jpeg"
  ],
- "url": "produit.html?handle=la-sculpture-m-basket-bag-ss26&color=rouge"
+ "url": "/produits/la-sculpture-m-basket-bag-ss26?color=rouge"
  }
  ]
  },
@@ -13099,7 +13099,7 @@ const BAG_ROWS = [
  "assets/lookbook-ss26-27/embedded/p44_img01_xref1329_bf91110d6d83.jpeg",
  "assets/lookbook-ss26-27/embedded/p45_img01_xref1333_caaad580c061.jpeg"
  ],
- "url": "produit.html?handle=la-sculpture-xs-basket-bag-ss26&color=violet"
+ "url": "/produits/la-sculpture-xs-basket-bag-ss26?color=violet"
  },
  {
  "handle": "la-sculpture-s-basket-bag-ss26",
@@ -13133,7 +13133,7 @@ const BAG_ROWS = [
  "assets/lookbook-ss26-27/embedded/p44_img01_xref1329_bf91110d6d83.jpeg",
  "assets/lookbook-ss26-27/embedded/p45_img01_xref1333_caaad580c061.jpeg"
  ],
- "url": "produit.html?handle=la-sculpture-s-basket-bag-ss26&color=violet"
+ "url": "/produits/la-sculpture-s-basket-bag-ss26?color=violet"
  },
  {
  "handle": "la-sculpture-m-basket-bag-ss26",
@@ -13167,7 +13167,7 @@ const BAG_ROWS = [
  "assets/lookbook-ss26-27/embedded/p44_img01_xref1329_bf91110d6d83.jpeg",
  "assets/lookbook-ss26-27/embedded/p45_img01_xref1333_caaad580c061.jpeg"
  ],
- "url": "produit.html?handle=la-sculpture-m-basket-bag-ss26&color=violet"
+ "url": "/produits/la-sculpture-m-basket-bag-ss26?color=violet"
  }
  ]
  },
@@ -13249,7 +13249,7 @@ const BAG_ROWS = [
  "assets/lookbook-ss26-27/embedded/p48_img02_xref1346_42bfdc1a3e34.jpeg",
  "assets/lookbook-ss26-27/embedded/p48_img03_xref1347_e6608af984d1.jpeg"
  ],
- "url": "produit.html?handle=la-sculpture-xs-basket-bag-ss26&color=noir"
+ "url": "/produits/la-sculpture-xs-basket-bag-ss26?color=noir"
  },
  {
  "handle": "la-sculpture-s-basket-bag-ss26",
@@ -13284,7 +13284,7 @@ const BAG_ROWS = [
  "assets/lookbook-ss26-27/embedded/p48_img02_xref1346_42bfdc1a3e34.jpeg",
  "assets/lookbook-ss26-27/embedded/p48_img03_xref1347_e6608af984d1.jpeg"
  ],
- "url": "produit.html?handle=la-sculpture-s-basket-bag-ss26&color=noir"
+ "url": "/produits/la-sculpture-s-basket-bag-ss26?color=noir"
  },
  {
  "handle": "la-sculpture-m-basket-bag-ss26",
@@ -13319,7 +13319,7 @@ const BAG_ROWS = [
  "assets/lookbook-ss26-27/embedded/p48_img02_xref1346_42bfdc1a3e34.jpeg",
  "assets/lookbook-ss26-27/embedded/p48_img03_xref1347_e6608af984d1.jpeg"
  ],
- "url": "produit.html?handle=la-sculpture-m-basket-bag-ss26&color=noir"
+ "url": "/produits/la-sculpture-m-basket-bag-ss26?color=noir"
  }
  ]
  },
@@ -13400,7 +13400,7 @@ const BAG_ROWS = [
  "assets/lookbook-ss26-27/embedded/p51_img01_xref1366_21749db6b994.jpeg",
  "assets/lookbook-ss26-27/embedded/p52_img01_xref1373_10bd8ebf12c0.jpeg"
  ],
- "url": "produit.html?handle=la-nouvelle-vague-xs-basket-bag-ss26&color=bleu"
+ "url": "/produits/la-nouvelle-vague-xs-basket-bag-ss26?color=bleu"
  },
  {
  "handle": "la-nouvelle-vague-s-basket-bag-ss26",
@@ -13434,7 +13434,7 @@ const BAG_ROWS = [
  "assets/lookbook-ss26-27/embedded/p50_img01_xref1362_b250c91a59d1.jpeg",
  "assets/lookbook-ss26-27/embedded/p52_img01_xref1373_10bd8ebf12c0.jpeg"
  ],
- "url": "produit.html?handle=la-nouvelle-vague-s-basket-bag-ss26&color=rose"
+ "url": "/produits/la-nouvelle-vague-s-basket-bag-ss26?color=rose"
  },
  {
  "handle": "la-nouvelle-vague-m-basket-bag-ss26",
@@ -13468,7 +13468,7 @@ const BAG_ROWS = [
  "assets/lookbook-ss26-27/embedded/p50_img01_xref1362_b250c91a59d1.jpeg",
  "assets/lookbook-ss26-27/embedded/p51_img01_xref1366_21749db6b994.jpeg"
  ],
- "url": "produit.html?handle=la-nouvelle-vague-m-basket-bag-ss26&color=bleu-ciel"
+ "url": "/produits/la-nouvelle-vague-m-basket-bag-ss26?color=bleu-ciel"
  }
  ]
  }
@@ -15213,19 +15213,19 @@ function byCategory(category = 'all') {
 }
 
 const CATEGORY_INFO = {
- charms: { key: 'col.charms', title: 'col.charms', href: 'collections.html?cat=charms' },
- earrings: { key: 'col.earrings', title: 'col.earrings', href: 'collections.html?cat=earrings' },
- necklaces: { key: 'col.necklaces', title: 'col.necklaces', href: 'collections.html?cat=necklaces' },
- bags: { key: 'col.bags', title: 'col.bags', href: 'collections.html?cat=bags' },
- tops: { key: 'col.tops', title: 'col.tops', href: 'collections.html?cat=tops' },
- pareos: { key: 'col.pareos', title: 'col.pareos', href: 'collections.html?cat=pareos' },
- pants: { key: 'col.pants', title: 'col.pants', href: 'collections.html?cat=pants' },
- rtw: { key: 'col.rtw', title: 'col.rtw', href: 'collections.html?cat=rtw' },
- accessories: { key: 'col.accessories', title: 'col.accessories', href: 'collections.html?cat=accessories' },
+ charms: { key: 'col.charms', title: 'col.charms', href: '/collections/charms' },
+ earrings: { key: 'col.earrings', title: 'col.earrings', href: '/collections/boucles-d-oreilles' },
+ necklaces: { key: 'col.necklaces', title: 'col.necklaces', href: '/collections/colliers' },
+ bags: { key: 'col.bags', title: 'col.bags', href: '/collections/sacs' },
+ tops: { key: 'col.tops', title: 'col.tops', href: '/collections/hauts' },
+ pareos: { key: 'col.pareos', title: 'col.pareos', href: '/collections/jupes-pareo' },
+ pants: { key: 'col.pants', title: 'col.pants', href: '/collections/pantalons' },
+ rtw: { key: 'col.rtw', title: 'col.rtw', href: '/collections/pret-a-porter' },
+ accessories: { key: 'col.accessories', title: 'col.accessories', href: '/collections/bijoux' },
 };
 function categoryInfo(productOrCategory) {
  const key = typeof productOrCategory === 'string' ? productOrCategory : (productOrCategory?.category || productOrCategory?.group || 'all');
- return CATEGORY_INFO[key] || (key === 'all' ? { key: 'col.all', title: 'col.all', href: 'collections.html?cat=all' } : CATEGORY_INFO.accessories);
+ return CATEGORY_INFO[key] || (key === 'all' ? { key: 'col.all', title: 'col.all', href: '/collections' } : CATEGORY_INFO.accessories);
 }
 function familyMembers(product) {
  const item = typeof product === 'string' ? getProduct(product) : product;
@@ -15641,7 +15641,7 @@ LNV_COLORS.forEach((c) => {
  img: gal[0],
  gallery: gal,
  media: media,
- url: 'produit.html?handle=' + sz.handle + '&color=' + c.slug,
+ url: '/produits/' + sz.handle + '?color=' + c.slug,
  };
  }),
  });

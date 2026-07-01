@@ -2,12 +2,42 @@
 Options -Indexes
 DirectoryIndex index.html index.htm
 
-# Legacy Shopify URLs -> new static site (so old Google results / bookmarks
-# don't hit a 404). Patterns require a slash after the keyword, so the real
-# files (collections.html, produit.html) and /blogs/journal/ are untouched.
 <IfModule mod_rewrite.c>
   RewriteEngine On
-  RewriteRule ^collections/?$            /collections.html [R=301,L]
+
+  # ---- Clean URLs: category pages (extensionless, query-string driven) ----
+  RewriteRule ^collections/charms/?$             collections.html?cat=charms [QSA,L]
+  RewriteRule ^collections/sacs/?$                collections.html?cat=bags [QSA,L]
+  RewriteRule ^collections/pret-a-porter/?$      collections.html?cat=rtw [QSA,L]
+  RewriteRule ^collections/bijoux/?$              collections.html?cat=accessories [QSA,L]
+  RewriteRule ^collections/boucles-d-oreilles/?$ collections.html?cat=earrings [QSA,L]
+  RewriteRule ^collections/colliers/?$            collections.html?cat=necklaces [QSA,L]
+  RewriteRule ^collections/hauts/?$               collections.html?cat=tops [QSA,L]
+  RewriteRule ^collections/jupes-pareo/?$         collections.html?cat=pareos [QSA,L]
+  RewriteRule ^collections/pantalons/?$           collections.html?cat=pants [QSA,L]
+  RewriteRule ^collections/bas/?$                 collections.html?cat=bottoms [QSA,L]
+
+  # ---- Clean URLs: product detail pages ----
+  RewriteRule ^produits/([a-zA-Z0-9-]+)/?$        produit.html?handle=$1 [QSA,L]
+
+  # ---- Clean URLs: pages whose slug differs from the filename ----
+  RewriteRule ^grossistes/?$        b2b.html [L]
+  RewriteRule ^mentions-legales/?$  legal.html [L]
+  RewriteRule ^journal/?$           blogs/journal/ [L]
+
+  # ---- Clean URLs: generic — /{name} serves {name}.html when that file exists.
+  # Covers /collections, /lookbook, /studio, /histoire, /yza-girls, /contact, /faq
+  # without a rule per page. /dashboard is excluded on purpose (stays .html-only).
+  RewriteCond %{REQUEST_URI} !^/dashboard
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+  RewriteRule ^([a-zA-Z0-9_-]+)/?$ $1.html [L]
+
+  # ---- Legacy Shopify URLs -> new static site (so old Google results / bookmarks
+  # don't hit a 404). Runs last so it only catches genuinely-unknown legacy paths —
+  # bare /collections is already handled by the generic rule above, and the clean
+  # /collections/{category} routes further up already matched and exited by [L].
   RewriteRule ^collections/.+$           /collections.html [R=301,L]
   RewriteRule ^products/.+$              /collections.html [R=301,L]
   RewriteRule ^pages/.+$                 /                 [R=301,L]

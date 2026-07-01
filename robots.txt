@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
 Disallow: /dashboard.html
+Disallow: /dashboard
 Sitemap: https://yza-shop.com/sitemap.xml

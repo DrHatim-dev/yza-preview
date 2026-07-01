@@ -278,7 +278,7 @@ YZA.media = {
  },
  label: { fr: 'crochet main / serie limitee / non refait', en: 'hand crochet / limited run / not remade', es: 'ganchillo a mano / serie limitada / no repetido', tr: 'elle tığ işi / sınırlı seri / tekrar üretilmez', ar: 'كروشيه يدوي / سلسلة محدودة / لن يُعاد' },
  images: [girlAsset('girls-rim-yellow.jpg'), girlAsset('girls-amelie-vague-s.jpg'), girlAsset('girls-fanny-desert.jpg')],
- cta: 'collections.html?cat=bags',
+ cta: '/collections/sacs',
  },
  jaune: {
  title: { fr: 'Jaune: solaire, visible, Marrakech.', en: 'Yellow: sunlit, visible, Marrakech.', es: 'Amarillo: solar, visible, Marrakech.', tr: 'Sarı: güneşli, göze çarpan, Marrakech.', ar: 'أصفر: شمسي، لافت، Marrakech.' },
@@ -291,7 +291,7 @@ YZA.media = {
  },
  label: { fr: 'couleur capsule / non refait', en: 'capsule colour / not remade', es: 'color cápsula / no repetido', tr: 'kapsül renk / tekrar üretilmez', ar: 'لون كبسول / لن يُعاد' },
  images: [girlAsset('girls-rim-yellow.jpg'), girlAsset('girls-fanny-door.jpg'), girlAsset('girls-fanny-jaune.jpg')],
- cta: 'collections.html?cat=bags',
+ cta: '/collections/sacs',
  },
  violet: {
  title: { fr: 'Violet: plus rare, plus mode.', en: 'Violet: rarer, more fashion.', es: 'Violeta: más raro, más moda.', tr: 'Mor: daha nadir, daha moda.', ar: 'بنفسجي: أندر، أكثر أناقة.' },
@@ -304,7 +304,7 @@ YZA.media = {
  },
  label: { fr: 'edition limitee / finition main', en: 'limited edition / hand finishing', es: 'edición limitada / acabado a mano', tr: 'sınırlı üretim / el bitirme', ar: 'إصدار محدود / تشطيب يدوي' },
  images: [girlAsset('girls-rim-violet.jpg'), girlAsset('girls-fanny-purple.jpg'), 'assets/products/bag-sculpture-violet.jpg'],
- cta: 'collections.html?cat=bags',
+ cta: '/collections/sacs',
  },
  noir: {
  title: { fr: 'Noir: la version la plus nette.', en: 'Black: the sharpest version.', es: 'Negro: la versión más definida.', tr: 'Siyah: en keskin versiyon.', ar: 'أسود: النسخة الأكثر حدّة.' },
@@ -317,7 +317,7 @@ YZA.media = {
  },
  label: { fr: '15 par taille et couleur', en: '15 per size and colour', es: '15 por talla y color', tr: 'Beden ve renk başına 15', ar: '15 لكل مقاس ولون' },
  images: ['assets/products/bag-sculpture-black.jpg', 'assets/products/bag-sculpture-black-detail.jpg', 'assets/products/bag-sculpture-black-still.jpg'],
- cta: 'collections.html?cat=bags',
+ cta: '/collections/sacs',
  },
  rouge: {
  title: { fr: 'Rouge: contraste et main visible.', en: 'Red: contrast and visible handwork.', es: 'Rojo: contraste y artesanía visible.', tr: 'Kırmızı: kontrast ve görünür el işiçiliği.', ar: 'أحمر: تباين وحرفة ظاهرة.' },
@@ -330,7 +330,7 @@ YZA.media = {
  },
  label: { fr: 'finition couleur / non refait', en: 'colour finishing / not remade', es: 'acabado en color / no repetido', tr: 'renk bitirme / tekrar üretilmez', ar: 'تشطيب لوني / لن يُعاد' },
  images: ['assets/products/bag-sculpture-red.jpg', 'assets/products/bag-sculpture-red-seated.jpg', 'assets/products/charms-on-bag.jpg'],
- cta: 'collections.html?cat=bags',
+ cta: '/collections/sacs',
  },
  charms: {
  title: { fr: 'Le fruit est petit, mais le geste est long.', en: 'The fruit is small, but the handwork is long.', es: 'El fruto es pequeño, pero el gesto es largo.', tr: 'Meyve küçük, ama el emeği uzun.', ar: 'الثمرة صغيرة، لكن الجهد طويل.' },
@@ -343,7 +343,7 @@ YZA.media = {
  },
  label: { fr: '2 a 3 h de crochet / bundle 3 charms', en: '2 to 3h crochet / 3 charm bundle', es: '2 a 3 h de ganchillo / pack de 3 charms', tr: '2-3 saat tığ işi / 3 charm paketi', ar: '2 إلى 3 ساعات كروشيه / طقم 3 قطع' },
  images: ['assets/products/charm-orange-hero.jpg', 'assets/products/charms-cluster.jpg', 'assets/products/charms-on-bag.jpg'],
- cta: 'collections.html?cat=charms',
+ cta: '/collections/charms',
  },
  rtw: {
  title: { fr: 'Pas de taille à connaître. Juste à porter.', en: 'No size to know. Just wear it.', es: 'Sin talla que conocer. Solo ponérselo.', tr: 'Bilmeniz gereken beden yok. Sadece giyin.', ar: 'لا مقاس تحتاجين معرفته. ارتديه.' },
@@ -356,7 +356,7 @@ YZA.media = {
  },
  label: { fr: 'tailles libres / fait à l\'atelier', en: 'free sizes / atelier-made', es: 'tallas libres / hecho en el atelier', tr: 'serbest bedenler / atölyede yapılmış', ar: 'مقاييس حرة / مصنوع في الأتيلييه' },
  images: ['assets/yza-girls/girls-rin-look-3.jpg', 'assets/products/rtw-scarf-top.jpg', 'assets/products/rtw-palazzo-pants.jpg'],
- cta: 'collections.html?cat=rtw',
+ cta: '/collections/pret-a-porter',
  },
  },
 
@@ -581,7 +581,7 @@ YZA.media.rtwEditorialBreaks = [
 
 Object.assign(YZA.media.productStories.bags, {
  images: [ss26('p40_img01_xref1305_5ae097cc9e5a.jpeg'), ss26('p42_img01_xref1321_1a08834f9d69.jpeg'), ss26('p46_img01_xref1337_7dae31225680.jpeg')],
- cta: 'collections.html?cat=bags',
+ cta: '/collections/sacs',
 });
 Object.assign(YZA.media.productStories.jaune, {
  title: { fr: 'Solaire, visible, Marrakech.', en: 'Sunlit, visible, Marrakech.', es: 'Solar, visible, Marrakech.', tr: 'Güneşli, göze çarpan, Marrakech.', ar: 'شمسي، لافت، Marrakech.' },
@@ -594,27 +594,27 @@ Object.assign(YZA.media.productStories.jaune, {
  },
  label: { fr: 'Fruit Market / crochet main', en: 'Fruit Market / hand crochet', es: 'Fruit Market / ganchillo a mano', tr: 'Fruit Market / elle tığ işi', ar: 'Fruit Market / كروشيه يدوي' },
  images: ['assets/products/fruit-market/styling/charms-raffia-basket-bowl.jpg', 'assets/products/fruit-market/styling/charms-fruit-market-bundle.jpg', 'assets/products/fruit-market/charm-whole-lemon.jpg'],
- cta: 'collections.html?cat=charms',
+ cta: '/collections/charms',
 });
 Object.assign(YZA.media.productStories.violet, {
  images: [ss26('p41_img03_xref1315_841b5b884798.jpeg'), ss26('p44_img01_xref1329_bf91110d6d83.jpeg'), ss26('p45_img01_xref1333_caaad580c061.jpeg')],
- cta: 'produit.html?handle=la-sculpture-s-basket-bag-ss26',
+ cta: '/produits/la-sculpture-s-basket-bag-ss26',
 });
 Object.assign(YZA.media.productStories.noir, {
  images: [ss26('p46_img01_xref1337_7dae31225680.jpeg'), ss26('p47_img01_xref1341_0932d247e77e.jpeg'), ss26('p48_img03_xref1347_e6608af984d1.jpeg')],
- cta: 'produit.html?handle=la-sculpture-m-basket-bag-ss26',
+ cta: '/produits/la-sculpture-m-basket-bag-ss26',
 });
 Object.assign(YZA.media.productStories.rouge, {
  images: [ss26('p40_img01_xref1305_5ae097cc9e5a.jpeg'), ss26('p42_img01_xref1321_1a08834f9d69.jpeg'), ss26('p43_img01_xref1325_6be88260cccd.jpeg')],
- cta: 'produit.html?handle=la-sculpture-xs-basket-bag-ss26',
+ cta: '/produits/la-sculpture-xs-basket-bag-ss26',
 });
 Object.assign(YZA.media.productStories.charms, {
  images: ['assets/products/fruit-market/charm-cherries.jpg', 'assets/products/fruit-market/charm-orange-slice.jpg', 'assets/products/fruit-market/vibe/vibe-watermelon-slice.jpg'],
- cta: 'collections.html?cat=charms',
+ cta: '/collections/charms',
 });
 Object.assign(YZA.media.productStories.rtw, {
  images: [ss26('p29_img04_xref1215_ea0a78123e7b.jpeg'), ss26('p30_img03_xref1221_6a80517bd62a.jpeg'), ss26('p38_img01_xref1287_56cb4d596aa0.jpeg')],
- cta: 'collections.html?cat=rtw',
+ cta: '/collections/pret-a-porter',
 });
 YZA.media.productStories.accessories = {
  title: { fr: 'Le fruit devient bijou de silhouette.', en: 'The fruit becomes a styling jewel.', es: 'La fruta se convierte en joya de silhouette.', tr: 'Meyve, silhouet takısına dönüşüyor.', ar: 'الثمرة تصبح جوهرة أناقة.' },
@@ -627,7 +627,7 @@ YZA.media.productStories.accessories = {
  },
  label: { fr: 'gift-ready / crochet main', en: 'gift-ready / hand crochet', es: 'listo para regalo / ganchillo a mano', tr: 'hediyeye hazır / elle tığ işi', ar: 'جاهز للهدية / كروشيه يدوي' },
  images: ['assets/products/fruit-market/earrings-watermelon.jpg', 'assets/products/fruit-market/necklace-lemon-slice.jpg', 'assets/products/fruit-market/earrings-kiwi.jpg'],
- cta: 'collections.html?cat=accessories',
+ cta: '/collections/bijoux',
 };
 YZA.media.pickStory = function pickStory(product) {
  if (!product) return null;
@@ -660,6 +660,6 @@ YZA.media.yzaGirls.forEach((girl) => {
  const handles = GIRL_LOOK_MATCH[girl.color] || ['trio-charms-fruit-market'];
  girl.lookProductHandles = handles.filter((handle) => !YZA.getProduct || YZA.getProduct(handle));
  girl.lookHref = girl.lookProductHandles[0]
- ? `produit.html?handle=${girl.lookProductHandles[0]}`
- : 'collections.html';
+ ? `/produits/${girl.lookProductHandles[0]}`
+ : '/collections';
 });

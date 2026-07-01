@@ -106,7 +106,7 @@
  function productCard(product, context) {
  const name = text(product.displayName || product.name);
  const short = text(product.displayShort || product.short);
- const href = `produit.html?handle=${encodeURIComponent(product.handle)}`;
+ const href = `/produits/${encodeURIComponent(product.handle)}`;
  return `
  <a class="blog-product-card" href="${href}" data-blog-product-click="${product.handle}" data-blog-product-context="${context}">
  <span class="blog-product-card__media">

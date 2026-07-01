@@ -108,7 +108,7 @@ const cart = {
     if (!this.items.length) {
       body.innerHTML = `<div class="cart-empty">
         <p data-i18n="cart.empty">${t.t('cart.empty')}</p>
-        <a class="btn btn--outline" href="collections.html?cat=charms" data-i18n="cart.emptyCta">${t.t('cart.emptyCta')}</a></div>`;
+        <a class="btn btn--outline" href="/collections/charms" data-i18n="cart.emptyCta">${t.t('cart.emptyCta')}</a></div>`;
       if (foot) foot.hidden = true;
       return;
     }
@@ -116,9 +116,9 @@ const cart = {
       const p = YZA.getProduct(i.handle); if (!p) return '';
       const cartImg = (i.variant && YZA.bagVariantFor?.(p.handle, i.variant)?.img) || p.img;
       return `<div class="cart-line">
-        <a class="cart-line__img" href="produit.html?handle=${p.handle}"><img src="${cartImg}" alt="" width="72" height="90" loading="lazy"></a>
+        <a class="cart-line__img" href="/produits/${encodeURIComponent(p.handle)}"><img src="${cartImg}" alt="" width="72" height="90" loading="lazy"></a>
         <div class="cart-line__info">
-          <a class="cart-line__name" href="produit.html?handle=${p.handle}">${t.pick(p.name)}</a>
+          <a class="cart-line__name" href="/produits/${encodeURIComponent(p.handle)}">${t.pick(p.name)}</a>
           ${i.variant ? `<div class="cart-line__variant">${i.variant}</div>` : ''}
           <div class="cart-line__price">${t.formatPrice(p.price)}</div>
           <div class="cart-line__row">
@@ -164,7 +164,7 @@ const cart = {
   // Checkout = open a prefilled WhatsApp order. The cart is intentionally NOT cleared,
   // so a returning buyer keeps it and there is no silent loss / double-order.
   checkout() {
-    if (!this.items.length) { this.close(); window.location.href = 'collections.html?cat=charms'; return; }
+    if (!this.items.length) { this.close(); window.location.href = '/collections/charms'; return; }
     const phone = (YZA.brand?.whatsapp || '').replace(/\D/g, '');
     const url = `https://wa.me/${phone}?text=${encodeURIComponent(this.orderMessage())}`;
     YZA.analytics?.track('checkout_initiated', { items: this.count(), subtotal_cents: this.subtotalCents() });

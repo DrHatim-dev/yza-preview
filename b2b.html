@@ -5,7 +5,7 @@
  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
  <title>B2B Wholesale - YZA</title>
  <meta name="description" content="Programme wholesale YZA SS26/27 : séries courtes faites main à Marrakech. Templates de commande prêts à l'emploi, présentoir et kit offerts. Demandez votre devis revendeur." />
- <link rel="canonical" href="https://yza-shop.com/b2b.html" />
+ <link rel="canonical" href="https://yza-shop.com/grossistes" />
  <meta property="og:title" content="B2B Wholesale - YZA" />
  <meta property="og:description" content="Séries courtes, atelier de femmes à Guéliz. Présentoir et kit marketing offerts. Demandez votre devis revendeur." />
  <meta property="og:image" content="https://yza-shop.com/assets/products/la-sculpture/sculpture-deep-violet.jpg" />
@@ -15,8 +15,8 @@
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,400..600&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="css/tokens.css?v=20260629m" />
- <link rel="stylesheet" href="css/styles.css?v=20260629m" />
+ <link rel="stylesheet" href="css/tokens.css?v=20260629n" />
+ <link rel="stylesheet" href="css/styles.css?v=20260629n" />
  <style>
  .b2b-wrap { max-width: 1100px; margin-inline: auto; }
  .b2b-section { padding-block: clamp(2.5rem, 5vw, var(--space-16)); }
@@ -320,12 +320,12 @@ dans votre boutique.</span><span data-lang="en" hidden>Guéliz,<br>in your bouti
  </section>
 </main>
 
- <script defer src="js/products.js?v=20260629m"></script>
- <script defer src="js/media.js?v=20260629m"></script>
- <script defer src="js/i18n.js?v=20260629m"></script>
- <script defer src="js/cart.js?v=20260629m"></script>
- <script defer src="js/chrome.js?v=20260629m"></script>
- <script defer src="js/main.js?v=20260629m"></script>
+ <script defer src="js/products.js?v=20260629n"></script>
+ <script defer src="js/media.js?v=20260629n"></script>
+ <script defer src="js/i18n.js?v=20260629n"></script>
+ <script defer src="js/cart.js?v=20260629n"></script>
+ <script defer src="js/chrome.js?v=20260629n"></script>
+ <script defer src="js/main.js?v=20260629n"></script>
  <script>
  document.addEventListener('DOMContentLoaded', function () {
  var t = YZA.i18n;
@@ -409,7 +409,7 @@ dans votre boutique.</span><span data-lang="en" hidden>Guéliz,<br>in your bouti
  /* ---- Accessory + RTW rows with thumbnails ---- */
  function rowHTML(p) {
  var name = t.pick(p.name);
- var href = 'produit.html?handle=' + encodeURIComponent(p.handle || '');
+ var href = '/produits/' + encodeURIComponent(p.handle || '');
  return '<div class="b2b-prod">' +
       '<a class="b2b-prod__thumb-link" href="' + href + '" target="_blank" rel="noopener" title="' + esc(name) + '"><img class="b2b-prod__thumb" src="' + esc(p.img) + '" alt="' + esc(name) + ' - YZA" loading="lazy" width="84" height="112" decoding="async"></a>' +
  '<span class="b2b-prod__info"><a class="b2b-prod__name" href="' + href + '" target="_blank" rel="noopener">' + name + '</a><span class="b2b-prod__meta">' + esc(t.pick(p.short || p.displayShort || {}) || '') + '</span></span>' +
