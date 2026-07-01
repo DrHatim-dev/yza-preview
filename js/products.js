@@ -147,9 +147,9 @@ YZA.brand = {
  instagram: 'yzahandmade',
  instagramUrl: 'https://instagram.com/yzahandmade',
  city: 'Marrakech',
- address: '66 rue Yougoslavie, Guéliz, Marrakech, Maroc',
- addressShort: '66 rue Yougoslavie, Guéliz',
- mapsQuery: 'YZA Studio, 66 rue Yougoslavie, Guéliz, Marrakech, Maroc',
+ address: '80 rue Yougoslavie, Guéliz, Marrakech, Maroc',
+ addressShort: '80 rue Yougoslavie, Guéliz',
+ mapsQuery: 'YZA Studio, 80 rue Yougoslavie, Guéliz, Marrakech, Maroc',
  hours: { fr: 'Lundi : 12 h - 16 h\nMardi : fermé\nMercredi - dimanche : 12 h - 20 h', en: 'Monday: 12 - 4pm\nTuesday: closed\nWednesday - Sunday: 12 - 8pm' },
  pickup: { fr: 'Retrait au studio à Guéliz, sur confirmation.', en: 'Studio pickup in Guéliz, on confirmation.' },
  masterIdea: 'Modern Marrakech wear™',
@@ -683,14 +683,14 @@ const PRODUCTS = [
  },
  "batch": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
@@ -1095,14 +1095,14 @@ const PRODUCTS = [
  },
  "batch": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
@@ -1710,14 +1710,14 @@ const PRODUCTS = [
  },
  "batch": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
@@ -2125,14 +2125,14 @@ const PRODUCTS = [
  },
  "batch": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
@@ -2541,14 +2541,14 @@ const PRODUCTS = [
  },
  "batch": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
@@ -2956,14 +2956,14 @@ const PRODUCTS = [
  },
  "batch": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
@@ -3371,14 +3371,14 @@ const PRODUCTS = [
  },
  "batch": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
@@ -3786,14 +3786,14 @@ const PRODUCTS = [
  },
  "batch": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
@@ -4036,14 +4036,14 @@ const PRODUCTS = [
  },
  "batch": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
  "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
- "en": "Small Jawhara batch; fabrics may change depending on availability.",
+ "en": "Limited-edition Jawhara; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
@@ -4340,11 +4340,11 @@ const PRODUCTS = [
  },
  "attachment": null,
  "handworkTime": {
- "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
- "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "es": "Ensamblaje manual: tejido, forrado de asas, abalorios y revisión final.",
- "tr": "El montajı: dokuma, sap kaplama, boncuk işi ve son kontrol.",
- "ar": "تجميع يدوي: نسيج، تغليف المقابض، أعمال الخرز والفحص النهائي."
+ "fr": "35 à 85 heures par sac : tressage, gaine des anses, perlage et contrôle final, à la main.",
+ "en": "35 to 85 hours per bag: weaving, handle wrapping, beadwork and final check, by hand.",
+ "es": "35 a 85 horas por bolso: tejido, forrado de asas, abalorios y revisión final, a mano.",
+ "tr": "Çanta başına 35–85 saat: dokuma, sap kaplama, boncuk işi ve son kontrol, elde.",
+ "ar": "من 35 إلى 85 ساعة لكل حقيبة: نسيج، تغليف المقابض، أعمال الخرز والفحص النهائي، يدوياً."
  },
  "howToWear": null,
  "fruitStory": null,
@@ -4739,11 +4739,11 @@ const PRODUCTS = [
  },
  "attachment": null,
  "handworkTime": {
- "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
- "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "es": "Ensamblaje manual: tejido, forrado de asas, abalorios y revisión final.",
- "tr": "El montajı: dokuma, sap kaplama, boncuk işi ve son kontrol.",
- "ar": "تجميع يدوي: نسيج، تغليف المقابض، أعمال الخرز والفحص النهائي."
+ "fr": "35 à 85 heures par sac : tressage, gaine des anses, perlage et contrôle final, à la main.",
+ "en": "35 to 85 hours per bag: weaving, handle wrapping, beadwork and final check, by hand.",
+ "es": "35 a 85 horas por bolso: tejido, forrado de asas, abalorios y revisión final, a mano.",
+ "tr": "Çanta başına 35–85 saat: dokuma, sap kaplama, boncuk işi ve son kontrol, elde.",
+ "ar": "من 35 إلى 85 ساعة لكل حقيبة: نسيج، تغليف المقابض، أعمال الخرز والفحص النهائي، يدوياً."
  },
  "howToWear": null,
  "fruitStory": null,
@@ -5138,11 +5138,11 @@ const PRODUCTS = [
  },
  "attachment": null,
  "handworkTime": {
- "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
- "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
- "es": "Ensamblaje manual: tejido, forrado de asas, abalorios y revisión final.",
- "tr": "El montajı: dokuma, sap kaplama, boncuk işi ve son kontrol.",
- "ar": "تجميع يدوي: نسيج، تغليف المقابض، أعمال الخرز والفحص النهائي."
+ "fr": "35 à 85 heures par sac : tressage, gaine des anses, perlage et contrôle final, à la main.",
+ "en": "35 to 85 hours per bag: weaving, handle wrapping, beadwork and final check, by hand.",
+ "es": "35 a 85 horas por bolso: tejido, forrado de asas, abalorios y revisión final, a mano.",
+ "tr": "Çanta başına 35–85 saat: dokuma, sap kaplama, boncuk işi ve son kontrol, elde.",
+ "ar": "من 35 إلى 85 ساعة لكل حقيبة: نسيج، تغليف المقابض، أعمال الخرز والفحص النهائي، يدوياً."
  },
  "howToWear": null,
  "fruitStory": null,

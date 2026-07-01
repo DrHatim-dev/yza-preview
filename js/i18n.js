@@ -37,7 +37,7 @@ const STR = {
   'mega.service':    { fr: 'Service client', en: 'Customer care' },
   'mega.feat.lookbook':  { fr: 'Collection SS26/27', en: 'SS26/27 collection', es: 'Colección SS26/27', tr: 'SS26/27 koleksiyonu', ar: 'مجموعة SS26/27' },
   'mega.feat.sculpture': { fr: 'Le it-bag de l’atelier', en: 'The atelier it-bag', es: 'El it-bag del atelier', tr: 'Atölyenin it-bag’i', ar: 'حقيبة الأتيليه الأيقونية' },
-  'mega.feat.studio':    { fr: '66 Rue Yougoslavie, Guéliz', en: '66 Rue Yougoslavie, Guéliz', es: '66 Rue Yougoslavie, Guéliz', tr: '66 Rue Yougoslavie, Guéliz', ar: '٦٦ شارع يوغوسلافيا، Guéliz' },
+  'mega.feat.studio':    { fr: '80 Rue Yougoslavie, Guéliz', en: '80 Rue Yougoslavie, Guéliz', es: '80 Rue Yougoslavie, Guéliz', tr: '80 Rue Yougoslavie, Guéliz', ar: '٨٠ شارع يوغوسلافيا، Guéliz' },
   'mega.feat.contact':   { fr: 'On vous répond, vraiment', en: 'We actually reply', es: 'Te respondemos, de verdad', tr: 'Gerçekten yanıt veriyoruz', ar: 'نردّ عليكِ، فعلاً' },
   'a.search':        { fr: 'Rechercher', en: 'Search' },
   'a.wishlist':      { fr: 'Mes coups de cœur', en: 'Saved' },

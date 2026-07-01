@@ -720,7 +720,7 @@ YZA.chrome = {
  email: YZA.brand?.email || '',
  address: {
  '@type': 'PostalAddress',
- streetAddress: '66 rue Yougoslavie',
+ streetAddress: '80 rue Yougoslavie',
  addressLocality: 'Marrakech',
  addressRegion: 'Gueliz',
  addressCountry: 'MA',
