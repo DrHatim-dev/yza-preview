@@ -163,7 +163,13 @@
           '<p class="pay-note">' + esc(T('co.pay.note')) + '</p></div>';
       }
       if (method === 'paypal') {
-        return '<div class="pay-details"><p class="pay-note">' + esc(p.paypalLink ? T('co.done.paypal') : T('co.pay.ribTxt')) + ' ' + eur(subtotal()) + '</p></div>';
+        if (paypalReady()) {
+          return '<div class="pay-details">' +
+            '<p class="pay-eur">' + esc(T('co.total')) + ' ' + eur(subtotal()) + '</p>' +
+            '<a class="btn btn--solid pay-details__btn" href="' + esc(paypalPayUrl()) + '" target="_blank" rel="noopener">' + esc(T('co.pay.paypalBtn')) + '</a>' +
+            '<p class="pay-note">' + esc(T('co.pay.paypalNote')) + '</p></div>';
+        }
+        return '<div class="pay-details"><p class="pay-note">' + esc(T('co.pay.ribTxt')) + ' ' + eur(subtotal()) + '</p></div>';
       }
       return '';
     }
@@ -194,9 +200,9 @@
 
     function doneStep() {
       var p = PAY();
-      var msg = state.method === 'cod' ? T('co.done.cod') : (state.method === 'paypal' && p.paypalLink ? T('co.done.paypal') : T('co.done.transfer'));
-      var paypalBtn = (state.method === 'paypal' && p.paypalLink)
-        ? '<a class="btn btn--outline" href="' + esc(normalizePaypal(p.paypalLink)) + '" target="_blank" rel="noopener">' + esc(T('co.done.paypalBtn')) + '</a>' : '';
+      var msg = state.method === 'cod' ? T('co.done.cod') : (state.method === 'paypal' && paypalReady() ? T('co.done.paypal') : T('co.done.transfer'));
+      var paypalBtn = (state.method === 'paypal' && paypalReady())
+        ? '<a class="btn btn--outline" href="' + esc(paypalPayUrl()) + '" target="_blank" rel="noopener">' + esc(T('co.done.paypalBtn')) + '</a>' : '';
       return '<div class="co-done"><div class="co-done__check" aria-hidden="true">✓</div>' +
         '<h1 class="co-h1">' + esc(T('co.done.title')) + '</h1>' +
         '<p class="co-done__msg">' + esc(msg) + '</p>' +
@@ -288,12 +294,36 @@
       window.open(state.wa, '_blank', 'noopener');
     }
 
-    function normalizePaypal(v) {
-      v = String(v || '').trim();
-      if (!v) return '#';
-      if (/^https?:\/\//i.test(v)) return v;
-      if (v.indexOf('@') > -1) return 'https://www.paypal.com/paypalme/'; // email → generic; client should paste a paypal.me link
-      return 'https://paypal.me/' + v.replace(/^@/, '');
+    // EUR amount (integer) from the DH subtotal, for PayPal / IBAN.
+    function eurAmt() {
+      var rate = (PAY().eurRate) || 11;
+      return Math.max(1, Math.round((subtotal() / 100) / rate));
+    }
+    // Is a live PayPal path configured (paypal.me link OR receiver email)?
+    function paypalReady() {
+      var p = PAY();
+      return !!(p.paypalLink || p.paypalEmail);
+    }
+    // Build a pre-filled PayPal payment URL for the current order (amount in EUR).
+    function paypalPayUrl() {
+      var p = PAY();
+      var amt = eurAmt();
+      var link = String(p.paypalLink || '').trim();
+      if (link) {
+        if (/^https?:\/\//i.test(link)) {
+          return /paypal\.me/i.test(link) ? link.replace(/\/+$/, '') + '/' + amt + 'EUR' : link;
+        }
+        if (link.indexOf('@') === -1) return 'https://paypal.me/' + link.replace(/^@/, '') + '/' + amt + 'EUR';
+      }
+      var email = (link.indexOf('@') > -1 ? link : '') || p.paypalEmail || '';
+      if (email) {
+        return 'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick' +
+          '&business=' + encodeURIComponent(email) +
+          '&currency_code=EUR&amount=' + amt +
+          '&item_name=' + encodeURIComponent('YZA — commande') +
+          '&no_shipping=1';
+      }
+      return '#';
     }
 
     // ---- events ----

@@ -159,7 +159,8 @@ YZA.brand = {
 YZA.payment = {
  eurRate: 11,            // 1 EUR ≈ 11 DH — used only to SHOW an estimate for EUR methods
  orderEndpoint: 'order.php',
- paypalLink: '',         // paste a PayPal.me URL or PayPal email → enables the live button; empty ⇒ WhatsApp fallback
+ paypalLink: '',                       // optional PayPal.me URL — overrides the email flow if set
+ paypalEmail: 'nawalrmili@gmail.com',  // PayPal-to-PayPal: builds a pre-filled EUR payment to this address
  eur: {
   iban: 'FR76 1469 0000 0157 0005 2012 414',
   bic: 'CMCIFRP1MON',
@@ -18863,14 +18864,14 @@ function decrementInventory(items) {
 const CHARM_FINISH_IMAGES = {
   'raffia-avocado-half-charm-ss26':    { loop: 'assets/products/charms/client/avocado-half-01.jpg', r2: 'assets/products/charms/finish/avocado-ring.jpg', r3: 'assets/products/charms/client/avocado-half-02.jpg' },
   'raffia-cherries-charm-ss26':        { loop: 'assets/products/charms/finish/cherries-loop.jpg', r2: 'assets/products/charms/finish/cherries-ring.jpg', r3: 'assets/products/charms/client/cherries-01.jpg' },
-  'raffia-grapes-charm-ss26':          { loop: 'assets/products/charms/finish/grapes-loop.jpg', r2: 'assets/products/charms/client/grapes-01.jpg', r3: 'assets/products/charms/client/grapes-02.jpg' },
+  'raffia-grapes-charm-ss26':          { loop: 'assets/products/charms/finish/grapes-loop.jpg', r2: 'assets/products/charms/finish/grapes-ring.jpg', r3: 'assets/products/charms/client/grapes-02.jpg' },
   'raffia-kiwi-slice-charm-ss26':      { loop: 'assets/products/charms/finish/kiwi-loop.jpg', r2: 'assets/products/charms/finish/kiwi-ring.jpg', r3: 'assets/products/charms/client/kiwi-slice-01.jpg' },
-  'raffia-lemon-slice-charm-ss26':     { loop: 'assets/products/charms/finish/lemon-slice-loop.jpg', r2: 'assets/products/charms/client/lemon-slice-01.jpg', r3: 'assets/products/fruit-market/charm-lemon-slice.jpg' },
+  'raffia-lemon-slice-charm-ss26':     { loop: 'assets/products/charms/finish/lemon-slice-loop.jpg', r2: 'assets/products/charms/finish/lemon-slice-ring.jpg', r3: 'assets/products/fruit-market/charm-lemon-slice.jpg' },
   'raffia-orange-slice-charm-ss26':    { loop: 'assets/products/charms/client/orange-slice-01.jpg', r2: 'assets/products/charms/finish/orange-slice-ring.jpg', r3: 'assets/products/charms/client/orange-slice-02.jpg' },
-  'raffia-whole-lemon-charm-ss26':     { loop: 'assets/products/charms/client/whole-lemon-01.jpg', r2: 'assets/products/fruit-market/charm-whole-lemon.jpg', r3: 'assets/products/charms/client/whole-lemon-02.jpg' },
+  'raffia-whole-lemon-charm-ss26':     { loop: 'assets/products/charms/client/whole-lemon-01.jpg', r2: 'assets/products/charms/finish/whole-lemon-ring.jpg', r3: 'assets/products/charms/client/whole-lemon-02.jpg' },
   'raffia-whole-orange-charm-ss26':    { loop: 'assets/products/fruit-market/charm-whole-orange.jpg', r2: 'assets/products/charms/finish/whole-orange-ring.jpg', r3: 'assets/products/charms/client/whole-orange-01.jpg' },
   'raffia-tomato-charm-ss26':          { loop: 'assets/products/charms/finish/tomato-loop.jpg', r2: 'assets/products/charms/finish/tomato-ring.jpg', r3: 'assets/products/charms/client/tomato-01.jpg' },
-  'raffia-watermelon-slice-charm-ss26':{ loop: 'assets/products/charms/finish/watermelon-loop.jpg', r2: 'assets/products/charms/client/watermelon-slice-01.jpg', r3: 'assets/products/fruit-market/charm-watermelon-slice.jpg' },
+  'raffia-watermelon-slice-charm-ss26':{ loop: 'assets/products/charms/finish/watermelon-loop.jpg', r2: 'assets/products/charms/finish/watermelon-ring.jpg', r3: 'assets/products/fruit-market/charm-watermelon-slice.jpg' },
 };
 YZA.charmFinishImages = CHARM_FINISH_IMAGES;
 YZA.products = PRODUCTS;
