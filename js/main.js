@@ -2312,10 +2312,20 @@
  finishWrap.hidden = false;
  $('#pFinishOpts').innerHTML = ['pp.finish.loop', 'pp.finish.r2', 'pp.finish.r3']
  .map((k, i) => `<button class="chip${i === 0 ? ' is-active' : ''}" data-finish="${k}">${t.t(k)}</button>`).join('');
+ // Per-finish image swap: when a finish (raffia loop / 2 cm ring / brass tag)
+ // has its own real photo, clicking the chip swaps the gallery main image to it.
+ const finishMap = (YZA.charmFinishImages && YZA.charmFinishImages[p.handle]) || p.finishImages || null;
  $('#pFinishOpts').onclick = (e) => {
  const b = e.target.closest('.chip'); if (!b) return;
  $$('#pFinishOpts .chip').forEach(x => x.classList.remove('is-active'));
  b.classList.add('is-active');
+ const fkey = (b.dataset.finish || '').replace('pp.finish.', ''); // loop | r2 | r3
+ const fimg = finishMap && finishMap[fkey];
+ if (fimg) {
+ const gm = document.querySelector('#galMain img');
+ if (gm) { gm.removeAttribute('srcset'); gm.src = fimg; gm.dataset.finishSwapped = '1'; }
+ else if (typeof imageMainMarkup === 'function') { $('#galMain').innerHTML = imageMainMarkup(fimg); }
+ }
  };
  } else { finishWrap.hidden = true; }
 
