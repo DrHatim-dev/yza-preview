@@ -1677,6 +1677,19 @@ body.has-search-overlay { overflow: hidden; }
 .product-info__price { font-family: var(--font-display); font-size: var(--fs-sm); letter-spacing: 0.03em; margin-bottom: var(--space-6); }
 .product-info__short { color: var(--color-muted); font-size: var(--fs-sm); letter-spacing: 0.02em; line-height: 1.5; margin-bottom: var(--space-10); max-width: 42ch; }
 
+/* Editorial product story — flowing "Point → Histoire → Objection → Métaphore → Invitation" block. */
+.product-story { display: grid; gap: var(--space-4); margin: var(--space-8) 0; padding-top: var(--space-7); border-top: 1px solid var(--color-border); max-width: 60ch; }
+.product-story[hidden] { display: none; }
+.product-story__point { font-family: var(--font-serif); font-size: clamp(1.15rem, 2.4vw, 1.5rem); line-height: 1.25; font-weight: 400; color: var(--color-fg); margin: 0; }
+.product-story__body { color: var(--color-muted); font-size: var(--fs-sm); line-height: 1.7; margin: 0; }
+.product-story__quote { margin: var(--space-2) 0; padding-left: var(--space-4); border-left: 2px solid var(--accent, #de733d); }
+.product-story__quote p { font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; line-height: 1.4; color: var(--color-fg); margin: 0; }
+.product-story__reassure { color: var(--color-fg); font-size: var(--fs-sm); line-height: 1.6; margin: 0; font-weight: 500; }
+.product-story__invite { color: var(--accent, #de733d); font-size: var(--fs-sm); font-weight: 500; line-height: 1.6; margin: 0; }
+/* Same block reused as the collection-page editorial band (Fruit Market / clothing manifesto). */
+.product-story--collection { margin-inline: auto; max-width: 62ch; }
+.col-story__inner .product-story--collection:first-child { border-top: 0; padding-top: 0; margin-top: 0; }
+
 .option { margin-bottom: var(--space-6); }
 .option__label { font-size: var(--fs-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--color-muted); margin-bottom: var(--space-3); }
 .chips { display: flex; gap: var(--space-2); flex-wrap: wrap; }

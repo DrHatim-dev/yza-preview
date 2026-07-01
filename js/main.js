@@ -1047,15 +1047,20 @@
  function renderCollectionStory() {
  const el = $('#colStory'); if (!el) return;
  const t = T();
- const map = { charms: 'charms', rtw: 'rtw', tops: 'rtw', pareos: 'rtw', pants: 'rtw', bottoms: 'rtw' };
- const stories = {
- charms: { eye: { fr: 'Le geste', en: 'The craft' }, h: { fr: 'Chaque fruit, crocheté main', en: 'Each fruit, crocheted by hand' }, p: { fr: 'Le raphia est une fibre exigeante — difficile à crocheter, lente à dompter. Il faut de 2 à 6 heures de travail par fruit, à la bonne tension, pour qu\'il garde sa rondeur. Petites séries faites main par les femmes de l\'atelier, à Guéliz — jamais deux fois tout à fait pareil.', en: 'Raffia is a demanding fibre — hard to crochet, slow to tame. It takes 2 to 6 hours of work per fruit, at the right tension, to hold its roundness. Small batches handmade by the women of the atelier in Guéliz — never quite the same twice.' } },
- rtw: { eye: { fr: 'Le tissu', en: 'The fabric' }, h: { fr: 'Jawhara — sans tailles, fait pour durer', en: 'Jawhara — size-free, made to last' }, p: { fr: 'Le Jawhara est un tissu nord-africain très chic. Nous l\'avons choisi en viscose, une matière semi-naturelle qui empêche la soie de se froisser, et nous le détournons pour des pièces ultra modernes. Sans tailles : chaque pièce s\'adapte à toutes, se prête entre amies, se transmet. On y réfléchit longtemps — pour ne garder que des pièces comme ça.', en: 'Jawhara is a very chic North African fabric. We chose it in viscose — a semi-natural material that keeps the silk from creasing — and reinterpret it for ultra-modern pieces. Size-free: each piece adapts to everyone, is lent between friends, passed on. We think long and hard — to keep only pieces like these.' } },
- };
- const s = stories[map[collState.cat]];
- if (!s || collState.q) { el.hidden = true; el.innerHTML = ''; return; }
+ // Validated 5-beat category stories (Fruit Market for charms; the vêtements manifesto + the
+ // Jawhara fabric story for prêt-à-porter). Same flowing editorial style as the PDP block.
+ const map = { charms: 'charms', accessories: 'charms', earrings: 'charms', necklaces: 'charms', rtw: 'rtw', tops: 'rtw', pareos: 'rtw', pants: 'rtw', bottoms: 'rtw' };
+ const list = (YZA.CATEGORY_STORIES || {})[map[collState.cat]];
+ if (!list || !list.length || collState.q) { el.hidden = true; el.innerHTML = ''; return; }
  el.hidden = false;
- el.innerHTML = '<div class="container col-story__inner" data-reveal><p class="eyebrow">' + esc(t.pick(s.eye)) + '</p><h2>' + esc(t.pick(s.h)) + '</h2><p>' + esc(t.pick(s.p)) + '</p></div>';
+ const block = (s) => '<div class="product-story product-story--collection">'
+ + '<p class="product-story__point">' + esc(t.pick(s.point)) + '</p>'
+ + '<p class="product-story__body">' + esc(t.pick(s.histoire)) + '</p>'
+ + '<blockquote class="product-story__quote"><p>' + esc(t.pick(s.metaphore)) + '</p></blockquote>'
+ + '<p class="product-story__reassure">' + esc(t.pick(s.objection)) + '</p>'
+ + '<p class="product-story__invite">' + esc(t.pick(s.invitation)) + '</p>'
+ + '</div>';
+ el.innerHTML = '<div class="container col-story__inner" data-reveal>' + list.map(block).join('') + '</div>';
  if (document.documentElement.classList.contains('js')) requestAnimationFrame(wireReveal);
  }
  function renderCollections() {
@@ -2208,6 +2213,21 @@
  $('#pShort').textContent = t.pick(displayShort(p));
  $('#pBreadcrumbName').textContent = pageName;
  $('#pBullets').innerHTML = productBullets(p).map((item) => `<li>${esc(item)}</li>`).join('');
+ // Editorial story block — the "Point → Histoire → Objection → Métaphore → Invitation" filter.
+ // Keyed by handle, else familyHandle; hidden when a product has no validated story yet.
+ { const storyEl = $('#productStory');
+   if (storyEl) {
+     const st = (YZA.PRODUCT_STORIES || {})[p.handle] || (YZA.PRODUCT_STORIES || {})[p.familyHandle];
+     if (st) {
+       storyEl.hidden = false;
+       storyEl.innerHTML =
+         `<p class="product-story__point">${esc(t.pick(st.point))}</p>` +
+         `<p class="product-story__body">${esc(t.pick(st.histoire))}</p>` +
+         `<blockquote class="product-story__quote"><p>${esc(t.pick(st.metaphore))}</p></blockquote>` +
+         `<p class="product-story__reassure">${esc(t.pick(st.objection))}</p>` +
+         `<p class="product-story__invite">${esc(t.pick(st.invitation))}</p>`;
+     } else { storyEl.hidden = true; storyEl.innerHTML = ''; }
+   } }
  renderProductSwatches(p);
  $('#sameDayDelivery').textContent = ui.delivery;
  $('#dropHint').textContent = ui.hint;

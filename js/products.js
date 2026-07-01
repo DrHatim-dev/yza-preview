@@ -682,14 +682,14 @@ const PRODUCTS = [
  "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
@@ -1094,14 +1094,14 @@ const PRODUCTS = [
  "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
@@ -1709,14 +1709,14 @@ const PRODUCTS = [
  "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
@@ -2124,14 +2124,14 @@ const PRODUCTS = [
  "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
@@ -2540,14 +2540,14 @@ const PRODUCTS = [
  "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
@@ -2955,14 +2955,14 @@ const PRODUCTS = [
  "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
@@ -3370,14 +3370,14 @@ const PRODUCTS = [
  "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
@@ -3785,14 +3785,14 @@ const PRODUCTS = [
  "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
@@ -4035,14 +4035,14 @@ const PRODUCTS = [
  "ar": "ضمان 30 يوما: استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية."
  },
  "batch": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
  "ar": "دُفعة Jawhara محدودة؛ قد تتغير الأقمشة حسب التوفر."
  },
  "edition": {
- "fr": "Petite serie Jawhara; les tissus peuvent changer selon disponibilite.",
+ "fr": "Édition limitée Jawhara; les tissus peuvent changer selon disponibilite.",
  "en": "Small Jawhara batch; fabrics may change depending on availability.",
  "es": "Éditions limitées Jawhara; los tejidos pueden cambiar según la disponibilidad.",
  "tr": "Küçük Jawhara serisi; kumaşlar temin durumuna göre değişebilir.",
@@ -6395,14 +6395,14 @@ const PRODUCTS = [
  },
  "short": {
  "fr": "Charm cerises en raffia, crocheté main avec anneau doré 2 cm.",
- "en": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "en": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the hand tag.",
  "es": "Un charm de cerezas en rafia tejido a ganchillo, con aro dorado de 2,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "Bir tığ işi rafya kiraz charm, 2,5 cm altın halka ve etiket üzerinde usta bilgisiyle.",
  "ar": "ميدالية كرز من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم وبيانات الحرفية على البطاقة."
  },
  "displayShort": {
  "fr": "Charm cerises en raffia, crocheté main avec anneau doré 2 cm.",
- "en": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "en": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the hand tag.",
  "es": "Un charm de cerezas en rafia tejido a ganchillo, con aro dorado de 2,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "Bir tığ işi rafya kiraz charm, 2,5 cm altın halka ve etiket üzerinde usta bilgisiyle.",
  "ar": "ميدالية كرز من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم وبيانات الحرفية على البطاقة."
@@ -6751,14 +6751,14 @@ const PRODUCTS = [
  },
  "short": {
  "fr": "Charm raisins en raphia, crochete main avec anneau dore 2,5 cm.",
- "en": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "en": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the hand tag.",
  "es": "Un charm de uvas en rafia tejido a ganchillo, con aro dorado de 2,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "Bir tığ işi rafya üzüm charm, 2,5 cm altın halka ve etiket üzerinde usta bilgisiyle.",
  "ar": "ميدالية عنب من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم وبيانات الحرفية على البطاقة."
  },
  "displayShort": {
  "fr": "Charm raisins en raphia, crochete main avec anneau dore 2,5 cm.",
- "en": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the handtag.",
+ "en": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the hand tag.",
  "es": "Un charm de uvas en rafia tejido a ganchillo, con aro dorado de 2,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "Bir tığ işi rafya üzüm charm, 2,5 cm altın halka ve etiket üzerinde usta bilgisiyle.",
  "ar": "ميدالية عنب من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم وبيانات الحرفية على البطاقة."
@@ -9897,14 +9897,14 @@ const PRODUCTS = [
  },
  "short": {
  "fr": "Boucles pasteque en raphia, crochet main avec creoles dorees 1,5 cm.",
- "en": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "en": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Pendientes de sandía en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "El yapımı rafia karpuz küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
  "ar": "أقراط بطيخ من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "displayShort": {
  "fr": "Boucles pasteque en raphia, crochet main avec creoles dorees 1,5 cm.",
- "en": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "en": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Pendientes de sandía en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "El yapımı rafia karpuz küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
  "ar": "أقراط بطيخ من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
@@ -10146,17 +10146,17 @@ const PRODUCTS = [
  },
  "short": {
  "fr": "Boucles kiwi en raphia, crochet main avec creoles dorees 1,5 cm.",
- "en": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "es": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "tr": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "ar": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ "en": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "es": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "tr": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "ar": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "displayShort": {
  "fr": "Boucles kiwi en raphia, crochet main avec creoles dorees 1,5 cm.",
- "en": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "es": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "tr": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "ar": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ "en": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "es": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "tr": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "ar": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "desc": {
  "fr": "Boucles kiwi en raphia, crochet main avec creoles dorees 1,5 cm.",
@@ -10390,14 +10390,14 @@ const PRODUCTS = [
  },
  "short": {
  "fr": "Boucles citron en raphia, crochet main avec creoles dorees 1,5 cm.",
- "en": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "en": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Pendientes de limón en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "El yapımı rafia limon küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
  "ar": "أقراط ليمون من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "displayShort": {
  "fr": "Boucles citron en raphia, crochet main avec creoles dorees 1,5 cm.",
- "en": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "en": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Pendientes de limón en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "El yapımı rafia limon küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
  "ar": "أقراط ليمون من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
@@ -10638,14 +10638,14 @@ const PRODUCTS = [
  },
  "short": {
  "fr": "Boucles orange en raphia, crochet main avec creoles dorees 1,5 cm.",
- "en": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "en": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Pendientes de naranja en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "El yapımı rafia portakal küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
  "ar": "أقراط برتقال من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "displayShort": {
  "fr": "Boucles orange en raphia, crochet main avec creoles dorees 1,5 cm.",
- "en": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
+ "en": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Pendientes de naranja en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "El yapımı rafia portakal küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
  "ar": "أقراط برتقال من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
@@ -10884,17 +10884,17 @@ const PRODUCTS = [
  },
  "short": {
  "fr": "Boucles raisins en raphia, crochet main avec creoles dorees 1,5 cm.",
- "en": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "es": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "tr": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "ar": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ "en": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "es": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "tr": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "ar": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "displayShort": {
  "fr": "Boucles raisins en raphia, crochet main avec creoles dorees 1,5 cm.",
- "en": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "es": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "tr": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "ar": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ "en": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "es": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "tr": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "ar": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "desc": {
  "fr": "Boucles raisins en raphia, crochet main avec creoles dorees 1,5 cm.",
@@ -11137,17 +11137,17 @@ const PRODUCTS = [
  },
  "short": {
  "fr": "Boucles cerises en raphia, crochet main avec creoles dorees 1,5 cm.",
- "en": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "es": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "tr": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "ar": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ "en": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "es": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "tr": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "ar": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "displayShort": {
  "fr": "Boucles cerises en raphia, crochet main avec creoles dorees 1,5 cm.",
- "en": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "es": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "tr": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "ar": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ "en": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "es": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "tr": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "ar": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "desc": {
  "fr": "Boucles cerises en raphia, crochet main avec creoles dorees 1,5 cm.",
@@ -11388,17 +11388,17 @@ const PRODUCTS = [
  },
  "short": {
  "fr": "Boucles tomates en raphia, crochet main avec creoles dorees 1,5 cm.",
- "en": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "es": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "tr": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "ar": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ "en": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "es": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "tr": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "ar": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "displayShort": {
  "fr": "Boucles tomates en raphia, crochet main avec creoles dorees 1,5 cm.",
- "en": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "es": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "tr": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag.",
- "ar": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the handtag."
+ "en": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "es": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "tr": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
+ "ar": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "desc": {
  "fr": "Boucles tomates en raphia, crochet main avec creoles dorees 1,5 cm.",
@@ -18323,6 +18323,120 @@ YZA.business = {
  b2b: { moqBags: 10, terms: 'Wholesale partnerships with chosen stockists; full terms shared on request.' },
  exclusions: ['Bijoux', 'Sacs market'],
 };
+// ── Product editorial stories — the "Point → Histoire → Objection → Métaphore → Invitation" filter ──
+// Validated by Nawal (yza-histoires-produits.docx, juin 2026). FR is verbatim from the doc; EN is
+// translated. Rendered as a flowing editorial block on the PDP (renderProduct), keyed by `handle`,
+// else `familyHandle`. es/tr/ar intentionally omitted → t.pick() falls back to EN until validated.
+YZA.PRODUCT_STORIES = {
+ 'la-sculpture': {
+  point: { fr: 'Avant d’être un sac, c’était du fil de fer.', en: 'Before it was a bag, it was wire.' },
+  histoire: { fr: 'À l’intérieur des anses, une âme en fil de fer qu’on façonne à la main avant de la recouvrir de raffia — comme un sculpteur travaille le métal avant d’y poser l’argile. C’est de là que vient le nom. La silhouette vient d’ailleurs : les arches des portes de la médina, et le tracé sinueux des ruelles pour y arriver. Deux anses, jamais tout à fait pareilles.', en: 'Inside the handles, a wire core we shape by hand before wrapping it in raffia — the way a sculptor works the metal before laying on the clay. That’s where the name comes from. The silhouette comes from elsewhere: the arches of the medina’s doorways, and the winding lanes that lead to them. Two handles, never quite the same.' },
+  objection: { fr: 'C’est notre pièce la plus végétale : raffia et feuille de bananier, sans une once de cuir. Rien que ce que la terre a donné, façonné à la main.', en: 'It’s our most plant-based piece: raffia and banana leaf, without an ounce of leather. Nothing but what the earth gave, shaped by hand.' },
+  metaphore: { fr: 'Ce que la médina chuchote derrière ses portes. À porter au bras.', en: 'What the medina whispers behind its doors. To wear on your arm.' },
+  invitation: { fr: '3 tailles, en rouge, noir ou violet. Et à l’intérieur, un pochon Jawhara à pompons de raffia, pour ranger ce qu’on ne veut pas voir.', en: '3 sizes, in red, black or violet. And inside, a Jawhara pouch with raffia pompoms, for the things you’d rather keep out of sight.' },
+ },
+ 'la-nouvelle-vague': {
+  point: { fr: 'On a mis du cuir là où personne ne le verrait.', en: 'We put leather where no one would ever see it.' },
+  histoire: { fr: 'On voulait que ce sac soit aussi un bijou. L’inspiration vient des perles de rocaille, parfois arrangées en motifs par les artisans africains et nord-africains. Sous chaque perle, on a aussi glissé une bande de cuir — pas pour faire joli, pour qu’on ne la voie jamais. Le détail qu’on a ajouté en pensant à ce qui arrive vraiment à un sac qu’on porte tous les jours : une perle qui se détache, un jour, sans prévenir.', en: 'We wanted this bag to be a jewel too. The inspiration comes from seed beads, sometimes arranged into patterns by African and North African artisans. Under each bead, we also slipped a strip of leather — not to look pretty, but so you’d never see it. A detail we added thinking about what really happens to a bag you carry every day: a bead that comes loose, one day, without warning.' },
+  objection: { fr: 'Avec le cuir en dessous, même si une perle venait à manquer, ça ne se verrait pas. On n’a pas pensé ce sac pour le jour où vous l’achetez. On l’a pensé pour les années qui suivent.', en: 'With the leather underneath, even if a bead went missing, it wouldn’t show. We didn’t design this bag for the day you buy it. We designed it for the years that follow.' },
+  metaphore: { fr: 'La beauté qu’on voit. La solidité qu’on ne voit pas.', en: 'The beauty you see. The strength you don’t.' },
+  invitation: { fr: '3 tailles, 3 couleurs. Et un secret : sous les perles, du cuir. Si l’une d’elles s’en va un jour, le sac ne perd rien — il change juste un peu de visage.', en: '3 sizes, 3 colours. And a secret: leather, under the beads. If one of them leaves one day, the bag loses nothing — it just changes its face a little.' },
+ },
+ 'yza-palazzo-pants-jawhara-ss26': {
+  point: { fr: 'Ultra large. Jusqu’à ce qu’on tire le cordon.', en: 'Ultra wide. Until you pull the drawstring.' },
+  histoire: { fr: 'Le Palazzo Pants se porte taille haute, jambe XXL — puis tout se resserre d’un geste, grâce au cordon à la taille. C’est presque ludique à faire, regarder un pantalon aussi ample se réajuster en une seconde sur une taille fine. Juste au-dessus du cordon, un petit bout de tissu en trop crée des plis — un effet tulipe, presque accidentel, qu’on aurait pu lisser et qu’on a choisi de garder. Au bout du cordon, deux pampilles perlées dorées, faites main par La Fatima.', en: 'The Palazzo Pants sit high on the waist, XXL leg — then everything cinches in with one gesture, thanks to the drawstring. It’s almost playful to do: watching trousers this wide re-fit to a slim waist in a second. Just above the cord, a little extra fabric gathers into pleats — a tulip effect, almost accidental, that we could have smoothed out and chose to keep. At the end of the cord, two golden beaded tassels, handmade by La Fatima.' },
+  objection: { fr: 'Le pantalon arrive très long de base. À la commande, vous précisez votre taille en commentaire, et on l’ourlet sur mesure avant de l’envoyer.', en: 'They arrive very long by default. When you order, you note your height in a comment, and we hem them to measure before shipping.' },
+  metaphore: { fr: 'Le pantalon le plus large de l’armoire. Le plus facile à dompter.', en: 'The widest trousers in the wardrobe. The easiest to tame.' },
+  invitation: { fr: 'Taille haute, jambe ultra large, des poches qui ne se voient pas. Coupé à votre taille, sur demande.', en: 'High waist, ultra-wide leg, pockets you don’t see. Cut to your height, on request.' },
+ },
+ 'jawhara-pareos': {
+  point: { fr: 'Structurée comme une vraie jupe. Facile comme un paréo.', en: 'Structured like a real skirt. Easy like a sarong.' },
+  histoire: { fr: 'Les volants au bas font la différence : ce n’est plus juste un tissu noué, c’est une vraie pièce, avec du mouvement, presque dansante à chaque pas. La ceinture, large, ferme le tout taille haute et donne une allure structurée, presque travaillée. Et pourtant elle se met et se défait en quelques secondes, exactement comme un paréo — rien à calculer, rien à redraper. Une fente, presque invisible à l’arrêt, se découvre seulement quand vous marchez.', en: 'The ruffles at the hem make the difference: it’s no longer just knotted fabric, it’s a real piece, with movement, almost dancing with every step. The wide belt closes it high on the waist and gives a structured, almost tailored line. And yet it goes on and off in seconds, exactly like a sarong — nothing to calculate, nothing to re-drape. A slit, almost invisible when you stand still, reveals itself only when you walk.' },
+  objection: { fr: 'Elle va à toutes les tailles. Et malgré son allure construite, elle s’enfile aussi vite qu’un paréo de plage.', en: 'It fits every size. And despite its constructed look, it slips on as fast as a beach sarong.' },
+  metaphore: { fr: 'La structure d’une jupe. La liberté d’un paréo.', en: 'The structure of a skirt. The freedom of a sarong.' },
+  invitation: { fr: '3 longueurs, comme 3 humeurs : courte et spontanée, mi-longue et posée, ou extra-longue pour les soirs où vous voulez du talon. Ceinture brodée ou perlée d’un signe amazigh, faite main par La Fatima.', en: '3 lengths, like 3 moods: short and spontaneous, midi and composed, or extra-long for the evenings you want heels. Belt embroidered or beaded with an Amazigh sign, handmade by La Fatima.' },
+ },
+ 'yza-wrap-pants-jawhara-ss26': {
+  point: { fr: 'Un classique de garde-robe no size. Version ultra chic.', en: 'A no-size wardrobe classic. Ultra-chic version.' },
+  histoire: { fr: 'Le wrap pants, c’est THE basique de toute garde-robe no size — on le retrouve partout, dans toutes les matières, à tous les prix. On a osé le réhabiliter, et on a osé y poser notre Jawhara. Le résultat a dépassé ce qu’on imaginait. À l’arrière, un cordon fin qui garde une coupe plate, nette. Devant, la ceinture plus épaisse se noue joliment et porte la signature : broderie ton sur ton ou perlage d’un signe amazigh, fait main par La Fatima.', en: 'The wrap pants are THE basic of every no-size wardrobe — you find them everywhere, in every fabric, at every price. We dared to rehabilitate them, and dared to put our Jawhara on them. The result went beyond what we imagined. At the back, a fine cord that keeps a flat, clean cut. At the front, the thicker belt ties beautifully and carries the signature: tone-on-tone embroidery or the beading of an Amazigh sign, handmade by La Fatima.' },
+  objection: { fr: 'Wrap pants, mais jamais générique : en Jawhara, avec une signature qu’on ne voit que de près.', en: 'Wrap pants, but never generic: in Jawhara, with a signature you only see up close.' },
+  metaphore: { fr: 'Un basique que tout le monde connaît. Devenu une pièce que personne n’a.', en: 'A basic everyone knows. Turned into a piece no one has.' },
+  invitation: { fr: 'No size, du XS au XXL. Se ferme devant, se noue derrière, va avec n’importe quel haut de la collection.', en: 'No size, from XS to XXL. Closes at the front, ties at the back, goes with any top in the collection.' },
+ },
+ 'yza-bateau-top-jawhara-ss26': {
+  point: { fr: 'Un top passe-partout. Ouvert, léger, parfait pour l’été.', en: 'A go-anywhere top. Open, light, perfect for summer.' },
+  histoire: { fr: 'Il s’ouvre sur les côtés, se noue par petits nœuds — on peut le porter avec rien en dessous si on le veut, ou sur un bralette, à la plage le jour, avec un jean blanc le soir. C’est le genre de top qu’on met sans réfléchir et qu’on ne quitte plus.', en: 'It opens at the sides, ties with little knots — you can wear it with nothing underneath if you like, or over a bralette, at the beach by day, with white jeans at night. It’s the kind of top you throw on without thinking and never take off.' },
+  objection: { fr: 'Les nœuds sur les côtés ajustent la coupe — serré ou flottant, c’est vous qui décidez.', en: 'The knots at the sides adjust the fit — tight or loose, you decide.' },
+  metaphore: { fr: 'Le top qu’on attrape sans se poser de question.', en: 'The top you grab without a second thought.' },
+  invitation: { fr: 'No size. Se porte sans se prendre la tête — avec n’importe quel bas, YZA ou pas.', en: 'No size. Wears with no fuss — with any bottom, YZA or not.' },
+ },
+ 'yza-button-up-shirt-jawhara-ss26': {
+  point: { fr: 'Un classique indémodable. Version YZA.', en: 'A timeless classic. The YZA version.' },
+  histoire: { fr: 'Boutonnée en nacre, avec une petite broderie ou un perlage de signe amazigh sur le col, fait main par La Fatima. Elle se porte ouverte sur un maillot, fermée seule, ou tuckée dans la jupe paréo. Et pour celles qui veulent une coupe parfaite — c’est la seule pièce de la collection qui a une vraie taille.', en: 'Buttoned in mother-of-pearl, with a little embroidery or beading of an Amazigh sign on the collar, handmade by La Fatima. Wear it open over a swimsuit, closed on its own, or tucked into the pareo skirt. And for those who want a perfect fit — it’s the only piece in the collection with a real size.' },
+  objection: { fr: 'En Jawhara, boutons nacre, signature amazigh sur le col — pas vraiment une chemise qu’on a déjà vue.', en: 'In Jawhara, mother-of-pearl buttons, an Amazigh signature on the collar — not exactly a shirt you’ve seen before.' },
+  metaphore: { fr: 'Une chemise occidentale. Réinventée à Marrakech.', en: 'A Western shirt. Reinvented in Marrakech.' },
+  invitation: { fr: 'À porter seule sur un maillot, ou tuckée dans notre jupe paréo. En S, M ou L.', en: 'To wear alone over a swimsuit, or tucked into our pareo skirt. In S, M or L.' },
+ },
+ // ⚠ Mapping assumption: the "scarf top" (halter, tied at the back) = Nawal’s "Top Foulard". Confirm.
+ 'yza-scarf-top-jawhara-ss26': {
+  point: { fr: 'Un top sexy. Dos nu, noué dans le dos.', en: 'A sexy top. Bare back, tied behind.' },
+  histoire: { fr: 'Il ressemble à un foulard — et c’est exactement l’idée. Il se noue dans le dos façon halter top, dos nu, avec une ouverture latérale qui dévoile juste ce qu’il faut. Au bout du cordon, des pampilles perlées dorées faites main par La Fatima.', en: 'It looks like a scarf — and that’s exactly the idea. It ties behind the neck like a halter top, bare back, with a side opening that reveals just enough. At the end of the cord, golden beaded tassels handmade by La Fatima.' },
+  objection: { fr: 'Le cordon ajuste la hauteur et le serrage — le même top peut donner plusieurs silhouettes différentes selon comment vous le nouez.', en: 'The cord adjusts the height and the tightness — the same top can give several different silhouettes depending on how you tie it.' },
+  metaphore: { fr: 'On a toutes essayé de nouer un foulard en top. On a juste décidé de le faire bien.', en: 'We’ve all tried to knot a scarf into a top. We just decided to do it properly.' },
+  invitation: { fr: 'No size. En halter top la journée, en bustier le soir, noué sur les hanches à la plage.', en: 'No size. As a halter top by day, a bustier by night, tied on the hips at the beach.' },
+ },
+};
+
+// Collection-level stories (rendered on the collection page header). rtw stacks the manifesto + the fabric story.
+YZA.CATEGORY_STORIES = {
+ charms: [{
+  point: { fr: 'J’ai toujours trouvé les étals de fruits marocains magnifiques. J’ai voulu en porter un bout.', en: 'I’ve always found Moroccan fruit stalls beautiful. I wanted to wear a piece of one.' },
+  histoire: { fr: 'Les étals de Marrakech, ceux de la médina comme ceux des camionnettes au coin de la rue — j’ai toujours trouvé ça beau, ça me rappelle mon père, qui adorait les fruits et s’arrêtait toujours devant. On a commencé en laine, puis on est passées au raffia : la matière la plus dure à crocheter, elle casse au moindre faux geste — mais une fois la pièce finie, elle ne bouge plus. Pour les grappes et les cerises, on utilise l’aakad, la technique des boutons de caftan, qui s’inspire elle-même de la forme d’une cerise, et vient d’une ville, Sefrou, qui célèbre la cerise chaque année.', en: 'The stalls of Marrakech, the ones in the medina and the ones on the street-corner trucks — I’ve always found them beautiful; they remind me of my father, who loved fruit and always stopped in front of them. We started in wool, then moved to raffia: the hardest material to crochet, it snaps at the slightest wrong move — but once the piece is finished, it never budges again. For the grapes and cherries, we use the aakad, the caftan-button technique, which itself takes its shape from a cherry, and comes from a town, Sefrou, that celebrates the cherry every year.' },
+  objection: { fr: 'Ce n’est pas figé à un seul usage. Un charm se clipse au sac, mais aussi à un bijou — et avec les petits anneaux dorés offerts à l’achat des boucles, plusieurs charms se combinent ou se portent en collier.', en: 'It isn’t locked to a single use. A charm clips to a bag, but also to a piece of jewellery — and with the little gold rings offered when you buy the earrings, several charms combine or wear as a necklace.' },
+  metaphore: { fr: 'Une carte postale de Marrakech. En format poche.', en: 'A postcard from Marrakech. Pocket-sized.' },
+  invitation: { fr: 'Cerises, raisins, citrons, oranges, pastèque, avocat. Choisissez votre fruit — ou collectionnez-les tous.', en: 'Cherries, grapes, lemons, oranges, watermelon, avocado. Choose your fruit — or collect them all.' },
+ }],
+ rtw: [{
+  point: { fr: 'Des vêtements pour votre corps. Mais aussi celui de vos sœurs et vos copines — pour n’importe quelle phase de vos vies.', en: 'Clothes for your body. But also your sisters’ and your friends’ — for any phase of your lives.' },
+  histoire: { fr: 'J’ai trois sœurs. On s’est toujours échangé nos vêtements — en voyage, pour une soirée, sans y penser. C’est une garde-robe de vacances : du beach club l’après-midi à l’hôtel chic le soir, sans repasser par la chambre. Le no size, ce n’est pas qu’une question de production. C’est pour que la pièce vous suive. Chaque pièce est aussi pensée en duo, un haut et un bas, et n’importe quel haut va avec n’importe quel bas.', en: 'I have three sisters. We’ve always swapped our clothes — travelling, for an evening, without thinking about it. This is a holiday wardrobe: from the beach club in the afternoon to the chic hotel at night, without a stop back at the room. No size isn’t just a production question. It’s so the piece follows you. Each piece is also designed as a duo, a top and a bottom, and any top goes with any bottom.' },
+  objection: { fr: 'On imagine souvent le no size large et flou, façon saroual hippie. Ici, chaque pièce se resserre — cordon, ceinture, nœud — pour épouser votre silhouette, pas la noyer. Et elle s’ajuste aussi à votre corps qui change : ballonnée, enceinte, ou simplement un autre jour. Demain, c’est peut-être votre sœur qui la porte.', en: 'People often picture no size as loose and shapeless, hippie-harem style. Here, each piece cinches — cord, belt, knot — to hug your shape, not drown it. And it adjusts to a body that changes: bloated, pregnant, or simply another day. Tomorrow, maybe it’s your sister wearing it.' },
+  metaphore: { fr: 'Un vêtement à partager. À porter toute une vie.', en: 'A garment to share. To wear a whole life.' },
+  invitation: { fr: 'No size, du XS au XXL. Un haut, un bas, dix couleurs à mélanger. À vous d’inventer la suite.', en: 'No size, from XS to XXL. A top, a bottom, ten colours to mix. The rest is yours to invent.' },
+ }, {
+  point: { fr: 'Précieux. Jamais too much.', en: 'Precious. Never too much.' },
+  histoire: { fr: 'Le Jawhara traditionnel se tisse à la main, en soie, pour le formalwear le plus précieux — celui qu’on porte une fois, qu’on range, qu’on protège. Le nôtre est en soie et viscose, avec un fil lurex discret qui se fond dans la couleur plutôt que de briller fort. Pas de broderie chargée, pas un tissu qui annonce qu’il est précieux. C’est du resort wear : on le porte en vacances, du beach club l’après-midi à un dîner d’hôtel chic le soir, sans jamais changer de tenue.', en: 'Traditional Jawhara is woven by hand, in silk, for the most precious formalwear — the kind you wear once, put away, protect. Ours is in silk and viscose, with a discreet lurex thread that melts into the colour rather than shining loud. No heavy embroidery, no fabric that announces it’s precious. This is resort wear: you wear it on holiday, from the beach club in the afternoon to a chic hotel dinner at night, without ever changing your outfit.' },
+  objection: { fr: 'On pense souvent ne pas savoir où le porter, ou qu’un tissu aussi beau doit se protéger comme un trésor. Les deux sont faux. Il rehausse une tenue casual l’après-midi, complète une tenue chic le soir — et il se lave en machine, résiste au fer, ne se froisse presque pas. Un tissu noble qui ne vous demande rien en retour.', en: 'People often think they won’t know where to wear it, or that a fabric this beautiful must be protected like a treasure. Both are false. It lifts a casual look in the afternoon, completes a chic look at night — and it machine-washes, takes an iron, barely creases. A noble fabric that asks nothing of you in return.' },
+  metaphore: { fr: 'Un tissu de caftan, habitué à attendre une seule occasion. Le nôtre est fait pour toutes.', en: 'A caftan fabric, used to waiting for a single occasion. Ours is made for all of them.' },
+  invitation: { fr: '10 couleurs, chacune avec son nom et son fil signature — doré ou argenté, toujours discret.', en: '10 colours, each with its name and its signature thread — gold or silver, always discreet.' },
+ }],
+};
+
+// Validated stories with no product on the site yet (La Vague = sur commande; Top Bandeau & the square
+// Foulard aren’t in the catalogue). Kept ready to attach the day a product/page exists.
+YZA.PARKED_STORIES = {
+ 'la-vague': {
+  point: { fr: 'Mon premier sac avait un défaut. Je n’ai jamais voulu le corriger.', en: 'My first bag had a flaw. I never wanted to fix it.' },
+  histoire: { fr: 'Un panier en paille traditionnel, tressé en spirale à la main, en doum blanc de Marrakech — pas le doum qu’on trouve partout dans les montagnes, mais une feuille de palmier dattier qu’on va chercher en grimpant à la corde, qu’on trie, qu’on fait sécher au soleil. Quand on referme la boucle en haut du panier, la spirale ne se ferme jamais parfaitement à plat. Il reste un petit décalage. Une vague.', en: 'A traditional straw basket, coiled by hand in a spiral, in white Marrakech doum — not the doum you find all over the mountains, but a date-palm leaf you climb by rope to reach, sort, and dry in the sun. When you close the loop at the top of the basket, the spiral never quite lies flat. A small offset remains. A wave.' },
+  objection: { fr: 'Ce n’est pas de la paille ramassée au hasard. C’est une feuille qu’il a fallu retirer pour que l’arbre continue de pousser, choisie parmi les plus belles, séchée, puis tressée à la main avec un cuir qui, lui aussi, n’a rien d’industriel — un sous-produit réel de ce qu’on consomme déjà, pas une matière qu’on a fait naître pour l’occasion.', en: 'This isn’t straw gathered at random. It’s a leaf that had to be removed for the tree to keep growing, chosen among the finest, dried, then woven by hand with a leather that, too, is nothing industrial — a real by-product of what we already consume, not a material born for the occasion.' },
+  metaphore: { fr: 'Un accident de tressage. Devenu un choix de design.', en: 'A weaving accident. Turned into a design choice.' },
+  invitation: { fr: 'Sur commande, environ 3 semaines. Choisissez la taille, on choisit ensemble la couleur.', en: 'Made to order, about 3 weeks. Choose the size; we choose the colour together.' },
+ },
+ 'top-bandeau': {
+  point: { fr: 'Sexy et confortable. Le petit dernier de la collection.', en: 'Sexy and comfortable. The latest addition to the collection.' },
+  histoire: { fr: 'Une brassière en Jawhara, ajustable à l’avant. Le cordon passe derrière la nuque — et au bout, les pampilles perlées dorées faites main par La Fatima. On peut le porter de plusieurs façons, on vous montrera.', en: 'A Jawhara bandeau, adjustable at the front. The cord passes behind the neck — and at its end, the golden beaded tassels handmade by La Fatima. It can be worn several ways; we’ll show you.' },
+  objection: { fr: 'Deux tailles, ajustable à l’avant — il épouse sans contraindre.', en: 'Two sizes, adjustable at the front — it hugs without constraining.' },
+  metaphore: { fr: 'Une brassière qui ne fait pas de compromis.', en: 'A bandeau that makes no compromise.' },
+  invitation: { fr: 'En 2 tailles. Le soir, à la plage, ou partout où vous voulez qu’on vous remarque.', en: 'In 2 sizes. In the evening, at the beach, or anywhere you want to be noticed.' },
+ },
+ 'foulard-carre': {
+  point: { fr: 'Juste un carré de Jawhara. Mais pas que.', en: 'Just a square of Jawhara. But not only.' },
+  histoire: { fr: '90×90cm de Jawhara. Pas de couture compliquée, pas de construction — juste le tissu, dans toute sa beauté. En top noué, en foulard dans les cheveux, sur les hanches, autour du cou. Ce qu’il devient dépend de vous.', en: '90×90cm of Jawhara. No complicated seam, no construction — just the fabric, in all its beauty. As a knotted top, a scarf in your hair, on your hips, around your neck. What it becomes depends on you.' },
+  objection: { fr: 'Pas une pièce à usage unique — un carré de Jawhara qu’on porte avec tout, qu’on réinvente à chaque fois, et qu’on ne se lasse pas.', en: 'Not a single-use piece — a square of Jawhara you wear with everything, reinvent every time, and never tire of.' },
+  metaphore: { fr: 'Un carré de tissu. Autant de vies que vous lui donnez.', en: 'A square of fabric. As many lives as you give it.' },
+  invitation: { fr: 'À nouer, draper, porter comme vous voulez. Il n’y a pas de mauvaise façon.', en: 'To knot, drape, wear however you like. There’s no wrong way.' },
+ },
+};
+
 YZA.promos = { exitRecovery: { code: 'YZA20', percent: 20, minEuro: 150, minDh: 150000 } };
 YZA.bespoke = {
  minFabricPieces: 100,
