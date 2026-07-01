@@ -168,10 +168,23 @@ YZA.payment = {
   holder: 'Nawal Rmili',
  },
  morocco: {
-  rib: '',              // 24-digit RIB — empty ⇒ shows "[RIB à compléter]" placeholder
-  bank: '',
-  holder: 'Nawal Rmili',
+  rib: '007 450 0008577000000432 93',   // Attijariwafa bank — Marrakech Hassan II
+  bank: 'Attijariwafa bank',
+  holder: 'NAWAL RMILI YZA',
+  swift: 'BCMAMAMC',
  },
+};
+
+// ---- Ad-platform tracking config (edit here, see js/tracking.js) ----
+// Paste an ID to switch that platform ON; empty = OFF (no script, no cookies).
+// Standard ecommerce events fire site-wide either way (view_item, add_to_cart,
+// begin_checkout, add_shipping_info, add_payment_info, purchase) with MAD
+// amounts and the YZA-xxxx order number as transaction_id.
+YZA.tracking = {
+ gtmId: '',           // Google Tag Manager  'GTM-XXXXXXX'  (preferred — manages GA4/Ads in one place)
+ ga4Id: '',           // Google Analytics 4  'G-XXXXXXXXXX' (used only if no GTM)
+ metaPixelId: '',     // Meta / Facebook & Instagram Pixel  (numbers only)
+ tiktokPixelId: '',   // TikTok Pixel        'XXXXXXXXXXXXXXXXXX'
 };
 
 YZA.servicePolicy = {

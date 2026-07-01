@@ -415,6 +415,7 @@ body.has-search-overlay { overflow: hidden; }
 .pay-copy:hover { background: var(--color-fg); color: var(--color-bg); }
 .pay-eur { font-size: var(--fs-sm); font-weight: 500; }
 .pay-note { font-size: var(--fs-xs); color: var(--color-muted); }
+.pay-note--fee { color: var(--color-fg); background: #faf6f0; border: 1px solid var(--color-border); padding: 0.55rem 0.7rem; }
 
 /* Order summary */
 .co-sum { border: 1px solid var(--color-border); padding: var(--space-6); position: sticky; top: 100px; }

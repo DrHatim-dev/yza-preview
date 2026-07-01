@@ -2126,6 +2126,14 @@
  category: p.category,
  price: p.price,
  });
+ // Ad platforms (GA4/Meta/TikTok via tracking.js) — standard view_item.
+ try {
+ YZA.track?.('view_item', {
+ value: (p.price || 0) / 100,
+ currency: 'MAD',
+ items: [{ item_id: p.handle, item_name: pageName, item_category: p.category || '', quantity: 1, price: (p.price || 0) / 100 }],
+ });
+ } catch (e) {}
  }
 
  const gal = productGallery(p);

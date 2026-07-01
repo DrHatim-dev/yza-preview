@@ -27,6 +27,14 @@ const cart = {
       familyHandle: product?.familyHandle || '',
       price: product?.price || 0,
     });
+    // Ad platforms (GA4/Meta/TikTok via tracking.js) — standard add_to_cart.
+    try {
+      YZA.track?.('add_to_cart', {
+        value: ((product?.price || 0) * qty) / 100,
+        currency: 'MAD',
+        items: [{ item_id: handle, item_name: YZA.i18n?.pick?.(product?.name) || handle, item_variant: variant || '', quantity: qty, price: (product?.price || 0) / 100 }],
+      });
+    } catch (e) {}
   },
   remove(handle, variant) {
     const k = this._key(handle, variant);

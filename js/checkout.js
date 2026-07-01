@@ -150,6 +150,7 @@
           (bank ? row(T('co.pay.bank'), bank, false) : '') +
           row('RIB', rib, !!(p.morocco && p.morocco.rib)) +
           row(T('co.pay.holder'), holder, false) +
+          '<p class="pay-note pay-note--fee">' + esc(T('co.pay.ribFee')) + '</p>' +
           '<p class="pay-note">' + esc(T('co.pay.note')) + '</p></div>';
       }
       if (method === 'iban') {
@@ -252,7 +253,25 @@
     }
     function buildOrder() {
       var items = lines().map(function (it) { return { handle: it.handle, name: it.name, variant: it.variant, qty: it.qty, price: it.price }; });
-      return { items: items, subtotalDh: Math.round(subtotal() / 100), method: state.method, methodLabel: methodLabel(), shipping: state.ship, lang: YZA.i18n.lang, page: location.href, at: new Date().toISOString() };
+      return { number: state.orderNo || '', items: items, subtotalDh: Math.round(subtotal() / 100), method: state.method, methodLabel: methodLabel(), shipping: state.ship, lang: YZA.i18n.lang, page: location.href, at: new Date().toISOString() };
+    }
+    // Human-friendly unique order number, shared by WhatsApp / email / WooCommerce / ad pixels.
+    function orderNo() {
+      var t = Date.now().toString(36).toUpperCase();
+      var r = Math.floor(Math.random() * 1296).toString(36).toUpperCase();
+      return 'YZA-' + t + (r.length < 2 ? '0' + r : r);
+    }
+    // GA4-shape ecommerce payload (also consumed by the Meta/TikTok mappers in tracking.js).
+    function trackPayload(o) {
+      return {
+        transaction_id: o.number || '',
+        value: Math.round(subtotal()) / 100,
+        currency: 'MAD',
+        payment_type: o.method || state.method,
+        items: (o.items || lines()).map(function (it) {
+          return { item_id: it.handle, item_name: it.name, item_variant: it.variant || '', quantity: it.qty, price: (it.price || 0) / 100 };
+        }),
+      };
     }
     function orderText(o) {
       var lang = YZA.i18n.lang || 'fr';
@@ -267,20 +286,36 @@
       var lns = o.items.map(function (it) { return '• ' + it.qty + ' × ' + it.name + (it.variant ? ' (' + it.variant + ')' : '') + ' — ' + fmt(it.price * it.qty); });
       var s = o.shipping || {};
       var addr = [s.name, s.phone, s.address, [s.zip, s.city].filter(Boolean).join(' '), s.country].filter(Boolean).join('\n');
-      var out = [c.intro].concat(lns);
+      var out = [c.intro];
+      if (o.number) out.push('N° : ' + o.number);
+      out = out.concat(lns);
       out.push(c.total + ' : ' + fmt(subtotal()) + (isIntl() ? ' (' + eur(subtotal()) + ')' : ''));
       out.push('—');
       out.push(c.ship + ' :\n' + addr);
       if (s.note) out.push('“' + s.note + '”');
       out.push('—');
       out.push(c.pay + ' : ' + o.methodLabel);
+      // Include the actual payment coordinates for transfer methods (promised in the UI note).
+      var p = PAY();
+      if (o.method === 'rib' && p.morocco && p.morocco.rib) {
+        out.push('RIB (' + (p.morocco.bank || '') + ') : ' + p.morocco.rib);
+        out.push(T('co.pay.holder') + ' : ' + (p.morocco.holder || ''));
+        out.push(T('co.pay.ribFee'));
+      } else if (o.method === 'iban' && p.eur && p.eur.iban) {
+        out.push('IBAN (' + (p.eur.bank || '') + ') : ' + p.eur.iban);
+        out.push('BIC : ' + (p.eur.bic || '') + ' — ' + T('co.pay.holder') + ' : ' + (p.eur.holder || ''));
+        out.push(eur(subtotal()));
+      } else if (o.method === 'paypal' && paypalReady()) {
+        out.push('PayPal : ' + (p.paypalEmail || p.paypalLink) + ' (' + eur(subtotal()) + ')');
+      }
       return out.join('\n');
     }
 
     function placeOrder() {
       if (!YZA.cart.items.length) { state.step = 'cart'; render(); return; }
+      state.orderNo = orderNo();
       var o = buildOrder();
-      // best-effort email record (never blocks the WhatsApp handoff)
+      // best-effort email + WooCommerce record (never blocks the WhatsApp handoff)
       try {
         fetch((YZA.payment && YZA.payment.orderEndpoint) || 'order.php', {
           method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ order: o, text: orderText(o) }),
@@ -288,6 +323,8 @@
       } catch (e) {}
       state.wa = 'https://wa.me/' + waDigits() + '?text=' + encodeURIComponent(orderText(o));
       try { if (YZA.analytics) YZA.analytics.track('order_placed', { method: state.method, items: YZA.cart.count(), subtotal_cents: subtotal() }); } catch (e) {}
+      // Ad platforms: one purchase event per order, keyed by the order number.
+      try { if (YZA.track) { YZA.track('add_payment_info', trackPayload(o)); YZA.track('purchase', trackPayload(o)); } } catch (e) {}
       try { sessionStorage.setItem('yza.order.sent', String(Date.now())); } catch (e) {}
       state.step = 'done';
       render();
@@ -332,6 +369,7 @@
       if (next) {
         var to = next.getAttribute('data-next');
         if (to === 'payment' && !collectShip()) return;      // validate shipping before payment
+        if (to === 'payment') { try { if (YZA.track) YZA.track('add_shipping_info', trackPayload({})); } catch (e3) {} }
         if (state.step === 'shipping' && to !== 'cart') collectShip();
         state.step = to; render(); scrollTop(); return;
       }
@@ -376,5 +414,6 @@
 
     YZA.i18n.onChange(function () { render(); });
     render();
+    try { if (YZA.track && YZA.cart.items.length) YZA.track('begin_checkout', trackPayload({})); } catch (e) {}
   }
 }());
