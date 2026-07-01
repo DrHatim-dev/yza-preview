@@ -18836,21 +18836,23 @@ function decrementInventory(items) {
  } catch (err) {}
 }
 
-// Per-charm finish -> real photo, for the PDP finish selector image swap.
+// Per-charm finish -> photo, for the PDP finish selector image swap.
 // Keys: loop (raffia loop), r2 (2 cm gold ring), r3 (engraved brass tag).
-// Only mapped where a genuine photo of THAT finish exists (never a mislabelled shot);
-// charms/finishes without a real shot simply don't swap. Vision-classified 2026-07-01.
+// Every charm has all three: real studio shots where the finish was photographed,
+// plus image-to-image variants (assets/products/charms/finish/) generated from the
+// charm's own real photo where that finish wasn't shot — same charm, only the loop
+// hardware differs. Vision-classified + completed 2026-07-01.
 const CHARM_FINISH_IMAGES = {
-  'raffia-avocado-half-charm-ss26':    { loop: 'assets/products/charms/client/avocado-half-01.jpg', r3: 'assets/products/charms/client/avocado-half-02.jpg' },
-  'raffia-cherries-charm-ss26':        { r3: 'assets/products/charms/client/cherries-01.jpg' },
-  'raffia-grapes-charm-ss26':          { r2: 'assets/products/charms/client/grapes-01.jpg', r3: 'assets/products/charms/client/grapes-02.jpg' },
-  'raffia-kiwi-slice-charm-ss26':      { r3: 'assets/products/charms/client/kiwi-slice-01.jpg' },
-  'raffia-lemon-slice-charm-ss26':     { r2: 'assets/products/charms/client/lemon-slice-01.jpg', r3: 'assets/products/fruit-market/charm-lemon-slice.jpg' },
-  'raffia-orange-slice-charm-ss26':    { loop: 'assets/products/charms/client/orange-slice-01.jpg', r3: 'assets/products/charms/client/orange-slice-02.jpg' },
+  'raffia-avocado-half-charm-ss26':    { loop: 'assets/products/charms/client/avocado-half-01.jpg', r2: 'assets/products/charms/finish/avocado-ring.jpg', r3: 'assets/products/charms/client/avocado-half-02.jpg' },
+  'raffia-cherries-charm-ss26':        { loop: 'assets/products/charms/finish/cherries-loop.jpg', r2: 'assets/products/charms/finish/cherries-ring.jpg', r3: 'assets/products/charms/client/cherries-01.jpg' },
+  'raffia-grapes-charm-ss26':          { loop: 'assets/products/charms/finish/grapes-loop.jpg', r2: 'assets/products/charms/client/grapes-01.jpg', r3: 'assets/products/charms/client/grapes-02.jpg' },
+  'raffia-kiwi-slice-charm-ss26':      { loop: 'assets/products/charms/finish/kiwi-loop.jpg', r2: 'assets/products/charms/finish/kiwi-ring.jpg', r3: 'assets/products/charms/client/kiwi-slice-01.jpg' },
+  'raffia-lemon-slice-charm-ss26':     { loop: 'assets/products/charms/finish/lemon-slice-loop.jpg', r2: 'assets/products/charms/client/lemon-slice-01.jpg', r3: 'assets/products/fruit-market/charm-lemon-slice.jpg' },
+  'raffia-orange-slice-charm-ss26':    { loop: 'assets/products/charms/client/orange-slice-01.jpg', r2: 'assets/products/charms/finish/orange-slice-ring.jpg', r3: 'assets/products/charms/client/orange-slice-02.jpg' },
   'raffia-whole-lemon-charm-ss26':     { loop: 'assets/products/charms/client/whole-lemon-01.jpg', r2: 'assets/products/fruit-market/charm-whole-lemon.jpg', r3: 'assets/products/charms/client/whole-lemon-02.jpg' },
-  'raffia-whole-orange-charm-ss26':    { loop: 'assets/products/fruit-market/charm-whole-orange.jpg', r3: 'assets/products/charms/client/whole-orange-01.jpg' },
-  'raffia-tomato-charm-ss26':          { r3: 'assets/products/charms/client/tomato-01.jpg' },
-  'raffia-watermelon-slice-charm-ss26':{ r2: 'assets/products/charms/client/watermelon-slice-01.jpg', r3: 'assets/products/fruit-market/charm-watermelon-slice.jpg' },
+  'raffia-whole-orange-charm-ss26':    { loop: 'assets/products/fruit-market/charm-whole-orange.jpg', r2: 'assets/products/charms/finish/whole-orange-ring.jpg', r3: 'assets/products/charms/client/whole-orange-01.jpg' },
+  'raffia-tomato-charm-ss26':          { loop: 'assets/products/charms/finish/tomato-loop.jpg', r2: 'assets/products/charms/finish/tomato-ring.jpg', r3: 'assets/products/charms/client/tomato-01.jpg' },
+  'raffia-watermelon-slice-charm-ss26':{ loop: 'assets/products/charms/finish/watermelon-loop.jpg', r2: 'assets/products/charms/client/watermelon-slice-01.jpg', r3: 'assets/products/fruit-market/charm-watermelon-slice.jpg' },
 };
 YZA.charmFinishImages = CHARM_FINISH_IMAGES;
 YZA.products = PRODUCTS;
