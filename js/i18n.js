@@ -222,6 +222,76 @@ const STR = {
   'cart.remove':   { fr: 'Retirer', en: 'Remove' },
   'cart.thanks':   { fr: 'Merci ✓ Démo : la commande se validerait ici.', en: 'Thank you ✓ Demo: checkout would happen here.' },
 
+  /* — Panier (drawer) + Checkout — */
+  'cart.count':      { fr: 'Panier', en: 'Shopping cart', es: 'Cesta', tr: 'Sepet', ar: 'السلة' },
+  'cart.proceed':    { fr: 'Passer au paiement', en: 'Proceed to checkout', es: 'Ir a pagar', tr: 'Ödemeye geç', ar: 'المتابعة إلى الدفع' },
+  'cart.viewCart':   { fr: 'Voir mon panier', en: 'View my shopping cart', es: 'Ver mi cesta', tr: 'Sepetimi gör', ar: 'عرض سلتي' },
+  'cart.total':      { fr: 'Total', en: 'Total', es: 'Total', tr: 'Toplam', ar: 'المجموع' },
+  'cart.vat':        { fr: 'TVA incluse', en: 'VAT included', es: 'IVA incluido', tr: 'KDV dahil', ar: 'شامل الضريبة' },
+  'cart.favourite':  { fr: 'Ajouter aux favoris', en: 'Add to favourites', es: 'Añadir a favoritos', tr: 'Favorilere ekle', ar: 'أضيفي إلى المفضّلة' },
+  'cart.acc.help':   { fr: "Besoin d'aide ? Contactez-nous", en: 'Need help? Contact us', es: '¿Necesitas ayuda? Contáctanos', tr: 'Yardım mı lazım? Bize ulaşın', ar: 'تحتاجين مساعدة؟ تواصلي معنا' },
+  'cart.acc.pay':    { fr: 'Paiement sécurisé', en: 'Secure payment', es: 'Pago seguro', tr: 'Güvenli ödeme', ar: 'دفع آمن' },
+  'cart.acc.ship':   { fr: 'Livraison & retours', en: 'Free shipping & returns', es: 'Envío y devoluciones', tr: 'Teslimat & iade', ar: 'التوصيل والإرجاع' },
+  'cart.acc.shipTxt':{ fr: 'Livraison suivie sous 2 à 5 jours ouvrés. Vous avez 30 jours pour retourner un article non porté. Détails : notre politique de retours.', en: 'Tracked delivery in 2–5 business days. You have 30 days to return an unworn item. See our returns policy for details.', es: 'Entrega con seguimiento en 2–5 días hábiles. Tienes 30 días para devolver un artículo sin usar.', tr: '2–5 iş gününde takipli teslimat. Kullanılmamış ürünü 30 gün içinde iade edebilirsiniz.', ar: 'توصيل متتبّع خلال 2–5 أيام عمل. لديك 30 يومًا لإرجاع قطعة غير مستعملة.' },
+
+  'co.title':        { fr: 'Commande', en: 'Checkout', es: 'Pago', tr: 'Ödeme', ar: 'الطلب' },
+  'co.step.cart':    { fr: 'Panier', en: 'Cart', es: 'Cesta', tr: 'Sepet', ar: 'السلة' },
+  'co.step.ship':    { fr: 'Livraison', en: 'Shipping details', es: 'Datos de envío', tr: 'Teslimat bilgileri', ar: 'تفاصيل التوصيل' },
+  'co.step.pay':     { fr: 'Paiement & confirmation', en: 'Payment & confirmation', es: 'Pago y confirmación', tr: 'Ödeme & onay', ar: 'الدفع والتأكيد' },
+  'co.continue':     { fr: 'Continuer les achats', en: 'Continue shopping', es: 'Seguir comprando', tr: 'Alışverişe devam', ar: 'متابعة التسوّق' },
+  'co.summary':      { fr: 'Récapitulatif', en: 'Order summary', es: 'Resumen del pedido', tr: 'Sipariş özeti', ar: 'ملخّص الطلب' },
+  'co.subtotal':     { fr: 'Sous-total', en: 'Subtotal', es: 'Subtotal', tr: 'Ara toplam', ar: 'المجموع الفرعي' },
+  'co.shipping':     { fr: 'Livraison', en: 'Shipping', es: 'Envío', tr: 'Teslimat', ar: 'التوصيل' },
+  'co.shipFree':     { fr: 'Offerte', en: 'Free', es: 'Gratis', tr: 'Ücretsiz', ar: 'مجاني' },
+  'co.shipCalc':     { fr: 'Confirmée avec vous', en: 'Confirmed with you', es: 'Se confirma contigo', tr: 'Sizinle onaylanır', ar: 'تُؤكَّد معك' },
+  'co.total':        { fr: 'Total', en: 'Total', es: 'Total', tr: 'Toplam', ar: 'المجموع' },
+  'co.vat':          { fr: 'TVA incluse', en: 'VAT included', es: 'IVA incluido', tr: 'KDV dahil', ar: 'شامل الضريبة' },
+  'co.next':         { fr: 'Continuer', en: 'Continue', es: 'Continuar', tr: 'Devam et', ar: 'متابعة' },
+  'co.back':         { fr: 'Retour', en: 'Back', es: 'Atrás', tr: 'Geri', ar: 'رجوع' },
+  'co.terms':        { fr: 'En passant commande, vous acceptez nos', en: 'By placing this order, you accept our', es: 'Al hacer el pedido, aceptas nuestras', tr: 'Sipariş vererek şunları kabul edersiniz:', ar: 'بتقديم الطلب، فإنك توافقين على' },
+  'co.gcs':          { fr: 'Conditions Générales de Vente', en: 'General Conditions of Sale', es: 'Condiciones de Venta', tr: 'Satış Koşulları', ar: 'شروط البيع العامة' },
+  'co.privacy':      { fr: 'Politique de confidentialité', en: 'Privacy Policy', es: 'Política de privacidad', tr: 'Gizlilik Politikası', ar: 'سياسة الخصوصية' },
+  'co.empty':        { fr: 'Votre panier est vide.', en: 'Your cart is empty.', es: 'Tu cesta está vacía.', tr: 'Sepetiniz boş.', ar: 'سلتك فارغة.' },
+  'co.emptyCta':     { fr: 'Découvrir les charms', en: 'Discover the charms', es: 'Descubrir los charms', tr: "Charm'ları keşfet", ar: 'اكتشفي التمائم' },
+
+  'co.ship.title':   { fr: 'Adresse de livraison', en: 'Shipping details', es: 'Datos de envío', tr: 'Teslimat bilgileri', ar: 'عنوان التوصيل' },
+  'co.ship.name':    { fr: 'Nom & prénom', en: 'Full name', es: 'Nombre completo', tr: 'Ad soyad', ar: 'الاسم الكامل' },
+  'co.ship.email':   { fr: 'E-mail', en: 'Email', es: 'Correo electrónico', tr: 'E-posta', ar: 'البريد الإلكتروني' },
+  'co.ship.phone':   { fr: 'Téléphone (WhatsApp)', en: 'Phone (WhatsApp)', es: 'Teléfono (WhatsApp)', tr: 'Telefon (WhatsApp)', ar: 'الهاتف (واتساب)' },
+  'co.ship.address': { fr: 'Adresse', en: 'Address', es: 'Dirección', tr: 'Adres', ar: 'العنوان' },
+  'co.ship.city':    { fr: 'Ville', en: 'City', es: 'Ciudad', tr: 'Şehir', ar: 'المدينة' },
+  'co.ship.zip':     { fr: 'Code postal', en: 'Postal code', es: 'Código postal', tr: 'Posta kodu', ar: 'الرمز البريدي' },
+  'co.ship.country': { fr: 'Pays', en: 'Country', es: 'País', tr: 'Ülke', ar: 'البلد' },
+  'co.ship.note':    { fr: 'Note (facultatif)', en: 'Order note (optional)', es: 'Nota (opcional)', tr: 'Not (isteğe bağlı)', ar: 'ملاحظة (اختياري)' },
+  'co.ship.notePh':  { fr: 'Précisez une taille, une couleur, un créneau…', en: 'A size, a colour, a delivery time…', es: 'Una talla, un color, un horario…', tr: 'Beden, renk, teslim saati…', ar: 'مقاس، لون، موعد التسليم…' },
+  'co.err.required': { fr: 'Ce champ est requis', en: 'This field is required', es: 'Este campo es obligatorio', tr: 'Bu alan zorunludur', ar: 'هذا الحقل مطلوب' },
+  'co.err.email':    { fr: 'E-mail invalide', en: 'Enter a valid email', es: 'Correo no válido', tr: 'Geçerli bir e-posta girin', ar: 'أدخلي بريدًا صحيحًا' },
+
+  'co.pay.title':    { fr: 'Mode de paiement', en: 'Payment method', es: 'Método de pago', tr: 'Ödeme yöntemi', ar: 'طريقة الدفع' },
+  'co.pay.cod':      { fr: 'Paiement à la livraison', en: 'Cash on delivery', es: 'Pago contra entrega', tr: 'Kapıda ödeme', ar: 'الدفع عند الاستلام' },
+  'co.pay.codTxt':   { fr: 'Payez en espèces à la réception (Maroc). Le plus simple.', en: 'Pay in cash when your order arrives (Morocco). The easiest.', es: 'Paga en efectivo al recibir (Marruecos). Lo más fácil.', tr: 'Siparişiniz geldiğinde nakit ödeyin (Fas). En kolayı.', ar: 'ادفعي نقدًا عند الاستلام (المغرب). الأسهل.' },
+  'co.pay.rib':      { fr: 'Virement bancaire Maroc — instantané', en: 'Bank transfer (Morocco) — instant', es: 'Transferencia Marruecos — instantánea', tr: 'Banka havalesi (Fas) — anında', ar: 'تحويل بنكي (المغرب) — فوري' },
+  'co.pay.ribTxt':   { fr: 'Virement instantané, puis envoyez le reçu sur WhatsApp.', en: 'Instant transfer, then send the receipt on WhatsApp.', es: 'Transferencia instantánea; envía el recibo por WhatsApp.', tr: 'Anında havale, ardından dekontu WhatsApp’tan gönderin.', ar: 'تحويل فوري، ثم أرسلي الإيصال عبر واتساب.' },
+  'co.pay.iban':     { fr: 'Virement en euros (IBAN)', en: 'Bank transfer in euros (IBAN)', es: 'Transferencia en euros (IBAN)', tr: 'Euro havalesi (IBAN)', ar: 'تحويل باليورو (IBAN)' },
+  'co.pay.ibanTxt':  { fr: "Pour l'international, en euros. Envoyez le reçu sur WhatsApp.", en: 'For international orders, in euros. Send the receipt on WhatsApp.', es: 'Para pedidos internacionales, en euros. Envía el recibo por WhatsApp.', tr: 'Uluslararası siparişler için, euro olarak. Dekontu WhatsApp’tan gönderin.', ar: 'للطلبات الدولية، باليورو. أرسلي الإيصال عبر واتساب.' },
+  'co.pay.paypal':   { fr: 'PayPal', en: 'PayPal', es: 'PayPal', tr: 'PayPal', ar: 'PayPal' },
+  'co.pay.paypalTxt':{ fr: 'Payez en ligne par PayPal — carte acceptée.', en: 'Pay online with PayPal — cards accepted.', es: 'Paga en línea con PayPal — tarjetas aceptadas.', tr: 'PayPal ile çevrimiçi ödeyin — kart kabul edilir.', ar: 'ادفعي عبر باي بال — البطاقات مقبولة.' },
+  'co.pay.holder':   { fr: 'Titulaire', en: 'Account holder', es: 'Titular', tr: 'Hesap sahibi', ar: 'صاحب الحساب' },
+  'co.pay.bank':     { fr: 'Banque', en: 'Bank', es: 'Banco', tr: 'Banka', ar: 'البنك' },
+  'co.pay.ribToCome':{ fr: '[RIB à compléter — envoyé sur WhatsApp avec votre commande]', en: '[Bank RIB to be added — sent on WhatsApp with your order]', es: '[RIB por añadir — se envía por WhatsApp]', tr: '[RIB eklenecek — WhatsApp’tan gönderilir]', ar: '[RIB سيُضاف — يُرسل عبر واتساب]' },
+  'co.pay.note':     { fr: 'Ces coordonnées vous seront aussi envoyées sur WhatsApp avec votre commande.', en: "We'll also send these details on WhatsApp with your order.", es: 'También te enviaremos estos datos por WhatsApp con tu pedido.', tr: 'Bu bilgileri siparişinizle birlikte WhatsApp’tan da göndeririz.', ar: 'سنرسل لك هذه التفاصيل أيضًا عبر واتساب مع طلبك.' },
+  'co.pay.copy':     { fr: 'Copier', en: 'Copy', es: 'Copiar', tr: 'Kopyala', ar: 'نسخ' },
+  'co.pay.copied':   { fr: 'Copié ✓', en: 'Copied ✓', es: 'Copiado ✓', tr: 'Kopyalandı ✓', ar: 'تم النسخ ✓' },
+  'co.pay.place':    { fr: 'Passer la commande', en: 'Place order', es: 'Realizar pedido', tr: 'Siparişi ver', ar: 'إتمام الطلب' },
+
+  'co.done.title':   { fr: 'Merci — commande reçue', en: 'Thank you — order received', es: 'Gracias — pedido recibido', tr: 'Teşekkürler — sipariş alındı', ar: 'شكرًا — تمّ استلام الطلب' },
+  'co.done.cod':     { fr: 'On vous confirme la commande et la livraison sur WhatsApp.', en: "We'll confirm your order and delivery by WhatsApp.", es: 'Confirmaremos tu pedido y la entrega por WhatsApp.', tr: 'Siparişinizi ve teslimatı WhatsApp’tan onaylayacağız.', ar: 'سنؤكّد طلبك والتوصيل عبر واتساب.' },
+  'co.done.transfer':{ fr: 'Effectuez le virement du total, puis envoyez le reçu sur WhatsApp.', en: 'Please transfer the total, then send the receipt on WhatsApp.', es: 'Transfiere el total y envía el recibo por WhatsApp.', tr: 'Toplamı havale edin, ardından dekontu WhatsApp’tan gönderin.', ar: 'حوّلي المبلغ الإجمالي، ثم أرسلي الإيصال عبر واتساب.' },
+  'co.done.paypal':  { fr: 'Finalisez le paiement sur PayPal.', en: 'Complete your payment on PayPal.', es: 'Completa tu pago en PayPal.', tr: 'Ödemenizi PayPal’da tamamlayın.', ar: 'أكملي الدفع عبر باي بال.' },
+  'co.done.wa':      { fr: 'Ouvrir WhatsApp', en: 'Open WhatsApp', es: 'Abrir WhatsApp', tr: "WhatsApp'ı aç", ar: 'افتحي واتساب' },
+  'co.done.paypalBtn':{ fr: 'Payer avec PayPal', en: 'Pay with PayPal', es: 'Pagar con PayPal', tr: 'PayPal ile öde', ar: 'ادفعي عبر باي بال' },
+  'co.done.home':    { fr: 'Retour à la boutique', en: 'Back to shop', es: 'Volver a la tienda', tr: 'Mağazaya dön', ar: 'العودة إلى المتجر' },
+
   /* — Page produit — */
   'pp.add':        { fr: 'Ajouter au panier', en: 'Add to cart' },
   'pp.finish':     { fr: 'Finition', en: 'Finish' },
@@ -501,6 +571,15 @@ const i18n = {
     const num = new Intl.NumberFormat(loc, { minimumFractionDigits: 0, maximumFractionDigits: 0, numberingSystem: 'latn' }).format(v);
     const unit = this.lang === 'ar' ? 'درهم' : 'DH';
     return `${num} ${unit}`;
+  },
+  // Rough EUR estimate for the international (EUR IBAN / PayPal) methods only. DH stays canonical.
+  eurEstimate(cents) {
+    const rate = (window.YZA && YZA.payment && YZA.payment.eurRate) || 11;
+    const dh = Math.round((Number(cents) || 0) / 100);
+    const eur = Math.round(dh / rate);
+    const loc = LOCALES[this.lang] || 'fr-MA';
+    const num = new Intl.NumberFormat(loc, { minimumFractionDigits: 0, maximumFractionDigits: 0, numberingSystem: 'latn' }).format(eur);
+    return `≈ ${num} €`;
   },
   onChange(cb) { this._cbs.push(cb); },
   setLang(l) {

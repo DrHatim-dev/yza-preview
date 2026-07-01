@@ -161,17 +161,13 @@ const cart = {
     return [c.intro, ...lines, `${c.total} : ${t.formatPrice(this.subtotalCents())}`, c.ship, `${c.link} : ${location.href}`].join('\n');
   },
 
-  // Checkout = open a prefilled WhatsApp order. The cart is intentionally NOT cleared,
-  // so a returning buyer keeps it and there is no silent loss / double-order.
+  // Checkout = go to the dedicated /checkout page (shipping + payment). The cart is
+  // preserved in localStorage so the page renders from it. WhatsApp handoff now happens
+  // at the end of checkout (see js/checkout.js), with the full order + shipping details.
   checkout() {
     if (!this.items.length) { this.close(); window.location.href = '/collections/charms'; return; }
-    const phone = (YZA.brand?.whatsapp || '').replace(/\D/g, '');
-    const url = `https://wa.me/${phone}?text=${encodeURIComponent(this.orderMessage())}`;
     YZA.analytics?.track('checkout_initiated', { items: this.count(), subtotal_cents: this.subtotalCents() });
-    YZA.analytics?.track('whatsapp_open', { source: 'cart' });
-    try { sessionStorage.setItem('yza.order.sent', String(Date.now())); } catch (e) {}
-    window.open(url, '_blank', 'noopener');
-    this.close();
+    window.location.href = '/checkout';
   },
 
   init() {
@@ -180,6 +176,8 @@ const cart = {
     const drawer = document.getElementById('cartDrawer');
     if (drawer) {
       drawer.addEventListener('click', (e) => {
+        const acc = e.target.closest('[data-cart-acc]');
+        if (acc) { acc.closest('.cart-acc__item')?.classList.toggle('is-open'); return; }
         const rm = e.target.closest('[data-remove]');
         if (rm) { this.remove(rm.dataset.handle, rm.dataset.variant); return; }
         const qbtn = e.target.closest('.qty__btn');

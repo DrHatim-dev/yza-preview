@@ -32,6 +32,7 @@ const collectionUrl = (cat) => { const slug = CAT_SLUGS_REV[cat]; return slug ? 
 const productUrl = (handle) => handle ? `/produits/${encodeURIComponent(handle)}` : 'produit.html';
 const WORDMARK = '<img class="logo__img" src="assets/brand/yza-logo-real.webp" alt="YZA" width="2930" height="865" decoding="async">';
 const FOOTER_CHEV = '<svg class="footer__col-chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.6 6 6.4 11 1.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const CART_CHEV = '<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.6 6 6.4 11 1.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const LANG_CODES = ['fr', 'en', 'es', 'tr', 'ar'];
 const flagImg = (cc) => `<img aria-hidden="true" class="lang-flag" src="assets/flags/${cc}.svg" alt="" width="22" height="16" decoding="async">`;
 const LANG_META_SAFE = {
@@ -453,15 +454,20 @@ YZA.chrome = {
  <div class="overlay" id="cartOverlay"></div>
  <aside class="cart-drawer" id="cartDrawer" aria-label="${t.t('cart.title')}">
  <div class="cart-drawer__head">
- <h2 data-i18n="cart.title">${t.t('cart.title')}</h2>
+ <h2><span data-i18n="cart.count">${t.t('cart.count')}</span> <sup class="cart-drawer__count" data-cart-count></sup></h2>
  <button type="button" class="icon-btn" id="cartClose" aria-label="${t.t('a.close')}">${ICON.close}</button>
  </div>
  <div class="cart-drawer__body" id="cartBody"></div>
  <div class="cart-drawer__foot" id="cartFoot" hidden>
  <div class="cart-progress" data-cart-progress></div>
- <div class="cart-sub"><span data-i18n="cart.subtotal">${t.t('cart.subtotal')}</span><strong data-cart-subtotal>-</strong></div>
- <p class="cart-note" data-i18n="cart.note">${t.t('cart.note')}</p>
- <button class="btn btn--solid btn--block" data-checkout data-i18n="cart.checkout">${t.t('cart.checkout')}</button>
+ <div class="cart-acc">
+ <div class="cart-acc__item"><button type="button" class="cart-acc__btn" data-cart-acc><span data-i18n="cart.acc.help">${t.t('cart.acc.help')}</span>${CART_CHEV}</button><div class="cart-acc__panel"><div><a href="https://wa.me/${phoneDigits()}" target="_blank" rel="noopener">WhatsApp ${YZA.brand.whatsappDisplay}</a> · <a href="mailto:${YZA.brand.email}">${YZA.brand.email}</a></div></div></div>
+ <div class="cart-acc__item"><button type="button" class="cart-acc__btn" data-cart-acc><span data-i18n="cart.acc.pay">${t.t('cart.acc.pay')}</span>${CART_CHEV}</button><div class="cart-acc__panel"><div><div class="pay-logos"><img src="assets/brand/payment/paypal.svg" alt="PayPal" height="22"><img src="assets/brand/payment/visa.svg" alt="Visa" height="22"><img src="assets/brand/payment/mastercard.svg" alt="Mastercard" height="22"><img src="assets/brand/payment/amex.svg" alt="American Express" height="22"><img src="assets/brand/payment/cod.svg" alt="${t.t('co.pay.cod')}" height="22"></div></div></div></div>
+ <div class="cart-acc__item"><button type="button" class="cart-acc__btn" data-cart-acc><span data-i18n="cart.acc.ship">${t.t('cart.acc.ship')}</span>${CART_CHEV}</button><div class="cart-acc__panel"><div data-i18n="cart.acc.shipTxt">${t.t('cart.acc.shipTxt')}</div></div></div>
+ </div>
+ <div class="cart-foot__total"><span data-i18n="cart.total">${t.t('cart.total')}<small data-i18n="cart.vat">${t.t('cart.vat')}</small></span><strong data-cart-subtotal>-</strong></div>
+ <button class="btn btn--solid btn--block" data-checkout data-i18n="cart.proceed">${t.t('cart.proceed')}</button>
+ <a class="btn btn--outline btn--block" href="/checkout" data-i18n="cart.viewCart">${t.t('cart.viewCart')}</a>
  </div>
  </aside>`;
  document.body.append(drawers);

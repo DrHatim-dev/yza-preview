@@ -1,0 +1,8 @@
+<svg viewBox="0 0 40 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bank transfer">
+  <g fill="none" stroke="#2e2e2e" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M4 12 20 4l16 8"/>
+    <path d="M6 12v12M14 12v12M26 12v12M34 12v12"/>
+    <path d="M3 24h34"/>
+    <path d="M2 28h36"/>
+  </g>
+</svg>

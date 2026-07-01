@@ -155,6 +155,24 @@ YZA.brand = {
  masterIdea: 'Modern Marrakech wear™',
 };
 
+// ---- Checkout / payment config (edit here) ----
+YZA.payment = {
+ eurRate: 11,            // 1 EUR ≈ 11 DH — used only to SHOW an estimate for EUR methods
+ orderEndpoint: 'order.php',
+ paypalLink: '',         // paste a PayPal.me URL or PayPal email → enables the live button; empty ⇒ WhatsApp fallback
+ eur: {
+  iban: 'FR76 1469 0000 0157 0005 2012 414',
+  bic: 'CMCIFRP1MON',
+  bank: 'Monabanq',
+  holder: 'Nawal Rmili',
+ },
+ morocco: {
+  rib: '',              // 24-digit RIB — empty ⇒ shows "[RIB à compléter]" placeholder
+  bank: '',
+  holder: 'Nawal Rmili',
+ },
+};
+
 YZA.servicePolicy = {
  returnsDays: 30,
  freeShippingDh: 150000,
