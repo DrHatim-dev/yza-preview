@@ -1053,9 +1053,6 @@
  <div class="charm-styling__grid">
  ${shots.map((s, i) => i === 0 ? `<figure class="charm-styling__item charm-styling__item--first" data-reveal style="--i:0">
  <img class="charm-desktop-img" src="${esc(s.src)}" alt="${esc(s.cap)} - YZA" loading="lazy" width="${s.width}" height="${s.height}" decoding="async">
- <video class="charm-mobile-video" autoplay muted loop playsinline preload="metadata" poster="${esc(s.src)}">
- <source src="assets/video/charm-styling.mp4" type="video/mp4">
- </video>
  <figcaption>${esc(s.cap)}</figcaption>
  </figure>` : `<figure class="charm-styling__item" data-reveal style="--i:${i}">
  <img src="${esc(s.src)}" alt="${esc(s.cap)} - YZA" loading="lazy" width="${s.width}" height="${s.height}" decoding="async">
@@ -2267,6 +2264,9 @@
  $('#sameDayDelivery').textContent = ui.delivery;
  $('#dropHint').textContent = ui.hint;
  $('#accSizeFitLabel').textContent = ui.sizeFit;
+ const _makingLabel = { fr: 'FABRICATION', en: 'THE MAKING', es: 'ELABORACION', tr: 'YAPIM', ar: 'الصناعة' };
+ const _mkl = $('#accMakingLabel');
+ if (_mkl) _mkl.textContent = _makingLabel[T().lang] || _makingLabel.fr;
  $('#accCareLabel').textContent = ui.care;
  $('#accDeliveryLabel').textContent = ui.returns;
  $('#accQuestionsLabel').textContent = ui.questions;

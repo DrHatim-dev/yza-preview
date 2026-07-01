@@ -771,12 +771,8 @@ body.has-search-overlay { overflow: hidden; }
 .charm-styling__cta { display: inline-block; margin-top: var(--space-8); }
 @media (max-width: 900px) { .charm-styling__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .charm-styling__grid { grid-template-columns: 1fr; } }
-/* Mobile: first charm-styling slot shows video instead of static image */
-.charm-styling__item--first .charm-mobile-video { display: none; }
-@media (max-width: 860px) {
- .charm-styling__item--first .charm-desktop-img { display: none; }
- .charm-styling__item--first .charm-mobile-video { display: block; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
-}
+/* First charm-styling slot shows its still image on every viewport; the section
+   keeps a single video (band-charm.mp4) in the last slot — no doubled clip on mobile. */
 
 /* ============ À PROPOS DE L’IMPRIMÉ - Fruit Market editorial collage ============ */
 .print-story { display: grid; grid-template-columns: 0.82fr 1fr; gap: clamp(2rem, 5vw, var(--space-20)); align-items: center; }

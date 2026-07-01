@@ -6394,25 +6394,25 @@ const PRODUCTS = [
  "ar": "Raffia Cherries Charm"
  },
  "short": {
- "fr": "Charm cerises en raffia, crocheté main avec anneau doré 2 cm.",
- "en": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the hand tag.",
- "es": "Un charm de cerezas en rafia tejido a ganchillo, con aro dorado de 2,5 cm y nombre de la artesana en la etiqueta.",
- "tr": "Bir tığ işi rafya kiraz charm, 2,5 cm altın halka ve etiket üzerinde usta bilgisiyle.",
- "ar": "ميدالية كرز من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم وبيانات الحرفية على البطاقة."
+ "fr": "Charm cerises en raphia crocheté main selon l’aakad, la technique des boutons de caftan. Boucle raffia et anneau doré 2 cm.",
+ "en": "Raffia cherries charm, hand-crocheted with the aakad — the Moroccan caftan-button technique. Raffia loop and 2 cm gold ring.",
+ "es": "Charm de cerezas en rafia, tejido a mano con la técnica aakad de los botones del caftán marroquí. Lazo de rafia y aro dorado de 2 cm.",
+ "tr": "Fas kaftan düğmesi tekniği aakad ile elde tığ işlenmiş rafya kiraz charm’ı. Rafya halka ve 2 cm altın halka.",
+ "ar": "ميدالية كرز من الرافيا، مصنوعة يدويًا بتقنية العقاد — أزرار القفطان المغربي. حلقة رافيا وحلقة ذهبية 2 سم."
  },
  "displayShort": {
- "fr": "Charm cerises en raffia, crocheté main avec anneau doré 2 cm.",
- "en": "A crocheted raffia cherries charm with a 2.5 cm gold ring and artisan credits on the hand tag.",
- "es": "Un charm de cerezas en rafia tejido a ganchillo, con aro dorado de 2,5 cm y nombre de la artesana en la etiqueta.",
- "tr": "Bir tığ işi rafya kiraz charm, 2,5 cm altın halka ve etiket üzerinde usta bilgisiyle.",
- "ar": "ميدالية كرز من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم وبيانات الحرفية على البطاقة."
+ "fr": "Charm cerises en raphia crocheté main selon l’aakad, la technique des boutons de caftan. Boucle raffia et anneau doré 2 cm.",
+ "en": "Raffia cherries charm, hand-crocheted with the aakad — the Moroccan caftan-button technique. Raffia loop and 2 cm gold ring.",
+ "es": "Charm de cerezas en rafia, tejido a mano con la técnica aakad de los botones del caftán marroquí. Lazo de rafia y aro dorado de 2 cm.",
+ "tr": "Fas kaftan düğmesi tekniği aakad ile elde tığ işlenmiş rafya kiraz charm’ı. Rafya halka ve 2 cm altın halka.",
+ "ar": "ميدالية كرز من الرافيا، مصنوعة يدويًا بتقنية العقاد — أزرار القفطان المغربي. حلقة رافيا وحلقة ذهبية 2 سم."
  },
  "desc": {
- "fr": "Deux petites cerises qui bougent ensemble: legeres, joueuses, un peu romantiques. Parfaites sur mini sac, pochette ou porte-clés.",
- "en": "Two small cherries swinging together, light, playful and a little romantic. Perfect for mini bags, clutches or as a fun accent on your keys.",
- "es": "Dos pequeñas cerezas que se balancean juntas, ligeras, traviesas y un poco románticas. Perfectas para mini bolsos, clutches o como detalle en el llavero.",
- "tr": "İki küçük kiraz birlikte sallanıyor; hafif, oyuncu ve biraz romantik. Mini çantalar, clutch'lar veya anahtarlık için mükemmel.",
- "ar": "كرزتان صغيرتان تتأرجحان معاً، خفيفتان ومرحتان وبهما لمسة رومانسية. مثاليتان للحقائب الصغيرة أو clutch أو كإضافة مرحة على المفاتيح."
+ "fr": "Deux cerises qui ne sont jamais tout à fait jumelles, reliées par une tige nouée à la main. On les fait à l’aakad, la technique des boutons de caftan — dont la forme s’inspire justement de la cerise, et qui vient de Sefrou, la ville qui célèbre la cerise chaque année. Légères, joueuses, un peu romantiques : parfaites sur un mini sac, une pochette ou un porte-clés.",
+ "en": "Two cherries that are never quite twins, joined by a hand-knotted stem. We make them with the aakad, the Moroccan caftan-button technique — whose shape is itself inspired by the cherry, and which comes from Sefrou, the town that celebrates cherries every year. Light, playful, a little romantic: perfect on a mini bag, a clutch or your keys.",
+ "es": "Dos cerezas que nunca son del todo gemelas, unidas por un tallo anudado a mano. Las hacemos con el aakad, la técnica de los botones del caftán marroquí, cuya forma se inspira precisamente en la cereza y que proviene de Sefrou, la ciudad que celebra la cereza cada año. Ligeras, traviesas, un poco románticas: perfectas en un mini bolso, un clutch o el llavero.",
+ "tr": "Hiçbir zaman tam ikiz olmayan, elde düğümlenmiş bir sapla birleştirilmiş iki kiraz. Onları aakad ile yapıyoruz — biçimi kirazdan ilham alan ve her yıl kiraz festivali düzenleyen Sefrou şehrinden gelen Fas kaftan düğmesi tekniği. Hafif, oyuncu, biraz romantik: mini çantada, clutch'ta ya da anahtarlıkta mükemmel.",
+ "ar": "كرزتان لا تتطابقان تمامًا أبدًا، تربطهما ساق معقودة يدويًا. نصنعهما بتقنية العقاد — تقنية أزرار القفطان المغربي التي يُستوحى شكلها من الكرزة نفسها، والتي تأتي من مدينة صفرو التي تحتفل بالكرز كل عام. خفيفتان ومرحتان وبلمسة رومانسية: مثاليتان على حقيبة صغيرة أو clutch أو مفاتيحك."
  },
  "price": 10000,
  "currency": "MAD",
@@ -6566,9 +6566,9 @@ const PRODUCTS = [
  "attachment": {
  "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
  "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ "es": "Lazo de rafia y aro dorado de 2 cm. Aro de 3 cm disponible para los bundles.",
+ "tr": "Rafya halka ve 2 cm altın halka. Bundle'lar için 3 cm halka mevcut.",
+ "ar": "حلقة رافيا وحلقة ذهبية 2 سم. تتوفر حلقة 3 سم للحزم."
  },
  "handworkTime": {
  "fr": "1,5 h de crochet main pour ce fruit.",
@@ -6623,7 +6623,7 @@ const PRODUCTS = [
  }
  ],
  "styleTip": {
- "fr": "Best on mini bags, black leather, keys and evening clutches. Keep them alone so the movement stays clean.",
+ "fr": "Parfaites sur un mini sac, du cuir noir, des clés ou une pochette de soirée. Portez-les seules pour garder le mouvement net.",
  "en": "Best on mini bags, black leather, keys and evening clutches. Keep them alone so the movement stays clean.",
  "es": "Mejor en mini bolsos, cuero negro, llaves y clutches de noche. Llévalo solo para que el movimiento sea limpio.",
  "tr": "Mini çantalar, siyah deri, anahtarlar ve gece clutch'larında en iyisi. Hareketi temiz tutmak için yalnız bırakın.",
@@ -6646,11 +6646,11 @@ const PRODUCTS = [
  "ar": "الكرز: غنج السوق."
  },
  "body": {
- "fr": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail.",
- "en": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail.",
- "es": "Las cerezas están hechas para moverse. Llaman la atención como la fruta roja en un puesto del mercado de Guéliz: pequeñas, brillantes, imposibles de ignorar. Úsalas cuando un bolso muy sencillo necesita un detalle juguetón.",
- "tr": "Kirazlar hareket etmek için yapıldı. Guéliz pazar tezgahındaki kırmızı meyve gibi gözü çekiyorlar: küçük, parlak, fark etmemek imkânsız. Çok sade bir çantanın oyuncu bir detaya ihtiyacı olduğunda onları kullanın.",
- "ar": "الكرز مصنوع للتأرجح. يلفت الأنظار كالفاكهة الحمراء على طاولة سوق Guéliz: صغير، مشرق، يستحيل تجاهله. استخدميه حين تحتاج حقيبة بسيطة جداً إلى تفصيلة مرحة واحدة."
+ "fr": "Les cerises sont faites pour bouger. Elles accrochent le regard comme le fruit rouge sur un étal de Guéliz : petites, vives, impossibles à ignorer. On les réalise à l’aakad, la technique des boutons de caftan tressés à la main, citée dans le dossier d’inscription du caftan marocain au patrimoine immatériel de l’UNESCO (2025). L’intérieur est rembourré avec les chutes de raffia — zéro déchet.",
+ "en": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. We make them with the aakad, the hand-braided caftan-button technique cited in the 2025 UNESCO intangible-heritage file for the Moroccan caftan. Each one is padded inside with raffia offcuts — zero waste.",
+ "es": "Las cerezas están hechas para moverse. Llaman la atención como la fruta roja en un puesto de Guéliz: pequeñas, brillantes, imposibles de ignorar. Las hacemos con el aakad, la técnica de botones de caftán trenzados a mano, citada en el expediente de 2025 de la UNESCO sobre el patrimonio inmaterial del caftán marroquí. El interior se rellena con recortes de rafia: cero residuos.",
+ "tr": "Kirazlar hareket etmek için yapıldı. Guéliz tezgâhındaki kırmızı meyve gibi göz alıyor: küçük, parlak, fark etmemek imkânsız. Onları aakad ile yapıyoruz — 2025 UNESCO somut olmayan kültürel miras dosyasında anılan, elde örülen kaftan düğmesi tekniği. İçi rafya kırpıntılarıyla dolduruluyor — sıfır atık.",
+ "ar": "الكرز مصنوع للتأرجح. يلفت النظر كالفاكهة الحمراء على طاولة في Guéliz: صغير، نابض، يستحيل تجاهله. نصنعه بتقنية العقاد — تقنية أزرار القفطان المضفورة يدويًا، المذكورة في ملف اليونسكو لعام 2025 للتراث غير المادي للقفطان المغربي. تُحشى كل قطعة من الداخل بقصاصات الرافيا — بلا هدر."
  },
  "collectionTitle": {
  "fr": "Fruit Market : inspiré des marchés de Marrakech",
@@ -6660,20 +6660,20 @@ const PRODUCTS = [
  "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
- "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
- "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
- "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
- "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
+ "fr": "Les Fruit Charms viennent des étals de notre quartier de Guéliz — ceux de la médina comme ceux des camionnettes au coin de la rue. Oranges, citrons, pastèques, avocats, raisins, cerises : le raffia est teint par nos soins dans des couleurs emblématiques, puis crocheté fruit par fruit — l’une des techniques les plus délicates. Un charm ne se clipse pas qu’au sac : il se porte aussi sur un bijou, et avec les petits anneaux dorés offerts à l’achat des boucles, plusieurs charms se combinent ou se portent en collier. De véritables cartes postales de Marrakech.",
+ "en": "The YZA Fruit Charms come from the stalls of our Guéliz neighbourhood — the médina ones and the street-corner vans alike. Oranges, lemons, watermelons, avocados, grapes, cherries: we hand-dye the raffia in iconic shades, then crochet it fruit by fruit — one of the most delicate crafts there is. A charm doesn’t only clip to a bag: it wears on jewellery too, and with the little gold rings gifted when you buy the earrings, several charms combine or wear as a necklace. True postcards from Marrakesh.",
+ "es": "Los Fruit Charms de YZA vienen de los puestos de nuestro barrio de Guéliz, tanto los de la medina como las camionetas de la esquina. Naranjas, limones, sandías, aguacates, uvas, cerezas: teñimos la rafia a mano en colores emblemáticos y luego la tejemos fruta por fruta, una de las técnicas más delicadas. Un charm no solo se engancha al bolso: también se lleva en una joya, y con los pequeños aros dorados que se regalan al comprar los pendientes, varios charms se combinan o se llevan como collar. Verdaderas postales de Marrakech.",
+ "tr": "YZA Meyve Charmları, Guéliz mahallemizin tezgâhlarından gelir — hem medinadakiler hem de sokak köşesindeki kamyonetler. Portakal, limon, karpuz, avokado, üzüm, kiraz: rafyayı ikonik tonlarda elde boyar, sonra meyve meyve örüyoruz — var olan en zarif tekniklerden biri. Bir charm yalnızca çantaya takılmaz: bir takının üzerinde de taşınır ve küpe alırken hediye edilen küçük altın halkalarla birkaç charm birleşir ya da kolye gibi takılır. Marakeş’ten gerçek kartpostallar.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك حيّنا Guéliz — من المدينة القديمة ومن شاحنات زوايا الشوارع. برتقال، ليمون، بطيخ، أفوكادو، عنب، كرز: نصبغ الرافيا يدويًا بألوان مميزة، ثم نحيكها فاكهةً فاكهة — إحدى أدقّ التقنيات. الميدالية لا تُعلّق على الحقيبة فقط: تُلبس على قطعة مجوهرات أيضًا، ومع الحلقات الذهبية الصغيرة المُهداة عند شراء الأقراط، تتجمّع عدة ميداليات أو تُلبس كقلادة. بطاقات بريدية حقيقية من مراكش."
  },
  "liveUrl": "https://yza-shop.com/products/cherry-raffia-bag-charm"
  },
  "making": {
- "fr": "Chaque pièce est crochetée à la main dans l’atelier de Guéliz, fibre par fibre, puis contrôlée avant la pose de l’étiquette YZA.",
- "en": "The cherries are made to move. They catch the eye the way red fruit does at a Guéliz market stall: small, bright, impossible not to notice. Use them when a very simple bag needs one playful detail. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "es": "Las cerezas están hechas para moverse. Llaman la atención como la fruta roja en un puesto del mercado de Guéliz: pequeñas, brillantes, imposibles de ignorar. Úsalas cuando un bolso muy sencillo necesita un detalle juguetón. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
- "tr": "Kirazlar hareket etmek için yapıldı. Guéliz pazar tezgahındaki kırmızı meyve gibi gözü çekiyorlar: küçük, parlak, fark etmemek imkânsız. Çok sade bir çantanın oyuncu bir detaya ihtiyacı olduğunda onları kullanın. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
- "ar": "الكرز مصنوع للتأرجح. يلفت الأنظار كالفاكهة الحمراء على طاولة سوق Guéliz: صغير، مشرق، يستحيل تجاهله. استخدميه حين تحتاج حقيبة بسيطة جداً إلى تفصيلة مرحة واحدة. كل قطعة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ثم تُفحص قبل إضافة علامة YZA."
+ "fr": "Chaque paire de cerises est réalisée à l’aakad, les petits boutons du caftan marocain tressés un à un à la main, puis reliée par une tige nouée. C’est La Fatima qui maîtrise cette technique à l’atelier de Guéliz. Le raffia — la matière la plus difficile à crocheter, mais très durable une fois la pièce finie — est teint à la main et travaillé fibre par fibre, et l’intérieur est rembourré de chutes de raffia. Le prénom de l’artisane est inscrit sur l’étiquette.",
+ "en": "Each pair of cherries is made with the aakad — the small Moroccan caftan buttons braided one by one by hand — then joined by a knotted stem. It is La Fatima who masters this technique in the Guéliz atelier. The raffia, the hardest material to crochet yet very durable once the piece is finished, is hand-dyed and worked fibre by fibre, and the inside is padded with raffia offcuts. The artisan's first name is written on the tag.",
+ "es": "Cada par de cerezas se hace con el aakad —los pequeños botones del caftán marroquí trenzados uno a uno a mano— y luego se une con un tallo anudado. Es La Fatima quien domina esta técnica en el taller de Guéliz. La rafia, el material más difícil de tejer pero muy duradero una vez terminada la pieza, se tiñe a mano y se trabaja fibra por fibra, y el interior se rellena con recortes de rafia. El nombre de la artesana se inscribe en la etiqueta.",
+ "tr": "Her kiraz çifti aakad ile yapılır — Fas kaftanının küçük düğmeleri tek tek elde örülür — sonra düğümlü bir sapla birleştirilir. Bu tekniğe Guéliz atölyesinde hâkim olan La Fatima'dır. Örülmesi en zor ama parça bittiğinde çok dayanıklı olan rafya, elde boyanır ve lif lif işlenir; içi rafya kırpıntılarıyla doldurulur. Ustanın adı etikete yazılır.",
+ "ar": "يُصنع كل زوج من الكرز بتقنية العقاد — أزرار القفطان المغربي الصغيرة المضفورة واحدةً واحدة باليد — ثم يُربط بساق معقودة. La Fatima هي من تتقن هذه التقنية في أتيليه Guéliz. الرافيا، أصعب مادة للحياكة لكنها متينة جدًا بعد اكتمال القطعة، تُصبغ يدويًا وتُشغل ليفةً بليفة، ويُحشى الداخل بقصاصات الرافيا. يُكتب اسم الحرفية على البطاقة."
  },
  "care": {
  "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
@@ -6750,25 +6750,25 @@ const PRODUCTS = [
  "ar": "Raffia Grapes Charm"
  },
  "short": {
- "fr": "Charm raisins en raphia, crochete main avec anneau dore 2,5 cm.",
- "en": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the hand tag.",
- "es": "Un charm de uvas en rafia tejido a ganchillo, con aro dorado de 2,5 cm y nombre de la artesana en la etiqueta.",
- "tr": "Bir tığ işi rafya üzüm charm, 2,5 cm altın halka ve etiket üzerinde usta bilgisiyle.",
- "ar": "ميدالية عنب من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم وبيانات الحرفية على البطاقة."
+ "fr": "Charm raisins en raphia, crocheté main et noué à l’aakad, la technique des boutons de caftan. Anneau doré 2,5 cm.",
+ "en": "A raffia grapes charm, hand-crocheted and knotted with the aakad — the caftan-button technique. 2.5 cm gold ring.",
+ "es": "Charm de uvas en rafia, tejido a mano y anudado con el aakad, la técnica de los botones de caftán. Aro dorado de 2,5 cm.",
+ "tr": "Elde tığ işlenmiş ve aakad — kaftan düğmesi tekniği — ile düğümlenmiş rafya üzüm charm’ı. 2,5 cm altın halka.",
+ "ar": "ميدالية عنب من الرافيا، مصنوعة يدويًا ومعقودة بتقنية العقاد — أزرار القفطان. حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
- "fr": "Charm raisins en raphia, crochete main avec anneau dore 2,5 cm.",
- "en": "A crocheted raffia grapes charm with a 2.5 cm gold ring and artisan credits on the hand tag.",
- "es": "Un charm de uvas en rafia tejido a ganchillo, con aro dorado de 2,5 cm y nombre de la artesana en la etiqueta.",
- "tr": "Bir tığ işi rafya üzüm charm, 2,5 cm altın halka ve etiket üzerinde usta bilgisiyle.",
- "ar": "ميدالية عنب من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم وبيانات الحرفية على البطاقة."
+ "fr": "Charm raisins en raphia, crocheté main et noué à l’aakad, la technique des boutons de caftan. Anneau doré 2,5 cm.",
+ "en": "A raffia grapes charm, hand-crocheted and knotted with the aakad — the caftan-button technique. 2.5 cm gold ring.",
+ "es": "Charm de uvas en rafia, tejido a mano y anudado con el aakad, la técnica de los botones de caftán. Aro dorado de 2,5 cm.",
+ "tr": "Elde tığ işlenmiş ve aakad — kaftan düğmesi tekniği — ile düğümlenmiş rafya üzüm charm’ı. 2,5 cm altın halka.",
+ "ar": "ميدالية عنب من الرافيا، مصنوعة يدويًا ومعقودة بتقنية العقاد — أزرار القفطان. حلقة ذهبية 2.5 سم."
  },
  "desc": {
- "fr": "Une petite grappe comme un bijou textile: volume, mouvement et plusieurs grains crochetes un par un.",
- "en": "A tiny bunch of grapes, almost like textile jewellery. One of the most intricate designs, with multiple crocheted grapes creating volume and movement.",
- "es": "Un pequeño racimo de uvas, casi como una joya textil. Uno de los diseños más elaborados, con múltiples uvas tejidas a ganchillo que crean volumen y movimiento.",
- "tr": "Küçük bir üzüm salkımı, neredeyse bir tekstil takısı gibi. Çok sayıda kroşe üzümün hacim ve hareket yarattığı en karmaşık tasarımlardan biri.",
- "ar": "عنقود عنب صغير، يشبه المجوهرات النسيجية. أحد أكثر التصاميم تعقيداً، مع حبات عنب متعددة بالكروشيه تخلق حجماً وحركة."
+ "fr": "Une petite grappe comme un bijou textile : volume, mouvement, plusieurs grains crochetés un par un et noués à l’aakad, la technique des boutons de caftan.",
+ "en": "A tiny bunch of grapes, almost like textile jewellery: volume and movement, many grapes crocheted one by one and knotted with the aakad, the caftan-button technique.",
+ "es": "Un pequeño racimo de uvas, casi como una joya textil: volumen y movimiento, varias uvas tejidas una a una y anudadas con el aakad, la técnica de los botones de caftán.",
+ "tr": "Küçük bir üzüm salkımı, neredeyse bir tekstil takısı gibi: hacim ve hareket, tek tek örülüp aakad — kaftan düğmesi tekniği — ile düğümlenen üzümler.",
+ "ar": "عنقود عنب صغير يشبه المجوهرات النسيجية: حجم وحركة، حبات عنب متعددة تُحاك واحدةً واحدة وتُعقد بتقنية العقاد، تقنية أزرار القفطان."
  },
  "price": 19000,
  "currency": "MAD",
@@ -6923,9 +6923,9 @@ const PRODUCTS = [
  "attachment": {
  "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
  "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ "es": "Lazo de rafia y aro dorado de 2 cm. Aro de 3 cm disponible para los bundles.",
+ "tr": "Rafya halka ve 2 cm altın halka. Bundle'lar için 3 cm halka mevcut.",
+ "ar": "حلقة رافيا وحلقة ذهبية 2 سم. تتوفر حلقة 3 سم للحزم."
  },
  "handworkTime": {
  "fr": "4 h de crochet main pour ce fruit.",
@@ -6980,7 +6980,7 @@ const PRODUCTS = [
  }
  ],
  "styleTip": {
- "fr": "Best on clean handles and evening baskets. Let the volume hang freely rather than crowding it with too many charms.",
+ "fr": "Parfaites sur des anses épurées et des paniers du soir. Laissez le volume pendre librement plutôt que de l’encombrer de trop de charms.",
  "en": "Best on clean handles and evening baskets. Let the volume hang freely rather than crowding it with too many charms.",
  "es": "Mejor en asas limpias y cestos de noche. Deja que el volumen cuelgue libremente en lugar de saturarlo con demasiados charms.",
  "tr": "Temiz kulplar ve akşam sepetlerinde en iyisi. Çok fazla charm ile kalabalıklaştırmak yerine hacmin serbestçe sarkmasına izin verin.",
@@ -7003,11 +7003,11 @@ const PRODUCTS = [
  "ar": "العنب: الميدالية الأكثر نحتاً."
  },
  "body": {
- "fr": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory.",
- "en": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory.",
- "es": "Las uvas son el charm que explica mejor el precio: muchas piezas pequeñas, cada una formada por separado y luego equilibradas en un racimo en movimiento. Se parece más a una joya textil que a un accesorio sencillo.",
- "tr": "Üzüm, fiyatı en hızlı açıklayan charm: pek çok küçük parça, her biri ayrı ayrı şekillendirilir, ardından tek bir hareketli salkım halinde dengelenir. Sıradan bir aksesuardan çok bir tekstil takısına benziyor.",
- "ar": "العنب هو الميدالية التي تُبرّر السعر بأسرع طريقة: قطع صغيرة كثيرة، كل واحدة تُشكَّل على حدة، ثم تُوزَن في عنقود واحد متحرك. يبدو أقرب إلى المجوهرات النسيجية منه إلى إكسسوار بسيط."
+ "fr": "Le raisin est le charm le plus sculptural : de nombreux petits grains, chacun façonné séparément puis équilibré en une grappe qui bouge. On le noue à l’aakad, la technique des boutons de caftan. Plus proche d’un bijou textile que d’un simple accessoire.",
+ "en": "The grapes are the most sculptural charm: many small pieces, each shaped separately, then balanced into one moving cluster. We knot them with the aakad, the caftan-button technique. Closer to textile jewellery than a simple accessory.",
+ "es": "Las uvas son el charm más escultural: muchas piezas pequeñas, cada una formada por separado y equilibradas en un racimo en movimiento. Las anudamos con el aakad, la técnica de los botones de caftán. Más cerca de una joya textil que de un accesorio sencillo.",
+ "tr": "Üzüm en heykelvari charm: pek çok küçük parça, her biri ayrı şekillendirilir, sonra hareketli bir salkımda dengelenir. Onları aakad — kaftan düğmesi tekniği — ile düğümlüyoruz. Sıradan bir aksesuardan çok tekstil takısına yakın.",
+ "ar": "العنب هو الميدالية الأكثر نحتًا: حبات صغيرة كثيرة، كل واحدة تُشكَّل على حدة ثم تُوازَن في عنقود متحرك. نعقدها بتقنية العقاد، تقنية أزرار القفطان. أقرب إلى مجوهرات نسيجية منه إلى إكسسوار بسيط."
  },
  "collectionTitle": {
  "fr": "Fruit Market : inspiré des marchés de Marrakech",
@@ -7017,20 +7017,20 @@ const PRODUCTS = [
  "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
- "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
- "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
- "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
- "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
+ "fr": "Les Fruit Charms viennent des étals de notre quartier de Guéliz — ceux de la médina comme ceux des camionnettes au coin de la rue. Oranges, citrons, pastèques, avocats, raisins, cerises : le raffia est teint par nos soins dans des couleurs emblématiques, puis crocheté fruit par fruit — l’une des techniques les plus délicates. Un charm ne se clipse pas qu’au sac : il se porte aussi sur un bijou, et avec les petits anneaux dorés offerts à l’achat des boucles, plusieurs charms se combinent ou se portent en collier. De véritables cartes postales de Marrakech.",
+ "en": "The YZA Fruit Charms come from the stalls of our Guéliz neighbourhood — the médina ones and the street-corner vans alike. Oranges, lemons, watermelons, avocados, grapes, cherries: we hand-dye the raffia in iconic shades, then crochet it fruit by fruit — one of the most delicate crafts there is. A charm doesn’t only clip to a bag: it wears on jewellery too, and with the little gold rings gifted when you buy the earrings, several charms combine or wear as a necklace. True postcards from Marrakesh.",
+ "es": "Los Fruit Charms de YZA vienen de los puestos de nuestro barrio de Guéliz, tanto los de la medina como las camionetas de la esquina. Naranjas, limones, sandías, aguacates, uvas, cerezas: teñimos la rafia a mano en colores emblemáticos y luego la tejemos fruta por fruta, una de las técnicas más delicadas. Un charm no solo se engancha al bolso: también se lleva en una joya, y con los pequeños aros dorados que se regalan al comprar los pendientes, varios charms se combinan o se llevan como collar. Verdaderas postales de Marrakech.",
+ "tr": "YZA Meyve Charmları, Guéliz mahallemizin tezgâhlarından gelir — hem medinadakiler hem de sokak köşesindeki kamyonetler. Portakal, limon, karpuz, avokado, üzüm, kiraz: rafyayı ikonik tonlarda elde boyar, sonra meyve meyve örüyoruz — var olan en zarif tekniklerden biri. Bir charm yalnızca çantaya takılmaz: bir takının üzerinde de taşınır ve küpe alırken hediye edilen küçük altın halkalarla birkaç charm birleşir ya da kolye gibi takılır. Marakeş’ten gerçek kartpostallar.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك حيّنا Guéliz — من المدينة القديمة ومن شاحنات زوايا الشوارع. برتقال، ليمون، بطيخ، أفوكادو، عنب، كرز: نصبغ الرافيا يدويًا بألوان مميزة، ثم نحيكها فاكهةً فاكهة — إحدى أدقّ التقنيات. الميدالية لا تُعلّق على الحقيبة فقط: تُلبس على قطعة مجوهرات أيضًا، ومع الحلقات الذهبية الصغيرة المُهداة عند شراء الأقراط، تتجمّع عدة ميداليات أو تُلبس كقلادة. بطاقات بريدية حقيقية من مراكش."
  },
  "liveUrl": "https://yza-shop.com/products/grapes-raffia-bag-charm"
  },
  "making": {
- "fr": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
- "en": "The grapes are the charm that explains the price fastest: many small pieces, each one shaped separately, then balanced into one moving cluster. It feels closer to textile jewellery than a simple accessory. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
- "es": "Las uvas son el charm que explica mejor el precio: muchas piezas pequeñas, cada una formada por separado y luego equilibradas en un racimo en movimiento. Se parece más a una joya textil que a un accesorio sencillo. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
- "tr": "Üzüm, fiyatı en hızlı açıklayan charm: pek çok küçük parça, her biri ayrı ayrı şekillendirilir, ardından tek bir hareketli salkım halinde dengelenir. Sıradan bir aksesuardan çok bir tekstil takısına benziyor. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
- "ar": "العنب هو الميدالية التي تُبرّر السعر بأسرع طريقة: قطع صغيرة كثيرة، كل واحدة تُشكَّل على حدة، ثم تُوزَن في عنقود واحد متحرك. يبدو أقرب إلى المجوهرات النسيجية منه إلى إكسسوار بسيط. كل قطعة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ثم تُفحص قبل إضافة علامة YZA."
+ "fr": "Le raisin est le charm qui explique le mieux son prix : de nombreux petits grains, chacun crocheté séparément puis noué à l’aakad — la technique des boutons de caftan — pour former une grappe qui bouge. Plus proche d’un bijou textile que d’un simple accessoire. Réalisé à la main par La Fatima dans l’atelier de Guéliz, puis contrôlé avant la pose de l’étiquette YZA.",
+ "en": "The grapes are the charm that explains the price fastest: many small pieces, each crocheted separately then knotted with the aakad — the caftan-button technique — into one moving cluster. Closer to textile jewellery than a simple accessory. Hand-made by La Fatima in the Guéliz atelier, then checked before the YZA tag is added.",
+ "es": "Las uvas son el charm que mejor explica su precio: muchas piezas pequeñas, cada una tejida por separado y luego anudada con el aakad —la técnica de los botones de caftán— en un racimo en movimiento. Más cerca de una joya textil que de un accesorio sencillo. Hecho a mano por La Fatima en el taller de Guéliz y revisado antes de poner la etiqueta YZA.",
+ "tr": "Üzüm, fiyatını en iyi açıklayan charm: pek çok küçük parça, her biri ayrı örülür, sonra aakad — kaftan düğmesi tekniği — ile düğümlenip hareketli bir salkım olur. Sıradan bir aksesuardan çok tekstil takısına yakın. Guéliz atölyesinde La Fatima tarafından elde yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
+ "ar": "العنب هو الميدالية التي تُبرّر سعرها بأوضح شكل: حبات صغيرة كثيرة، كل واحدة تُحاك على حدة ثم تُعقد بتقنية العقاد — تقنية أزرار القفطان — في عنقود متحرك. أقرب إلى مجوهرات نسيجية منه إلى إكسسوار بسيط. تصنعه La Fatima يدويًا في أتيليه Guéliz، ثم يُفحص قبل إضافة علامة YZA."
  },
  "care": {
  "fr": "Le raffia ne nécessite aucun entretien particulier. Éviter l'eau ; s'il est mouillé, le faire sécher à l'air libre à l'ombre. Éviter de le laisser au soleil pour préserver les couleurs. Si l'anneau doré perd sa couleur, il peut être remplacé.",
@@ -7274,9 +7274,9 @@ const PRODUCTS = [
  "attachment": {
  "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
  "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ "es": "Lazo de rafia y aro dorado de 2 cm. Aro de 3 cm disponible para los bundles.",
+ "tr": "Rafya halka ve 2 cm altın halka. Bundle'lar için 3 cm halka mevcut.",
+ "ar": "حلقة رافيا وحلقة ذهبية 2 سم. تتوفر حلقة 3 سم للحزم."
  },
  "handworkTime": {
  "fr": "3 h de crochet main pour ce fruit.",
@@ -7368,11 +7368,11 @@ const PRODUCTS = [
  "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
- "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
- "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
- "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
- "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
+ "fr": "Les Fruit Charms viennent des étals de notre quartier de Guéliz — ceux de la médina comme ceux des camionnettes au coin de la rue. Oranges, citrons, pastèques, avocats, raisins, cerises : le raffia est teint par nos soins dans des couleurs emblématiques, puis crocheté fruit par fruit — l’une des techniques les plus délicates. Un charm ne se clipse pas qu’au sac : il se porte aussi sur un bijou, et avec les petits anneaux dorés offerts à l’achat des boucles, plusieurs charms se combinent ou se portent en collier. De véritables cartes postales de Marrakech.",
+ "en": "The YZA Fruit Charms come from the stalls of our Guéliz neighbourhood — the médina ones and the street-corner vans alike. Oranges, lemons, watermelons, avocados, grapes, cherries: we hand-dye the raffia in iconic shades, then crochet it fruit by fruit — one of the most delicate crafts there is. A charm doesn’t only clip to a bag: it wears on jewellery too, and with the little gold rings gifted when you buy the earrings, several charms combine or wear as a necklace. True postcards from Marrakesh.",
+ "es": "Los Fruit Charms de YZA vienen de los puestos de nuestro barrio de Guéliz, tanto los de la medina como las camionetas de la esquina. Naranjas, limones, sandías, aguacates, uvas, cerezas: teñimos la rafia a mano en colores emblemáticos y luego la tejemos fruta por fruta, una de las técnicas más delicadas. Un charm no solo se engancha al bolso: también se lleva en una joya, y con los pequeños aros dorados que se regalan al comprar los pendientes, varios charms se combinan o se llevan como collar. Verdaderas postales de Marrakech.",
+ "tr": "YZA Meyve Charmları, Guéliz mahallemizin tezgâhlarından gelir — hem medinadakiler hem de sokak köşesindeki kamyonetler. Portakal, limon, karpuz, avokado, üzüm, kiraz: rafyayı ikonik tonlarda elde boyar, sonra meyve meyve örüyoruz — var olan en zarif tekniklerden biri. Bir charm yalnızca çantaya takılmaz: bir takının üzerinde de taşınır ve küpe alırken hediye edilen küçük altın halkalarla birkaç charm birleşir ya da kolye gibi takılır. Marakeş’ten gerçek kartpostallar.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك حيّنا Guéliz — من المدينة القديمة ومن شاحنات زوايا الشوارع. برتقال، ليمون، بطيخ، أفوكادو، عنب، كرز: نصبغ الرافيا يدويًا بألوان مميزة، ثم نحيكها فاكهةً فاكهة — إحدى أدقّ التقنيات. الميدالية لا تُعلّق على الحقيبة فقط: تُلبس على قطعة مجوهرات أيضًا، ومع الحلقات الذهبية الصغيرة المُهداة عند شراء الأقراط، تتجمّع عدة ميداليات أو تُلبس كقلادة. بطاقات بريدية حقيقية من مراكش."
  },
  "liveUrl": "https://yza-shop.com/products/lemon-raffia-bag-charm"
  },
@@ -7624,9 +7624,9 @@ const PRODUCTS = [
  "attachment": {
  "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
  "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ "es": "Lazo de rafia y aro dorado de 2 cm. Aro de 3 cm disponible para los bundles.",
+ "tr": "Rafya halka ve 2 cm altın halka. Bundle'lar için 3 cm halka mevcut.",
+ "ar": "حلقة رافيا وحلقة ذهبية 2 سم. تتوفر حلقة 3 سم للحزم."
  },
  "handworkTime": {
  "fr": "3 h de crochet main pour ce fruit.",
@@ -7718,11 +7718,11 @@ const PRODUCTS = [
  "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
- "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
- "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
+ "fr": "Les Fruit Charms viennent des étals de notre quartier de Guéliz — ceux de la médina comme ceux des camionnettes au coin de la rue. Oranges, citrons, pastèques, avocats, raisins, cerises : le raffia est teint par nos soins dans des couleurs emblématiques, puis crocheté fruit par fruit — l’une des techniques les plus délicates. Un charm ne se clipse pas qu’au sac : il se porte aussi sur un bijou, et avec les petits anneaux dorés offerts à l’achat des boucles, plusieurs charms se combinent ou se portent en collier. De véritables cartes postales de Marrakech.",
+ "en": "The YZA Fruit Charms come from the stalls of our Guéliz neighbourhood — the médina ones and the street-corner vans alike. Oranges, lemons, watermelons, avocados, grapes, cherries: we hand-dye the raffia in iconic shades, then crochet it fruit by fruit — one of the most delicate crafts there is. A charm doesn’t only clip to a bag: it wears on jewellery too, and with the little gold rings gifted when you buy the earrings, several charms combine or wear as a necklace. True postcards from Marrakesh.",
+ "es": "Los Fruit Charms de YZA vienen de los puestos de nuestro barrio de Guéliz, tanto los de la medina como las camionetas de la esquina. Naranjas, limones, sandías, aguacates, uvas, cerezas: teñimos la rafia a mano en colores emblemáticos y luego la tejemos fruta por fruta, una de las técnicas más delicadas. Un charm no solo se engancha al bolso: también se lleva en una joya, y con los pequeños aros dorados que se regalan al comprar los pendientes, varios charms se combinan o se llevan como collar. Verdaderas postales de Marrakech.",
  "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çanta nız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
- "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك حيّنا Guéliz — من المدينة القديمة ومن شاحنات زوايا الشوارع. برتقال، ليمون، بطيخ، أفوكادو، عنب، كرز: نصبغ الرافيا يدويًا بألوان مميزة، ثم نحيكها فاكهةً فاكهة — إحدى أدقّ التقنيات. الميدالية لا تُعلّق على الحقيبة فقط: تُلبس على قطعة مجوهرات أيضًا، ومع الحلقات الذهبية الصغيرة المُهداة عند شراء الأقراط، تتجمّع عدة ميداليات أو تُلبس كقلادة. بطاقات بريدية حقيقية من مراكش."
  },
  "liveUrl": "https://yza-shop.com/products/orange-raffia-bag-charm"
  },
@@ -7974,9 +7974,9 @@ const PRODUCTS = [
  "attachment": {
  "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
  "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ "es": "Lazo de rafia y aro dorado de 2 cm. Aro de 3 cm disponible para los bundles.",
+ "tr": "Rafya halka ve 2 cm altın halka. Bundle'lar için 3 cm halka mevcut.",
+ "ar": "حلقة رافيا وحلقة ذهبية 2 سم. تتوفر حلقة 3 سم للحزم."
  },
  "handworkTime": {
  "fr": "3 h de crochet main pour ce fruit.",
@@ -8068,11 +8068,11 @@ const PRODUCTS = [
  "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
- "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
- "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
- "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
- "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
+ "fr": "Les Fruit Charms viennent des étals de notre quartier de Guéliz — ceux de la médina comme ceux des camionnettes au coin de la rue. Oranges, citrons, pastèques, avocats, raisins, cerises : le raffia est teint par nos soins dans des couleurs emblématiques, puis crocheté fruit par fruit — l’une des techniques les plus délicates. Un charm ne se clipse pas qu’au sac : il se porte aussi sur un bijou, et avec les petits anneaux dorés offerts à l’achat des boucles, plusieurs charms se combinent ou se portent en collier. De véritables cartes postales de Marrakech.",
+ "en": "The YZA Fruit Charms come from the stalls of our Guéliz neighbourhood — the médina ones and the street-corner vans alike. Oranges, lemons, watermelons, avocados, grapes, cherries: we hand-dye the raffia in iconic shades, then crochet it fruit by fruit — one of the most delicate crafts there is. A charm doesn’t only clip to a bag: it wears on jewellery too, and with the little gold rings gifted when you buy the earrings, several charms combine or wear as a necklace. True postcards from Marrakesh.",
+ "es": "Los Fruit Charms de YZA vienen de los puestos de nuestro barrio de Guéliz, tanto los de la medina como las camionetas de la esquina. Naranjas, limones, sandías, aguacates, uvas, cerezas: teñimos la rafia a mano en colores emblemáticos y luego la tejemos fruta por fruta, una de las técnicas más delicadas. Un charm no solo se engancha al bolso: también se lleva en una joya, y con los pequeños aros dorados que se regalan al comprar los pendientes, varios charms se combinan o se llevan como collar. Verdaderas postales de Marrakech.",
+ "tr": "YZA Meyve Charmları, Guéliz mahallemizin tezgâhlarından gelir — hem medinadakiler hem de sokak köşesindeki kamyonetler. Portakal, limon, karpuz, avokado, üzüm, kiraz: rafyayı ikonik tonlarda elde boyar, sonra meyve meyve örüyoruz — var olan en zarif tekniklerden biri. Bir charm yalnızca çantaya takılmaz: bir takının üzerinde de taşınır ve küpe alırken hediye edilen küçük altın halkalarla birkaç charm birleşir ya da kolye gibi takılır. Marakeş’ten gerçek kartpostallar.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك حيّنا Guéliz — من المدينة القديمة ومن شاحنات زوايا الشوارع. برتقال، ليمون، بطيخ، أفوكادو، عنب، كرز: نصبغ الرافيا يدويًا بألوان مميزة، ثم نحيكها فاكهةً فاكهة — إحدى أدقّ التقنيات. الميدالية لا تُعلّق على الحقيبة فقط: تُلبس على قطعة مجوهرات أيضًا، ومع الحلقات الذهبية الصغيرة المُهداة عند شراء الأقراط، تتجمّع عدة ميداليات أو تُلبس كقلادة. بطاقات بريدية حقيقية من مراكش."
  },
  "liveUrl": "https://yza-shop.com/products/tomato-raffia-bag-charm"
  },
@@ -8324,9 +8324,9 @@ const PRODUCTS = [
  "attachment": {
  "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
  "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ "es": "Lazo de rafia y aro dorado de 2 cm. Aro de 3 cm disponible para los bundles.",
+ "tr": "Rafya halka ve 2 cm altın halka. Bundle'lar için 3 cm halka mevcut.",
+ "ar": "حلقة رافيا وحلقة ذهبية 2 سم. تتوفر حلقة 3 سم للحزم."
  },
  "handworkTime": {
  "fr": "1 h de crochet main pour ce fruit.",
@@ -8418,11 +8418,11 @@ const PRODUCTS = [
  "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
- "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
- "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
- "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
- "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
+ "fr": "Les Fruit Charms viennent des étals de notre quartier de Guéliz — ceux de la médina comme ceux des camionnettes au coin de la rue. Oranges, citrons, pastèques, avocats, raisins, cerises : le raffia est teint par nos soins dans des couleurs emblématiques, puis crocheté fruit par fruit — l’une des techniques les plus délicates. Un charm ne se clipse pas qu’au sac : il se porte aussi sur un bijou, et avec les petits anneaux dorés offerts à l’achat des boucles, plusieurs charms se combinent ou se portent en collier. De véritables cartes postales de Marrakech.",
+ "en": "The YZA Fruit Charms come from the stalls of our Guéliz neighbourhood — the médina ones and the street-corner vans alike. Oranges, lemons, watermelons, avocados, grapes, cherries: we hand-dye the raffia in iconic shades, then crochet it fruit by fruit — one of the most delicate crafts there is. A charm doesn’t only clip to a bag: it wears on jewellery too, and with the little gold rings gifted when you buy the earrings, several charms combine or wear as a necklace. True postcards from Marrakesh.",
+ "es": "Los Fruit Charms de YZA vienen de los puestos de nuestro barrio de Guéliz, tanto los de la medina como las camionetas de la esquina. Naranjas, limones, sandías, aguacates, uvas, cerezas: teñimos la rafia a mano en colores emblemáticos y luego la tejemos fruta por fruta, una de las técnicas más delicadas. Un charm no solo se engancha al bolso: también se lleva en una joya, y con los pequeños aros dorados que se regalan al comprar los pendientes, varios charms se combinan o se llevan como collar. Verdaderas postales de Marrakech.",
+ "tr": "YZA Meyve Charmları, Guéliz mahallemizin tezgâhlarından gelir — hem medinadakiler hem de sokak köşesindeki kamyonetler. Portakal, limon, karpuz, avokado, üzüm, kiraz: rafyayı ikonik tonlarda elde boyar, sonra meyve meyve örüyoruz — var olan en zarif tekniklerden biri. Bir charm yalnızca çantaya takılmaz: bir takının üzerinde de taşınır ve küpe alırken hediye edilen küçük altın halkalarla birkaç charm birleşir ya da kolye gibi takılır. Marakeş’ten gerçek kartpostallar.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك حيّنا Guéliz — من المدينة القديمة ومن شاحنات زوايا الشوارع. برتقال، ليمون، بطيخ، أفوكادو، عنب، كرز: نصبغ الرافيا يدويًا بألوان مميزة، ثم نحيكها فاكهةً فاكهة — إحدى أدقّ التقنيات. الميدالية لا تُعلّق على الحقيبة فقط: تُلبس على قطعة مجوهرات أيضًا، ومع الحلقات الذهبية الصغيرة المُهداة عند شراء الأقراط، تتجمّع عدة ميداليات أو تُلبس كقلادة. بطاقات بريدية حقيقية من مراكش."
  },
  "liveUrl": "https://yza-shop.com/products/lemon-slice-raphia-bag-charm"
  },
@@ -8674,9 +8674,9 @@ const PRODUCTS = [
  "attachment": {
  "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
  "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ "es": "Lazo de rafia y aro dorado de 2 cm. Aro de 3 cm disponible para los bundles.",
+ "tr": "Rafya halka ve 2 cm altın halka. Bundle'lar için 3 cm halka mevcut.",
+ "ar": "حلقة رافيا وحلقة ذهبية 2 سم. تتوفر حلقة 3 سم للحزم."
  },
  "handworkTime": {
  "fr": "1 h de crochet main pour ce fruit.",
@@ -8768,11 +8768,11 @@ const PRODUCTS = [
  "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
- "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
- "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
- "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
- "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
+ "fr": "Les Fruit Charms viennent des étals de notre quartier de Guéliz — ceux de la médina comme ceux des camionnettes au coin de la rue. Oranges, citrons, pastèques, avocats, raisins, cerises : le raffia est teint par nos soins dans des couleurs emblématiques, puis crocheté fruit par fruit — l’une des techniques les plus délicates. Un charm ne se clipse pas qu’au sac : il se porte aussi sur un bijou, et avec les petits anneaux dorés offerts à l’achat des boucles, plusieurs charms se combinent ou se portent en collier. De véritables cartes postales de Marrakech.",
+ "en": "The YZA Fruit Charms come from the stalls of our Guéliz neighbourhood — the médina ones and the street-corner vans alike. Oranges, lemons, watermelons, avocados, grapes, cherries: we hand-dye the raffia in iconic shades, then crochet it fruit by fruit — one of the most delicate crafts there is. A charm doesn’t only clip to a bag: it wears on jewellery too, and with the little gold rings gifted when you buy the earrings, several charms combine or wear as a necklace. True postcards from Marrakesh.",
+ "es": "Los Fruit Charms de YZA vienen de los puestos de nuestro barrio de Guéliz, tanto los de la medina como las camionetas de la esquina. Naranjas, limones, sandías, aguacates, uvas, cerezas: teñimos la rafia a mano en colores emblemáticos y luego la tejemos fruta por fruta, una de las técnicas más delicadas. Un charm no solo se engancha al bolso: también se lleva en una joya, y con los pequeños aros dorados que se regalan al comprar los pendientes, varios charms se combinan o se llevan como collar. Verdaderas postales de Marrakech.",
+ "tr": "YZA Meyve Charmları, Guéliz mahallemizin tezgâhlarından gelir — hem medinadakiler hem de sokak köşesindeki kamyonetler. Portakal, limon, karpuz, avokado, üzüm, kiraz: rafyayı ikonik tonlarda elde boyar, sonra meyve meyve örüyoruz — var olan en zarif tekniklerden biri. Bir charm yalnızca çantaya takılmaz: bir takının üzerinde de taşınır ve küpe alırken hediye edilen küçük altın halkalarla birkaç charm birleşir ya da kolye gibi takılır. Marakeş’ten gerçek kartpostallar.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك حيّنا Guéliz — من المدينة القديمة ومن شاحنات زوايا الشوارع. برتقال، ليمون، بطيخ، أفوكادو، عنب، كرز: نصبغ الرافيا يدويًا بألوان مميزة، ثم نحيكها فاكهةً فاكهة — إحدى أدقّ التقنيات. الميدالية لا تُعلّق على الحقيبة فقط: تُلبس على قطعة مجوهرات أيضًا، ومع الحلقات الذهبية الصغيرة المُهداة عند شراء الأقراط، تتجمّع عدة ميداليات أو تُلبس كقلادة. بطاقات بريدية حقيقية من مراكش."
  },
  "liveUrl": "https://yza-shop.com/products/orange-slice-raffia-crochet-bag-charm"
  },
@@ -9024,9 +9024,9 @@ const PRODUCTS = [
  "attachment": {
  "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
  "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ "es": "Lazo de rafia y aro dorado de 2 cm. Aro de 3 cm disponible para los bundles.",
+ "tr": "Rafya halka ve 2 cm altın halka. Bundle'lar için 3 cm halka mevcut.",
+ "ar": "حلقة رافيا وحلقة ذهبية 2 سم. تتوفر حلقة 3 سم للحزم."
  },
  "handworkTime": {
  "fr": "1,5 h de crochet main pour ce fruit.",
@@ -9118,11 +9118,11 @@ const PRODUCTS = [
  "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
- "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
- "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
- "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
- "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
+ "fr": "Les Fruit Charms viennent des étals de notre quartier de Guéliz — ceux de la médina comme ceux des camionnettes au coin de la rue. Oranges, citrons, pastèques, avocats, raisins, cerises : le raffia est teint par nos soins dans des couleurs emblématiques, puis crocheté fruit par fruit — l’une des techniques les plus délicates. Un charm ne se clipse pas qu’au sac : il se porte aussi sur un bijou, et avec les petits anneaux dorés offerts à l’achat des boucles, plusieurs charms se combinent ou se portent en collier. De véritables cartes postales de Marrakech.",
+ "en": "The YZA Fruit Charms come from the stalls of our Guéliz neighbourhood — the médina ones and the street-corner vans alike. Oranges, lemons, watermelons, avocados, grapes, cherries: we hand-dye the raffia in iconic shades, then crochet it fruit by fruit — one of the most delicate crafts there is. A charm doesn’t only clip to a bag: it wears on jewellery too, and with the little gold rings gifted when you buy the earrings, several charms combine or wear as a necklace. True postcards from Marrakesh.",
+ "es": "Los Fruit Charms de YZA vienen de los puestos de nuestro barrio de Guéliz, tanto los de la medina como las camionetas de la esquina. Naranjas, limones, sandías, aguacates, uvas, cerezas: teñimos la rafia a mano en colores emblemáticos y luego la tejemos fruta por fruta, una de las técnicas más delicadas. Un charm no solo se engancha al bolso: también se lleva en una joya, y con los pequeños aros dorados que se regalan al comprar los pendientes, varios charms se combinan o se llevan como collar. Verdaderas postales de Marrakech.",
+ "tr": "YZA Meyve Charmları, Guéliz mahallemizin tezgâhlarından gelir — hem medinadakiler hem de sokak köşesindeki kamyonetler. Portakal, limon, karpuz, avokado, üzüm, kiraz: rafyayı ikonik tonlarda elde boyar, sonra meyve meyve örüyoruz — var olan en zarif tekniklerden biri. Bir charm yalnızca çantaya takılmaz: bir takının üzerinde de taşınır ve küpe alırken hediye edilen küçük altın halkalarla birkaç charm birleşir ya da kolye gibi takılır. Marakeş’ten gerçek kartpostallar.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك حيّنا Guéliz — من المدينة القديمة ومن شاحنات زوايا الشوارع. برتقال، ليمون، بطيخ، أفوكادو، عنب، كرز: نصبغ الرافيا يدويًا بألوان مميزة، ثم نحيكها فاكهةً فاكهة — إحدى أدقّ التقنيات. الميدالية لا تُعلّق على الحقيبة فقط: تُلبس على قطعة مجوهرات أيضًا، ومع الحلقات الذهبية الصغيرة المُهداة عند شراء الأقراط، تتجمّع عدة ميداليات أو تُلبس كقلادة. بطاقات بريدية حقيقية من مراكش."
  },
  "liveUrl": "https://yza-shop.com/products/kiwi-raffia-crochet-bag-charm"
  },
@@ -9376,9 +9376,9 @@ const PRODUCTS = [
  "attachment": {
  "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
  "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ "es": "Lazo de rafia y aro dorado de 2 cm. Aro de 3 cm disponible para los bundles.",
+ "tr": "Rafya halka ve 2 cm altın halka. Bundle'lar için 3 cm halka mevcut.",
+ "ar": "حلقة رافيا وحلقة ذهبية 2 سم. تتوفر حلقة 3 سم للحزم."
  },
  "handworkTime": {
  "fr": "1,5 h de crochet main pour ce fruit.",
@@ -9470,11 +9470,11 @@ const PRODUCTS = [
  "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
- "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
- "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
- "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
- "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
+ "fr": "Les Fruit Charms viennent des étals de notre quartier de Guéliz — ceux de la médina comme ceux des camionnettes au coin de la rue. Oranges, citrons, pastèques, avocats, raisins, cerises : le raffia est teint par nos soins dans des couleurs emblématiques, puis crocheté fruit par fruit — l’une des techniques les plus délicates. Un charm ne se clipse pas qu’au sac : il se porte aussi sur un bijou, et avec les petits anneaux dorés offerts à l’achat des boucles, plusieurs charms se combinent ou se portent en collier. De véritables cartes postales de Marrakech.",
+ "en": "The YZA Fruit Charms come from the stalls of our Guéliz neighbourhood — the médina ones and the street-corner vans alike. Oranges, lemons, watermelons, avocados, grapes, cherries: we hand-dye the raffia in iconic shades, then crochet it fruit by fruit — one of the most delicate crafts there is. A charm doesn’t only clip to a bag: it wears on jewellery too, and with the little gold rings gifted when you buy the earrings, several charms combine or wear as a necklace. True postcards from Marrakesh.",
+ "es": "Los Fruit Charms de YZA vienen de los puestos de nuestro barrio de Guéliz, tanto los de la medina como las camionetas de la esquina. Naranjas, limones, sandías, aguacates, uvas, cerezas: teñimos la rafia a mano en colores emblemáticos y luego la tejemos fruta por fruta, una de las técnicas más delicadas. Un charm no solo se engancha al bolso: también se lleva en una joya, y con los pequeños aros dorados que se regalan al comprar los pendientes, varios charms se combinan o se llevan como collar. Verdaderas postales de Marrakech.",
+ "tr": "YZA Meyve Charmları, Guéliz mahallemizin tezgâhlarından gelir — hem medinadakiler hem de sokak köşesindeki kamyonetler. Portakal, limon, karpuz, avokado, üzüm, kiraz: rafyayı ikonik tonlarda elde boyar, sonra meyve meyve örüyoruz — var olan en zarif tekniklerden biri. Bir charm yalnızca çantaya takılmaz: bir takının üzerinde de taşınır ve küpe alırken hediye edilen küçük altın halkalarla birkaç charm birleşir ya da kolye gibi takılır. Marakeş’ten gerçek kartpostallar.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك حيّنا Guéliz — من المدينة القديمة ومن شاحنات زوايا الشوارع. برتقال، ليمون، بطيخ، أفوكادو، عنب، كرز: نصبغ الرافيا يدويًا بألوان مميزة، ثم نحيكها فاكهةً فاكهة — إحدى أدقّ التقنيات. الميدالية لا تُعلّق على الحقيبة فقط: تُلبس على قطعة مجوهرات أيضًا، ومع الحلقات الذهبية الصغيرة المُهداة عند شراء الأقراط، تتجمّع عدة ميداليات أو تُلبس كقلادة. بطاقات بريدية حقيقية من مراكش."
  },
  "liveUrl": "https://yza-shop.com/products/watermelon-raffia-bag-charm"
  },
@@ -9716,9 +9716,9 @@ const PRODUCTS = [
  "attachment": {
  "fr": "Boucle en raffia et anneau doré 2 cm. Anneau de 3 cm disponible pour les bundles.",
  "en": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "es": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "tr": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles.",
- "ar": "Raffia loop and 2 cm gold ring. 3 cm ring available for bundles."
+ "es": "Lazo de rafia y aro dorado de 2 cm. Aro de 3 cm disponible para los bundles.",
+ "tr": "Rafya halka ve 2 cm altın halka. Bundle'lar için 3 cm halka mevcut.",
+ "ar": "حلقة رافيا وحلقة ذهبية 2 سم. تتوفر حلقة 3 سم للحزم."
  },
  "handworkTime": {
  "fr": "2 h de crochet main pour ce fruit.",
@@ -9810,11 +9810,11 @@ const PRODUCTS = [
  "ar": "Fruit Market: مستوحى من أسواق مراكش"
  },
  "collectionBody": {
- "fr": "Les Fruit Charms viennent des étals de Marrakech : oranges, citrons, pastèques, tomates, avocats, raisins et cerises transformés en petites pièces de raffia à accrocher au sac. Chaque fruit est crocheté main dans l’atelier de Guéliz, fibre par fibre, puis fini avec une étiquette YZA dorée.",
- "en": "YZA Fruit Charms come from Marrakesh market stalls: oranges, lemons, watermelons, tomatoes, avocados, grapes and cherries turned into small raffia pieces for your bag. Each fruit is hand-crocheted in the Guéliz atelier, fibre by fibre, then finished with a gold YZA tag.",
- "es": "Los Fruit Charms de YZA vienen de los puestos del mercado de Marrakech: naranjas, limones, sandías, tomates, aguacates, uvas y cerezas convertidos en pequeñas piezas de rafia para tu bolso. Cada fruta está tejida a mano en el taller de Guéliz, fibra por fibra, y terminada con una etiqueta dorada de YZA.",
- "tr": "YZA Meyve Charmları, Marakeş pazar tezgahlarından geliyor: portakal, limon, karpuz, domates, avokado, üzüm ve kiraz; çantanız için küçük rafya parçalarına dönüştürülmüş. Her meyve, Guéliz atölyesinde lif lif el kroşesiyle yapılır, ardından altın YZA etiketiyle bitirilir.",
- "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك سوق مراكش: برتقال وليمون وبطيخ وطماطم وأفوكادو وعنب وكرز، تحولت إلى قطع رافيا صغيرة تزيّن حقيبتك. كل فاكهة مصنوعة بالكروشيه اليدوي في أتيليه Guéliz، ليفة بليفة، ثم مُكتملة بعلامة YZA الذهبية."
+ "fr": "Les Fruit Charms viennent des étals de notre quartier de Guéliz — ceux de la médina comme ceux des camionnettes au coin de la rue. Oranges, citrons, pastèques, avocats, raisins, cerises : le raffia est teint par nos soins dans des couleurs emblématiques, puis crocheté fruit par fruit — l’une des techniques les plus délicates. Un charm ne se clipse pas qu’au sac : il se porte aussi sur un bijou, et avec les petits anneaux dorés offerts à l’achat des boucles, plusieurs charms se combinent ou se portent en collier. De véritables cartes postales de Marrakech.",
+ "en": "The YZA Fruit Charms come from the stalls of our Guéliz neighbourhood — the médina ones and the street-corner vans alike. Oranges, lemons, watermelons, avocados, grapes, cherries: we hand-dye the raffia in iconic shades, then crochet it fruit by fruit — one of the most delicate crafts there is. A charm doesn’t only clip to a bag: it wears on jewellery too, and with the little gold rings gifted when you buy the earrings, several charms combine or wear as a necklace. True postcards from Marrakesh.",
+ "es": "Los Fruit Charms de YZA vienen de los puestos de nuestro barrio de Guéliz, tanto los de la medina como las camionetas de la esquina. Naranjas, limones, sandías, aguacates, uvas, cerezas: teñimos la rafia a mano en colores emblemáticos y luego la tejemos fruta por fruta, una de las técnicas más delicadas. Un charm no solo se engancha al bolso: también se lleva en una joya, y con los pequeños aros dorados que se regalan al comprar los pendientes, varios charms se combinan o se llevan como collar. Verdaderas postales de Marrakech.",
+ "tr": "YZA Meyve Charmları, Guéliz mahallemizin tezgâhlarından gelir — hem medinadakiler hem de sokak köşesindeki kamyonetler. Portakal, limon, karpuz, avokado, üzüm, kiraz: rafyayı ikonik tonlarda elde boyar, sonra meyve meyve örüyoruz — var olan en zarif tekniklerden biri. Bir charm yalnızca çantaya takılmaz: bir takının üzerinde de taşınır ve küpe alırken hediye edilen küçük altın halkalarla birkaç charm birleşir ya da kolye gibi takılır. Marakeş’ten gerçek kartpostallar.",
+ "ar": "تأتي ميداليات الفاكهة من YZA من أكشاك حيّنا Guéliz — من المدينة القديمة ومن شاحنات زوايا الشوارع. برتقال، ليمون، بطيخ، أفوكادو، عنب، كرز: نصبغ الرافيا يدويًا بألوان مميزة، ثم نحيكها فاكهةً فاكهة — إحدى أدقّ التقنيات. الميدالية لا تُعلّق على الحقيبة فقط: تُلبس على قطعة مجوهرات أيضًا، ومع الحلقات الذهبية الصغيرة المُهداة عند شراء الأقراط، تتجمّع عدة ميداليات أو تُلبس كقلادة. بطاقات بريدية حقيقية من مراكش."
  },
  "liveUrl": "https://yza-shop.com/products/avocado-raffia-bag-charm"
  },
@@ -16593,8 +16593,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Two crocheted cherries, joined at the stem. Like the ones you hung over your ear."
  },
  "desc": {
- "fr": "Deux petites boules rouges et leur tige, crochetées au raffia par les femmes de Guéliz. Compte environ deux heures de crochet pour les arrondir et les relier - un geste lent, qu'aucune machine ne sait imiter. Clipsées au sac ou aux clés, elles balancent à chaque pas un peu du marché de Marrakech.",
- "en": "Two small red rounds and their stem, crocheted in raffia by the Guéliz women. Count about two hours of crochet to round them and join them - a slow gesture no machine knows how to copy. Clipped to a bag or keys, they swing a little of the Marrakech market with each step."
+ "fr": "Deux petites boules rouges et leur tige, crochetées au raffia par les femmes de Guéliz avec l'aakad - la technique des boutons de caftan marocain, dont la forme s'inspire justement de la cerise. Compte environ deux heures de crochet pour les arrondir et les relier - un geste lent, qu'aucune machine ne sait imiter. Clipsées au sac ou aux clés, elles balancent à chaque pas un peu du marché de Marrakech.",
+ "en": "Two small red rounds and their stem, crocheted in raffia by the Guéliz women with the aakad - the Moroccan caftan-button technique, whose very shape is inspired by the cherry. Count about two hours of crochet to round them and join them - a slow gesture no machine knows how to copy. Clipped to a bag or keys, they swing a little of the Marrakech market with each step."
  },
  "material": {
  "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
@@ -16621,8 +16621,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "First of the season"
  },
  "fruitStoryBody": {
- "fr": "Les cerises ouvrent la saison sur les étals - petites, rouges, en tas qui luisent. On les a nouées par deux, comme on se les accrochait à l'oreille quand on était enfant.",
- "en": "Cherries open the season on the stalls - small, red, in piles that gleam. We tied them in pairs, the way we hooked them over our ears as children."
+ "fr": "Les cerises ouvrent la saison sur les étals - petites, rouges, en tas qui luisent. On les a nouées par deux à l'aakad, la technique des boutons de caftan de Sefrou - comme on se les accrochait à l'oreille quand on était enfant.",
+ "en": "Cherries open the season on the stalls - small, red, in piles that gleam. We tied them in pairs with the aakad, Sefrou's caftan-button technique - the way we hooked them over our ears as children."
  },
  "howToWearTitle": {
  "fr": "Porter les cerises",
@@ -16655,8 +16655,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Hand-crocheted, the two cherries are never twins - that's the hand speaking."
  },
  "making": {
- "fr": "Chaque pièce est crochetée à la main dans l'atelier de Guéliz, fibre par fibre, puis contrôlée avant la pose de l'étiquette YZA.",
- "en": "Each piece is hand-crocheted in the Guéliz atelier, fibre by fibre, then checked before the YZA tag is added."
+ "fr": "Chaque paire de cerises est réalisée à l'aakad, les petits boutons du caftan marocain tressés un à un à la main - une technique venue de Sefrou, la ville qui célèbre la cerise chaque année, et citée au patrimoine immatériel de l'UNESCO (2025). C'est La Fatima qui la maîtrise à l'atelier de Guéliz. Chaque cerise est ensuite reliée par une tige nouée et rembourrée de chutes de raffia, avant la pose de l'étiquette YZA.",
+ "en": "Each pair of cherries is made with the aakad, the small Moroccan caftan buttons braided one by one by hand - a technique from Sefrou, the town that celebrates cherries every year, and listed in the UNESCO intangible-heritage file (2025). It's La Fatima who masters it in the Guéliz atelier. Each cherry is then joined by a knotted stem and padded with raffia offcuts, before the YZA tag is added."
  },
  "attachment": {
  "fr": "Petite boucle de raffia. Anneau doré inclus dans les bundles, disponible au studio pour les charms seuls.",
@@ -16678,8 +16678,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "A bunch of grapes, grape by grape. The longest of our fruits to crochet."
  },
  "desc": {
- "fr": "Chaque grain est crocheté à part, puis cousu aux autres jusqu'à former la grappe - c'est ce qui peut demander jusqu'à six heures de travail. Tout ce temps pour qu'elle reste ronde et pleine, avec le volume d'une vraie grappe, sans jamais le poids - le raffia reste très léger. Pendue à un sac ou à une ceinture, elle se balance au soleil, grain contre grain.",
- "en": "Each grape is crocheted on its own, then sewn to the others until the bunch takes shape - which can run up to six hours of work. All that time so it stays round and full, with the volume of a real bunch but never the weight - raffia stays very light. Hung from a bag or a belt, it sways in the sun, grape against grape."
+ "fr": "Chaque grain est crocheté à part, puis noué aux autres à l'aakad - la technique des boutons de caftan - jusqu'à former la grappe : c'est ce qui peut demander jusqu'à six heures de travail. Tout ce temps pour qu'elle reste ronde et pleine, avec le volume d'une vraie grappe, sans jamais le poids - le raffia reste très léger. Pendue à un sac ou à une ceinture, elle se balance au soleil, grain contre grain.",
+ "en": "Each grape is crocheted on its own, then knotted to the others with the aakad - the caftan-button technique - until the bunch takes shape, which can run up to six hours of work. All that time so it stays round and full, with the volume of a real bunch but never the weight - raffia stays very light. Hung from a bag or a belt, it sways in the sun, grape against grape."
  },
  "material": {
  "fr": "Raffia naturel teint de manière artisanale à la main. Ce sont les brins de raffia naturel qui se cassent facilement pendant le travail, ce qui rend le crochet lent et précis - mais une fois crochetée, tissée ou cousue, la pièce devient au contraire très solide et durable, et peu sensible à l'eau. Chaque fruit est d'ailleurs rembourré avec ses propres chutes de raffia, jamais avec de la mousse synthétique. Le crochet est l'une des seules techniques au monde qu'aucune machine ne peut reproduire - cet objet ne pourrait pas être fabriqué autrement.",
@@ -16738,6 +16738,10 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "howToWearNote": {
  "fr": "Cousue grain par grain à la main, aucune grappe ne pend exactement comme la précédente.",
  "en": "Sewn grape by grape by hand, no bunch hangs exactly like the last."
+ },
+ "making": {
+ "fr": "Chaque grappe est nouée à l'aakad, la technique des boutons de caftan tressés à la main, puis cousue grain par grain par La Fatima dans l'atelier de Guéliz, avant la pose de l'étiquette YZA.",
+ "en": "Each bunch is knotted with the aakad, the hand-braided caftan-button technique, then sewn grape by grape by La Fatima in the Guéliz atelier, before the YZA tag is added."
  }
  },
  {
@@ -18132,8 +18136,8 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "The Fruit Market"
  },
  "body": {
- "fr": "Tout un marche crochete a la main - cerises, citrons, pasteque, tomates - ne des etals gorges de soleil de Marrakech. Chaque fruit est faconne en raphia par les femmes de notre atelier, au rythme du crochet.",
- "en": "A whole market crocheted by hand - cherries, lemons, watermelon, tomatoes - born from the sun-soaked stalls of Marrakech. Each fruit is shaped in raffia by the women of our atelier, at the rhythm of the crochet hook."
+ "fr": "Tout un marché crocheté à la main - cerises, citrons, pastèque, tomates, avocats, raisins - né des étals gorgés de soleil de notre quartier de Guéliz. Le raffia est teint par nos soins dans des couleurs emblématiques, puis crocheté fruit par fruit, l'une des techniques les plus délicates. Un charm se clipse au sac, mais aussi à un bijou - et avec les petits anneaux dorés offerts à l'achat des boucles, plusieurs se combinent ou se portent en collier. De véritables cartes postales de Marrakech.",
+ "en": "A whole market crocheted by hand - cherries, lemons, watermelon, tomatoes, avocados, grapes - born from the sun-soaked stalls of our Guéliz neighbourhood. We hand-dye the raffia in iconic shades, then crochet it fruit by fruit, one of the most delicate crafts. A charm clips to a bag, but also to a piece of jewellery - and with the little gold rings gifted when you buy the earrings, several combine or wear as a necklace. True postcards from Marrakesh."
  }
 };
  var L5x = (typeof L5 === 'function') ? L5 : function (fr, en) { return { fr: fr, en: en, es: en, tr: en, ar: en }; };
@@ -18160,11 +18164,12 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  if (it.modelNote) p.modelNote = f(it.modelNote, p.modelNote);
  if (it.styleTip) p.styleTip = f(it.styleTip, p.styleTip);
  if (it.fruitStoryTitle && it.fruitStoryBody) {
+ var _pfs = p.fruitStory || {};
  p.fruitStory = {
- title: f(it.fruitStoryTitle),
- body: f(it.fruitStoryBody),
- collectionTitle: f(FRUIT_COLLECTION.title),
- collectionBody: f(FRUIT_COLLECTION.body),
+ title: f(it.fruitStoryTitle, _pfs.title),
+ body: f(it.fruitStoryBody, _pfs.body),
+ collectionTitle: f(FRUIT_COLLECTION.title, _pfs.collectionTitle),
+ collectionBody: f(FRUIT_COLLECTION.body, _pfs.collectionBody),
  };
  }
  if (it.howToWearTitle && it.howToWearIntro) {
