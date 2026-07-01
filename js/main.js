@@ -1975,6 +1975,13 @@
       $$('#pColorSwatches .product-color__swatch').forEach((el) => el.classList.remove('is-active'));
       btn.classList.add('is-active');
       $('#pColorName').textContent = btn.dataset.colorName || '';
+      // Per-colour image swap (clothing): when a colour has its own photo (product.colorImages
+      // keyed by the FR colour name), swap the gallery main image to it. No-op until populated.
+      const cimg = product.colorImages && product.colorImages[btn.dataset.colorName];
+      if (cimg) {
+        const gm = document.querySelector('#galMain img');
+        if (gm) { gm.removeAttribute('srcset'); gm.src = cimg; gm.dataset.colorSwapped = '1'; }
+      }
     };
     const view = $('#pViewColors');
     if (view) {

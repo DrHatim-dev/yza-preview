@@ -1862,6 +1862,7 @@ body.has-search-overlay { overflow: hidden; }
 .story-copy--center { text-align: center; }
 .story-copy p { color: var(--color-fg); font-size: var(--fs-md); line-height: var(--leading-body); }
 .story-copy p + p { margin-top: var(--space-5); }
+.story-atelier-tagline { font-family: var(--font-serif); font-style: italic; font-size: 1.05rem; color: var(--accent, #de733d); margin-top: var(--space-6) !important; }
 .story-copy h2 { font-size: var(--fs-2xl); margin-bottom: var(--space-5); text-wrap: balance; }
 .story-copy .btn { margin-top: var(--space-6); }
 .story-moodboard {
@@ -3202,6 +3203,9 @@ body.is-scroll-down .header, body.is-scroll-down .header.is-stuck { background: 
  margin-top: var(--space-12);
  margin-bottom: var(--space-12);
 }
+/* Editorial 2-up pair (craft-in-progress shots) — wider aspect than the 3-col thumbnail grid. */
+.story-atelier-gallery--pair { grid-template-columns: repeat(2, 1fr); max-width: 880px; margin-inline: auto; }
+.story-atelier-gallery--pair figure { aspect-ratio: 4 / 5; }
 .story-atelier-gallery figure {
  aspect-ratio: 3 / 4;
  overflow: hidden;
