@@ -99,8 +99,8 @@ const STR = {
   /* — Hero accueil — */
   'hero.eyebrow':    { fr: 'YZA', en: 'YZA' },
   'hero.title':      { fr: 'La Sculpture', en: 'La Sculpture' },
-  'hero.subheading': { fr: 'Réalisé à la main à Guéliz. Jamais deux fois pareil.', en: 'Handmade in Guéliz. Never the same twice.' },
-  'hero.text':       { fr: 'Raphia, doum, feuilles de bananiers, perles… nos artisanes les travaillent à la main dans notre studio à Guéliz, Marrakech. Une pièce à la fois, et jamais deux fois la même.', en: 'Raffia, doum palm, banana leaves, beads… our women artisans work them by hand in our studio in Guéliz, Marrakech. One piece at a time, and never the same one twice.' },
+  'hero.subheading': { fr: 'Le vestiaire moderne de Marrakech.', en: 'The modern wardrobe of Marrakech.' },
+  'hero.text':       { fr: 'Sacs, charms, bijoux et prêt-à-porter faits main à Guéliz — raphia, doum, feuilles de palmier et notre tissu Jawhara. Modernes, faits pour durer, en éditions limitées. Une pièce à la fois, jamais deux fois la même.', en: 'Bags, charms, jewellery and ready-to-wear, handmade in Guéliz — raffia, doum palm, palm leaves and our Jawhara fabric. Modern, made to last, in limited editions. One piece at a time, never the same one twice.' },
 
   /* — Bande d'autorité (presse / pedigree fondatrice) — */
   'press.label':     { fr: 'Après 15 ans à Paris dans la mode, Nawal fonde la marque YZA à Marrakech.', en: 'After 15 years in Paris fashion, Nawal founded YZA in Marrakech.' },
@@ -467,7 +467,8 @@ const EXTRA = {
   'a.close': { es: 'Cerrar', tr: 'Kapat', ar: 'إغلاق' },
   'cta.added': { es: 'Añadido ✓', tr: 'Eklendi ✓', ar: 'تمت الإضافة ✓' },
   'hero.title': { es: 'La Sculpture', tr: 'La Sculpture', ar: 'La Sculpture' },
-  'hero.subheading': { es: 'Tejido a mano en Guéliz, Marrakech. Nunca igual dos veces.', tr: 'Guéliz, Marrakech’te elle dokunmuş. Hiçbiri aynı değil.', ar: 'منسوج يدوياً في Guéliz, Marrakech. لا يتكرر أبداً.' },
+  'hero.subheading': { es: 'El vestuario moderno de Marrakech.', tr: 'Marakeş’in modern gardırobu.', ar: 'خزانة مراكش العصرية.' },
+  'hero.text': { es: 'Bolsos, charms, joyas y prêt-à-porter hechos a mano en Guéliz — rafia, doum, hojas de palma y nuestro tejido Jawhara. Modernos, hechos para durar, en ediciones limitadas. Una pieza a la vez, nunca igual dos veces.', tr: 'Guéliz’de el yapımı çantalar, charm’lar, takılar ve hazır giyim — rafya, doum palmiyesi, palmiye yaprakları ve Jawhara kumaşımız. Modern, uzun ömürlü, sınırlı sayıda. Her seferinde tek parça, hiçbiri aynı değil.', ar: 'حقائب وتمائم ومجوهرات وملابس جاهزة مصنوعة يدويًا في كليز — رافيا ودوم وسعف النخيل وقماش جوهرة. عصرية، مصنوعة لتدوم، بإصدارات محدودة. قطعة واحدة في كل مرة، لا تتكرر أبدًا.' },
   'pp.limited': {
     fr: 'Édition limitée · une fois partie, on ne la refait pas',
     en: 'Limited edition · once it’s gone, we don’t remake it',
