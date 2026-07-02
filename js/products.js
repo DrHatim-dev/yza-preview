@@ -139,9 +139,9 @@ if (typeof document !== 'undefined' && document.prerendering) {
 }
 
 YZA.brand = {
- email: 'info@yza-shop.com',
- emailSupport: 'support@yza-shop.com',
- emailB2b: 'b2b@yza-shop.com',
+ email: 'contact@yza-shop.com',
+ emailSupport: 'contact@yza-shop.com',
+ emailB2b: 'contact@yza-shop.com',
  whatsapp: '+212693296630',
  whatsappDisplay: '+212 693 296 630',
  instagram: 'yzahandmade',

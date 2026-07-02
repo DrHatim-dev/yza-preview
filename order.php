@@ -1,6 +1,6 @@
 <?php
 /* YZA — best-effort order record. Receives the checkout JSON and
-   (1) mails a copy to info@yza-shop.com,
+   (1) mails a copy to contact@yza-shop.com,
    (2) if WordPress+WooCommerce is installed at /wp, creates a WooCommerce
        order too — that's what triggers the push notification in the
        WooCommerce mobile app (via Jetpack) and keeps an order history.
@@ -24,7 +24,7 @@ if (!is_array($data) || empty($data['text'])) {
   exit;
 }
 
-$to    = 'info@yza-shop.com';
+$to    = 'contact@yza-shop.com';
 $order = isset($data['order']) && is_array($data['order']) ? $data['order'] : array();
 $ship  = isset($order['shipping']) && is_array($order['shipping']) ? $order['shipping'] : array();
 
