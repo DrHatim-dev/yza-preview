@@ -151,7 +151,21 @@
     const t = T();
     const tile = !!opts.tile;
     const name = t.pick(displayName(p));
-    const hoverSrc = p.hoverImg || ((p.gallery && p.gallery[1] && p.gallery[1] !== p.img) ? p.gallery[1] : '');
+    // Page-wide image de-dup (client rule: never the same image twice on a page).
+    // When opts.used (a Set of normalised srcs) is passed, show the product's first
+    // still-unused gallery photo instead of repeating one already on the page.
+    const _normImg = (s) => String(s || '').replace(/\?.*$/, '');
+    const _gallery = [p.img].concat(p.gallery || []).filter(Boolean);
+    let primaryImg = p.img;
+    if (opts.used) {
+      primaryImg = _gallery.find((g) => !opts.used.has(_normImg(g))) || p.img;
+      opts.used.add(_normImg(primaryImg));
+    }
+    let hoverSrc = p.hoverImg || ((p.gallery && p.gallery[1] && p.gallery[1] !== primaryImg) ? p.gallery[1] : '');
+    if (opts.used && hoverSrc) {
+      if (opts.used.has(_normImg(hoverSrc))) hoverSrc = _gallery.find((g) => _normImg(g) !== _normImg(primaryImg) && !opts.used.has(_normImg(g))) || '';
+      if (hoverSrc) opts.used.add(_normImg(hoverSrc));
+    }
     const status = YZA.inventoryStatus?.(p) || { inventory: null, soldOut: false, almostGone: false };
     const stock = stockCopy();
     const wished = wishlistHas(p.handle);
@@ -166,7 +180,7 @@
     const wishBtn = `<button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(p.handle)}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${wished ? 'Remove from wishlist' : 'Add to wishlist'}">${heartIcon()}</button>`;
     const mediaLink = `<a class="product-card__media" href="${href}" data-product-card-click="${esc(p.handle)}" aria-label="${esc(name)}">
         ${fewBadge}${almostBadge}${soldOverlay}
-        <img class="product-card__img" src="${esc(p.img)}" alt="${esc(t.pick(p.name))} - YZA" ${imgLoad} width="461" height="615" decoding="async">
+        <img class="product-card__img" src="${esc(primaryImg)}" alt="${esc(t.pick(p.name))} - YZA" ${imgLoad} width="461" height="615" decoding="async">
         ${(hoverSrc && isPublicMedia(hoverSrc)) ? `<img class="product-card__img product-card__img--hover" src="${esc(hoverSrc)}" alt="" aria-hidden="true" loading="lazy" width="461" height="615" decoding="async">` : ''}
       </a>`;
     const quickAdd = (tile && !status.soldOut)
@@ -769,10 +783,20 @@
  const t = T();
  // best-sellers : charms hors coffrets - carrousel landing
  const promoOk = typeof YZA.isLaunchPromoProduct === 'function' ? YZA.isLaunchPromoProduct : (p) => p && p.launchPromo !== false;
+ // Page-wide image de-dup: seed with every static image already on the home page
+ // (category cards, duo tiles, closing band, charm rotators) so the JS grids never
+ // repeat one. Excludes the containers we're about to (re)fill.
+ const usedHomeImg = new Set(
+ Array.from(document.querySelectorAll('main img[src], main video[src]'))
+ .filter((m) => !m.closest('#bestGrid, #offerGrid, #girlsPreviewGrid'))
+ .map((m) => String(m.getAttribute('src') || '').replace(/\?.*$/, ''))
+ );
+ // Offer = 4 curated heroes; keep them OUT of best-sellers so no product/image repeats.
+ const offerHandles = ['la-sculpture-xs-basket-bag-ss26', 'yza-palazzo-pants-jawhara-ss26', 'raffia-orange-slice-charm-ss26', 'grapes-raffia-earrings-ss26'];
  // Fixed full-bleed product grid (Jacquemus "New In" style) instead of a carousel — 2 per category.
- const bestList = ['charms', 'bags', 'rtw', 'accessories'].flatMap(g => YZA.byCategory(g).filter(p => !p.bundle && promoOk(p)).slice(0, 2)).slice(0, 8);
+ const bestList = ['charms', 'bags', 'rtw', 'accessories'].flatMap(g => YZA.byCategory(g).filter(p => !p.bundle && promoOk(p) && !offerHandles.includes(p.handle)).slice(0, 2)).slice(0, 8);
  const bestGrid = $('#bestGrid');
- if (bestGrid) bestGrid.innerHTML = bestList.map((p, i) => cardHTML(p, i)).join('');
+ if (bestGrid) bestGrid.innerHTML = bestList.map((p, i) => cardHTML(p, i, false, { used: usedHomeImg })).join('');
 
  // bande presse (savoir-faire fondatrice)
  const press = $('#pressList');
@@ -782,10 +806,9 @@
  const offer = $('#offerGrid');
  if (offer) {
  // One pick per category, each with a multi-image runtime gallery for the draggable carousel.
- const offerHandles = ['la-sculpture-xs-basket-bag-ss26', 'yza-palazzo-pants-jawhara-ss26', 'raffia-orange-slice-charm-ss26', 'grapes-raffia-earrings-ss26'];
  const picks = offerHandles.map(h => YZA.getProduct ? YZA.getProduct(h) : null).filter(Boolean);
  // Fixed product grid (Jacquemus style) — standard cards, single image + hover-swap, no per-card swipe.
- offer.innerHTML = picks.map((p, i) => cardHTML(p, i)).join('');
+ offer.innerHTML = picks.map((p, i) => cardHTML(p, i, false, { used: usedHomeImg })).join('');
  }
 
  // Témoignages - EXEMPLES à remplacer par de vrais avis (data-placeholder="reviews")
