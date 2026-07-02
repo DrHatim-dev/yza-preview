@@ -204,6 +204,16 @@
       </a>
     </article>`;
   }
+  // Per-variant hover media (client-specified). Keyed by a token in the variant's
+  // image filename ({rouge|violet|noir}-{xs|s|m}-01.jpg), so it targets the exact
+  // size+colour combo. video → plays on hover; img → cross-fades on hover.
+  const BAG_HOVER = {
+    'violet-xs-01': { video: 'assets/lifestyle/bags/la-sculpture-xs-deep-violet-motion.mp4' },
+    'rouge-xs-01':  { video: 'assets/lifestyle/bags/la-sculpture-xs-hot-red-motion.mp4' },
+    'rouge-m-01':   { video: 'assets/lifestyle/bags/la-sculpture-m-hot-red-motion.mp4' },
+    'violet-s-01':  { img: 'assets/products/la-sculpture/sculpture-s-deep-violet-hover.jpg' },
+    'violet-m-01':  { img: 'assets/products/la-sculpture/sculpture-m-deep-violet-hover.jpg' },
+  };
   function bagVariantCardHTML(item, index = 0, eager = false, displayName) {
     const t = T();
     const fullName = t.pick(item.title);
@@ -213,14 +223,19 @@
     const status = YZA.inventoryStatus?.(product) || { soldOut: false, almostGone: false, inventory: null };
     const stock = stockCopy();
     const wished = wishlistHas(item.handle);
+    const hoverKey = Object.keys(BAG_HOVER).find((k) => String(item.img || '').includes(k));
+    const bagHover = hoverKey ? BAG_HOVER[hoverKey] : null;
+    const hoverVid = bagHover && bagHover.video;
+    const hoverImgSrc = (bagHover && bagHover.img) || ((item.gallery && item.gallery[1] && item.gallery[1] !== item.img) ? item.gallery[1] : '');
     return `<article class="product-card product-card--bag-variant${status.soldOut ? ' is-sold-out' : ''}" data-size="${esc(String(item.size || '').toUpperCase())}" style="--i:${index}" data-product-handle="${esc(item.handle || '')}">
       <button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(item.handle || '')}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${wished ? 'Remove from wishlist' : 'Add to wishlist'}">${heartIcon()}</button>
-      <a class="product-card__media" href="${esc(item.url)}" data-product-card-click="${esc(item.handle || '')}" aria-label="${esc(fullName)}">
+      <a class="product-card__media${hoverVid ? ' has-hover-video' : ''}" href="${esc(item.url)}" data-product-card-click="${esc(item.handle || '')}" aria-label="${esc(fullName)}">
         ${(product.fewLeft && !status.soldOut && !status.almostGone) ? `<span class="product-card__few">${esc(stock.few)}</span>` : ''}
         ${status.almostGone ? `<span class="product-card__stock">${esc(stock.almost)}</span>` : ''}
         ${status.soldOut ? `<span class="product-card__sold">${esc(stock.sold)}</span>` : ''}
         <img class="product-card__img" src="${esc(item.img)}" alt="${esc(fullName)} - YZA" ${imgLoad} width="461" height="615" decoding="async">
-        ${(item.gallery && item.gallery[1] && item.gallery[1] !== item.img) ? `<img class="product-card__img product-card__img--hover" src="${esc(item.gallery[1])}" alt="" aria-hidden="true" loading="lazy" width="461" height="615" decoding="async">` : ''}
+        ${hoverImgSrc ? `<img class="product-card__img product-card__img--hover" src="${esc(hoverImgSrc)}" alt="" aria-hidden="true" loading="lazy" width="461" height="615" decoding="async">` : ''}
+        ${hoverVid ? `<video class="product-card__vid" muted loop playsinline preload="none" poster="${esc(item.img)}" data-hover-video="${esc(hoverVid)}" width="461" height="615" aria-hidden="true"></video>` : ''}
       </a>
       <a class="product-card__info" href="${esc(item.url)}" data-product-card-click="${esc(item.handle || '')}">
         <span class="product-card__name">${esc(name)}</span>

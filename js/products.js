@@ -1153,6 +1153,7 @@ const PRODUCTS = [
  "handle": "yza-button-up-shirt-jawhara-ss26",
  "legacyHandles": [],
  "sku": "T-CH-S-JWP-BL",
+ "hoverVideo": "assets/lifestyle/bags/chemise-jawhara-motion.mp4",
  "name": {
  "fr": "Chemise Jawhara",
  "en": "YZA Button-Up Shirt",
