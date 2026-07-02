@@ -3450,6 +3450,32 @@ body.is-scroll-down .header, body.is-scroll-down .header.is-stuck { background: 
 }
 .story-atelier-gallery figure:hover img { transform: scale(1.04); }
 
+/* ── Studio full-bleed video hero — opens the page in home editorial style ─── */
+.story-section--atelier { padding-top: 0; }
+.story-video-hero.video-band {
+ min-height: min(76vh, 780px);
+ margin-bottom: clamp(3rem, 7vw, var(--space-20));
+}
+.story-video-hero .video-band__overlay {
+ position: absolute; inset: 0;
+ align-items: flex-end; justify-content: center; text-align: center;
+ padding: clamp(2rem, 6vw, var(--space-16));
+ padding-bottom: clamp(2.75rem, 7vw, 5rem);
+ background: linear-gradient(to top, rgba(0,0,0,0.66), rgba(0,0,0,0.12) 54%, rgba(0,0,0,0.34));
+}
+.story-video-hero .video-band__content {
+ max-width: 46ch; justify-items: center; text-align: center; gap: var(--space-3);
+}
+.story-video-hero .video-band__content .eyebrow {
+ color: rgba(255,255,255,0.9); font-family: var(--font-display);
+ font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase; font-weight: 400;
+}
+.story-video-hero .video-band__content h1 {
+ font-family: var(--font-serif); font-weight: 400;
+ font-size: clamp(2.5rem, 6vw, 4.6rem); line-height: 1.02; color: var(--white);
+ text-shadow: 0 1px 22px rgba(0,0,0,0.42);
+}
+
 .story-atelier-women {
  display: grid;
  grid-template-columns: 1fr 1fr;
