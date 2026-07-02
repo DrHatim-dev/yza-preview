@@ -828,43 +828,44 @@
  offer.innerHTML = picks.map((p, i) => cardHTML(p, i, false, { used: usedHomeImg })).join('');
  }
 
- // Témoignages - EXEMPLES à remplacer par de vrais avis (data-placeholder="reviews")
+ // Reviews — "Le Mur des Voix": one featured pull-quote (rotating, verified-first) over a
+ // soft murmur of the short, real Instagram raves. All quotes are genuine & curated.
  const tg = $('#testimonialsGrid');
  if (tg) {
  tg.setAttribute('data-placeholder', 'reviews');
+ tg.classList.add('reviews-editorial');
  const allReviews = YZA.testimonials || [];
- const REV_PAGE = 10;
- const reviewCard = (r) => `<figure class="testimonial">
- ${stars(r.rating, `${t.t('social.ratingOf')} ${r.rating}/5`)}
- <blockquote>${t.pick(r.text)}</blockquote>
- <figcaption>${r.name}${r.place && t.pick(r.place) ? ' · ' + t.pick(r.place) : ''}</figcaption>
- </figure>`;
- // Rotating window: each "show more" swaps in the next REV_PAGE reviews and the
- // previous ones disappear, wrapping around so the set keeps cycling.
- const drawReviews = (off) => {
- const out = [];
- const n = Math.min(REV_PAGE, allReviews.length);
- for (let k = 0; k < n; k++) out.push(reviewCard(allReviews[(off + k) % allReviews.length]));
- tg.innerHTML = out.join('');
- };
- let revOff = 0;
- drawReviews(0);
+ // strip trailing emoji/space so a giant serif pull-quote never ends on a broken 😍 / ❤️
+ const EMOJI_END = /(?:️|[☀-➿]|[⬀-⯿]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|\uD83E[\uDD00-\uDFFF]|\s)+$/;
+ const clean = (s) => String(s || '').trim().replace(EMOJI_END, '').trim();
+ const isVerified = (r) => !!(r.place && r.place.fr === 'Avis vérifié');
+ // hero pool = verified + the longer, substantive quotes; the rest become the murmur.
+ const heroPool = allReviews.filter((r) => isVerified(r) || clean(t.pick(r.text)).length >= 40);
+ const murmur = allReviews.filter((r) => heroPool.indexOf(r) === -1);
+ const heroMark = '<span class="reviews-hero__mark" aria-hidden="true">“</span>';
+ const heroStars = `<span class="reviews-hero__stars">${stars(5, t.t('social.rating'))}</span>`;
+ const heroBody = (r) => `<blockquote class="reviews-hero__quote">${esc(clean(t.pick(r.text)))}</blockquote>
+ <span class="reviews-hero__rule" aria-hidden="true"></span>
+ <figcaption class="reviews-hero__by"><span class="reviews-hero__name">${esc(r.name)}</span><span class="reviews-hero__src${isVerified(r) ? ' is-verified' : ''}">${esc((r.place && t.pick(r.place)) || '')}</span></figcaption>`;
+ const heroFig = document.createElement('figure');
+ heroFig.className = 'reviews-hero';
+ let heroIdx = 0;
+ const drawHero = () => { heroFig.innerHTML = heroMark + heroStars + heroBody(heroPool[heroIdx % heroPool.length]); };
+ const murmurHTML = murmur.map((r) =>
+ `<span class="reviews-murmur__item"><span class="reviews-murmur__q">${esc(t.pick(r.text))}</span> <span class="reviews-murmur__n">— ${esc(r.name)}</span></span>`
+ ).join('<span class="reviews-murmur__sep" aria-hidden="true">✦</span>');
+ tg.innerHTML = '';
+ if (heroPool.length) { drawHero(); tg.appendChild(heroFig); }
+ if (murmur.length) { const mp = document.createElement('p'); mp.className = 'reviews-murmur'; mp.innerHTML = murmurHTML; tg.appendChild(mp); }
  const moreBtn = $('#reviewsMore');
  if (moreBtn) {
- if (allReviews.length > REV_PAGE) {
+ if (heroPool.length > 1) {
  moreBtn.hidden = false;
  moreBtn.onclick = () => {
- revOff = (revOff + REV_PAGE) % allReviews.length;
- tg.classList.add('is-rotating');
- setTimeout(() => {
- drawReviews(revOff);
- tg.classList.remove('is-rotating');
- tg.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
- }, 200);
+ heroFig.classList.add('is-rotating');
+ setTimeout(() => { heroIdx = (heroIdx + 1) % heroPool.length; drawHero(); heroFig.classList.remove('is-rotating'); }, 220);
  };
- } else {
- moreBtn.hidden = true;
- }
+ } else { moreBtn.hidden = true; }
  }
  }
  const rs = $('#ratingSummary');
@@ -1711,8 +1712,8 @@
  }
 
  function renderServiceStrips() {
- // Home strip reverted to the original 3 (delivery · returns · payment), same texts.
- const defaultKeys = ['morocco-delivery', 'returns', 'payment'];
+ // Home strip = the three promises Nawal wants front-and-centre: guaranteed · handmade · easy payment.
+ const defaultKeys = ['returns', 'handmade', 'payment'];
  const footerKeys = ['morocco-delivery', 'returns', 'payment'];
  $$('[data-service-strip]').forEach((strip) => {
  const keys = strip.dataset.serviceStrip === 'footer' ? footerKeys : defaultKeys;

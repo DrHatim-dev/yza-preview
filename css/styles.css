@@ -2368,6 +2368,68 @@ body[data-page="home"] .girls-feed-section { margin-top: var(--space-7); }
 .testimonial .stars { font-size: var(--fs-sm); }
 .testimonial blockquote { font-family: var(--font-display); font-size: var(--fs-md); line-height: 1.45; }
 .testimonial figcaption { font-size: var(--fs-sm); color: var(--color-muted); }
+
+/* ── Reviews — "Le Mur des Voix": a featured pull-quote over a murmur of real raves ─── */
+.reviews-editorial { display: block; margin-top: var(--space-10); }
+.reviews-hero {
+ position: relative;
+ display: grid;
+ grid-template-columns: minmax(0, 63%) 1fr;
+ background: var(--paper-card);
+ padding: clamp(2rem, 5vw, 4rem);
+ transition: opacity 0.3s var(--ease-out);
+}
+.reviews-hero > * { grid-column: 1; }
+.reviews-hero.is-rotating { opacity: 0; }
+.reviews-hero__mark {
+ font-family: var(--font-serif);
+ font-size: clamp(6rem, 13vw, 11rem);
+ line-height: 0.62;
+ color: var(--accent-2);
+ margin: 0 0 -0.26em -0.05em;
+}
+.reviews-hero__stars { margin-bottom: var(--space-4); }
+.reviews-hero__stars .stars { color: var(--accent); font-size: var(--fs-sm); letter-spacing: 0.1em; }
+.reviews-hero__quote {
+ font-family: var(--font-serif);
+ font-weight: 400;
+ font-size: clamp(1.55rem, 3.1vw, 2.55rem);
+ line-height: 1.3;
+ color: var(--color-fg);
+ max-width: 24ch;
+ margin: 0;
+ text-wrap: pretty;
+}
+.reviews-hero__rule { display: block; width: 40px; height: 1px; background: var(--accent); margin: var(--space-6) 0 var(--space-4); }
+.reviews-hero__by { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+.reviews-hero__name { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.14em; font-size: var(--fs-sm); color: var(--color-fg); }
+.reviews-hero__src { font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-muted); }
+.reviews-hero__src.is-verified { color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 0.28em 0.75em; }
+
+.reviews-murmur {
+ max-width: 68ch;
+ margin: var(--space-12) auto 0;
+ text-align: center;
+ font-size: var(--fs-md);
+ line-height: 2.1;
+ color: var(--color-muted);
+}
+.reviews-murmur__q { font-family: var(--font-serif); font-style: italic; color: var(--color-fg); }
+.reviews-murmur__n { font-family: var(--font-display); font-size: 0.78em; letter-spacing: 0.04em; white-space: nowrap; }
+.reviews-murmur__sep { color: var(--accent); margin: 0 0.5em; font-size: 0.8em; }
+
+.reviews-more-wrap { margin-top: var(--space-12); }
+
+@media (max-width: 768px) {
+ .reviews-hero { grid-template-columns: 1fr; padding: var(--space-6); }
+ .reviews-hero__mark { font-size: clamp(4rem, 20vw, 6rem); }
+ .reviews-hero__quote { font-size: clamp(1.4rem, 6vw, 1.9rem); max-width: none; }
+ .reviews-murmur { margin-top: var(--space-8); font-size: var(--fs-base); line-height: 2; }
+ .reviews-more-wrap { margin-top: var(--space-8); }
+}
+@media (prefers-reduced-motion: reduce) {
+ .reviews-hero { transition: none; }
+}
 .testimonial__verified { display: inline-block; margin-left: var(--space-2); font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--olive); }
 
 /* ============================================================
