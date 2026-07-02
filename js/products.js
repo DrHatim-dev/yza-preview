@@ -150,7 +150,7 @@ YZA.brand = {
  address: '66 rue Yougoslavie, Guéliz, Marrakech, Maroc',
  addressShort: '66 rue Yougoslavie, Guéliz',
  mapsQuery: 'YZA Studio, 66 rue Yougoslavie, Guéliz, Marrakech, Maroc',
- hours: { fr: 'Lundi : 12 h - 16 h\nMardi : fermé\nMercredi - dimanche : 12 h - 20 h', en: 'Monday: 12 - 4pm\nTuesday: closed\nWednesday - Sunday: 12 - 8pm' },
+ hours: { fr: 'Mercredi - dimanche : 12 h - 20 h\nLundi : 12 h - 16 h\nMardi : fermé', en: 'Wednesday - Sunday: 12 - 8pm\nMonday: 12 - 4pm\nTuesday: closed' },
  pickup: { fr: 'Retrait au studio à Guéliz, sur confirmation.', en: 'Studio pickup in Guéliz, on confirmation.' },
  masterIdea: 'Modern Marrakech wear™',
 };
@@ -194,7 +194,7 @@ YZA.servicePolicy = {
  b2bMoqBags: 10,
  shipping: { fr: 'Expédition suivie sous 2 à 5 jours ouvrés. Livraison Maroc offerte dès 500 DH (accessoires) ou 1 500 DH (sacs & prêt-à-porter).', en: 'Tracked shipping in 2 to 5 business days. Free Morocco delivery from 500 DH (accessories) or 1,500 DH (bags & ready-to-wear).' },
  packaging: { fr: "Emballage prêt à offrir, avec étiquette YZA et mot de l\"atelier.", en: "Gift-ready packaging with YZA tag and atelier note." },
- guarantee: { fr: "Garantie 30 jours : remboursement si la pièce revient non portée, dans son état d\"origine.", en: "30-day guarantee: money back when the unworn piece returns in original condition." },
+ guarantee: { fr: "Garantie à vie : vos pièces se réparent à vie à l'atelier de Guéliz, elles ne se jettent pas. Et vous avez 30 jours pour changer d'avis — retour non porté, dans son état d'origine.", en: "Lifetime guarantee: your pieces are repaired for life at the Guéliz atelier, never thrown away. And you have 30 days to change your mind — returned unworn, in original condition." },
  repairs: { fr: "Réparations à vie offertes à l\"atelier de Guéliz. À distance, seuls les frais d\"envoi peuvent s\"appliquer.", en: "Lifetime repairs are free at the Guéliz atelier. For remote repairs, shipping may apply." },
 };
 
@@ -211,16 +211,16 @@ YZA.serviceFeatures = [
  {
  key: 'returns',
  icon: 'returns',
- title: { fr: "Garantie 30 jours", en: "30-day guarantee", es: "Garantia 30 dias", tr: "30 gun garanti", ar: "ضمان 30 يوما" },
- text: { fr: "Remboursement si la pièce revient non portée, dans son état d'origine.", en: "Money-back guarantee when the unworn piece returns in original condition.", es: "Reembolso si la pieza vuelve sin usar y en estado original.", tr: "Kullanilmamis parca orijinal durumda donerse para iadesi.", ar: "استرداد عند إرجاع القطعة غير مستعملة وفي حالتها الأصلية." },
- short: { fr: "Retour 30 jours", en: "30-day return", es: "30 dias", tr: "30 gun", ar: "30 يوما" },
+ title: { fr: "Garantie à vie", en: "Lifetime guarantee", es: "Garantía de por vida", tr: "Ömür boyu garanti", ar: "ضمان مدى الحياة" },
+ text: { fr: "Vos pièces se réparent à vie à l'atelier — elles ne se jettent pas. Et 30 jours pour changer d'avis : retour non porté, dans son état d'origine.", en: "Your pieces are repaired for life at the atelier — never thrown away. Plus 30 days to change your mind: returned unworn, in original condition.", es: "Tus piezas se reparan de por vida en el atelier — no se tiran. Y 30 días para cambiar de opinión: devolución sin usar y en estado original.", tr: "Parçalarınız atölyede ömür boyu tamir edilir — asla atılmaz. Ayrıca fikrinizi değiştirmek için 30 gün: kullanılmamış, orijinal halinde iade.", ar: "قطعك تُصلَّح مدى الحياة في الأتولييه — لا تُرمى. ولديك 30 يومًا لتغيّري رأيك: إرجاع غير مستعمل وبحالته الأصلية." },
+ short: { fr: "Garantie à vie", en: "Lifetime guarantee", es: "De por vida", tr: "Ömür boyu", ar: "مدى الحياة" },
  },
  {
  key: 'payment',
  icon: 'payment',
  title: { fr: 'Paiement sécurisé', en: 'Secure payment', es: 'Pago seguro', tr: 'Guvenli odeme', ar: 'دفع آمن' },
- text: { fr: 'Carte bancaire sécurisée ou paiement à la livraison selon disponibilité.', en: 'Secure card payment or cash on delivery where available.', es: 'Tarjeta segura o pago contra entrega segun disponibilidad.', tr: 'Guvenli kart odemesi veya uygun yerlerde kapida odeme.', ar: 'دفع آمن بالبطاقة أو عند الاستلام حسب التوفر.' },
- short: { fr: 'Paiement sécurisé', en: 'Secure payment', es: 'Pago seguro', tr: 'Guvenli odeme', ar: 'دفع آمن' },
+ text: { fr: 'Plusieurs moyens sécurisés : paiement à la livraison, virement bancaire, PayPal ou carte via PayPal. Vous choisissez au moment de commander.', en: 'Several secure options: cash on delivery, bank transfer, PayPal or card via PayPal. You choose at checkout.', es: 'Varias opciones seguras: pago contra entrega, transferencia bancaria, PayPal o tarjeta vía PayPal. Eliges al finalizar la compra.', tr: 'Birkaç güvenli seçenek: kapıda ödeme, banka havalesi, PayPal veya PayPal ile kart. Sipariş sırasında siz seçersiniz.', ar: 'عدة وسائل آمنة: الدفع عند الاستلام، تحويل بنكي، باي بال أو بطاقة عبر باي بال. تختارين عند الطلب.' },
+ short: { fr: 'Paiement multiple', en: 'Multiple methods', es: 'Pago múltiple', tr: 'Çoklu ödeme', ar: 'دفع متعدد' },
  },
  {
  key: 'limited',

@@ -307,7 +307,7 @@ const footerServiceCopy = () => {
  helpTitle: 'Besoin d\'aide ? Contactez-nous',
  helpText: 'Tailles, couleurs, id\u00e9es cadeau, ce qui reste en boutique \u2014 \u00e9cris-nous sur WhatsApp, une vraie personne r\u00e9pond.',
  newsTitle: 'Le club YZA Girls',
- newsText: 'Rejoins les YZA Girls : les nouveaux drops en avant-premi\u00e8re, et nos d\u00e9stockages sur les collections pass\u00e9es \u00e0 prix r\u00e9duit. Dans ta bo\u00eete avant tout le monde.',
+ newsText: 'Rejoins les YZA Girls : les nouveaux drops en avant-premi\u00e8re, et nos ventes priv\u00e9es d\u2019\u00e9chantillons (les samples de l\u2019atelier) \u00e0 prix doux. Dans ta bo\u00eete avant tout le monde.',
  placeholder: 'Ton e-mail',
  submit: 'Je rejoins',
  },
@@ -317,7 +317,7 @@ const footerServiceCopy = () => {
  helpTitle: 'We actually answer',
  helpText: 'Sizes, colours, gift ideas, what is still on the shelf \u2014 write to us on WhatsApp, a real person replies.',
  newsTitle: 'The YZA Girls club',
- newsText: 'Join the YZA Girls: new drops in early access, plus clearance on past collections at reduced prices. In your inbox before anyone else.',
+ newsText: 'Join the YZA Girls: new drops in early access, plus private sample sales (the atelier’s samples) at gentle prices. In your inbox before anyone else.',
  placeholder: 'Your e-mail',
  submit: 'Join us',
  },
@@ -327,7 +327,7 @@ const footerServiceCopy = () => {
  helpTitle: 'Respondemos de verdad',
  helpText: 'Tallas, colores, ideas de regalo, lo que queda en tienda \u2014 escribenos por WhatsApp, contesta una persona de verdad.',
  newsTitle: 'El club YZA Girls',
- newsText: 'Nuevos drops en preventa — y destock de colecciones pasadas a precio reducido. En tu correo antes que nadie.',
+ newsText: 'Nuevos drops en preventa — y ventas privadas de muestras (samples del atelier) a precio suave. En tu correo antes que nadie.',
  placeholder: 'Tu e-mail',
  submit: 'Me uno',
  },
@@ -337,7 +337,7 @@ const footerServiceCopy = () => {
  helpTitle: 'Gercekten cevap veriyoruz',
  helpText: 'Beden, renk, hediye fikri, rafta ne kaldigi \u2014 WhatsApp uzerinden yaz, gercek bir insan cevaplar.',
  newsTitle: 'YZA Girls kulübü',
- newsText: 'Yeni droplar herkesten once — ve gecmis koleksiyonlarda indirimli destok, kutuna.',
+ newsText: 'Yeni droplar herkesten once — ve ozel numune satislari (atolyenin sample’lari) uygun fiyatlarla, kutuna.',
  placeholder: 'E-posta',
  submit: 'Katiliyorum',
  },
@@ -347,7 +347,7 @@ const footerServiceCopy = () => {
  helpTitle: 'نجيبك فعلا',
  helpText: 'المقاسات، الالوان، فكرة هدية، ما تبقى في المحل - راسلينا على واتساب، يرد عليك انسان حقيقي.',
  newsTitle: 'نادي YZA Girls',
- newsText: 'أحدث الإصدارات أولاً — وتخفيضات على المجموعات السابقة بأسعار مخفّضة، تصلك قبل الجميع.',
+ newsText: 'أحدث الإصدارات أولاً — وبيع خاص للعيّنات (samples الأتولييه) بأسعار لطيفة، تصلك قبل الجميع.',
  placeholder: 'بريدك الالكتروني',
  submit: 'انضم إلينا',
  },
@@ -583,7 +583,8 @@ YZA.chrome = {
  // (Jacquemus shows the black REGISTER CTA until you expand the form).
  setOpen(acc, isNews(acc) ? false : wide.matches);
  const btn = acc.querySelector('.footer__col-toggle');
- if (btn) btn.addEventListener('click', () => { const open = !acc.classList.contains('is-open'); if (isNews(acc)) { setOpen(acc, open); } else { accs.forEach((c) => { if (!isNews(c)) setOpen(c, open); }); } });
+ // Each column toggles ONLY itself (opening one used to expand the whole menu).
+ if (btn) btn.addEventListener('click', () => { setOpen(acc, !acc.classList.contains('is-open')); });
  });
  // The collapsed black "REGISTER" CTA reveals the newsletter form.
  const newsAcc = footer.querySelector('[data-news-acc]');

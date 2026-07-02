@@ -3238,6 +3238,9 @@ body[data-page="home"] .journal-grid { gap: clamp(1rem, 2.5vw, 2rem); }
 /* drop the redundant shop-CTA blocks that sat as white space between sections */
 body[data-page="home"] #bestSellers [style*="margin-top"],
 body[data-page="home"] .girls-feed-section .section-cta { display: none; }
+/* …but keep the YZA-Girls duo CTA (Nawal: "voir les YZA girls porter leurs pièces") */
+body[data-page="home"] .girls-feed-section .section-cta--duo { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--space-3); }
+.section-cta--duo { flex-wrap: wrap; gap: var(--space-3); }
 /* the service strip carried its own large internal vertical padding — trim it */
 body[data-page="home"] .service-strip { padding-block: clamp(1.25rem, 3vw, 2rem); }
 

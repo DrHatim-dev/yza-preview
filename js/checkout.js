@@ -34,6 +34,9 @@
       method: 'cod',         // cod | rib | iban | paypal
       ship: loadShip(),
       wa: '',
+      bumpHandle: undefined, // order-bump pick, frozen on first payment-step entry
+      bumpOn: false,         // authoritative bump state (not the DOM)
+      lastOrder: null,       // the placed order — feeds the done-screen add-on cards
     };
 
     var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); };
@@ -220,9 +223,25 @@
           '<span class="pay-option__body"><span class="pay-option__name">' + esc(m.name) + '</span><span class="pay-option__txt">' + esc(m.txt) + '</span></span>' +
           '</label>' + (on ? payDetails(m.id) : '');
       }).join('');
-      return '<h1 class="co-h1">' + esc(T('co.pay.title')) + '</h1><div class="co-pay">' + opts + '</div>' +
+      return '<h1 class="co-h1">' + esc(T('co.pay.title')) + '</h1><div class="co-pay">' + opts + '</div>' + bumpCard() +
         '<div class="co-actions"><button type="button" class="btn btn--outline" data-back="shipping">' + esc(T('co.back')) + '</button>' +
         '<button type="button" class="btn btn--solid" data-place>' + esc(T('co.pay.place')) + '</button></div>';
+    }
+
+    // One unchecked low-friction add above the Place-order button. state.bumpOn is
+    // authoritative; checking adds the item to the real cart (summary updates live).
+    function bumpCard() {
+      if (!state.bumpHandle) return '';
+      var p = YZA.getProduct(state.bumpHandle);
+      if (!p) return '';
+      var st = (YZA.inventoryStatus && YZA.inventoryStatus(p)) || {};
+      if (st.soldOut) return '';
+      return '<label class="co-bump' + (state.bumpOn ? ' is-on' : '') + '">' +
+        '<input type="checkbox" data-bump' + (state.bumpOn ? ' checked' : '') + '>' +
+        '<img src="' + esc(p.img) + '" alt="" width="56" height="72" loading="lazy">' +
+        '<span class="co-bump__body"><span class="co-bump__kicker">' + esc(T('co.bump.kicker')) + '</span>' +
+        '<span class="co-bump__name">' + esc(YZA.i18n.pick(p.name)) + ' — ' + fmt(p.price) + '</span>' +
+        '<span class="co-bump__txt">' + esc(T('co.bump.pitch')) + '</span></span></label>';
     }
 
     function doneStep() {
@@ -401,7 +420,20 @@
       if (next) {
         var to = next.getAttribute('data-next');
         if (to === 'payment' && !collectShip()) return;      // validate shipping before payment
-        if (to === 'payment') { try { if (YZA.track) YZA.track('add_shipping_info', trackPayload({})); } catch (e3) {} }
+        if (to === 'payment') {
+          try { if (YZA.track) YZA.track('add_shipping_info', trackPayload({})); } catch (e3) {}
+          // Order bump: pick ONE low-ticket complement and freeze it (no reshuffle on re-renders).
+          if (typeof state.bumpHandle === 'undefined') {
+            var ob = YZA.promos && YZA.promos.orderBump;
+            var pick = (ob && ob.enabled !== false && typeof YZA.cartSuggestions === 'function')
+              ? YZA.cartSuggestions(YZA.cart.items, { limit: 1, maxPriceCents: (ob && ob.maxPriceCents) || 25000, categories: [(ob && ob.category) || 'charms'] })[0]
+              : null;
+            state.bumpHandle = pick ? pick.handle : null;
+            if (state.bumpHandle) { try { YZA.analytics && YZA.analytics.track('order_bump_view', { handle: state.bumpHandle }); } catch (e4) {} }
+          }
+          // Reconcile: the bump line may have been deleted back in step 1.
+          if (state.bumpOn && !YZA.cart.items.some(function (i) { return i.handle === state.bumpHandle; })) state.bumpOn = false;
+        }
         if (state.step === 'shipping' && to !== 'cart') collectShip();
         state.step = to; render(); scrollTop(); return;
       }
