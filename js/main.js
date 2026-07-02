@@ -890,8 +890,10 @@
  const href = handle ? productUrl(handle) : (girl.lookHref || `yza-girls#${esc(girl.color || 'girls')}`);
  const soldOut = girlSoldOut(girl);
  const cta = soldOut ? T().t('girls.shopCurrent') : T().t('girls.shopLook');
+ const metaLine = [girl.product, girl.city].filter(Boolean).join(' · ');
  return `<a class="girls-feed__item${soldOut ? ' is-soldout' : ''}" href="${href}" data-shop-look="${esc(handle || girl.id || '')}" style="--i:${index}">
  ${mediaImg(girl.src, (typeof girl.alt === 'object' ? T().pick(girl.alt) : girl.alt) || girl.product || 'YZA Girl', 'width="720" height="960"')}
+ <span class="girls-feed__meta"><strong>${esc(girl.name || 'YZA Girl')}</strong>${metaLine ? `<span>${esc(metaLine)}</span>` : ''}</span>
  <span class="girls-feed__overlay" aria-hidden="true"><span class="girls-feed__cta">${esc(cta)}</span></span>
  </a>`;
  }
@@ -909,9 +911,15 @@
  function renderGirlsPreview() {
  const el = $('#girlsPreviewGrid');
  if (!el || !YZA.media?.yzaGirls?.length) return;
+ const seenCaption = new Set();
  const publicGirls = interleaveByName(YZA.media.yzaGirls
- .filter((girl) => isPublicMedia(girl.src))
- .filter((girl) => !/la vague/i.test([girl.product, girl.alt, girl.id].filter(Boolean).join(' '))));
+ .filter((girl) => isPublicMedia(girl.src)))
+ .filter((girl) => {
+ const key = [girl.name, girl.product, girl.city].join('|');
+ if (seenCaption.has(key)) return false;
+ seenCaption.add(key);
+ return true;
+ });
  el.innerHTML = publicGirls.slice(0, 12).map((girl, index) => girlsFeedCardHTML(girl, index)).join('');
  el.querySelectorAll('[data-shop-look]').forEach((link) => {
  link.addEventListener('click', () => YZA.analytics?.track('yza_girls_shop_look_click', { handle: link.dataset.shopLook || '', source: 'home_preview' }));

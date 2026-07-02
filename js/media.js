@@ -18,7 +18,7 @@ YZA.media = {
  yzaGirls: [
  {
  id: 'rim-yellow',
- name: 'Rim',
+ name: 'Rime',
  city: 'Agadir',
  color: 'jaune',
  product: 'La Vague S Tournesol',
@@ -27,7 +27,7 @@ YZA.media = {
  },
  {
  id: 'rim-yellow-blue',
- name: 'Rim',
+ name: 'Rime',
  city: 'Marrakech',
  color: 'jaune',
  product: 'La Vague S Tournesol',
@@ -36,7 +36,7 @@ YZA.media = {
  },
  {
  id: 'rim-violet',
- name: 'Rim',
+ name: 'Rime',
  city: 'Tanger',
  color: 'violet',
  product: 'La Vague S Violet · sur mesure',
@@ -51,24 +51,6 @@ YZA.media = {
  product: 'La Vague S Tournesol',
  src: girlAsset('girls-fanny-yellow.jpg'),
  alt: { fr: 'YZA Girl avec sac YZA jaune et détails crochet', en: 'YZA Girl with yellow YZA bag and crochet details', es: 'YZA Girl con bolso YZA amarillo y detalles de ganchillo', tr: 'Sarı YZA çanta ve tığ işi detaylarıyla YZA Girl', ar: 'فتاة YZA مع حقيبة YZA الصفراء وتفاصيل الكروشيه' },
- },
- {
- id: 'fanny-door',
- name: 'Fanny',
- city: 'Paris',
- color: 'jaune',
- product: 'La Vague XS Nude',
- src: girlAsset('girls-fanny-door.jpg'),
- alt: { fr: 'YZA Girl en ensemble bleu avec sac jaune', en: 'YZA Girl wearing blue set and yellow bag', es: 'YZA Girl con conjunto azul y bolso amarillo', tr: 'Mavi set ve sarı çantayla YZA Girl', ar: 'فتاة YZA بطقم أزرق وحقيبة صفراء' },
- },
- {
- id: 'fanny-jaune',
- name: 'Fanny',
- city: 'Saint Rémy de Provence',
- color: 'jaune',
- product: 'La Vague S Jaune',
- src: girlAsset('girls-fanny-jaune.jpg'),
- alt: { fr: 'Gros plan styling du sac YZA jaune', en: 'Close styling image of yellow YZA bag', es: 'Imagen de estilismo del bolso YZA amarillo en detalle', tr: 'Sarı YZA çantanın yakın çekim stil görüntüsü', ar: 'صورة قريبة لحقيبة YZA الصفراء' },
  },
  {
  id: 'fanny-xs-nude',
@@ -198,7 +180,7 @@ YZA.media = {
  },
  {
  id: 'rim-yellow-alt',
- name: 'Rim',
+ name: 'Rime',
  city: 'Marrakech',
  color: 'jaune',
  product: 'YZA styled look',
@@ -207,7 +189,7 @@ YZA.media = {
  },
  {
  id: 'intro-cafe',
- name: 'Rim',
+ name: 'Rime',
  city: 'Marrakech',
  color: 'jaune',
  product: 'YZA styled look',
