@@ -465,6 +465,7 @@ YZA.chrome = {
  <div class="cart-acc__item"><button type="button" class="cart-acc__btn" data-cart-acc><span data-i18n="cart.acc.pay">${t.t('cart.acc.pay')}</span>${CART_CHEV}</button><div class="cart-acc__panel"><div><div class="pay-logos"><img src="assets/brand/payment/paypal.svg" alt="PayPal" height="22"><img src="assets/brand/payment/visa.svg" alt="Visa" height="22"><img src="assets/brand/payment/mastercard.svg" alt="Mastercard" height="22"><img src="assets/brand/payment/amex.svg" alt="American Express" height="22"><img src="assets/brand/payment/cod.svg" alt="${t.t('co.pay.cod')}" height="22"></div><p class="cart-acc__note" data-i18n="cart.acc.payTxt">${t.t('cart.acc.payTxt')}</p></div></div></div>
  <div class="cart-acc__item"><button type="button" class="cart-acc__btn" data-cart-acc><span data-i18n="cart.acc.ship">${t.t('cart.acc.ship')}</span>${CART_CHEV}</button><div class="cart-acc__panel"><div data-i18n="cart.acc.shipTxt">${t.t('cart.acc.shipTxt')}</div></div></div>
  </div>
+ <div class="cart-foot__discount" data-cart-discount hidden></div>
  <div class="cart-foot__total"><span data-i18n="cart.total">${t.t('cart.total')}<small data-i18n="cart.vat">${t.t('cart.vat')}</small></span><strong data-cart-subtotal>-</strong></div>
  <button class="btn btn--solid btn--block" data-checkout data-i18n="cart.proceed">${t.t('cart.proceed')}</button>
  <a class="btn btn--outline btn--block" href="/checkout" data-i18n="cart.viewCart">${t.t('cart.viewCart')}</a>

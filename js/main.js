@@ -1490,7 +1490,7 @@
  <button class="btn btn--solid btn--block" data-bundle-add>${t.t('pp.bundle.add')}</button>`;
 
  panel.querySelector('[data-bundle-add]')?.addEventListener('click', () => {
- bundle.items.forEach((item) => YZA.cart.add(item.handle, '', 1));
+ bundle.items.forEach((item) => YZA.cart.add(item.handle, '', 1, { source: 'bundle' }));
  YZA.cart.open();
  YZA.analytics?.track('bundle_add', {
  sourceHandle: p.handle,
@@ -2303,6 +2303,36 @@
  ? `<span class="pill-save">${t.t('offer.save')} ${t.formatPrice(p.compareAt - p.price)}</span>${limited}`
  : limited;
  }
+ // Honest scarcity above ADD TO CART: only when real inventory is 1-5 (YZA.inventoryStatus,
+ // "éditions limitées" made concrete). Untracked inventory (null) shows nothing.
+ const renderScarcity = (prod) => {
+ const el = $('#pScarcity');
+ if (!el) return;
+ const st = YZA.inventoryStatus?.(prod) || {};
+ if (st.almostGone) {
+ el.hidden = false;
+ el.textContent = st.inventory === 1 ? t.t('pp.scarcity.one') : t.tFmt('pp.scarcity.count', { n: st.inventory });
+ } else { el.hidden = true; el.textContent = ''; }
+ };
+ renderScarcity(purchaseProduct);
+ // Free-shipping line under ADD TO CART: progress computed AS IF this piece were in the
+ // cart (assumeItems), so the 500 DH accessories vs 1500 DH general threshold resolves
+ // correctly whatever is already in the cart.
+ const renderShipBar = (prod) => {
+ const el = $('#pShipBar');
+ if (!el || !YZA.cart?.shippingProgress) return;
+ YZA.cart.load(); // renderProduct can run before cart.init() — read the real cart
+ const s = YZA.cart.shippingProgress({ assumeItems: [{ handle: prod.handle, qty: 1 }] });
+ el.innerHTML = s.remainingCents > 0
+ ? t.tFmt('pp.shipbar.remaining', { x: t.formatPrice(s.remainingCents) })
+ : t.t('pp.shipbar.unlockedWith');
+ };
+ renderShipBar(purchaseProduct);
+ // Keep the line honest as the cart changes (adds from the drawer, qty steps…).
+ if (!root.dataset.shipbarWired) {
+ root.dataset.shipbarWired = '1';
+ document.addEventListener('yza:cartchange', () => renderShipBar(purchaseProduct));
+ }
  const cross = $('#pCross');
  if (cross) {
  const next = YZA.related(p.handle, 1)[0];
@@ -2388,6 +2418,8 @@
  $('#pPrice').innerHTML = productPriceCompact(purchaseProduct);
  { const ap = $('#pAddPrice'); if (ap) ap.innerHTML = productPriceCompact(purchaseProduct); }
  swapGalleryToVariant(selected, t.pick(displayName(selected)));
+ renderValueRow(purchaseProduct);
+ renderShipBar(purchaseProduct);
  YZA.analytics?.track('product_variant_select', { handle: purchaseProduct.handle, familyHandle: purchaseProduct.familyHandle || '', category: purchaseProduct.category });
  };
  }
@@ -2458,7 +2490,7 @@
  : '';
  if (familyLabel) variant = variant ? `${familyLabel} / ${variant}` : familyLabel;
  const qty = Math.max(1, parseInt($('#pQty').value || '1', 10));
- const added = YZA.cart.add(purchaseProduct.handle, variant, qty);
+ const added = YZA.cart.add(purchaseProduct.handle, variant, qty, { source: 'pdp' });
  if (!added) return;
  YZA.cart.open();
  addLabelEl.textContent = t.t('cta.added');
@@ -2605,7 +2637,7 @@
         event.stopPropagation();
         const handle = quick.getAttribute('data-quickbuy');
         if (handle && YZA.cart) {
-          YZA.cart.add(handle, '', 1);
+          YZA.cart.add(handle, '', 1, { source: 'quick_add' });
           YZA.cart.refresh?.();
           YZA.cart.open?.();
           YZA.analytics?.track('quick_add', { handle });

@@ -18868,6 +18868,64 @@ function decrementInventory(items) {
  } catch (err) {}
 }
 
+// One complement engine for every conversion surface: drawer/checkout cross-sell,
+// checkout order bump, post-order add-ons, rails. Pure + derived — same context in,
+// same suggestions out. Matrix lives in YZA.promos.complements (category or group keys).
+function complementCategoriesFor(contextProducts) {
+ var matrix = (YZA.promos && YZA.promos.complements) || {};
+ var cats = [];
+ var push = function (list) { (list || []).forEach(function (c) { if (cats.indexOf(c) === -1) cats.push(c); }); };
+ var hasBag = contextProducts.some(function (p) { return p.category === 'bags'; });
+ var allCharms = contextProducts.length > 0 && contextProducts.every(function (p) { return p.category === 'charms'; });
+ var hasRtw = contextProducts.some(function (p) { return p.group === 'rtw'; });
+ if (hasBag) push(matrix.bags);
+ if (allCharms) push(matrix.charms);
+ if (hasRtw) push(matrix.rtw);
+ contextProducts.forEach(function (p) { push(matrix[p.category]); push(matrix[p.group]); });
+ push(matrix.default || ['charms']);
+ return cats;
+}
+
+function cartSuggestions(contextItems, opts) {
+ opts = opts || {};
+ var limit = opts.limit || ((YZA.promos && YZA.promos.crossSell && YZA.promos.crossSell.limit) || 2);
+ var ctx = (contextItems || []).map(function (i) { return i && i.handle ? getProduct(i.handle) : null; }).filter(Boolean);
+ // Exclude what's already in context + every family sibling (never the same bag in another size).
+ var excluded = new Set();
+ ctx.forEach(function (p) {
+  excluded.add(p.handle);
+  if (p.familyHandle) PRODUCTS.forEach(function (q) { if (q.familyHandle === p.familyHandle) excluded.add(q.handle); });
+ });
+ (opts.excludeHandles || []).forEach(function (h) { excluded.add(h); });
+ var cats = (opts.categories && opts.categories.length) ? opts.categories : complementCategoriesFor(ctx);
+ var ok = function (p) {
+  if (!p || excluded.has(p.handle)) return false;
+  if (p.publicVisible === false || !isPublicProductImage(p.img)) return false;
+  if (p.bundle) return false;                                   // never one-tap a pre-made trio
+  if (inventoryStatus(p).soldOut) return false;
+  if (opts.maxPriceCents && p.price > opts.maxPriceCents) return false;
+  if (opts.categories && opts.categories.length && opts.categories.indexOf(p.category) === -1 && opts.categories.indexOf(p.group) === -1) return false;
+  return true;
+ };
+ var byScarcityThenPrice = function (a, b) {
+  var ag = inventoryStatus(a).almostGone ? 0 : 1;
+  var bg = inventoryStatus(b).almostGone ? 0 : 1;
+  return ag - bg || a.price - b.price;
+ };
+ var seen = new Set();
+ var take = function (list) {
+  var out = [];
+  list.forEach(function (p) { if (ok(p) && !seen.has(p.handle)) { seen.add(p.handle); out.push(p); } });
+  return out.sort(byScarcityThenPrice);
+ };
+ // Curated crossSell picks first (same priority trick as related()), then matrix fills.
+ var seeds = take(ctx.reduce(function (acc, p) { return acc.concat((p.crossSell || []).map(getProduct)); }, []));
+ var fills = take(cats.reduce(function (acc, cat) {
+  return acc.concat(publicProductList().filter(function (p) { return p.category === cat || p.group === cat; }));
+ }, []));
+ return seeds.concat(fills).slice(0, limit);
+}
+
 // Per-charm finish -> photo, for the PDP finish selector image swap.
 // Keys: loop (raffia loop), r2 (2 cm gold ring), r3 (engraved brass tag).
 // Every charm has all three: real studio shots where the finish was photographed,
@@ -18911,6 +18969,8 @@ YZA.inventoryOverrides = readInventoryOverrides;
 YZA.effectiveInventory = effectiveInventory;
 YZA.inventoryStatus = inventoryStatus;
 YZA.decrementInventory = decrementInventory;
+YZA.cartSuggestions = cartSuggestions;
+YZA.complementsFor = complementCategoriesFor;
 
 YZA.business = {
  salesSplit: { instagram: 0.3, boutique: 0.7 },
@@ -19031,7 +19091,25 @@ YZA.PARKED_STORIES = {
  },
 };
 
-YZA.promos = { exitRecovery: { code: 'YZA20', percent: 20, minEuro: 150, minDh: 150000 } };
+// ---- Conversion knobs (single edit point — every tactic reads from here) ----
+YZA.promos = {
+ // Legacy exit-modal config (modal itself disabled per owner request). minDh is in CENTIMES (150000 = 1500 DH).
+ exitRecovery: { code: 'YZA20', percent: 20, minEuro: 150, minDh: 150000 },
+ // Volume reward on charms — GENTLE on purpose (YZA is repricing upward, see market study).
+ // Realized discount always displayed as absolute DH, computed once in YZA.cart.pricing().
+ charmTiers: { enabled: true, category: 'charms', tiers: [{ min: 2, pct: 5 }, { min: 3, pct: 10 }] },
+ crossSell: { enabled: true, limit: 2 },                                  // drawer + checkout "Complétez votre pièce"
+ orderBump: { enabled: true, maxPriceCents: 25000, category: 'charms' },  // checkout payment-step one-tap add
+ postOrderAddon: { enabled: true, limit: 2 },                             // done-screen "add to my parcel" via WhatsApp
+ // Complement matrix consumed by YZA.cartSuggestions (keys = product category or group).
+ complements: {
+  bags: ['charms', 'accessories'],
+  charms: ['charms', 'earrings'],
+  rtw: ['bags', 'charms'],
+  accessories: ['charms', 'bags'],
+  default: ['charms'],
+ },
+};
 YZA.bespoke = {
  minFabricPieces: 100,
  note: { fr: 'Co-création tissu possible à partir de 100 pièces par tissu.', en: 'Fabric co-creation available from 100 pieces per fabric.' },

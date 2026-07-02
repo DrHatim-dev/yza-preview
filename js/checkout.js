@@ -49,17 +49,14 @@
         var p = YZA.getProduct(i.handle);
         if (!p) return null;
         var img = (i.variant && YZA.bagVariantFor && YZA.bagVariantFor(p.handle, i.variant) && YZA.bagVariantFor(p.handle, i.variant).img) || p.img;
-        return { handle: p.handle, name: YZA.i18n.pick(p.name), variant: i.variant || '', qty: i.qty, price: p.price, line: p.price * i.qty, img: img };
+        var st = (YZA.inventoryStatus && YZA.inventoryStatus(p)) || {};
+        return { handle: p.handle, name: YZA.i18n.pick(p.name), variant: i.variant || '', qty: i.qty, price: p.price, line: p.price * i.qty, img: img, src: i.src || '', almostGone: !!st.almostGone, inventory: st.inventory };
       }).filter(Boolean);
     }
     function subtotal() { return YZA.cart.subtotalCents(); }
-    function isFreeShip() {
-      var items = YZA.cart.items;
-      if (!items.length) return false;
-      var allAcc = items.every(function (i) { var p = YZA.getProduct(i.handle); return p && p.group === 'accessories'; });
-      var threshold = allAcc ? (YZA.servicePolicy && YZA.servicePolicy.freeShippingAccessoriesDh || 50000) : (YZA.servicePolicy && YZA.servicePolicy.freeShippingDh || 150000);
-      return subtotal() >= threshold;
-    }
+    // Single money source — see YZA.cart.pricing() (drawer/WhatsApp/Woo/pixels read the same figures).
+    function pricing() { return YZA.cart.pricing(); }
+    function isFreeShip() { return YZA.cart.shippingProgress().unlocked; }
     var isIntl = function () { return state.method === 'iban' || state.method === 'paypal'; };
 
     // ---- persistence ----
@@ -86,15 +83,22 @@
           '<span class="co-sum__meta"><span class="co-sum__name">' + esc(it.name) + '</span>' + (it.variant ? '<span class="co-sum__var">' + esc(it.variant) + '</span>' : '') + '<span class="co-sum__qty">×' + it.qty + '</span></span>' +
           '<span class="co-sum__price">' + fmt(it.line) + '</span></li>';
       }).join('');
-      var eurLine = isIntl() ? '<span class="co-sum__eur">' + eur(subtotal()) + '</span>' : '';
+      var pr = pricing();
+      var eurLine = isIntl() ? '<span class="co-sum__eur">' + eur(pr.totalCents) + '</span>' : '';
+      var discountRows = pr.discounts.map(function (d) {
+        return '<div class="co-sum__row co-sum__row--discount"><span>' + esc(YZA.i18n.tFmt('promo.charmTier.label', { n: d.meta.count })) + '</span><span>−' + fmt(d.amountCents) + '</span></div>';
+      }).join('');
+      var progress = YZA.cart.items.length ? '<div class="co-sum__progress">' + YZA.cart.deliveryProgressHTML() + '</div>' : '';
       return '<aside class="co-sum" aria-label="' + esc(T('co.summary')) + '">' +
         '<h2 class="co-sum__title">' + esc(T('co.summary')) + '</h2>' +
         '<ul class="co-sum__items">' + itemRows + '</ul>' +
+        progress +
         '<div class="co-sum__rows">' +
-          '<div class="co-sum__row"><span>' + esc(T('co.subtotal')) + '</span><span>' + fmt(subtotal()) + '</span></div>' +
+          '<div class="co-sum__row"><span>' + esc(T('co.subtotal')) + '</span><span>' + fmt(pr.subtotalCents) + '</span></div>' +
+          discountRows +
           '<div class="co-sum__row"><span>' + esc(T('co.shipping')) + '</span><span>' + (isFreeShip() ? esc(T('co.shipFree')) : esc(T('co.shipCalc'))) + '</span></div>' +
         '</div>' +
-        '<div class="co-sum__total"><span>' + esc(T('co.total')) + '<small>' + esc(T('co.vat')) + '</small></span><strong>' + fmt(subtotal()) + eurLine + '</strong></div>' +
+        '<div class="co-sum__total"><span>' + esc(T('co.total')) + '<small>' + esc(T('co.vat')) + '</small></span><strong>' + fmt(pr.totalCents) + eurLine + '</strong></div>' +
         '<p class="co-terms">' + esc(T('co.terms')) + ' <a href="/mentions-legales#cgv">' + esc(T('co.gcs')) + '</a> · <a href="/mentions-legales#confidentialite">' + esc(T('co.privacy')) + '</a>.</p>' +
       '</aside>';
     }
@@ -109,12 +113,33 @@
           '<div class="co-line__info"><a class="co-line__name" href="/produits/' + encodeURIComponent(it.handle) + '">' + esc(it.name) + '</a>' +
           (it.variant ? '<div class="co-line__var">' + esc(it.variant) + '</div>' : '') +
           '<div class="co-line__price">' + fmt(it.line) + '</div>' +
+          (it.almostGone ? '<div class="co-line__scarcity">' + esc(YZA.i18n.tFmt('scarcity.remaining', { n: it.inventory })) + '</div>' : '') +
           '<div class="co-line__ctl"><div class="qty" data-handle="' + esc(it.handle) + '" data-variant="' + esc(it.variant) + '"><button class="qty__btn" data-act="dec" aria-label="-">−</button><span class="qty__n">' + it.qty + '</span><button class="qty__btn" data-act="inc" aria-label="+">+</button></div>' +
           '<button class="co-line__remove" data-remove data-handle="' + esc(it.handle) + '" data-variant="' + esc(it.variant) + '">' + esc(T('cart.remove')) + '</button></div></div></div>';
       }).join('');
-      return '<h1 class="co-h1">' + esc(T('co.step.cart')) + '</h1><div class="co-lines">' + rows + '</div>' +
+      return '<h1 class="co-h1">' + esc(T('co.step.cart')) + '</h1><div class="co-lines">' + rows + '</div>' + upsellBlock() +
         '<div class="co-actions"><a class="link-underline" href="/collections">' + esc(T('co.continue')) + '</a>' +
         '<button type="button" class="btn btn--solid" data-next="shipping">' + esc(T('co.next')) + '</button></div>';
+    }
+
+    // Same "Complétez votre pièce" cards as the drawer, step-1 only.
+    function upsellBlock() {
+      var cfg = YZA.promos && YZA.promos.crossSell;
+      if ((cfg && cfg.enabled === false) || typeof YZA.cartSuggestions !== 'function') return '';
+      var tierCount = YZA.cart.charmTierCount ? YZA.cart.charmTierCount() : 0;
+      var trioPlay = tierCount >= 1 && tierCount <= 2 && YZA.cart.items.every(function (i) { return (YZA.getProduct(i.handle) || {}).category === 'charms'; });
+      var sug = YZA.cartSuggestions(YZA.cart.items, { limit: (cfg && cfg.limit) || 2, categories: trioPlay ? ['charms'] : undefined });
+      if (!sug.length) return '';
+      var cards = sug.map(function (p) {
+        var st = (YZA.inventoryStatus && YZA.inventoryStatus(p)) || {};
+        return '<div class="upsell-card">' +
+          '<a class="upsell-card__img" href="/produits/' + encodeURIComponent(p.handle) + '"><img src="' + esc(p.img) + '" alt="" width="56" height="72" loading="lazy"></a>' +
+          '<div class="upsell-card__body"><a class="upsell-card__name" href="/produits/' + encodeURIComponent(p.handle) + '">' + esc(YZA.i18n.pick(p.name)) + '</a>' +
+          '<span class="upsell-card__price">' + fmt(p.price) + '</span>' +
+          (st.almostGone ? '<span class="upsell-card__chip">' + esc(YZA.i18n.tFmt('scarcity.remaining', { n: st.inventory })) + '</span>' : '') + '</div>' +
+          '<button type="button" class="upsell-card__add" data-upsell-add="' + esc(p.handle) + '" aria-label="+">+</button></div>';
+      }).join('');
+      return '<div class="cart-upsell cart-upsell--checkout"><p class="cart-upsell__title">' + esc(T('cart.upsell.title')) + '</p><div class="cart-upsell__grid">' + cards + '</div></div>';
     }
 
     function field(name, labelKey, type, required, extra) {
@@ -160,17 +185,17 @@
           row('BIC', e.bic || '', true) +
           row(T('co.pay.bank'), e.bank || '', false) +
           row(T('co.pay.holder'), e.holder || '', false) +
-          '<p class="pay-eur">' + esc(T('co.total')) + ' ' + eur(subtotal()) + '</p>' +
+          '<p class="pay-eur">' + esc(T('co.total')) + ' ' + eur(pricing().totalCents) + '</p>' +
           '<p class="pay-note">' + esc(T('co.pay.note')) + '</p></div>';
       }
       if (method === 'paypal') {
         if (paypalReady()) {
           return '<div class="pay-details">' +
-            '<p class="pay-eur">' + esc(T('co.total')) + ' ' + eur(subtotal()) + '</p>' +
+            '<p class="pay-eur">' + esc(T('co.total')) + ' ' + eur(pricing().totalCents) + '</p>' +
             '<a class="btn btn--solid pay-details__btn" href="' + esc(paypalPayUrl()) + '" target="_blank" rel="noopener">' + esc(T('co.pay.paypalBtn')) + '</a>' +
             '<p class="pay-note">' + esc(T('co.pay.paypalNote')) + '</p></div>';
         }
-        return '<div class="pay-details"><p class="pay-note">' + esc(T('co.pay.ribTxt')) + ' ' + eur(subtotal()) + '</p></div>';
+        return '<div class="pay-details"><p class="pay-note">' + esc(T('co.pay.ribTxt')) + ' ' + eur(pricing().totalCents) + '</p></div>';
       }
       return '';
     }
@@ -253,8 +278,12 @@
       return { cod: T('co.pay.cod'), rib: T('co.pay.rib'), iban: T('co.pay.iban'), paypal: T('co.pay.paypal') }[state.method] || state.method;
     }
     function buildOrder() {
-      var items = lines().map(function (it) { return { handle: it.handle, name: it.name, variant: it.variant, qty: it.qty, price: it.price }; });
-      return { number: state.orderNo || '', items: items, subtotalDh: Math.round(subtotal() / 100), method: state.method, methodLabel: methodLabel(), shipping: state.ship, lang: YZA.i18n.lang, page: location.href, at: new Date().toISOString() };
+      var items = lines().map(function (it) { return { handle: it.handle, name: it.name, variant: it.variant, qty: it.qty, price: it.price, src: it.src || '' }; });
+      var pr = pricing();
+      var discounts = pr.discounts.map(function (d) {
+        return { id: d.id, label: YZA.i18n.tFmt('promo.charmTier.label', { n: d.meta.count }), amountDh: Math.round(d.amountCents / 100) };
+      });
+      return { number: state.orderNo || '', items: items, subtotalDh: Math.round(pr.subtotalCents / 100), discounts: discounts, totalDh: Math.round(pr.totalCents / 100), method: state.method, methodLabel: methodLabel(), shipping: state.ship, lang: YZA.i18n.lang, page: location.href, at: new Date().toISOString() };
     }
     // Human-friendly unique order number, shared by WhatsApp / email / WooCommerce / ad pixels.
     function orderNo() {
@@ -266,11 +295,11 @@
     function trackPayload(o) {
       return {
         transaction_id: o.number || '',
-        value: Math.round(subtotal()) / 100,
+        value: pricing().totalCents / 100,   // net of discounts — what the customer pays
         currency: 'MAD',
         payment_type: o.method || state.method,
         items: (o.items || lines()).map(function (it) {
-          return { item_id: it.handle, item_name: it.name, item_variant: it.variant || '', quantity: it.qty, price: (it.price || 0) / 100 };
+          return { item_id: it.handle, item_name: it.name, item_variant: it.variant || '', quantity: it.qty, price: (it.price || 0) / 100, item_list_name: it.src || '' };
         }),
       };
     }
@@ -290,7 +319,9 @@
       var out = [c.intro];
       if (o.number) out.push('N° : ' + o.number);
       out = out.concat(lns);
-      out.push(c.total + ' : ' + fmt(subtotal()) + (isIntl() ? ' (' + eur(subtotal()) + ')' : ''));
+      (o.discounts || []).forEach(function (d) { out.push(d.label + ' : −' + fmt(d.amountDh * 100)); });
+      var totalC = pricing().totalCents;
+      out.push(c.total + ' : ' + fmt(totalC) + (isIntl() ? ' (' + eur(totalC) + ')' : ''));
       out.push('—');
       out.push(c.ship + ' :\n' + addr);
       if (s.note) out.push('“' + s.note + '”');
@@ -305,9 +336,9 @@
       } else if (o.method === 'iban' && p.eur && p.eur.iban) {
         out.push('IBAN (' + (p.eur.bank || '') + ') : ' + p.eur.iban);
         out.push('BIC : ' + (p.eur.bic || '') + ' — ' + T('co.pay.holder') + ' : ' + (p.eur.holder || ''));
-        out.push(eur(subtotal()));
+        out.push(eur(pricing().totalCents));
       } else if (o.method === 'paypal' && paypalReady()) {
-        out.push('PayPal : ' + (p.paypalEmail || p.paypalLink) + ' (' + eur(subtotal()) + ')');
+        out.push('PayPal : ' + (p.paypalEmail || p.paypalLink) + ' (' + eur(pricing().totalCents) + ')');
       }
       return out.join('\n');
     }
@@ -323,7 +354,7 @@
         }).catch(function () {});
       } catch (e) {}
       state.wa = 'https://wa.me/' + waDigits() + '?text=' + encodeURIComponent(orderText(o));
-      try { if (YZA.analytics) YZA.analytics.track('order_placed', { method: state.method, items: YZA.cart.count(), subtotal_cents: subtotal() }); } catch (e) {}
+      try { if (YZA.analytics) YZA.analytics.track('order_placed', { method: state.method, items: YZA.cart.count(), subtotal_cents: subtotal(), total_cents: pricing().totalCents }); } catch (e) {}
       // Ad platforms: one purchase event per order, keyed by the order number.
       try { if (YZA.track) { YZA.track('add_payment_info', trackPayload(o)); YZA.track('purchase', trackPayload(o)); } } catch (e) {}
       try { sessionStorage.setItem('yza.order.sent', String(Date.now())); } catch (e) {}
@@ -332,10 +363,10 @@
       window.open(state.wa, '_blank', 'noopener');
     }
 
-    // EUR amount (integer) from the DH subtotal, for PayPal / IBAN.
+    // EUR amount (integer) from the DH total (net of discounts), for PayPal / IBAN.
     function eurAmt() {
       var rate = (PAY().eurRate) || 11;
-      return Math.max(1, Math.round((subtotal() / 100) / rate));
+      return Math.max(1, Math.round((pricing().totalCents / 100) / rate));
     }
     // Is a live PayPal path configured (paypal.me link OR receiver email)?
     function paypalReady() {
@@ -373,6 +404,12 @@
         if (to === 'payment') { try { if (YZA.track) YZA.track('add_shipping_info', trackPayload({})); } catch (e3) {} }
         if (state.step === 'shipping' && to !== 'cart') collectShip();
         state.step = to; render(); scrollTop(); return;
+      }
+      var up = e.target.closest('[data-upsell-add]');
+      if (up) {
+        YZA.cart.add(up.getAttribute('data-upsell-add'), '', 1, { source: 'checkout_cross_sell' });
+        try { YZA.analytics && YZA.analytics.track('cross_sell_add', { handle: up.getAttribute('data-upsell-add'), source: 'checkout' }); } catch (e2) {}
+        render(); return;
       }
       var back = e.target.closest('[data-back]');
       if (back) { if (state.step === 'shipping') collectShip(); state.step = back.getAttribute('data-back'); render(); scrollTop(); return; }

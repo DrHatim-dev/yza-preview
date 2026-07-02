@@ -232,6 +232,18 @@ const STR = {
   'cart.acc.help':   { fr: "Besoin d'aide ? Contactez-nous", en: 'Need help? Contact us', es: '¿Necesitas ayuda? Contáctanos', tr: 'Yardım mı lazım? Bize ulaşın', ar: 'تحتاجين مساعدة؟ تواصلي معنا' },
   'cart.acc.pay':    { fr: 'Paiement sécurisé', en: 'Secure payment', es: 'Pago seguro', tr: 'Güvenli ödeme', ar: 'دفع آمن' },
   'cart.acc.payTxt': { fr: 'Paiement à la livraison (Maroc) · Carte via PayPal (Visa, Mastercard, Amex) · Virement EUR (Revolut, Wise, N26…) · Virement instantané Maroc (Attijariwafa bank).', en: 'Cash on delivery (Morocco) · Card via PayPal (Visa, Mastercard, Amex) · EUR transfer (Revolut, Wise, N26…) · Instant Moroccan transfer (Attijariwafa bank).', es: 'Pago contra entrega (Marruecos) · Tarjeta vía PayPal (Visa, Mastercard, Amex) · Transferencia EUR (Revolut, Wise, N26…) · Transferencia instantánea (Attijariwafa bank).', tr: 'Kapıda ödeme (Fas) · PayPal ile kart (Visa, Mastercard, Amex) · EUR havalesi (Revolut, Wise, N26…) · Anında Fas havalesi (Attijariwafa bank).', ar: 'الدفع عند الاستلام (المغرب) · بطاقة عبر باي بال (Visa، Mastercard، Amex) · تحويل باليورو (Revolut، Wise، N26…) · تحويل فوري بالمغرب (التجاري وفا بنك).' },
+  // — conversion surfaces (cross-sell, scarcity, free-ship line, charm tiers) —
+  'cart.upsell.title': { fr: 'Complétez votre pièce', en: 'Complete your piece', es: 'Completa tu pieza', tr: 'Parçanızı tamamlayın', ar: 'أكملي قطعتك' },
+  'scarcity.remaining': { fr: 'Il en reste {n}', en: 'Only {n} left', es: 'Quedan {n}', tr: 'Sadece {n} kaldı', ar: 'بقي {n} فقط' },
+  'pp.scarcity.count': { fr: 'Édition limitée — il reste {n} exemplaires', en: 'Limited edition — {n} pieces left', es: 'Edición limitada — quedan {n} piezas', tr: 'Sınırlı üretim — {n} adet kaldı', ar: 'إصدار محدود — بقيت {n} قطع' },
+  'pp.scarcity.one': { fr: 'Édition limitée — dernier exemplaire', en: 'Limited edition — last piece', es: 'Edición limitada — última pieza', tr: 'Sınırlı üretim — son adet', ar: 'إصدار محدود — آخر قطعة' },
+  'pp.shipbar.remaining': { fr: 'Plus que {x} pour la livraison offerte au Maroc', en: '{x} away from free delivery in Morocco', es: 'A {x} del envío gratis en Marruecos', tr: 'Fas içi ücretsiz teslimata {x} kaldı', ar: 'ينقصك {x} للتوصيل المجاني في المغرب' },
+  'pp.shipbar.unlockedWith': { fr: 'Livraison offerte au Maroc avec cette pièce', en: 'Free delivery in Morocco with this piece', es: 'Envío gratis en Marruecos con esta pieza', tr: 'Bu parça ile Fas içi ücretsiz teslimat', ar: 'توصيل مجاني في المغرب مع هذه القطعة' },
+  'promo.charmTier.label': { fr: 'Remise charms ×{n}', en: 'Charms discount ×{n}', es: 'Descuento charms ×{n}', tr: 'Charm indirimi ×{n}', ar: 'خصم التمائم ×{n}' },
+  'promo.charmTier.save': { fr: 'Vous économisez {x}', en: 'You save {x}', es: 'Ahorras {x}', tr: '{x} tasarruf ediyorsunuz', ar: 'وفّرتِ {x}' },
+  'promo.charmTier.nudge1': { fr: '2 charms = −5 %, 3 charms = −10 % — composez votre trio.', en: '2 charms = −5%, 3 charms = −10% — build your trio.', es: '2 charms = −5 %, 3 charms = −10 % — crea tu trío.', tr: '2 charm = −%5, 3 charm = −%10 — üçlünüzü oluşturun.', ar: 'قطعتان = −5٪، ثلاث قطع = −10٪ — كوّني ثلاثيتك.' },
+  'promo.charmTier.nudge2': { fr: 'Un 3ᵉ charm et la remise passe à −10 % sur vos charms.', en: 'Add a 3rd charm and the discount rises to −10%.', es: 'Un 3.º charm y el descuento sube al −10 %.', tr: '3. charm ile indirim −%10’a çıkar.', ar: 'أضيفي قطعة ثالثة ويرتفع الخصم إلى −10٪.' },
+  'co.discount': { fr: 'Remise', en: 'Discount', es: 'Descuento', tr: 'İndirim', ar: 'الخصم' },
   'cart.acc.ship':   { fr: 'Livraison & retours', en: 'Free shipping & returns', es: 'Envío y devoluciones', tr: 'Teslimat & iade', ar: 'التوصيل والإرجاع' },
   'cart.acc.shipTxt':{ fr: 'Livraison suivie sous 2 à 5 jours ouvrés. Vous avez 30 jours pour retourner un article non porté. Détails : notre politique de retours.', en: 'Tracked delivery in 2–5 business days. You have 30 days to return an unworn item. See our returns policy for details.', es: 'Entrega con seguimiento en 2–5 días hábiles. Tienes 30 días para devolver un artículo sin usar.', tr: '2–5 iş gününde takipli teslimat. Kullanılmamış ürünü 30 gün içinde iade edebilirsiniz.', ar: 'توصيل متتبّع خلال 2–5 أيام عمل. لديك 30 يومًا لإرجاع قطعة غير مستعملة.' },
 
@@ -566,6 +578,12 @@ const i18n = {
     if (x && x[this.lang]) return x[this.lang];
     const e = STR[key];
     return e ? (e[this.lang] ?? e.en ?? e.fr) : key;
+  },
+  // t() with {placeholder} interpolation — t('scarcity.remaining', …) has no vars support.
+  tFmt(key, vars) {
+    let s = this.t(key);
+    if (vars) Object.keys(vars).forEach((k) => { s = s.split('{' + k + '}').join(String(vars[k])); });
+    return s;
   },
   pick(obj) { return obj ? (obj[this.lang] ?? obj.en ?? obj.fr) : ''; },
   formatPrice(cents) {

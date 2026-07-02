@@ -30,7 +30,7 @@ $ship  = isset($order['shipping']) && is_array($order['shipping']) ? $order['shi
 
 $clean = function ($v, $max = 160) { return substr(preg_replace('/[\r\n]+/', ' ', (string)$v), 0, $max); };
 $name   = isset($ship['name']) ? $clean($ship['name'], 120) : 'Client';
-$total  = isset($order['subtotalDh']) ? intval($order['subtotalDh']) : '';
+$total  = isset($order['totalDh']) ? intval($order['totalDh']) : (isset($order['subtotalDh']) ? intval($order['subtotalDh']) : '');
 $method = isset($order['methodLabel']) ? $clean($order['methodLabel'], 60) : '';
 $number = isset($order['number']) ? $clean($order['number'], 24) : '';
 $buyer  = isset($ship['email']) ? trim((string)$ship['email']) : '';
@@ -96,6 +96,25 @@ if (is_file($wpLoad)) {
       $wcOrder->set_address($addr, 'billing');
       unset($addr['email'], $addr['phone']);
       $wcOrder->set_address($addr, 'shipping');
+
+      /* Discounts (charm tiers, promo codes) → negative fee lines, the standard Woo
+         pattern. Inserted BEFORE calculate_totals so the order total matches the site,
+         the WhatsApp text and the ad-pixel value exactly. Clamped server-side. */
+      $itemsTotalDh = 0;
+      foreach ($items as $it) {
+        if (is_array($it)) $itemsTotalDh += (intval(isset($it['price']) ? $it['price'] : 0) * max(1, intval(isset($it['qty']) ? $it['qty'] : 1))) / 100;
+      }
+      $discounts = isset($order['discounts']) && is_array($order['discounts']) ? array_slice($order['discounts'], 0, 5) : array();
+      foreach ($discounts as $d) {
+        if (!is_array($d)) continue;
+        $amountDh = min(intval(isset($d['amountDh']) ? $d['amountDh'] : 0), (int)$itemsTotalDh);
+        if ($amountDh <= 0) continue;
+        $fee = new WC_Order_Item_Fee();
+        $fee->set_name($clean(isset($d['label']) ? $d['label'] : 'Remise', 80));
+        $fee->set_total(-$amountDh);
+        $fee->set_tax_status('none');
+        $wcOrder->add_item($fee);
+      }
 
       $wcOrder->set_payment_method_title($method ? $method : 'WhatsApp');
       $wcOrder->set_currency('MAD');
