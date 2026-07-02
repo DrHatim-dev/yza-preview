@@ -29,6 +29,32 @@ $order = isset($data['order']) && is_array($data['order']) ? $data['order'] : ar
 $ship  = isset($order['shipping']) && is_array($order['shipping']) ? $order['shipping'] : array();
 
 $clean = function ($v, $max = 160) { return substr(preg_replace('/[\r\n]+/', ' ', (string)$v), 0, $max); };
+
+/* Post-order add-on ("AJOUTER au colis de ma commande N°…"). Records the request as an
+   email + a Woo order NOTE on the parent order — no totals change (one parcel = one order;
+   Nawal confirms the price on WhatsApp). Returns early. */
+if (isset($data['type']) && $data['type'] === 'addon') {
+  $num  = isset($order['number']) ? $clean($order['number'], 24) : '';
+  $body = (string)$data['text'];
+  $subj = 'YZA — AJOUT commande' . ($num ? ' ' . $num : '');
+  $host = isset($_SERVER['HTTP_HOST']) ? preg_replace('/[^a-z0-9.\-]/i', '', $_SERVER['HTTP_HOST']) : 'yza-shop.com';
+  $hdr  = 'From: YZA Boutique <no-reply@' . $host . ">\r\nMIME-Version: 1.0\r\nContent-Type: text/plain; charset=UTF-8\r\n";
+  $sent = @mail($to, '=?UTF-8?B?' . base64_encode($subj) . '?=', $body, $hdr);
+  $wc = false;
+  $wpLoad = __DIR__ . '/wp/wp-load.php';
+  if (is_file($wpLoad)) {
+    try {
+      define('WP_USE_THEMES', false);
+      require_once $wpLoad;
+      if ($num && function_exists('wc_get_orders')) {
+        $found = wc_get_orders(array('limit' => 1, 'meta_key' => '_yza_order_number', 'meta_value' => $num));
+        if (!empty($found)) { $found[0]->add_order_note('AJOUT demandé (WhatsApp) : ' . mb_substr($body, 0, 1000)); $wc = true; }
+      }
+    } catch (Throwable $e) { $wc = false; }
+  }
+  echo json_encode(array('ok' => (bool)$sent, 'wc' => $wc, 'addon' => true));
+  exit;
+}
 $name   = isset($ship['name']) ? $clean($ship['name'], 120) : 'Client';
 $total  = isset($order['totalDh']) ? intval($order['totalDh']) : (isset($order['subtotalDh']) ? intval($order['subtotalDh']) : '');
 $method = isset($order['methodLabel']) ? $clean($order['methodLabel'], 60) : '';

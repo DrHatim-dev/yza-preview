@@ -253,7 +253,25 @@
         '<h1 class="co-h1">' + esc(T('co.done.title')) + '</h1>' +
         '<p class="co-done__msg">' + esc(msg) + '</p>' +
         '<div class="co-done__actions"><a class="btn btn--solid" href="' + esc(state.wa) + '" target="_blank" rel="noopener">' + esc(T('co.done.wa')) + '</a>' + paypalBtn +
-        '<a class="link-underline" href="/">' + esc(T('co.done.home')) + '</a></div></div>';
+        '<a class="link-underline" href="/">' + esc(T('co.done.home')) + '</a></div></div>' + addonBlock();
+    }
+
+    // Post-order add-on: COD/transfer makes adding to a placed order frictionless — the
+    // customer taps a suggestion → WhatsApp prefilled "AJOUTER au colis de ma commande N°…".
+    function addonBlock() {
+      var cfg = YZA.promos && YZA.promos.postOrderAddon;
+      if ((cfg && cfg.enabled === false) || !state.lastOrder || typeof YZA.cartSuggestions !== 'function') return '';
+      var sug = YZA.cartSuggestions(state.lastOrder.items, { limit: (cfg && cfg.limit) || 2 });
+      if (!sug.length) return '';
+      var cards = sug.map(function (p) {
+        var st = (YZA.inventoryStatus && YZA.inventoryStatus(p)) || {};
+        return '<div class="upsell-card">' +
+          '<a class="upsell-card__img" href="/produits/' + encodeURIComponent(p.handle) + '"><img src="' + esc(p.img) + '" alt="" width="56" height="72" loading="lazy"></a>' +
+          '<div class="upsell-card__body"><span class="upsell-card__name">' + esc(YZA.i18n.pick(p.name)) + '</span><span class="upsell-card__price">' + fmt(p.price) + '</span>' +
+          (st.almostGone ? '<span class="upsell-card__chip">' + esc(YZA.i18n.tFmt('scarcity.remaining', { n: st.inventory })) + '</span>' : '') + '</div>' +
+          '<button type="button" class="btn btn--outline co-addon__btn" data-addon="' + esc(p.handle) + '">' + esc(T('co.addon.cta')) + '</button></div>';
+      }).join('');
+      return '<div class="co-addon"><p class="co-addon__title">' + esc(T('co.addon.title')) + '</p><p class="co-addon__sub">' + esc(T('co.addon.sub')) + '</p><div class="co-addon__grid">' + cards + '</div></div>';
     }
 
     function render() {
@@ -377,6 +395,7 @@
       // Ad platforms: one purchase event per order, keyed by the order number.
       try { if (YZA.track) { YZA.track('add_payment_info', trackPayload(o)); YZA.track('purchase', trackPayload(o)); } } catch (e) {}
       try { sessionStorage.setItem('yza.order.sent', String(Date.now())); } catch (e) {}
+      state.lastOrder = o;   // feeds the done-screen add-on suggestions (cart is not cleared)
       state.step = 'done';
       render();
       window.open(state.wa, '_blank', 'noopener');
@@ -449,6 +468,25 @@
       if (go) { if (state.step === 'shipping') collectShip(); state.step = go.getAttribute('data-goto'); render(); scrollTop(); return; }
       var place = e.target.closest('[data-place]');
       if (place) { placeOrder(); scrollTop(); return; }
+      // Post-order add-on → WhatsApp "add to my parcel" + best-effort record. Button locks after.
+      var addon = e.target.closest('[data-addon]');
+      if (addon) {
+        var ah = addon.getAttribute('data-addon');
+        var ap = YZA.getProduct(ah);
+        if (ap && state.lastOrder) {
+          var amsg = YZA.i18n.tFmt('co.addon.msg', { no: state.lastOrder.number, item: YZA.i18n.pick(ap.name), price: fmt(ap.price) });
+          try {
+            fetch((YZA.payment && YZA.payment.orderEndpoint) || 'order.php', {
+              method: 'POST', headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ type: 'addon', order: { number: state.lastOrder.number, items: [{ handle: ah, name: YZA.i18n.pick(ap.name), qty: 1, price: ap.price }] }, text: amsg }),
+            }).catch(function () {});
+          } catch (e7) {}
+          try { if (YZA.track) YZA.track('post_order_addon', { value: ap.price / 100, currency: 'MAD', items: [{ item_id: ah, item_name: YZA.i18n.pick(ap.name), quantity: 1, price: ap.price / 100 }] }); } catch (e7) {}
+          addon.textContent = T('co.addon.sent'); addon.setAttribute('disabled', 'disabled');
+          window.open('https://wa.me/' + waDigits() + '?text=' + encodeURIComponent(amsg), '_blank', 'noopener');
+        }
+        return;
+      }
       // cart qty / remove
       var rm = e.target.closest('[data-remove]');
       if (rm) { YZA.cart.remove(rm.getAttribute('data-handle'), rm.getAttribute('data-variant')); render(); return; }
@@ -474,7 +512,22 @@
     });
     root.addEventListener('change', function (e) {
       var r = e.target.closest('input[name="pay"]');
-      if (r) { state.method = r.value; render(); }
+      if (r) { state.method = r.value; render(); return; }
+      // Order bump: check → add to cart; uncheck → decrement/remove. state.bumpOn is authoritative.
+      var bump = e.target.closest('input[data-bump]');
+      if (bump) {
+        if (bump.checked && !state.bumpOn) {
+          YZA.cart.add(state.bumpHandle, '', 1, { source: 'order_bump' });
+          state.bumpOn = true;
+        } else if (!bump.checked && state.bumpOn) {
+          var line = YZA.cart.items.find(function (i) { return i.handle === state.bumpHandle && !(i.variant); });
+          if (line && line.qty > 1) YZA.cart.setQty(state.bumpHandle, '', line.qty - 1);
+          else YZA.cart.remove(state.bumpHandle, '');
+          state.bumpOn = false;
+        }
+        try { YZA.analytics && YZA.analytics.track('order_bump_toggle', { handle: state.bumpHandle, on: state.bumpOn }); } catch (e5) {}
+        render();
+      }
     });
     root.addEventListener('input', function (e) {
       if (e.target.closest('#coShipForm') && e.target.name) { state.ship[e.target.name] = e.target.value; saveShip(); }

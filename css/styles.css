@@ -470,6 +470,27 @@ body.has-search-overlay { overflow: hidden; }
 .co-done__msg { max-width: 44ch; margin: 0 auto var(--space-8); color: var(--color-muted); }
 .co-done__actions { display: grid; gap: var(--space-4); max-width: 340px; margin-inline: auto; }
 
+/* Order bump (payment step) — one unchecked low-ticket add above Place order */
+.co-bump { display: flex; align-items: center; gap: var(--space-3); border: 1px solid var(--color-border); padding: var(--space-3); margin: var(--space-5) 0; cursor: pointer; transition: border-color var(--transition-fast); }
+.co-bump.is-on { border-color: var(--color-border-strong); }
+.co-bump input[type="checkbox"] { flex: 0 0 auto; width: 18px; height: 18px; accent-color: var(--jq-ink, #2e2e2e); }
+.co-bump img { flex: 0 0 44px; width: 44px; height: 56px; object-fit: cover; display: block; }
+.co-bump__body { display: grid; gap: 2px; min-width: 0; }
+.co-bump__kicker { font-size: 0.6rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); }
+.co-bump__name { font-size: var(--fs-sm); font-weight: 500; }
+.co-bump__txt { font-size: var(--fs-xs); color: var(--color-muted); }
+[dir="rtl"] .co-bump { flex-direction: row-reverse; }
+
+/* Post-order add-on (done screen) — "add to my parcel" via WhatsApp */
+.co-addon { border-top: 1px solid var(--color-border); margin-top: var(--space-10); padding-top: var(--space-8); text-align: center; }
+.co-addon__title { font-size: var(--fs-md); }
+.co-addon__sub { font-size: var(--fs-xs); color: var(--color-muted); max-width: 46ch; margin: var(--space-2) auto var(--space-6); }
+.co-addon__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); max-width: 460px; margin-inline: auto; }
+.co-addon .upsell-card { flex-direction: column; align-items: stretch; text-align: left; }
+.co-addon__btn { margin-top: var(--space-2); min-height: 40px; }
+.co-addon__btn[disabled] { opacity: 0.6; pointer-events: none; }
+@media (max-width: 560px) { .co-addon__grid { grid-template-columns: 1fr; } }
+
 @media (max-width: 900px) {
   .checkout__grid { grid-template-columns: 1fr; gap: var(--space-10); }
   .co-sum { position: static; order: -1; }
