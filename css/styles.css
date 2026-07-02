@@ -3293,9 +3293,9 @@ body.is-scroll-down .header, body.is-scroll-down .header.is-stuck { background: 
 
 /* ===== Home intro — visible brand statement under the split hero ===== */
 .home-intro { padding-block: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 2vw, 1.5rem); }
-.home-intro__inner { max-width: 62ch; }
-.home-intro__title { font-size: var(--fs-2xl); line-height: 1.1; margin-top: 0.5rem; text-wrap: balance; }
-.home-intro__lede { color: var(--color-muted); font-size: var(--fs-md); line-height: var(--leading-body); max-width: 52ch; margin: 0.9rem auto 0; text-align: left; }
+.home-intro__inner { max-width: 62ch; margin-inline: auto; text-align: center; }
+.home-intro__title { font-size: var(--fs-2xl); line-height: 1.1; margin-top: 0.5rem; text-wrap: balance; text-align: center; }
+.home-intro__lede { color: var(--color-muted); font-size: var(--fs-md); line-height: var(--leading-body); max-width: 52ch; margin: 0.9rem auto 0; text-align: center; }
 
 /* ============================================================
  CARD & BORDER ELEVATION
