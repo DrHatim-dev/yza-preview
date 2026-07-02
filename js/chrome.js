@@ -175,7 +175,7 @@ const navMega = (active) => {
  const maison = trigger('footer.house', 'histoire',
    rail([
      [['nav.story', 'histoire'], ['nav.studio', 'studio']],
-     [['nav.girls', 'yza-girls'], ['nav.lookbook', 'lookbook'], ['nav.journal', 'journal']],
+     [['nav.girls', 'yza-girls'], ['nav.journal', 'journal']],
    ]) +
    hero('studio', 'assets/editorial/dataset/artisanes-atelier-raffia.jpg', 'L’atelier', 1200, 800), true);
 
@@ -188,7 +188,7 @@ const navMega = (active) => {
 
  // "The House" mega replaced by a plain YZA Studio link → studio (no dropdown).
  const studioLink = `<div class="nav-item"><a href="studio"${(active === 'nav.studio' || active === 'footer.house') ? ' aria-current="page"' : ''}>YZA Studio</a></div>`;
- return navLink('badge.new', '/collections') + navLink('nav.charms', collectionUrl('charms')) + navLink('nav.bags', collectionUrl('bags')) + navLink('nav.rtw', collectionUrl('rtw')) + navLink('nav.accessories', collectionUrl('accessories')) + `<div class="nav-item"><a href="lookbook"${cur('nav.lookbook')}>Lookbook</a></div>` + studioLink + navLink('nav.b2b', 'grossistes');
+ return navLink('badge.new', '/collections') + navLink('nav.charms', collectionUrl('charms')) + navLink('nav.bags', collectionUrl('bags')) + navLink('nav.rtw', collectionUrl('rtw')) + navLink('nav.accessories', collectionUrl('accessories')) + studioLink + navLink('nav.b2b', 'grossistes');
 };
 
 /* Mobile drawer - nested accordion (uppercase heads, thin +/- toggles,
@@ -208,7 +208,7 @@ const drawerAccordion = () => {
  const feature = `
  <a class="acc__feature" href="/collections">
           <img aria-hidden="true" src="assets/story/nawal-bag-garden.jpg" alt="" loading="lazy" width="1280" height="853" decoding="async">
- <span class="acc__feature-label" data-i18n="nav.lookbook">${t.t('nav.lookbook')}</span>
+ <span class="acc__feature-label" data-i18n="col.all">${t.t('col.all')}</span>
  </a>`;
 
  const boutique = [
@@ -225,7 +225,6 @@ const drawerAccordion = () => {
  link('nav.story', 'histoire'),
  link('nav.studio', 'studio'),
  link('nav.girls', 'yza-girls'),
- link('nav.lookbook', 'lookbook'),
  link('nav.journal', 'journal'),
  ].join('');
 
@@ -543,7 +542,6 @@ YZA.chrome = {
  <li><a href="histoire" data-i18n="nav.story">${t.t('nav.story')}</a></li>
  <li><a href="studio" data-i18n="nav.studio">${t.t('nav.studio')}</a></li>
  <li><a href="yza-girls" data-i18n="nav.girls">${t.t('nav.girls')}</a></li>
- <li><a href="lookbook" data-i18n="nav.lookbook">${t.t('nav.lookbook')}</a></li>
  <li><a href="journal" data-i18n="nav.journal">${t.t('nav.journal')}</a></li>
  <li><a href="grossistes" data-i18n="nav.b2b">${t.t('nav.b2b')}</a></li>
  <li><a href="mailto:${YZA.brand.email}">${YZA.brand.email}</a></li>

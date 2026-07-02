@@ -910,6 +910,9 @@ body.has-search-overlay { overflow: hidden; }
 .charm-styling__item:hover img { transform: scale(1.035); }
 .charm-styling__item figcaption { font-size: var(--fs-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--color-muted); }
 .charm-styling__cta { display: inline-block; margin-top: var(--space-8); }
+.charm-styling__cats { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--space-3) var(--space-5); margin-top: var(--space-8); }
+.charm-styling__cats-label { font-size: 0.62rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); }
+[dir="rtl"] .charm-styling__cats { flex-direction: row-reverse; }
 @media (max-width: 900px) { .charm-styling__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .charm-styling__grid { grid-template-columns: 1fr; } }
 /* First charm-styling slot shows its still image on every viewport; the section

@@ -1065,7 +1065,12 @@
  <figcaption>${esc(t.t('charm.style.videoCap'))}</figcaption>
  </figure>
  </div>
- <a class="link-underline charm-styling__cta" href="${collectionUrl('charms')}">${esc(t.t('cta.shopCharms'))}</a>`;
+ <div class="charm-styling__cats">
+ <span class="charm-styling__cats-label">${esc(t.t('cta.exploreMore'))}</span>
+ <a class="link-underline" href="${collectionUrl('bags')}">${esc(t.t('nav.bags'))}</a>
+ <a class="link-underline" href="${collectionUrl('rtw')}">${esc(t.t('nav.rtw'))}</a>
+ <a class="link-underline" href="${collectionUrl('accessories')}">${esc(t.t('nav.accessories'))}</a>
+ </div>`;
  if (document.documentElement.classList.contains('js')) requestAnimationFrame(wireReveal);
  }
  // Category storytelling (charms craft-time, Jawhara fabric story) — shown only on those collections.

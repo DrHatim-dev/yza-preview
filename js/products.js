@@ -152,7 +152,7 @@ YZA.brand = {
  mapsQuery: 'YZA Studio, 66 rue Yougoslavie, Guéliz, Marrakech, Maroc',
  hours: { fr: 'Mercredi - dimanche : 12 h - 20 h\nLundi : 12 h - 16 h\nMardi : fermé', en: 'Wednesday - Sunday: 12 - 8pm\nMonday: 12 - 4pm\nTuesday: closed' },
  pickup: { fr: 'Retrait au studio à Guéliz, sur confirmation.', en: 'Studio pickup in Guéliz, on confirmation.' },
- masterIdea: 'Modern Marrakech wear™',
+ masterIdea: 'Le vestiaire de Marrakech',
 };
 
 // ---- Checkout / payment config (edit here) ----
