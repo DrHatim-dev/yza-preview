@@ -252,6 +252,9 @@ h1, h2, h3, h4 { font-family: var(--font-serif); font-weight: 400; font-style: n
  transition: var(--transition);
 }
 .cart-count.is-visible { opacity: 1; transform: scale(1); }
+/* Header favourites heart + saved-count badge (mirrors the cart count). */
+.wishlist-btn { position: relative; }
+.wishlist-btn.has-items .wishlist-count { opacity: 1; transform: scale(1); }
 .burger { display: none; }
 
 /* ---- drawer mobile ---- */
@@ -567,6 +570,9 @@ body.has-search-overlay { overflow: hidden; }
 /* second image cross-fades in on hover (Jacquemus image swap) */
 .product-card__media .product-card__img--hover { position: absolute; inset: 0; opacity: 0; transition: opacity 0.5s var(--ease-out); }
 .product-card:hover .product-card__img--hover { opacity: 1; }
+/* Hover-preview video on a product card (client: "hovering should preview 4 sec of this video"). */
+.product-card__vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s var(--ease-out); pointer-events: none; z-index: 1; }
+.product-card__media.has-hover-video:hover .product-card__vid { opacity: 1; }
 
 /* Name + price share one row. On touch they sit statically below the image;
    on hover-capable screens they overlay the image bottom and fade in. */

@@ -178,10 +178,12 @@
     const fewBadge = (p.fewLeft && !status.soldOut && !status.almostGone) ? `<span class="product-card__few">${esc(stock.few)}</span>` : '';
     const imgLoad = eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
     const wishBtn = `<button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(p.handle)}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${wished ? 'Remove from wishlist' : 'Add to wishlist'}">${heartIcon()}</button>`;
-    const mediaLink = `<a class="product-card__media" href="${href}" data-product-card-click="${esc(p.handle)}" aria-label="${esc(name)}">
+    const hoverVid = p.hoverVideo || '';
+    const mediaLink = `<a class="product-card__media${hoverVid ? ' has-hover-video' : ''}" href="${href}" data-product-card-click="${esc(p.handle)}" aria-label="${esc(name)}">
         ${fewBadge}${almostBadge}${soldOverlay}
         <img class="product-card__img" src="${esc(primaryImg)}" alt="${esc(t.pick(p.name))} - YZA" ${imgLoad} width="461" height="615" decoding="async">
         ${(hoverSrc && isPublicMedia(hoverSrc)) ? `<img class="product-card__img product-card__img--hover" src="${esc(hoverSrc)}" alt="" aria-hidden="true" loading="lazy" width="461" height="615" decoding="async">` : ''}
+        ${hoverVid ? `<video class="product-card__vid" muted loop playsinline preload="none" poster="${esc(primaryImg)}" data-hover-video="${esc(hoverVid)}" width="461" height="615" aria-hidden="true"></video>` : ''}
       </a>`;
     const quickAdd = (tile && !status.soldOut)
       ? `<button class="product-card__add" type="button" data-quickbuy="${esc(p.handle)}" aria-label="${esc(t.t('col.quickadd'))}">+</button>`
@@ -2691,6 +2693,13 @@
     const writeWishlist = (items) => {
       try { localStorage.setItem('yza_wishlist', JSON.stringify(Array.from(new Set(items)).filter(Boolean))); } catch (e) {}
     };
+    // Header heart badge: show the saved count, hide the badge when empty.
+    const syncWishlistCount = () => {
+      const n = readWishlist().length;
+      document.querySelectorAll('[data-wishlist-count]').forEach((el) => { el.textContent = n; });
+      document.querySelectorAll('.wishlist-btn').forEach((b) => b.classList.toggle('has-items', n > 0));
+    };
+    syncWishlistCount();
     document.addEventListener('click', (event) => {
       const wish = event.target.closest('[data-wishlist-toggle]');
       if (wish) {
@@ -2705,6 +2714,8 @@
           btn.classList.toggle('is-active', !exists);
           btn.setAttribute('aria-pressed', !exists ? 'true' : 'false');
         });
+        syncWishlistCount();
+        if (document.getElementById('wishlistGrid')) renderWishlist();  // live-refresh the favourites page
         YZA.analytics?.track(exists ? 'wishlist_remove' : 'wishlist_add', { handle });
         return;
       }
@@ -2732,7 +2743,46 @@
         });
       }
     });
+    // Hover-preview videos on product cards (client: "hovering should preview 4 sec").
+    // Delegated so it works on re-rendered grids; src is lazy-set on first hover.
+    const hoverIn = (e) => {
+      const media = e.target.closest('.product-card__media.has-hover-video');
+      if (!media) return;
+      const v = media.querySelector('.product-card__vid');
+      if (!v) return;
+      if (!v.getAttribute('src') && v.dataset.hoverVideo) v.setAttribute('src', v.dataset.hoverVideo);
+      try { v.currentTime = 0; const p = v.play(); if (p && p.catch) p.catch(() => {}); } catch (err) {}
+    };
+    const hoverOut = (e) => {
+      const media = e.target.closest('.product-card__media.has-hover-video');
+      if (!media) return;
+      if (e.relatedTarget && media.contains(e.relatedTarget)) return;  // still inside the card
+      const v = media.querySelector('.product-card__vid');
+      if (v && !v.paused) v.pause();
+    };
+    document.addEventListener('mouseover', hoverIn);
+    document.addEventListener('mouseout', hoverOut);
   }
+
+ /* ================= WISHLIST / FAVOURITES ================= */
+ function renderWishlist() {
+ const grid = $('#wishlistGrid');
+ if (!grid) return;
+ const empty = $('#wishlistEmpty');
+ let handles = [];
+ try { handles = JSON.parse(localStorage.getItem('yza_wishlist')) || []; } catch (e) {}
+ const prods = handles.map((h) => (YZA.getProduct ? YZA.getProduct(h) : null)).filter(Boolean);
+ if (!prods.length) {
+ grid.innerHTML = '';
+ grid.hidden = true;
+ if (empty) empty.hidden = false;
+ return;
+ }
+ grid.hidden = false;
+ if (empty) empty.hidden = true;
+ grid.innerHTML = prods.map((p, i) => cardHTML(p, i, i < 4, { tile: true })).join('');
+ if (document.documentElement.classList.contains('js')) requestAnimationFrame(wireReveal);
+ }
 
  /* ================= ROUTER ================= */
  function renderPage() {
@@ -2743,6 +2793,7 @@
  renderGirlsPage();
  renderCollections();
  renderProduct();
+ renderWishlist();
  }
  function activeNav() {
  const page = document.body.dataset.page;

@@ -392,6 +392,7 @@ YZA.chrome = {
  <div class="header__actions">
  <button type="button" class="header-search" id="searchOpen" data-i18n-attr="aria-label:a.search" aria-label="${t.t('a.search')}"><span data-i18n="a.search">${t.t('a.search')}</span>${ICON.search}</button>
  <div class="lang" role="group" aria-label="${t.t('lang.label')}">${langSwitcher()}</div>
+ <a class="icon-btn wishlist-btn" href="/favoris" data-i18n-attr="aria-label:a.wishlist" aria-label="${t.t('a.wishlist')}">${ICON.heart}<span class="cart-count wishlist-count" data-wishlist-count aria-hidden="true">0</span></a>
  <button type="button" class="icon-btn cart-btn" data-cart-open data-i18n-attr="aria-label:a.cart" aria-label="${t.t('a.cart')}">${ICON.cart}<span class="cart-count" data-cart-count aria-hidden="true">0</span></button>
  <button type="button" class="icon-btn burger" id="burger" data-i18n-attr="aria-label:a.menu" aria-label="${t.t('a.menu')}">${ICON.burger}</button>
  </div>

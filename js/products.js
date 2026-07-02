@@ -9913,6 +9913,8 @@ const PRODUCTS = [
  "handle": "watermelon-raffia-earrings-ss26",
  "legacyHandles": [],
  "sku": null,
+ "lifestyleVideo": "assets/lifestyle/accessories/watermelon-earrings.mp4",
+ "hoverVideo": "assets/lifestyle/accessories/watermelon-earrings.mp4",
  "name": {
  "fr": "Boucles pasteque en raphia",
  "en": "Watermelon Raffia Earrings",

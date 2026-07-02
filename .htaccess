@@ -29,6 +29,7 @@ DirectoryIndex index.html index.htm
   # ---- Clean URLs: pages whose slug differs from the filename ----
   RewriteRule ^grossistes/?$        b2b.html [L]
   RewriteRule ^mentions-legales/?$  legal.html [L]
+  RewriteRule ^favoris/?$           favoris.html [L]
   RewriteRule ^journal/?$           blogs/journal/ [L]
 
   # ---- WordPress back-office lives in /wp (orders inbox for the WooCommerce
