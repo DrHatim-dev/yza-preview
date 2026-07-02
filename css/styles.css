@@ -4387,7 +4387,7 @@ body.has-cart-drawer .lead-chat { display: none; }
   display: grid; grid-template-rows: 1fr auto;
 }
 .fm-slide.is-active { opacity: 1; z-index: 2; }
-.fm-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.fm-slide img, .fm-slide video { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 /* Bundle tile — 3-up triptych of clean isolated charm stills */
 .fm-tile--bundle .fm-stage { background: var(--paper-card); }
