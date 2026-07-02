@@ -1127,6 +1127,20 @@ body[data-page="home"] .girls-feed-section { margin-top: var(--space-7); }
 .closing-cta__sub { color: rgba(255,255,255,0.94); font-size: clamp(0.95rem,1.6vw,1.1rem); line-height: 1.5; max-width: 46ch; margin: -0.5rem auto 0.4rem; }
 .closing-cta__link--btn { background: var(--white); color: var(--jq-ink); padding: 0.95rem 2rem; border-bottom: 0; }
 .closing-cta__link--btn:hover { opacity: 0.86; border-bottom-color: transparent; }
+/* Brand opener — Jacquemus-style split: portrait 4K brand video + quiet brand statement
+   (client: "démarrer avec une photo/vidéo et un texte de marque, pas salesy"). */
+.brand-hero { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; background: var(--color-bg); }
+.brand-hero__media { overflow: hidden; max-height: 92vh; }
+.brand-hero__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.brand-hero__cap { align-self: center; justify-self: center; display: grid; gap: var(--space-4); justify-items: center; text-align: center; max-width: 560px; padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem); }
+.brand-hero__title { font-family: var(--font-serif); font-weight: 400; font-size: clamp(2rem, 4.2vw, 3.4rem); line-height: 1.08; margin: 0; text-wrap: balance; }
+.brand-hero__sub { color: var(--color-muted); letter-spacing: var(--tracking-wide); text-transform: uppercase; font-size: var(--fs-xs); margin: 0; }
+@media (max-width: 860px) {
+ .brand-hero { grid-template-columns: 1fr; }
+ .brand-hero__media { max-height: 74vh; }
+ .brand-hero__cap { padding-block: var(--space-10); }
+}
+
 /* Split variant: real SS26 photo beside the orange panel (client: "mettre une image, ça donne pas envie comme ça"). */
 .closing-cta--split { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; padding-block: 0; }
 .closing-cta__media { overflow: hidden; }
@@ -2214,15 +2228,21 @@ body[data-page="home"] .girls-feed-section { margin-top: var(--space-7); }
 .icon-strip__item { display: grid; grid-template-columns: 44px 1fr; align-items: center; gap: var(--space-5); min-width: 0; }
 .icon-strip__item img { width: 44px; height: 44px; object-fit: contain; transform-origin: center; transition: transform var(--transition); }
 .icon-strip__item:hover img { transform: scale(1.12) rotate(-3deg); }
+/* Authentic Tifinagh letterforms (Noto Sans Tifinagh) — replace the invented "Berber" PNGs (client: "c pas des signes berbères"). */
+.tif-glyph { font-family: 'Noto Sans Tifinagh', var(--font-body); font-size: 2.5rem; line-height: 1; color: var(--color-fg); }
+.icon-strip__item .tif-glyph { width: 44px; text-align: center; transform-origin: center; transition: transform var(--transition); }
+.icon-strip__item:hover .tif-glyph { transform: scale(1.12) rotate(-3deg); }
+.glyph-divider .tif-glyph { font-size: 2rem; opacity: 0.75; }
+.glyph-deco .tif-glyph { font-size: 2rem; }
 .icon-strip__item span { font-family: var(--font-body); font-size: var(--fs-sm); font-weight: 400; letter-spacing: 0.05em; line-height: 1.35; color: var(--color-fg); }
 /* Amazigh / Berber symbols - "stamped" staggered draw-in, details unchanged */
 @keyframes icon-stamp { 0% { opacity: 0; transform: translateY(12px) scale(0.55) rotate(-10deg); } 55% { opacity: 1; transform: translateY(0) scale(1.1) rotate(3deg); } 100% { opacity: 1; transform: none; } }
-.js .icon-strip__inner .icon-strip__item img { opacity: 0; }
-.js .icon-strip__inner.is-visible .icon-strip__item img { animation: icon-stamp 0.85s var(--ease-out) both; }
-.js .icon-strip__inner.is-visible .icon-strip__item:nth-child(2) img { animation-delay: 0.12s; }
-.js .icon-strip__inner.is-visible .icon-strip__item:nth-child(3) img { animation-delay: 0.24s; }
-.js .icon-strip__inner.is-visible .icon-strip__item:nth-child(4) img { animation-delay: 0.36s; }
-@media (prefers-reduced-motion: reduce) { .js .icon-strip__inner .icon-strip__item img, .js .icon-strip__inner.is-visible .icon-strip__item img { animation: none; opacity: 1; } }
+.js .icon-strip__inner .icon-strip__item img, .js .icon-strip__inner .icon-strip__item .tif-glyph { opacity: 0; }
+.js .icon-strip__inner.is-visible .icon-strip__item img, .js .icon-strip__inner.is-visible .icon-strip__item .tif-glyph { animation: icon-stamp 0.85s var(--ease-out) both; }
+.js .icon-strip__inner.is-visible .icon-strip__item:nth-child(2) img, .js .icon-strip__inner.is-visible .icon-strip__item:nth-child(2) .tif-glyph { animation-delay: 0.12s; }
+.js .icon-strip__inner.is-visible .icon-strip__item:nth-child(3) img, .js .icon-strip__inner.is-visible .icon-strip__item:nth-child(3) .tif-glyph { animation-delay: 0.24s; }
+.js .icon-strip__inner.is-visible .icon-strip__item:nth-child(4) img, .js .icon-strip__inner.is-visible .icon-strip__item:nth-child(4) .tif-glyph { animation-delay: 0.36s; }
+@media (prefers-reduced-motion: reduce) { .js .icon-strip__inner .icon-strip__item img, .js .icon-strip__inner.is-visible .icon-strip__item img, .js .icon-strip__inner .icon-strip__item .tif-glyph, .js .icon-strip__inner.is-visible .icon-strip__item .tif-glyph { animation: none; opacity: 1; } }
 
 /* ============================================================
  GLYPH ORNAMENTS - standalone Amazigh glyphs as decorative accents
@@ -2926,6 +2946,7 @@ body.has-recovery-modal { overflow: hidden; }
  /* Mobile: icon above text, everything centered (client: "centered and aligned in the middle in mobile"). */
  .icon-strip__item { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: var(--space-2); }
  .icon-strip__item img { width: 38px; height: 38px; }
+ .icon-strip__item .tif-glyph { font-size: 2.1rem; width: auto; }
  .footer__cols { grid-template-columns: 1fr; gap: var(--space-8); }
  .footer__facts { grid-template-columns: 1fr; }
  .footer-service { grid-template-columns: 1fr; gap: var(--space-4); }

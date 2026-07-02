@@ -16,15 +16,14 @@
  <link rel="icon" href="assets/brand/yza-favicon.png" type="image/png" />
  <link rel="apple-touch-icon" href="assets/brand/yza-favicon.png" />
 
- <!-- Preload the LCP hero images (two-image split: bags & charms / ready-to-wear) -->
- <link rel="preload" as="image" href="assets/hero/la-sculpture-lifestyle.jpg" fetchpriority="high" />
- <link rel="preload" as="image" href="assets/hero/home-rtw.jpg" />
+ <!-- Preload the LCP brand-opener poster -->
+ <link rel="preload" as="image" href="assets/video/brand-opener-poster.jpg?v=20260702k" fetchpriority="high" />
 
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,400..600&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="css/tokens.css?v=20260702j" />
- <link rel="stylesheet" href="css/styles.css?v=20260702j" />
+ <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,400..600&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Caveat:wght@500;600;700&family=Noto+Sans+Tifinagh&display=swap" rel="stylesheet">
+ <link rel="stylesheet" href="css/tokens.css?v=20260702k" />
+ <link rel="stylesheet" href="css/styles.css?v=20260702k" />
 
  <script type="application/ld+json">
  { "@context": "https://schema.org", "@type": "Organization", "name": "YZA",
@@ -38,23 +37,19 @@
 <body data-page="home">
 <main>
 
- <!-- ===== HERO: TWO-IMAGE SPLIT — bags & charms / ready-to-wear ===== -->
- <section class="hero-split" aria-label="YZA — paniers, sacs & prêt-à-porter">
- <a class="hero-split__tile" href="/collections/sacs" aria-label="Paniers, sacs & charms">
- <img class="hero-split__img" src="assets/hero/la-sculpture-lifestyle.jpg" alt="La Sculpture — femme aux boucles d’oreilles fruits, portant le panier YZA" loading="eager" fetchpriority="high" width="1080" height="1440" decoding="async">
- <span class="hero-split__cap">
- <span class="hero-split__title" data-i18n="cat.bags">Paniers & sacs</span>
- <span class="hero-split__link" data-i18n="cta.shop">Voir la collection</span>
- </span>
- </a>
- <a class="hero-split__tile" href="/collections/pret-a-porter" aria-label="Prêt-à-porter Jawhara">
- <img class="hero-split__img" src="assets/hero/home-rtw.jpg" alt="Une femme porte un ensemble prêt-à-porter Jawhara YZA" loading="eager" fetchpriority="high" width="1067" height="1600" decoding="async">
- <span class="hero-split__cap">
- <span class="hero-split__title" data-i18n="cat.rtw">Prêt-à-porter</span>
- <span class="hero-split__link" data-i18n="cta.shop">Voir la collection</span>
- </span>
- </a>
+ <!-- ===== BRAND OPENER — vidéo de marque 4K du shoot SS26 + texte de marque
+      (client : "démarrer avec une photo/vidéo et un texte de marque, pas salesy, comme Jacquemus") ===== -->
+ <section class="brand-hero" aria-label="YZA — le vestiaire moderne de Marrakech">
+ <div class="brand-hero__media">
+ <video class="brand-hero__video" src="assets/video/brand-opener.mp4?v=20260702k" autoplay muted loop playsinline poster="assets/video/brand-opener-poster.jpg?v=20260702k" width="810" height="1440" aria-label="YZA — La Vague aux anses rouges portée dans un riad de Marrakech"></video>
+ </div>
+ <div class="brand-hero__cap" data-reveal>
+ <p class="brand-hero__title"><span data-lang="fr">Le vestiaire moderne de Marrakech</span><span data-lang="en" hidden>The modern wardrobe of Marrakech</span><span data-lang="es" hidden>El vestuario moderno de Marrakech</span><span data-lang="tr" hidden>Marakeş’in modern gardırobu</span><span data-lang="ar" hidden>خزانة مراكش العصرية</span></p>
+ <p class="brand-hero__sub"><span data-lang="fr">Fait main. Fait ensemble.</span><span data-lang="en" hidden>Hand-made. Made together.</span><span data-lang="es" hidden>Hecho a mano. Hecho juntas.</span><span data-lang="tr" hidden>Elde yapıldı. Birlikte yapıldı.</span><span data-lang="ar" hidden>مصنوع يدويًا. مصنوع معًا.</span></p>
+ <a class="link-underline" href="/histoire"><span data-lang="fr">Découvrir YZA</span><span data-lang="en" hidden>Discover YZA</span><span data-lang="es" hidden>Descubre YZA</span><span data-lang="tr" hidden>YZA’yı keşfet</span><span data-lang="ar" hidden>اكتشفي YZA</span></a>
+ </div>
  </section>
+ <script>(function(){var v=document.querySelector('.brand-hero__video');if(v){v.muted=true;var p=v.play();if(p&&p.catch)p.catch(function(){});}})();</script>
 
  <!-- ===== HOME INTRO — visible brand statement (what YZA is) ===== -->
  <section class="section home-intro">
@@ -101,19 +96,19 @@
  <p class="press-band__label icon-strip__label"><span data-lang="fr">L’esprit YZA</span><span data-lang="en" hidden>The YZA spirit</span><span data-lang="es" hidden>El espíritu YZA</span><span data-lang="tr" hidden>YZA ruhu</span><span data-lang="ar" hidden>روح YZA</span></p>
  <div class="container-wide icon-strip__inner" data-reveal>
  <div class="icon-strip__item">
- <img aria-hidden="true" src="assets/brand/icons/women-only.png" alt="" loading="lazy" width="160" height="160" decoding="async">
+ <span class="tif-glyph" aria-hidden="true">ⵣ</span>
  <span data-i18n="trust.handmade.t">Entreprise 100 % féminine</span>
  </div>
  <div class="icon-strip__item">
- <img aria-hidden="true" src="assets/brand/icons/more-hands.png" alt="" loading="lazy" width="160" height="160" decoding="async">
+ <span class="tif-glyph" aria-hidden="true">ⴰ</span>
  <span data-i18n="trust.women.t">Explore le fait main marocain</span>
  </div>
  <div class="icon-strip__item">
- <img aria-hidden="true" src="assets/brand/icons/less-waste.png" alt="" loading="lazy" width="160" height="160" decoding="async">
+ <span class="tif-glyph" aria-hidden="true">ⵎ</span>
  <span data-i18n="trust.unique.t">Faits pour être portés & partagés</span>
  </div>
  <div class="icon-strip__item">
- <img aria-hidden="true" src="assets/brand/icons/loved-shared.png" alt="" loading="lazy" width="160" height="160" decoding="async">
+ <span class="tif-glyph" aria-hidden="true">ⵉ</span>
  <span data-i18n="trust.secure.t">Pensés pour vivre et voyager</span>
  </div>
  </div>
@@ -236,7 +231,7 @@
  <!-- ===== DUO BIG-IMAGE SECTION (after the carousel) — two signature lines ===== -->
  <section class="hero-split hero-split--duo" aria-label="Le Marché aux Fruits & La Sculpture">
  <a class="hero-split__tile" href="/collections/charms" aria-label="Le Marché aux Fruits — charms en raphia">
- <img class="hero-split__img" src="assets/products/fruit-market/styling/charms-raffia-basket-bowl.jpg?v=20260702e" alt="Le Marché aux Fruits — panier YZA en raphia rouge et étal de fruits frais, charm fraise crocheté" loading="lazy" width="1080" height="1440" decoding="async">
+ <img class="hero-split__img" src="assets/products/fruit-market/styling/charms-fruit-market-bundle.jpg?v=20260702k" alt="Le Marché aux Fruits — fruits en raphia crochetés main, orange et tranche d’agrume" loading="lazy" width="1350" height="1800" decoding="async">
  <span class="hero-split__cap">
  <span class="hero-split__title" data-i18n="print.title">Le Marché aux Fruits</span>
  <span class="hero-split__link" data-i18n="cta.shopCharms">Voir les charms</span>
@@ -395,7 +390,7 @@
  </div>
  </section>
 
- <div class="glyph-divider" aria-hidden="true"><img aria-hidden="true" src="assets/brand/icons/svc-limited-new.png" alt="" width="64" height="64" loading="lazy" decoding="async"></div>
+ <div class="glyph-divider" aria-hidden="true"><span class="tif-glyph">ⵣ</span></div>
 
  <!-- ===== SERVICES ===== -->
  <section class="section section--surface service-strip-section" aria-labelledby="homeServiceTitle">
@@ -421,13 +416,13 @@
 
 </main>
 
- <script defer src="js/products.js?v=20260702j"></script>
-  <script defer src="js/tracking.js?v=20260702j"></script>
- <script defer src="js/media.js?v=20260702j"></script>
- <script defer src="js/i18n.js?v=20260702j"></script>
- <script defer src="js/cart.js?v=20260702j"></script>
- <script defer src="js/chrome.js?v=20260702j"></script>
- <script defer src="js/main.js?v=20260702j"></script>
+ <script defer src="js/products.js?v=20260702k"></script>
+  <script defer src="js/tracking.js?v=20260702k"></script>
+ <script defer src="js/media.js?v=20260702k"></script>
+ <script defer src="js/i18n.js?v=20260702k"></script>
+ <script defer src="js/cart.js?v=20260702k"></script>
+ <script defer src="js/chrome.js?v=20260702k"></script>
+ <script defer src="js/main.js?v=20260702k"></script>
 </body>
 </html>
 
