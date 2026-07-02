@@ -3607,7 +3607,12 @@ body.is-scroll-down .header, body.is-scroll-down .header.is-stuck { background: 
  transition: grid-template-rows 0.38s var(--ease-out);
 }
 .acc.is-open > .acc__panel { grid-template-rows: 1fr; }
-.acc__panel-inner { overflow: hidden; min-height: 0; padding-bottom: var(--space-5); }
+/* NB: padding on the grid child forces a min-content floor so 0fr can't collapse to 0
+   (leaves a ~20px sliver of the first link = "ghost text"). Keep the inner padding-free
+   and space the last link instead; visibility:hidden guarantees closed content never paints. */
+.acc__panel-inner { overflow: hidden; min-height: 0; padding-bottom: 0; visibility: hidden; transition: visibility 0s linear 0.38s; }
+.acc.is-open > .acc__panel .acc__panel-inner { visibility: visible; transition-delay: 0s; }
+.acc__panel-inner > :last-child { margin-bottom: var(--space-4); }
 
 .drawer .acc__link {
  display: block;
