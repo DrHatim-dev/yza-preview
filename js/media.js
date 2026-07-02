@@ -568,11 +568,11 @@ Object.assign(YZA.media.productStories.bags, {
 Object.assign(YZA.media.productStories.jaune, {
  title: { fr: 'Solaire, visible, Marrakech.', en: 'Sunlit, visible, Marrakech.', es: 'Solar, visible, Marrakech.', tr: 'Güneşli, göze çarpan, Marrakech.', ar: 'شمسي، لافت، Marrakech.' },
  text: {
- fr: 'Pour le lancement, le jaune vit dans les fruits en raphia: citron, orange, tomate et compositions de marche. La couleur reste vive, sans revenir aux anciens visuels de sacs.',
- en: 'For launch, yellow lives in raffia fruits: lemon, orange, tomato and market compositions. The colour stays bright without returning to older bag visuals.',
- es: 'Para el lanzamiento, el amarillo vive en las frutas de rafia: limón, naranja, tomate y composiciones de mercado. El color sigue vivo sin volver a los visuales antiguos de bolsos.',
- tr: 'Lansman için sarı, rafya meyvelerinde yaşıyor: limon, portakal, domates ve pazar kompozisyonları. Renk, eski çanta görsellere dönmeksizin canlı kalıyor.',
- ar: 'للإطلاق، الأصفر يحيا في ثمار الرافيا: ليمون، برتقال، طماطم وتركيبات السوق. اللون يبقى زاهياً دون العودة إلى صور الحقائب القديمة.',
+ fr: 'Le jaune YZA, c\'est le soleil de Marrakech porté sur soi : un panier tournesol, un citron crocheté, une touche qui réveille toute une tenue. Avec du blanc, du bleu Majorelle ou un look vacances, il fait de la pièce une signature.',
+ en: 'YZA yellow is Marrakech sunshine worn on you: a sunflower basket, a crocheted lemon, one touch that wakes up a whole outfit. With white, Majorelle blue or a resort look, it turns the piece into a signature.',
+ es: 'El amarillo YZA es el sol de Marrakech puesto encima: una cesta girasol, un limón de ganchillo, un toque que despierta todo un look. Con blanco, azul Majorelle o un look de vacaciones, convierte la pieza en firma.',
+ tr: 'YZA sarısı, üzerinizde taşıdığınız Marakeş güneşidir: bir ayçiçeği sepet, tığ işi bir limon, bütün kombini uyandıran tek bir dokunuş. Beyazla, Majorelle mavisiyle ya da tatil görünümüyle parçayı imzaya dönüştürür.',
+ ar: 'أصفر YZA هو شمس مراكش تُحمَل عليك: سلة عبّاد الشمس، ليمونة كروشيه، لمسة توقظ الإطلالة كلها. مع الأبيض أو أزرق ماجوريل أو إطلالة العطلة، يجعل القطعة توقيعًا.',
  },
  label: { fr: 'Fruit Market / crochet main', en: 'Fruit Market / hand crochet', es: 'Fruit Market / ganchillo a mano', tr: 'Fruit Market / elle tığ işi', ar: 'Fruit Market / كروشيه يدوي' },
  images: ['assets/products/fruit-market/styling/charms-raffia-basket-bowl.jpg', 'assets/products/fruit-market/styling/charms-fruit-market-bundle.jpg', 'assets/products/fruit-market/charm-whole-lemon.jpg'],

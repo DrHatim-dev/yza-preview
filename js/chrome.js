@@ -205,10 +205,11 @@ const drawerAccordion = () => {
  <div class="acc__panel"><div class="acc__panel-inner">${inner}</div></div>
  </li>`;
 
+ // Feature card → YZA Girls with a real girls photo (client: link it to the girls, change the badly-redone bag photo)
  const feature = `
- <a class="acc__feature" href="/collections">
-          <img aria-hidden="true" src="assets/story/nawal-bag-garden.jpg" alt="" loading="lazy" width="1280" height="853" decoding="async">
- <span class="acc__feature-label" data-i18n="col.all">${t.t('col.all')}</span>
+ <a class="acc__feature" href="/yza-girls">
+          <img aria-hidden="true" src="assets/yza-girls/girls-rim-violet.jpg" alt="" loading="lazy" width="540" height="675" decoding="async">
+ <span class="acc__feature-label" data-i18n="nav.girls">${t.t('nav.girls')}</span>
  </a>`;
 
  const boutique = [
@@ -217,14 +218,15 @@ const drawerAccordion = () => {
  link('nav.bags', collectionUrl('bags')),
  link('nav.accessories', collectionUrl('accessories')),
  link('col.all', '/collections'),
- link('nav.b2b', 'grossistes'),
  feature,
  ].join('');
 
+ // Stockists lives under YZA Studio, not Boutique (client request)
  const maison = [
  link('nav.story', 'histoire'),
  link('nav.studio', 'studio'),
  link('nav.girls', 'yza-girls'),
+ link('nav.b2b', 'grossistes'),
  link('nav.journal', 'journal'),
  ].join('');
 

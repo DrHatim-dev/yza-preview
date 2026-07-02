@@ -930,23 +930,40 @@
  const wall = $('#girlsMasonry');
  if (!wall || !YZA.media?.yzaGirls?.length) return;
  const publicGirls = interleaveByName(YZA.media.yzaGirls.filter((girl) => isPublicMedia(girl.src)));
- wall.innerHTML = publicGirls.map((girl, index) => girlsCardHTML(girl, index)).join('');
+ // Paginated wall + "Charger plus" (client: the page was far too long).
+ const CHUNK = 12;
+ let shown = Math.min(CHUNK, publicGirls.length);
+ let moreBtn = wall.parentElement.querySelector('.girls-loadmore button');
+ const drawWall = () => {
+ wall.innerHTML = publicGirls.slice(0, shown).map((girl, index) => girlsCardHTML(girl, index)).join('');
  wall.querySelectorAll('[data-shop-look]').forEach((link) => {
  link.addEventListener('click', () => YZA.analytics?.track('yza_girls_shop_look_click', { handle: link.dataset.shopLook || '', source: 'girls_page' }));
  });
+ if (moreBtn) moreBtn.parentElement.hidden = shown >= publicGirls.length;
+ };
+ if (!moreBtn && publicGirls.length > CHUNK) {
+ const holder = document.createElement('div');
+ holder.className = 'girls-loadmore';
+ holder.innerHTML = `<button type="button" class="btn btn--outline" data-i18n="girls.loadMore">${esc(T().t('girls.loadMore'))}</button>`;
+ wall.insertAdjacentElement('afterend', holder);
+ moreBtn = holder.querySelector('button');
+ moreBtn.addEventListener('click', () => { shown = Math.min(shown + CHUNK, publicGirls.length); drawWall(); });
+ }
+ drawWall();
 
  // Track every image already shown so nothing repeats further down the page.
  const used = new Set(publicGirls.map((girl) => girl.src));
- const pickImages = (images, n) => {
- const out = [];
- (images || []).filter(isPublicMedia).forEach((src) => { if (out.length < n && !used.has(src)) { used.add(src); out.push(src); } });
- return out;
+ // Story tiles may only show REAL YZA-girls community photos (client rule) — pulled from
+ // the girls data by colour/product. A story with fewer than 2 girls photos is dropped.
+ const girlsImagesFor = (key) => {
+ const all = YZA.media.yzaGirls.filter((g) => isPublicMedia(g.src));
+ let picks;
+ if (key === 'bags') picks = all.filter((g) => /la vague|sculpture/i.test(g.product || ''));
+ else if (key === 'rtw') picks = all.filter((g) => g.color === 'editorial');
+ else if (key === 'charms') picks = []; // no charm-specific girls photos yet
+ else picks = all.filter((g) => g.color === key);
+ return Array.from(new Set(picks.map((g) => g.src)));
  };
- // Each product-story tile shows its own first N public images, independent of the
- // masonry and of other stories (repeats are fine — far better than half-empty
- // modules: jaune/bags/violet were rendering empty because the masonry + a shared
- // dedupe Set had already consumed their assets).
- const pickStoryImages = (images, n) => (images || []).filter(isPublicMedia).slice(0, n);
 
  const storyMap = $('#girlsProductMap');
  if (storyMap) {
@@ -954,6 +971,8 @@
  storyMap.innerHTML = keys.map((key) => {
  const story = YZA.media.productStories?.[key];
  if (!story) return '';
+ const imgs = girlsImagesFor(key).slice(0, 3);
+ if (imgs.length < 2) return '';
  const title = mediaText(story.title);
  const text = mediaText(story.text);
  return `<article class="girls-product-story" id="${esc(key)}">
@@ -964,7 +983,7 @@
  <a class="link-underline" href="${story.cta || '/collections'}">${T().t('cta.shop')}</a>
  </div>
  <div class="girls-product-story__images">
- ${pickStoryImages(story.images, 3).map((src) => `<span>${mediaImg(src, title, 'width="560" height="720"')}</span>`).join('')}
+ ${imgs.map((src) => `<span>${mediaImg(src, title, 'width="560" height="720"')}</span>`).join('')}
  </div>
  </article>`;
  }).join('');
@@ -1010,12 +1029,29 @@
  .filter((entry) => entry.href || entry.publicPath)
  .filter((entry) => { const s = entry.href || entry.publicPath; if (!s || used.has(s)) return false; used.add(s); return true; })
  .slice(0, 220);
- el.innerHTML = entries.map((entry, index) => {
+ // Paginated wall + "Charger plus" (client: 200+ tiles at once made the page endless).
+ const AW_CHUNK = 24;
+ let awShown = Math.min(AW_CHUNK, entries.length);
+ const tileHTML = (entry, index) => {
  const src = entry.href || entry.publicPath;
  return `<figure class="girls-archive-item" style="--i:${index}">
  ${mediaImg(src, entry.title || entry.fileName || 'YZA source image', `width="${entry.width || 640}" height="${entry.height || 860}"`)}
  </figure>`;
- }).join('');
+ };
+ let awBtn = null;
+ const drawArchive = () => {
+ el.innerHTML = entries.slice(0, awShown).map(tileHTML).join('');
+ if (awBtn) awBtn.parentElement.hidden = awShown >= entries.length;
+ };
+ if (entries.length > AW_CHUNK && !el.parentElement.querySelector('.girls-loadmore')) {
+ const holder = document.createElement('div');
+ holder.className = 'girls-loadmore';
+ holder.innerHTML = `<button type="button" class="btn btn--outline" data-i18n="girls.loadMore">${esc(T().t('girls.loadMore'))}</button>`;
+ el.insertAdjacentElement('afterend', holder);
+ awBtn = holder.querySelector('button');
+ awBtn.addEventListener('click', () => { awShown = Math.min(awShown + AW_CHUNK, entries.length); drawArchive(); });
+ }
+ drawArchive();
  el.dataset.loaded = 'true';
  } catch (err) {
  el.dataset.loaded = 'error';
@@ -1083,22 +1119,27 @@
  }
  // Category storytelling (charms craft-time, Jawhara fabric story) — shown only on those collections.
  function renderCollectionStory() {
- const el = $('#colStory'); if (!el) return;
+ // Category story now renders as an editorial panel WOVEN INTO the grid, mid-tiles
+ // (client: "ça devrait être au milieu des vignettes produit et avoir un joli design").
+ const el = $('#colStory'); if (el) { el.hidden = true; el.innerHTML = ''; }
+ const grid = $('#collectionGrid'); if (!grid) return;
  const t = T();
- // Validated 5-beat category stories (Fruit Market for charms; the vêtements manifesto + the
- // Jawhara fabric story for prêt-à-porter). Same flowing editorial style as the PDP block.
  const map = { charms: 'charms', accessories: 'charms', earrings: 'charms', necklaces: 'charms', rtw: 'rtw', tops: 'rtw', pareos: 'rtw', pants: 'rtw', bottoms: 'rtw' };
  const list = (YZA.CATEGORY_STORIES || {})[map[collState.cat]];
- if (!list || !list.length || collState.q) { el.hidden = true; el.innerHTML = ''; return; }
- el.hidden = false;
- const block = (s) => '<div class="product-story product-story--collection">'
- + '<p class="product-story__point">' + esc(t.pick(s.point)) + '</p>'
- + '<p class="product-story__body">' + esc(t.pick(s.histoire)) + '</p>'
- + '<blockquote class="product-story__quote"><p>' + esc(t.pick(s.metaphore)) + '</p></blockquote>'
- + '<p class="product-story__reassure">' + esc(t.pick(s.objection)) + '</p>'
- + '<p class="product-story__invite">' + esc(t.pick(s.invitation)) + '</p>'
- + '</div>';
- el.innerHTML = '<div class="container col-story__inner" data-reveal>' + list.map(block).join('') + '</div>';
+ grid.querySelectorAll('.col-story--ingrid').forEach((n) => n.remove());
+ if (!list || !list.length || collState.q) return;
+ const cards = Array.from(grid.children).filter((n) => !n.classList.contains('product-story') && !n.classList.contains('col-story--ingrid'));
+ list.forEach((s, i) => {
+ const panel = document.createElement('div');
+ panel.className = 'col-story--ingrid';
+ panel.setAttribute('data-reveal', '');
+ panel.innerHTML = '<p class="eyebrow">' + esc(t.pick(s.point)) + '</p>'
+ + '<h2>' + esc(t.pick(s.metaphore)) + '</h2>'
+ + '<p>' + esc(t.pick(s.histoire)) + '</p>'
+ + '<p>' + esc(t.pick(s.invitation)) + '</p>';
+ const anchor = cards[8 + i * 10];
+ if (anchor) grid.insertBefore(panel, anchor); else grid.appendChild(panel);
+ });
  if (document.documentElement.classList.contains('js')) requestAnimationFrame(wireReveal);
  }
  function renderCollections() {

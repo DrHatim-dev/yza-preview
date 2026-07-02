@@ -707,7 +707,7 @@ const PRODUCTS = [
  "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -1119,7 +1119,7 @@ const PRODUCTS = [
  "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -1734,7 +1734,7 @@ const PRODUCTS = [
  "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -2149,7 +2149,7 @@ const PRODUCTS = [
  "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -2565,7 +2565,7 @@ const PRODUCTS = [
  "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -2980,7 +2980,7 @@ const PRODUCTS = [
  "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -3395,7 +3395,7 @@ const PRODUCTS = [
  "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -3810,7 +3810,7 @@ const PRODUCTS = [
  "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -4060,7 +4060,7 @@ const PRODUCTS = [
  "ar": "شحن متتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -4409,7 +4409,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في قوليز."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -4808,7 +4808,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في قوليز."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -5207,7 +5207,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في قوليز."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -5578,7 +5578,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في قوليز."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -5949,7 +5949,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في قوليز."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -6321,7 +6321,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في قوليز."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -6729,7 +6729,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Satisfecho o reembolsado — 30 días",
  "tr": "Memnun olun ya da iade edin — 30 gün",
@@ -7086,7 +7086,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Satisfecho o reembolsado — 30 días",
  "tr": "Memnun olun ya da iade edin — 30 gün",
@@ -7437,7 +7437,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Satisfecho o reembolsado — 30 días",
  "tr": "Memnun olun ya da iade edin — 30 gün",
@@ -7787,7 +7787,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Satisfecho o reembolsado — 30 días",
  "tr": "Memnun olun ya da iade edin — 30 gün",
@@ -8137,7 +8137,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Satisfecho o reembolsado — 30 días",
  "tr": "Memnun olun ya da iade edin — 30 gün",
@@ -8487,7 +8487,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Satisfecho o reembolsado — 30 días",
  "tr": "Memnun olun ya da iade edin — 30 gün",
@@ -8837,7 +8837,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Satisfecho o reembolsado — 30 días",
  "tr": "Memnun olun ya da iade edin — 30 gün",
@@ -9187,7 +9187,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Satisfecho o reembolsado — 30 días",
  "tr": "Memnun olun ya da iade edin — 30 gün",
@@ -9539,7 +9539,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Satisfecho o reembolsado — 30 días",
  "tr": "Memnun olun ya da iade edin — 30 gün",
@@ -9879,7 +9879,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع في غضون 2 إلى 5 أيام عمل. الاستلام من الأستوديو متاح في Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Satisfecho o reembolsado — 30 días",
  "tr": "Memnun olun ya da iade edin — 30 gün",
@@ -10128,7 +10128,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع خلال 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في جيليز."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -10372,7 +10372,7 @@ const PRODUCTS = [
  "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -10620,7 +10620,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع خلال 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في جيليز."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -10866,7 +10866,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع خلال 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في جيليز."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -11119,7 +11119,7 @@ const PRODUCTS = [
  "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -11370,7 +11370,7 @@ const PRODUCTS = [
  "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -11617,7 +11617,7 @@ const PRODUCTS = [
  "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -11866,7 +11866,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع خلال 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في جيليز."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -12114,7 +12114,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع خلال 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في جيليز."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -12364,7 +12364,7 @@ const PRODUCTS = [
  "ar": "شحن مع تتبع خلال 2 إلى 5 أيام عمل. الاستلام من الاستوديو متاح في جيليز."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -12616,7 +12616,7 @@ const PRODUCTS = [
  "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -12870,7 +12870,7 @@ const PRODUCTS = [
  "ar": "Tracked shipping in 2 to 5 business days. Studio pickup available in Guéliz."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d’origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d’origine.",
  "en": "30-day guarantee if the piece has not been worn.",
  "es": "Garantia 30 dias: reembolso si la pieza vuelve sin usar y en su estado original.",
  "tr": "30 gun garanti: kullanilmamis parca orijinal halinde donerse iade.",
@@ -16902,7 +16902,7 @@ Object.keys(PRODUCT_MEDIA).forEach((h) => {
  "en": "Small raffia loop. Gold ring included with bundles, available at the studio for single charms."
  },
  "returns": {
- "fr": "Garantie 30 jours : la pièce revient non portée, dans son état d'origine.",
+ "fr": "Retours 30 jours : la pièce revient non portée, dans son état d'origine.",
  "en": "30-day guarantee: the piece comes back unworn, in its original condition."
  },
  "shipping": {

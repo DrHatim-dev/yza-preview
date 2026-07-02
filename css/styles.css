@@ -861,7 +861,8 @@ body.has-search-overlay { overflow: hidden; }
 [dir="rtl"] .scarcity-pill { left: auto; right: var(--space-3); }
 [dir="rtl"] .scarcity-pill--archive { right: var(--space-2); }
 .scarcity-banner-section { padding-block: clamp(2rem, 5vw, var(--space-12)); }
-.scarcity-banner { max-width: 760px; margin-inline: auto; text-align: center; display: grid; gap: var(--space-4); justify-items: center; background: var(--paper); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: clamp(1.75rem, 4vw, var(--space-12)); }
+/* Saffron block (client: "possible d'y ajouter de la couleur") — sits BETWEEN the girls photo walls. */
+.scarcity-banner { max-width: 760px; margin-inline: auto; text-align: center; display: grid; gap: var(--space-4); justify-items: center; background: #fdc733; border: 0; border-radius: var(--radius-lg); padding: clamp(1.75rem, 4vw, var(--space-12)); }
 .scarcity-pill--lg { position: static; font-size: 0.66rem; padding: 0.5rem 0.9rem; background: var(--color-fg); border-color: transparent; }
 .scarcity-banner h2 { font-family: var(--font-serif); font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.05; }
 .scarcity-banner p { color: var(--color-muted); max-width: 56ch; }
@@ -1126,6 +1127,15 @@ body[data-page="home"] .girls-feed-section { margin-top: var(--space-7); }
 .closing-cta__sub { color: rgba(255,255,255,0.94); font-size: clamp(0.95rem,1.6vw,1.1rem); line-height: 1.5; max-width: 46ch; margin: -0.5rem auto 0.4rem; }
 .closing-cta__link--btn { background: var(--white); color: var(--jq-ink); padding: 0.95rem 2rem; border-bottom: 0; }
 .closing-cta__link--btn:hover { opacity: 0.86; border-bottom-color: transparent; }
+/* Split variant: real SS26 photo beside the orange panel (client: "mettre une image, ça donne pas envie comme ça"). */
+.closing-cta--split { display: grid; grid-template-columns: 1fr 1fr; align-items: stretch; padding-block: 0; }
+.closing-cta__media { overflow: hidden; }
+.closing-cta__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.closing-cta--split .closing-cta__inner { align-content: center; justify-self: center; max-width: 560px; padding: clamp(4rem, 9vw, 8rem) clamp(1.5rem, 5vw, 4rem); }
+@media (max-width: 860px) {
+ .closing-cta--split { grid-template-columns: 1fr; }
+ .closing-cta__media { max-height: 62vh; }
+}
 
 /* Top marquee variant + bold colourful brand treatment for video-band marquees */
 .yza-marquee--ontop { position: absolute; left: 0; right: 0; top: 0; bottom: auto; z-index: 3; margin: 0; border-color: rgba(255,255,255,0.28); background: rgba(0,0,0,0.22); }
@@ -2071,6 +2081,13 @@ body[data-page="home"] .girls-feed-section { margin-top: var(--space-7); }
 @media (max-width: 700px) { .lookmag-duo { grid-template-columns: 1fr; } }
 /* Collection storytelling band (charms craft, Jawhara fabric) */
 .col-story { padding-block: clamp(2.5rem, 6vw, 4.5rem); border-top: 1px solid var(--color-border); margin-top: clamp(2rem, 5vw, 3.5rem); }
+/* Editorial story woven INTO the grid (client: "au milieu des vignettes produit et avoir un joli design"). */
+#collectionGrid .col-story--ingrid { grid-column: 1 / -1; display: grid; align-content: center; justify-items: center; text-align: center; gap: var(--space-3); background: #f7f1ea; padding: clamp(2.5rem, 6vw, 5rem) clamp(1.25rem, 4vw, 3rem); margin-block: var(--space-2); border: 0; }
+#collectionGrid .col-story--ingrid .eyebrow { color: var(--yza-orange); }
+#collectionGrid .col-story--ingrid h2 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.6rem, 3.2vw, 2.4rem); line-height: 1.1; margin: 0; max-width: 24ch; }
+#collectionGrid .col-story--ingrid p { color: var(--color-muted); max-width: 58ch; font-size: var(--fs-md); line-height: var(--leading-body); }
+/* "Charger plus" buttons on the YZA Girls walls (client: page too long). */
+.girls-loadmore { display: flex; justify-content: center; margin-top: var(--space-8); }
 .col-story__inner { max-width: 60ch; margin: 0 auto; text-align: center; }
 .col-story__inner h2 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.6rem, 3.5vw, 2.6rem); line-height: 1.1; margin: 0.4rem 0 0.8rem; }
 .col-story__inner p { color: var(--color-muted); font-size: var(--fs-md); line-height: var(--leading-body); }
@@ -2190,7 +2207,9 @@ body[data-page="home"] .girls-feed-section { margin-top: var(--space-7); }
 .press-band__label { font-size: var(--fs-xs); letter-spacing: var(--tracking-wide); text-transform: uppercase; color: var(--color-muted); }
 .press-list { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: clamp(1.1rem, 4vw, 3rem); }
 .press-list span { font-family: var(--font-display); font-size: clamp(1.05rem, 2.2vw, 1.6rem); letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); opacity: 0.78; }
-.icon-strip { padding-block: var(--space-10); }
+.icon-strip { padding-block: var(--space-12); border-bottom: 0; }
+/* Small intro label so the values band no longer "arrive bizarrement" (client feedback). */
+.icon-strip__label { display: block; text-align: center; margin-bottom: var(--space-8); }
 .icon-strip__inner { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-10); align-items: center; }
 .icon-strip__item { display: grid; grid-template-columns: 44px 1fr; align-items: center; gap: var(--space-5); min-width: 0; }
 .icon-strip__item img { width: 44px; height: 44px; object-fit: contain; transform-origin: center; transition: transform var(--transition); }
@@ -2903,8 +2922,9 @@ body.has-recovery-modal { overflow: hidden; }
  .cat-card__cap h3 { font-size: 1.02rem; }
  .cat-card__cap span { display: none; }
  .trust-grid { grid-template-columns: 1fr; }
- .icon-strip__inner { grid-template-columns: 1fr; gap: var(--space-5); }
- .icon-strip__item { grid-template-columns: 38px 1fr; }
+ .icon-strip__inner { grid-template-columns: 1fr; gap: var(--space-6); }
+ /* Mobile: icon above text, everything centered (client: "centered and aligned in the middle in mobile"). */
+ .icon-strip__item { grid-template-columns: 1fr; justify-items: center; text-align: center; gap: var(--space-2); }
  .icon-strip__item img { width: 38px; height: 38px; }
  .footer__cols { grid-template-columns: 1fr; gap: var(--space-8); }
  .footer__facts { grid-template-columns: 1fr; }
