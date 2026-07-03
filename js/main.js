@@ -2396,7 +2396,7 @@
  $('#pRating').setAttribute('data-placeholder', 'reviews');
  $('#pRating').innerHTML = st.real
  ? `${stars(st.avg, `${t.t('social.ratingOf')} ${String(st.avg).replace('.', ',')}/5`)} <span>${String(st.avg).replace('.', ',')}/5 · ${st.count} ${t.t('pp.reviews')}</span>`
- : `${stars(5, t.t('social.rating'))} <span>${t.t('social.rating')}</span>`;
+ : `<a class="pp-rating-note" href="/#reviews">${t.t('social.rating')}</a>`;
  }
  if ($('#pValue')) {
  const limited = `<span class="pp-limited">${p.edition ? esc(t.pick(p.edition)) : t.t('pp.limited')}</span>`;

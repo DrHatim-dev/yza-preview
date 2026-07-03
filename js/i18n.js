@@ -318,6 +318,14 @@ const STR = {
   'co.done.wa':      { fr: 'Ouvrir WhatsApp', en: 'Open WhatsApp', es: 'Abrir WhatsApp', tr: "WhatsApp'ı aç", ar: 'افتحي واتساب' },
   'co.done.paypalBtn':{ fr: 'Payer avec PayPal', en: 'Pay with PayPal', es: 'Pagar con PayPal', tr: 'PayPal ile öde', ar: 'ادفعي عبر باي بال' },
   'co.done.home':    { fr: 'Retour à la boutique', en: 'Back to shop', es: 'Volver a la tienda', tr: 'Mağazaya dön', ar: 'العودة إلى المتجر' },
+  'co.done.orderNo': { fr: 'Commande n°', en: 'Order no.', es: 'Pedido n.º', tr: 'Sipariş no.', ar: 'رقم الطلب' },
+  'co.done.emailed': { fr: 'Un e-mail de confirmation vous a été envoyé.', en: 'A confirmation email is on its way to you.', es: 'Te enviamos un correo de confirmación.', tr: 'Onay e-postası size gönderildi.', ar: 'أرسلنا إليك بريد تأكيد.' },
+
+  'co.reassure.secure':  { fr: 'Paiement sécurisé', en: 'Secure payment', es: 'Pago seguro', tr: 'Güvenli ödeme', ar: 'دفع آمن' },
+  'co.reassure.returns': { fr: 'Retours 30 jours', en: '30-day returns', es: 'Devoluciones 30 días', tr: '30 gün içinde iade', ar: 'إرجاع خلال 30 يومًا' },
+  'co.reassure.repairs': { fr: 'Réparations à vie', en: 'Lifetime repairs', es: 'Reparaciones de por vida', tr: 'Ömür boyu onarım', ar: 'إصلاحات مدى الحياة' },
+  'co.reassure.buyer':   { fr: 'PayPal protège l’acheteur', en: 'PayPal buyer protection', es: 'Protección al comprador PayPal', tr: 'PayPal alıcı koruması', ar: 'حماية المشتري عبر PayPal' },
+  'co.reassure.note':    { fr: 'Paiements traités sur le compte professionnel de l’atelier YZA. Une question ? Écrivez-nous sur WhatsApp — Nawal vous répond.', en: 'Payments go to YZA’s registered atelier business account. A question? Message us on WhatsApp — Nawal replies personally.', es: 'Los pagos se procesan en la cuenta profesional del taller YZA. ¿Dudas? Escríbenos por WhatsApp — te responde Nawal.', tr: 'Ödemeler YZA atölyesinin kayıtlı işletme hesabına gider. Sorunuz mu var? WhatsApp’tan yazın — Nawal yanıtlar.', ar: 'تُعالَج المدفوعات عبر حساب عمل مشغل YZA المسجّل. سؤال؟ راسلينا على واتساب — تردّ عليك نوال.' },
 
   /* — Page produit — */
   'pp.add':        { fr: 'Ajouter au panier', en: 'Add to cart' },

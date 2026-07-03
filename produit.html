@@ -22,17 +22,17 @@
  <link rel="icon" type="image/png" href="/assets/brand/yza-favicon.png?v=20260703c">
  <link rel="apple-touch-icon" href="/assets/brand/yza-apple-touch.png?v=20260703c">
  <link rel="manifest" href="/site.webmanifest">
+  <!-- Only fr + x-default are declared: the EN/ES/TR/AR variants are client-side JS
+       translations of the same URL, not separate crawlable pages, so advertising them
+       as hreflang alternates pointed Google at a handle-less shell. produit-seo.php
+       rewrites both of these to the real product URL per handle. -->
   <link rel="alternate" hreflang="fr" href="https://yza-shop.com/produit.html" />
-  <link rel="alternate" hreflang="en" href="https://yza-shop.com/produit.html?lang=en" />
-  <link rel="alternate" hreflang="es" href="https://yza-shop.com/produit.html?lang=es" />
-  <link rel="alternate" hreflang="tr" href="https://yza-shop.com/produit.html?lang=tr" />
-  <link rel="alternate" hreflang="ar" href="https://yza-shop.com/produit.html?lang=ar" />
   <link rel="alternate" hreflang="x-default" href="https://yza-shop.com/produit.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,400..600&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/tokens.css?v=20260703l" />
-  <link rel="stylesheet" href="css/styles.css?v=20260703l" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260703m" />
+  <link rel="stylesheet" href="css/styles.css?v=20260703m" />
 </head>
 <body data-page="product">
 <main>
@@ -54,7 +54,7 @@
           <div class="product-color__name" id="pColorName"></div>
           <div class="product-color__row">
             <div class="product-color__swatches" id="pColorSwatches"></div>
-            <button type="button" class="product-color__viewall" id="pViewColors" hidden>View the colors</button>
+            <button type="button" class="product-color__viewall" id="pViewColors" hidden>Voir les couleurs</button>
           </div>
         </div>
 
@@ -73,7 +73,7 @@
           </button>
           <div class="pp-shipbar" id="pShipBar" aria-live="polite"></div>
           <div class="product-info__links">
-            <button type="button" class="link-underline" id="sameDayDelivery">Livraison le jour meme</button>
+            <button type="button" class="link-underline" id="sameDayDelivery">Livraison le jour même</button>
             <button type="button" class="link-underline" id="dropHint">Envoyer un indice</button>
           </div>
         </div>
@@ -85,19 +85,19 @@
 
         <div class="accordion product-accordions" id="accordion">
           <div class="accordion__item is-open">
-            <button class="accordion__btn" aria-expanded="true"><span id="accSizeFitLabel">SIZE & FIT NOTES</span><span class="plus">+</span></button>
+            <button class="accordion__btn" aria-expanded="true"><span id="accSizeFitLabel">TAILLE & COUPE</span><span class="plus">+</span></button>
             <div class="accordion__panel" style="max-height:none"><div class="accordion__panel-inner" id="accDetails"></div></div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__btn" aria-expanded="false"><span id="accMakingLabel">THE MAKING</span><span class="plus">+</span></button>
+            <button class="accordion__btn" aria-expanded="false"><span id="accMakingLabel">LA FABRICATION</span><span class="plus">+</span></button>
             <div class="accordion__panel"><div class="accordion__panel-inner" id="accMaking"></div></div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__btn" aria-expanded="false"><span id="accCareLabel">COMPOSITION AND CARE</span><span class="plus">+</span></button>
+            <button class="accordion__btn" aria-expanded="false"><span id="accCareLabel">COMPOSITION & ENTRETIEN</span><span class="plus">+</span></button>
             <div class="accordion__panel"><div class="accordion__panel-inner" id="accCare"></div></div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__btn" aria-expanded="false"><span id="accDeliveryLabel">DELIVERY, EXCHANGES AND RETURNS</span><span class="plus">+</span></button>
+            <button class="accordion__btn" aria-expanded="false"><span id="accDeliveryLabel">LIVRAISON, ÉCHANGES & RETOURS</span><span class="plus">+</span></button>
             <div class="accordion__panel"><div class="accordion__panel-inner" id="accShip"></div></div>
           </div>
           <div class="accordion__item">
@@ -105,7 +105,7 @@
             <div class="accordion__panel"><div class="accordion__panel-inner" id="accQuestions"></div></div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__btn" aria-expanded="false"><span id="accShareLabel">SHARE</span><span class="plus">+</span></button>
+            <button class="accordion__btn" aria-expanded="false"><span id="accShareLabel">PARTAGER</span><span class="plus">+</span></button>
             <div class="accordion__panel"><div class="accordion__panel-inner" id="accShare"></div></div>
           </div>
         </div>
@@ -137,12 +137,12 @@
   <button class="btn btn--solid" id="mobileProductAdd" type="button">ADD TO BAG</button>
 </div>
 
-  <script defer src="js/products.js?v=20260703l"></script>
-  <script defer src="js/tracking.js?v=20260703l"></script>
-  <script defer src="js/media.js?v=20260703l"></script>
-  <script defer src="js/i18n.js?v=20260703l"></script>
-  <script defer src="js/cart.js?v=20260703l"></script>
-  <script defer src="js/chrome.js?v=20260703l"></script>
-  <script defer src="js/main.js?v=20260703l"></script>
+  <script defer src="js/products.js?v=20260703m"></script>
+  <script defer src="js/tracking.js?v=20260703m"></script>
+  <script defer src="js/media.js?v=20260703m"></script>
+  <script defer src="js/i18n.js?v=20260703m"></script>
+  <script defer src="js/cart.js?v=20260703m"></script>
+  <script defer src="js/chrome.js?v=20260703m"></script>
+  <script defer src="js/main.js?v=20260703m"></script>
 </body>
 </html>

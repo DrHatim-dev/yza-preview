@@ -17,6 +17,9 @@ const cart = {
     try { document.dispatchEvent(new CustomEvent('yza:cartchange')); } catch (e) {}
   },
   _key(handle, variant) { return handle + '|' + (variant || ''); },
+  // Empty the cart (called after an order is placed so the buyer isn't left staring
+  // at a full cart that looks unpaid). save() refreshes the badge/drawer + fires yza:cartchange.
+  clear() { this.items = []; this.save(); },
 
   // meta.source tags where the add came from (pdp / quick_add / bundle / cart_cross_sell /
   // checkout_cross_sell / order_bump …) — attach rates are then counted from orders.

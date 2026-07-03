@@ -72,6 +72,20 @@ if ($price !== null) {
   );
 }
 $json = json_encode($ld, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
-$shell = $rep('#</head>#', '<script type="application/ld+json" id="productSeoLd">' . $json . '</script>' . "\n</head>", $shell);
+
+/* BreadcrumbList (Accueil › Boutique › produit) for the SERP breadcrumb rich result. */
+$bc = array(
+  '@context' => 'https://schema.org',
+  '@type'    => 'BreadcrumbList',
+  'itemListElement' => array(
+    array('@type' => 'ListItem', 'position' => 1, 'name' => 'Accueil',  'item' => 'https://yza-shop.com/'),
+    array('@type' => 'ListItem', 'position' => 2, 'name' => 'Boutique', 'item' => 'https://yza-shop.com/collections'),
+    array('@type' => 'ListItem', 'position' => 3, 'name' => $p['name'], 'item' => $p['url']),
+  ),
+);
+$bcJson = json_encode($bc, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+$shell = $rep('#</head>#',
+  '<script type="application/ld+json" id="productSeoLd">' . $json . '</script>' . "\n" .
+  '<script type="application/ld+json" id="breadcrumbSeoLd">' . $bcJson . '</script>' . "\n</head>", $shell);
 
 echo $shell;

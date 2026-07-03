@@ -2,4 +2,7 @@ User-agent: *
 Allow: /
 Disallow: /dashboard.html
 Disallow: /dashboard
+Disallow: /wp/
+Disallow: /wp-admin
+Disallow: /wp-login.php
 Sitemap: https://yza-shop.com/sitemap.xml

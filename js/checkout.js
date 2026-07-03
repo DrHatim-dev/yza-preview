@@ -223,7 +223,7 @@
           '<span class="pay-option__body"><span class="pay-option__name">' + esc(m.name) + '</span><span class="pay-option__txt">' + esc(m.txt) + '</span></span>' +
           '</label>' + (on ? payDetails(m.id) : '');
       }).join('');
-      return '<h1 class="co-h1">' + esc(T('co.pay.title')) + '</h1><div class="co-pay">' + opts + '</div>' + bumpCard() +
+      return '<h1 class="co-h1">' + esc(T('co.pay.title')) + '</h1><div class="co-pay">' + opts + '</div>' + bumpCard() + reassureStrip() +
         '<div class="co-actions"><button type="button" class="btn btn--outline" data-back="shipping">' + esc(T('co.back')) + '</button>' +
         '<button type="button" class="btn btn--solid" data-place>' + esc(T('co.pay.place')) + '</button></div>';
     }
@@ -244,14 +244,31 @@
         '<span class="co-bump__txt">' + esc(T('co.bump.pitch')) + '</span></span></label>';
     }
 
+    // Trust reassurance at the payment step — the highest-anxiety moment, especially for an
+    // international prepay buyer wiring to an IBAN or paying by PayPal. Kept factual.
+    function reassureStrip() {
+      return '<ul class="co-reassure" aria-label="' + esc(T('co.reassure.secure')) + '">' +
+        '<li>' + esc(T('co.reassure.secure')) + '</li>' +
+        '<li>' + esc(T('co.reassure.returns')) + '</li>' +
+        '<li>' + esc(T('co.reassure.repairs')) + '</li>' +
+        '<li>' + esc(T('co.reassure.buyer')) + '</li>' +
+      '</ul>' +
+      '<p class="co-reassure__note">' + esc(T('co.reassure.note')) + '</p>';
+    }
+
     function doneStep() {
       var p = PAY();
       var msg = state.method === 'cod' ? T('co.done.cod') : (state.method === 'paypal' && paypalReady() ? T('co.done.paypal') : T('co.done.transfer'));
       var paypalBtn = (state.method === 'paypal' && paypalReady())
         ? '<a class="btn btn--outline" href="' + esc(paypalPayUrl()) + '" target="_blank" rel="noopener">' + esc(T('co.done.paypalBtn')) + '</a>' : '';
+      var num = (state.lastOrder && state.lastOrder.number) || state.orderNo || '';
+      var noLine = num ? '<p class="co-done__no">' + esc(T('co.done.orderNo')) + ' <strong>' + esc(num) + '</strong></p>' : '';
+      var emailed = (state.ship && state.ship.email) ? '<p class="co-done__emailed">' + esc(T('co.done.emailed')) + '</p>' : '';
       return '<div class="co-done"><div class="co-done__check" aria-hidden="true">✓</div>' +
         '<h1 class="co-h1">' + esc(T('co.done.title')) + '</h1>' +
+        noLine +
         '<p class="co-done__msg">' + esc(msg) + '</p>' +
+        emailed +
         '<div class="co-done__actions"><a class="btn btn--solid" href="' + esc(state.wa) + '" target="_blank" rel="noopener">' + esc(T('co.done.wa')) + '</a>' + paypalBtn +
         '<a class="link-underline" href="/">' + esc(T('co.done.home')) + '</a></div></div>' + addonBlock();
     }
@@ -395,7 +412,8 @@
       // Ad platforms: one purchase event per order, keyed by the order number.
       try { if (YZA.track) { YZA.track('add_payment_info', trackPayload(o)); YZA.track('purchase', trackPayload(o)); } } catch (e) {}
       try { sessionStorage.setItem('yza.order.sent', String(Date.now())); } catch (e) {}
-      state.lastOrder = o;   // feeds the done-screen add-on suggestions (cart is not cleared)
+      state.lastOrder = o;   // snapshot feeds the done-screen add-on suggestions
+      try { YZA.cart.clear(); } catch (e) {}   // empty the cart so a placed order never looks unpaid
       state.step = 'done';
       render();
       window.open(state.wa, '_blank', 'noopener');

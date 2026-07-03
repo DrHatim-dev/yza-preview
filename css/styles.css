@@ -468,10 +468,22 @@ body.has-search-overlay { overflow: hidden; }
 .co-terms { font-size: var(--fs-xs); color: var(--color-muted); margin-top: var(--space-5); line-height: 1.5; }
 .co-terms a { text-decoration: underline; text-underline-offset: 2px; }
 
+/* Payment-step trust reassurance */
+.co-reassure { list-style: none; margin: var(--space-4) 0 var(--space-2); padding: var(--space-3) var(--space-4); display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); background: var(--color-bg-soft, #faf7f1); border: 1px solid var(--color-border); border-radius: 8px; }
+.co-reassure li { position: relative; padding-left: 18px; font-size: var(--fs-xs); color: var(--color-fg); }
+.co-reassure li::before { content: "✓"; position: absolute; left: 0; top: 0; color: var(--color-accent, #de733d); font-weight: 700; }
+.co-reassure__note { font-size: var(--fs-xs); color: var(--color-muted); line-height: 1.5; margin: var(--space-2) 0 0; }
+
 /* Confirmation */
 .co-done__check { width: 54px; height: 54px; margin: 0 auto var(--space-6); display: grid; place-items: center; border: 1px solid var(--color-fg); border-radius: 50%; font-size: 1.4rem; }
-.co-done__msg { max-width: 44ch; margin: 0 auto var(--space-8); color: var(--color-muted); }
+.co-done__no { text-align: center; margin: 0 auto var(--space-3); font-size: var(--fs-sm); letter-spacing: .02em; }
+.co-done__no strong { font-family: var(--font-display); letter-spacing: .04em; }
+.co-done__msg { max-width: 44ch; margin: 0 auto var(--space-4); color: var(--color-muted); }
+.co-done__emailed { max-width: 44ch; margin: 0 auto var(--space-8); font-size: var(--fs-xs); color: var(--color-muted); }
 .co-done__actions { display: grid; gap: var(--space-4); max-width: 340px; margin-inline: auto; }
+
+/* PDP: honest "what the YZA girls say" link (replaces a decorative 5-star row when there is no real aggregate) */
+.pp-rating-note { font-size: var(--fs-sm); color: var(--color-muted); text-decoration: underline; text-underline-offset: 3px; }
 
 /* Order bump (payment step) — one unchecked low-ticket add above Place order */
 .co-bump { display: flex; align-items: center; gap: var(--space-3); border: 1px solid var(--color-border); padding: var(--space-3); margin: var(--space-5) 0; cursor: pointer; transition: border-color var(--transition-fast); }
