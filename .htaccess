@@ -24,7 +24,7 @@ DirectoryIndex index.html index.htm
   RewriteRule ^collections/bas/?$                 collections.html?cat=bottoms [QSA,L]
 
   # ---- Clean URLs: product detail pages ----
-  RewriteRule ^produits/([a-zA-Z0-9-]+)/?$        produit.html?handle=$1 [QSA,L]
+  RewriteRule ^produits/([a-zA-Z0-9-]+)/?$        produit-seo.php?handle=$1 [QSA,L]
 
   # ---- Clean URLs: pages whose slug differs from the filename ----
   RewriteRule ^grossistes/?$        b2b.html [L]
