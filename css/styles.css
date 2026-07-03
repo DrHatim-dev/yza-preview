@@ -2429,6 +2429,19 @@ body[data-page="home"] .girls-feed-section { margin-top: var(--space-7); }
 .reviews-murmur__n { font-family: var(--font-display); font-size: 0.78em; letter-spacing: 0.04em; white-space: nowrap; }
 .reviews-murmur__sep { color: var(--accent); margin: 0 0.5em; font-size: 0.8em; }
 
+/* Carousel: one quote at a time, stable height so short/long quotes don't jump */
+.reviews-hero--carousel { min-height: clamp(260px, 32vh, 340px); align-content: center; }
+.reviews-nav { display: flex; align-items: center; justify-content: center; gap: var(--space-5); }
+.reviews-nav__btn {
+ width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center;
+ font-family: var(--font-serif); font-size: 1.5rem; line-height: 0; color: var(--color-fg);
+ background: transparent; border: 1px solid var(--color-border); border-radius: 999px; cursor: pointer;
+ transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+.reviews-nav__btn:hover { background: var(--color-fg); color: #fff; border-color: var(--color-fg); }
+.reviews-nav__btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.reviews-nav__count { font-family: var(--font-display); font-size: var(--fs-sm); letter-spacing: 0.14em; color: var(--color-muted); min-width: 6ch; text-align: center; font-variant-numeric: tabular-nums; }
+
 .reviews-more-wrap { margin-top: var(--space-12); }
 
 @media (max-width: 768px) {

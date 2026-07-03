@@ -828,8 +828,8 @@
  offer.innerHTML = picks.map((p, i) => cardHTML(p, i, false, { used: usedHomeImg })).join('');
  }
 
- // Reviews — "Le Mur des Voix": one featured pull-quote (rotating, verified-first) over a
- // soft murmur of the short, real Instagram raves. All quotes are genuine & curated.
+ // Reviews — a single-quote carousel cycling through all the real reviews (verified + IG),
+ // one featured pull-quote at a time, with prev/next + a gentle auto-advance.
  const tg = $('#testimonialsGrid');
  if (tg) {
  tg.setAttribute('data-placeholder', 'reviews');
@@ -839,35 +839,40 @@
  const EMOJI_END = /(?:️|[☀-➿]|[⬀-⯿]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|\uD83E[\uDD00-\uDFFF]|\s)+$/;
  const clean = (s) => String(s || '').trim().replace(EMOJI_END, '').trim();
  const isVerified = (r) => !!(r.place && r.place.fr === 'Avis vérifié');
- // hero pool = the verified reviews (strongest proof, rotated one at a time); every other
- // real rave stays in the always-visible murmur so 30+ reviews show at once.
- const heroPool = allReviews.filter((r) => isVerified(r));
- const murmur = allReviews.filter((r) => heroPool.indexOf(r) === -1);
  const heroMark = '<span class="reviews-hero__mark" aria-hidden="true">“</span>';
  const heroStars = `<span class="reviews-hero__stars">${stars(5, t.t('social.rating'))}</span>`;
  const heroBody = (r) => `<blockquote class="reviews-hero__quote">${esc(clean(t.pick(r.text)))}</blockquote>
  <span class="reviews-hero__rule" aria-hidden="true"></span>
  <figcaption class="reviews-hero__by"><span class="reviews-hero__name">${esc(r.name)}</span><span class="reviews-hero__src${isVerified(r) ? ' is-verified' : ''}">${esc((r.place && t.pick(r.place)) || '')}</span></figcaption>`;
  const heroFig = document.createElement('figure');
- heroFig.className = 'reviews-hero';
- let heroIdx = 0;
- const drawHero = () => { heroFig.innerHTML = heroMark + heroStars + heroBody(heroPool[heroIdx % heroPool.length]); };
- const murmurHTML = murmur.map((r) =>
- `<span class="reviews-murmur__item"><span class="reviews-murmur__q">${esc(t.pick(r.text))}</span> <span class="reviews-murmur__n">— ${esc(r.name)}</span></span>`
- ).join('<span class="reviews-murmur__sep" aria-hidden="true">✦</span>');
- tg.innerHTML = '';
- if (heroPool.length) { drawHero(); tg.appendChild(heroFig); }
- if (murmur.length) { const mp = document.createElement('p'); mp.className = 'reviews-murmur'; mp.innerHTML = murmurHTML; tg.appendChild(mp); }
- const moreBtn = $('#reviewsMore');
- if (moreBtn) {
- if (heroPool.length > 1) {
- moreBtn.hidden = false;
- moreBtn.onclick = () => {
+ heroFig.className = 'reviews-hero reviews-hero--carousel';
+ let idx = 0;
+ let updateCount = () => {};
+ const draw = () => { heroFig.innerHTML = heroMark + heroStars + heroBody(allReviews[idx]); updateCount(); };
+ const go = (dir) => {
  heroFig.classList.add('is-rotating');
- setTimeout(() => { heroIdx = (heroIdx + 1) % heroPool.length; drawHero(); heroFig.classList.remove('is-rotating'); }, 220);
+ setTimeout(() => { idx = (idx + dir + allReviews.length) % allReviews.length; draw(); heroFig.classList.remove('is-rotating'); }, 200);
  };
- } else { moreBtn.hidden = true; }
- }
+ tg.innerHTML = '';
+ if (allReviews.length) { draw(); tg.appendChild(heroFig); }
+ // prev · counter · next controls (replace the old "voir plus" button) + auto-advance
+ const wrap = $('.reviews-more-wrap');
+ let timer = null;
+ const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
+ const start = () => { stop(); if (!reduce && allReviews.length > 1) timer = setInterval(() => go(1), 6000); };
+ if (wrap && allReviews.length > 1) {
+ wrap.innerHTML = '<div class="reviews-nav"><button type="button" class="reviews-nav__btn" data-dir="-1" aria-label="Avis précédent">‹</button><span class="reviews-nav__count" aria-hidden="true"></span><button type="button" class="reviews-nav__btn" data-dir="1" aria-label="Avis suivant">›</button></div>';
+ const counter = wrap.querySelector('.reviews-nav__count');
+ updateCount = () => { counter.textContent = (idx + 1) + ' / ' + allReviews.length; };
+ updateCount();
+ wrap.querySelectorAll('.reviews-nav__btn').forEach((b) => b.addEventListener('click', () => { go(parseInt(b.dataset.dir, 10)); start(); }));
+ } else if (wrap) { wrap.hidden = true; }
+ start();
+ heroFig.addEventListener('mouseenter', stop);
+ heroFig.addEventListener('mouseleave', start);
+ heroFig.addEventListener('focusin', stop);
+ heroFig.addEventListener('focusout', start);
  }
  const rs = $('#ratingSummary');
  if (rs) {
