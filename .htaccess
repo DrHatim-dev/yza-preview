@@ -12,16 +12,16 @@ DirectoryIndex index.html index.htm
   RewriteRule ^blogs/journal/([a-zA-Z0-9-]+)/index\.html$ /blogs/journal/$1/         [R=301,L]
 
   # ---- Clean URLs: category pages (extensionless, query-string driven) ----
-  RewriteRule ^collections/charms/?$             collections.html?cat=charms [QSA,L]
-  RewriteRule ^collections/sacs/?$                collections.html?cat=bags [QSA,L]
-  RewriteRule ^collections/pret-a-porter/?$      collections.html?cat=rtw [QSA,L]
-  RewriteRule ^collections/bijoux/?$              collections.html?cat=accessories [QSA,L]
-  RewriteRule ^collections/boucles-d-oreilles/?$ collections.html?cat=earrings [QSA,L]
-  RewriteRule ^collections/colliers/?$            collections.html?cat=necklaces [QSA,L]
-  RewriteRule ^collections/hauts/?$               collections.html?cat=tops [QSA,L]
-  RewriteRule ^collections/jupes-pareo/?$         collections.html?cat=pareos [QSA,L]
-  RewriteRule ^collections/pantalons/?$           collections.html?cat=pants [QSA,L]
-  RewriteRule ^collections/bas/?$                 collections.html?cat=bottoms [QSA,L]
+  RewriteRule ^collections/charms/?$             collections-seo.php?cat=charms [QSA,L]
+  RewriteRule ^collections/sacs/?$                collections-seo.php?cat=bags [QSA,L]
+  RewriteRule ^collections/pret-a-porter/?$      collections-seo.php?cat=rtw [QSA,L]
+  RewriteRule ^collections/bijoux/?$              collections-seo.php?cat=accessories [QSA,L]
+  RewriteRule ^collections/boucles-d-oreilles/?$ collections-seo.php?cat=earrings [QSA,L]
+  RewriteRule ^collections/colliers/?$            collections-seo.php?cat=necklaces [QSA,L]
+  RewriteRule ^collections/hauts/?$               collections-seo.php?cat=tops [QSA,L]
+  RewriteRule ^collections/jupes-pareo/?$         collections-seo.php?cat=pareos [QSA,L]
+  RewriteRule ^collections/pantalons/?$           collections-seo.php?cat=pants [QSA,L]
+  RewriteRule ^collections/bas/?$                 collections-seo.php?cat=bottoms [QSA,L]
 
   # ---- Clean URLs: product detail pages ----
   RewriteRule ^produits/([a-zA-Z0-9-]+)/?$        produit-seo.php?handle=$1 [QSA,L]
