@@ -839,8 +839,9 @@
  const EMOJI_END = /(?:️|[☀-➿]|[⬀-⯿]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|\uD83E[\uDD00-\uDFFF]|\s)+$/;
  const clean = (s) => String(s || '').trim().replace(EMOJI_END, '').trim();
  const isVerified = (r) => !!(r.place && r.place.fr === 'Avis vérifié');
- // hero pool = verified + the longer, substantive quotes; the rest become the murmur.
- const heroPool = allReviews.filter((r) => isVerified(r) || clean(t.pick(r.text)).length >= 40);
+ // hero pool = the verified reviews (strongest proof, rotated one at a time); every other
+ // real rave stays in the always-visible murmur so 30+ reviews show at once.
+ const heroPool = allReviews.filter((r) => isVerified(r));
  const murmur = allReviews.filter((r) => heroPool.indexOf(r) === -1);
  const heroMark = '<span class="reviews-hero__mark" aria-hidden="true">“</span>';
  const heroStars = `<span class="reviews-hero__stars">${stars(5, t.t('social.rating'))}</span>`;
