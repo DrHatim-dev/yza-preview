@@ -62,35 +62,35 @@ $number = isset($order['number']) ? $clean($order['number'], 24) : '';
 $buyer  = isset($ship['email']) ? trim((string)$ship['email']) : '';
 
 $subject = 'YZA — nouvelle commande' . ($number ? ' ' . $number : '') . ($total !== '' ? ' (' . $total . ' DH)' : '') . ($method ? ' · ' . $method : '') . ' — ' . $name;
-$body    = (string)$data['text'];
+$textBody = (string)$data['text'];
 
 $host = isset($_SERVER['HTTP_HOST']) ? preg_replace('/[^a-z0-9.\-]/i', '', $_SERVER['HTTP_HOST']) : 'yza-shop.com';
-$headers  = 'From: YZA Boutique <no-reply@' . $host . ">\r\n";
+
+/* Rich HTML notification for Nawal: product thumbnails + full delivery block +
+   totals, so a new order can be prepared and shipped straight from the inbox.
+   The original WhatsApp text (which carries the payment coordinates) is kept as the
+   plain-text alternative — nothing is lost if a client strips HTML. */
+$notifHtml = yza_order_notification($order, $ship, $number, $total, $method, $host);
+$boundary  = 'yzaordr' . md5(uniqid('', true));
+$headers   = 'From: YZA Boutique <no-reply@' . $host . ">\r\n";
 if ($buyer && filter_var($buyer, FILTER_VALIDATE_EMAIL)) {
   $headers .= 'Reply-To: ' . $clean($buyer, 100) . "\r\n";
 }
-$headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$headers  .= "MIME-Version: 1.0\r\nContent-Type: multipart/alternative; boundary=\"" . $boundary . "\"\r\n";
+$mailBody  = '--' . $boundary . "\r\nContent-Type: text/plain; charset=UTF-8\r\n\r\n" . $textBody . "\r\n\r\n";
+$mailBody .= '--' . $boundary . "\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $notifHtml . "\r\n\r\n";
+$mailBody .= '--' . $boundary . '--';
 
 $encodedSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
-$sent = @mail($to, $encodedSubject, $body, $headers);
+$sent = @mail($to, $encodedSubject, $mailBody, $headers, '-fno-reply@' . $host);
 
 /* ---- customer confirmation email (the buyer's own copy — was missing) ---- */
 $custSent = false;
 if ($buyer && filter_var($buyer, FILTER_VALIDATE_EMAIL)) {
   $firstName = trim(strtok((string) $name, ' '));
   $custSubject = ($firstName !== '' ? $firstName . ', ' : '') . 'votre commande YZA est confirmee' . ($number ? ' - ' . $number : '');
-  $itemsList = '';
-  if (isset($order['items']) && is_array($order['items'])) {
-    foreach (array_slice($order['items'], 0, 20) as $it) {
-      if (!is_array($it)) { continue; }
-      $q  = max(1, intval(isset($it['qty']) ? $it['qty'] : 1));
-      $nm = $clean(isset($it['name']) ? $it['name'] : 'Article', 120);
-      $vr = !empty($it['variant']) ? ' - ' . $clean($it['variant'], 60) : '';
-      $itemsList .= '<li style="margin:0 0 4px">' . $q . ' &times; ' . htmlspecialchars($nm . $vr) . '</li>';
-    }
-  }
-  $custHtml = yza_customer_confirmation($firstName, $number, $total, $itemsList, $method, $host);
+  $custItemRows = yza_item_rows_html(isset($order['items']) && is_array($order['items']) ? $order['items'] : array(), $host);
+  $custHtml = yza_customer_confirmation($firstName, $number, $total, $custItemRows, $method, $host);
   $chead  = 'From: YZA <no-reply@' . $host . ">\r\n";
   $chead .= 'Reply-To: contact@' . $host . "\r\n";
   $chead .= "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n";
@@ -211,7 +211,7 @@ function yza_mark_cart_purchased($email) {
   @flock($fp, LOCK_UN); @fclose($fp);
 }
 
-function yza_customer_confirmation($firstName, $number, $total, $itemsList, $method, $host) {
+function yza_customer_confirmation($firstName, $number, $total, $itemRows, $method, $host) {
   $base   = 'https://' . $host;
   $hello  = $firstName !== '' ? 'Bonjour ' . htmlspecialchars($firstName) : 'Bonjour';
   $totalTxt = ($total !== '' && $total !== null) ? (intval($total) . ' DH') : '';
@@ -219,7 +219,7 @@ function yza_customer_confirmation($firstName, $number, $total, $itemsList, $met
   $payLine = $isCod
     ? 'Vous reglez a la livraison, en main propre. Rien a avancer.'
     : 'Nawal vous confirme les coordonnees de paiement sur WhatsApp, en direct.';
-  $items = $itemsList !== '' ? '<ul style="margin:6px 0 0;padding-left:18px;font-size:14px;line-height:1.6;color:#3a3833">' . $itemsList . '</ul>' : '';
+  $items = $itemRows !== '' ? '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:4px 0 0">' . $itemRows . '</table>' : '';
   $totalRow = $totalTxt !== '' ? '<p style="margin:12px 0 0;font-size:15px;color:#1a1917"><strong>Total : ' . $totalTxt . '</strong></p>' : '';
   $numTxt = $number ? htmlspecialchars($number) : '';
 
@@ -237,5 +237,141 @@ function yza_customer_confirmation($firstName, $number, $total, $itemsList, $met
     . '<p style="margin:20px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#1a1917">Nawal &middot; <span style="color:#77736a">YZA</span></p>'
     . '</td></tr>'
     . '<tr><td style="padding:22px 34px 26px;border-top:1px solid #eee7db"><p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:1.6;color:#9a958a">Une question ? contact@' . htmlspecialchars($host) . ' &middot; <a href="' . $base . '" style="color:#9a958a">yza-shop.com</a><br>YZA &middot; 66 rue Yougoslavie, Gueliz, Marrakech</p></td></tr>'
+    . '</table></td></tr></table></body></html>';
+}
+
+/* handle -> absolute product image, from the SEO catalogue (37 products). Loaded once. */
+function yza_seo_image_map() {
+  static $map = null;
+  if ($map !== null) { return $map; }
+  $map = array();
+  $raw = @file_get_contents(__DIR__ . '/data/products-seo.json');
+  if ($raw !== false) {
+    $j = json_decode($raw, true);
+    if (is_array($j)) { foreach ($j as $h => $v) { if (isset($v['image'])) { $map[$h] = $v['image']; } } }
+  }
+  return $map;
+}
+
+/* DH integer -> "1 234 DH" (thin space thousands, no decimals — YZA prices are whole DH). */
+function yza_dh($v) { return number_format((float) $v, 0, ',', ' ') . ' DH'; }
+
+/* Order items -> <tr> rows with a 64px product thumbnail, name/variant/qty, line total.
+   Shared by Nawal's notification and the buyer's confirmation. Image resolved by handle;
+   a neutral tile is shown if a handle has no image (never a broken-image icon). */
+function yza_item_rows_html($items, $host) {
+  if (!is_array($items)) { return ''; }
+  $map = yza_seo_image_map();
+  $rows = '';
+  foreach (array_slice($items, 0, 40) as $it) {
+    if (!is_array($it)) { continue; }
+    $h    = isset($it['handle']) ? preg_replace('/[^a-z0-9-]/i', '', (string) $it['handle']) : '';
+    $qty  = max(1, intval(isset($it['qty']) ? $it['qty'] : 1));
+    $nm   = htmlspecialchars((string) (isset($it['name']) ? $it['name'] : 'Article'), ENT_QUOTES, 'UTF-8');
+    $vr   = !empty($it['variant']) ? htmlspecialchars((string) $it['variant'], ENT_QUOTES, 'UTF-8') : '';
+    $cents = intval(isset($it['price']) ? $it['price'] : 0);
+    $lineDh = (int) round(($cents * $qty) / 100);
+    $img = isset($map[$h]) ? $map[$h] : '';
+    $thumb = $img
+      ? '<img src="' . htmlspecialchars($img, ENT_QUOTES, 'UTF-8') . '" width="64" height="64" alt="' . $nm . '" style="display:block;width:64px;height:64px;object-fit:cover;border:1px solid #e2ddd2;border-radius:4px">'
+      : '<div style="width:64px;height:64px;background:#efece6;border:1px solid #e2ddd2;border-radius:4px"></div>';
+    $rows .= '<tr>'
+      . '<td width="64" style="padding:9px 12px 9px 0;vertical-align:top">' . $thumb . '</td>'
+      . '<td style="padding:9px 0;vertical-align:top;font-family:Arial,Helvetica,sans-serif">'
+      .   '<div style="font-size:14px;color:#1a1917;font-weight:600;line-height:1.35">' . $nm . '</div>'
+      .   ($vr ? '<div style="font-size:12px;color:#77736a;margin-top:2px">' . $vr . '</div>' : '')
+      .   '<div style="font-size:12px;color:#77736a;margin-top:2px">Qte : ' . $qty . '</div>'
+      . '</td>'
+      . '<td style="padding:9px 0;vertical-align:top;text-align:right;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#1a1917;white-space:nowrap">' . ($cents > 0 ? yza_dh($lineDh) : '') . '</td>'
+      . '</tr>';
+  }
+  return $rows;
+}
+
+/* Nawal's order-received email: order no + total + payment, a delivery block she can
+   ship from, and the itemised list with thumbnails. Payment coordinates live in the
+   plain-text alternative (the WhatsApp body), so this stays a clean shipping view. */
+function yza_order_notification($order, $ship, $number, $total, $method, $host) {
+  $e = function ($s) { return htmlspecialchars((string) $s, ENT_QUOTES, 'UTF-8'); };
+  $items = isset($order['items']) && is_array($order['items']) ? $order['items'] : array();
+  $rows  = yza_item_rows_html($items, $host);
+
+  // Delivery details.
+  $name    = $e(isset($ship['name']) ? $ship['name'] : '');
+  $phoneRaw = isset($ship['phone']) ? trim((string) $ship['phone']) : '';
+  $phone   = $e($phoneRaw);
+  $wa = preg_replace('/[^0-9]/', '', $phoneRaw);
+  if ($wa !== '' && $wa[0] === '0') { $wa = '212' . substr($wa, 1); }   // MA local 0X… -> 212X…
+  $addr    = $e(isset($ship['address']) ? $ship['address'] : '');
+  $cityZip = trim(($e(isset($ship['zip']) ? $ship['zip'] : '')) . ' ' . ($e(isset($ship['city']) ? $ship['city'] : '')));
+  $country = $e(isset($ship['country']) ? $ship['country'] : '');
+  $note    = (isset($ship['note']) && trim((string) $ship['note']) !== '') ? $e($ship['note']) : '';
+  $buyer   = (isset($ship['email']) && filter_var($ship['email'], FILTER_VALIDATE_EMAIL)) ? $e($ship['email']) : '';
+
+  // Totals.
+  $subtotal = isset($order['subtotalDh']) ? intval($order['subtotalDh']) : null;
+  $discounts = isset($order['discounts']) && is_array($order['discounts']) ? $order['discounts'] : array();
+  $totalTxt = ($total !== '' && $total !== null) ? yza_dh($total) : '';
+  $when = '';
+  if (!empty($order['at'])) { $ts = strtotime((string) $order['at']); if ($ts) { $when = date('d/m/Y H:i', $ts); } }
+
+  $discRows = '';
+  foreach ($discounts as $d) {
+    if (!is_array($d)) { continue; }
+    $amt = intval(isset($d['amountDh']) ? $d['amountDh'] : 0);
+    if ($amt <= 0) { continue; }
+    $discRows .= '<tr><td style="padding:2px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#77736a">' . $e(isset($d['label']) ? $d['label'] : 'Remise') . '</td>'
+      . '<td style="padding:2px 0;text-align:right;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#b4532a">&minus;' . yza_dh($amt) . '</td></tr>';
+  }
+  $subRow = ($subtotal !== null) ? '<tr><td style="padding:2px 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#77736a">Sous-total</td><td style="padding:2px 0;text-align:right;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#3a3833">' . yza_dh($subtotal) . '</td></tr>' : '';
+
+  $deliveryLines = array();
+  if ($name)    { $deliveryLines[] = '<strong style="color:#1a1917">' . $name . '</strong>'; }
+  if ($phone)   { $deliveryLines[] = $wa ? '<a href="https://wa.me/' . $wa . '" style="color:#b4532a;text-decoration:none">' . $phone . '</a> &middot; <a href="tel:' . $e($phoneRaw) . '" style="color:#77736a;text-decoration:none">appeler</a>' : $phone; }
+  if ($buyer)   { $deliveryLines[] = '<a href="mailto:' . $buyer . '" style="color:#77736a;text-decoration:none">' . $buyer . '</a>'; }
+  if ($addr)    { $deliveryLines[] = $addr; }
+  if ($cityZip) { $deliveryLines[] = $cityZip; }
+  if ($country) { $deliveryLines[] = $country; }
+  $delivery = implode('<br>', $deliveryLines);
+
+  $A = 'font-family:Arial,Helvetica,sans-serif';
+  return '<!doctype html><html><body style="margin:0;background:#efece6;' . $A . '">'
+    . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#efece6"><tr><td align="center" style="padding:26px 14px">'
+    . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:600px;background:#ffffff;border:1px solid #e2ddd2">'
+    // header: label + order no + total
+    . '<tr><td style="padding:24px 30px 6px">'
+    .   '<div style="' . $A . ';font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#b4532a">Nouvelle commande</div>'
+    .   '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin:8px 0 0"><tr>'
+    .     '<td style="vertical-align:bottom"><div style="' . $A . ';font-size:22px;font-weight:700;color:#1a1917">' . ($number ? $e($number) : 'YZA') . '</div>'
+    .       ($when ? '<div style="' . $A . ';font-size:12px;color:#9a958a;margin-top:2px">' . $when . '</div>' : '') . '</td>'
+    .     '<td style="vertical-align:bottom;text-align:right">' . ($totalTxt ? '<div style="' . $A . ';font-size:22px;font-weight:700;color:#1a1917">' . $totalTxt . '</div>' : '')
+    .       ($method ? '<div style="' . $A . ';font-size:12px;color:#77736a;margin-top:2px">' . $e($method) . '</div>' : '') . '</td>'
+    .   '</tr></table>'
+    . '</td></tr>'
+    // delivery block
+    . '<tr><td style="padding:16px 30px 6px">'
+    .   '<div style="background:#faf7f1;border:1px solid #eee7db;border-radius:6px;padding:14px 16px">'
+    .     '<div style="' . $A . ';font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#9a958a;margin-bottom:6px">Livraison</div>'
+    .     '<div style="' . $A . ';font-size:14px;line-height:1.7;color:#3a3833">' . ($delivery ? $delivery : '—') . '</div>'
+    .     ($note ? '<div style="' . $A . ';font-size:13px;line-height:1.6;color:#77736a;margin-top:8px;padding-top:8px;border-top:1px dashed #e2ddd2">&ldquo;' . $note . '&rdquo;</div>' : '')
+    .   '</div>'
+    . '</td></tr>'
+    // items
+    . '<tr><td style="padding:14px 30px 4px">'
+    .   '<div style="' . $A . ';font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#9a958a;margin-bottom:2px">Articles</div>'
+    .   '<table role="presentation" width="100%" cellpadding="0" cellspacing="0">' . $rows . '</table>'
+    . '</td></tr>'
+    // totals
+    . '<tr><td style="padding:6px 30px 4px">'
+    .   '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top:1px solid #eee7db;padding-top:8px">'
+    .     $subRow . $discRows
+    .     ($totalTxt ? '<tr><td style="padding:8px 0 0;' . $A . ';font-size:15px;font-weight:700;color:#1a1917">Total</td><td style="padding:8px 0 0;text-align:right;' . $A . ';font-size:15px;font-weight:700;color:#1a1917">' . $totalTxt . '</td></tr>' : '')
+    .   '</table>'
+    . '</td></tr>'
+    // WhatsApp CTA + payment-coordinates hint
+    . '<tr><td style="padding:16px 30px 24px">'
+    .   ($wa ? '<a href="https://wa.me/' . $wa . '" style="display:inline-block;background:#1a1917;color:#fff;text-decoration:none;' . $A . ';font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:12px 22px;border-radius:2px">Confirmer sur WhatsApp</a>' : '')
+    .   '<p style="margin:14px 0 0;' . $A . ';font-size:12px;line-height:1.6;color:#9a958a">Les coordonnees de paiement et le detail brut sont dans la version texte de cet e-mail (et dans le message WhatsApp du client).</p>'
+    . '</td></tr>'
     . '</table></td></tr></table></body></html>';
 }
