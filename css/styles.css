@@ -1866,9 +1866,20 @@ body[data-page="home"] .girls-feed-section { margin-top: var(--space-7); }
 .gallery__play-icon::after { content: ''; display: block; width: 18px; height: 18px; border-top: 9px solid transparent; border-bottom: 9px solid transparent; border-left: 16px solid var(--white); margin-left: 2px; }
 .gallery__main .media, .gallery__main { aspect-ratio: 3/4; border-radius: var(--radius); overflow: hidden; background: var(--color-surface-2); }
 /* Horizontal swipe carousel: capture left/right gestures, let the page scroll vertically. */
-.gallery__main { touch-action: pan-y; cursor: grab; }
+.gallery__main { touch-action: pan-y; cursor: grab; position: relative; }
 .gallery__main:active { cursor: grabbing; }
 .gallery__main img { width: 100%; height: 100%; object-fit: cover; }
+/* Loading skeleton — shows instantly so the PDP never looks blank/broken while the
+   product JS + hero image load on mobile; the media paints on top (z-index) and covers it. */
+.gallery__main::before {
+ content: ""; position: absolute; inset: 0; z-index: 0;
+ background: linear-gradient(100deg, var(--paper-card) 28%, #e6e2d8 46%, #efece5 54%, var(--paper-card) 72%);
+ background-size: 220% 100%;
+ animation: gallery-shimmer 1.2s ease-in-out infinite;
+}
+.gallery__main > img, .gallery__main > video { position: relative; z-index: 1; }
+@keyframes gallery-shimmer { 0% { background-position: 150% 0; } 100% { background-position: -50% 0; } }
+@media (prefers-reduced-motion: reduce) { .gallery__main::before { animation: none; } }
 
 /* Lifestyle video strip on PDP */
 .product-lifestyle-strip { width: 100%; overflow: hidden; background: var(--black); margin: var(--space-16) 0 0; }

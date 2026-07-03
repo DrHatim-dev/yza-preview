@@ -15591,7 +15591,7 @@ const LNV_GALLERY = {
  { type: 'image', src: 'assets/products/la-vague/client/black-xs-01.jpg' },
  { type: 'image', src: 'assets/products/la-vague/client/black-xs-02.jpg' },
  { type: 'image', src: 'assets/products/la-vague/client/black-xs-03.jpg' },
- { type: 'video', src: 'assets/lifestyle/bags/vague-3e649f7c202b.mp4', poster: 'assets/lifestyle/bags/vague-3e649f7c202b-poster.jpg' },
+ { type: 'video', src: 'assets/lifestyle/bags/vague-3e649f7c202b.mp4?v=20260703e', poster: 'assets/lifestyle/bags/vague-3e649f7c202b-poster.jpg' },
  ],
  S: [
  { type: 'image', src: 'assets/products/la-vague/client/black-s-01.jpg' },
@@ -15981,13 +15981,13 @@ const PRODUCT_MEDIA = {
     { type: 'image', src: 'assets/products/jawhara/client/palazzo-10.jpg' },
     { type: 'image', src: 'assets/products/jawhara/client/palazzo-11.jpg' },
     { type: 'image', src: 'assets/products/jawhara/client/palazzo-12.jpg' },
-    { type: 'video', src: 'assets/lifestyle/rtw/palazzo-0c3974e0ce54.mp4', poster: 'assets/lifestyle/rtw/palazzo-0c3974e0ce54-poster.jpg' },
+    { type: 'video', src: 'assets/lifestyle/rtw/palazzo-0c3974e0ce54.mp4?v=20260703e', poster: 'assets/lifestyle/rtw/palazzo-0c3974e0ce54-poster.jpg' },
   ],
   'la-nouvelle-vague-xs-basket-bag-ss26': [
     { type: 'image', src: 'assets/products/la-vague/client/black-xs-01.jpg' },
     { type: 'image', src: 'assets/products/la-vague/client/black-xs-02.jpg' },
     { type: 'image', src: 'assets/products/la-vague/client/black-xs-03.jpg' },
-    { type: 'video', src: 'assets/lifestyle/bags/vague-3e649f7c202b.mp4', poster: 'assets/lifestyle/bags/vague-3e649f7c202b-poster.jpg' },
+    { type: 'video', src: 'assets/lifestyle/bags/vague-3e649f7c202b.mp4?v=20260703e', poster: 'assets/lifestyle/bags/vague-3e649f7c202b-poster.jpg' },
   ],
   'la-nouvelle-vague-s-basket-bag-ss26': [
     { type: 'image', src: 'assets/products/la-vague/client/black-s-01.jpg' },
