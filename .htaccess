@@ -104,7 +104,24 @@ ErrorDocument 404 /404.html
   Header always set X-Frame-Options "SAMEORIGIN"
   Header always set Referrer-Policy "strict-origin-when-cross-origin"
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+
+  # Belt-and-braces noindex on the WP back-office paths. WordPress adds a noindex
+  # <meta> once it's rendered, but a header stops any crawler that briefly indexes
+  # a login form. Non-authoritative for the app itself; only affects search.
+  <If "%{REQUEST_URI} =~ m#^/wp/(wp-login\.php|wp-admin/?)#">
+    Header always set X-Robots-Tag "noindex, nofollow"
+  </If>
 </IfModule>
+
+# Deny commonly-probed exposed files that don't need to exist here. WordPress
+# xmlrpc.php is intentionally NOT blocked — Jetpack + the WooCommerce mobile app
+# need it (breaking it would kill the client's push notifications).
+<FilesMatch "^(\.env|\.env\..*|wp-config\.php\.bak|wp-config\.php\.old|wp-config\.php\.save|\.htpasswd|\.git.*|composer\.(json|lock)|package\.(json|lock)|README\.md|LICENSE|CHANGELOG.*)$">
+  Require all denied
+</FilesMatch>
+<DirectoryMatch "\.git(/.*)?$">
+  Require all denied
+</DirectoryMatch>
 
 # Note: HTTPS is handled at the Hostinger panel level ("Force HTTPS").
 # A redirect rule is intentionally omitted here to avoid a loop if SSL

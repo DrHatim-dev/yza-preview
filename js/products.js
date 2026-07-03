@@ -340,16 +340,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Top foulard Jawhara",
  "en": "YZA Scarf Top",
- "es": "YZA Scarf Top",
- "tr": "YZA Scarf Top",
- "ar": "YZA Scarf Top"
+ "es": "Top fular Jawhara",
+ "tr": "Jawhara fular üst",
+ "ar": "توب فولار Jawhara"
  },
  "displayName": {
  "fr": "Top foulard Jawhara",
  "en": "YZA Scarf Top",
- "es": "YZA Scarf Top",
- "tr": "YZA Scarf Top",
- "ar": "YZA Scarf Top"
+ "es": "Top fular Jawhara",
+ "tr": "Jawhara fular üst",
+ "ar": "توب فولار Jawhara"
  },
  "short": {
  "fr": "Top foulard Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
@@ -753,16 +753,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Top bateau Jawhara",
  "en": "YZA Bateau Top",
- "es": "YZA Bateau Top",
- "tr": "YZA Bateau Top",
- "ar": "YZA Bateau Top"
+ "es": "Top cuello barco Jawhara",
+ "tr": "Jawhara kayık yaka üst",
+ "ar": "توب برقبة كارو Jawhara"
  },
  "displayName": {
  "fr": "Top bateau Jawhara",
  "en": "YZA Bateau Top",
- "es": "YZA Bateau Top",
- "tr": "YZA Bateau Top",
- "ar": "YZA Bateau Top"
+ "es": "Top cuello barco Jawhara",
+ "tr": "Jawhara kayık yaka üst",
+ "ar": "توب برقبة كارو Jawhara"
  },
  "short": {
  "fr": "Top bateau Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
@@ -1166,16 +1166,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Chemise Jawhara",
  "en": "YZA Button-Up Shirt",
- "es": "YZA Button-Up Shirt",
- "tr": "YZA Button-Up Shirt",
- "ar": "YZA Button-Up Shirt"
+ "es": "Camisa Jawhara",
+ "tr": "Jawhara gömlek",
+ "ar": "قميص Jawhara"
  },
  "displayName": {
  "fr": "Chemise Jawhara",
  "en": "YZA Button-Up Shirt",
- "es": "YZA Button-Up Shirt",
- "tr": "YZA Button-Up Shirt",
- "ar": "YZA Button-Up Shirt"
+ "es": "Camisa Jawhara",
+ "tr": "Jawhara gömlek",
+ "ar": "قميص Jawhara"
  },
  "short": {
  "fr": "Chemise Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
@@ -1783,16 +1783,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Jupe pareo courte Jawhara",
  "en": "YZA Pareo Skirt - Short",
- "es": "YZA Pareo Skirt - Short",
- "tr": "YZA Pareo Skirt - Short",
- "ar": "YZA Pareo Skirt - Short"
+ "es": "Falda pareo corta Jawhara",
+ "tr": "Jawhara kısa pareo etek",
+ "ar": "تنورة باريو قصيرة Jawhara"
  },
  "displayName": {
  "fr": "Jupe pareo courte Jawhara",
  "en": "YZA Pareo Skirt - Short",
- "es": "YZA Pareo Skirt - Short",
- "tr": "YZA Pareo Skirt - Short",
- "ar": "YZA Pareo Skirt - Short"
+ "es": "Falda pareo corta Jawhara",
+ "tr": "Jawhara kısa pareo etek",
+ "ar": "تنورة باريو قصيرة Jawhara"
  },
  "short": {
  "fr": "Jupe pareo courte Jawhara, taille libre XS a XXL.",
@@ -2199,16 +2199,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Jupe pareo midi Jawhara",
  "en": "YZA Pareo Skirt - Midi",
- "es": "YZA Pareo Skirt - Midi",
- "tr": "YZA Pareo Skirt - Midi",
- "ar": "YZA Pareo Skirt - Midi"
+ "es": "Falda pareo midi Jawhara",
+ "tr": "Jawhara midi pareo etek",
+ "ar": "تنورة باريو ميدي Jawhara"
  },
  "displayName": {
  "fr": "Jupe pareo midi Jawhara",
  "en": "YZA Pareo Skirt - Midi",
- "es": "YZA Pareo Skirt - Midi",
- "tr": "YZA Pareo Skirt - Midi",
- "ar": "YZA Pareo Skirt - Midi"
+ "es": "Falda pareo midi Jawhara",
+ "tr": "Jawhara midi pareo etek",
+ "ar": "تنورة باريو ميدي Jawhara"
  },
  "short": {
  "fr": "Jupe pareo midi Jawhara, taille libre XS a XXL.",
@@ -2614,16 +2614,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Jupe pareo longue Jawhara",
  "en": "YZA Pareo Skirt - Long",
- "es": "YZA Pareo Skirt - Long",
- "tr": "YZA Pareo Skirt - Long",
- "ar": "YZA Pareo Skirt - Long"
+ "es": "Falda pareo larga Jawhara",
+ "tr": "Jawhara uzun pareo etek",
+ "ar": "تنورة باريو طويلة Jawhara"
  },
  "displayName": {
  "fr": "Jupe pareo longue Jawhara",
  "en": "YZA Pareo Skirt - Long",
- "es": "YZA Pareo Skirt - Long",
- "tr": "YZA Pareo Skirt - Long",
- "ar": "YZA Pareo Skirt - Long"
+ "es": "Falda pareo larga Jawhara",
+ "tr": "Jawhara uzun pareo etek",
+ "ar": "تنورة باريو طويلة Jawhara"
  },
  "short": {
  "fr": "Jupe pareo longue Jawhara, taille libre XS a XXL.",
@@ -3029,16 +3029,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Jupe pareo extra longue Jawhara",
  "en": "YZA Pareo Skirt - X Long",
- "es": "YZA Pareo Skirt - X Long",
- "tr": "YZA Pareo Skirt - X Long",
- "ar": "YZA Pareo Skirt - X Long"
+ "es": "Falda pareo extra larga Jawhara",
+ "tr": "Jawhara ekstra uzun pareo etek",
+ "ar": "تنورة باريو طويلة جدًا Jawhara"
  },
  "displayName": {
  "fr": "Jupe pareo extra longue Jawhara",
  "en": "YZA Pareo Skirt - X Long",
- "es": "YZA Pareo Skirt - X Long",
- "tr": "YZA Pareo Skirt - X Long",
- "ar": "YZA Pareo Skirt - X Long"
+ "es": "Falda pareo extra larga Jawhara",
+ "tr": "Jawhara ekstra uzun pareo etek",
+ "ar": "تنورة باريو طويلة جدًا Jawhara"
  },
  "short": {
  "fr": "Jupe pareo extra longue Jawhara, taille libre XS a XXL.",
@@ -3444,16 +3444,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Pantalon palazzo Jawhara",
  "en": "YZA Palazzo Pants",
- "es": "YZA Palazzo Pants",
- "tr": "YZA Palazzo Pants",
- "ar": "YZA Palazzo Pants"
+ "es": "Pantalón palazzo Jawhara",
+ "tr": "Jawhara palazzo pantolon",
+ "ar": "بنطلون بالازو Jawhara"
  },
  "displayName": {
  "fr": "Pantalon palazzo Jawhara",
  "en": "YZA Palazzo Pants",
- "es": "YZA Palazzo Pants",
- "tr": "YZA Palazzo Pants",
- "ar": "YZA Palazzo Pants"
+ "es": "Pantalón palazzo Jawhara",
+ "tr": "Jawhara palazzo pantolon",
+ "ar": "بنطلون بالازو Jawhara"
  },
  "short": {
  "fr": "Pantalon palazzo Jawhara, taille libre XS a XXL.",
@@ -3859,16 +3859,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Pantalon wrap Jawhara",
  "en": "YZA Wrap Pants",
- "es": "YZA Wrap Pants",
- "tr": "YZA Wrap Pants",
- "ar": "YZA Wrap Pants"
+ "es": "Pantalón wrap Jawhara",
+ "tr": "Jawhara sarma pantolon",
+ "ar": "بنطلون ملفوف Jawhara"
  },
  "displayName": {
  "fr": "Pantalon wrap Jawhara",
  "en": "YZA Wrap Pants",
- "es": "YZA Wrap Pants",
- "tr": "YZA Wrap Pants",
- "ar": "YZA Wrap Pants"
+ "es": "Pantalón wrap Jawhara",
+ "tr": "Jawhara sarma pantolon",
+ "ar": "بنطلون ملفوف Jawhara"
  },
  "short": {
  "fr": "Pantalon wrap Jawhara, taille libre XS a XXL.",
@@ -5307,16 +5307,16 @@ const PRODUCTS = [
  "name": {
  "fr": "La Nouvelle Vague XS - Bleu",
  "en": "New Edition Bag XS - Blue",
- "es": "New Edition Bag XS - Blue",
- "tr": "New Edition Bag XS - Blue",
- "ar": "New Edition Bag XS - Blue"
+ "es": "La Nouvelle Vague XS - Azul",
+ "tr": "La Nouvelle Vague XS - Mavi",
+ "ar": "La Nouvelle Vague XS - أزرق"
  },
  "displayName": {
  "fr": "La Nouvelle Vague XS - Bleu",
  "en": "New Edition Bag XS - Blue",
- "es": "New Edition Bag XS - Blue",
- "tr": "New Edition Bag XS - Blue",
- "ar": "New Edition Bag XS - Blue"
+ "es": "La Nouvelle Vague XS - Azul",
+ "tr": "La Nouvelle Vague XS - Mavi",
+ "ar": "La Nouvelle Vague XS - أزرق"
  },
  "short": {
  "fr": "Format XS, couleur bleu, feuilles de bananier, raphia, cuir et perles.",
@@ -5678,16 +5678,16 @@ const PRODUCTS = [
  "name": {
  "fr": "La Nouvelle Vague S - Rose",
  "en": "New Edition Bag S - Pink",
- "es": "New Edition Bag S - Pink",
- "tr": "New Edition Bag S - Pink",
- "ar": "New Edition Bag S - Pink"
+ "es": "La Nouvelle Vague S - Rosa",
+ "tr": "La Nouvelle Vague S - Pembe",
+ "ar": "La Nouvelle Vague S - وردي"
  },
  "displayName": {
  "fr": "La Nouvelle Vague S - Rose",
  "en": "New Edition Bag S - Pink",
- "es": "New Edition Bag S - Pink",
- "tr": "New Edition Bag S - Pink",
- "ar": "New Edition Bag S - Pink"
+ "es": "La Nouvelle Vague S - Rosa",
+ "tr": "La Nouvelle Vague S - Pembe",
+ "ar": "La Nouvelle Vague S - وردي"
  },
  "short": {
  "fr": "Format S, finition rose, feuilles de bananier, raphia, cuir et perles.",
@@ -6050,16 +6050,16 @@ const PRODUCTS = [
  "name": {
  "fr": "La Nouvelle Vague M - Bleu ciel",
  "en": "New Edition Bag M - Sky blue",
- "es": "New Edition Bag M - Sky blue",
- "tr": "New Edition Bag M - Sky blue",
- "ar": "New Edition Bag M - Sky blue"
+ "es": "La Nouvelle Vague M - Azul cielo",
+ "tr": "La Nouvelle Vague M - Gök mavisi",
+ "ar": "La Nouvelle Vague M - أزرق سماوي"
  },
  "displayName": {
  "fr": "La Nouvelle Vague M - Bleu ciel",
  "en": "New Edition Bag M - Sky blue",
- "es": "New Edition Bag M - Sky blue",
- "tr": "New Edition Bag M - Sky blue",
- "ar": "New Edition Bag M - Sky blue"
+ "es": "La Nouvelle Vague M - Azul cielo",
+ "tr": "La Nouvelle Vague M - Gök mavisi",
+ "ar": "La Nouvelle Vague M - أزرق سماوي"
  },
  "short": {
  "fr": "Format M, couleur bleu ciel, feuilles de bananier, raphia, cuir et perles.",
@@ -6424,16 +6424,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Charm cerises en raphia",
  "en": "Raffia Cherries Charm",
- "es": "Raffia Cherries Charm",
- "tr": "Raffia Cherries Charm",
- "ar": "Raffia Cherries Charm"
+ "es": "Charm cerezas de rafia",
+ "tr": "Rafya kiraz süsü",
+ "ar": "دلاية كرز من الرافيا"
  },
  "displayName": {
  "fr": "Charm cerises en raphia",
  "en": "Raffia Cherries Charm",
- "es": "Raffia Cherries Charm",
- "tr": "Raffia Cherries Charm",
- "ar": "Raffia Cherries Charm"
+ "es": "Charm cerezas de rafia",
+ "tr": "Rafya kiraz süsü",
+ "ar": "دلاية كرز من الرافيا"
  },
  "short": {
  "fr": "Charm cerises en raphia crocheté main selon l’aakad, la technique des boutons de caftan. Boucle raffia et anneau doré 2 cm.",
@@ -6780,16 +6780,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Charm raisins en raphia",
  "en": "Raffia Grapes Charm",
- "es": "Raffia Grapes Charm",
- "tr": "Raffia Grapes Charm",
- "ar": "Raffia Grapes Charm"
+ "es": "Charm uvas de rafia",
+ "tr": "Rafya üzüm süsü",
+ "ar": "دلاية عنب من الرافيا"
  },
  "displayName": {
  "fr": "Charm raisins en raphia",
  "en": "Raffia Grapes Charm",
- "es": "Raffia Grapes Charm",
- "tr": "Raffia Grapes Charm",
- "ar": "Raffia Grapes Charm"
+ "es": "Charm uvas de rafia",
+ "tr": "Rafya üzüm süsü",
+ "ar": "دلاية عنب من الرافيا"
  },
  "short": {
  "fr": "Charm raisins en raphia, crocheté main et noué à l’aakad, la technique des boutons de caftan. Anneau doré 2,5 cm.",
@@ -7135,16 +7135,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Charm citron entier en raphia",
  "en": "Raffia Whole Lemon Charm",
- "es": "Raffia Whole Lemon Charm",
- "tr": "Raffia Whole Lemon Charm",
- "ar": "Raffia Whole Lemon Charm"
+ "es": "Charm limón entero de rafia",
+ "tr": "Rafya bütün limon süsü",
+ "ar": "دلاية ليمونة كاملة من الرافيا"
  },
  "displayName": {
  "fr": "Charm citron entier en raphia",
  "en": "Raffia Whole Lemon Charm",
- "es": "Raffia Whole Lemon Charm",
- "tr": "Raffia Whole Lemon Charm",
- "ar": "Raffia Whole Lemon Charm"
+ "es": "Charm limón entero de rafia",
+ "tr": "Rafya bütün limon süsü",
+ "ar": "دلاية ليمونة كاملة من الرافيا"
  },
  "short": {
  "fr": "Charm citron entier en raphia, crochete main avec anneau dore 2,5 cm.",
@@ -7486,16 +7486,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Charm orange entiere en raphia",
  "en": "Raffia Whole Orange Charm",
- "es": "Raffia Whole Orange Charm",
- "tr": "Raffia Whole Orange Charm",
- "ar": "Raffia Whole Orange Charm"
+ "es": "Charm naranja entera de rafia",
+ "tr": "Rafya bütün portakal süsü",
+ "ar": "دلاية برتقالة كاملة من الرافيا"
  },
  "displayName": {
  "fr": "Charm orange entiere en raphia",
  "en": "Raffia Whole Orange Charm",
- "es": "Raffia Whole Orange Charm",
- "tr": "Raffia Whole Orange Charm",
- "ar": "Raffia Whole Orange Charm"
+ "es": "Charm naranja entera de rafia",
+ "tr": "Rafya bütün portakal süsü",
+ "ar": "دلاية برتقالة كاملة من الرافيا"
  },
  "short": {
  "fr": "Charm orange entiere en raphia, crochete main avec anneau dore 2,5 cm.",
@@ -7836,16 +7836,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Charm tomate en raphia",
  "en": "Raffia Tomato Charm",
- "es": "Raffia Tomato Charm",
- "tr": "Raffia Tomato Charm",
- "ar": "Raffia Tomato Charm"
+ "es": "Charm tomate de rafia",
+ "tr": "Rafya domates süsü",
+ "ar": "دلاية طماطم من الرافيا"
  },
  "displayName": {
  "fr": "Charm tomate en raphia",
  "en": "Raffia Tomato Charm",
- "es": "Raffia Tomato Charm",
- "tr": "Raffia Tomato Charm",
- "ar": "Raffia Tomato Charm"
+ "es": "Charm tomate de rafia",
+ "tr": "Rafya domates süsü",
+ "ar": "دلاية طماطم من الرافيا"
  },
  "short": {
  "fr": "Charm tomate en raphia, crochete main avec anneau dore 2,5 cm.",
@@ -8186,16 +8186,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Charm tranche de citron en raphia",
  "en": "Raffia Lemon Slice Charm",
- "es": "Raffia Lemon Slice Charm",
- "tr": "Raffia Lemon Slice Charm",
- "ar": "Raffia Lemon Slice Charm"
+ "es": "Charm rodaja de limón de rafia",
+ "tr": "Rafya limon dilimi süsü",
+ "ar": "دلاية شريحة ليمون من الرافيا"
  },
  "displayName": {
  "fr": "Charm tranche de citron en raphia",
  "en": "Raffia Lemon Slice Charm",
- "es": "Raffia Lemon Slice Charm",
- "tr": "Raffia Lemon Slice Charm",
- "ar": "Raffia Lemon Slice Charm"
+ "es": "Charm rodaja de limón de rafia",
+ "tr": "Rafya limon dilimi süsü",
+ "ar": "دلاية شريحة ليمون من الرافيا"
  },
  "short": {
  "fr": "Charm tranche de citron en raphia, crochete main avec anneau dore 2,5 cm.",
@@ -8536,16 +8536,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Charm tranche d orange en raphia",
  "en": "Raffia Orange Slice Charm",
- "es": "Raffia Orange Slice Charm",
- "tr": "Raffia Orange Slice Charm",
- "ar": "Raffia Orange Slice Charm"
+ "es": "Charm rodaja de naranja de rafia",
+ "tr": "Rafya portakal dilimi süsü",
+ "ar": "دلاية شريحة برتقال من الرافيا"
  },
  "displayName": {
  "fr": "Charm tranche d orange en raphia",
  "en": "Raffia Orange Slice Charm",
- "es": "Raffia Orange Slice Charm",
- "tr": "Raffia Orange Slice Charm",
- "ar": "Raffia Orange Slice Charm"
+ "es": "Charm rodaja de naranja de rafia",
+ "tr": "Rafya portakal dilimi süsü",
+ "ar": "دلاية شريحة برتقال من الرافيا"
  },
  "short": {
  "fr": "Charm tranche d orange en raphia, crochete main avec anneau dore 2,5 cm.",
@@ -8887,16 +8887,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Charm tranche de kiwi en raphia",
  "en": "Raffia Kiwi Slice Charm",
- "es": "Raffia Kiwi Slice Charm",
- "tr": "Raffia Kiwi Slice Charm",
- "ar": "Raffia Kiwi Slice Charm"
+ "es": "Charm rodaja de kiwi de rafia",
+ "tr": "Rafya kivi dilimi süsü",
+ "ar": "دلاية شريحة كيوي من الرافيا"
  },
  "displayName": {
  "fr": "Charm tranche de kiwi en raphia",
  "en": "Raffia Kiwi Slice Charm",
- "es": "Raffia Kiwi Slice Charm",
- "tr": "Raffia Kiwi Slice Charm",
- "ar": "Raffia Kiwi Slice Charm"
+ "es": "Charm rodaja de kiwi de rafia",
+ "tr": "Rafya kivi dilimi süsü",
+ "ar": "دلاية شريحة كيوي من الرافيا"
  },
  "short": {
  "fr": "Charm tranche de kiwi en raphia, crochete main avec anneau dore 2,5 cm.",
@@ -9236,16 +9236,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Charm tranche de pasteque en raphia",
  "en": "Raffia Watermelon Slice Charm",
- "es": "Raffia Watermelon Slice Charm",
- "tr": "Raffia Watermelon Slice Charm",
- "ar": "Raffia Watermelon Slice Charm"
+ "es": "Charm rodaja de sandía de rafia",
+ "tr": "Rafya karpuz dilimi süsü",
+ "ar": "دلاية شريحة بطيخ من الرافيا"
  },
  "displayName": {
  "fr": "Charm tranche de pasteque en raphia",
  "en": "Raffia Watermelon Slice Charm",
- "es": "Raffia Watermelon Slice Charm",
- "tr": "Raffia Watermelon Slice Charm",
- "ar": "Raffia Watermelon Slice Charm"
+ "es": "Charm rodaja de sandía de rafia",
+ "tr": "Rafya karpuz dilimi süsü",
+ "ar": "دلاية شريحة بطيخ من الرافيا"
  },
  "short": {
  "fr": "Charm tranche de pasteque en raphia, crochete main avec anneau dore 2,5 cm.",
@@ -9590,16 +9590,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Charm demi avocat en raphia",
  "en": "Raffia Avocado Half Charm",
- "es": "Raffia Avocado Half Charm",
- "tr": "Raffia Avocado Half Charm",
- "ar": "Raffia Avocado Half Charm"
+ "es": "Charm medio aguacate de rafia",
+ "tr": "Rafya yarım avokado süsü",
+ "ar": "دلاية نصف أفوكادو من الرافيا"
  },
  "displayName": {
  "fr": "Charm demi avocat en raphia",
  "en": "Raffia Avocado Half Charm",
- "es": "Raffia Avocado Half Charm",
- "tr": "Raffia Avocado Half Charm",
- "ar": "Raffia Avocado Half Charm"
+ "es": "Charm medio aguacate de rafia",
+ "tr": "Rafya yarım avokado süsü",
+ "ar": "دلاية نصف أفوكادو من الرافيا"
  },
  "short": {
  "fr": "Charm demi avocat en raphia, crochete main avec anneau dore 2,5 cm.",
@@ -9928,16 +9928,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Boucles pasteque en raphia",
  "en": "Watermelon Raffia Earrings",
- "es": "Watermelon Raffia Earrings",
- "tr": "Watermelon Raffia Earrings",
- "ar": "Watermelon Raffia Earrings"
+ "es": "Pendientes sandía de rafia",
+ "tr": "Rafya karpuz küpe",
+ "ar": "أقراط بطيخ من الرافيا"
  },
  "displayName": {
  "fr": "Boucles pasteque en raphia",
  "en": "Watermelon Raffia Earrings",
- "es": "Watermelon Raffia Earrings",
- "tr": "Watermelon Raffia Earrings",
- "ar": "Watermelon Raffia Earrings"
+ "es": "Pendientes sandía de rafia",
+ "tr": "Rafya karpuz küpe",
+ "ar": "أقراط بطيخ من الرافيا"
  },
  "short": {
  "fr": "Boucles pasteque en raphia, crochet main avec creoles dorees 1,5 cm.",
@@ -10177,16 +10177,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Boucles kiwi en raphia",
  "en": "Kiwi Raffia Earrings",
- "es": "Kiwi Raffia Earrings",
- "tr": "Kiwi Raffia Earrings",
- "ar": "Kiwi Raffia Earrings"
+ "es": "Pendientes kiwi de rafia",
+ "tr": "Rafya kivi küpe",
+ "ar": "أقراط كيوي من الرافيا"
  },
  "displayName": {
  "fr": "Boucles kiwi en raphia",
  "en": "Kiwi Raffia Earrings",
- "es": "Kiwi Raffia Earrings",
- "tr": "Kiwi Raffia Earrings",
- "ar": "Kiwi Raffia Earrings"
+ "es": "Pendientes kiwi de rafia",
+ "tr": "Rafya kivi küpe",
+ "ar": "أقراط كيوي من الرافيا"
  },
  "short": {
  "fr": "Boucles kiwi en raphia, crochet main avec creoles dorees 1,5 cm.",
@@ -10421,16 +10421,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Boucles citron en raphia",
  "en": "Lemon Raffia Earrings",
- "es": "Lemon Raffia Earrings",
- "tr": "Lemon Raffia Earrings",
- "ar": "Lemon Raffia Earrings"
+ "es": "Pendientes limón de rafia",
+ "tr": "Rafya limon küpe",
+ "ar": "أقراط ليمون من الرافيا"
  },
  "displayName": {
  "fr": "Boucles citron en raphia",
  "en": "Lemon Raffia Earrings",
- "es": "Lemon Raffia Earrings",
- "tr": "Lemon Raffia Earrings",
- "ar": "Lemon Raffia Earrings"
+ "es": "Pendientes limón de rafia",
+ "tr": "Rafya limon küpe",
+ "ar": "أقراط ليمون من الرافيا"
  },
  "short": {
  "fr": "Boucles citron en raphia, crochet main avec creoles dorees 1,5 cm.",
@@ -10669,16 +10669,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Boucles orange en raphia",
  "en": "Orange Raffia Earrings",
- "es": "Orange Raffia Earrings",
- "tr": "Orange Raffia Earrings",
- "ar": "Orange Raffia Earrings"
+ "es": "Pendientes naranja de rafia",
+ "tr": "Rafya portakal küpe",
+ "ar": "أقراط برتقال من الرافيا"
  },
  "displayName": {
  "fr": "Boucles orange en raphia",
  "en": "Orange Raffia Earrings",
- "es": "Orange Raffia Earrings",
- "tr": "Orange Raffia Earrings",
- "ar": "Orange Raffia Earrings"
+ "es": "Pendientes naranja de rafia",
+ "tr": "Rafya portakal küpe",
+ "ar": "أقراط برتقال من الرافيا"
  },
  "short": {
  "fr": "Boucles orange en raphia, crochet main avec creoles dorees 1,5 cm.",
@@ -10915,16 +10915,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Boucles raisins en raphia",
  "en": "Grapes Raffia Earrings",
- "es": "Grapes Raffia Earrings",
- "tr": "Grapes Raffia Earrings",
- "ar": "Grapes Raffia Earrings"
+ "es": "Pendientes uvas de rafia",
+ "tr": "Rafya üzüm küpe",
+ "ar": "أقراط عنب من الرافيا"
  },
  "displayName": {
  "fr": "Boucles raisins en raphia",
  "en": "Grapes Raffia Earrings",
- "es": "Grapes Raffia Earrings",
- "tr": "Grapes Raffia Earrings",
- "ar": "Grapes Raffia Earrings"
+ "es": "Pendientes uvas de rafia",
+ "tr": "Rafya üzüm küpe",
+ "ar": "أقراط عنب من الرافيا"
  },
  "short": {
  "fr": "Boucles raisins en raphia, crochet main avec creoles dorees 1,5 cm.",
@@ -11168,16 +11168,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Boucles cerises en raphia",
  "en": "Cherries Raffia Earrings",
- "es": "Cherries Raffia Earrings",
- "tr": "Cherries Raffia Earrings",
- "ar": "Cherries Raffia Earrings"
+ "es": "Pendientes cerezas de rafia",
+ "tr": "Rafya kiraz küpe",
+ "ar": "أقراط كرز من الرافيا"
  },
  "displayName": {
  "fr": "Boucles cerises en raphia",
  "en": "Cherries Raffia Earrings",
- "es": "Cherries Raffia Earrings",
- "tr": "Cherries Raffia Earrings",
- "ar": "Cherries Raffia Earrings"
+ "es": "Pendientes cerezas de rafia",
+ "tr": "Rafya kiraz küpe",
+ "ar": "أقراط كرز من الرافيا"
  },
  "short": {
  "fr": "Boucles cerises en raphia, crochet main avec creoles dorees 1,5 cm.",
@@ -11419,16 +11419,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Boucles tomates en raphia",
  "en": "Tomatoes Raffia Earrings",
- "es": "Tomatoes Raffia Earrings",
- "tr": "Tomatoes Raffia Earrings",
- "ar": "Tomatoes Raffia Earrings"
+ "es": "Pendientes tomates de rafia",
+ "tr": "Rafya domates küpe",
+ "ar": "أقراط طماطم من الرافيا"
  },
  "displayName": {
  "fr": "Boucles tomates en raphia",
  "en": "Tomatoes Raffia Earrings",
- "es": "Tomatoes Raffia Earrings",
- "tr": "Tomatoes Raffia Earrings",
- "ar": "Tomatoes Raffia Earrings"
+ "es": "Pendientes tomates de rafia",
+ "tr": "Rafya domates küpe",
+ "ar": "أقراط طماطم من الرافيا"
  },
  "short": {
  "fr": "Boucles tomates en raphia, crochet main avec creoles dorees 1,5 cm.",
@@ -11666,16 +11666,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Collier tranche de citron en raphia",
  "en": "Lemon Slice Raffia Necklace",
- "es": "Lemon Slice Raffia Necklace",
- "tr": "Lemon Slice Raffia Necklace",
- "ar": "Lemon Slice Raffia Necklace"
+ "es": "Collar rodaja de limón de rafia",
+ "tr": "Rafya limon dilimi kolye",
+ "ar": "قلادة شريحة ليمون من الرافيا"
  },
  "displayName": {
  "fr": "Collier tranche de citron en raphia",
  "en": "Lemon Slice Raffia Necklace",
- "es": "Lemon Slice Raffia Necklace",
- "tr": "Lemon Slice Raffia Necklace",
- "ar": "Lemon Slice Raffia Necklace"
+ "es": "Collar rodaja de limón de rafia",
+ "tr": "Rafya limon dilimi kolye",
+ "ar": "قلادة شريحة ليمون من الرافيا"
  },
  "short": {
  "fr": "Collier tranche de citron en raphia, fruit en raphia crochete sur cordon.",
@@ -11915,16 +11915,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Collier tranche d orange en raphia",
  "en": "Orange Slice Raffia Necklace",
- "es": "Orange Slice Raffia Necklace",
- "tr": "Orange Slice Raffia Necklace",
- "ar": "Orange Slice Raffia Necklace"
+ "es": "Collar rodaja de naranja de rafia",
+ "tr": "Rafya portakal dilimi kolye",
+ "ar": "قلادة شريحة برتقال من الرافيا"
  },
  "displayName": {
  "fr": "Collier tranche d orange en raphia",
  "en": "Orange Slice Raffia Necklace",
- "es": "Orange Slice Raffia Necklace",
- "tr": "Orange Slice Raffia Necklace",
- "ar": "Orange Slice Raffia Necklace"
+ "es": "Collar rodaja de naranja de rafia",
+ "tr": "Rafya portakal dilimi kolye",
+ "ar": "قلادة شريحة برتقال من الرافيا"
  },
  "short": {
  "fr": "Collier tranche d orange en raphia, fruit en raphia crochete sur cordon.",
@@ -12163,16 +12163,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Collier tranche de pasteque en raphia",
  "en": "Watermelon Slice Raffia Necklace",
- "es": "Watermelon Slice Raffia Necklace",
- "tr": "Watermelon Slice Raffia Necklace",
- "ar": "Watermelon Slice Raffia Necklace"
+ "es": "Collar rodaja de sandía de rafia",
+ "tr": "Rafya karpuz dilimi kolye",
+ "ar": "قلادة شريحة بطيخ من الرافيا"
  },
  "displayName": {
  "fr": "Collier tranche de pasteque en raphia",
  "en": "Watermelon Slice Raffia Necklace",
- "es": "Watermelon Slice Raffia Necklace",
- "tr": "Watermelon Slice Raffia Necklace",
- "ar": "Watermelon Slice Raffia Necklace"
+ "es": "Collar rodaja de sandía de rafia",
+ "tr": "Rafya karpuz dilimi kolye",
+ "ar": "قلادة شريحة بطيخ من الرافيا"
  },
  "short": {
  "fr": "Collier tranche de pasteque en raphia, fruit en raphia crochete sur cordon.",
@@ -12413,16 +12413,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Collier raisins en raphia",
  "en": "Grapes Raffia Necklace",
- "es": "Grapes Raffia Necklace",
- "tr": "Grapes Raffia Necklace",
- "ar": "Grapes Raffia Necklace"
+ "es": "Collar uvas de rafia",
+ "tr": "Rafya üzüm kolye",
+ "ar": "قلادة عنب من الرافيا"
  },
  "displayName": {
  "fr": "Collier raisins en raphia",
  "en": "Grapes Raffia Necklace",
- "es": "Grapes Raffia Necklace",
- "tr": "Grapes Raffia Necklace",
- "ar": "Grapes Raffia Necklace"
+ "es": "Collar uvas de rafia",
+ "tr": "Rafya üzüm kolye",
+ "ar": "قلادة عنب من الرافيا"
  },
  "short": {
  "fr": "Collier raisins en raphia, fruit en raphia crochete sur cordon.",
@@ -12665,16 +12665,16 @@ const PRODUCTS = [
  "name": {
  "fr": "Collier cerises en raphia",
  "en": "Cherries Raffia Necklace",
- "es": "Cherries Raffia Necklace",
- "tr": "Cherries Raffia Necklace",
- "ar": "Cherries Raffia Necklace"
+ "es": "Collar cerezas de rafia",
+ "tr": "Rafya kiraz kolye",
+ "ar": "قلادة كرز من الرافيا"
  },
  "displayName": {
  "fr": "Collier cerises en raphia",
  "en": "Cherries Raffia Necklace",
- "es": "Cherries Raffia Necklace",
- "tr": "Cherries Raffia Necklace",
- "ar": "Cherries Raffia Necklace"
+ "es": "Collar cerezas de rafia",
+ "tr": "Rafya kiraz kolye",
+ "ar": "قلادة كرز من الرافيا"
  },
  "short": {
  "fr": "Collier cerises en raphia, fruit en raphia crochete sur cordon.",

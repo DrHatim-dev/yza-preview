@@ -65,8 +65,66 @@ $bc = array(
   ),
 );
 $bcJson = json_encode($bc, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE);
+
+/* Server-rendered product cards inside #collectionGrid — so crawlers and first
+   paint see real products (name, image, price, deep link) instead of an empty
+   grid until the 140 KB products.js JS finishes parsing. The client render then
+   replaces this content on hydration (renderCollections sets grid.innerHTML). */
+$prod = json_decode(@file_get_contents($dir . '/data/products-seo.json'), true);
+$catMap = array(
+  'charms'      => array('charms'),
+  'bags'        => array('bags'),
+  'accessories' => array('earrings', 'necklaces'),
+  'earrings'    => array('earrings'),
+  'necklaces'   => array('necklaces'),
+  'rtw'         => array('tops', 'pareos', 'pants'),
+  'tops'        => array('tops'),
+  'pareos'      => array('pareos'),
+  'pants'       => array('pants'),
+  'bottoms'     => array('pareos', 'pants'),
+);
+$wanted = isset($catMap[$cat]) ? $catMap[$cat] : array();
+$cards = ''; $ldItems = array(); $pos = 0;
+if (is_array($prod) && $wanted) {
+  foreach ($prod as $handle => $item) {
+    if (!is_array($item) || !in_array(($item['category'] ?? ''), $wanted, true)) { continue; }
+    $pos++;
+    $name  = $e($item['name']);
+    $img   = $e($item['image']);
+    $purl  = $e($item['url']);
+    $priceRaw = isset($item['price']) ? (int) $item['price'] : 0;
+    $priceTxt = $priceRaw > 0 ? number_format($priceRaw, 0, ',', ' ') . ' DH' : '';
+    $cards .= '<article class="product-card" data-server-render="1">'
+      . '<a class="product-card__link" href="' . $purl . '">'
+      . '<img class="product-card__img" src="' . $img . '" alt="' . $name . '" width="600" height="750" loading="' . ($pos <= 4 ? 'eager' : 'lazy') . '">'
+      . '<h3 class="product-card__name">' . $name . '</h3>'
+      . ($priceTxt !== '' ? '<p class="product-card__price">' . $priceTxt . '</p>' : '')
+      . '</a></article>';
+    $ldItems[] = array(
+      '@type'    => 'ListItem',
+      'position' => $pos,
+      'url'      => $item['url'],
+      'name'     => $item['name'],
+      'image'    => $item['image'],
+    );
+    if ($pos >= 24) { break; }
+  }
+}
+if ($cards !== '') {
+  $shell = $rep('#(<div class="product-grid" id="collectionGrid")([^>]*)>[^<]*</div>#', '$1$2>' . $cards . '</div>', $shell);
+}
+$ldItemList = array(
+  '@context'        => 'https://schema.org',
+  '@type'           => 'ItemList',
+  'name'            => $c['name'],
+  'itemListElement' => $ldItems,
+);
+$ilJson = $ldItems ? json_encode($ldItemList, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) : '';
+
 $shell = $rep('#</head>#',
   '<script type="application/ld+json" id="collectionSeoLd">' . $json . '</script>' . "\n" .
-  '<script type="application/ld+json" id="breadcrumbSeoLd">' . $bcJson . '</script>' . "\n</head>", $shell);
+  '<script type="application/ld+json" id="breadcrumbSeoLd">' . $bcJson . '</script>' . "\n" .
+  ($ilJson ? '<script type="application/ld+json" id="itemListSeoLd">' . $ilJson . '</script>' . "\n" : '') .
+  '</head>', $shell);
 
 echo $shell;
