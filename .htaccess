@@ -96,6 +96,14 @@ ErrorDocument 404 /404.html
     Header set Cache-Control "no-cache, no-store, must-revalidate"
     Header set X-LiteSpeed-Cache-Control "no-cache"
   </FilesMatch>
+
+  # Baseline security headers (audit: only upgrade-insecure-requests was present).
+  # HSTS is safe here because HTTPS is force-enabled at the Hostinger panel.
+  Header always set Strict-Transport-Security "max-age=15552000; includeSubDomains"
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
 </IfModule>
 
 # Note: HTTPS is handled at the Hostinger panel level ("Force HTTPS").

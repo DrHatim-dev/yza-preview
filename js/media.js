@@ -12,7 +12,6 @@ YZA.media = {
  sources: {
  yzaGirls: 'https://yza-shop.com/pages/yza-girls',
  yzaShop: 'https://yza-shop.com',
- zip: 'C:/Users/alexa/Downloads/YZA.zip',
  },
 
  yzaGirls: [

@@ -15183,21 +15183,29 @@ function levenshtein(a, b) {
  return prev[b.length];
 }
 function searchHaystack(product) {
+ // Primary (strong) signals only. Long descriptive copy is scored separately at a
+ // low weight via searchDescHaystack so a bag's story that happens to mention a
+ // "pareo" can't rank the bag alongside the real pareos.
  return normalizeSearch([
  product.handle,
  pickText(product.name), pickText(product.displayName),
- pickText(product.short), pickText(product.desc),
  product.category, product.group, product.sourceCategory,
  ...(product.tags || []), ...(product.seoKeywords || []), ...(product.languageSearchTerms || []),
  ...(product.availableColors || []).map(pickText), ...(product.availableSizes || []),
  ].filter(Boolean).join(' '));
 }
+function searchDescHaystack(product) {
+ return normalizeSearch([pickText(product.short), pickText(product.desc)].filter(Boolean).join(' '));
+}
 function visualHaystack(product) {
+ // Colour filter matches the colour ACTUALLY shown (color/visualColor/img), never
+ // variantLabel — that field can carry a sibling variant's colour name (e.g. a Noir
+ // bag mislabelled "S / Hot Red"), which used to make "rouge" return a black bag.
  return normalizeSearch([
  product.handle,
  pickText(product.name), pickText(product.displayName),
  product.category, product.group, product.sourceCategory,
- pickText(product.color), pickText(product.visualColor), pickText(product.variantLabel),
+ pickText(product.color), pickText(product.visualColor),
  product.img,
  ...(product.tags || []),
  ].filter(Boolean).join(' '));
@@ -15319,13 +15327,16 @@ function searchProducts(query, limit = 8, source = PRODUCTS) {
  const strictColorTerms = colorQueryTerms(q);
  const rows = list.map((product) => {
  const hay = searchHaystack(product);
+ const descHay = searchDescHaystack(product);
  const visualHay = visualHaystack(product);
  if (strictColorTerms && !strictColorTerms.some((term) => visualHay.includes(normalizeSearch(term)))) return null;
  let score = 0;
  if (strictColorTerms && strictColorTerms.some((term) => visualHay.includes(normalizeSearch(term)))) score += 80;
  if (hay.includes(q)) score += 90;
+ else if (descHay.includes(q)) score += 8;
  tokens.forEach((token) => {
  if (hay.includes(token)) score += 25;
+ else if (descHay.includes(token)) score += 4;
  const words = hay.split(' ').filter(Boolean).slice(0, 160);
  const close = words.some((word) => word.length >= 3 && levenshtein(token, word) <= (token.length <= 4 ? 1 : 2));
  if (close) score += 10;
