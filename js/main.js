@@ -2679,9 +2679,24 @@
  return;
  }
  input?.classList.remove('is-invalid');
+ const nlBtn = form.querySelector('button[type="submit"]');
+ if (nlBtn) nlBtn.disabled = true;
+ if (msg) { msg.textContent = T().lang === 'fr' ? 'Un instant…' : 'One moment…'; msg.hidden = false; }
+ const nlHp = form.querySelector('input[name="company"]');
+ fetch('/subscribe.php', {
+ method: 'POST', headers: { 'Content-Type': 'application/json' },
+ body: JSON.stringify({ email, lang: T().lang || 'fr', page: document.body.dataset.page || '', _hp: nlHp ? nlHp.value : '' }),
+ }).then((r) => r.ok).catch(() => false).then((sent) => {
+ if (nlBtn) nlBtn.disabled = false;
+ if (sent) {
  if (msg) { msg.textContent = T().t('news.ok'); msg.hidden = false; }
  if (input) input.value = '';
  YZA.analytics?.track('newsletter_submit', { source: document.body.dataset.page || '' });
+ } else {
+ if (msg) { msg.textContent = T().lang === 'fr' ? 'Envoi impossible pour le moment — réessayez.' : 'Could not send right now — please retry.'; msg.hidden = false; }
+ YZA.analytics?.track('newsletter_submit_error', { source: document.body.dataset.page || '' });
+ }
+ });
  }));
  $$('[data-contact-form]').forEach(form => form.addEventListener('submit', (e) => {
  e.preventDefault();
