@@ -530,8 +530,38 @@
       }
     });
     root.addEventListener('input', function (e) {
-      if (e.target.closest('#coShipForm') && e.target.name) { state.ship[e.target.name] = e.target.value; saveShip(); }
+      if (e.target.closest('#coShipForm') && e.target.name) {
+        state.ship[e.target.name] = e.target.value; saveShip();
+        if (e.target.name === 'email') scheduleCapture();
+      }
     });
+
+    // ---- abandoned-cart capture: once a valid email is typed at checkout we store
+    // the pending cart server-side (cart-capture.php) so the recovery emails can go
+    // out if the order isn't completed. order.php marks it purchased on checkout. ----
+    var captureTimer = null, capturedEmail = '';
+    function scheduleCapture() {
+      if (captureTimer) clearTimeout(captureTimer);
+      captureTimer = setTimeout(captureCart, 900);
+    }
+    function captureCart() {
+      try {
+        var email = (state.ship.email || '').trim();
+        if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return;
+        if (!YZA.cart.items.length) return;
+        var key = email.toLowerCase() + '|' + YZA.cart.count();
+        if (key === capturedEmail) return;   // don't re-post the same email+cart size
+        capturedEmail = key;
+        var items = lines().map(function (it) { return { name: it.name, qty: it.qty, variant: it.variant || '' }; });
+        fetch('cart-capture.php', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: email, name: (state.ship.name || '').trim(), phone: (state.ship.phone || '').trim(),
+            lang: YZA.i18n.lang || 'fr', total: Math.round(pricing().totalCents / 100), items: items, _hp: ''
+          }),
+        }).catch(function () {});
+      } catch (e) {}
+    }
 
     function scrollTop() { try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, 0); } }
 

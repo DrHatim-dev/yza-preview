@@ -183,9 +183,34 @@ if (is_file($wpLoad)) {
   }
 }
 
+/* ---- close the abandoned-cart loop: this buyer just ordered, so their pending
+   cart (if any) must never receive a recovery email. Flip it to 'purchased'. ---- */
+if ($buyer && filter_var($buyer, FILTER_VALIDATE_EMAIL)) { yza_mark_cart_purchased(strtolower(trim($buyer))); }
+
 echo json_encode(array('ok' => (bool)$sent, 'wc' => $wc, 'cust' => isset($custSent) ? (bool)$custSent : false));
 
 /* ---------------------------------------------------------------------- */
+function yza_mark_cart_purchased($email) {
+  $file = __DIR__ . '/.private/yza-carts.php';
+  if (!is_file($file)) { return; }
+  $fp = @fopen($file, 'c+');
+  if (!$fp) { return; }
+  @flock($fp, LOCK_EX);
+  $body  = stream_get_contents($fp);
+  $guard = "<?php exit; /* YZA pending carts — one JSON object per line */\n";
+  $lines = array_values(array_filter(explode("\n", $body), function ($l) { return trim($l) !== '' && strpos($l, '<?php') !== 0; }));
+  $out = $guard; $touched = false;
+  foreach ($lines as $l) {
+    $rec = json_decode($l, true);
+    if (is_array($rec) && isset($rec['email']) && $rec['email'] === $email && (!isset($rec['status']) || $rec['status'] === 'active')) {
+      $rec['status'] = 'purchased'; $touched = true;
+    }
+    if (is_array($rec)) { $out .= json_encode($rec, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"; }
+  }
+  if ($touched) { @ftruncate($fp, 0); @rewind($fp); @fwrite($fp, $out); }
+  @flock($fp, LOCK_UN); @fclose($fp);
+}
+
 function yza_customer_confirmation($firstName, $number, $total, $itemsList, $method, $host) {
   $base   = 'https://' . $host;
   $hello  = $firstName !== '' ? 'Bonjour ' . htmlspecialchars($firstName) : 'Bonjour';
