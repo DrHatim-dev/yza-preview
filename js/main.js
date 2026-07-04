@@ -976,7 +976,16 @@
  function renderGirlsPage() {
  const wall = $('#girlsMasonry');
  if (!wall || !YZA.media?.yzaGirls?.length) return;
- const publicGirls = interleaveByName(YZA.media.yzaGirls.filter((girl) => isPublicMedia(girl.src)));
+ // Same caption-dedup as the home preview so near-identical cards (same girl / same
+ // product / same city) never repeat down the wall — keeps the feed varied.
+ const seenCaption = new Set();
+ const publicGirls = interleaveByName(YZA.media.yzaGirls.filter((girl) => isPublicMedia(girl.src)))
+ .filter((girl) => {
+ const key = [girl.name, girl.product, girl.city].join('|');
+ if (seenCaption.has(key)) return false;
+ seenCaption.add(key);
+ return true;
+ });
  // Paginated wall + "Charger plus" (client: the page was far too long).
  const CHUNK = 12;
  let shown = Math.min(CHUNK, publicGirls.length);

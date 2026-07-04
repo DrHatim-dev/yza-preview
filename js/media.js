@@ -38,7 +38,7 @@ YZA.media = {
  name: 'Rime',
  city: 'Tanger',
  color: 'violet',
- product: 'La Vague S Violet · sur mesure',
+ product: 'La Vague S Violet · couleur sur mesure',
  src: girlAsset('girls-rim-violet.jpg'),
  alt: { fr: 'YZA Girl portant un sac YZA violet', en: 'YZA Girl wearing a violet YZA bag', es: 'YZA Girl con bolso YZA violeta', tr: 'Mor YZA çanta taşıyan YZA Girl', ar: 'فتاة YZA تحمل حقيبة YZA البنفسجية' },
  },
