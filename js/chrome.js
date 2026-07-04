@@ -176,12 +176,8 @@ const navMega = (active) => {
    rail([
      [['nav.story', 'histoire'], ['nav.studio', 'studio']],
      [['nav.girls', 'yza-girls'], ['nav.journal', 'journal']],
-     [['nav.lookbook', 'lookbook']],
    ]) +
    hero('studio', 'assets/editorial/dataset/artisanes-atelier-raffia.jpg', 'L’atelier', 1200, 800), true);
-   /* NOTE: `maison` is currently NOT emitted by the primary nav (studioLink is
-      used instead). The lookbook entry above is kept so a future re-enable of
-      the mega picks it up. Live Lookbook access is via primary navLink + drawer. */
 
  const aide = trigger('footer.help', 'faq',
    rail([
@@ -192,7 +188,7 @@ const navMega = (active) => {
 
  // "The House" mega replaced by a plain YZA Studio link → studio (no dropdown).
  const studioLink = `<div class="nav-item"><a href="studio"${(active === 'nav.studio' || active === 'footer.house') ? ' aria-current="page"' : ''}>YZA Studio</a></div>`;
- return navLink('badge.new', '/collections') + navLink('nav.charms', collectionUrl('charms')) + navLink('nav.bags', collectionUrl('bags')) + navLink('nav.rtw', collectionUrl('rtw')) + navLink('nav.accessories', collectionUrl('accessories')) + navLink('nav.lookbook', 'lookbook') + studioLink + navLink('nav.b2b', 'grossistes');
+ return navLink('badge.new', '/collections') + navLink('nav.charms', collectionUrl('charms')) + navLink('nav.bags', collectionUrl('bags')) + navLink('nav.rtw', collectionUrl('rtw')) + navLink('nav.accessories', collectionUrl('accessories')) + studioLink + navLink('nav.b2b', 'grossistes');
 };
 
 /* Mobile drawer - nested accordion (uppercase heads, thin +/- toggles,
@@ -232,7 +228,6 @@ const drawerAccordion = () => {
  link('nav.girls', 'yza-girls'),
  link('nav.b2b', 'grossistes'),
  link('nav.journal', 'journal'),
- link('nav.lookbook', 'lookbook'),
  ].join('');
 
  const aide = [

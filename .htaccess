@@ -23,6 +23,12 @@ DirectoryIndex index.html index.htm
   RewriteRule ^collections/pantalons/?$           collections-seo.php?cat=pants [QSA,L]
   RewriteRule ^collections/bas/?$                 collections-seo.php?cat=bottoms [QSA,L]
 
+  # ---- /lookbook removed at client request (2026-07-04). She now sends the
+  # lookbook privately over WhatsApp. Redirect any lingering links to home so
+  # a shared URL never 404s. The lookbook assets themselves stay under
+  # /assets/lookbook-ss26-27/ for private distribution / download.
+  RewriteRule ^lookbook/?$                        /                          [R=301,L]
+
   # ---- Clean URLs: product detail pages ----
   RewriteRule ^produits/([a-zA-Z0-9-]+)/?$        produit-seo.php?handle=$1 [QSA,L]
 
