@@ -21,12 +21,16 @@
  <!-- Preload the LCP brand-opener poster (first painted frame of the scroll video) -->
  <link rel="preload" as="image" href="assets/video/brand-opener-poster.jpg?v=20260702k" fetchpriority="high" />
 
+ <!-- Flag JS availability BEFORE styles: reveal states only hide content when
+      the cinema script will actually run (no-JS / crawler visibility - F28) -->
+ <script>document.documentElement.classList.add('cin-js');</script>
+
  <link rel="preconnect" href="https://fonts.googleapis.com">
  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Jost:ital,wght@0,300..700;1,400..600&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&family=Noto+Sans+Tifinagh&display=swap" rel="stylesheet">
  <link rel="stylesheet" href="css/tokens.css?v=20260704h" />
  <link rel="stylesheet" href="css/styles.css?v=20260704h" />
- <link rel="stylesheet" href="css/home-cinema.css?v=20260704h" />
+ <link rel="stylesheet" href="css/home-cinema.css?v=20260704i" />
 
  <script type="application/ld+json">
  { "@context": "https://schema.org", "@type": "Organization", "name": "YZA",
@@ -54,46 +58,29 @@
 <!-- ===== Fixed scroll-scrubbed brand video (SS26 shoot) ===== -->
 <div class="cin-video" aria-hidden="true">
  <canvas id="cinCanvas"></canvas>
- <video id="cinVideo" muted playsinline preload="auto" src="assets/video/brand-opener.mp4?v=20260703j" poster="assets/video/brand-opener-poster.jpg?v=20260702k" width="810" height="1440"></video>
+ <video id="cinVideo" muted playsinline preload="metadata" src="assets/video/brand-opener.mp4?v=20260703j" poster="assets/video/brand-opener-poster.jpg?v=20260702k" width="810" height="1440"></video>
  <div class="cin-video__shade"></div>
 </div>
 
 <!-- ===== Warm dust particles ===== -->
 <canvas id="cinParticles" aria-hidden="true"></canvas>
 
-<!-- ===== Fixed trust cards (mask-revealed while scrolling the trigger zone) ===== -->
-<div class="cin-cards" id="cinCards">
- <div class="cin-cards__grid" id="cinCardsGrid">
-  <div class="cin-card">
-   <h3><span data-lang="fr">Fait main à Guéliz</span><span data-lang="en" hidden>Handmade in Guéliz</span><span data-lang="es" hidden>Hecho a mano en Guéliz</span><span data-lang="tr" hidden>Guéliz'de el yapımı</span><span data-lang="ar" hidden>مصنوع يدويًا في Guéliz</span></h3>
-   <p><span data-lang="fr">Sept femmes, un savoir-faire — l'aakad, le crochet, le tressage. Chaque pièce passe par leurs mains, une à une, dans notre atelier 100 % féminin.</span><span data-lang="en" hidden>Seven women, one craft — l'aakad, crochet, weaving. Every piece passes through their hands, one at a time, in our all-women atelier.</span><span data-lang="es" hidden>Siete mujeres, un oficio — l'aakad, ganchillo, trenzado. Cada pieza pasa por sus manos, una a una, en nuestro taller 100 % femenino.</span><span data-lang="tr" hidden>Yedi kadın, tek zanaat — l'aakad, tığ işi, örme. Her parça, tamamı kadınlardan oluşan atölyemizde tek tek onların ellerinden geçer.</span><span data-lang="ar" hidden>سبع نساء، حرفة واحدة — العقاد والكروشيه والجدل. كل قطعة تمرّ بأيديهنّ واحدة واحدة في مشغلنا النسائي بالكامل.</span></p>
-  </div>
-  <div class="cin-card">
-   <h3><span data-lang="fr">Éditions limitées</span><span data-lang="en" hidden>Limited editions</span><span data-lang="es" hidden>Ediciones limitadas</span><span data-lang="tr" hidden>Sınırlı üretim</span><span data-lang="ar" hidden>إصدارات محدودة</span></h3>
-   <p><span data-lang="fr">Nos séries sont courtes et jamais refaites. Quand une couleur est épuisée, elle ne revient pas — votre pièce reste la vôtre.</span><span data-lang="en" hidden>Our runs are short and never remade. When a colour sells out, it never comes back — your piece stays yours.</span><span data-lang="es" hidden>Nuestras series son cortas y nunca se repiten. Cuando un color se agota, no vuelve — tu pieza sigue siendo tuya.</span><span data-lang="tr" hidden>Serilerimiz kısadır ve asla yeniden üretilmez. Bir renk tükendiğinde geri gelmez — parçanız sizin kalır.</span><span data-lang="ar" hidden>سلاسلنا قصيرة ولا تُعاد أبدًا. حين ينفد لون لا يعود — تبقى قطعتك لك وحدك.</span></p>
-  </div>
-  <div class="cin-card">
-   <h3><span data-lang="fr">Garantie à vie</span><span data-lang="en" hidden>Lifetime guarantee</span><span data-lang="es" hidden>Garantía de por vida</span><span data-lang="tr" hidden>Ömür boyu garanti</span><span data-lang="ar" hidden>ضمان مدى الحياة</span></h3>
-   <p><span data-lang="fr">30 jours pour changer d'avis, des réparations à vie à l'atelier. Une pièce YZA est faite pour durer et se transmettre.</span><span data-lang="en" hidden>30 days to change your mind, lifetime repairs at the atelier. A YZA piece is made to last and to be passed on.</span><span data-lang="es" hidden>30 días para cambiar de opinión, reparaciones de por vida en el taller. Una pieza YZA está hecha para durar y transmitirse.</span><span data-lang="tr" hidden>Fikrinizi değiştirmek için 30 gün, atölyede ömür boyu onarım. Bir YZA parçası dayanmak ve aktarılmak için yapılır.</span><span data-lang="ar" hidden>ثلاثون يومًا لتغيير رأيك، وإصلاحات مدى الحياة في المشغل. قطعة YZA صُنعت لتدوم وتُورَّث.</span></p>
-  </div>
- </div>
-</div>
 
 <main>
 
  <!-- ===== HERO ===== -->
- <section class="cin-hero" id="cinHero" aria-label="YZA — pièces faites main à Marrakech">
+ <section class="cin-hero" id="cinHero" aria-labelledby="heroTitle">
   <div class="cin-hero__grad"></div>
   <div class="cin-hero__content">
    <p class="cin-hero__kicker"><span data-lang="fr">Notre raison d'être</span><span data-lang="en" hidden>Our purpose</span><span data-lang="es" hidden>Nuestra razón de ser</span><span data-lang="tr" hidden>Varlık sebebimiz</span><span data-lang="ar" hidden>سبب وجودنا</span></p>
    <h1 class="cin-hero__title" id="heroTitle"><span data-lang="fr">Des pièces <span class="cin-underline"><span class="cin-underline__bar"></span><span>faites main</span></span> à Marrakech — éditions limitées, jamais refaites.</span><span data-lang="en" hidden>Pieces <span class="cin-underline"><span class="cin-underline__bar"></span><span>made by hand</span></span> in Marrakech — limited editions, never remade.</span><span data-lang="es" hidden>Piezas <span class="cin-underline"><span class="cin-underline__bar"></span><span>hechas a mano</span></span> en Marrakech — ediciones limitadas, nunca repetidas.</span><span data-lang="tr" hidden>Marakeş'te <span class="cin-underline"><span class="cin-underline__bar"></span><span>elde yapılan</span></span> parçalar — sınırlı üretim, asla yeniden üretilmez.</span><span data-lang="ar" hidden>قطع <span class="cin-underline"><span class="cin-underline__bar"></span><span>مصنوعة يدويًا</span></span> في مراكش — إصدارات محدودة، لا تُعاد أبدًا.</span></h1>
    <div class="cin-hero__ctas">
-    <div class="cin-atelier-box"><span class="tif" aria-hidden="true">ⵣ</span><span>Atelier Guéliz · 66 rue Yougoslavie, Marrakech</span></div>
+    <div class="cin-atelier-box"><span class="tif" aria-hidden="true">ⵣ</span><span><span data-lang="fr">Atelier Guéliz · 66 rue Yougoslavie, Marrakech</span><span data-lang="en" hidden>Guéliz atelier · 66 rue Yougoslavie, Marrakech</span><span data-lang="es" hidden>Taller de Guéliz · 66 rue Yougoslavie, Marrakech</span><span data-lang="tr" hidden>Guéliz atölyesi · 66 rue Yougoslavie, Marakeş</span><span data-lang="ar" hidden>مشغل Guéliz · 66 rue Yougoslavie، مراكش</span></span></div>
     <a class="cin-btn" href="/collections"><span data-lang="fr">Découvrir la boutique</span><span data-lang="en" hidden>Shop the collection</span><span data-lang="es" hidden>Descubrir la tienda</span><span data-lang="tr" hidden>Koleksiyonu keşfet</span><span data-lang="ar" hidden>اكتشفي المتجر</span> <span aria-hidden="true">&rarr;</span></a>
    </div>
   </div>
-  <div class="cin-hero__arrow" aria-hidden="true">
-   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+  <div class="cin-hero__arrow">
+   <a href="#shopBand" aria-label="Aller à la boutique"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg></a>
   </div>
  </section>
 
@@ -111,7 +98,7 @@
  </section>
 
  <!-- ===== Commerce band (solid ground over the video) ===== -->
- <div class="cin-solid">
+ <div class="cin-solid" id="shopBand">
 
 <section class="section home-cats">
  <div class="container-wide">
@@ -139,7 +126,7 @@
  </div>
  </section>
 
-<section class="section section--surface" id="bestSellers" style="padding-block:0">
+<section class="section section--surface" id="bestSellers">
  <div class="container-wide">
  <div class="section-head section-head--center" data-reveal>
   <p class="eyebrow" data-i18n="home.best.eyebrow">Les préférés</p>
@@ -260,6 +247,24 @@
  </section>
 
  </div>
+<!-- ===== Fixed trust cards (mask-revealed while scrolling the trigger zone) ===== -->
+<div class="cin-cards" id="cinCards">
+ <div class="cin-cards__grid" id="cinCardsGrid">
+  <div class="cin-card">
+   <h3><span data-lang="fr">Fait main à Guéliz</span><span data-lang="en" hidden>Handmade in Guéliz</span><span data-lang="es" hidden>Hecho a mano en Guéliz</span><span data-lang="tr" hidden>Guéliz'de el yapımı</span><span data-lang="ar" hidden>مصنوع يدويًا في Guéliz</span></h3>
+   <p><span data-lang="fr">Sept femmes, un savoir-faire — l'aakad, le crochet, le tressage. Chaque pièce passe par leurs mains, une à une, dans notre atelier 100 % féminin.</span><span data-lang="en" hidden>Seven women, one craft — l'aakad, crochet, weaving. Every piece passes through their hands, one at a time, in our all-women atelier.</span><span data-lang="es" hidden>Siete mujeres, un oficio — l'aakad, ganchillo, trenzado. Cada pieza pasa por sus manos, una a una, en nuestro taller 100 % femenino.</span><span data-lang="tr" hidden>Yedi kadın, tek zanaat — l'aakad, tığ işi, örme. Her parça, tamamı kadınlardan oluşan atölyemizde tek tek onların ellerinden geçer.</span><span data-lang="ar" hidden>سبع نساء، حرفة واحدة — العقاد والكروشيه والجدل. كل قطعة تمرّ بأيديهنّ واحدة واحدة في مشغلنا النسائي بالكامل.</span></p>
+  </div>
+  <div class="cin-card">
+   <h3><span data-lang="fr">Éditions limitées</span><span data-lang="en" hidden>Limited editions</span><span data-lang="es" hidden>Ediciones limitadas</span><span data-lang="tr" hidden>Sınırlı üretim</span><span data-lang="ar" hidden>إصدارات محدودة</span></h3>
+   <p><span data-lang="fr">Nos séries sont courtes et jamais refaites. Quand une couleur est épuisée, elle ne revient pas — votre pièce reste la vôtre.</span><span data-lang="en" hidden>Our runs are short and never remade. When a colour sells out, it never comes back — your piece stays yours.</span><span data-lang="es" hidden>Nuestras series son cortas y nunca se repiten. Cuando un color se agota, no vuelve — tu pieza sigue siendo tuya.</span><span data-lang="tr" hidden>Serilerimiz kısadır ve asla yeniden üretilmez. Bir renk tükendiğinde geri gelmez — parçanız sizin kalır.</span><span data-lang="ar" hidden>سلاسلنا قصيرة ولا تُعاد أبدًا. حين ينفد لون لا يعود — تبقى قطعتك لك وحدك.</span></p>
+  </div>
+  <div class="cin-card">
+   <h3><span data-lang="fr">Garantie à vie</span><span data-lang="en" hidden>Lifetime guarantee</span><span data-lang="es" hidden>Garantía de por vida</span><span data-lang="tr" hidden>Ömür boyu garanti</span><span data-lang="ar" hidden>ضمان مدى الحياة</span></h3>
+   <p><span data-lang="fr">30 jours pour changer d'avis, des réparations à vie à l'atelier. Une pièce YZA est faite pour durer et se transmettre.</span><span data-lang="en" hidden>30 days to change your mind, lifetime repairs at the atelier. A YZA piece is made to last and to be passed on.</span><span data-lang="es" hidden>30 días para cambiar de opinión, reparaciones de por vida en el taller. Una pieza YZA está hecha para durar y transmitirse.</span><span data-lang="tr" hidden>Fikrinizi değiştirmek için 30 gün, atölyede ömür boyu onarım. Bir YZA parçası dayanmak ve aktarılmak için yapılır.</span><span data-lang="ar" hidden>ثلاثون يومًا لتغيير رأيك، وإصلاحات مدى الحياة في المشغل. قطعة YZA صُنعت لتدوم وتُورَّث.</span></p>
+  </div>
+ </div>
+</div>
+
 </main>
 
  <script defer src="js/products.js?v=20260704h"></script>
@@ -274,6 +279,7 @@
 (function () {
   'use strict';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isRTL = function () { return document.documentElement.dir === 'rtl'; };
 
   /* ===================== SCROLL-SCRUBBED BRAND VIDEO ===================== */
   var canvas = document.getElementById('cinCanvas');
@@ -285,25 +291,34 @@
   var lastFrameIndex = -1;
   var videoSeeking = false;
 
+  // Frame extraction is REAL-desktop-only: fine pointer excludes iPads and
+  // landscape phones that pass a width check (review F17); reduced-motion and
+  // low-memory devices get the currentTime-seek fallback or a static poster.
+  var canExtract = !reduced && window.innerWidth >= 768 &&
+    window.matchMedia('(pointer: fine)').matches &&
+    (!navigator.deviceMemory || navigator.deviceMemory >= 4) &&
+    typeof createImageBitmap === 'function';
+
+  // Seek fallback needs real data; extraction fetches the file itself, so the
+  // <video> stays on preload=metadata to avoid a double download (review F18).
+  if (!reduced && !canExtract) { videoEl.preload = 'auto'; }
+
   function resizeCanvas() {
-    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Extracted frames are <=1080px tall: a dpr-scaled backing store would be
+    // pure fill cost with zero sharpness gain (review F21).
+    var dpr = canExtract ? 1 : Math.min(window.devicePixelRatio || 1, 2);
     var rect = canvas.getBoundingClientRect();
     var w = Math.round(rect.width * dpr), h = Math.round(rect.height * dpr);
     if (canvas.width !== w || canvas.height !== h) { canvas.width = w; canvas.height = h; }
     lastFrameIndex = -1;
   }
 
-  // Frame extraction is desktop-only: phones + reduced-motion get the cheap
-  // currentTime-seek fallback (or a static poster) instead of ~70 bitmaps in RAM.
-  var canExtract = !reduced && window.innerWidth >= 768 &&
-    (!navigator.deviceMemory || navigator.deviceMemory >= 4) &&
-    typeof createImageBitmap === 'function';
-
   function extractFrames() {
+    var objectUrl = null;
     fetch(videoEl.currentSrc || videoEl.getAttribute('src'))
       .then(function (r) { return r.blob(); })
       .then(function (blob) {
-        var objectUrl = URL.createObjectURL(blob);
+        objectUrl = URL.createObjectURL(blob);
         var v = document.createElement('video');
         v.muted = true; v.playsInline = true; v.preload = 'auto'; v.src = objectUrl;
         return new Promise(function (resolve, reject) {
@@ -311,9 +326,10 @@
           v.onerror = reject;
           setTimeout(reject, 15000);
         }).then(function (v) {
-          var scale = Math.min(1, 720 / v.videoHeight);
+          // 1080p-tall extraction at 24fps-equivalent density (review F6)
+          var scale = Math.min(1, 1080 / v.videoHeight);
           var sw = Math.round(v.videoWidth * scale), sh = Math.round(v.videoHeight * scale);
-          var frameCount = Math.max(36, Math.min(72, Math.round(v.duration * 18)));
+          var frameCount = Math.max(36, Math.min(96, Math.round(v.duration * 24)));
           var chain = Promise.resolve();
           for (var i = 0; i < frameCount; i++) {
             (function (i) {
@@ -332,20 +348,43 @@
           return chain.then(function () {
             if (frames.length > 0) {
               framesReady = true;
+              resizeCanvas();
               canvas.style.visibility = 'visible';
               videoEl.style.display = 'none';
             }
-            URL.revokeObjectURL(objectUrl);
+            URL.revokeObjectURL(objectUrl); objectUrl = null;
           });
         });
       })
-      .catch(function () { /* video-seek fallback keeps working */ });
+      .catch(function () {
+        // Failure cleanup: release partial bitmaps + the blob URL (review F20),
+        // then let the video-seek fallback take over.
+        for (var i = 0; i < frames.length; i++) { try { frames[i].close(); } catch (e) {} }
+        frames = [];
+        if (objectUrl) { try { URL.revokeObjectURL(objectUrl); } catch (e) {} }
+        videoEl.preload = 'auto';
+      });
+  }
+
+  // Cached layout metrics: no getBoundingClientRect inside the rAF loops (F19)
+  var mSolidTop = Infinity, mTriggerTop = 0, mTriggerH = 1;
+  var trigger = document.getElementById('cinTrigger');
+  function recalcMetrics() {
+    if (solid) {
+      var r = solid.getBoundingClientRect();
+      mSolidTop = r.top + window.scrollY;
+    }
+    if (trigger) {
+      var t = trigger.getBoundingClientRect();
+      mTriggerTop = t.top + window.scrollY;
+      mTriggerH = t.height || 1;
+    }
   }
 
   function getProgress() {
     var vh = window.innerHeight;
     var start = vh * 0.5;
-    var end = (solid ? solid.getBoundingClientRect().top + window.scrollY : document.documentElement.scrollHeight) - vh * 0.6;
+    var end = mSolidTop - vh * 0.6;
     var range = end - start;
     if (range <= 0) return 0;
     return Math.max(0, Math.min(1, (window.scrollY - start) / range));
@@ -365,7 +404,7 @@
       if (idx !== lastFrameIndex) { lastFrameIndex = idx; if (frames[idx]) drawFrame(frames[idx]); }
     } else if (videoEl.duration && isFinite(videoEl.duration) && videoEl.readyState >= 1) {
       var target = progress * videoEl.duration;
-      if (!videoSeeking && Math.abs(videoEl.currentTime - target) > 0.02) {
+      if (!videoSeeking && Math.abs(videoEl.currentTime - target) > 0.001) {
         videoSeeking = true;
         videoEl.currentTime = target;
       }
@@ -377,7 +416,9 @@
   videoEl.addEventListener('stalled', function () { videoSeeking = false; });
   canvas.style.visibility = 'hidden';
   resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
+  recalcMetrics();
+  window.addEventListener('resize', function () { resizeCanvas(); recalcMetrics(); });
+  window.addEventListener('load', recalcMetrics);
 
   if (!reduced) {
     requestAnimationFrame(videoTick);
@@ -389,8 +430,8 @@
   if (!reduced && pCanvas) {
     var pCtx = pCanvas.getContext('2d');
     var particles = [];
-    function resizeParticles() {
-      pCanvas.width = window.innerWidth; pCanvas.height = window.innerHeight;
+    var pLastW = 0;
+    function createParticles() {
       particles = [];
       var count = Math.floor((pCanvas.width * pCanvas.height) / 16000);
       for (var i = 0; i < count; i++) {
@@ -402,6 +443,14 @@
           opacity: Math.random() * 0.45 + 0.12
         });
       }
+    }
+    function resizeParticles() {
+      // Width gate: mobile URL-bar show/hide only changes height — don't
+      // re-randomize the whole dust field mid-scroll (review F22)
+      if (window.innerWidth === pLastW && Math.abs(pCanvas.height - window.innerHeight) < 130) return;
+      pLastW = window.innerWidth;
+      pCanvas.width = window.innerWidth; pCanvas.height = window.innerHeight;
+      createParticles();
     }
     function animateParticles() {
       pCtx.clearRect(0, 0, pCanvas.width, pCanvas.height);
@@ -417,30 +466,31 @@
       }
       requestAnimationFrame(animateParticles);
     }
-    resizeParticles();
+    pCanvas.width = window.innerWidth; pCanvas.height = window.innerHeight; pLastW = window.innerWidth;
+    createParticles();
     window.addEventListener('resize', resizeParticles);
     animateParticles();
   } else if (pCanvas) { pCanvas.style.display = 'none'; }
 
-  /* ===================== HERO FADE ===================== */
+  /* ===================== HERO FADE (rAF-batched — F19) ===================== */
   var hero = document.getElementById('cinHero');
-  function updateHeroOpacity() {
+  var heroFadePending = false;
+  function applyHeroOpacity() {
+    heroFadePending = false;
     hero.style.opacity = Math.max(0, 1 - window.scrollY / (window.innerHeight * 0.35));
   }
-  window.addEventListener('scroll', updateHeroOpacity, { passive: true });
+  window.addEventListener('scroll', function () {
+    if (!heroFadePending) { heroFadePending = true; requestAnimationFrame(applyHeroOpacity); }
+  }, { passive: true });
 
   /* ===================== FIXED TRUST CARDS ===================== */
   var fixedCards = document.getElementById('cinCards');
   var cardsGrid = document.getElementById('cinCardsGrid');
-  var trigger = document.getElementById('cinTrigger');
   function tickCards() {
-    var rect = trigger.getBoundingClientRect();
-    var triggerTop = rect.top + window.scrollY;
-    var triggerHeight = rect.height;
     var scrollY = window.scrollY;
     var vh = window.innerHeight;
-    var start = triggerTop - vh * 0.5;
-    var end = triggerTop + triggerHeight - vh * 0.3;
+    var start = mTriggerTop - vh * 0.5;
+    var end = mTriggerTop + mTriggerH - vh * 0.3;
     var range = end - start;
     var progress = range > 0 ? Math.max(0, Math.min(1, (scrollY - start) / range)) : 0;
     var isActive = scrollY >= start - vh * 0.2 && scrollY <= end + vh * 0.3;
@@ -455,9 +505,11 @@
     } else {
       var isMobile = window.innerWidth < 768;
       var revealPct = progress * 130;
+      // RTL sweeps from the right so cards reveal in reading order (review F37)
+      var dirH = isRTL() ? 'to left' : 'to right';
       var m = isMobile
         ? 'linear-gradient(to bottom, black ' + revealPct + '%, transparent ' + (revealPct + 20) + '%)'
-        : 'linear-gradient(to right, black ' + revealPct + '%, transparent ' + (revealPct + 15) + '%)';
+        : 'linear-gradient(' + dirH + ', black ' + revealPct + '%, transparent ' + (revealPct + 15) + '%)';
       cardsGrid.style.maskImage = m;
       cardsGrid.style.webkitMaskImage = m;
     }

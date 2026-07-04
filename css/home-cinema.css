@@ -1,24 +1,32 @@
 /* ============================================================
-   YZA — HOME CINEMA THEME (homepage only)
+   YZA — HOME CINEMA THEME (homepage only) · rev B
    Scroll-scrubbed brand video + particles + fixed trust-card
    reveals, on a near-black ground with a single terracotta
    accent. Loaded only by index.html, after styles.css: every
    rule is scoped to body.cinema so the rest of the site keeps
    its light Jacquemus theme untouched.
+   rev B = 38 confirmed review fixes (footer z-order, header
+   is-stuck state, dead selectors, WCAG contrast/focus, RTL,
+   no-JS visibility, mobile pacing).
    ============================================================ */
 
 body.cinema {
   background: #0a0a0a;
   color: #fff;
   font-family: 'Inter', 'Jost', sans-serif;
-  overflow-x: hidden;
+  /* clip, not hidden: hidden makes body a scroll container and kills
+     position:sticky on the announcement bar (review F10) */
+  overflow-x: clip;
 }
 body.cinema::selection, body.cinema ::selection { background: #de733d; color: #fff; }
 
 /* ---------- fixed scroll-video background ---------- */
 .cin-video {
   position: fixed; inset: 0; top: -10%; height: 120%;
-  z-index: 0; background: #0a0a0a; pointer-events: none;
+  /* -10 like the template: at z-index 0 this fixed layer painted OVER the
+     static injected footer and hid it completely (review F1) */
+  z-index: -10;
+  background: #0a0a0a; pointer-events: none;
 }
 .cin-video canvas, .cin-video video {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
@@ -28,7 +36,10 @@ body.cinema::selection, body.cinema ::selection { background: #de733d; color: #f
 /* ---------- particles ---------- */
 #cinParticles {
   position: fixed; inset: 0; width: 100%; height: 100%;
-  pointer-events: none; z-index: 3;
+  pointer-events: none;
+  /* above the solid commerce band (z5) so the dust floats over everything,
+     like the template (review F5) */
+  z-index: 6;
 }
 
 /* ---------- header dark override (chrome.js markup) ---------- */
@@ -37,6 +48,14 @@ body.cinema .header {
   background: linear-gradient(to bottom, rgba(0,0,0,.55), transparent);
   border-bottom: 0; box-shadow: none;
 }
+/* chrome.js adds .is-stuck past 30px scroll; styles.css paints it white
+   (var(--color-bg)) which turned the forced-white nav invisible (review F2/F24) */
+body.cinema .header.is-stuck {
+  background: rgba(10, 10, 10, .92);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  box-shadow: none;
+}
 body.cinema .header .logo, body.cinema .header .logo svg,
 body.cinema .header .nav a, body.cinema .header .header__actions a,
 body.cinema .header .header__actions button,
@@ -44,11 +63,20 @@ body.cinema .header .header-search { color: #fff; }
 body.cinema .header .nav a:hover { color: #de733d; }
 body.cinema .header svg { stroke: currentColor; }
 body.cinema .header .logo svg path, body.cinema .header .logo svg * { fill: #fff; }
+/* the real logo is a black <img> webp, not an svg (review F4/F8) */
+body.cinema .header .logo__img,
+body.cinema .header .logo img { filter: brightness(0) invert(1); }
 body.cinema .skip-link { z-index: 60; }
+
+/* chrome.js injects a white sticky announcement bar (z51) that pinned OVER the
+   fixed dark header; hide it on the cinema home only (review F10/F25) */
+body.cinema .announcement { display: none; }
 
 /* ---------- hero ---------- */
 .cin-hero {
-  position: relative; z-index: 2; height: 100vh; min-height: 620px;
+  position: relative; z-index: 2;
+  height: 100vh; height: 100svh; /* svh: keep the CTA above iOS Safari's toolbar (F27) */
+  min-height: 620px;
   display: flex; flex-direction: column;
 }
 .cin-hero__grad {
@@ -80,6 +108,8 @@ body.cinema .skip-link { z-index: 60; }
 }
 .cin-underline > span:last-child { position: relative; z-index: 1; }
 @keyframes cinBar { to { transform: scaleX(1); } }
+/* RTL: sweep from the right (review F37) */
+html[dir="rtl"] .cin-underline .cin-underline__bar { transform-origin: right center; }
 
 .cin-hero__ctas {
   display: flex; align-items: center; justify-content: center; gap: 1rem;
@@ -94,18 +124,22 @@ body.cinema .skip-link { z-index: 60; }
 .cin-atelier-box .tif { color: #fdc733; font-family: 'Noto Sans Tifinagh', sans-serif; font-size: 1rem; }
 .cin-btn {
   display: inline-flex; align-items: center; gap: .55rem;
-  background: #de733d; color: #fff; font-weight: 500;
+  /* near-black label on terracotta: 6.25:1 AA (white was 3.17:1 — review F33) */
+  background: #de733d; color: #0a0a0a; font-weight: 600;
   border-radius: .5rem; padding: .85rem 2rem; font-size: .9rem;
   text-decoration: none; transition: background .2s, transform .2s;
 }
-.cin-btn:hover { background: #e98a55; transform: translateY(-1px); }
+.cin-btn:hover { background: #e98a55; transform: translateY(-1px); color: #0a0a0a; }
 .cin-hero__arrow { position: relative; z-index: 10; display: flex; justify-content: center; padding-bottom: 1.75rem; }
-.cin-hero__arrow svg { width: 1.5rem; height: 1.5rem; color: #8a857c; animation: cinBounce 1.4s infinite; }
+.cin-hero__arrow a { display: inline-flex; padding: .4rem; color: #8a857c; }
+.cin-hero__arrow svg { width: 1.5rem; height: 1.5rem; animation: cinBounce 1.4s infinite; }
 @keyframes cinBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-25%); } }
 
 /* ---------- fixed trust cards ---------- */
 .cin-cards {
-  position: fixed; bottom: 0; left: 0; right: 0; z-index: 4;
+  position: fixed; bottom: 0; left: 0; right: 0;
+  /* above the dust (z6): content < dust < cards, like the template (F5) */
+  z-index: 7;
   padding: 2rem 2.5rem 2.6rem; opacity: 0; pointer-events: none;
 }
 .cin-cards__grid {
@@ -147,20 +181,30 @@ body.cinema .skip-link { z-index: 60; }
 }
 .cin-solid::before { content: ""; display: block; }
 
-/* section head accents */
+/* section head accents — the light home hides every .section-head; the dark
+   band needs them back (review F7/F23) */
+body.cinema .cin-solid .section-head { display: block; }
+body.cinema .cin-solid .section-cta { display: flex; }
 body.cinema .cin-solid .section-head h2,
 body.cinema .cin-solid h2 { color: #fff; }
 body.cinema .cin-solid .eyebrow { color: #de733d; }
 body.cinema .cin-solid .section { background: transparent; }
 body.cinema .cin-solid .section--surface { background: transparent; }
+/* styles.css has an ID rule painting #bestSellers white (review F3) */
+body.cinema #bestSellers { background: transparent; }
 body.cinema .cin-solid p { color: #cfc9c0; }
 body.cinema .cin-solid .link-underline { color: #fff; }
 body.cinema .cin-solid .link-underline:hover { color: #de733d; }
+/* .btn--solid hover goes transparent w/ ink label in styles.css → unreadable
+   on dark (review F34) */
+body.cinema .cin-solid .btn--solid:hover { color: #fff; border-color: #fff; background: transparent; }
+body.cinema .cin-solid .btn--outline { color: #fff; border-color: rgba(255,255,255,.5); }
+body.cinema .cin-solid .btn--outline:hover { border-color: #de733d; color: #de733d; }
 
 /* category cards on dark */
 body.cinema .cat-card { background: #141210; border-radius: 10px; overflow: hidden; }
 body.cinema .cat-card__cap h3 { color: #fff; }
-body.cinema .cat-card__cap span { color: #b7b1a8; }
+/* cap sub-line: keep styles.css white-over-scrim (grey hurt contrast — F16) */
 
 /* product cards (bestGrid) on dark */
 body.cinema .product-card { background: transparent; }
@@ -171,12 +215,19 @@ body.cinema .product-card .price { color: #de733d; }
 body.cinema .product-card a { color: #fff; }
 body.cinema .product-card img { border-radius: 8px; }
 
-/* girls cards */
-body.cinema .yza-girls-home .girls-card__cap,
-body.cinema .yza-girls-home figcaption { color: #e5e0d8; }
-body.cinema .yza-girls-home .girls-card { background: #141210; border-radius: 10px; overflow: hidden; }
+/* girls feed tiles on dark (real classes from main.js girlsFeedCardHTML — F14) */
+body.cinema .girls-feed figure,
+body.cinema .girls-feed .feed-card,
+body.cinema .girls-feed > * { background: #141210; border-radius: 10px; overflow: hidden; }
+body.cinema .girls-feed figcaption,
+body.cinema .girls-feed .feed-card__cap,
+body.cinema .girls-feed .feed-card__name { color: #e5e0d8; }
+body.cinema .girls-feed a { color: #e5e0d8; }
+body.cinema .girls-feed__intro { color: #b7b1a8; }
 
-/* reviews carousel on dark */
+/* reviews carousel on dark — the pull-quote card kept its light --paper-card
+   background (review F9) */
+body.cinema .reviews-hero { background: #141210; }
 body.cinema .reviews-hero__quote { color: #fff; }
 body.cinema .reviews-hero__by, body.cinema .reviews-hero__name,
 body.cinema .reviews-hero__src { color: #b7b1a8; }
@@ -192,31 +243,52 @@ body.cinema #homeFaq .accordion__panel-inner { color: #cfc9c0; }
 body.cinema #homeFaq .plus { color: #de733d; }
 body.cinema #homeFaq .accordion__item { border-color: rgba(255,255,255,.12); }
 
-/* service strip on dark */
-body.cinema .service-strip-section .svc__label,
-body.cinema [data-service-strip] .svc__label { color: #fff; }
-body.cinema [data-service-strip] .svc__txt { color: #b7b1a8; }
+/* service strip on dark — real markup is .service-card (review F11) */
+body.cinema [data-service-strip] .service-card { background: transparent; }
+body.cinema [data-service-strip] .service-card h3,
+body.cinema .service-strip-section .service-card h3 { color: #fff; }
+body.cinema [data-service-strip] .service-card p { color: #b7b1a8; }
 body.cinema [data-service-strip] img,
 body.cinema [data-service-strip] svg { filter: invert(1) brightness(1.4); }
 
-/* closing cta on dark */
+/* closing cta on dark — the rendered CTA is .closing-cta__link--btn (F15) */
 body.cinema .closing-cta { background: #141210; color: #fff; }
 body.cinema .closing-cta h2, body.cinema .closing-cta p { color: #fff; }
-body.cinema .closing-cta .btn { background: #de733d; border-color: #de733d; color: #fff; }
-body.cinema .closing-cta .btn:hover { background: #e98a55; }
+body.cinema .closing-cta__link--btn { background: #de733d; color: #0a0a0a; border-color: #de733d; }
+body.cinema .closing-cta__link--btn:hover { background: #e98a55; color: #0a0a0a; }
 
-/* footer dark */
-body.cinema footer, body.cinema .footer, body.cinema .site-footer {
+/* footer dark — real chrome.js classes (review F12) */
+body.cinema .footer, body.cinema footer {
   background: #010101 !important; color: #cfc9c0 !important;
   border-top: 1px solid rgba(255,255,255,.08);
 }
-body.cinema footer a, body.cinema .footer a, body.cinema .site-footer a { color: #e5e0d8 !important; }
-body.cinema footer a:hover, body.cinema .footer a:hover, body.cinema .site-footer a:hover { color: #de733d !important; }
-body.cinema footer input, body.cinema .footer input, body.cinema .site-footer input {
+body.cinema .footer a, body.cinema footer a { color: #e5e0d8 !important; }
+body.cinema .footer a:hover, body.cinema footer a:hover { color: #de733d !important; }
+body.cinema .footer input, body.cinema footer input {
   background: #141210; color: #fff; border-color: rgba(255,255,255,.2);
 }
-body.cinema footer h4, body.cinema .footer h4, body.cinema .site-footer h4,
-body.cinema footer strong, body.cinema .footer strong { color: #fff !important; }
+body.cinema .footer__col-toggle, body.cinema .footer__contact-title,
+body.cinema .footer strong, body.cinema footer strong { color: #fff !important; }
+body.cinema .footer__meta { background: #010101 !important; color: #8a857c !important; }
+body.cinema .footer .footer__col-toggle svg,
+body.cinema .footer .acc__sign { color: #de733d; }
+
+/* ---------- keyboard focus on the dark ground (WCAG 2.4.7 — F13/F32) ---------- */
+body.cinema :focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+body.cinema .cin-btn:focus-visible,
+body.cinema .closing-cta__link--btn:focus-visible { outline-color: #fff; }
+
+/* ---------- Arabic: tracking breaks cursive joins (review F36) ----------
+   .cin-three h2 keeps its tracking: "SS26/27" is Latin digits in every locale. */
+html[dir="rtl"] .cin-hero__kicker,
+html[dir="rtl"] .cin-hero__title,
+html[dir="rtl"] .cin-card h3 { letter-spacing: 0; }
+
+/* ---------- no-JS / crawler visibility (review F28) ----------
+   Reveal states only apply when the inline script has run (html.cin-js). */
+html:not(.cin-js) .cin-three__inner,
+html:not(.cin-js) .cin-reveal { opacity: 1 !important; transform: none !important; filter: none !important; }
+html:not(.cin-js) .cin-cards { display: none; }
 
 /* reveal groups inside the solid band */
 .cin-reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s ease-out, transform .9s ease-out; }
@@ -235,10 +307,17 @@ body.cinema footer strong, body.cinema .footer strong { color: #fff !important; 
   .cin-cards__grid { grid-template-columns: 1fr; gap: 1.4rem; }
   .cin-card h3 { font-size: 1.1rem; margin-bottom: .5rem; }
   .cin-card p { font-size: .8rem; }
-  .cin-three { padding-bottom: 4.5rem; }
-  .cin-spacer-lg { height: 110vh; }
-  .cin-spacer-md { height: 70vh; }
-  .cin-trigger { height: 170vh; }
+  .cin-three { padding-bottom: 4.5rem; min-height: 70vh; }
+  /* shorter cinematic runway on phones: products reachable ~2 screens sooner (F26) */
+  .cin-spacer-lg { height: 90vh; }
+  .cin-spacer-md { height: 50vh; }
+  .cin-trigger { height: 150vh; }
+}
+
+/* short landscape viewports: keep the fixed trust cards on-screen (F29) */
+@media (max-width: 768px) and (max-height: 480px) {
+  .cin-cards { max-height: 100vh; overflow-y: auto; padding: 1rem; }
+  .cin-cards__grid { gap: .8rem; }
 }
 
 /* ---------- reduced motion ---------- */
