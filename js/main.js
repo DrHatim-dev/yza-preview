@@ -955,18 +955,38 @@
  while (added) { added = false; groups.forEach((b) => { if (b.length) { out.push(b.shift()); added = true; } }); }
  return out;
  }
+ // Variety guardrail for every YZA-girls strip: takes a (pre-interleaved) list and drops any
+ // entry whose image FILE or near-identical caption (same girl/product/city) was already used,
+ // and caps how many tiles any single girl gets so no one person (e.g. Rime) dominates.
+ // usedSrc/usedCap can be shared across surfaces (wall + stories) so nothing repeats down a page.
+ function balancedGirls(list, opts) {
+ opts = opts || {};
+ const perName = opts.perName || Infinity;
+ const usedSrc = opts.usedSrc instanceof Set ? opts.usedSrc : new Set();
+ const usedCap = opts.usedCap instanceof Set ? opts.usedCap : new Set();
+ const nameCount = new Map();
+ const out = [];
+ (list || []).forEach((g) => {
+ if (!g || !g.src || usedSrc.has(g.src)) return;
+ const cap = [g.name, g.product, g.city].join('|');
+ if (usedCap.has(cap)) return;
+ const nm = g.name || 'YZA Girl';
+ if ((nameCount.get(nm) || 0) >= perName) return;
+ nameCount.set(nm, (nameCount.get(nm) || 0) + 1);
+ usedSrc.add(g.src);
+ usedCap.add(cap);
+ out.push(g);
+ });
+ return out;
+ }
  function renderGirlsPreview() {
  const el = $('#girlsPreviewGrid');
  if (!el || !YZA.media?.yzaGirls?.length) return;
- const seenCaption = new Set();
- const publicGirls = interleaveByName(YZA.media.yzaGirls
- .filter((girl) => isPublicMedia(girl.src)))
- .filter((girl) => {
- const key = [girl.name, girl.product, girl.city].join('|');
- if (seenCaption.has(key)) return false;
- seenCaption.add(key);
- return true;
- });
+ // Cap to 2 tiles per girl so the home strip stays varied — no single girl (Rime) dominates.
+ const publicGirls = balancedGirls(
+ interleaveByName(YZA.media.yzaGirls.filter((girl) => isPublicMedia(girl.src))),
+ { perName: 2 }
+ );
  el.innerHTML = publicGirls.slice(0, 12).map((girl, index) => girlsFeedCardHTML(girl, index)).join('');
  el.querySelectorAll('[data-shop-look]').forEach((link) => {
  link.addEventListener('click', () => YZA.analytics?.track('yza_girls_shop_look_click', { handle: link.dataset.shopLook || '', source: 'home_preview' }));
@@ -976,16 +996,15 @@
  function renderGirlsPage() {
  const wall = $('#girlsMasonry');
  if (!wall || !YZA.media?.yzaGirls?.length) return;
- // Same caption-dedup as the home preview so near-identical cards (same girl / same
- // product / same city) never repeat down the wall — keeps the feed varied.
- const seenCaption = new Set();
- const publicGirls = interleaveByName(YZA.media.yzaGirls.filter((girl) => isPublicMedia(girl.src)))
- .filter((girl) => {
- const key = [girl.name, girl.product, girl.city].join('|');
- if (seenCaption.has(key)) return false;
- seenCaption.add(key);
- return true;
- });
+ // One page-wide image registry: any photo (or near-identical caption) shown in the wall
+ // is never shown again in the colour stories or the living wall. Cap 3 tiles per girl so
+ // no single person (Rime) dominates the gallery.
+ const usedSrc = new Set();
+ const usedCap = new Set();
+ const publicGirls = balancedGirls(
+ interleaveByName(YZA.media.yzaGirls.filter((girl) => isPublicMedia(girl.src))),
+ { perName: 3, usedSrc, usedCap }
+ );
  // Paginated wall + "Charger plus" (client: the page was far too long).
  const CHUNK = 12;
  let shown = Math.min(CHUNK, publicGirls.length);
@@ -1007,18 +1026,20 @@
  }
  drawWall();
 
- // Track every image already shown so nothing repeats further down the page.
- const used = new Set(publicGirls.map((girl) => girl.src));
- // Story tiles may only show REAL YZA-girls community photos (client rule) — pulled from
- // the girls data by colour/product. A story with fewer than 2 girls photos is dropped.
+ // Colour-story galleries: there aren't enough distinct customer photos to fill both the
+ // "real life" wall above AND a per-colour story without repeating (or resurfacing Rime),
+ // so these tiles use each colour's curated gallery (worn + lookbook + product close-ups).
+ // Every image is deduped against the wall and the other stories, so NOTHING repeats.
  const girlsImagesFor = (key) => {
- const all = YZA.media.yzaGirls.filter((g) => isPublicMedia(g.src));
- let picks;
- if (key === 'bags') picks = all.filter((g) => /la vague|sculpture/i.test(g.product || ''));
- else if (key === 'rtw') picks = all.filter((g) => g.color === 'editorial');
- else if (key === 'charms') picks = []; // no charm-specific girls photos yet
- else picks = all.filter((g) => g.color === key);
- return Array.from(new Set(picks.map((g) => g.src)));
+ const story = YZA.media.productStories?.[key];
+ const list = (story && story.images) || [];
+ const out = [];
+ list.forEach((s) => {
+ if (out.length >= 3 || !s || !isPublicMedia(s)) return;
+ if (usedSrc.has(s)) return;
+ out.push(s);
+ });
+ return out;
  };
 
  const storyMap = $('#girlsProductMap');
@@ -1029,6 +1050,7 @@
  if (!story) return '';
  const imgs = girlsImagesFor(key).slice(0, 3);
  if (imgs.length < 2) return '';
+ imgs.forEach((src) => usedSrc.add(src)); // commit so the living wall never repeats them
  const title = mediaText(story.title);
  const text = mediaText(story.text);
  return `<article class="girls-product-story" id="${esc(key)}">
@@ -1045,7 +1067,7 @@
  }).join('');
  }
 
- renderArchiveWall(used);
+ renderArchiveWall(usedSrc);
  }
 
  async function renderArchiveWall(used) {
