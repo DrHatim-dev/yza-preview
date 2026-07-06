@@ -583,6 +583,13 @@
 
     function scrollTop() { try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, 0); } }
 
+    // Deep-link: the drawer's "Passer au paiement" opens /checkout#shipping to skip the
+    // cart-review step and land straight on the shipping/payment form (falls back to the
+    // cart step when the basket is empty). "Voir mon panier" opens /checkout (cart step).
+    try {
+      var _hstep = (location.hash || '').replace('#', '');
+      if ((_hstep === 'shipping' || _hstep === 'livraison') && YZA.cart.items.length) state.step = 'shipping';
+    } catch (e) {}
     YZA.i18n.onChange(function () { render(); });
     render();
     try { if (YZA.track && YZA.cart.items.length) YZA.track('begin_checkout', trackPayload({})); } catch (e) {}

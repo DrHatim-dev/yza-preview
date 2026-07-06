@@ -294,7 +294,9 @@ const cart = {
   checkout() {
     if (!this.items.length) { this.close(); window.location.href = '/collections/charms'; return; }
     YZA.analytics?.track('checkout_initiated', { items: this.count(), subtotal_cents: this.subtotalCents(), total_cents: this.pricing().totalCents });
-    window.location.href = '/checkout';
+    // "Passer au paiement" skips the cart-review step and lands on the shipping/payment
+    // form; "Voir mon panier" (a plain /checkout link) still opens the cart step.
+    window.location.href = '/checkout#shipping';
   },
 
   init() {

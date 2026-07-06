@@ -1925,7 +1925,7 @@ body[data-page="home"] .girls-feed-section { margin-top: var(--space-7); }
 
 /* PDP description block — sits directly above the Add-to-cart button. Unified premium ink
    (NO orange/terracotta), tighter frame, and refined letter/word spacing for a premium feel. */
-body[data-page="product"] .product-story { margin: var(--space-6) 0 var(--space-7); padding-top: var(--space-6); gap: var(--space-3); max-width: 48ch; }
+body[data-page="product"] .product-story { margin: var(--space-6) 0 var(--space-8); padding-top: var(--space-6); gap: var(--space-3); max-width: 48ch; }
 body[data-page="product"] .product-story__point { color: var(--color-fg); letter-spacing: 0.004em; line-height: 1.28; margin-bottom: 0.1em; }
 body[data-page="product"] .product-story__body { color: var(--color-fg); line-height: 1.8; letter-spacing: 0.014em; word-spacing: 0.03em; }
 body[data-page="product"] .product-story__quote { margin: var(--space-3) 0; border-left: 2px solid var(--color-fg); }
@@ -1935,6 +1935,14 @@ body[data-page="product"] .product-story__invite { color: var(--color-fg); font-
 /* Unify the PDP info-column links to premium ink too (was olive accent; also on hover). */
 body[data-page="product"] .link-underline { color: var(--color-fg); }
 body[data-page="product"] .link-underline:hover { color: var(--color-fg); opacity: 0.62; }
+/* PDP controls polish — refined premium rhythm, sizes & alignment (Ranaco-calibrated). */
+body[data-page="product"] .product-info__price { font-size: 0.95rem; letter-spacing: 0.05em; margin-bottom: var(--space-1); }
+body[data-page="product"] #pColorName,
+body[data-page="product"] #pVariants .option__label,
+body[data-page="product"] #pVariants [data-variant-label],
+body[data-page="product"] #pFinish .option__label { font-family: var(--font-display); text-transform: uppercase; font-weight: 400; font-size: 0.72rem; letter-spacing: 0.16em; margin-bottom: var(--space-3); color: var(--color-fg); }
+body[data-page="product"] .product-add-main { padding-block: 1.05rem; font-size: 0.72rem; letter-spacing: 0.2em; }
+body[data-page="product"] .product-info__short { margin-bottom: var(--space-6); }
 /* Arabic (RTL): never letter/word-space the script — it breaks the joined letters. */
 [dir="rtl"] body[data-page="product"] .product-story__point,
 [dir="rtl"] body[data-page="product"] .product-story__body,
