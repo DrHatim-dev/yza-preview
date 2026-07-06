@@ -30,7 +30,7 @@ window.YZA = window.YZA || {};
 const CAT_SLUGS_REV = { bags: 'sacs', accessories: 'bijoux', rtw: 'pret-a-porter', charms: 'charms', earrings: 'boucles-d-oreilles', necklaces: 'colliers', tops: 'hauts', pareos: 'jupes-pareo', pants: 'pantalons', bottoms: 'bas' };
 const collectionUrl = (cat) => { const slug = CAT_SLUGS_REV[cat]; return slug ? `/collections/${slug}` : '/collections'; };
 const productUrl = (handle) => handle ? `/produits/${encodeURIComponent(handle)}` : 'produit.html';
-const WORDMARK = '<img class="logo__img" src="assets/brand/yza-logo-real.webp" alt="YZA" width="2930" height="865" decoding="async">';
+const WORDMARK = '<img class="logo__img" src="assets/brand/yza-logo-real.webp?v=20260706c" alt="YZA" width="600" height="177" decoding="async">';
 const FOOTER_CHEV = '<svg class="footer__col-chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.6 6 6.4 11 1.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const CART_CHEV = '<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.6 6 6.4 11 1.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const LANG_CODES = ['fr', 'en', 'es', 'tr', 'ar'];
@@ -1126,7 +1126,7 @@ YZA.chrome = {
  chat.innerHTML = `
  <div class="lead-chat__header">
  <div class="lead-chat__agent">
- <span class="lead-chat__avatar" aria-hidden="true"><img src="assets/brand/yza-logo-real.webp" alt="" width="120" height="35" decoding="async"></span>
+ <span class="lead-chat__avatar" aria-hidden="true"><img src="assets/brand/yza-logo-real.webp?v=20260706c" alt="" width="120" height="35" decoding="async"></span>
  <div class="lead-chat__agent-info">
  <strong id="leadChatTitle">${c.title}</strong>
  <span class="lead-chat__online-status"><span class="lead-chat__dot"></span><span class="lead-chat__eyebrow">${c.eyebrow}</span></span>
@@ -1229,6 +1229,9 @@ YZA.chrome = {
  q('#leadChatClose')?.setAttribute('aria-label', c.close);
  };
 
+ // Synchronous open/shown flag so the FAB toggle is correct regardless of the rAF-added
+ // `is-open` class or the 220ms exit-animation delay before `hidden` flips back.
+ let chatShown = false;
  const openChat = (source = 'lead_chat_button', topic = '') => {
  const panel = ensureChat();
  refreshChatCopy(panel);
@@ -1237,6 +1240,7 @@ YZA.chrome = {
  const msgField = panel.querySelector('#lcMsg');
  if (msgField && !msgField.value) msgField.placeholder = topic;
  }
+ chatShown = true;
  panel.hidden = false;
  requestAnimationFrame(() => panel.classList.add('is-open'));
  chatOpen?.setAttribute('aria-expanded', 'true');
@@ -1246,13 +1250,18 @@ YZA.chrome = {
 
  const closeChat = () => {
  if (!chat) return;
+ chatShown = false;
  chat.classList.remove('is-open');
  chatOpen?.setAttribute('aria-expanded', 'false');
  setTimeout(() => { chat.hidden = true; }, 220);
  };
 
  this.openLeadChat = openChat;
- chatOpen?.addEventListener('click', () => openChat('lead_chat_button'));
+ // The FAB toggles: tap to open, tap again to close (not only the X).
+ chatOpen?.addEventListener('click', () => {
+ if (chatShown) closeChat();
+ else openChat('lead_chat_button');
+ });
  document.addEventListener('click', (event) => {
  const trigger = event.target.closest('[data-open-lead-chat]');
  if (!trigger) return;
