@@ -25,13 +25,15 @@ $clean = function ($v, $max = 80) { return substr(preg_replace('/[\r\n\t]+/', ' 
 $name = isset($data['name']) ? $clean($data['name'], 80) : '';
 $lang = (isset($data['lang']) && in_array($data['lang'], array('fr', 'en', 'es', 'tr', 'ar'), true)) ? $data['lang'] : 'fr';
 $page = isset($data['page']) ? $clean($data['page'], 80) : '';
+$phone = isset($data['phone']) ? $clean(preg_replace('/[^0-9+ ]/', '', (string) $data['phone']), 24) : '';
+$source = isset($data['source']) ? $clean(preg_replace('/[^a-z0-9_\-]/i', '', (string) $data['source']), 24) : '';
 $host = isset($_SERVER['HTTP_HOST']) ? preg_replace('/[^a-z0-9.\-]/i', '', $_SERVER['HTTP_HOST']) : 'yza-shop.com';
 
 /* ---- storage: a .php file that exits on the first line, so an HTTP request reveals nothing ---- */
 $dir = __DIR__ . '/.private';
 if (!is_dir($dir)) { @mkdir($dir, 0755, true); }
 $store = $dir . '/yza-subscribers.php';
-if (!is_file($store)) { @file_put_contents($store, "<?php exit; /* YZA subscribers — tab-separated: ts, email, name, lang, page, ip */\n"); }
+if (!is_file($store)) { @file_put_contents($store, "<?php exit; /* YZA subscribers — tab-separated: ts, email, name, lang, page, ip, phone, source */\n"); }
 
 $already = false;
 $lines = @file($store, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
@@ -45,13 +47,14 @@ if (is_array($lines)) {
 $ts = gmdate('Y-m-d H:i:s');
 $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
 if (!$already) {
-  @file_put_contents($store, $ts . "\t" . $email . "\t" . $name . "\t" . $lang . "\t" . $page . "\t" . $ip . "\n", FILE_APPEND | LOCK_EX);
+  @file_put_contents($store, $ts . "\t" . $email . "\t" . $name . "\t" . $lang . "\t" . $page . "\t" . $ip . "\t" . $phone . "\t" . $source . "\n", FILE_APPEND | LOCK_EX);
 }
 
 /* ---- welcome email (first subscribe only), sent the same way order.php sends ---- */
 $sent = false;
 if (!$already) {
-  list($subject, $html, $text) = yza_welcome_email($lang, $name, $host);
+  $code = ($source === 'popup10') ? 'YZA10' : '';
+  list($subject, $html, $text) = yza_welcome_email($lang, $name, $host, $code);
   $boundary = 'yza' . md5(uniqid('', true));
   $headers  = 'From: YZA <no-reply@' . $host . ">\r\n";
   $headers .= 'Reply-To: contact@' . $host . "\r\n";
@@ -67,7 +70,7 @@ if (!$already) {
 echo json_encode(array('ok' => true, 'welcomed' => (bool) $sent, 'already' => $already));
 
 /* ---------------------------------------------------------------------- */
-function yza_welcome_email($lang, $name, $host) {
+function yza_welcome_email($lang, $name, $host, $code = '') {
   $base = 'https://' . $host;
   $hello = $name !== '' ? ($lang === 'fr' ? 'Bonjour ' . htmlspecialchars($name) : 'Hello ' . htmlspecialchars($name)) : ($lang === 'fr' ? 'Bonjour' : 'Hello');
 
@@ -97,6 +100,13 @@ function yza_welcome_email($lang, $name, $host) {
     $ctaUrl = $base . '/collections/charms';
   }
 
+  $codeHtml = ''; $codeText = '';
+  if ($code !== '') {
+    $codeLabel = ($lang === 'fr') ? 'Votre code -10 % (première commande) :' : 'Your 10% welcome code (first order):';
+    $codeNote  = ($lang === 'fr') ? 'Mentionnez-le sur WhatsApp, on l\'applique à votre commande.' : 'Mention it on WhatsApp and we apply it to your order.';
+    $codeHtml = '<p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#1a1917">' . $codeLabel . ' <strong style="letter-spacing:.12em;border:1px dashed #de733d;color:#c2551f;padding:2px 8px">' . htmlspecialchars($code) . '</strong><br><span style="font-size:12px;color:#77736a">' . $codeNote . '</span></p>';
+    $codeText = $codeLabel . ' ' . $code . ' — ' . $codeNote . "\n\n";
+  }
   $pblocks = '';
   foreach ($paras as $p) { $pblocks .= '<p style="margin:0 0 16px;font-size:15px;line-height:1.65;color:#3a3833">' . $p . '</p>'; }
 
@@ -105,7 +115,7 @@ function yza_welcome_email($lang, $name, $host) {
     . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border:1px solid #e2ddd2">'
     . '<tr><td style="padding:30px 34px 8px"><div style="font-family:Arial,Helvetica,sans-serif;letter-spacing:.28em;font-size:22px;color:#1a1917;font-weight:600">YZA</div></td></tr>'
     . '<tr><td style="padding:8px 34px 6px"><p style="margin:0 0 18px;font-size:20px;line-height:1.3;color:#1a1917">' . $hello . ',</p>'
-    . '<p style="margin:0 0 16px;font-size:16px;line-height:1.6;color:#1a1917">' . $lede . '</p>' . $pblocks
+    . '<p style="margin:0 0 16px;font-size:16px;line-height:1.6;color:#1a1917">' . $lede . '</p>' . $codeHtml . $pblocks
     . '<p style="margin:22px 0 8px"><a href="' . $ctaUrl . '" style="display:inline-block;background:#1a1917;color:#ffffff;text-decoration:none;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:13px 26px">' . $cta . '</a></p>'
     . '<p style="margin:22px 0 0;font-size:13px;line-height:1.6;color:#77736a;font-style:italic">' . $ps . '</p>'
     . '<p style="margin:20px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#1a1917">Nawal &middot; <span style="color:#77736a">Fondatrice, YZA</span></p>'
@@ -113,6 +123,6 @@ function yza_welcome_email($lang, $name, $host) {
     . '<tr><td style="padding:22px 34px 26px;border-top:1px solid #eee7db"><p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:1.6;color:#9a958a">' . $foot . '<br>YZA &middot; 66 rue Yougoslavie, Guéliz, Marrakech</p></td></tr>'
     . '</table></td></tr></table></body></html>';
 
-  $text = trim(strip_tags($lede . "\n\n" . implode("\n\n", str_replace('&mdash;', '—', $paras)) . "\n\n" . $cta . ': ' . $ctaUrl . "\n\n" . $ps . "\n\nNawal — YZA\n\n" . $foot));
+  $text = trim(strip_tags($lede . "\n\n" . $codeText . implode("\n\n", str_replace('&mdash;', '—', $paras)) . "\n\n" . $cta . ': ' . $ctaUrl . "\n\n" . $ps . "\n\nNawal — YZA\n\n" . $foot));
   return array($subject, $html, $text);
 }
