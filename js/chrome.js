@@ -488,26 +488,8 @@ YZA.chrome = {
  <div class="footer-service footer-service--trust" data-service-strip="footer" aria-label="YZA services">
  ${serviceKeys.map((key) => YZA.serviceCard(key, 'footer-service__item footer-service__trust-item')).join('')}
  </div>
- <div class="footer__top${hasOwnNews ? ' footer__top--solo' : ''}">
- ${hasOwnNews ? '' : `<div class="footer__top-col footer__newsletter footer__col--acc" data-news-acc>
- <button type="button" class="footer__col-toggle footer__newsletter-head" aria-expanded="false"><span>${ns.newsTitle}</span>${FOOTER_CHEV}</button>
- <p class="footer__newsletter-desc">${ns.newsText}</p>
- <div class="footer__col-panel footer__newsletter-panel">
- <form class="newsletter__form footer-news__form" novalidate>
- <div class="footer-field">
- <label for="footerNewsEmail">${L ? 'E-mail *' : 'Email *'}</label>
- <input id="footerNewsEmail" type="email" required placeholder="${ns.placeholder}" aria-label="${ns.placeholder}">
- </div>
- <div class="footer-field">
- <label for="footerNewsName">${L ? 'Nom & prénom *' : 'Full name *'}</label>
- <input id="footerNewsName" type="text" autocomplete="name" placeholder="${L ? 'Nom & prénom' : 'Full name'}">
- </div>
- <button class="footer-news__btn footer-news__btn--register" type="submit">${ns.submit}</button>
- <p class="form-msg" data-news-msg hidden role="status" aria-live="polite"></p>
- </form>
- </div>
- <button type="button" class="footer-news__cta" data-news-cta>${ns.submit}</button>
- </div>`}
+ <!-- Old footer newsletter column removed — replaced by the full-width .news-band above the footer. -->
+ <div class="footer__top footer__top--solo">
  <div class="footer__top-col footer__contact">
  <h3 class="footer__contact-title">${ns.helpTitle}</h3>
  <p class="footer__contact-hours">${t.pick(YZA.brand.hours)}</p>
