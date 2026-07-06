@@ -12,9 +12,9 @@
   if (NOPE[document.body.dataset.page]) return;
 
   var KEY = 'yza_promo10_v1';
-  // Session-scoped (not once-forever): it greets every fresh visit to the site, yet won't
-  // re-pop while the visitor keeps browsing within the same session.
-  try { if (sessionStorage.getItem(KEY)) return; } catch (e) { /* private mode: still show */ }
+  var ONCE_PER = 86400000; // 24h — greet each visitor at most once per day
+  // Shows the first time they open the site each day, then stays quiet for the next 24h.
+  try { var last = parseInt(localStorage.getItem(KEY) || '0', 10); if (last && (Date.now() - last) < ONCE_PER) return; } catch (e) { /* private mode: still show */ }
 
   var CODE = 'YZA10';
   var IMG = 'assets/hero/la-sculpture-lifestyle.jpg';
@@ -137,7 +137,7 @@
   style.textContent = css;
 
   var opened = false, done = false;
-  function remember() { try { sessionStorage.setItem(KEY, '1'); } catch (e) {} }
+  function remember() { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} }
   function open() {
     if (opened || done) return;
     opened = true;
