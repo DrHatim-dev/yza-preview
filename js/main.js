@@ -2409,8 +2409,7 @@
      } else { storyEl.hidden = true; storyEl.innerHTML = ''; }
    } }
  renderProductSwatches(p);
- $('#sameDayDelivery').textContent = ui.delivery;
- $('#dropHint').textContent = ui.hint;
+ { const _sd = $('#sameDayDelivery'); if (_sd) _sd.textContent = ui.delivery; }
  $('#accSizeFitLabel').textContent = ui.sizeFit;
  const _makingLabel = { fr: 'FABRICATION', en: 'THE MAKING', es: 'ELABORACION', tr: 'YAPIM', ar: 'الصناعة' };
  const _mkl = $('#accMakingLabel');
@@ -2512,22 +2511,21 @@
  if (members.length > 1 && variantWrap && variantOpts) {
  variantWrap.hidden = false;
  const isBagRail = p.category === 'bags';
- variantWrap.classList.toggle('option--size-rail', isBagRail);
+ variantWrap.classList.remove('option--size-rail');
  variantWrap.querySelector('[data-variant-label]').textContent = isBagRail
- ? (({ fr: 'Autres tailles', en: 'See other sizes', es: 'Otras tallas', tr: 'Diger bedenler', ar: 'مقاسات أخرى' })[t.lang] || 'See other sizes')
+ ? (({ fr: 'Taille', en: 'Size', es: 'Talla', tr: 'Beden', ar: 'المقاس' })[t.lang] || 'Size')
  : variantLabelFor(p, t);
  if (isBagRail) {
- variantOpts.className = 'size-rail__track';
+ // Bag sizes are separate products — render them as plain TEXT boxes (no photos) that
+ // navigate to each size's page (client asked to drop the size images under the price).
+ variantOpts.className = 'chips chips--variants';
  variantOpts.innerHTML = members.map((item) => {
  const active = item.isActiveBagVariant || (!selectedBagVariant && item.handle === p.handle) ? ' is-active' : '';
  const soldOut = (YZA.inventoryStatus?.(item) || {}).soldOut ? ' is-soldout' : '';
- const tileName = t.pick(displayName(item)) || t.pick(item.name);
- const tileImg = item.bagImg || productGallery(item)[0] || item.img;
+ const sizeLabel = t.pick(item.size) || t.pick(item.variantLabel) || t.pick(displayName(item)) || t.pick(item.name);
  const tileUrl = item.bagUrl || productUrl(item.handle);
- return '<a class="size-rail__tile' + active + soldOut + '" href="' + esc(tileUrl) + '" data-product-variant="' + esc(item.handle) + '" aria-label="' + esc(tileName) + '"' + (active ? ' aria-current="true"' : '') + '>'
- + '<span class="size-rail__thumb"><img src="' + esc(tileImg) + '" alt="' + esc(tileName) + ' - YZA" loading="lazy" width="240" height="300" decoding="async"></span>'
- + '<span class="size-rail__name">' + esc(tileName) + '</span>'
- + '<span class="size-rail__price">' + t.formatPrice(item.price) + '</span>'
+ return '<a class="chip chip--variant' + active + soldOut + '" href="' + esc(tileUrl) + '" data-product-variant="' + esc(item.handle) + '" aria-label="' + esc(t.pick(displayName(item)) || t.pick(item.name)) + '"' + (active ? ' aria-current="true"' : '') + '>'
+ + '<span>' + esc(sizeLabel) + '</span>'
  + '</a>';
  }).join('');
  variantOpts.onclick = (e) => {
