@@ -488,8 +488,26 @@ YZA.chrome = {
  <div class="footer-service footer-service--trust" data-service-strip="footer" aria-label="YZA services">
  ${serviceKeys.map((key) => YZA.serviceCard(key, 'footer-service__item footer-service__trust-item')).join('')}
  </div>
- <!-- Old footer newsletter column removed — replaced by the full-width .news-band above the footer. -->
- <div class="footer__top footer__top--solo">
+ <div class="footer__top${hasOwnNews ? ' footer__top--solo' : ''}">
+ ${hasOwnNews ? '' : `<div class="footer__top-col footer__newsletter footer__col--acc" data-news-acc>
+ <button type="button" class="footer__col-toggle footer__newsletter-head" aria-expanded="false"><span>${ns.newsTitle}</span>${FOOTER_CHEV}</button>
+ <p class="footer__newsletter-desc">${ns.newsText}</p>
+ <div class="footer__col-panel footer__newsletter-panel">
+ <form class="newsletter__form footer-news__form" novalidate>
+ <div class="footer-field">
+ <label for="footerNewsEmail">${L ? 'E-mail *' : 'Email *'}</label>
+ <input id="footerNewsEmail" type="email" required placeholder="${ns.placeholder}" aria-label="${ns.placeholder}">
+ </div>
+ <div class="footer-field">
+ <label for="footerNewsName">${L ? 'Nom & prénom *' : 'Full name *'}</label>
+ <input id="footerNewsName" type="text" autocomplete="name" placeholder="${L ? 'Nom & prénom' : 'Full name'}">
+ </div>
+ <button class="footer-news__btn footer-news__btn--register" type="submit">${ns.submit}</button>
+ <p class="form-msg" data-news-msg hidden role="status" aria-live="polite"></p>
+ </form>
+ </div>
+ <button type="button" class="footer-news__cta" data-news-cta>${ns.submit}</button>
+ </div>`}
  <div class="footer__top-col footer__contact">
  <h3 class="footer__contact-title">${ns.helpTitle}</h3>
  <p class="footer__contact-hours">${t.pick(YZA.brand.hours)}</p>
@@ -547,39 +565,6 @@ YZA.chrome = {
  <div class="footer__meta__country">${fc.country} · ${fc.lang} / <a href="mentions-legales" data-i18n="footer.legal">${t.t('footer.legal')}</a></div>
  </div>
  </div>`;
-
- // Full-width newsletter band (−10% on the first order) — like the reference. Site-wide,
- // skipped where a page ships its own newsletter. Uses the shared `.newsletter__form`
- // handler (main.js wireForms) with data-news-source=newsletter10 so subscribe.php emails
- // the welcome code YZA10.
- if (!hasOwnNews) {
- const B = ({
- fr: { ph: 'Votre adresse e-mail', btn: 'S’inscrire', l1: 'Inscrivez-vous et recevez −10 % sur votre première commande. Vous serez aussi les premières informées des nouveautés, offres exclusives et bien plus ♥', l2: 'Et bien plus encore…', aria: 'Newsletter YZA — −10 %' },
- en: { ph: 'Enter your email', btn: 'Subscribe', l1: 'Sign up and receive 10% off your first order. You’ll also be the first to know about new arrivals, exclusive offers, and more ♥', l2: 'And much, much more…', aria: 'YZA newsletter — 10% off' },
- es: { ph: 'Tu correo electrónico', btn: 'Suscribirse', l1: 'Suscríbete y recibe un 10 % de descuento en tu primer pedido. Además serás la primera en conocer novedades, ofertas exclusivas y mucho más ♥', l2: 'Y mucho, mucho más…', aria: 'Newsletter YZA — 10 %' },
- tr: { ph: 'E-posta adresiniz', btn: 'Abone ol', l1: 'Kaydolun ve ilk siparişinizde %10 indirim kazanın. Ayrıca yeni ürünler, özel fırsatlar ve daha fazlasından ilk siz haberdar olun ♥', l2: 'Ve daha nicesi…', aria: 'YZA bülten — %10' },
- ar: { ph: 'بريدك الإلكتروني', btn: 'اشتراك', l1: 'اشتركي واحصلي على خصم 10٪ على طلبك الأول. ستكونين أول من يعرف بالجديد والعروض الحصرية والمزيد ♥', l2: 'والكثير الكثير…', aria: 'نشرة YZA — 10٪' },
- })[t.lang] || null;
- const c = B || { ph: 'Enter your email', btn: 'Subscribe', l1: 'Sign up and receive 10% off your first order.', l2: 'And much, much more…', aria: 'YZA newsletter' };
- const nb = document.createElement('section');
- nb.className = 'news-band';
- nb.setAttribute('aria-label', c.aria);
- nb.innerHTML = `
- <div class="news-band__overlay" aria-hidden="true"></div>
- <div class="news-band__inner">
- <form class="news-band__form newsletter__form" data-news-source="newsletter10" novalidate>
- <div class="news-band__row">
- <input type="email" required placeholder="${c.ph}" aria-label="${c.ph}">
- <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" class="news-band__hp">
- <button type="submit">${c.btn}</button>
- </div>
- <p class="form-msg news-band__msg" data-news-msg hidden role="status" aria-live="polite"></p>
- </form>
- <p class="news-band__copy">${c.l1}</p>
- <p class="news-band__more">${c.l2}</p>
- </div>`;
- document.body.append(nb);
- }
  document.body.append(footer);
 
  // Collapsible footer columns (Jacquemus dropdown style): open on desktop,
