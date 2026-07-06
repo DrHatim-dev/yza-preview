@@ -26,3 +26,10 @@ _backup/
 # OS noise
 .DS_Store
 Thumbs.db
+
+# Transfer package — contains live FTP password, keep local only (never push)
+_TRANSFER_README.txt
+_deploy/
+_bag_thumb_list.txt
+_html_bumped.txt
+_missing_live.txt
