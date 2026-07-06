@@ -42,6 +42,11 @@ DirectoryIndex index.html index.htm
   # app). People type /wp-admin by habit — send them to the real login. ----
   RewriteRule ^wp-admin(/.*)?$   /wp/wp-admin/ [R=301,L]
   RewriteRule ^wp-login\.php$    /wp/wp-login.php [R=301,L]
+  # The WooCommerce / WordPress app probes the REST API at the ROOT (/wp-json). WP lives
+  # in /wp, so root /wp-json 404s and the app "receives an unexpected response". Forward it
+  # to the real REST base (/wp/wp-json answers 200 JSON) so the app connects even when the
+  # store address is entered without /wp. 302 so the app follows and re-bases to /wp/wp-json.
+  RewriteRule ^wp-json(/.*)?$    /wp/wp-json$1 [R=302,QSA,L]
 
   # ---- Clean URLs: generic — /{name} serves {name}.html when that file exists.
   # Covers /collections, /lookbook, /studio, /histoire, /yza-girls, /contact, /faq
