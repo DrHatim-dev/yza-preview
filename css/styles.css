@@ -4694,3 +4694,24 @@ body[data-page="product"] .product-add-main__label { letter-spacing: 0.56px; fon
 body.has-product-bar .lead-chat-fab { bottom: calc(88px + env(safe-area-inset-bottom)) !important; }
 body.has-product-bar .lead-chat { bottom: calc(148px + env(safe-area-inset-bottom)) !important; }
 body.has-product-bar .store-widget { bottom: calc(88px + env(safe-area-inset-bottom)) !important; }
+
+/* ============================================================
+   Full-width newsletter band (−10% first order) + simpler header
+   ============================================================ */
+.news-band { position: relative; width: 100%; min-height: 460px; display: grid; place-items: center; padding: clamp(3rem, 7vw, 6rem) 1.25rem; overflow: hidden; text-align: center; background: #d9d3c7 center/cover no-repeat; background-image: url("../assets/lifestyle/hero.jpg"); }
+.news-band__overlay { position: absolute; inset: 0; z-index: 0; background: rgba(26, 22, 18, 0.4); }
+.news-band__inner { position: relative; z-index: 1; width: min(620px, 100%); color: #fff; }
+.news-band__form { margin: 0 0 var(--space-6); }
+.news-band__row { display: flex; align-items: stretch; justify-content: center; gap: 14px; }
+.news-band__hp { position: absolute !important; left: -9999px; width: 1px; height: 1px; }
+.news-band__row input[type="email"] { flex: 1 1 auto; min-width: 0; background: transparent; border: 1px solid rgba(255, 255, 255, 0.85); color: #fff; font-family: var(--font-body); font-size: 15px; padding: 14px 18px; border-radius: 0; outline: none; transition: border-color 0.2s; }
+.news-band__row input[type="email"]::placeholder { color: rgba(255, 255, 255, 0.78); }
+.news-band__row input[type="email"]:focus { border-color: #fff; }
+.news-band__row button { flex: 0 0 auto; background: transparent; border: 1px solid rgba(255, 255, 255, 0.85); color: #fff; font-family: var(--font-body); text-transform: uppercase; letter-spacing: 0.18em; font-size: 12px; padding: 14px 26px; cursor: pointer; transition: background 0.2s, color 0.2s; }
+.news-band__row button:hover { background: #fff; color: var(--color-fg); }
+.news-band__copy { font-family: var(--font-body); font-weight: 300; font-size: clamp(0.95rem, 1.4vw, 1.05rem); line-height: 1.6; margin: 0 0 0.55rem; color: #fff; }
+.news-band__more { font-family: var(--font-body); font-weight: 300; font-size: 0.95rem; margin: 0; color: rgba(255, 255, 255, 0.9); }
+.news-band__msg { color: #fff; margin: 10px 0 0; }
+@media (max-width: 560px) { .news-band__row { flex-direction: column; } .news-band__row button { width: 100%; } }
+/* Simpler header: search reads as an icon only (label kept for screen readers) */
+.header-search > span[data-i18n="a.search"] { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }

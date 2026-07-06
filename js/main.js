@@ -2722,7 +2722,7 @@
  const nlHp = form.querySelector('input[name="company"]');
  fetch('/subscribe.php', {
  method: 'POST', headers: { 'Content-Type': 'application/json' },
- body: JSON.stringify({ email, lang: T().lang || 'fr', page: document.body.dataset.page || '', _hp: nlHp ? nlHp.value : '' }),
+ body: JSON.stringify({ email, lang: T().lang || 'fr', page: document.body.dataset.page || '', source: form.dataset.newsSource || '', _hp: nlHp ? nlHp.value : '' }),
  }).then((r) => r.ok).catch(() => false).then((sent) => {
  if (nlBtn) nlBtn.disabled = false;
  if (sent) {

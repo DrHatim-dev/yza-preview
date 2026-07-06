@@ -53,7 +53,7 @@ if (!$already) {
 /* ---- welcome email (first subscribe only), sent the same way order.php sends ---- */
 $sent = false;
 if (!$already) {
-  $code = ($source === 'popup10') ? 'YZA10' : '';
+  $code = in_array($source, array('popup10', 'newsletter10'), true) ? 'YZA10' : '';
   list($subject, $html, $text) = yza_welcome_email($lang, $name, $host, $code);
   $boundary = 'yza' . md5(uniqid('', true));
   $headers  = 'From: YZA <no-reply@' . $host . ">\r\n";
