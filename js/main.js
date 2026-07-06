@@ -2416,8 +2416,6 @@
  if (_mkl) _mkl.textContent = _makingLabel[T().lang] || _makingLabel.fr;
  $('#accCareLabel').textContent = ui.care;
  $('#accDeliveryLabel').textContent = ui.returns;
- $('#accQuestionsLabel').textContent = ui.questions;
- $('#accShareLabel').textContent = ui.share;
  const catInfo = typeof YZA.categoryInfo === 'function' ? YZA.categoryInfo(p) : { key: 'nav.charms', href: collectionUrl('charms') };
  const catCrumb = $('#pBreadcrumbCat');
  if (catCrumb) {
