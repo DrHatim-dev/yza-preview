@@ -2272,6 +2272,12 @@
  p.lifestyleVideo ? [{ type: 'video', src: p.lifestyleVideo, poster: gal[gal.length - 1] }] : []
  );
  if (!mediaItems.length) mediaItems.push({ type: 'image', src: gal[0] });
+ // Bag galleries carry ~8 photos; the thumb strip was loading each at FULL resolution,
+ // which blew past iOS Safari's per-tab image-decode budget — the gallery rendered blank
+ // on real iPhones (page/text still showed). Serve small .thumb.jpg thumbnails for bags
+ // (~11 KB vs ~120 KB); onerror falls back to the full image if a thumb is ever missing.
+ const isBagGallery = !!(p && p.category === 'bags');
+ const galThumb = (u) => (isBagGallery && u) ? u.replace(/\.(jpe?g|png|webp)(\?[^"'#]*)?$/i, '.thumb.jpg') : u;
  const videoMainMarkup = (src, poster) => `<video id="galMainVid" autoplay muted loop playsinline src="${esc(src)}"${poster ? ` poster="${esc(poster)}"` : ''} style="width:100%;height:100%;object-fit:contain;display:block;background:var(--black)"></video>`;
  const imageMainMarkup = (src, altName) => `<img id="galMainImg" src="${esc(src)}" alt="${esc(altName || pageName)} - YZA" fetchpriority="high" width="900" height="1180" decoding="async" data-zoomable>`;
  // Tracks the name for the image currently in the gallery; updated on variant swap so
@@ -2281,7 +2287,7 @@
  $('#galThumbs').innerHTML = mediaItems.map((it, i) => {
  const isVid = it.type === 'video';
  const thumbSrc = isVid ? (it.poster || gal[0] || it.src) : it.src;
- return `<button class="gallery__thumb${i === 0 ? ' is-active' : ''}${isVid ? ' gallery__thumb--play' : ''}" data-src="${esc(it.src)}" data-poster="${esc(isVid ? (it.poster || '') : '')}" data-gtype="${isVid ? 'video' : 'img'}"${isVid ? ' aria-label="Voir en mouvement"' : ''}><img aria-hidden="true" src="${esc(thumbSrc)}" alt="" loading="lazy" width="76" height="100" decoding="async">${isVid ? '<span class="gallery__play-icon" aria-hidden="true"></span>' : ''}</button>`;
+ return `<button class="gallery__thumb${i === 0 ? ' is-active' : ''}${isVid ? ' gallery__thumb--play' : ''}" data-src="${esc(it.src)}" data-poster="${esc(isVid ? (it.poster || '') : '')}" data-gtype="${isVid ? 'video' : 'img'}"${isVid ? ' aria-label="Voir en mouvement"' : ''}><img aria-hidden="true" src="${esc(galThumb(thumbSrc))}" onerror="this.onerror=null;this.src='${esc(thumbSrc)}'" alt="" loading="lazy" width="76" height="100" decoding="async">${isVid ? '<span class="gallery__play-icon" aria-hidden="true"></span>' : ''}</button>`;
  }).join('');
  $('#galThumbs').onclick = (e) => {
  const b = e.target.closest('.gallery__thumb'); if (!b) return;
@@ -2348,7 +2354,7 @@
  $('#galThumbs').innerHTML = items.map((it, i) => {
  const isVid = it.type === 'video';
  const thumbSrc = isVid ? (it.poster || g[0] || it.src) : it.src;
- return `<button class="gallery__thumb${i === 0 ? ' is-active' : ''}${isVid ? ' gallery__thumb--play' : ''}" data-src="${esc(it.src)}" data-poster="${esc(isVid ? (it.poster || '') : '')}" data-gtype="${isVid ? 'video' : 'img'}"${isVid ? ' aria-label="Voir en mouvement"' : ''}><img aria-hidden="true" src="${esc(thumbSrc)}" alt="" loading="lazy" width="76" height="100" decoding="async">${isVid ? '<span class="gallery__play-icon" aria-hidden="true"></span>' : ''}</button>`;
+ return `<button class="gallery__thumb${i === 0 ? ' is-active' : ''}${isVid ? ' gallery__thumb--play' : ''}" data-src="${esc(it.src)}" data-poster="${esc(isVid ? (it.poster || '') : '')}" data-gtype="${isVid ? 'video' : 'img'}"${isVid ? ' aria-label="Voir en mouvement"' : ''}><img aria-hidden="true" src="${esc(galThumb(thumbSrc))}" onerror="this.onerror=null;this.src='${esc(thumbSrc)}'" alt="" loading="lazy" width="76" height="100" decoding="async">${isVid ? '<span class="gallery__play-icon" aria-hidden="true"></span>' : ''}</button>`;
  }).join('');
  $('#galThumbs').hidden = items.length <= 1;
  }
