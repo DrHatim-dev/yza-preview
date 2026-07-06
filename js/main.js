@@ -2564,6 +2564,11 @@
  variantWrap.classList.remove('option--size-rail');
  }
 
+ // Product description sits directly on top of the Add-to-cart button (client request):
+ // move the editorial story block to just before .option--add, after the size selector.
+ { const _story = $('#productStory'); const _addBtn = $('#pAdd'); const _add = _addBtn && _addBtn.closest('.option--add');
+   if (_story && _add && _add.parentNode) _add.parentNode.insertBefore(_story, _add); }
+
  const detailRows = [];
  // SKU intentionally hidden from customers (client request) — kept in data for internal use.
  if (p.color) detailRows.push(`<strong>${t.t('pp.color')}:</strong> ${esc(t.pick(p.color))}`);

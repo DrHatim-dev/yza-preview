@@ -5,10 +5,16 @@
 (function () {
   'use strict';
   if (!document || !document.body) return;
-  if (document.body.dataset.page !== 'home') return;
+  // Runs on every discovery page (home, collections, product, story pages) so it greets a
+  // visitor whatever page they land on — but NEVER interrupts a purchase: skip the cart /
+  // checkout / order-confirmation flow.
+  var NOPE = { checkout: 1, cart: 1, panier: 1, order: 1, confirmation: 1, merci: 1, account: 1, compte: 1 };
+  if (NOPE[document.body.dataset.page]) return;
 
   var KEY = 'yza_promo10_v1';
-  try { if (localStorage.getItem(KEY)) return; } catch (e) { /* private mode: still show */ }
+  // Session-scoped (not once-forever): it greets every fresh visit to the site, yet won't
+  // re-pop while the visitor keeps browsing within the same session.
+  try { if (sessionStorage.getItem(KEY)) return; } catch (e) { /* private mode: still show */ }
 
   var CODE = 'YZA10';
   var IMG = 'assets/hero/la-sculpture-lifestyle.jpg';
@@ -71,8 +77,8 @@
     + '.yzapop__h b{display:block;font-weight:500;font-size:clamp(3rem,7vw,4.4rem);}'
     + '.yzapop__h span{display:block;font-size:clamp(1.2rem,2.4vw,1.7rem);letter-spacing:.01em;margin-top:.15em;}'
     + '.yzapop__f{display:flex;flex-direction:column;gap:12px;margin:6px 0 0;}'
-    + '.yzapop__f input{font-family:var(--font-body,"Jost",sans-serif);font-size:15px;color:#1f1f1f;background:transparent;'
-    + 'border:1px solid rgba(31,31,31,.35);padding:14px 16px;width:100%;border-radius:0;outline:none;transition:border-color .2s;}'
+    + '.yzapop__f input{font-family:var(--font-body,"Jost",sans-serif);font-size:16px;color:#1f1f1f;background:transparent;'
+    + 'border:1px solid rgba(31,31,31,.35);padding:14px 16px;width:100%;border-radius:0;outline:none;transition:border-color .2s;-webkit-appearance:none;}'
     + '.yzapop__f input:focus{border-color:#1f1f1f;}'
     + '.yzapop__f input.is-bad{border-color:#c0392b;}'
     + '.yzapop__btn{font-family:var(--font-body,"Jost",sans-serif);text-transform:uppercase;letter-spacing:.18em;font-size:12px;'
@@ -89,8 +95,21 @@
     + '.yzapop__ok p{font-size:14px;line-height:1.6;color:#4a463f;margin:0;}'
     + '.yzapop__code{display:inline-block;font-family:var(--font-body,"Jost",sans-serif);letter-spacing:.14em;font-weight:600;'
     + 'color:#de733d;border:1px dashed #de733d;padding:4px 12px;margin:2px 2px;}'
-    + '@media(max-width:640px){.yzapop{flex-direction:column;max-height:90vh;}.yzapop__img{flex-basis:auto;min-height:150px;height:26vh;}'
-    + '.yzapop__body{padding:26px 22px 30px;}}';
+    + '@media(max-width:640px){'
+    + '.yzapop-ov{padding:12px;align-items:center;}'
+    + '.yzapop{flex-direction:column;width:100%;max-width:420px;max-height:94vh;}'
+    + '.yzapop__img{flex-basis:auto;min-height:118px;height:19vh;}'
+    + '.yzapop__body{padding:24px 20px 26px;justify-content:flex-start;overflow-y:auto;}'
+    + '.yzapop__ey{font-size:10.5px;letter-spacing:.2em;margin-bottom:10px;}'
+    + '.yzapop__h{margin-bottom:16px;}'
+    + '.yzapop__h b{font-size:clamp(2.4rem,12vw,3.1rem);}'
+    + '.yzapop__h span{font-size:clamp(1.05rem,4.6vw,1.3rem);}'
+    + '.yzapop__f{gap:10px;}'
+    + '.yzapop__f input{padding:13px 14px;}'
+    + '.yzapop__btn{padding:15px;}'
+    + '.yzapop__fine{font-size:11px;margin-top:12px;}'
+    + '.yzapop__x{width:42px;height:42px;top:4px;font-size:30px;' + (rtl ? 'left' : 'right') + ':4px;}'
+    + '}';
 
   var img = '<div class="yzapop__img" style="background-image:url(' + IMG + ')" role="img" aria-label="YZA"></div>';
   var form = ''
@@ -118,10 +137,11 @@
   style.textContent = css;
 
   var opened = false, done = false;
-  function remember() { try { localStorage.setItem(KEY, String(Date.now())); } catch (e) {} }
+  function remember() { try { sessionStorage.setItem(KEY, '1'); } catch (e) {} }
   function open() {
     if (opened || done) return;
     opened = true;
+    remember(); // mark shown as soon as it opens, so it never double-pops on in-session navigation
     document.head.appendChild(style);
     document.body.appendChild(ov);
     void ov.offsetWidth; // force an initial frame so the enter transition animates (rAF is throttled in bg tabs)
@@ -174,8 +194,9 @@
     });
   });
 
-  // Trigger: whichever comes first — 7s dwell, 45% scroll, or desktop exit-intent.
-  var t = setTimeout(open, 7000);
+  // Trigger: whichever comes first — a short dwell so it reliably greets every visit,
+  // plus 45% scroll and desktop exit-intent as accelerators.
+  var t = setTimeout(open, 3200);
   function onScroll() {
     var sc = window.scrollY || document.documentElement.scrollTop || 0;
     var h = (document.documentElement.scrollHeight - window.innerHeight) || 1;
