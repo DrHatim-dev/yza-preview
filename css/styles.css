@@ -1162,10 +1162,30 @@ body[data-page="home"] .girls-feed-section { margin-top: var(--space-7); }
 .brand-hero__cap { align-self: center; justify-self: center; display: grid; gap: var(--space-4); justify-items: center; text-align: center; max-width: 560px; padding: clamp(3rem, 8vw, 6rem) clamp(1.5rem, 5vw, 4rem); }
 .brand-hero__title { font-family: var(--font-serif); font-weight: 400; font-size: clamp(2rem, 4.2vw, 3.4rem); line-height: 1.08; margin: 0; text-wrap: balance; }
 .brand-hero__sub { color: var(--color-muted); letter-spacing: var(--tracking-wide); text-transform: uppercase; font-size: var(--fs-xs); margin: 0; }
+
+/* Overlay variant (home): one full-bleed video with the title laid over it at the
+   bottom, on a soft dark scrim for legibility — the Jacquemus hero pattern. */
+.brand-hero--overlay { display: block; position: relative; background: #16130f; }
+.brand-hero--overlay .brand-hero__media { position: relative; width: 100%; height: min(88vh, 156vw); max-height: 88vh; }
+.brand-hero--overlay .brand-hero__video { object-position: center 30%; }
+.brand-hero--overlay .brand-hero__cap {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; max-width: none; align-self: end;
+  padding: clamp(4rem, 14vw, 8rem) clamp(1.5rem, 6vw, 4rem) clamp(1.75rem, 5vw, 3rem);
+  gap: var(--space-2); color: #fff; pointer-events: none;
+  background: linear-gradient(to top, rgba(15,12,9,0.60) 0%, rgba(15,12,9,0.28) 45%, rgba(15,12,9,0) 100%);
+}
+.brand-hero--overlay .brand-hero__cap a { pointer-events: auto; }
+.brand-hero--overlay .brand-hero__title { color: #fff; }
+.brand-hero--overlay .brand-hero__sub { color: rgba(255,255,255,0.85); }
+.brand-hero--overlay .brand-hero__cap .link-underline { color: #fff; }
+.brand-hero--overlay .brand-hero__cap .link-underline:hover { color: rgba(255,255,255,0.72); }
+
 @media (max-width: 860px) {
- .brand-hero { grid-template-columns: 1fr; }
- .brand-hero__media { max-height: 74vh; }
- .brand-hero__cap { padding-block: var(--space-10); }
+ .brand-hero:not(.brand-hero--overlay) { grid-template-columns: 1fr; }
+ .brand-hero:not(.brand-hero--overlay) .brand-hero__media { max-height: 74vh; }
+ .brand-hero:not(.brand-hero--overlay) .brand-hero__cap { padding-block: var(--space-10); }
+ .brand-hero--overlay .brand-hero__media { height: min(82vh, 150vw); max-height: 82vh; }
+ .brand-hero--overlay .brand-hero__cap { padding: clamp(3rem, 22vw, 6rem) clamp(1.25rem, 6vw, 2rem) clamp(1.6rem, 7vw, 2.5rem); }
 }
 
 /* Split variant: real SS26 photo beside the orange panel (client: "mettre une image, ça donne pas envie comme ça"). */
