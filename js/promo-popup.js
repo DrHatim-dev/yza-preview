@@ -17,7 +17,7 @@
   try { var last = parseInt(localStorage.getItem(KEY) || '0', 10); if (last && (Date.now() - last) < ONCE_PER) return; } catch (e) { /* private mode: still show */ }
 
   var CODE = 'YZA10';
-  var IMG = 'assets/hero/la-sculpture-lifestyle.jpg';
+  var IMG = 'assets/hero/popup-pink-scarf.jpg?v=20260707g';
   var lang = (window.YZA && YZA.i18n && YZA.i18n.lang) || document.documentElement.getAttribute('lang') || 'fr';
 
   var COPY = {
