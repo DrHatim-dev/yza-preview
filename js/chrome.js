@@ -66,8 +66,8 @@ const ICON = {
  close: '<svg viewBox="0 0 24 24"><path d="M6 6L10.25 10.25M18 6L13.75 10.25M6 18L10.25 13.75M18 18L13.75 13.75"/><path d="M12 8.5L15.5 12L12 15.5L8.5 12Z"/></svg>',
  burger: '<svg viewBox="0 0 24 24"><path d="M3 6h18M3 12h18M3 18h18"/></svg>',
  question: '<svg viewBox="0 0 24 24"><path d="M5 6.5A5.5 5.5 0 0 1 10.5 1h3A5.5 5.5 0 0 1 19 6.5v3A5.5 5.5 0 0 1 13.5 15H10l-5 4v-4.6A5.5 5.5 0 0 1 5 9.5z"/><path d="M10.2 6.4a2.1 2.1 0 0 1 3.9 1.1c0 1.7-2.1 1.7-2.1 3.2"/><path d="M12 13.2h.01"/></svg>',
- // Lucide MessageCircle, sourced from lucide.dev, kept inline so the lead CTA is neutral and fast.
- message: '<svg viewBox="0 0 24 24"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg>',
+ // Yaz (ⵣ) — the Amazigh "free soul" mark; the lead-chat CTA reads as "reach the women behind YZA".
+ message: '<svg viewBox="0 0 24 24"><path d="M5.5 7.5L12 11.2M18.5 7.5L12 11.2M5.5 20L12 16.5M18.5 20L12 16.5M12 11.2V16.5"/><circle cx="12" cy="5" r="1.7"/></svg>',
 };
 
 const logoImg = (src, alt, width, height) => `<img src="${src}" alt="${alt}" loading="lazy" width="${width}" height="${height}" decoding="async">`;

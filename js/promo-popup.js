@@ -130,7 +130,7 @@
   ov.setAttribute('aria-modal', 'true');
   ov.setAttribute('aria-label', c.big1 + ' ' + c.big2);
   if (rtl) ov.setAttribute('dir', 'rtl');
-  ov.innerHTML = '<div class="yzapop"><button type="button" class="yzapop__x" aria-label="' + esc(c.close) + '">&times;</button>'
+  ov.innerHTML = '<div class="yzapop"><button type="button" class="yzapop__x" aria-label="' + esc(c.close) + '"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" style="stroke:currentColor;fill:none;stroke-width:1.3"><path d="M6 6L10.25 10.25M18 6L13.75 10.25M6 18L10.25 13.75M18 18L13.75 13.75"/><path d="M12 8.5L15.5 12L12 15.5L8.5 12Z"/></svg></button>'
     + img + '<div class="yzapop__body">' + form + '</div></div>';
 
   var style = document.createElement('style');

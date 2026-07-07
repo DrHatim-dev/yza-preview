@@ -1209,7 +1209,7 @@ body[data-page="home"] .girls-feed-section { margin-top: var(--space-7); }
     position: relative; width: auto; height: 100%; max-height: none; overflow: hidden;
   }
   .brand-hero--overlay .brand-hero__video {
-    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 25%;
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 50%;
   }
   .brand-hero--overlay .brand-hero__cap {
     position: static; inset: auto; z-index: auto;

@@ -291,16 +291,17 @@ YZA.serviceStripIcons = {
 // from `.service-card__icon svg` in styles.css, so they inherit the ink colour and
 // stay crisp at any scale. Visual order on the strip matches the brand-values screen.
 YZA.serviceStripGlyphs = {
- // vertical totem
- shipping: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6V27"/><path d="M26 11H38"/><path d="M32 18L25 24M32 18L39 24"/><path d="M32 27L41 36L32 45L23 36Z"/><path d="M32 45V50M32 50L24 58M32 50L40 58"/><path d="M21 58H27M37 58H43"/></svg>',
- // four-fold cross-star
- returns: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 24L40 32L32 40L24 32Z"/><path d="M32 24V8M27 12H37"/><path d="M32 40V56M27 52H37"/><path d="M24 32H8M12 27V37"/><path d="M40 32H56M52 27V37"/><path d="M40 24L45 19M24 24L19 19M40 40L45 45M24 40L19 45"/><path d="M32 29L35 32L32 35L29 32Z"/></svg>',
- // woven band
- payment: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 20L44 32L32 44L20 32Z"/><path d="M32 25V39M25 32H39"/><path d="M18 23L9 32L18 41"/><path d="M46 23L55 32L46 41"/><path d="M26 12V16M32 11V16M38 12V16"/><path d="M26 48V52M32 48V53M38 48V52"/></svg>',
+ // Amazigh chevron — movement / livraison
+ shipping: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M16 24L32 40L48 24M16 36L32 52L48 36"/></svg>',
+ // Amazigh spiral — continuity / "réparée à vie"
+ returns: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M34 32L34.2 32.3L34.4 32.7L34.5 33.1L34.6 33.6L34.5 34.1L34.4 34.6L34.1 35.1L33.8 35.6L33.3 36.1L32.8 36.5L32.2 36.8L31.5 37L30.7 37.1L29.9 37.1L29.1 37L28.3 36.8L27.5 36.4L26.7 35.8L26 35.2L25.4 34.4L24.9 33.5L24.5 32.5L24.2 31.5L24.1 30.3L24.2 29.2L24.4 28L24.9 26.8L25.5 25.7L26.3 24.7L27.2 23.7L28.3 22.9L29.6 22.2L30.9 21.7L32.4 21.4L33.9 21.3L35.4 21.4L37 21.8L38.5 22.4L39.9 23.2L41.3 24.2L42.5 25.5L43.5 26.9L44.4 28.5L45 30.2L45.4 32L45.5 33.9L45.3 35.8L44.9 37.7L44.2 39.6L43.2 41.4L42 43.1L40.5 44.5L38.7 45.8L36.8 46.9L34.8 47.7L32.6 48.1L30.3 48.3L28 48.2L25.7 47.7L23.4 46.9L21.3 45.7L19.3 44.3L17.5 42.5L16 40.5L14.7 38.3L13.7 35.9L13.1 33.3L12.9 30.7L13 28L13.5 25.3L14.4 22.6L15.7 20.1L17.3 17.8L19.3 15.7L21.5 13.9L24.1 12.3L26.8 11.2L29.7 10.4L32.8 10.1L35.9 10.1L38.9 10.6L42 11.6L44.8 13L47.5 14.7L50 16.9L52.1 19.4L53.9 22.2L55.3 25.3L56.2 28.6L56.7 32L56.7 35.5L56.3 39L55.3 42.4L53.8 45.6"/></svg>',
+ // Amazigh diamond + cross (Clannu) — protection / paiement sécurisé
+ payment: '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6L58 32L32 58L6 32L32 6M32 17V47M17 32H47"/></svg>',
 };
-YZA.serviceStripGlyphs.limited = YZA.serviceStripGlyphs.payment;
-// open hand — signs "fait main" on the trust strip
-YZA.serviceStripGlyphs.handmade = '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M23 34V18a3 3 0 0 1 6 0v12"/><path d="M29 30V14a3 3 0 0 1 6 0v16"/><path d="M35 30V17a3 3 0 0 1 6 0v14"/><path d="M41 32V23a3 3 0 0 1 6 0v17c0 9-6 15-15 15-5 0-9-2-12-6l-8-11a3 3 0 0 1 5-4l4 4"/></svg>';
+// concentric diamond — éditions limitées / precious
+YZA.serviceStripGlyphs.limited = '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M32 6L58 32L32 58L6 32L32 6M32 19L45 32L32 45L19 32L32 19"/></svg>';
+// Yaz (ⵣ) — the free soul; signs "fait main" (made by human hands)
+YZA.serviceStripGlyphs.handmade = '<svg viewBox="0 0 64 64" aria-hidden="true"><path d="M14 20L32 30M50 20L32 30M14 54L32 44M50 54L32 44M32 30V44"/><circle cx="32" cy="13" r="3.5"/></svg>';
 YZA.serviceStripGlyph = (name) => YZA.serviceStripGlyphs[name] || YZA.serviceStripGlyphs.returns;
 
 YZA.serviceCard = (key, className = 'service-card') => {
