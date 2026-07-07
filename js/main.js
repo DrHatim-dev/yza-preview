@@ -828,51 +828,51 @@
  offer.innerHTML = picks.map((p, i) => cardHTML(p, i, false, { used: usedHomeImg })).join('');
  }
 
- // Reviews — a single-quote carousel cycling through all the real reviews (verified + IG),
- // one featured pull-quote at a time, with prev/next + a gentle auto-advance.
+ // Reviews — THREE real reviews per page (verified ReviewXpo + Instagram), left-aligned,
+ // with prev/next arrows + a gentle auto-advance (client: "mieux d'en avoir 3 avec les flèches").
  const tg = $('#testimonialsGrid');
  if (tg) {
  tg.setAttribute('data-placeholder', 'reviews');
- tg.classList.add('reviews-editorial');
+ tg.classList.add('reviews-editorial', 'reviews-editorial--trio');
  const allReviews = YZA.testimonials || [];
- // strip trailing emoji/space so a giant serif pull-quote never ends on a broken 😍 / ❤️
+ // strip trailing emoji/space so a quote never ends on a broken 😍 / ❤️
  const EMOJI_END = /(?:️|[☀-➿]|[⬀-⯿]|\uD83C[\uDC00-\uDFFF]|\uD83D[\uDC00-\uDFFF]|\uD83E[\uDD00-\uDFFF]|\s)+$/;
  const clean = (s) => String(s || '').trim().replace(EMOJI_END, '').trim();
  const isVerified = (r) => !!(r.place && r.place.fr === 'Avis vérifié');
- const heroMark = '<span class="reviews-hero__mark" aria-hidden="true">“</span>';
- const heroStars = `<span class="reviews-hero__stars">${stars(5, t.t('social.rating'))}</span>`;
- const heroBody = (r) => `<blockquote class="reviews-hero__quote">${esc(clean(t.pick(r.text)))}</blockquote>
- <span class="reviews-hero__rule" aria-hidden="true"></span>
- <figcaption class="reviews-hero__by"><span class="reviews-hero__name">${esc(r.name)}</span><span class="reviews-hero__src${isVerified(r) ? ' is-verified' : ''}">${esc((r.place && t.pick(r.place)) || '')}</span></figcaption>`;
- const heroFig = document.createElement('figure');
- heroFig.className = 'reviews-hero reviews-hero--carousel';
- let idx = 0;
+ const PER = 3;
+ const pages = Math.max(1, Math.ceil(allReviews.length / PER));
+ let page = 0;
  let updateCount = () => {};
- const draw = () => { heroFig.innerHTML = heroMark + heroStars + heroBody(allReviews[idx]); updateCount(); };
- const go = (dir) => {
- heroFig.classList.add('is-rotating');
- setTimeout(() => { idx = (idx + dir + allReviews.length) % allReviews.length; draw(); heroFig.classList.remove('is-rotating'); }, 200);
+ const card = (r) => `<figure class="review-card">
+ <span class="review-card__stars" aria-hidden="true">${stars(5, t.t('social.rating'))}</span>
+ <blockquote class="review-card__quote">${esc(clean(t.pick(r.text)))}</blockquote>
+ <figcaption class="review-card__by"><span class="review-card__name">${esc(r.name)}</span><span class="review-card__src${isVerified(r) ? ' is-verified' : ''}">${esc((r.place && t.pick(r.place)) || '')}</span></figcaption>
+ </figure>`;
+ const draw = () => {
+ const slice = allReviews.slice(page * PER, page * PER + PER);
+ tg.innerHTML = '<div class="reviews-trio">' + slice.map(card).join('') + '</div>';
+ updateCount();
  };
- tg.innerHTML = '';
- if (allReviews.length) { draw(); tg.appendChild(heroFig); }
- // prev · counter · next controls (replace the old "voir plus" button) + auto-advance
+ const go = (dir) => { page = (page + dir + pages) % pages; draw(); };
+ if (allReviews.length) draw();
+ // prev · counter · next controls + auto-advance by page
  const wrap = $('.reviews-more-wrap');
  let timer = null;
  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
  const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
- const start = () => { stop(); if (!reduce && allReviews.length > 1) timer = setInterval(() => go(1), 6000); };
- if (wrap && allReviews.length > 1) {
- wrap.innerHTML = '<div class="reviews-nav"><button type="button" class="reviews-nav__btn" data-dir="-1" aria-label="Avis précédent">‹</button><span class="reviews-nav__count" aria-hidden="true"></span><button type="button" class="reviews-nav__btn" data-dir="1" aria-label="Avis suivant">›</button></div>';
+ const start = () => { stop(); if (!reduce && pages > 1) timer = setInterval(() => go(1), 7000); };
+ if (wrap && pages > 1) {
+ wrap.innerHTML = '<div class="reviews-nav"><button type="button" class="reviews-nav__btn" data-dir="-1" aria-label="Avis précédents">‹</button><span class="reviews-nav__count" aria-hidden="true"></span><button type="button" class="reviews-nav__btn" data-dir="1" aria-label="Avis suivants">›</button></div>';
  const counter = wrap.querySelector('.reviews-nav__count');
- updateCount = () => { counter.textContent = (idx + 1) + ' / ' + allReviews.length; };
+ updateCount = () => { counter.textContent = (page + 1) + ' / ' + pages; };
  updateCount();
  wrap.querySelectorAll('.reviews-nav__btn').forEach((b) => b.addEventListener('click', () => { go(parseInt(b.dataset.dir, 10)); start(); }));
  } else if (wrap) { wrap.hidden = true; }
  start();
- heroFig.addEventListener('mouseenter', stop);
- heroFig.addEventListener('mouseleave', start);
- heroFig.addEventListener('focusin', stop);
- heroFig.addEventListener('focusout', start);
+ tg.addEventListener('mouseenter', stop);
+ tg.addEventListener('mouseleave', start);
+ tg.addEventListener('focusin', stop);
+ tg.addEventListener('focusout', start);
  }
  const rs = $('#ratingSummary');
  if (rs) {

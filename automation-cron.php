@@ -115,8 +115,8 @@ function yza_recovery_copy($step, $lang, $first, $totalTxt, $itemsHtml, $cartUrl
       ? "You left us mid-sentence. It happens &mdash; a tab closes, a child calls, a wifi hiccup. Good news: your cart is exactly where you left it."
       : "Vous nous avez laissées en plein milieu d'une phrase. Ça arrive. Bonne nouvelle : votre panier est toujours là, exactement comme vous l'avez laissé.";
     $reassure = $en
-      ? "And if you were hesitating: pay however you like (cash on delivery, bank transfer or PayPal), free Morocco delivery from 500 DH, and every piece is guaranteed &mdash; 30 days to change your mind, repaired for life at the atelier."
-      : "Et si vous hésitiez : payez comme vous voulez (à la livraison, par virement ou PayPal), livraison Maroc offerte dès 500 DH, et chaque pièce est garantie &mdash; 30 jours pour changer d'avis, réparée à vie à l'atelier.";
+      ? "And if you were hesitating: cash on delivery, bank transfer or PayPal, free Morocco delivery from 500 DH, and every piece is guaranteed &mdash; repaired for life at the atelier, and 30 days to change your mind."
+      : "Et si vous hésitiez : paiement à la livraison, par virement ou PayPal, livraison Maroc offerte dès 500 DH, et chaque pièce est garantie &mdash; réparée à vie à l'atelier, et 30 jours pour changer d'avis.";
     $cta = $en ? 'Pick up where you left off' : 'Reprendre ma commande';
   } elseif ($step === 2) {
     $subject = $en ? ($first ? $first . ', ' : '') . "this one won't come back" : ($first ? $first . ', ' : '') . 'celle-ci ne reviendra pas';

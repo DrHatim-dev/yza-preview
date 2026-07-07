@@ -2502,6 +2502,18 @@ body[data-page="faq"] .faq-contact a { color: var(--color-fg); border-bottom: 1p
 .reviews-hero__src { font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-muted); }
 .reviews-hero__src.is-verified { color: var(--accent); border: 1px solid var(--accent); border-radius: 999px; padding: 0.28em 0.75em; }
 
+/* 3-up review cards (paginated by the arrows) — left-aligned, in the brand paper card. */
+.reviews-editorial--trio { margin-top: var(--space-8); }
+.reviews-trio { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); align-items: stretch; }
+.review-card { display: flex; flex-direction: column; gap: var(--space-3); background: var(--paper-card); padding: clamp(1.5rem, 2.4vw, 2.25rem); text-align: left; }
+.review-card__stars .stars { color: var(--accent); font-size: var(--fs-sm); letter-spacing: 0.1em; }
+.review-card__quote { font-family: var(--font-serif); font-weight: 400; font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.42; color: var(--color-fg); margin: 0; text-wrap: pretty; flex: 1; }
+.review-card__by { display: flex; flex-direction: column; gap: 4px; margin-top: auto; }
+.review-card__name { font-family: var(--font-display); text-transform: uppercase; letter-spacing: 0.14em; font-size: 0.8rem; color: var(--color-fg); }
+.review-card__src { font-family: var(--font-display); font-size: 0.62rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-muted); }
+.review-card__src.is-verified { color: var(--accent); align-self: flex-start; border: 1px solid var(--accent); border-radius: 999px; padding: 0.28em 0.75em; }
+@media (max-width: 860px) { .reviews-trio { grid-template-columns: 1fr; gap: var(--space-3); } }
+
 .reviews-murmur {
  max-width: 68ch;
  margin: var(--space-12) auto 0;
@@ -3472,6 +3484,13 @@ body[data-page="home"] .home-intro .section-head,
 body[data-page="home"] .home-cats .section-head { display: block; }
 /* the category grid goes full-bleed on home, but its heading text keeps a gutter */
 body[data-page="home"] .home-cats .section-head { padding-inline: var(--gutter); }
+/* YZA Girls home section keeps its title visible too (client: "titre YZA GIRLS ici"). */
+body[data-page="home"] .girls-feed-section .section-head { display: block; padding-inline: var(--gutter); }
+/* FAQ preview: two-line questions read left, with room — not cramped/centred. */
+.faq-item .accordion__btn { align-items: flex-start; text-align: left; line-height: 1.4; gap: var(--space-4); }
+.faq-item .accordion__btn .plus { flex: none; margin-top: 0.1em; }
+/* YZA Girls CTA pair: real breathing room around the two buttons. */
+body[data-page="home"] .girls-feed-section .section-cta--duo { margin-block: var(--space-7) var(--space-2); gap: var(--space-3) var(--space-4); }
 
 /* Everything full width on home — galleries and grids break out of the gutter. */
 body[data-page="home"] .container-wide { max-width: none; padding-inline: 0; }
@@ -3546,7 +3565,7 @@ body.is-scroll-down .header, body.is-scroll-down .header.is-stuck { background: 
 
 /* ===== Home intro — visible brand statement under the split hero ===== */
 .home-intro { padding-block: clamp(2.5rem, 5vw, 4rem) clamp(1rem, 2vw, 1.5rem); }
-.home-intro__inner { max-width: 62ch; margin-inline: auto; text-align: center; }
+.home-intro__inner { max-width: 62ch; margin-inline: auto; text-align: center; padding-inline: clamp(1.5rem, 6vw, 3rem); box-sizing: border-box; }
 .home-intro__title { font-size: var(--fs-2xl); line-height: 1.1; margin-top: 0.5rem; text-wrap: balance; text-align: center; }
 .home-intro__lede { color: var(--color-muted); font-size: var(--fs-md); line-height: var(--leading-body); max-width: 52ch; margin: 0.9rem auto 0; text-align: center; }
 

@@ -212,8 +212,8 @@ YZA.serviceFeatures = [
  key: 'returns',
  icon: 'returns',
  title: { fr: "Garanti", en: "Guaranteed", es: "Garantizado", tr: "Garantili", ar: "مضمون" },
- text: { fr: "30 jours pour changer d'avis — retour non porté, dans son état d'origine. Et vos pièces se réparent à vie à l'atelier de Guéliz.", en: "30 days to change your mind — returned unworn, in original condition. And your pieces are repaired for life at the Guéliz atelier.", es: "30 días para cambiar de opinión — devolución sin usar, en estado original. Y tus piezas se reparan de por vida en el atelier de Guéliz.", tr: "Fikrinizi değiştirmek için 30 gün — kullanılmamış, orijinal halinde iade. Ve parçalarınız Guéliz atölyesinde ömür boyu tamir edilir.", ar: "30 يومًا لتغيّري رأيك — إرجاع غير مستعمل وبحالته الأصلية. وقطعك تُصلَّح مدى الحياة في أتيليه كليز." },
- short: { fr: "30 j + à vie", en: "30 days + for life", es: "30 días + de por vida", tr: "30 gün + ömür boyu", ar: "30 يومًا + مدى الحياة" },
+ text: { fr: "Réparées à vie à l'atelier de Guéliz — une pièce YZA se répare, elle ne se jette pas. Et 30 jours pour changer d'avis : retour non porté, dans son état d'origine.", en: "Repaired for life at the Guéliz atelier — a YZA piece is mended, never thrown away. And 30 days to change your mind: returned unworn, in original condition.", es: "Reparadas de por vida en el atelier de Guéliz — una pieza YZA se repara, no se tira. Y 30 días para cambiar de opinión: devolución sin usar, en estado original.", tr: "Guéliz atölyesinde ömür boyu onarım — bir YZA parçası tamir edilir, atılmaz. Ve fikrinizi değiştirmek için 30 gün: kullanılmamış, orijinal halinde iade.", ar: "تُصلَّح مدى الحياة في أتيليه كليز — قطعة YZA تُصلَّح ولا تُرمى. و30 يومًا لتغيّري رأيك: إرجاع غير مستعمل وبحالته الأصلية." },
+ short: { fr: "À vie + 30 j", en: "For life + 30 days", es: "De por vida + 30 días", tr: "Ömür boyu + 30 gün", ar: "مدى الحياة + 30 يومًا" },
  },
  {
  key: 'handmade',
@@ -226,8 +226,8 @@ YZA.serviceFeatures = [
  key: 'payment',
  icon: 'payment',
  title: { fr: 'Paiement sécurisé', en: 'Secure payment', es: 'Pago seguro', tr: 'Guvenli odeme', ar: 'دفع آمن' },
- text: { fr: 'Réglez comme vous voulez : paiement à la livraison, virement bancaire, PayPal ou carte via PayPal. Plein de moyens sûrs — vous choisissez au moment de commander.', en: 'Pay however you like: cash on delivery, bank transfer, PayPal or card via PayPal. Plenty of secure ways — you choose at checkout.', es: 'Paga como quieras: contra entrega, transferencia bancaria, PayPal o tarjeta vía PayPal. Muchas opciones seguras — eliges al finalizar la compra.', tr: 'Dilediğiniz gibi ödeyin: kapıda ödeme, banka havalesi, PayPal veya PayPal ile kart. Bir sürü güvenli yol — sipariş sırasında siz seçersiniz.', ar: 'ادفعي كما تشائين: الدفع عند الاستلام، تحويل بنكي، باي بال أو بطاقة عبر باي بال. وسائل آمنة كثيرة — تختارين عند الطلب.' },
- short: { fr: 'Plein de moyens', en: 'Many ways to pay', es: 'Muchos métodos', tr: 'Çok yöntem', ar: 'وسائل متعددة' },
+ text: { fr: 'Paiement à la livraison, virement bancaire, ou PayPal (carte incluse).', en: 'Cash on delivery, bank transfer, or PayPal (card included).', es: 'Contra entrega, transferencia bancaria o PayPal (tarjeta incluida).', tr: 'Kapıda ödeme, banka havalesi veya PayPal (kart dahil).', ar: 'الدفع عند الاستلام، تحويل بنكي، أو باي بال (تشمل البطاقة).' },
+ short: { fr: 'À la livraison, virement, PayPal', en: 'COD, transfer, PayPal', es: 'Contra entrega, transf., PayPal', tr: 'Kapıda, havale, PayPal', ar: 'عند الاستلام، تحويل، باي بال' },
  },
  {
  key: 'limited',
