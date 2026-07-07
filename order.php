@@ -15,6 +15,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   exit;
 }
 
+/* Fail-open anti-abuse: cap bursts from a single IP so this endpoint can't be
+   scripted to mail-bomb arbitrary addresses or spam fake Woo orders. A real buyer
+   places one order; 30/min/IP never touches them. */
+require_once __DIR__ . '/yza-throttle.php';
+if (!yza_throttle('order', 30, 60)) { http_response_code(429); echo json_encode(array('ok' => false, 'error' => 'rate')); exit; }
+
 $raw = file_get_contents('php://input');
 if (strlen($raw) > 20000) { http_response_code(413); echo json_encode(array('ok' => false)); exit; }
 $data = json_decode($raw, true);
@@ -61,7 +67,18 @@ $method = isset($order['methodLabel']) ? $clean($order['methodLabel'], 60) : '';
 $number = isset($order['number']) ? $clean($order['number'], 24) : '';
 $buyer  = isset($ship['email']) ? trim((string)$ship['email']) : '';
 
-$subject = 'YZA — nouvelle commande' . ($number ? ' ' . $number : '') . ($total !== '' ? ' (' . $total . ' DH)' : '') . ($method ? ' · ' . $method : '') . ' — ' . $name;
+/* Server-side price sanity check (NON-BLOCKING). Recompute the expected items total from
+   the SEO price catalogue; if the client-sent total is >10% under it, only FLAG it in
+   Nawal's subject line. The order is never rejected — payment is confirmed by hand on
+   WhatsApp. Skips silently unless EVERY item was found in the catalogue (avoids false
+   alarms on size-variant handles that aren't in products-seo.json). */
+$priceFlag = '';
+$expectedDh = yza_expected_total(isset($order['items']) && is_array($order['items']) ? $order['items'] : array());
+if ($expectedDh > 0 && $total !== '' && intval($total) < ($expectedDh * 0.9)) {
+  $priceFlag = ' [!] PRIX A VERIFIER (attendu ~' . $expectedDh . ' DH avant remises)';
+}
+
+$subject = 'YZA — nouvelle commande' . ($number ? ' ' . $number : '') . ($total !== '' ? ' (' . $total . ' DH)' : '') . ($method ? ' · ' . $method : '') . ' — ' . $name . $priceFlag;
 $textBody = (string)$data['text'];
 
 $host = isset($_SERVER['HTTP_HOST']) ? preg_replace('/[^a-z0-9.\-]/i', '', $_SERVER['HTTP_HOST']) : 'yza-shop.com';
@@ -251,6 +268,27 @@ function yza_seo_image_map() {
     if (is_array($j)) { foreach ($j as $h => $v) { if (isset($v['image'])) { $map[$h] = $v['image']; } } }
   }
   return $map;
+}
+
+/* Expected items total (whole DH) from the SEO price catalogue, for the non-blocking
+   server-side sanity check. Returns 0 (= skip the check) unless EVERY item resolves to a
+   catalogue price, so unknown/size-variant handles never trigger a false "tampered" flag. */
+function yza_expected_total($items) {
+  $raw = @file_get_contents(__DIR__ . '/data/products-seo.json');
+  if ($raw === false) { return 0; }
+  $j = json_decode($raw, true);
+  if (!is_array($j)) { return 0; }
+  $real = array_values(array_filter($items, 'is_array'));
+  if (!$real) { return 0; }
+  $sum = 0; $matched = 0;
+  foreach ($real as $it) {
+    $h = isset($it['handle']) ? (string) $it['handle'] : '';
+    if ($h !== '' && isset($j[$h]['price'])) {
+      $sum += intval($j[$h]['price']) * max(1, intval(isset($it['qty']) ? $it['qty'] : 1));
+      $matched++;
+    }
+  }
+  return ($matched === count($real)) ? $sum : 0;
 }
 
 /* DH integer -> "1 234 DH" (thin space thousands, no decimals — YZA prices are whole DH). */

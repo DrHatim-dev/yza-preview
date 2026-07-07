@@ -1,6 +1,9 @@
 # B2B wholesale prices - never expose publicly
 js/b2b-data.js
 
+# Runtime private data store + the cron secret — NEVER commit (repo is public)
+.private/
+
 # Internal working files - not part of the public site
 data/*
 !data/

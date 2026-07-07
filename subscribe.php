@@ -9,6 +9,11 @@ header('X-Content-Type-Options: nosniff');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); echo json_encode(array('ok' => false, 'error' => 'method')); exit; }
 
+/* Fail-open anti-abuse: cap bursts from a single IP so bots can't script mass
+   welcome-email sends / grow the subscriber file. Genuine visitors subscribe once. */
+require_once __DIR__ . '/yza-throttle.php';
+if (!yza_throttle('subscribe', 12, 60)) { http_response_code(429); echo json_encode(array('ok' => false, 'error' => 'rate')); exit; }
+
 $raw = file_get_contents('php://input');
 if (strlen($raw) > 4000) { http_response_code(413); echo json_encode(array('ok' => false)); exit; }
 $data = json_decode($raw, true);
@@ -80,7 +85,7 @@ function yza_welcome_email($lang, $name, $host, $code = '') {
     $paras = array(
       "YZA was born in Guéliz, inside a former 1940s bar that became our atelier &mdash; a few steps from the market. Today it's women who work here, from the first strand of raffia to the label sewn by hand. The whole house is female. A choice, not an accident.",
       "Nothing here is rushed. A basket bag can take three weeks &mdash; and you can tell. Raffia, doum palm, banana leaf, crochet: local materials, gestures you don't pick up in one summer.",
-      "The gentlest way in is a hand-crocheted raffia fruit charm &mdash; a pocket-sized postcard from Marrakesh, from 150 DH. Handmade, guaranteed, repaired for life at the atelier.",
+      "The gentlest way in is a hand-crocheted raffia fruit charm &mdash; a pocket-sized postcard from Marrakesh, from 100 DH. Handmade, guaranteed, repaired for life at the atelier.",
     );
     $cta = 'Discover the pieces';
     $ps = "A question, a colour in mind? We answer for real, on WhatsApp. That's how we work.";
@@ -92,7 +97,7 @@ function yza_welcome_email($lang, $name, $host, $code = '') {
     $paras = array(
       "YZA est né au Guéliz, dans un ancien bar des années 1940 devenu notre atelier &mdash; à quelques pas du marché. Aujourd'hui, ce sont des femmes qui y travaillent, du premier brin de raphia jusqu'à l'étiquette cousue main. Toute la maison est féminine. Un choix, pas un hasard.",
       "Ici, rien n'est pressé. Un sac panier peut prendre trois semaines &mdash; et ça se voit. Raphia, doum, feuille de bananier, crochet : des matières d'ici, des gestes qui ne s'apprennent pas en un été.",
-      "La façon la plus douce d'entrer dans la maison : un charm fruit en raphia, crocheté main &mdash; une carte postale de Marrakech en format poche, dès 150 DH. Fait main, garanti, réparé à vie à l'atelier.",
+      "La façon la plus douce d'entrer dans la maison : un charm fruit en raphia, crocheté main &mdash; une carte postale de Marrakech en format poche, dès 100 DH. Fait main, garanti, réparé à vie à l'atelier.",
     );
     $cta = 'Découvrir les pièces';
     $ps = "Une question, une couleur en tête ? On répond en vrai, sur WhatsApp. C'est comme ça qu'on travaille.";

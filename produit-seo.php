@@ -51,6 +51,12 @@ $shell = $rep('#<meta name="twitter:image" content="[^"]*"#', '<meta name="twitt
 $shell = $rep('#<link rel="alternate" hreflang="fr" href="[^"]*"#', '<link rel="alternate" hreflang="fr" href="' . $url . '"', $shell);
 $shell = $rep('#<link rel="alternate" hreflang="x-default" href="[^"]*"#', '<link rel="alternate" hreflang="x-default" href="' . $url . '"', $shell);
 $shell = $rep('#<h1 id="pName">[^<]*</h1>#', '<h1 id="pName">' . $name . '</h1>', $shell);
+/* Stamp the real price into the shell too, so crawlers / link previews / view-source
+   never see the "0 dh" hydration placeholder. JS still overwrites it identically. */
+if ($price !== null) {
+  $priceTxt = number_format($price, 0, ',', '.') . ' dh';
+  $shell = $rep('#<div class="product-info__price" id="pPrice">[^<]*</div>#', '<div class="product-info__price" id="pPrice">' . $e($priceTxt) . '</div>', $shell);
+}
 
 /* Product JSON-LD injected before </head> (single, truthful availability). */
 $ld = array(

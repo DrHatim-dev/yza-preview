@@ -134,6 +134,14 @@ ErrorDocument 404 /404.html
   Require all denied
 </DirectoryMatch>
 
+# Private data store (subscriber emails/phones, pending carts, rate-limit files).
+# Denied at the app level so protection travels with the repo — not only the host
+# panel's dot-path rule. Each stored file also opens with "<?php exit;" (belt-and-braces).
+<DirectoryMatch "\.private(/.*)?$">
+  Require all denied
+</DirectoryMatch>
+RedirectMatch 403 (?i)^/\.private(/|$)
+
 # Note: HTTPS is handled at the Hostinger panel level ("Force HTTPS").
 # A redirect rule is intentionally omitted here to avoid a loop if SSL
 # is still provisioning.

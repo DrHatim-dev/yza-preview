@@ -163,6 +163,7 @@
           field('country', 'co.ship.country', 'text', true, 'autocomplete="country-name"') +
           field('note', 'co.ship.note', 'textarea', false, T('co.ship.notePh')) +
         '</form>' +
+        upsellBlock() +
         '<div class="co-actions"><button type="button" class="btn btn--outline" data-back="cart">' + esc(T('co.back')) + '</button>' +
         '<button type="button" class="btn btn--solid" data-next="payment">' + esc(T('co.next')) + '</button></div>';
     }
@@ -476,6 +477,10 @@
       }
       var up = e.target.closest('[data-upsell-add]');
       if (up) {
+        // Preserve anything typed in the shipping form across the re-render — silently
+        // (no validation errors: the shopper is adding an item, not submitting yet).
+        var sf = root.querySelector('#coShipForm');
+        if (sf) { Array.prototype.forEach.call(sf.elements, function (el) { if (el.name) state.ship[el.name] = el.value.trim(); }); saveShip(); }
         YZA.cart.add(up.getAttribute('data-upsell-add'), '', 1, { source: 'checkout_cross_sell' });
         try { YZA.analytics && YZA.analytics.track('cross_sell_add', { handle: up.getAttribute('data-upsell-add'), source: 'checkout' }); } catch (e2) {}
         render(); return;

@@ -576,6 +576,11 @@ body.has-search-overlay { overflow: hidden; }
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 5px;
   width: 100vw; max-width: 100vw; margin-inline: calc(50% - 50vw); padding: 5px;
 }
+/* Collection grid: a small page gutter so card text + images are never glued to the
+   viewport edge (client: "texte collé à gauche"). Inner 5px gaps stay tight/editorial. */
+body[data-page="collections"] .product-grid:not(.collection-grid--bag-families) {
+  padding-inline: clamp(0.85rem, 2.6vw, 2.25rem);
+}
 .product-card { position: relative; display: block; min-width: 0; }
 .product-card__media { position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; background: var(--paper-card); border-radius: 0; margin: 0; }
 .product-card__media img { width: 100%; height: 100%; object-fit: cover; }

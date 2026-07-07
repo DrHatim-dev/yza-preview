@@ -6,9 +6,16 @@
    per cart per run. order.php marks a cart 'purchased' so buyers are never chased.
    ?force=1 (with the key) ignores the delays and sends step 1 now — for testing only. */
 
-$CRON_KEY = 'yzacron_9f3a71c4e8b2';   // change this + the cron URL together if you rotate it
+/* The secret key lives OUTSIDE the (public) repo — an env var, or a gitignored
+   .private/cron-key.php that returns the key. Fails closed if neither is set.
+   To rotate: update .private/cron-key.php on the server AND the Hostinger cron URL. */
+$CRON_KEY = getenv('YZA_CRON_KEY');
+if (!$CRON_KEY) {
+  $kf = __DIR__ . '/.private/cron-key.php';
+  if (is_file($kf)) { $CRON_KEY = (string) require $kf; }
+}
 $key = isset($_GET['key']) ? (string) $_GET['key'] : '';
-if (!hash_equals($CRON_KEY, $key)) { http_response_code(403); echo 'forbidden'; exit; }
+if (!$CRON_KEY || !hash_equals((string) $CRON_KEY, $key)) { http_response_code(403); echo 'forbidden'; exit; }
 header('Content-Type: application/json; charset=utf-8');
 
 $force  = isset($_GET['force']) && $_GET['force'] === '1';

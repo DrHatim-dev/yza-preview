@@ -7,6 +7,11 @@ header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); echo json_encode(array('ok' => false)); exit; }
 
+/* Fail-open anti-abuse: cap single-IP bursts so the pending-cart file can't be
+   flooded. Normal checkout typing (debounced) stays well under 40/min. */
+require_once __DIR__ . '/yza-throttle.php';
+if (!yza_throttle('cart', 40, 60)) { http_response_code(429); echo json_encode(array('ok' => false, 'error' => 'rate')); exit; }
+
 $raw = file_get_contents('php://input');
 if (strlen($raw) > 8000) { http_response_code(413); echo json_encode(array('ok' => false)); exit; }
 $data = json_decode($raw, true);

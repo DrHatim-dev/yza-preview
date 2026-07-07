@@ -7,6 +7,10 @@ window.YZA = window.YZA || {};
 
 const KEY = 'yza.cart';
 
+// Escape any cart value before it goes into innerHTML (defence-in-depth: the variant
+// string is read from localStorage, so never trust it as markup).
+const esc = (s) => String(s == null ? '' : s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
 const cart = {
   items: [],
   load() { try { this.items = JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { this.items = []; } },
@@ -201,16 +205,16 @@ const cart = {
         <a class="cart-line__img" href="/produits/${encodeURIComponent(p.handle)}"><img src="${cartImg}" alt="" width="72" height="90" loading="lazy"></a>
         <div class="cart-line__info">
           <a class="cart-line__name" href="/produits/${encodeURIComponent(p.handle)}">${t.pick(p.name)}</a>
-          ${i.variant ? `<div class="cart-line__variant">${i.variant}</div>` : ''}
+          ${i.variant ? `<div class="cart-line__variant">${esc(i.variant)}</div>` : ''}
           <div class="cart-line__price">${t.formatPrice(p.price)}</div>
           ${st.almostGone ? `<div class="cart-line__scarcity">${t.tFmt('scarcity.remaining', { n: st.inventory })}</div>` : ''}
           <div class="cart-line__row">
-            <div class="qty" data-handle="${p.handle}" data-variant="${i.variant}">
+            <div class="qty" data-handle="${p.handle}" data-variant="${esc(i.variant)}">
               <button class="qty__btn" data-act="dec" aria-label="-">−</button>
               <span class="qty__n">${i.qty}</span>
               <button class="qty__btn" data-act="inc" aria-label="+">+</button>
             </div>
-            <button class="cart-line__remove" data-remove data-handle="${p.handle}" data-variant="${i.variant}">${t.t('cart.remove')}</button>
+            <button class="cart-line__remove" data-remove data-handle="${p.handle}" data-variant="${esc(i.variant)}">${t.t('cart.remove')}</button>
           </div>
         </div></div>`;
     }).join('');
