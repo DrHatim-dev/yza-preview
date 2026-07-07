@@ -352,21 +352,21 @@ const PRODUCTS = [
  "ar": "توب فولار Jawhara"
  },
  "short": {
- "fr": "Top foulard Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "fr": "Top foulard Jawhara, pièce Jawhara à associer aux paréos et sacs YZA.",
  "en": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels.",
  "es": "Top foulard Jawhara de talla flexible, pensado para looks de verano frescos, acabado con detalles de borlas Shoushia hechas a mano inspiradas en los flecos marroquíes.",
  "tr": "Serin yaz kombinleri için tasarlanmış, beden esnekliği olan Jawhara fular top; Fas frangılarından ilham alınan el yapımı Shoushia püskülleriyle tamamlanmış.",
  "ar": "توب فولار Jawhara مرن في المقاس، مصمَّم لأطقم الصيف المنعشة، مزيَّن بتفاصيل شراشيب Shoushia المصنوعة يدوياً من وحي الشراريب المغربية."
  },
  "displayShort": {
- "fr": "Top foulard Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "fr": "Top foulard Jawhara, pièce Jawhara à associer aux paréos et sacs YZA.",
  "en": "A size-flexible Jawhara scarf top designed for cool summer sets, finished with handmade Shoushia tassel details inspired by Moroccan tassels.",
  "es": "Top foulard Jawhara de talla flexible, pensado para looks de verano frescos, acabado con detalles de borlas Shoushia hechas a mano inspiradas en los flecos marroquíes.",
  "tr": "Serin yaz kombinleri için tasarlanmış, beden esnekliği olan Jawhara fular top; Fas frangılarından ilham alınan el yapımı Shoushia püskülleriyle tamamlanmış.",
  "ar": "توب فولار Jawhara مرن في المقاس، مصمَّم لأطقم الصيف المنعشة، مزيَّن بتفاصيل شراشيب Shoushia المصنوعة يدوياً من وحي الشراريب المغربية."
  },
  "desc": {
- "fr": "Top foulard Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "fr": "Top foulard Jawhara, pièce Jawhara à associer aux paréos et sacs YZA.",
  "en": "The YZA Scarf Top is part of the Resort Marrakesh Wear line: a modern Marrakchi wardrobe designed from Jawhara, a striped textile associated with eastern formalwear and reimagined for summer movement. Pair it with the pareo skirt, palazzo pants, wrap pants or basket bags.",
  "es": "El YZA Scarf Top forma parte de la línea Resort Marrakech Wear: un guardarropa marrakchí moderno concebido en Jawhara, un tejido a rayas asociado a la elegancia oriental y reinventado para el movimiento del verano. Combínalo con la falda pareo, los pantalones palazzo, los pantalones cruzados o las cestas.",
  "tr": "YZA Scarf Top, Resort Marrakech Wear serisinin bir parçası: doğu resmi kıyafetleriyle özdeşleşmiş çizgili bir tekstil olan Jawhara'dan tasarlanmış, yaz hareketliliği için yeniden yorumlanmış modern bir Marakeşli dolabı. Pareo etek, palazzo pantolon, etek pantolon veya sepet çantalarla kombin et.",
@@ -642,7 +642,7 @@ const PRODUCTS = [
  "yza-scarf-top-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara viscose & silk, details faits main",
+ "fr": "Jawhara viscose & silk, détails faits main",
  "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
@@ -679,7 +679,7 @@ const PRODUCTS = [
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
- "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "fr": "Coupe, finitions et détails Jawhara contrôlés à la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
  "es": "Corte, acabados y detalles Jawhara verificados a mano.",
  "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
@@ -688,7 +688,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "fr": "Pièce Jawhara finie à la main, pensée pour les ensembles d’été et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
  "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
  "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
@@ -765,21 +765,21 @@ const PRODUCTS = [
  "ar": "توب برقبة كارو Jawhara"
  },
  "short": {
- "fr": "Top bateau Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "fr": "Top bateau Jawhara, pièce Jawhara à associer aux paréos et sacs YZA.",
  "en": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading.",
  "es": "Top Jawhara de cuello barca para conjuntos de verano, acabado con bordado de letras Amazigh hecho a mano.",
  "tr": "Yaz kombinleri için Jawhara col bateau top; el yapımı Amazigh harf boncuk işlemesiyle tamamlanmış.",
  "ar": "توب Jawhara بياقة بارو لأطقم الصيف، مزيَّن بخرز حروف Amazigh المصنوع يدوياً."
  },
  "displayShort": {
- "fr": "Top bateau Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "fr": "Top bateau Jawhara, pièce Jawhara à associer aux paréos et sacs YZA.",
  "en": "A Jawhara bateau top for summer sets, finished with handmade Amazigh letter beading.",
  "es": "Top Jawhara de cuello barca para conjuntos de verano, acabado con bordado de letras Amazigh hecho a mano.",
  "tr": "Yaz kombinleri için Jawhara col bateau top; el yapımı Amazigh harf boncuk işlemesiyle tamamlanmış.",
  "ar": "توب Jawhara بياقة بارو لأطقم الصيف، مزيَّن بخرز حروف Amazigh المصنوع يدوياً."
  },
  "desc": {
- "fr": "Top bateau Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "fr": "Top bateau Jawhara, pièce Jawhara à associer aux paréos et sacs YZA.",
  "en": "The YZA Bateau Top is part of the Resort Marrakesh Wear line. Made in Jawhara, a striped textile traditionally associated with formalwear, it translates local wardrobe codes into a modern, size-flexible summer piece.",
  "es": "El YZA Bateau Top forma parte de la línea Resort Marrakech Wear. Confeccionado en Jawhara, un tejido a rayas asociado tradicionalmente a la ropa de ceremonia, traduce los códigos del guardarropa local en una pieza de verano moderna y de talla flexible.",
  "tr": "YZA Bateau Top, Resort Marrakech Wear serisinin bir parçası. Geleneksel olarak resmi kıyafetlerle ilişkilendirilen çizgili bir tekstil olan Jawhara'dan yapılmış; yerel dolap kodlarını modern, beden esnekliğine sahip bir yaz parçasına dönüştürüyor.",
@@ -1054,7 +1054,7 @@ const PRODUCTS = [
  "yza-bateau-top-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara viscose & silk, details faits main",
+ "fr": "Jawhara viscose & silk, détails faits main",
  "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
@@ -1091,7 +1091,7 @@ const PRODUCTS = [
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
- "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "fr": "Coupe, finitions et détails Jawhara contrôlés à la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
  "es": "Corte, acabados y detalles Jawhara verificados a mano.",
  "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
@@ -1100,7 +1100,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "fr": "Pièce Jawhara finie à la main, pensée pour les ensembles d’été et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
  "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
  "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
@@ -1178,21 +1178,21 @@ const PRODUCTS = [
  "ar": "قميص Jawhara"
  },
  "short": {
- "fr": "Chemise Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "fr": "Chemise Jawhara, pièce Jawhara à associer aux paréos et sacs YZA.",
  "en": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading.",
  "es": "Camisa Jawhara abotonada en S/M/L, diseñada para los conjuntos frescos de verano de YZA y acabada con bordado de letras Amazigh hecho a mano.",
  "tr": "S/M/L bedenlerinde Jawhara düğmeli gömlek; YZA’nın serin yaz kombinleri için tasarlandı, el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
  "ar": "قميص Jawhara بأزرار بمقاسات S/M/L، مصمَّم لأطقم الصيف المنعشة من YZA ومزيَّن بخرز حروف Amazigh المصنوع يدوياً."
  },
  "displayShort": {
- "fr": "Chemise Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "fr": "Chemise Jawhara, pièce Jawhara à associer aux paréos et sacs YZA.",
  "en": "A Jawhara button-up shirt in S/M/L, designed as part of YZA’s cool summer sets and finished with handmade Amazigh letter beading.",
  "es": "Camisa Jawhara abotonada en S/M/L, diseñada para los conjuntos frescos de verano de YZA y acabada con bordado de letras Amazigh hecho a mano.",
  "tr": "S/M/L bedenlerinde Jawhara düğmeli gömlek; YZA’nın serin yaz kombinleri için tasarlandı, el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
  "ar": "قميص Jawhara بأزرار بمقاسات S/M/L، مصمَّم لأطقم الصيف المنعشة من YZA ومزيَّن بخرز حروف Amazigh المصنوع يدوياً."
  },
  "desc": {
- "fr": "Chemise Jawhara, piece Jawhara a associer aux pareos et sacs YZA.",
+ "fr": "Chemise Jawhara, pièce Jawhara à associer aux paréos et sacs YZA.",
  "en": "The YZA Button-Up Shirt reworks Jawhara fabric into a modern Marrakchi wardrobe staple. It belongs to the Resort Marrakesh Wear family and is designed to pair with YZA pareo skirts, palazzo pants, wrap pants and basket bags.",
  "es": "El YZA Button-Up Shirt reinterpreta el tejido Jawhara como un básico del guardarropa marrakchí moderno. Pertenece a la familia Resort Marrakech Wear y está pensado para combinar con las faldas pareo, los pantalones palazzo, los pantalones cruzados y las cestas de YZA.",
  "tr": "YZA Button-Up Shirt, Jawhara kumaşını modern bir Marakeşli dolap temel parçasına dönüştürüyor. Resort Marrakech Wear ailesine ait olan bu gömlek, YZA’nın pareo etekleri, palazzo pantolonları, etek pantolonları ve sepet çantalarıyla kombin için tasarlandı.",
@@ -1670,7 +1670,7 @@ const PRODUCTS = [
  "yza-button-up-shirt-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara viscose & silk, details faits main",
+ "fr": "Jawhara viscose & silk, détails faits main",
  "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
@@ -1707,7 +1707,7 @@ const PRODUCTS = [
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
- "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "fr": "Coupe, finitions et détails Jawhara contrôlés à la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
  "es": "Corte, acabados y detalles Jawhara verificados a mano.",
  "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
@@ -1716,7 +1716,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "fr": "Pièce Jawhara finie à la main, pensée pour les ensembles d’été et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
  "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
  "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
@@ -1781,35 +1781,35 @@ const PRODUCTS = [
  ],
  "sku": "B-JPC-JWP-BL",
  "name": {
- "fr": "Jupe pareo courte Jawhara",
+ "fr": "Jupe paréo courte Jawhara",
  "en": "YZA Pareo Skirt - Short",
  "es": "Falda pareo corta Jawhara",
  "tr": "Jawhara kısa pareo etek",
  "ar": "تنورة باريو قصيرة Jawhara"
  },
  "displayName": {
- "fr": "Jupe pareo courte Jawhara",
+ "fr": "Jupe paréo courte Jawhara",
  "en": "YZA Pareo Skirt - Short",
  "es": "Falda pareo corta Jawhara",
  "tr": "Jawhara kısa pareo etek",
  "ar": "تنورة باريو قصيرة Jawhara"
  },
  "short": {
- "fr": "Jupe pareo courte Jawhara, taille libre XS a XXL.",
+ "fr": "Jupe paréo courte Jawhara, taille libre XS à XXL.",
  "en": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
  "es": "Falda pareo corta Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
  "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip kısa Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
  "ar": "تنورة باريو Jawhara قصيرة مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "displayShort": {
- "fr": "Jupe pareo courte Jawhara, taille libre XS a XXL.",
+ "fr": "Jupe paréo courte Jawhara, taille libre XS à XXL.",
  "en": "A short, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
  "es": "Falda pareo corta Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
  "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip kısa Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
  "ar": "تنورة باريو Jawhara قصيرة مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "desc": {
- "fr": "Jupe pareo courte Jawhara, taille libre XS a XXL.",
+ "fr": "Jupe paréo courte Jawhara, taille libre XS à XXL.",
  "en": "The YZA Pareo Skirt is a size-free Resort Marrakesh Wear piece made in Jawhara, a striped textile traditionally used in formalwear. The short length is designed for movement from seaside days to summer nights out.",
  "es": "La YZA Pareo Skirt es una pieza Resort Marrakech Wear de talla libre confeccionada en Jawhara, un tejido a rayas usado tradicionalmente en ropa de ceremonia. El largo corto está pensado para el movimiento: de los días en la playa a las noches de verano.",
  "tr": "YZA Pareo Etek, geleneksel olarak resmi kıyafetlerde kullanılan çizgili bir tekstil olan Jawhara'dan yapılmış beden esnekliğine sahip bir Resort Marrakech Wear parçasıdır. Kısa boyu, deniz kenarı günlerinden yaz gecelerine hareketi desteklemek için tasarlandı.",
@@ -1820,7 +1820,7 @@ const PRODUCTS = [
  "category": "pareos",
  "sourceCategory": "Pareo Skirts",
  "categoryLabel": {
- "fr": "Pareos",
+ "fr": "Paréos",
  "en": "Pareos",
  "es": "Pareos",
  "tr": "Pareolar",
@@ -2085,7 +2085,7 @@ const PRODUCTS = [
  "yza-pareo-skirt-short-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara viscose & silk, details faits main",
+ "fr": "Jawhara viscose & silk, détails faits main",
  "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
@@ -2122,7 +2122,7 @@ const PRODUCTS = [
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
- "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "fr": "Coupe, finitions et détails Jawhara contrôlés à la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
  "es": "Corte, acabados y detalles Jawhara verificados a mano.",
  "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
@@ -2131,7 +2131,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "fr": "Pièce Jawhara finie à la main, pensée pour les ensembles d’été et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
  "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
  "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
@@ -2197,35 +2197,35 @@ const PRODUCTS = [
  ],
  "sku": "B-JPM-JWP-BL",
  "name": {
- "fr": "Jupe pareo midi Jawhara",
+ "fr": "Jupe paréo midi Jawhara",
  "en": "YZA Pareo Skirt - Midi",
  "es": "Falda pareo midi Jawhara",
  "tr": "Jawhara midi pareo etek",
  "ar": "تنورة باريو ميدي Jawhara"
  },
  "displayName": {
- "fr": "Jupe pareo midi Jawhara",
+ "fr": "Jupe paréo midi Jawhara",
  "en": "YZA Pareo Skirt - Midi",
  "es": "Falda pareo midi Jawhara",
  "tr": "Jawhara midi pareo etek",
  "ar": "تنورة باريو ميدي Jawhara"
  },
  "short": {
- "fr": "Jupe pareo midi Jawhara, taille libre XS a XXL.",
+ "fr": "Jupe paréo midi Jawhara, taille libre XS à XXL.",
  "en": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
  "es": "Falda pareo midi Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
  "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip midi Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
  "ar": "تنورة باريو Jawhara ميدي مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "displayShort": {
- "fr": "Jupe pareo midi Jawhara, taille libre XS a XXL.",
+ "fr": "Jupe paréo midi Jawhara, taille libre XS à XXL.",
  "en": "A midi, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
  "es": "Falda pareo midi Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
  "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip midi Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
  "ar": "تنورة باريو Jawhara ميدي مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "desc": {
- "fr": "Jupe pareo midi Jawhara, taille libre XS a XXL.",
+ "fr": "Jupe paréo midi Jawhara, taille libre XS à XXL.",
  "en": "The YZA Pareo Skirt in midi length is part of the Resort Marrakesh Wear wardrobe: modular, timeless and designed to move through life with you. Made in Jawhara and finished with handmade Amazigh letter beading.",
  "es": "La YZA Pareo Skirt en largo midi forma parte del guardarropa Resort Marrakech Wear: modular, atemporal y diseñada para acompañarte en cada momento. Confeccionada en Jawhara y acabada con bordado de letras Amazigh hecho a mano.",
  "tr": "Midi boyunda YZA Pareo Etek, Resort Marrakech Wear gardırobunun bir parçasıdır: modüler, zamansız ve hayatınla birlikte hareket etmek için tasarlandı. Jawhara'dan yapılmış, el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
@@ -2236,7 +2236,7 @@ const PRODUCTS = [
  "category": "pareos",
  "sourceCategory": "Pareo Skirts",
  "categoryLabel": {
- "fr": "Pareos",
+ "fr": "Paréos",
  "en": "Pareos",
  "es": "Pareos",
  "tr": "Pareolar",
@@ -2501,7 +2501,7 @@ const PRODUCTS = [
  "yza-pareo-skirt-midi-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara viscose & silk, details faits main",
+ "fr": "Jawhara viscose & silk, détails faits main",
  "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
@@ -2538,7 +2538,7 @@ const PRODUCTS = [
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
- "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "fr": "Coupe, finitions et détails Jawhara contrôlés à la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
  "es": "Corte, acabados y detalles Jawhara verificados a mano.",
  "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
@@ -2547,7 +2547,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "fr": "Pièce Jawhara finie à la main, pensée pour les ensembles d’été et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
  "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
  "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
@@ -2612,35 +2612,35 @@ const PRODUCTS = [
  ],
  "sku": "B-JPL-JWP-BL",
  "name": {
- "fr": "Jupe pareo longue Jawhara",
+ "fr": "Jupe paréo longue Jawhara",
  "en": "YZA Pareo Skirt - Long",
  "es": "Falda pareo larga Jawhara",
  "tr": "Jawhara uzun pareo etek",
  "ar": "تنورة باريو طويلة Jawhara"
  },
  "displayName": {
- "fr": "Jupe pareo longue Jawhara",
+ "fr": "Jupe paréo longue Jawhara",
  "en": "YZA Pareo Skirt - Long",
  "es": "Falda pareo larga Jawhara",
  "tr": "Jawhara uzun pareo etek",
  "ar": "تنورة باريو طويلة Jawhara"
  },
  "short": {
- "fr": "Jupe pareo longue Jawhara, taille libre XS a XXL.",
+ "fr": "Jupe paréo longue Jawhara, taille libre XS à XXL.",
  "en": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
  "es": "Falda pareo larga Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
  "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip uzun Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
  "ar": "تنورة باريو Jawhara طويلة مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "displayShort": {
- "fr": "Jupe pareo longue Jawhara, taille libre XS a XXL.",
+ "fr": "Jupe paréo longue Jawhara, taille libre XS à XXL.",
  "en": "A long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
  "es": "Falda pareo larga Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
  "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip uzun Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
  "ar": "تنورة باريو Jawhara طويلة مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "desc": {
- "fr": "Jupe pareo longue Jawhara, taille libre XS a XXL.",
+ "fr": "Jupe paréo longue Jawhara, taille libre XS à XXL.",
  "en": "The long YZA Pareo Skirt brings the Resort Marrakesh Wear silhouette into a fluid, full-length piece made for summer lunches, seaside movement and evening dressing.",
  "es": "La YZA Pareo Skirt larga traslada la silueta Resort Marrakech Wear a una pieza fluida de largo completo, pensada para almuerzos de verano, movimiento junto al mar y veladas elegantes.",
  "tr": "Uzun YZA Pareo Etek, Resort Marrakech Wear siluetini yaz öğle yemekleri, deniz kenarı hareketleri ve gece kıyafetleri için tasarlanmış akışkan, tam boylu bir parçaya dönüştürüyor.",
@@ -2651,7 +2651,7 @@ const PRODUCTS = [
  "category": "pareos",
  "sourceCategory": "Pareo Skirts",
  "categoryLabel": {
- "fr": "Pareos",
+ "fr": "Paréos",
  "en": "Pareos",
  "es": "Pareos",
  "tr": "Pareolar",
@@ -2916,7 +2916,7 @@ const PRODUCTS = [
  "yza-pareo-skirt-long-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara viscose & silk, details faits main",
+ "fr": "Jawhara viscose & silk, détails faits main",
  "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
@@ -2953,7 +2953,7 @@ const PRODUCTS = [
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
- "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "fr": "Coupe, finitions et détails Jawhara contrôlés à la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
  "es": "Corte, acabados y detalles Jawhara verificados a mano.",
  "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
@@ -2962,7 +2962,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "fr": "Pièce Jawhara finie à la main, pensée pour les ensembles d’été et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
  "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
  "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
@@ -3027,35 +3027,35 @@ const PRODUCTS = [
  ],
  "sku": "B-JPLP-JWP-BL",
  "name": {
- "fr": "Jupe pareo extra longue Jawhara",
+ "fr": "Jupe paréo extra longue Jawhara",
  "en": "YZA Pareo Skirt - X Long",
  "es": "Falda pareo extra larga Jawhara",
  "tr": "Jawhara ekstra uzun pareo etek",
  "ar": "تنورة باريو طويلة جدًا Jawhara"
  },
  "displayName": {
- "fr": "Jupe pareo extra longue Jawhara",
+ "fr": "Jupe paréo extra longue Jawhara",
  "en": "YZA Pareo Skirt - X Long",
  "es": "Falda pareo extra larga Jawhara",
  "tr": "Jawhara ekstra uzun pareo etek",
  "ar": "تنورة باريو طويلة جدًا Jawhara"
  },
  "short": {
- "fr": "Jupe pareo extra longue Jawhara, taille libre XS a XXL.",
+ "fr": "Jupe paréo extra longue Jawhara, taille libre XS à XXL.",
  "en": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
  "es": "Falda pareo extra larga Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
  "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip ekstra uzun Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
  "ar": "تنورة باريو Jawhara إكسترا طويلة مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "displayShort": {
- "fr": "Jupe pareo extra longue Jawhara, taille libre XS a XXL.",
+ "fr": "Jupe paréo extra longue Jawhara, taille libre XS à XXL.",
  "en": "An extra-long, size-free Jawhara pareo skirt fitting XS to XXL, finished with handmade Amazigh letter beading.",
  "es": "Falda pareo extra larga Jawhara de talla libre de XS a XXL, acabada con bordado de letras Amazigh hecho a mano.",
  "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip ekstra uzun Jawhara pareo etek; el yapımı Amazigh harf boncuk işlemesiyle tamamlandı.",
  "ar": "تنورة باريو Jawhara إكسترا طويلة مرنة في المقاس من XS إلى XXL، مزيَّنة بخرز حروف Amazigh المصنوع يدوياً."
  },
  "desc": {
- "fr": "Jupe pareo extra longue Jawhara, taille libre XS a XXL.",
+ "fr": "Jupe paréo extra longue Jawhara, taille libre XS à XXL.",
  "en": "The X Long YZA Pareo Skirt is the most dramatic length in the pareo skirt family: a fluid Jawhara piece built for movement and finished by hand.",
  "es": "La YZA Pareo Skirt X Long es el largo más espectacular de la familia pareo: una pieza fluida en Jawhara construida para el movimiento y terminada a mano.",
  "tr": "X Long YZA Pareo Etek, pareo etek ailesinin en dramatik boyudur: hareket için inşa edilmiş ve elle tamamlanmış akışkan bir Jawhara parçası.",
@@ -3066,7 +3066,7 @@ const PRODUCTS = [
  "category": "pareos",
  "sourceCategory": "Pareo Skirts",
  "categoryLabel": {
- "fr": "Pareos",
+ "fr": "Paréos",
  "en": "Pareos",
  "es": "Pareos",
  "tr": "Pareolar",
@@ -3331,7 +3331,7 @@ const PRODUCTS = [
  "yza-pareo-skirt-x-long-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara viscose & silk, details faits main",
+ "fr": "Jawhara viscose & silk, détails faits main",
  "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
@@ -3368,7 +3368,7 @@ const PRODUCTS = [
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
- "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "fr": "Coupe, finitions et détails Jawhara contrôlés à la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
  "es": "Corte, acabados y detalles Jawhara verificados a mano.",
  "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
@@ -3377,7 +3377,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "fr": "Pièce Jawhara finie à la main, pensée pour les ensembles d’été et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
  "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
  "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
@@ -3456,21 +3456,21 @@ const PRODUCTS = [
  "ar": "بنطلون بالازو Jawhara"
  },
  "short": {
- "fr": "Pantalon palazzo Jawhara, taille libre XS a XXL.",
+ "fr": "Pantalon palazzo Jawhara, taille libre XS à XXL.",
  "en": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details.",
  "es": "Pantalón palazzo Jawhara de talla libre de XS a XXL, ultra largo, fácil de adaptar, con grandes bolsillos y detalles de borlas Shoushia hechos a mano.",
  "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip Jawhara palazzo pantolon; ultra uzun, kolayca kısaltılabilir, büyük cepler ve el yapımı Shoushia püskülleriyle.",
  "ar": "بنطال بالاتزو Jawhara مرن في المقاس من XS إلى XXL، فائق الطول، قابل للتعديل بسهولة، بجيوب واسعة وتفاصيل شراشيب Shoushia المصنوعة يدوياً."
  },
  "displayShort": {
- "fr": "Pantalon palazzo Jawhara, taille libre XS a XXL.",
+ "fr": "Pantalon palazzo Jawhara, taille libre XS à XXL.",
  "en": "Size-free Jawhara palazzo pants fitting XS to XXL, ultra long, easily tailored, with big pockets and handmade Shoushia tassel details.",
  "es": "Pantalón palazzo Jawhara de talla libre de XS a XXL, ultra largo, fácil de adaptar, con grandes bolsillos y detalles de borlas Shoushia hechos a mano.",
  "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip Jawhara palazzo pantolon; ultra uzun, kolayca kısaltılabilir, büyük cepler ve el yapımı Shoushia püskülleriyle.",
  "ar": "بنطال بالاتزو Jawhara مرن في المقاس من XS إلى XXL، فائق الطول، قابل للتعديل بسهولة، بجيوب واسعة وتفاصيل شراشيب Shoushia المصنوعة يدوياً."
  },
  "desc": {
- "fr": "Pantalon palazzo Jawhara, taille libre XS a XXL.",
+ "fr": "Pantalon palazzo Jawhara, taille libre XS à XXL.",
  "en": "The YZA Palazzo Pants are part of the Resort Marrakesh Wear wardrobe. Made in Jawhara and cut as a size-free silhouette, they are designed to be ultra long, easily tailored and practical with big pockets.",
  "es": "Los YZA Palazzo Pants forman parte del guardarropa Resort Marrakech Wear. Confeccionados en Jawhara y cortados como una silueta de talla libre, están pensados para ser ultra largos, fáciles de adaptar y prácticos con grandes bolsillos.",
  "tr": "YZA Palazzo Pantolon, Resort Marrakech Wear gardırobunun bir parçasıdır. Jawhara'dan yapılmış ve beden esnekliğine sahip bir siluet olarak kesilmiş; ultra uzun, kolayca kısaltılabilir ve büyük cepler sayesinde pratik olmak üzere tasarlandı.",
@@ -3746,7 +3746,7 @@ const PRODUCTS = [
  "yza-palazzo-pants-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara viscose & silk, details faits main",
+ "fr": "Jawhara viscose & silk, détails faits main",
  "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
@@ -3783,7 +3783,7 @@ const PRODUCTS = [
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
- "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "fr": "Coupe, finitions et détails Jawhara contrôlés à la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
  "es": "Corte, acabados y detalles Jawhara verificados a mano.",
  "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
@@ -3792,7 +3792,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "fr": "Pièce Jawhara finie à la main, pensée pour les ensembles d’été et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
  "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
  "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
@@ -3871,21 +3871,21 @@ const PRODUCTS = [
  "ar": "بنطلون ملفوف Jawhara"
  },
  "short": {
- "fr": "Pantalon wrap Jawhara, taille libre XS a XXL.",
+ "fr": "Pantalon wrap Jawhara, taille libre XS à XXL.",
  "en": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading.",
  "es": "Pantalón wrap Jawhara de talla libre de XS a XXL, que reimagina un estilo local icónico con bordado de letras Amazigh hecho a mano.",
  "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip Jawhara wrap pantolon; el yapımı Amazigh harf boncuk işlemesiyle ikonik yerel bir stili yeniden yorumluyor.",
  "ar": "بنطال Jawhara ملفوف مرن في المقاس من XS إلى XXL، يُعيد تخيّل أسلوب محلي أيقوني بخرز حروف Amazigh المصنوع يدوياً."
  },
  "displayShort": {
- "fr": "Pantalon wrap Jawhara, taille libre XS a XXL.",
+ "fr": "Pantalon wrap Jawhara, taille libre XS à XXL.",
  "en": "Size-free Jawhara wrap pants fitting XS to XXL, reimagining an iconic local style with handmade Amazigh letter beading.",
  "es": "Pantalón wrap Jawhara de talla libre de XS a XXL, que reimagina un estilo local icónico con bordado de letras Amazigh hecho a mano.",
  "tr": "XS'ten XXL'ye kadar uygun, beden esnekliğine sahip Jawhara wrap pantolon; el yapımı Amazigh harf boncuk işlemesiyle ikonik yerel bir stili yeniden yorumluyor.",
  "ar": "بنطال Jawhara ملفوف مرن في المقاس من XS إلى XXL، يُعيد تخيّل أسلوب محلي أيقوني بخرز حروف Amazigh المصنوع يدوياً."
  },
  "desc": {
- "fr": "Pantalon wrap Jawhara, taille libre XS a XXL.",
+ "fr": "Pantalon wrap Jawhara, taille libre XS à XXL.",
  "en": "The YZA Wrap Pants are a modern play on an iconic local style. Made in Jawhara and designed to fit XS to XXL, they translate Marrakchi ease into a resortwear silhouette.",
  "es": "Los YZA Wrap Pants son una reinterpretación moderna de un estilo local icónico. Confeccionados en Jawhara y diseñados para ir de XS a XXL, traducen la soltura marrakchí en una silueta de resortwear.",
  "tr": "YZA Wrap Pantolon, ikonik bir yerel stilin modern yorumudur. Jawhara'dan yapılmış ve XS ile XXL arasına uyacak şekilde tasarlanmış; Marakeşli rahatlığı bir resortwear siluetine dönüştürüyor.",
@@ -3996,7 +3996,7 @@ const PRODUCTS = [
  "yza-wrap-pants-jawhara-ss26"
  ],
  "material": {
- "fr": "Jawhara viscose & silk, details faits main",
+ "fr": "Jawhara viscose & silk, détails faits main",
  "en": "Jawhara viscose & silk with handmade details",
  "es": "Jawhara poly y seda con detalles hechos a mano",
  "tr": "El yapımı detaylı Jawhara poly ve ipek",
@@ -4033,7 +4033,7 @@ const PRODUCTS = [
  "whatFits": null,
  "attachment": null,
  "handworkTime": {
- "fr": "Coupe, finitions et details Jawhara controles a la main.",
+ "fr": "Coupe, finitions et détails Jawhara contrôlés à la main.",
  "en": "Cut, finishing and Jawhara details checked by hand.",
  "es": "Corte, acabados y detalles Jawhara verificados a mano.",
  "tr": "Kesim, bitişler ve Jawhara detayları elle kontrol edilir.",
@@ -4042,7 +4042,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Piece Jawhara finie a la main, pensee pour les ensembles d ete et les looks resort.",
+ "fr": "Pièce Jawhara finie à la main, pensée pour les ensembles d’été et les looks resort.",
  "en": "Hand-finished Jawhara piece designed for summer sets and resort looks.",
  "es": "Pieza Jawhara terminada a mano, pensada para conjuntos de verano y looks resort.",
  "tr": "Elle tamamlanan Jawhara parçası; yaz kombinleri ve resort görünümleri için tasarlandı.",
@@ -4138,7 +4138,7 @@ const PRODUCTS = [
  "ar": "حجم XS، لون أحمر، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "desc": {
- "fr": "La Sculpture XS - Rouge: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur rouge et le format XS, pour comprendre la taille, la couleur et les details reels de la piece.",
+ "fr": "La Sculpture XS - Rouge: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur rouge et le format XS, pour comprendre la taille, la couleur et les détails réels de la pièce.",
  "en": "La Sculpture XS - Red: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the red finish and XS scale, so the size, colour and real details stay clear.",
  "es": "La Sculpture XS - Rojo: una cesta YZA en hojas de bananero, rafia, cuero y cuentas. Esta página muestra únicamente el acabado rojo y la talla XS, para que el tamaño, el color y los detalles reales queden claros.",
  "tr": "La Sculpture XS - Kırmızı: muz yaprağı, rafya, deri ve boncuklardan yapılmış bir YZA sepeti. Bu sayfa yalnızca kırmızı rengi ve XS bedeni gösterir; boyut, renk ve gerçek detaylar net kalır.",
@@ -4391,7 +4391,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
+ "fr": "Structure tressée, anses gainées, perles et finitions vérifiées pièce par pièce dans l’atelier de Guéliz.",
  "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
  "es": "Estructura tejida, asas forradas, cuentas y acabados revisados pieza a pieza en el atelier de Guéliz.",
  "tr": "Dokuma yapı, kaplı saplar, boncuk işi ve bitişler Guéliz atelyesinde parça parça kontrol edildi.",
@@ -4538,7 +4538,7 @@ const PRODUCTS = [
  "ar": "حجم S، لون بنفسجي، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "desc": {
- "fr": "La Sculpture S - Violet: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur violet et le format S, pour comprendre la taille, la couleur et les details reels de la piece.",
+ "fr": "La Sculpture S - Violet: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur violet et le format S, pour comprendre la taille, la couleur et les détails réels de la pièce.",
  "en": "La Sculpture S - Violet: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the violet finish and S scale, so the size, colour and real details stay clear.",
  "es": "La Sculpture S - Violeta: una cesta YZA en hojas de bananero, rafia, cuero y cuentas. Esta página muestra únicamente el acabado violeta y la talla S, para que el tamaño, el color y los detalles reales queden claros.",
  "tr": "La Sculpture S - Mor: muz yaprağı, rafya, deri ve boncuklardan yapılmış bir YZA sepeti. Bu sayfa yalnızca mor rengi ve S bedeni gösterir; boyut, renk ve gerçek detaylar net kalır.",
@@ -4790,7 +4790,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
+ "fr": "Structure tressée, anses gainées, perles et finitions vérifiées pièce par pièce dans l’atelier de Guéliz.",
  "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
  "es": "Estructura tejida, asas forradas, cuentas y acabados revisados pieza a pieza en el atelier de Guéliz.",
  "tr": "Dokuma yapı, kaplı saplar, boncuk işi ve bitişler Guéliz atelyesinde parça parça kontrol edildi.",
@@ -4936,7 +4936,7 @@ const PRODUCTS = [
  "ar": "حجم M، لون أسود، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "desc": {
- "fr": "La Sculpture M - Noir: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur noir et le format M, pour comprendre la taille, la couleur et les details reels de la piece.",
+ "fr": "La Sculpture M - Noir: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur noir et le format M, pour comprendre la taille, la couleur et les détails réels de la pièce.",
  "en": "La Sculpture M - Black: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the black finish and M scale, so the size, colour and real details stay clear.",
  "es": "La Sculpture M - Negro: una cesta YZA en hojas de bananero, rafia, cuero y cuentas. Esta página muestra únicamente el acabado negro y la talla M, para que el tamaño, el color y los detalles reales queden claros.",
  "tr": "La Sculpture M - Siyah: muz yaprağı, rafya, deri ve boncuklardan yapılmış bir YZA sepeti. Bu sayfa yalnızca siyah rengi ve M bedeni gösterir; boyut, renk ve gerçek detaylar net kalır.",
@@ -5189,7 +5189,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
+ "fr": "Structure tressée, anses gainées, perles et finitions vérifiées pièce par pièce dans l’atelier de Guéliz.",
  "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
  "es": "Estructura tejida, asas forradas, cuentas y acabados revisados pieza a pieza en el atelier de Guéliz.",
  "tr": "Dokuma yapı, kaplı saplar, boncuk işi ve bitişler Guéliz atelyesinde parça parça kontrol edildi.",
@@ -5333,7 +5333,7 @@ const PRODUCTS = [
  "ar": "حجم XS، لون أزرق، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "desc": {
- "fr": "La Nouvelle Vague XS - Bleu: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur bleu et le format XS, pour comprendre la taille, la couleur et les details reels de la piece.",
+ "fr": "La Nouvelle Vague XS - Bleu: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur bleu et le format XS, pour comprendre la taille, la couleur et les détails réels de la pièce.",
  "en": "New Edition Bag XS - Blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the blue finish and XS scale, so the size, colour and real details stay clear.",
  "es": "La Nouvelle Vague XS - Azul: una cesta YZA en hojas de bananero, rafia, cuero y cuentas. Esta página muestra únicamente el acabado azul y la talla XS, para que el tamaño, el color y los detalles reales queden claros.",
  "tr": "La Nouvelle Vague XS - Mavi: muz yaprağı, rafya, deri ve boncuklardan yapılmış bir YZA sepeti. Bu sayfa yalnızca mavi rengi ve XS bedeni gösterir; boyut, renk ve gerçek detaylar net kalır.",
@@ -5528,7 +5528,7 @@ const PRODUCTS = [
  "ar": "حقيبة إصدار جديد"
  },
  "bagFamilyText": {
- "fr": "La ligne plus souple et solaire: anses bijou, foulard et formats faciles a porter en ville ou en vacances.",
+ "fr": "La ligne plus souple et solaire: anses bijou, foulard et formats faciles à porter en ville ou en vacances.",
  "en": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
  "es": "La línea más suave y luminosa: asas con cuentas, estilo con fular y formatos fáciles para la ciudad o las vacaciones.",
  "tr": "Daha yumuşak ve güneşli çizgi: boncuklu saplar, fular stili ve şehir günleri veya tatil için kolay bedenler.",
@@ -5551,7 +5551,7 @@ const PRODUCTS = [
  },
  "attachment": null,
  "handworkTime": {
- "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
+ "fr": "Assemblage main: tressage, gaine des anses, perlage et contrôlé final.",
  "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
  "es": "Ensamblaje manual: tejido, forrado de asas, abalorios y revisión final.",
  "tr": "El montajı: dokuma, sap kaplama, boncuk işi ve son kontrol.",
@@ -5560,7 +5560,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
+ "fr": "Structure tressée, anses gainées, perles et finitions vérifiées pièce par pièce dans l’atelier de Guéliz.",
  "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
  "es": "Estructura tejida, asas forradas, cuentas y acabados revisados pieza a pieza en el atelier de Guéliz.",
  "tr": "Dokuma yapı, kaplı saplar, boncuk işi ve bitişler Guéliz atelyesinde parça parça kontrol edildi.",
@@ -5704,7 +5704,7 @@ const PRODUCTS = [
  "ar": "حجم S، لون وردي، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "desc": {
- "fr": "La Nouvelle Vague S - Rose: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la finition rose et le format S, pour comprendre la taille, la couleur et les details reels de la piece.",
+ "fr": "La Nouvelle Vague S - Rose: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la finition rose et le format S, pour comprendre la taille, la couleur et les détails réels de la pièce.",
  "en": "New Edition Bag S - Pink: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the pink finish and S scale, so the size, colour and real details stay clear.",
  "es": "La Nouvelle Vague S - Rosa: una cesta YZA en hojas de bananero, rafia, cuero y cuentas. Esta página muestra únicamente el acabado rosa y la talla S, para que el tamaño, el color y los detalles reales queden claros.",
  "tr": "La Nouvelle Vague S - Pembe: muz yaprağı, rafya, deri ve boncuklardan yapılmış bir YZA sepeti. Bu sayfa yalnızca pembe rengi ve S bedeni gösterir; boyut, renk ve gerçek detaylar net kalır.",
@@ -5899,7 +5899,7 @@ const PRODUCTS = [
  "ar": "حقيبة إصدار جديد"
  },
  "bagFamilyText": {
- "fr": "La ligne plus souple et solaire: anses bijou, foulard et formats faciles a porter en ville ou en vacances.",
+ "fr": "La ligne plus souple et solaire: anses bijou, foulard et formats faciles à porter en ville ou en vacances.",
  "en": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
  "es": "La línea más suave y luminosa: asas con cuentas, estilo con fular y formatos fáciles para la ciudad o las vacaciones.",
  "tr": "Daha yumuşak ve güneşli çizgi: boncuklu saplar, fular stili ve şehir günleri veya tatil için kolay bedenler.",
@@ -5922,7 +5922,7 @@ const PRODUCTS = [
  },
  "attachment": null,
  "handworkTime": {
- "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
+ "fr": "Assemblage main: tressage, gaine des anses, perlage et contrôlé final.",
  "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
  "es": "Ensamblaje manual: tejido, forrado de asas, abalorios y revisión final.",
  "tr": "El montajı: dokuma, sap kaplama, boncuk işi ve son kontrol.",
@@ -5931,7 +5931,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
+ "fr": "Structure tressée, anses gainées, perles et finitions vérifiées pièce par pièce dans l’atelier de Guéliz.",
  "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
  "es": "Estructura tejida, asas forradas, cuentas y acabados revisados pieza a pieza en el atelier de Guéliz.",
  "tr": "Dokuma yapı, kaplı saplar, boncuk işi ve bitişler Guéliz atelyesinde parça parça kontrol edildi.",
@@ -6076,7 +6076,7 @@ const PRODUCTS = [
  "ar": "حجم M، لون أزرق سماوي، أوراق الموز، الرافيا، الجلد والخرز."
  },
  "desc": {
- "fr": "La Nouvelle Vague M - Bleu ciel: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur bleu ciel et le format M, pour comprendre la taille, la couleur et les details reels de la piece.",
+ "fr": "La Nouvelle Vague M - Bleu ciel: un panier YZA en feuilles de bananier, raphia, cuir et perles. Cette page montre uniquement la couleur bleu ciel et le format M, pour comprendre la taille, la couleur et les détails réels de la pièce.",
  "en": "New Edition Bag M - Sky blue: a YZA basket in banana leaves, raffia, leather and beads. This page shows only the sky blue finish and M scale, so the size, colour and real details stay clear.",
  "es": "La Nouvelle Vague M - Azul cielo: una cesta YZA en hojas de bananero, rafia, cuero y cuentas. Esta página muestra únicamente el acabado azul cielo y la talla M, para que el tamaño, el color y los detalles reales queden claros.",
  "tr": "La Nouvelle Vague M - Gökyüzü mavisi: muz yaprağı, rafya, deri ve boncuklardan yapılmış bir YZA sepeti. Bu sayfa yalnızca gökyüzü mavisi rengi ve M bedeni gösterir; boyut, renk ve gerçek detaylar net kalır.",
@@ -6271,7 +6271,7 @@ const PRODUCTS = [
  "ar": "حقيبة إصدار جديد"
  },
  "bagFamilyText": {
- "fr": "La ligne plus souple et solaire: anses bijou, foulard et formats faciles a porter en ville ou en vacances.",
+ "fr": "La ligne plus souple et solaire: anses bijou, foulard et formats faciles à porter en ville ou en vacances.",
  "en": "The softer sunlit line: beaded handles, scarf styling and easy scales for city days or holidays.",
  "es": "La línea más suave y luminosa: asas con cuentas, estilo con fular y formatos fáciles para la ciudad o las vacaciones.",
  "tr": "Daha yumuşak ve güneşli çizgi: boncuklu saplar, fular stili ve şehir günleri veya tatil için kolay bedenler.",
@@ -6294,7 +6294,7 @@ const PRODUCTS = [
  },
  "attachment": null,
  "handworkTime": {
- "fr": "Assemblage main: tressage, gaine des anses, perlage et controle final.",
+ "fr": "Assemblage main: tressage, gaine des anses, perlage et contrôlé final.",
  "en": "Hand assembly: weaving, handle wrapping, beadwork and final check.",
  "es": "Ensamblaje manual: tejido, forrado de asas, abalorios y revisión final.",
  "tr": "El montajı: dokuma, sap kaplama, boncuk işi ve son kontrol.",
@@ -6303,7 +6303,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Structure tressee, anses gainees, perles et finitions verifiees piece par piece dans l atelier de Guéliz.",
+ "fr": "Structure tressée, anses gainées, perles et finitions vérifiées pièce par pièce dans l’atelier de Guéliz.",
  "en": "Woven structure, wrapped handles, beadwork and finishing checked piece by piece in the Guéliz atelier.",
  "es": "Estructura tejida, asas forradas, cuentas y acabados revisados pieza a pieza en el atelier de Guéliz.",
  "tr": "Dokuma yapı, kaplı saplar, boncuk işi ve bitişler Guéliz atelyesinde parça parça kontrol edildi.",
@@ -6576,7 +6576,7 @@ const PRODUCTS = [
  "كرز"
  ],
  "material": {
- "fr": "raphia crochete main et aiguille raffia",
+ "fr": "raphia crocheté main et aiguille raffia",
  "en": "hand-crocheted and needle-crocheted raffia",
  "es": "rafia tejida a mano con ganchillo y aguja",
  "tr": "el örgüsü ve iğne örgüsü rafya",
@@ -6598,7 +6598,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Environ 8 cm (chaque piece peut legerement varier).",
+ "fr": "Environ 8 cm (chaque pièce peut légèrement varier).",
  "en": "Approx. 8 cm (each piece may vary slightly).",
  "es": "Aprox. 8 cm (cada pieza puede variar ligeramente).",
  "tr": "Yaklaşık 8 cm (her parça hafifçe farklılık gösterebilir).",
@@ -6672,7 +6672,7 @@ const PRODUCTS = [
  "ar": "الأفضل على الحقائب الصغيرة والجلد الأسود والمفاتيح وحقائب السهرة. احتفظ به وحده ليظل الحركة نظيفة."
  },
  "note": {
- "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "fr": "Chaque charm vient avec une petite boucle. L’anneau doré est inclus dans les bundles et peut être ajouté au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
  "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
  "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
@@ -6933,7 +6933,7 @@ const PRODUCTS = [
  "عنب"
  ],
  "material": {
- "fr": "raphia crochete main et aiguille raffia",
+ "fr": "raphia crocheté main et aiguille raffia",
  "en": "hand-crocheted and needle-crocheted raffia",
  "es": "rafia tejida a mano con ganchillo y aguja",
  "tr": "el örgüsü ve iğne örgüsü rafya",
@@ -6955,7 +6955,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Environ 8 x 4 cm (chaque piece peut legerement varier).",
+ "fr": "Environ 8 x 4 cm (chaque pièce peut légèrement varier).",
  "en": "Approx. 8 x 4 cm (each piece may vary slightly).",
  "es": "Aprox. 8 x 4 cm (cada pieza puede variar ligeramente).",
  "tr": "Yaklaşık 8 x 4 cm (her parça hafifçe farklılık gösterebilir).",
@@ -7029,7 +7029,7 @@ const PRODUCTS = [
  "ar": "الأفضل على المقابض النظيفة وسلال المساء. اتركي الحجم يتدلى بحرية بدلاً من ازدحامه بالعديد من الميداليات."
  },
  "note": {
- "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "fr": "Chaque charm vient avec une petite boucle. L’anneau doré est inclus dans les bundles et peut être ajouté au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
  "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
  "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
@@ -7147,14 +7147,14 @@ const PRODUCTS = [
  "ar": "دلاية ليمونة كاملة من الرافيا"
  },
  "short": {
- "fr": "Charm citron entier en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm citron entier en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring.",
  "es": "Un charm de limón entero en rafia, tejido a mano con aro dorado de 2,5 cm.",
  "tr": "Bir bütün limon rafya charm, 2,5 cm altın halkayla el kroşesiyle yapılmış.",
  "ar": "ميدالية ليمون كامل من الرافيا، مصنوعة بالكروشيه اليدوي مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
- "fr": "Charm citron entier en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm citron entier en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A whole lemon raffia charm, crocheted by hand with a 2.5 cm gold ring.",
  "es": "Un charm de limón entero en rafia, tejido a mano con aro dorado de 2,5 cm.",
  "tr": "Bir bütün limon rafya charm, 2,5 cm altın halkayla el kroşesiyle yapılmış.",
@@ -7284,7 +7284,7 @@ const PRODUCTS = [
  "ليمون"
  ],
  "material": {
- "fr": "raphia crochete main raffia",
+ "fr": "raphia crocheté main raffia",
  "en": "hand-crocheted raffia",
  "es": "rafia tejida a mano con ganchillo",
  "tr": "el örgüsü rafya",
@@ -7306,7 +7306,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Environ 4.5 cm diameter (chaque piece peut legerement varier).",
+ "fr": "Environ 4.5 cm diamètre (chaque pièce peut légèrement varier).",
  "en": "Approx. 4.5 cm diameter (each piece may vary slightly).",
  "es": "Aprox. 4,5 cm de diámetro (cada pieza puede variar ligeramente).",
  "tr": "Yaklaşık 4,5 cm çap (her parça hafifçe farklılık gösterebilir).",
@@ -7380,7 +7380,7 @@ const PRODUCTS = [
  "ar": "الأفضل على الجلد الداكن والدنيم والقش الطبيعي والمقابض السوداء. ارتدِه وحده لنغمة لون حادة."
  },
  "note": {
- "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "fr": "Chaque charm vient avec une petite boucle. L’anneau doré est inclus dans les bundles et peut être ajouté au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
  "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
  "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
@@ -7419,7 +7419,7 @@ const PRODUCTS = [
  "liveUrl": "https://yza-shop.com/products/lemon-raffia-bag-charm"
  },
  "making": {
- "fr": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "fr": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud. Chaque pièce est travaillée au crochet main dans l’atelier de Guéliz, puis contrôlée avant la pose de l’étiquette YZA.",
  "en": "The whole lemon is a small Marrakesh wake-up call. It brings the colour of juice stalls, taxi mornings and market crates to a handle. The round shape keeps it bold without becoming loud. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
  "es": "El limón entero es un pequeño despertar marrakchí. Trae el color de los puestos de zumo, las mañanas de taxi y las cajas del mercado a la asa. La forma redonda lo hace llamativo sin volverse estrepitoso. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
  "tr": "Bütün limon, küçük bir Marakeş uyanış çağrısı. Meyve suyu tezgahlarının, taksi sabahlarının ve pazar kasalarının rengini bir sapaya taşıyor. Yuvarlak şekli, gürültülü olmadan cesur kalmasını sağlıyor. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
@@ -7484,28 +7484,28 @@ const PRODUCTS = [
  ],
  "sku": null,
  "name": {
- "fr": "Charm orange entiere en raphia",
+ "fr": "Charm orange entière en raphia",
  "en": "Raffia Whole Orange Charm",
  "es": "Charm naranja entera de rafia",
  "tr": "Rafya bütün portakal süsü",
  "ar": "دلاية برتقالة كاملة من الرافيا"
  },
  "displayName": {
- "fr": "Charm orange entiere en raphia",
+ "fr": "Charm orange entière en raphia",
  "en": "Raffia Whole Orange Charm",
  "es": "Charm naranja entera de rafia",
  "tr": "Rafya bütün portakal süsü",
  "ar": "دلاية برتقالة كاملة من الرافيا"
  },
  "short": {
- "fr": "Charm orange entiere en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm orange entière en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring.",
  "es": "Un charm de naranja entera en rafia, tejido a mano con aro dorado de 2,5 cm.",
  "tr": "Bir bütün portakal rafya charm, 2,5 cm altın halkayla el kroşesiyle yapılmış.",
  "ar": "ميدالية برتقالة كاملة من الرافيا، مصنوعة بالكروشيه اليدوي مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
- "fr": "Charm orange entiere en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm orange entière en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A whole orange raffia charm, crocheted by hand with a 2.5 cm gold ring.",
  "es": "Un charm de naranja entera en rafia, tejido a mano con aro dorado de 2,5 cm.",
  "tr": "Bir bütün portakal rafya charm, 2,5 cm altın halkayla el kroşesiyle yapılmış.",
@@ -7585,7 +7585,7 @@ const PRODUCTS = [
  "seoTitle": "Whole Orange Raffia Charm - Handmade in Marrakech",
  "seoKeywords": [
  "Accessories",
- "Charm orange entiere en raphia",
+ "Charm orange entière en raphia",
  "Guéliz",
  "Guéliz",
  "Marrakech",
@@ -7610,7 +7610,7 @@ const PRODUCTS = [
  ],
  "languageSearchTerms": [
  "Accessories",
- "Charm orange entiere en raphia",
+ "Charm orange entière en raphia",
  "Guéliz",
  "Guéliz",
  "Marrakech",
@@ -7634,7 +7634,7 @@ const PRODUCTS = [
  "برتقال"
  ],
  "material": {
- "fr": "raphia crochete main raffia",
+ "fr": "raphia crocheté main raffia",
  "en": "hand-crocheted raffia",
  "es": "rafia tejida a mano con ganchillo",
  "tr": "el örgüsü rafya",
@@ -7656,7 +7656,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Environ 4.5 cm diameter (chaque piece peut legerement varier).",
+ "fr": "Environ 4.5 cm diamètre (chaque pièce peut légèrement varier).",
  "en": "Approx. 4.5 cm diameter (each piece may vary slightly).",
  "es": "Aprox. 4,5 cm de diámetro (cada pieza puede variar ligeramente).",
  "tr": "Yaklaşık 4,5 cm çap (her parça hafifçe farklılık gösterebilir).",
@@ -7730,7 +7730,7 @@ const PRODUCTS = [
  "ar": "الأفضل وحده للمسة رسومية، أو مع الليمون والطماطم لرواية قصة سوق دافئة."
  },
  "note": {
- "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "fr": "Chaque charm vient avec une petite boucle. L’anneau doré est inclus dans les bundles et peut être ajouté au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
  "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
  "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
@@ -7769,7 +7769,7 @@ const PRODUCTS = [
  "liveUrl": "https://yza-shop.com/products/orange-raffia-bag-charm"
  },
  "making": {
- "fr": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "fr": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close. Chaque pièce est travaillée au crochet main dans l’atelier de Guéliz, puis contrôlée avant la pose de l’étiquette YZA.",
  "en": "This is the charm closest to Marrakesh light. A round orange on the handle feels simple from far away, then you see the hand tension and the tiny stitches up close. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
  "es": "Este es el charm más cercano a la luz de Marrakech. Una naranja redonda en el asa parece sencilla de lejos; de cerca se ven la tensión manual y los diminutos puntos. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
  "tr": "Bu, Marakeş ışığına en yakın charm. Kulptaki yuvarlak portakal uzaktan sade görünüyor, yakından bakınca el gerginliğini ve küçük iğneleri fark ediyorsunuz. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
@@ -7848,14 +7848,14 @@ const PRODUCTS = [
  "ar": "دلاية طماطم من الرافيا"
  },
  "short": {
- "fr": "Charm tomate en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm tomate en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring.",
  "es": "Un charm de tomate en rafia, tejido a mano con aro dorado de 2,5 cm.",
  "tr": "Bir rafya domates charm, 2,5 cm altın halkayla el kroşesiyle yapılmış.",
  "ar": "ميدالية طماطم من الرافيا، مصنوعة بالكروشيه اليدوي مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
- "fr": "Charm tomate en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm tomate en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A raffia tomato charm, crocheted by hand with a 2.5 cm gold ring.",
  "es": "Un charm de tomate en rafia, tejido a mano con aro dorado de 2,5 cm.",
  "tr": "Bir rafya domates charm, 2,5 cm altın halkayla el kroşesiyle yapılmış.",
@@ -7984,7 +7984,7 @@ const PRODUCTS = [
  "طماطم"
  ],
  "material": {
- "fr": "raphia crochete main raffia",
+ "fr": "raphia crocheté main raffia",
  "en": "hand-crocheted raffia",
  "es": "rafia tejida a mano con ganchillo",
  "tr": "el örgüsü rafya",
@@ -8006,7 +8006,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Environ 4.5 cm diameter (chaque piece peut legerement varier).",
+ "fr": "Environ 4.5 cm diamètre (chaque pièce peut légèrement varier).",
  "en": "Approx. 4.5 cm diameter (each piece may vary slightly).",
  "es": "Aprox. 4,5 cm de diámetro (cada pieza puede variar ligeramente).",
  "tr": "Yaklaşık 4,5 cm çap (her parça hafifçe farklılık gösterebilir).",
@@ -8080,7 +8080,7 @@ const PRODUCTS = [
  "ar": "الأفضل على القش والدنيم والحقائب السوداء. زوّجيه بالبطيخ حين يحتاج اللوك المزيد من الأحمر."
  },
  "note": {
- "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "fr": "Chaque charm vient avec une petite boucle. L’anneau doré est inclus dans les bundles et peut être ajouté au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
  "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
  "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle’lara dahildir; tek charmlar için stüdyoda eklenebilir.",
@@ -8119,7 +8119,7 @@ const PRODUCTS = [
  "liveUrl": "https://yza-shop.com/products/tomato-raffia-bag-charm"
  },
  "making": {
- "fr": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "fr": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA. Chaque pièce est travaillée au crochet main dans l’atelier de Guéliz, puis contrôlée avant la pose de l’étiquette YZA.",
  "en": "The tomato is humble in the best way. It comes from the everyday market table, not a fantasy. In raffia, it becomes a tiny red talisman: familiar, funny, very YZA. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
  "es": "El tomate es humilde de la mejor manera. Viene de la mesa del mercado de todos los días, no de la fantasía. En rafia, se convierte en un pequeño talismán rojo: familiar, gracioso, muy YZA. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
  "tr": "Domates en iyi anlamda alçakgönüllüdür. Hayal gücünden değil, günlük pazar tezgahından geliyor. Rafyada küçük kırmızı bir tılsım oluyor: tanıdık, eğlenceli, çok YZA. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
@@ -8198,14 +8198,14 @@ const PRODUCTS = [
  "ar": "دلاية شريحة ليمون من الرافيا"
  },
  "short": {
- "fr": "Charm tranche de citron en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm tranche de citron en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring.",
  "es": "Un charm de rodaja de limón en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
  "tr": "Bir tığ işi rafya limon dilimi charm, 2,5 cm altın halkayla.",
  "ar": "ميدالية شريحة ليمون من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
- "fr": "Charm tranche de citron en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm tranche de citron en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A crocheted raffia lemon slice charm with a 2.5 cm gold ring.",
  "es": "Un charm de rodaja de limón en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
  "tr": "Bir tığ işi rafya limon dilimi charm, 2,5 cm altın halkayla.",
@@ -8334,7 +8334,7 @@ const PRODUCTS = [
  "ليمون"
  ],
  "material": {
- "fr": "raphia crochete main raffia",
+ "fr": "raphia crocheté main raffia",
  "en": "hand-crocheted raffia",
  "es": "rafia tejida a mano con ganchillo",
  "tr": "el örgüsü rafya",
@@ -8356,7 +8356,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Environ 6 x 4 cm (chaque piece peut legerement varier).",
+ "fr": "Environ 6 x 4 cm (chaque pièce peut légèrement varier).",
  "en": "Approx. 6 x 4 cm (each piece may vary slightly).",
  "es": "Aprox. 6 x 4 cm (cada pieza puede variar ligeramente).",
  "tr": "Yaklaşık 6 x 4 cm (her parça hafifçe farklılık gösterebilir).",
@@ -8430,7 +8430,7 @@ const PRODUCTS = [
  "ar": "الأفضل على الأسود والبيج والقش وحقائب الشاطئ. أضيفي شريحة البرتقال للثنائي الحمضي الجريء."
  },
  "note": {
- "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "fr": "Chaque charm vient avec une petite boucle. L’anneau doré est inclus dans les bundles et peut être ajouté au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
  "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
  "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
@@ -8469,7 +8469,7 @@ const PRODUCTS = [
  "liveUrl": "https://yza-shop.com/products/lemon-slice-raphia-bag-charm"
  },
  "making": {
- "fr": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "fr": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm. Chaque pièce est travaillée au crochet main dans l’atelier de Guéliz, puis contrôlée avant la pose de l’étiquette YZA.",
  "en": "The lemon slice is the lightest way into Fruit Market: a little sun, a little acid, very easy to style. It feels like the first sip of fresh juice when the city is already warm. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
  "es": "La rodaja de limón es la manera más ligera de entrar en Fruit Market: un poco de sol, un poco de acidez, muy fácil de combinar. Es como el primer sorbo de zumo fresco cuando la ciudad ya calienta. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
  "tr": "Limon dilimi, Fruit Market'e girmenin en hafif yolu: biraz güneş, biraz asitlik, stilize etmesi çok kolay. Şehir zaten ısındığında taze meyve suyunun ilk yudumu gibi hissettiriyor. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
@@ -8534,35 +8534,35 @@ const PRODUCTS = [
  ],
  "sku": null,
  "name": {
- "fr": "Charm tranche d orange en raphia",
+ "fr": "Charm tranche d’orange en raphia",
  "en": "Raffia Orange Slice Charm",
  "es": "Charm rodaja de naranja de rafia",
  "tr": "Rafya portakal dilimi süsü",
  "ar": "دلاية شريحة برتقال من الرافيا"
  },
  "displayName": {
- "fr": "Charm tranche d orange en raphia",
+ "fr": "Charm tranche d’orange en raphia",
  "en": "Raffia Orange Slice Charm",
  "es": "Charm rodaja de naranja de rafia",
  "tr": "Rafya portakal dilimi süsü",
  "ar": "دلاية شريحة برتقال من الرافيا"
  },
  "short": {
- "fr": "Charm tranche d orange en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm tranche d’orange en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A crocheted raffia orange slice charm with a 2.5 cm gold ring.",
  "es": "Un charm de rodaja de naranja en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
  "tr": "Bir tığ işi rafya portakal dilimi charm, 2,5 cm altın halkayla.",
  "ar": "ميدالية شريحة برتقال من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
- "fr": "Charm tranche d orange en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm tranche d’orange en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A crocheted raffia orange slice charm with a 2.5 cm gold ring.",
  "es": "Un charm de rodaja de naranja en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
  "tr": "Bir tığ işi rafya portakal dilimi charm, 2,5 cm altın halkayla.",
  "ar": "ميدالية شريحة برتقال من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "desc": {
- "fr": "Inspiree des stands de jus d orange: une tranche solaire pour panier, tote de plage ou sac cuir minimal.",
+ "fr": "Inspirée des stands de jus d’orange: une tranche solaire pour panier, tote de plage ou sac cuir minimal.",
  "en": "Inspired by orange juice stalls, this crocheted Orange Slice brings a soft, sunny glow to baskets, beach totes and simple leather bags.",
  "es": "Inspirado en los puestos de zumo de naranja, esta rodaja de naranja tejida a ganchillo aporta un suave resplandor soleado a cestos, bolsas de playa y bolsos de piel sencillos.",
  "tr": "Portakal suyu tezgahlarından ilham alan bu kroşe Portakal Dilimi, sepetlere, plaj çantalarına ve sade deri çantalara yumuşak, güneşli bir parıltı katıyor.",
@@ -8684,7 +8684,7 @@ const PRODUCTS = [
  "برتقال"
  ],
  "material": {
- "fr": "raphia crochete main raffia",
+ "fr": "raphia crocheté main raffia",
  "en": "hand-crocheted raffia",
  "es": "rafia tejida a mano con ganchillo",
  "tr": "el örgüsü rafya",
@@ -8706,7 +8706,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Environ 6 x 4 cm (chaque piece peut legerement varier).",
+ "fr": "Environ 6 x 4 cm (chaque pièce peut légèrement varier).",
  "en": "Approx. 6 x 4 cm (each piece may vary slightly).",
  "es": "Aprox. 6 x 4 cm (cada pieza puede variar ligeramente).",
  "tr": "Yaklaşık 6 x 4 cm (her parça hafifçe farklılık gösterebilir).",
@@ -8780,7 +8780,7 @@ const PRODUCTS = [
  "ar": "الأفضل على السلال وحقائب السوق والحقائب الجلدية البسيطة. امزجيه مع الأفوكادو وشريحة الليمون للثلاثي الطازج."
  },
  "note": {
- "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "fr": "Chaque charm vient avec une petite boucle. L’anneau doré est inclus dans les bundles et peut être ajouté au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
  "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
  "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
@@ -8819,7 +8819,7 @@ const PRODUCTS = [
  "liveUrl": "https://yza-shop.com/products/orange-slice-raffia-crochet-bag-charm"
  },
  "making": {
- "fr": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "fr": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings. Chaque pièce est travaillée au crochet main dans l’atelier de Guéliz, puis contrôlée avant la pose de l’étiquette YZA.",
  "en": "The orange slice is made for handles that need movement and colour without weight. It keeps the graphic shape of the fruit and the warmth of Marrakesh mornings. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
  "es": "La rodaja de naranja está hecha para asas que necesitan movimiento y color sin peso. Mantiene la forma gráfica de la fruta y el calor de las mañanas de Marrakech. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
  "tr": "Portakal dilimi, ağırlık olmadan hareket ve renge ihtiyaç duyan kulplar için yapılmış. Meyvenin grafik şeklini ve Marakeş sabahlarının sıcaklığını koruyor. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
@@ -8899,14 +8899,14 @@ const PRODUCTS = [
  "ar": "دلاية شريحة كيوي من الرافيا"
  },
  "short": {
- "fr": "Charm tranche de kiwi en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm tranche de kiwi en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring.",
  "es": "Un charm de rodaja de kiwi en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
  "tr": "Bir tığ işi rafya kivi dilimi charm, 2,5 cm altın halkayla.",
  "ar": "ميدالية شريحة كيوي من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
- "fr": "Charm tranche de kiwi en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm tranche de kiwi en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A crocheted raffia kiwi slice charm with a 2.5 cm gold ring.",
  "es": "Un charm de rodaja de kiwi en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
  "tr": "Bir tığ işi rafya kivi dilimi charm, 2,5 cm altın halkayla.",
@@ -9034,7 +9034,7 @@ const PRODUCTS = [
  "كيوي"
  ],
  "material": {
- "fr": "raphia crochete main raffia",
+ "fr": "raphia crocheté main raffia",
  "en": "hand-crocheted raffia",
  "es": "rafia tejida a mano con ganchillo",
  "tr": "el örgüsü rafya",
@@ -9056,7 +9056,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Environ 6 x 4 cm (chaque piece peut legerement varier).",
+ "fr": "Environ 6 x 4 cm (chaque pièce peut légèrement varier).",
  "en": "Approx. 6 x 4 cm (each piece may vary slightly).",
  "es": "Aprox. 6 x 4 cm (cada pieza puede variar ligeramente).",
  "tr": "Yaklaşık 6 x 4 cm (her parça hafifçe farklılık gösterebilir).",
@@ -9130,7 +9130,7 @@ const PRODUCTS = [
  "ar": "الأفضل على البيج والكريم والتان والقش. زوّجيه بالعنب حين تريدين قصة خضراء-بنفسجية أكثر هدوءاً."
  },
  "note": {
- "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "fr": "Chaque charm vient avec une petite boucle. L’anneau doré est inclus dans les bundles et peut être ajouté au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
  "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
  "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
@@ -9169,7 +9169,7 @@ const PRODUCTS = [
  "liveUrl": "https://yza-shop.com/products/kiwi-raffia-crochet-bag-charm"
  },
  "making": {
- "fr": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "fr": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer. Chaque pièce est travaillée au crochet main dans l’atelier de Guéliz, puis contrôlée avant la pose de l’étiquette YZA.",
  "en": "A kiwi slice is not the obvious fruit charm, and that is the point. It gives the collection a modern wink: graphic seeds, soft green and a shape that feels almost like a tiny patch of summer. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
  "es": "Una rodaja de kiwi no es el charm de fruta obvio, y eso es precisamente el punto. Le da a la colección un guiño moderno: semillas gráficas, verde suave y una forma que parece casi un pequeño retazo de verano. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
  "tr": "Kivi dilimi, bariz meyve charm'{ı} değil ve bu aslında amacı. Koleksiyona modern bir göz kırpma katıyor: grafik tohumlar, yumuşak yeşil ve neredeyse küçük bir yaz parçası gibi hissettiren bir şekil. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
@@ -9234,35 +9234,35 @@ const PRODUCTS = [
  ],
  "sku": null,
  "name": {
- "fr": "Charm tranche de pasteque en raphia",
+ "fr": "Charm tranche de pastèque en raphia",
  "en": "Raffia Watermelon Slice Charm",
  "es": "Charm rodaja de sandía de rafia",
  "tr": "Rafya karpuz dilimi süsü",
  "ar": "دلاية شريحة بطيخ من الرافيا"
  },
  "displayName": {
- "fr": "Charm tranche de pasteque en raphia",
+ "fr": "Charm tranche de pastèque en raphia",
  "en": "Raffia Watermelon Slice Charm",
  "es": "Charm rodaja de sandía de rafia",
  "tr": "Rafya karpuz dilimi süsü",
  "ar": "دلاية شريحة بطيخ من الرافيا"
  },
  "short": {
- "fr": "Charm tranche de pasteque en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm tranche de pastèque en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring.",
  "es": "Un charm de rodaja de sandía en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
  "tr": "Bir tığ işi rafya karpuz dilimi charm, 2,5 cm altın halkayla.",
  "ar": "ميدالية شريحة بطيخ من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
- "fr": "Charm tranche de pasteque en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm tranche de pastèque en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A crocheted raffia watermelon slice charm with a 2.5 cm gold ring.",
  "es": "Un charm de rodaja de sandía en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
  "tr": "Bir tığ işi rafya karpuz dilimi charm, 2,5 cm altın halkayla.",
  "ar": "ميدالية شريحة بطيخ من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "desc": {
- "fr": "Une petite tranche d ete marrakchi: rose, vert, fraiche et joyeuse sur sac ou panier.",
+ "fr": "Une petite tranche d’été marrakchi: rose, vert, fraîche et joyeuse sur sac ou panier.",
  "en": "A tiny slice of Marrakesh summer. This hand-crocheted watermelon charm adds a playful pop of pink and green to any bag or basket.",
  "es": "Una pequeña rodaja del verano de Marrakech. Este charm de sandía tejido a mano añade un toque juguetón de rosa y verde a cualquier bolso o cesto.",
  "tr": "Marakeş yazından küçük bir dilim. Bu el kroşesiyle yapılmış karpuz charm, her çanta veya sepete eğlenceli bir pembe-yeşil renk patlaması katıyor.",
@@ -9386,7 +9386,7 @@ const PRODUCTS = [
  "بطيخ"
  ],
  "material": {
- "fr": "raphia crochete main raffia",
+ "fr": "raphia crocheté main raffia",
  "en": "hand-crocheted raffia",
  "es": "rafia tejida a mano con ganchillo",
  "tr": "el örgüsü rafya",
@@ -9408,7 +9408,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Environ 6 x 4 cm (chaque piece peut legerement varier).",
+ "fr": "Environ 6 x 4 cm (chaque pièce peut légèrement varier).",
  "en": "Approx. 6 x 4 cm (each piece may vary slightly).",
  "es": "Aprox. 6 x 4 cm (cada pieza puede variar ligeramente).",
  "tr": "Yaklaşık 6 x 4 cm (her parça hafifçe farklılık gösterebilir).",
@@ -9482,7 +9482,7 @@ const PRODUCTS = [
  "ar": "الأفضل على حقائب الشاطئ والسلال البيضاء وحقائب العطلات. أضيفي الطماطم للحظة Fruit Market حمراء."
  },
  "note": {
- "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "fr": "Chaque charm vient avec une petite boucle. L’anneau doré est inclus dans les bundles et peut être ajouté au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
  "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
  "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
@@ -9521,7 +9521,7 @@ const PRODUCTS = [
  "liveUrl": "https://yza-shop.com/products/watermelon-raffia-bag-charm"
  },
  "making": {
- "fr": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "fr": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel. Chaque pièce est travaillée au crochet main dans l’atelier de Guéliz, puis contrôlée avant la pose de l’étiquette YZA.",
  "en": "Watermelon is the charm for heat, terraces and long afternoons. It carries the most immediate summer feeling in the collection: a bright slice, made slowly, meant to travel. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
  "es": "La sandía es el charm del calor, las terrazas y las tardes largas. Es el que transmite la sensación de verano más inmediata de la colección: una rodaja brillante, hecha despacio, destinada a viajar. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
  "tr": "Karpuz, sıcak için, teraslar için ve uzun öğleden sonralar için yapılmış charm. Koleksiyondaki en anlık yaz hissini taşıyor: yavaş yapılmış, seyahat etmek için tasarlanmış parlak bir dilim. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
@@ -9602,14 +9602,14 @@ const PRODUCTS = [
  "ar": "دلاية نصف أفوكادو من الرافيا"
  },
  "short": {
- "fr": "Charm demi avocat en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm demi avocat en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing.",
  "es": "Un charm de medio aguacate en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
  "tr": "Bir tığ işi rafya avokado yarısı charm, 2,5 cm altın halkayla.",
  "ar": "ميدالية نصف أفوكادو من الرافيا بالكروشيه، مع حلقة ذهبية 2.5 سم."
  },
  "displayShort": {
- "fr": "Charm demi avocat en raphia, crochete main avec anneau dore 2,5 cm.",
+ "fr": "Charm demi avocat en raphia, crocheté main avec anneau doré 2,5 cm.",
  "en": "A crocheted raffia avocado half charm shown in the SS26 fruit charm grid. Price needs confirmation before publishing.",
  "es": "Un charm de medio aguacate en rafia tejido a ganchillo, con aro dorado de 2,5 cm.",
  "tr": "Bir tığ işi rafya avokado yarısı charm, 2,5 cm altın halkayla.",
@@ -9726,7 +9726,7 @@ const PRODUCTS = [
  "افوكادو"
  ],
  "material": {
- "fr": "raphia crochete main raffia",
+ "fr": "raphia crocheté main raffia",
  "en": "hand-crocheted raffia",
  "es": "rafia tejida a mano con ganchillo",
  "tr": "el örgüsü rafya",
@@ -9748,7 +9748,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Environ 6 x 3 cm (chaque piece peut legerement varier).",
+ "fr": "Environ 6 x 3 cm (chaque pièce peut légèrement varier).",
  "en": "Approx. 6 x 3 cm (each piece may vary slightly).",
  "es": "Aprox. 6 x 3 cm (cada pieza puede variar ligeramente).",
  "tr": "Yaklaşık 6 x 3 cm (her parça hafifçe farklılık gösterebilir).",
@@ -9822,7 +9822,7 @@ const PRODUCTS = [
  "ar": "الأفضل على القش الطبيعي وحقائب الكانفاس والجلد الكريمي. امزجيه مع شريحة الليمون لطقم سوق طازج."
  },
  "note": {
- "fr": "Chaque charm vient avec une petite boucle. L anneau dore est inclus dans les bundles et peut etre ajoute au studio pour un charm seul.",
+ "fr": "Chaque charm vient avec une petite boucle. L’anneau doré est inclus dans les bundles et peut être ajouté au studio pour un charm seul.",
  "en": "Every charm comes with a small loop. The gold ring is included with bundles and can be added in studio for single charms.",
  "es": "Cada charm incluye un lazo pequeño. El aro dorado viene incluido en los bundles y puede añadirse en el estudio para charms individuales.",
  "tr": "Her charm küçük bir halkayla birlikte gelir. Altın halka bundle'lara dahildir; tek charmlar için stüdyoda eklenebilir.",
@@ -9861,7 +9861,7 @@ const PRODUCTS = [
  "liveUrl": "https://yza-shop.com/products/avocado-raffia-bag-charm"
  },
  "making": {
- "fr": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature. Chaque piece est travaillee au crochet main dans l atelier de Guéliz, puis controlee avant la pose de l etiquette YZA.",
+ "fr": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature. Chaque pièce est travaillée au crochet main dans l’atelier de Guéliz, puis contrôlée avant la pose de l’étiquette YZA.",
  "en": "Inspired by long Marrakesh brunches and the new generation of basket carriers. The avocado is quieter than the citrus fruits: softer, greener, a little more minimal. It works when the bag already has colour and needs a calm signature. Each piece is hand-crocheted in the Guéliz atelier, then checked before the YZA tag is added.",
  "es": "Inspirado en los largos brunchs de Marrakech y la nueva generación de portadoras de cestos. El aguacate es más tranquilo que los cítricos: más suave, más verde, un poco más minimalista. Funciona cuando el bolso ya tiene color y necesita una firma serena. Cada pieza está tejida a mano en el taller de Guéliz y revisada antes de poner la etiqueta YZA.",
  "tr": "Uzun Marakeş brönchlarından ve yeni nesil sepet taşıyıcılarından ilham alınmış. Avokado, narenciye meyvelerinden daha sessiz: daha yumuşak, daha yeşil, biraz daha minimal. Çanta zaten renkli olduğunda ve sakin bir imzaya ihtiyaç duyduğunda işe yarıyor. Her parça Guéliz atölyesinde el kroşesiyle yapılır, ardından YZA etiketi eklenmeden önce kontrol edilir.",
@@ -9926,35 +9926,35 @@ const PRODUCTS = [
  "lifestyleVideo": "assets/lifestyle/accessories/watermelon-earrings.mp4",
  "hoverVideo": "assets/lifestyle/accessories/watermelon-earrings.mp4",
  "name": {
- "fr": "Boucles pasteque en raphia",
+ "fr": "Boucles pastèque en raphia",
  "en": "Watermelon Raffia Earrings",
  "es": "Pendientes sandía de rafia",
  "tr": "Rafya karpuz küpe",
  "ar": "أقراط بطيخ من الرافيا"
  },
  "displayName": {
- "fr": "Boucles pasteque en raphia",
+ "fr": "Boucles pastèque en raphia",
  "en": "Watermelon Raffia Earrings",
  "es": "Pendientes sandía de rafia",
  "tr": "Rafya karpuz küpe",
  "ar": "أقراط بطيخ من الرافيا"
  },
  "short": {
- "fr": "Boucles pasteque en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles pastèque en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Pendientes de sandía en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "El yapımı rafia karpuz küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
  "ar": "أقراط بطيخ من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "displayShort": {
- "fr": "Boucles pasteque en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles pastèque en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Crocheted raffia watermelon earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Pendientes de sandía en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "El yapımı rafia karpuz küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
  "ar": "أقراط بطيخ من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "desc": {
- "fr": "Boucles pasteque en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles pastèque en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh.",
  "es": "Parte de la línea de accesorios de YZA, estos pendientes de fruta están tejidos en rafia y diseñados como postales portables de Marrakech.",
  "tr": "YZA’nın Aksesuar serisinden bu meyve küpeleri rafiadan tığ işiyle örülmüş ve Marakeş’ten taşınabilir kartpostallar olarak tasarlanmıştır.",
@@ -10066,7 +10066,7 @@ const PRODUCTS = [
  "بطيخ"
  ],
  "material": {
- "fr": "Raffia, Creoles dorees",
+ "fr": "Raffia, Créoles dorées",
  "en": "Raffia, Gold earrings",
  "es": "Rafia, Aros dorados",
  "tr": "Rafya, Altın halkalar",
@@ -10088,7 +10088,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Petit format bijou textile, leger et visible.",
+ "fr": "Petit format bijou textile, léger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
  "es": "Escala pequeña de joyería textil, ligero y visible.",
  "tr": "Küçük tekstil-mücevheri ölçeği, hafif ve görünür.",
@@ -10096,14 +10096,14 @@ const PRODUCTS = [
  },
  "whatFits": null,
  "attachment": {
- "fr": "Creole doree 1,5 cm.",
+ "fr": "Créole dorée 1,5 cm.",
  "en": "1.5 cm gold earring.",
  "es": "Aro dorado de 1,5 cm.",
  "tr": "1,5 cm altın halka.",
  "ar": "حلقة ذهبية 1,5 سم."
  },
  "handworkTime": {
- "fr": "Crochet main et montage bijou, piece par piece.",
+ "fr": "Crochet main et montage bijou, pièce par pièce.",
  "en": "Hand crochet and jewellery assembly, piece by piece.",
  "es": "Ganchillo a mano y montaje de joyería, pieza por pieza.",
  "tr": "El tığ işi ve mücevher montajı, parça parça.",
@@ -10112,7 +10112,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Fruit crochete main puis monte sur creole doree legere.",
+ "fr": "Fruit crocheté main puis monté sur créole dorée légère.",
  "en": "Hand-crocheted fruit mounted on a light golden earring.",
  "es": "Fruta tejida a mano montada sobre un aro dorado ligero.",
  "tr": "El yapımı tığ işi meyve, hafif bir altın halkaya monte edilmiş.",
@@ -10189,21 +10189,21 @@ const PRODUCTS = [
  "ar": "أقراط كيوي من الرافيا"
  },
  "short": {
- "fr": "Boucles kiwi en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles kiwi en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "tr": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "ar": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "displayShort": {
- "fr": "Boucles kiwi en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles kiwi en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "tr": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "ar": "Crocheted raffia kiwi earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "desc": {
- "fr": "Boucles kiwi en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles kiwi en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh.",
  "es": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh.",
  "tr": "Part of YZA’s Accessories line, these fruit earrings are crocheted in raffia and designed as wearable postcards from Marrakesh.",
@@ -10310,7 +10310,7 @@ const PRODUCTS = [
  "كيوي"
  ],
  "material": {
- "fr": "Raffia, Creoles dorees",
+ "fr": "Raffia, Créoles dorées",
  "en": "Raffia, Gold earrings",
  "es": "Raffia, Gold earrings",
  "tr": "Raffia, Gold earrings",
@@ -10332,7 +10332,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Petit format bijou textile, leger et visible.",
+ "fr": "Petit format bijou textile, léger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
  "es": "Small textile-jewellery scale, light and visible.",
  "tr": "Small textile-jewellery scale, light and visible.",
@@ -10340,14 +10340,14 @@ const PRODUCTS = [
  },
  "whatFits": null,
  "attachment": {
- "fr": "Creole doree 1,5 cm.",
+ "fr": "Créole dorée 1,5 cm.",
  "en": "1.5 cm gold earring.",
  "es": "1.5 cm gold earring.",
  "tr": "1.5 cm gold earring.",
  "ar": "1.5 cm gold earring."
  },
  "handworkTime": {
- "fr": "Crochet main et montage bijou, piece par piece.",
+ "fr": "Crochet main et montage bijou, pièce par pièce.",
  "en": "Hand crochet and jewellery assembly, piece by piece.",
  "es": "Hand crochet and jewellery assembly, piece by piece.",
  "tr": "Hand crochet and jewellery assembly, piece by piece.",
@@ -10356,7 +10356,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Fruit crochete main puis monte sur creole doree legere.",
+ "fr": "Fruit crocheté main puis monté sur créole dorée légère.",
  "en": "Hand-crocheted fruit mounted on a light golden earring.",
  "es": "Hand-crocheted fruit mounted on a light golden earring.",
  "tr": "Hand-crocheted fruit mounted on a light golden earring.",
@@ -10433,21 +10433,21 @@ const PRODUCTS = [
  "ar": "أقراط ليمون من الرافيا"
  },
  "short": {
- "fr": "Boucles citron en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles citron en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Pendientes de limón en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "El yapımı rafia limon küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
  "ar": "أقراط ليمون من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "displayShort": {
- "fr": "Boucles citron en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles citron en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Crocheted raffia lemon earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Pendientes de limón en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "El yapımı rafia limon küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
  "ar": "أقراط ليمون من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "desc": {
- "fr": "Boucles citron en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles citron en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
  "es": "Un estilo de pendiente de fruta en rafia de la colección de accesorios de YZA, hecho a mano como parte de la familia de frutas SS26.",
  "tr": "YZA’nın Aksesuar koleksiyonundan rafia meyve küpesi modeli, SS26 meyve ailesinin bir parçası olarak el yapımı.",
@@ -10558,7 +10558,7 @@ const PRODUCTS = [
  "ليمون"
  ],
  "material": {
- "fr": "Raffia, Creoles dorees",
+ "fr": "Raffia, Créoles dorées",
  "en": "Raffia, Gold earrings",
  "es": "Rafia, Aros dorados",
  "tr": "Rafya, Altın halkalar",
@@ -10580,7 +10580,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Petit format bijou textile, leger et visible.",
+ "fr": "Petit format bijou textile, léger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
  "es": "Escala pequeña de joyería textil, ligero y visible.",
  "tr": "Küçük tekstil-mücevheri ölçeği, hafif ve görünür.",
@@ -10588,14 +10588,14 @@ const PRODUCTS = [
  },
  "whatFits": null,
  "attachment": {
- "fr": "Creole doree 1,5 cm.",
+ "fr": "Créole dorée 1,5 cm.",
  "en": "1.5 cm gold earring.",
  "es": "Aro dorado de 1,5 cm.",
  "tr": "1,5 cm altın halka.",
  "ar": "حلقة ذهبية 1,5 سم."
  },
  "handworkTime": {
- "fr": "Crochet main et montage bijou, piece par piece.",
+ "fr": "Crochet main et montage bijou, pièce par pièce.",
  "en": "Hand crochet and jewellery assembly, piece by piece.",
  "es": "Ganchillo a mano y montaje de joyería, pieza por pieza.",
  "tr": "El tığ işi ve mücevher montajı, parça parça.",
@@ -10604,7 +10604,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Fruit crochete main puis monte sur creole doree legere.",
+ "fr": "Fruit crocheté main puis monté sur créole dorée légère.",
  "en": "Hand-crocheted fruit mounted on a light golden earring.",
  "es": "Fruta tejida a mano montada sobre un aro dorado ligero.",
  "tr": "El yapımı tığ işi meyve, hafif bir altın halkaya monte edilmiş.",
@@ -10681,21 +10681,21 @@ const PRODUCTS = [
  "ar": "أقراط برتقال من الرافيا"
  },
  "short": {
- "fr": "Boucles orange en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles orange en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Pendientes de naranja en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "El yapımı rafia portakal küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
  "ar": "أقراط برتقال من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "displayShort": {
- "fr": "Boucles orange en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles orange en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Crocheted raffia orange earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Pendientes de naranja en rafia, tejidos a mano con aros dorados de 1,5 cm y nombre de la artesana en la etiqueta.",
  "tr": "El yapımı rafia portakal küpeleri, 1,5 cm altın halkalar ve el etiketinde zanaatkar adıyla.",
  "ar": "أقراط برتقال من الرافيا، منسوجة يدويًا مع حلقات ذهبية 1,5 سم واسم الحرفية على البطاقة."
  },
  "desc": {
- "fr": "Boucles orange en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles orange en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
  "es": "Un estilo de pendiente de fruta en rafia de la colección de accesorios de YZA, hecho a mano como parte de la familia de frutas SS26.",
  "tr": "YZA’nın Aksesuar koleksiyonundan rafia meyve küpesi modeli, SS26 meyve ailesinin bir parçası olarak el yapımı.",
@@ -10804,7 +10804,7 @@ const PRODUCTS = [
  "برتقال"
  ],
  "material": {
- "fr": "Raffia, Creoles dorees",
+ "fr": "Raffia, Créoles dorées",
  "en": "Raffia, Gold earrings",
  "es": "Rafia, Aros dorados",
  "tr": "Rafya, Altın halkalar",
@@ -10826,7 +10826,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Petit format bijou textile, leger et visible.",
+ "fr": "Petit format bijou textile, léger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
  "es": "Escala pequeña de joyería textil, ligero y visible.",
  "tr": "Küçük tekstil-mücevheri ölçeği, hafif ve görünür.",
@@ -10834,14 +10834,14 @@ const PRODUCTS = [
  },
  "whatFits": null,
  "attachment": {
- "fr": "Creole doree 1,5 cm.",
+ "fr": "Créole dorée 1,5 cm.",
  "en": "1.5 cm gold earring.",
  "es": "Aro dorado de 1,5 cm.",
  "tr": "1,5 cm altın halka.",
  "ar": "حلقة ذهبية 1,5 سم."
  },
  "handworkTime": {
- "fr": "Crochet main et montage bijou, piece par piece.",
+ "fr": "Crochet main et montage bijou, pièce par pièce.",
  "en": "Hand crochet and jewellery assembly, piece by piece.",
  "es": "Ganchillo a mano y montaje de joyería, pieza por pieza.",
  "tr": "El tığ işi ve mücevher montajı, parça parça.",
@@ -10850,7 +10850,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Fruit crochete main puis monte sur creole doree legere.",
+ "fr": "Fruit crocheté main puis monté sur créole dorée légère.",
  "en": "Hand-crocheted fruit mounted on a light golden earring.",
  "es": "Fruta tejida a mano montada sobre un aro dorado ligero.",
  "tr": "El yapımı tığ işi meyve, hafif bir altın halkaya monte edilmiş.",
@@ -10927,21 +10927,21 @@ const PRODUCTS = [
  "ar": "أقراط عنب من الرافيا"
  },
  "short": {
- "fr": "Boucles raisins en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles raisins en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "tr": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "ar": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "displayShort": {
- "fr": "Boucles raisins en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles raisins en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "tr": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "ar": "Crocheted raffia grapes earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "desc": {
- "fr": "Boucles raisins en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles raisins en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
  "es": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
  "tr": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
@@ -11057,7 +11057,7 @@ const PRODUCTS = [
  "عنب"
  ],
  "material": {
- "fr": "Raffia, Creoles dorees",
+ "fr": "Raffia, Créoles dorées",
  "en": "Raffia, Gold earrings",
  "es": "Raffia, Gold earrings",
  "tr": "Raffia, Gold earrings",
@@ -11079,7 +11079,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Petit format bijou textile, leger et visible.",
+ "fr": "Petit format bijou textile, léger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
  "es": "Small textile-jewellery scale, light and visible.",
  "tr": "Small textile-jewellery scale, light and visible.",
@@ -11087,14 +11087,14 @@ const PRODUCTS = [
  },
  "whatFits": null,
  "attachment": {
- "fr": "Creole doree 1,5 cm.",
+ "fr": "Créole dorée 1,5 cm.",
  "en": "1.5 cm gold earring.",
  "es": "1.5 cm gold earring.",
  "tr": "1.5 cm gold earring.",
  "ar": "1.5 cm gold earring."
  },
  "handworkTime": {
- "fr": "Crochet main et montage bijou, piece par piece.",
+ "fr": "Crochet main et montage bijou, pièce par pièce.",
  "en": "Hand crochet and jewellery assembly, piece by piece.",
  "es": "Hand crochet and jewellery assembly, piece by piece.",
  "tr": "Hand crochet and jewellery assembly, piece by piece.",
@@ -11103,7 +11103,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Fruit crochete main puis monte sur creole doree legere.",
+ "fr": "Fruit crocheté main puis monté sur créole dorée légère.",
  "en": "Hand-crocheted fruit mounted on a light golden earring.",
  "es": "Hand-crocheted fruit mounted on a light golden earring.",
  "tr": "Hand-crocheted fruit mounted on a light golden earring.",
@@ -11180,21 +11180,21 @@ const PRODUCTS = [
  "ar": "أقراط كرز من الرافيا"
  },
  "short": {
- "fr": "Boucles cerises en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles cerises en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "tr": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "ar": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "displayShort": {
- "fr": "Boucles cerises en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles cerises en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "tr": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "ar": "Crocheted raffia cherries earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "desc": {
- "fr": "Boucles cerises en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles cerises en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
  "es": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
  "tr": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
@@ -11308,7 +11308,7 @@ const PRODUCTS = [
  "كرز"
  ],
  "material": {
- "fr": "Raffia, Creoles dorees",
+ "fr": "Raffia, Créoles dorées",
  "en": "Raffia, Gold earrings",
  "es": "Raffia, Gold earrings",
  "tr": "Raffia, Gold earrings",
@@ -11330,7 +11330,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Petit format bijou textile, leger et visible.",
+ "fr": "Petit format bijou textile, léger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
  "es": "Small textile-jewellery scale, light and visible.",
  "tr": "Small textile-jewellery scale, light and visible.",
@@ -11338,14 +11338,14 @@ const PRODUCTS = [
  },
  "whatFits": null,
  "attachment": {
- "fr": "Creole doree 1,5 cm.",
+ "fr": "Créole dorée 1,5 cm.",
  "en": "1.5 cm gold earring.",
  "es": "1.5 cm gold earring.",
  "tr": "1.5 cm gold earring.",
  "ar": "1.5 cm gold earring."
  },
  "handworkTime": {
- "fr": "Crochet main et montage bijou, piece par piece.",
+ "fr": "Crochet main et montage bijou, pièce par pièce.",
  "en": "Hand crochet and jewellery assembly, piece by piece.",
  "es": "Hand crochet and jewellery assembly, piece by piece.",
  "tr": "Hand crochet and jewellery assembly, piece by piece.",
@@ -11354,7 +11354,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Fruit crochete main puis monte sur creole doree legere.",
+ "fr": "Fruit crocheté main puis monté sur créole dorée légère.",
  "en": "Hand-crocheted fruit mounted on a light golden earring.",
  "es": "Hand-crocheted fruit mounted on a light golden earring.",
  "tr": "Hand-crocheted fruit mounted on a light golden earring.",
@@ -11431,21 +11431,21 @@ const PRODUCTS = [
  "ar": "أقراط طماطم من الرافيا"
  },
  "short": {
- "fr": "Boucles tomates en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles tomates en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "tr": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "ar": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "displayShort": {
- "fr": "Boucles tomates en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles tomates en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "es": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "tr": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag.",
  "ar": "Crocheted raffia tomato earrings with 1.5 cm gold earrings and artisan credits on the hand tag."
  },
  "desc": {
- "fr": "Boucles tomates en raphia, crochet main avec creoles dorees 1,5 cm.",
+ "fr": "Boucles tomates en raphia, crochet main avec créoles dorées 1,5 cm.",
  "en": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
  "es": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
  "tr": "A raffia fruit earring style from YZA’s Accessories collection, handmade as part of the SS26 fruit family.",
@@ -11555,7 +11555,7 @@ const PRODUCTS = [
  "طماطم"
  ],
  "material": {
- "fr": "Raffia, Creoles dorees",
+ "fr": "Raffia, Créoles dorées",
  "en": "Raffia, Gold earrings",
  "es": "Raffia, Gold earrings",
  "tr": "Raffia, Gold earrings",
@@ -11577,7 +11577,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Petit format bijou textile, leger et visible.",
+ "fr": "Petit format bijou textile, léger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
  "es": "Small textile-jewellery scale, light and visible.",
  "tr": "Small textile-jewellery scale, light and visible.",
@@ -11585,14 +11585,14 @@ const PRODUCTS = [
  },
  "whatFits": null,
  "attachment": {
- "fr": "Creole doree 1,5 cm.",
+ "fr": "Créole dorée 1,5 cm.",
  "en": "1.5 cm gold earring.",
  "es": "1.5 cm gold earring.",
  "tr": "1.5 cm gold earring.",
  "ar": "1.5 cm gold earring."
  },
  "handworkTime": {
- "fr": "Crochet main et montage bijou, piece par piece.",
+ "fr": "Crochet main et montage bijou, pièce par pièce.",
  "en": "Hand crochet and jewellery assembly, piece by piece.",
  "es": "Hand crochet and jewellery assembly, piece by piece.",
  "tr": "Hand crochet and jewellery assembly, piece by piece.",
@@ -11601,7 +11601,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Fruit crochete main puis monte sur creole doree legere.",
+ "fr": "Fruit crocheté main puis monté sur créole dorée légère.",
  "en": "Hand-crocheted fruit mounted on a light golden earring.",
  "es": "Hand-crocheted fruit mounted on a light golden earring.",
  "tr": "Hand-crocheted fruit mounted on a light golden earring.",
@@ -11678,21 +11678,21 @@ const PRODUCTS = [
  "ar": "قلادة شريحة ليمون من الرافيا"
  },
  "short": {
- "fr": "Collier tranche de citron en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier tranche de citron en raphia, fruit en raphia crocheté sur cordon.",
  "en": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh.",
  "es": "Collar de rafia con rodaja de limón, tejido a mano como pequeña postal de Marrakech.",
  "tr": "El yapımı rafia limon dilimi kolyesi, Marakeş'ten küçük bir kartpostal olarak.",
  "ar": "قلادة رافيا بشريحة ليمون، منسوجة يدويًا كبطاقة بريدية صغيرة من مراكش."
  },
  "displayShort": {
- "fr": "Collier tranche de citron en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier tranche de citron en raphia, fruit en raphia crocheté sur cordon.",
  "en": "A crocheted raffia lemon slice necklace, handmade as a tiny postcard from Marrakesh.",
  "es": "Collar de rafia con rodaja de limón, tejido a mano como pequeña postal de Marrakech.",
  "tr": "El yapımı rafia limon dilimi kolyesi, Marakeş'ten küçük bir kartpostal olarak.",
  "ar": "قلادة رافيا بشريحة ليمون، منسوجة يدويًا كبطاقة بريدية صغيرة من مراكش."
  },
  "desc": {
- "fr": "Collier tranche de citron en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier tranche de citron en raphia, fruit en raphia crocheté sur cordon.",
  "en": "Lemon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
  "es": "El Collar de Rafia con Rodaja de Limón pertenece a la línea de accesorios de YZA: fruta tejida en rafia, diseñada como un objeto portador lúdico del universo del Mercado de Fruta de Marrakech.",
  "tr": "Limon Dilimi Rafia Kolyesi, YZA'nın Aksesuar serisine ait: rafiadan örülmüş meyve, Marakeş Meyve Pazarı evrenine dayanan eğlenceli bir giyilebilir nesne olarak tasarlanmıştır.",
@@ -11826,7 +11826,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Petit format bijou textile, leger et visible.",
+ "fr": "Petit format bijou textile, léger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
  "es": "Escala pequeña de joyería textil, ligero y visible.",
  "tr": "Küçük tekstil-mücevheri ölçeği, hafif ve görünür.",
@@ -11841,7 +11841,7 @@ const PRODUCTS = [
  "ar": "خيط نسيجي مع حلقة إنهاء."
  },
  "handworkTime": {
- "fr": "Crochet main et montage sur cordon, piece par piece.",
+ "fr": "Crochet main et montage sur cordon, pièce par pièce.",
  "en": "Hand crochet and cord assembly, piece by piece.",
  "es": "Ganchillo a mano y montaje en cordón, pieza por pieza.",
  "tr": "El tığ işi ve kordon montajı, parça parça.",
@@ -11850,7 +11850,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Fruit crochete main, monte sur cordon comme bijou textile.",
+ "fr": "Fruit crocheté main, monté sur cordon comme bijou textile.",
  "en": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
  "es": "Fruta tejida a mano montada sobre un cordón como joyería textil.",
  "tr": "El yapımı tığ işi meyve, tekstil mücevheri olarak bir kordona monte edilmiş.",
@@ -11913,35 +11913,35 @@ const PRODUCTS = [
  "legacyHandles": [],
  "sku": null,
  "name": {
- "fr": "Collier tranche d orange en raphia",
+ "fr": "Collier tranche d’orange en raphia",
  "en": "Orange Slice Raffia Necklace",
  "es": "Collar rodaja de naranja de rafia",
  "tr": "Rafya portakal dilimi kolye",
  "ar": "قلادة شريحة برتقال من الرافيا"
  },
  "displayName": {
- "fr": "Collier tranche d orange en raphia",
+ "fr": "Collier tranche d’orange en raphia",
  "en": "Orange Slice Raffia Necklace",
  "es": "Collar rodaja de naranja de rafia",
  "tr": "Rafya portakal dilimi kolye",
  "ar": "قلادة شريحة برتقال من الرافيا"
  },
  "short": {
- "fr": "Collier tranche d orange en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier tranche d’orange en raphia, fruit en raphia crocheté sur cordon.",
  "en": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh.",
  "es": "Collar de rafia con rodaja de naranja, tejido a mano como pequeña postal de Marrakech.",
  "tr": "El yapımı rafia portakal dilimi kolyesi, Marakeş'ten küçük bir kartpostal olarak.",
  "ar": "قلادة رافيا بشريحة برتقال، منسوجة يدويًا كبطاقة بريدية صغيرة من مراكش."
  },
  "displayShort": {
- "fr": "Collier tranche d orange en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier tranche d’orange en raphia, fruit en raphia crocheté sur cordon.",
  "en": "A crocheted raffia orange slice necklace, handmade as a tiny postcard from Marrakesh.",
  "es": "Collar de rafia con rodaja de naranja, tejido a mano como pequeña postal de Marrakech.",
  "tr": "El yapımı rafia portakal dilimi kolyesi, Marakeş'ten küçük bir kartpostal olarak.",
  "ar": "قلادة رافيا بشريحة برتقال، منسوجة يدويًا كبطاقة بريدية صغيرة من مراكش."
  },
  "desc": {
- "fr": "Collier tranche d orange en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier tranche d’orange en raphia, fruit en raphia crocheté sur cordon.",
  "en": "Orange Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
  "es": "El Collar de Rafia con Rodaja de Naranja pertenece a la línea de accesorios de YZA: fruta tejida en rafia, diseñada como un objeto portador lúdico del universo del Mercado de Fruta de Marrakech.",
  "tr": "Portakal Dilimi Rafia Kolyesi, YZA'nın Aksesuar serisine ait: rafiadan örülmüş meyve, Marakeş Meyve Pazarı evrenine dayanan eğlenceli bir giyilebilir nesne olarak tasarlanmıştır.",
@@ -12074,7 +12074,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Petit format bijou textile, leger et visible.",
+ "fr": "Petit format bijou textile, léger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
  "es": "Escala pequeña de joyería textil, ligero y visible.",
  "tr": "Küçük tekstil-mücevheri ölçeği, hafif ve görünür.",
@@ -12089,7 +12089,7 @@ const PRODUCTS = [
  "ar": "خيط نسيجي مع حلقة إنهاء."
  },
  "handworkTime": {
- "fr": "Crochet main et montage sur cordon, piece par piece.",
+ "fr": "Crochet main et montage sur cordon, pièce par pièce.",
  "en": "Hand crochet and cord assembly, piece by piece.",
  "es": "Ganchillo a mano y montaje en cordón, pieza por pieza.",
  "tr": "El tığ işi ve kordon montajı, parça parça.",
@@ -12098,7 +12098,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Fruit crochete main, monte sur cordon comme bijou textile.",
+ "fr": "Fruit crocheté main, monté sur cordon comme bijou textile.",
  "en": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
  "es": "Fruta tejida a mano montada sobre un cordón como joyería textil.",
  "tr": "El yapımı tığ işi meyve, tekstil mücevheri olarak bir kordona monte edilmiş.",
@@ -12161,35 +12161,35 @@ const PRODUCTS = [
  "legacyHandles": [],
  "sku": null,
  "name": {
- "fr": "Collier tranche de pasteque en raphia",
+ "fr": "Collier tranche de pastèque en raphia",
  "en": "Watermelon Slice Raffia Necklace",
  "es": "Collar rodaja de sandía de rafia",
  "tr": "Rafya karpuz dilimi kolye",
  "ar": "قلادة شريحة بطيخ من الرافيا"
  },
  "displayName": {
- "fr": "Collier tranche de pasteque en raphia",
+ "fr": "Collier tranche de pastèque en raphia",
  "en": "Watermelon Slice Raffia Necklace",
  "es": "Collar rodaja de sandía de rafia",
  "tr": "Rafya karpuz dilimi kolye",
  "ar": "قلادة شريحة بطيخ من الرافيا"
  },
  "short": {
- "fr": "Collier tranche de pasteque en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier tranche de pastèque en raphia, fruit en raphia crocheté sur cordon.",
  "en": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh.",
  "es": "Collar de rafia con rodaja de sandía, tejido a mano como pequeña postal de Marrakech.",
  "tr": "El yapımı rafia karpuz dilimi kolyesi, Marakeş'ten küçük bir kartpostal olarak.",
  "ar": "قلادة رافيا بشريحة بطيخ، منسوجة يدويًا كبطاقة بريدية صغيرة من مراكش."
  },
  "displayShort": {
- "fr": "Collier tranche de pasteque en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier tranche de pastèque en raphia, fruit en raphia crocheté sur cordon.",
  "en": "A crocheted raffia watermelon slice necklace, handmade as a tiny postcard from Marrakesh.",
  "es": "Collar de rafia con rodaja de sandía, tejido a mano como pequeña postal de Marrakech.",
  "tr": "El yapımı rafia karpuz dilimi kolyesi, Marakeş'ten küçük bir kartpostal olarak.",
  "ar": "قلادة رافيا بشريحة بطيخ، منسوجة يدويًا كبطاقة بريدية صغيرة من مراكش."
  },
  "desc": {
- "fr": "Collier tranche de pasteque en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier tranche de pastèque en raphia, fruit en raphia crocheté sur cordon.",
  "en": "Watermelon Slice Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
  "es": "El Collar de Rafia con Rodaja de Sandía pertenece a la línea de accesorios de YZA: fruta tejida en rafia, diseñada como un objeto portador lúdico del universo del Mercado de Fruta de Marrakech.",
  "tr": "Karpuz Dilimi Rafia Kolyesi, YZA'nın Aksesuar serisine ait: rafiadan örülmüş meyve, Marakeş Meyve Pazarı evrenine dayanan eğlenceli bir giyilebilir nesne olarak tasarlanmıştır.",
@@ -12324,7 +12324,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Petit format bijou textile, leger et visible.",
+ "fr": "Petit format bijou textile, léger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
  "es": "Escala pequeña de joyería textil, ligero y visible.",
  "tr": "Küçük tekstil-mücevheri ölçeği, hafif ve görünür.",
@@ -12339,7 +12339,7 @@ const PRODUCTS = [
  "ar": "خيط نسيجي مع حلقة إنهاء."
  },
  "handworkTime": {
- "fr": "Crochet main et montage sur cordon, piece par piece.",
+ "fr": "Crochet main et montage sur cordon, pièce par pièce.",
  "en": "Hand crochet and cord assembly, piece by piece.",
  "es": "Ganchillo a mano y montaje en cordón, pieza por pieza.",
  "tr": "El tığ işi ve kordon montajı, parça parça.",
@@ -12348,7 +12348,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Fruit crochete main, monte sur cordon comme bijou textile.",
+ "fr": "Fruit crocheté main, monté sur cordon comme bijou textile.",
  "en": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
  "es": "Fruta tejida a mano montada sobre un cordón como joyería textil.",
  "tr": "El yapımı tığ işi meyve, tekstil mücevheri olarak bir kordona monte edilmiş.",
@@ -12425,21 +12425,21 @@ const PRODUCTS = [
  "ar": "قلادة عنب من الرافيا"
  },
  "short": {
- "fr": "Collier raisins en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier raisins en raphia, fruit en raphia crocheté sur cordon.",
  "en": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh.",
  "es": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh.",
  "tr": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh.",
  "ar": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh."
  },
  "displayShort": {
- "fr": "Collier raisins en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier raisins en raphia, fruit en raphia crocheté sur cordon.",
  "en": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh.",
  "es": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh.",
  "tr": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh.",
  "ar": "A crocheted raffia grapes necklace, handmade as a tiny postcard from Marrakesh."
  },
  "desc": {
- "fr": "Collier raisins en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier raisins en raphia, fruit en raphia crocheté sur cordon.",
  "en": "Grapes Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
  "es": "Grapes Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
  "tr": "Grapes Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
@@ -12576,7 +12576,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Petit format bijou textile, leger et visible.",
+ "fr": "Petit format bijou textile, léger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
  "es": "Small textile-jewellery scale, light and visible.",
  "tr": "Small textile-jewellery scale, light and visible.",
@@ -12591,7 +12591,7 @@ const PRODUCTS = [
  "ar": "Textile cord with finishing loop."
  },
  "handworkTime": {
- "fr": "Crochet main et montage sur cordon, piece par piece.",
+ "fr": "Crochet main et montage sur cordon, pièce par pièce.",
  "en": "Hand crochet and cord assembly, piece by piece.",
  "es": "Hand crochet and cord assembly, piece by piece.",
  "tr": "Hand crochet and cord assembly, piece by piece.",
@@ -12600,7 +12600,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Fruit crochete main, monte sur cordon comme bijou textile.",
+ "fr": "Fruit crocheté main, monté sur cordon comme bijou textile.",
  "en": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
  "es": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
  "tr": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
@@ -12677,21 +12677,21 @@ const PRODUCTS = [
  "ar": "قلادة كرز من الرافيا"
  },
  "short": {
- "fr": "Collier cerises en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier cerises en raphia, fruit en raphia crocheté sur cordon.",
  "en": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh.",
  "es": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh.",
  "tr": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh.",
  "ar": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh."
  },
  "displayShort": {
- "fr": "Collier cerises en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier cerises en raphia, fruit en raphia crocheté sur cordon.",
  "en": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh.",
  "es": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh.",
  "tr": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh.",
  "ar": "A crocheted raffia cherries necklace, handmade as a tiny postcard from Marrakesh."
  },
  "desc": {
- "fr": "Collier cerises en raphia, fruit en raphia crochete sur cordon.",
+ "fr": "Collier cerises en raphia, fruit en raphia crocheté sur cordon.",
  "en": "Cherries Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
  "es": "Cherries Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
  "tr": "Cherries Raffia Necklace belongs to YZA's Accessories line: crocheted fruit in raffia, designed as a playful wearable object rooted in the Marrakesh Fruit Market universe.",
@@ -12830,7 +12830,7 @@ const PRODUCTS = [
  "bagFamilyText": null,
  "bagFamilyOrder": null,
  "dimensions": {
- "fr": "Petit format bijou textile, leger et visible.",
+ "fr": "Petit format bijou textile, léger et visible.",
  "en": "Small textile-jewellery scale, light and visible.",
  "es": "Small textile-jewellery scale, light and visible.",
  "tr": "Small textile-jewellery scale, light and visible.",
@@ -12845,7 +12845,7 @@ const PRODUCTS = [
  "ar": "Textile cord with finishing loop."
  },
  "handworkTime": {
- "fr": "Crochet main et montage sur cordon, piece par piece.",
+ "fr": "Crochet main et montage sur cordon, pièce par pièce.",
  "en": "Hand crochet and cord assembly, piece by piece.",
  "es": "Hand crochet and cord assembly, piece by piece.",
  "tr": "Hand crochet and cord assembly, piece by piece.",
@@ -12854,7 +12854,7 @@ const PRODUCTS = [
  "howToWear": null,
  "fruitStory": null,
  "making": {
- "fr": "Fruit crochete main, monte sur cordon comme bijou textile.",
+ "fr": "Fruit crocheté main, monté sur cordon comme bijou textile.",
  "en": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
  "es": "Hand-crocheted fruit mounted on a cord as textile jewellery.",
  "tr": "Hand-crocheted fruit mounted on a cord as textile jewellery.",

@@ -586,6 +586,10 @@ body.has-search-overlay { overflow: hidden; }
 .product-card__vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s var(--ease-out); pointer-events: none; z-index: 1; }
 .product-card__media.has-hover-video:hover .product-card__vid { opacity: 1; }
 
+/* Collection grids: a small side gutter so tiles + name/price aren't glued to the screen
+   edge (kept tight to preserve the near-full-bleed editorial feel). */
+body[data-page="collections"] .product-grid:not(.collection-grid--bag-families) { padding-inline: clamp(0.9rem, 2.6vw, 2.25rem); }
+
 /* Name + price share one row. On touch they sit statically below the image;
    on hover-capable screens they overlay the image bottom and fade in. */
 .product-card__info {
