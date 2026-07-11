@@ -186,7 +186,7 @@
     // inventoryStatus may create a scarcity message.
     const fewBadge = '';
     const imgLoad = eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
-    const wishBtn = `<button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(p.handle)}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${wished ? 'Remove from wishlist' : 'Add to wishlist'}">${heartIcon()}</button>`;
+    const wishBtn = `<button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(p.handle)}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${esc(t.t(wished ? 'wishlist.remove' : 'wishlist.add'))}">${heartIcon()}</button>`;
     const hoverVid = p.hoverVideo || '';
     const mediaLink = `<a class="product-card__media${hoverVid ? ' has-hover-video' : ''}" href="${href}" data-product-card-click="${esc(p.handle)}" aria-label="${esc(name)}">
         ${fewBadge}${almostBadge}${soldOverlay}
@@ -242,7 +242,7 @@
       : '';
     return `<article class="product-card product-card--bag-variant${status.soldOut ? ' is-sold-out' : ''}" data-size="${esc(String(item.size || '').toUpperCase())}" style="--i:${index}" data-product-handle="${esc(item.handle || '')}">
       <div class="product-card__media-wrap">
-      <button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(item.handle || '')}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${wished ? 'Remove from wishlist' : 'Add to wishlist'}">${heartIcon()}</button>
+      <button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(item.handle || '')}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${esc(t.t(wished ? 'wishlist.remove' : 'wishlist.add'))}">${heartIcon()}</button>
       <a class="product-card__media${hoverVid ? ' has-hover-video' : ''}" href="${esc(item.url)}" data-product-card-click="${esc(item.handle || '')}" aria-label="${esc(fullName)}">
         ${status.almostGone ? `<span class="product-card__stock">${esc(stock.almost)}</span>` : ''}
         ${status.soldOut ? `<span class="product-card__sold">${esc(stock.sold)}</span>` : ''}
@@ -813,8 +813,23 @@
  }
 
  /* ================= ACCUEIL ================= */
+ let homeReviewTimer = null;
+ let homeReviewListeners = null;
+
+ function resetHomeReviewCarousel() {
+ if (homeReviewTimer) {
+ clearInterval(homeReviewTimer);
+ homeReviewTimer = null;
+ }
+ if (homeReviewListeners) {
+ homeReviewListeners.abort();
+ homeReviewListeners = null;
+ }
+ }
+
  function renderHome() {
  const t = T();
+ resetHomeReviewCarousel();
  // best-sellers : charms hors coffrets - carrousel landing
  const promoOk = typeof YZA.isLaunchPromoProduct === 'function' ? YZA.isLaunchPromoProduct : (p) => p && p.launchPromo !== false;
  // Page-wide image de-dup: seed with every static image already on the home page
@@ -825,10 +840,12 @@
  .filter((m) => !m.closest('#bestGrid, #offerGrid, #girlsPreviewGrid'))
  .map((m) => String(m.getAttribute('src') || '').replace(/\?.*$/, ''))
  );
- // Offer = 4 curated heroes; keep them OUT of best-sellers so no product/image repeats.
+ // One curated object from each house category keeps the first four-up edit balanced.
+ // These handles also remain compatible with the optional legacy #offerGrid surface.
  const offerHandles = ['la-sculpture-xs-basket-bag-ss26', 'yza-palazzo-pants-jawhara-ss26', 'raffia-orange-slice-charm-ss26', 'grapes-raffia-earrings-ss26'];
- // Fixed full-bleed product grid (Jacquemus "New In" style) instead of a carousel — 2 per category.
- const bestList = ['charms', 'bags', 'rtw', 'accessories'].flatMap(g => YZA.byCategory(g).filter(p => !p.bundle && promoOk(p) && !offerHandles.includes(p.handle)).slice(0, 2)).slice(0, 8);
+ const bestList = offerHandles
+ .map((handle) => YZA.getProduct ? YZA.getProduct(handle) : null)
+ .filter((product) => product && !product.bundle && promoOk(product));
  const bestGrid = $('#bestGrid');
  if (bestGrid) bestGrid.innerHTML = bestList.map((p, i) => cardHTML(p, i, false, { used: usedHomeImg })).join('');
 
@@ -874,22 +891,31 @@
  if (allReviews.length) draw();
  // prev · counter · next controls + auto-advance by page
  const wrap = $('.reviews-more-wrap');
- let timer = null;
+ homeReviewListeners = new AbortController();
+ const listenerOptions = { signal: homeReviewListeners.signal };
  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
- const start = () => { stop(); if (!reduce && pages > 1) timer = setInterval(() => go(1), 7000); };
+ const stop = () => { if (homeReviewTimer) { clearInterval(homeReviewTimer); homeReviewTimer = null; } };
+ const start = () => { stop(); if (!reduce && pages > 1) homeReviewTimer = setInterval(() => go(1), 7000); };
+ const reviewNavCopy = ({
+ fr: { prev: 'Avis précédents', next: 'Avis suivants' },
+ en: { prev: 'Previous reviews', next: 'Next reviews' },
+ es: { prev: 'Opiniones anteriores', next: 'Opiniones siguientes' },
+ tr: { prev: 'Önceki yorumlar', next: 'Sonraki yorumlar' },
+ ar: { prev: 'الآراء السابقة', next: 'الآراء التالية' },
+ })[t.lang] || { prev: 'Previous reviews', next: 'Next reviews' };
  if (wrap && pages > 1) {
- wrap.innerHTML = '<div class="reviews-nav"><button type="button" class="reviews-nav__btn" data-dir="-1" aria-label="Avis précédents"><svg class="reviews-nav__chev" viewBox="0 0 10 16" aria-hidden="true"><path d="M7 2 2 8 7 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="reviews-nav__count" aria-hidden="true"></span><button type="button" class="reviews-nav__btn" data-dir="1" aria-label="Avis suivants"><svg class="reviews-nav__chev" viewBox="0 0 10 16" aria-hidden="true"><path d="M3 2 8 8 3 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>';
+ wrap.hidden = false;
+ wrap.innerHTML = `<div class="reviews-nav"><button type="button" class="reviews-nav__btn" data-dir="-1" aria-label="${esc(reviewNavCopy.prev)}"><svg class="reviews-nav__chev" viewBox="0 0 10 16" aria-hidden="true"><path d="M7 2 2 8 7 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="reviews-nav__count" aria-hidden="true"></span><button type="button" class="reviews-nav__btn" data-dir="1" aria-label="${esc(reviewNavCopy.next)}"><svg class="reviews-nav__chev" viewBox="0 0 10 16" aria-hidden="true"><path d="M3 2 8 8 3 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>`;
  const counter = wrap.querySelector('.reviews-nav__count');
  updateCount = () => { counter.innerHTML = (page + 1) + '<span class="reviews-nav__sep" aria-hidden="true">◆</span>' + pages; };
  updateCount();
- wrap.querySelectorAll('.reviews-nav__btn').forEach((b) => b.addEventListener('click', () => { go(parseInt(b.dataset.dir, 10)); start(); }));
+ wrap.querySelectorAll('.reviews-nav__btn').forEach((b) => b.addEventListener('click', () => { go(parseInt(b.dataset.dir, 10)); start(); }, listenerOptions));
  } else if (wrap) { wrap.hidden = true; }
  start();
- tg.addEventListener('mouseenter', stop);
- tg.addEventListener('mouseleave', start);
- tg.addEventListener('focusin', stop);
- tg.addEventListener('focusout', start);
+ tg.addEventListener('mouseenter', stop, listenerOptions);
+ tg.addEventListener('mouseleave', start, listenerOptions);
+ tg.addEventListener('focusin', stop, listenerOptions);
+ tg.addEventListener('focusout', start, listenerOptions);
  }
  const rs = $('#ratingSummary');
  if (rs) {
@@ -2962,10 +2988,11 @@
         const exists = list.includes(handle);
         const next = exists ? list.filter((item) => item !== handle) : [...list, handle];
         writeWishlist(next);
-        document.querySelectorAll(`[data-wishlist-toggle="${CSS.escape(handle)}"]`).forEach((btn) => {
-          btn.classList.toggle('is-active', !exists);
-          btn.setAttribute('aria-pressed', !exists ? 'true' : 'false');
-        });
+         document.querySelectorAll(`[data-wishlist-toggle="${CSS.escape(handle)}"]`).forEach((btn) => {
+           btn.classList.toggle('is-active', !exists);
+           btn.setAttribute('aria-pressed', !exists ? 'true' : 'false');
+           btn.setAttribute('aria-label', T().t(!exists ? 'wishlist.remove' : 'wishlist.add'));
+         });
         syncWishlistCount();
         if (document.getElementById('wishlistGrid')) renderWishlist();  // live-refresh the favourites page
         YZA.analytics?.track(exists ? 'wishlist_remove' : 'wishlist_add', { handle });

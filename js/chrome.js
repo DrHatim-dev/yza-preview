@@ -381,12 +381,13 @@ YZA.chrome = {
  this.mountAnalyticsSnippet();
  this.mountSeoTags();
  YZA.analytics?.track('page_view', { title: document.title });
+ const announcementKey = document.body.dataset.page === 'home' ? 'home.shipping' : 'announce.unique';
 
  const head = document.createElement('div');
  head.innerHTML = `
  <div class="announcement">
  <div class="container-wide announcement__inner">
- <p class="announcement__line" data-i18n="announce.unique">${t.t('announce.unique')}</p>
+ <p class="announcement__line" data-i18n="${announcementKey}">${t.t(announcementKey)}</p>
  </div>
  </div>
  <header class="header" id="header">

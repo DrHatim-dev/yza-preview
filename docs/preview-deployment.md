@@ -41,7 +41,7 @@ The generated artifact contains no `.php` file, so GitHub Pages cannot execute s
 
 ## Release procedure
 
-1. Run the four commands in [README-preview.md](../README-preview.md) locally.
+1. Run the five commands in [README-preview.md](../README-preview.md) locally.
 2. Review `git status` and ensure no credential, subscriber, Brevo, transfer, or WordPress configuration file is staged.
 3. Push `codex/maison-marrakech-redesign` only after the secret scan passes.
 4. Wait for both `build-and-verify` and `deploy` to succeed.

@@ -39,6 +39,8 @@ _missing_live.txt
 
 # Deterministic GitHub Pages visual-preview output (generated, never committed)
 /dist-preview/
+/dist-browser/
+/server-*.log
 
 # Python test/build bytecode (generated, never committed)
 __pycache__/

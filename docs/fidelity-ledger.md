@@ -20,6 +20,9 @@ The concepts below are layout and art-direction specifications only. Product and
 | Surface | Concept file |
 |---|---|
 | Homepage desktop | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-c643f570-f5b8-421d-b405-3ab20c2233e2.png` |
+| Homepage Ranaco direction — hero and first edit | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-6dc64b96-e75d-49fc-8a0a-cc02fe5ddb93.png` |
+| Homepage Ranaco direction — editorial/community cadence | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-315bd873-80c9-46b8-bb7a-e786f60bab03.png` |
+| Homepage Ranaco direction — mobile | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-abf54e0d-148e-48e2-b59f-5bb64962ff57.png` |
 | Collection desktop | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-38bf7098-7e30-423d-9736-f4b55eebc093.png` |
 | PDP desktop | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-d622aab2-f8b0-4f71-9e2e-1637ebb58c6b.png` |
 | Story desktop | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-d1c9b902-8b07-432d-b0e0-765e4522ed38.png` |
@@ -59,9 +62,9 @@ These results apply to the local worktree only. They do not validate live PHP, e
 
 | Comparison point | Concept target | Code hook | Status | Evidence/deviation |
 |---|---|---|---|---|
-| Above-fold composition | One split/editorial hero, one house statement, one primary CTA; La Sculpture follows as the signature-object chapter | `.maison-hero` and `.maison-feature--sculpture` in [`index.html`](../index.html) | PARTIAL | Rendered without horizontal overflow at 1440×1000, 1280×720, 390×844, and 360×800; annotated concept comparison and creative approval remain pending |
-| Copy hierarchy | `Le vestiaire moderne de Marrakech` → concise craft line → two quiet actions | `.maison-hero__copy` | NOT TESTED | Static copy matches the accepted desktop concept; typography/wrapping remain unverified |
-| Scroll cadence | hero → La Sculpture → atelier → curated edit → community → compact FAQ/footer | top-level sections in [`index.html`](../index.html) | NOT TESTED | Count visible story beats; flag any legacy section still competing |
+| Above-fold composition | Quiet white utility/header → full-bleed YZA campaign photograph → one bottom-left line-arrow CTA | `.ranaco-hero` and `.ranaco-image-cta` in [`index.html`](../index.html), scoped rules in [`css/maison.css`](../css/maison.css) | CODE PRESENT | The split copy-led hero was removed. Public Pages screenshots at 1440×1000 and 390×844 remain required before visual PASS. |
+| Copy hierarchy | No visible hero headline or paragraph; the campaign image carries the first viewport and the H1 remains available to assistive technology | `#heroTitle.visually-hidden`, `.ranaco-hero__cta` | CODE PRESENT | CTA is localized in five languages; localized bottom scrim protects contrast without tinting the whole photograph. |
+| Scroll cadence | campaign hero → immediate four-up product edit → paired editorial band → four-up community wall → compact proof/reviews → manifesto → FAQ/footer | top-level sections in [`index.html`](../index.html) | CODE PRESENT | Structure now follows the approved Ranaco-inspired cadence; public screenshot and creative approval remain pending. |
 | Product presentation | large object image, quiet proof line, price secondary | cards via [`js/main.js`](../js/main.js) | NOT TESTED | Confirm craft line is visible rather than CSS-hidden |
 | Footer close | editorial newsletter plus concise service/legal links | footer in [`js/chrome.js`](../js/chrome.js) | NOT TESTED | Compare lower-page concept, then test actual form behavior on staging |
 
@@ -69,11 +72,21 @@ These results apply to the local worktree only. They do not validate live PHP, e
 
 | Item | Approved | Implemented | Status |
 |---|---|---|---|
-| Eyebrow | No eyebrow shown in the accepted desktop concept | `Maison artisanale · Guéliz` | PARTIAL — intentional added provenance line; owner approval required |
-| H1 | `Le vestiaire moderne de Marrakech` | `Le vestiaire moderne de Marrakech` | CODE PRESENT |
-| Supporting line | `Des pièces façonnées à la main à Guéliz, pensées pour voyager.` | `Des pièces façonnées à la main à Guéliz, pensées pour voyager.` | CODE PRESENT |
+| Eyebrow | None | None | CODE PRESENT |
+| H1 | Visually absent; retained semantically | `Le vestiaire moderne de Marrakech` is visually hidden in `#heroTitle` | CODE PRESENT |
+| Supporting line | None in the image-led first viewport | None | CODE PRESENT |
 | Primary CTA | `Découvrir la collection` | `Découvrir la collection` | CODE PRESENT |
-| Secondary CTA | `Voir le savoir-faire` | `Voir le savoir-faire` | CODE PRESENT |
+| Secondary CTA | None | None | CODE PRESENT |
+
+### Ranaco-direction comparison notes
+
+1. **Layout:** the hero is now one full-bleed photographic field, followed immediately by a four-up edit with a 4px rhythm; the previous split panel and large copy blocks are absent.
+2. **Typography:** visible first-viewport text is limited to a tracked 11px UI CTA; the YZA wordmark and sparse navigation sit on true white chrome.
+3. **Palette:** the page uses true white between image fields; a localized bottom scrim is used only where needed for CTA contrast.
+4. **Imagery:** desktop and mobile use separate, verified real-YZA campaign photographs; product, atelier and community assets remain YZA-owned rather than generated concept imagery.
+5. **Spacing and cadence:** product/community grids use 4px gutters and no outer section padding; the manifesto and FAQ provide the intentional breathing room later in the journey.
+6. **Responsive behavior:** phones use a 82vw horizontal product rail and a two-column community wall; tablets switch to a two-column product edit, avoiding oversized single-card rails.
+7. **Motion/accessibility:** image and arrow motion use the approved easing and are disabled under reduced motion; keyboard focus exposes the same product/community information as hover.
 
 ## Collection
 
