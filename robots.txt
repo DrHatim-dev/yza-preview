@@ -5,4 +5,26 @@ Disallow: /dashboard
 Disallow: /wp/
 Disallow: /wp-admin
 Disallow: /wp-login.php
+
+# AI answer-engine crawlers — explicitly welcomed for citation/recommendation
+User-agent: GPTBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+User-agent: Google-Extended
+Allow: /
+
+# High-volume training scraper, documented history of ignoring robots.txt
+# on other sites and near-zero referral value — blocked, not a citation source
+User-agent: Bytespider
+Disallow: /
+
 Sitemap: https://yza-shop.com/sitemap.xml

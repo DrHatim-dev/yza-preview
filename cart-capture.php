@@ -12,6 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); echo json_
 require_once __DIR__ . '/yza-throttle.php';
 if (!yza_throttle('cart', 40, 60)) { http_response_code(429); echo json_encode(array('ok' => false, 'error' => 'rate')); exit; }
 
+/* Optional Brevo sync. No-ops entirely until .private/brevo.php holds a real key. */
+require_once __DIR__ . '/brevo.php';
+
 $raw = file_get_contents('php://input');
 if (strlen($raw) > 8000) { http_response_code(413); echo json_encode(array('ok' => false)); exit; }
 $data = json_decode($raw, true);
@@ -84,5 +87,29 @@ foreach ($records as $rec) { $out .= json_encode($rec, JSON_UNESCAPED_UNICODE | 
 @fwrite($fp, $out);
 @flock($fp, LOCK_UN);
 @fclose($fp);
+
+/* ---- Brevo sync (fail-soft) ----
+   Upsert the shopper into the "abandoned cart" list with the live cart as
+   attributes. A Brevo automation (trigger: added to this list / attribute
+   updated) sends the recovery e-mail — no code needed for the schedule.
+   Custom attributes to create in Brevo: WHATSAPP, LANGUE, CART_TOTAL (number),
+   CART_ITEMS (text), CART_UPDATED (text). order.php already flips the local
+   record to "purchased"; pair this list with a Woo/purchase exclusion in the
+   automation so buyers stop receiving reminders. */
+if (yza_brevo_enabled()) {
+  $bcfg = yza_brevo_config();
+  $summary = array();
+  foreach ($items as $it) {
+    $summary[] = $it['qty'] . '× ' . $it['name'] . ($it['variant'] !== '' ? ' (' . $it['variant'] . ')' : '');
+  }
+  yza_brevo_upsert_contact($email, array(
+    'FIRSTNAME'    => $name,
+    'WHATSAPP'     => $phone,
+    'LANGUE'       => $lang,
+    'CART_TOTAL'   => $total,
+    'CART_ITEMS'   => substr(implode(', ', $summary), 0, 240),
+    'CART_UPDATED' => gmdate('Y-m-d H:i:s', $now),
+  ), isset($bcfg['list_cart']) ? $bcfg['list_cart'] : 0);
+}
 
 echo json_encode(array('ok' => true, 'new' => !$found));

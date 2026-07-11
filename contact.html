@@ -11,19 +11,19 @@
   <meta property="og:description" content="Écrivez à l'atelier YZA à Marrakech : e-mail, WhatsApp, Instagram. Commandes sur-mesure et wholesale bienvenues." />
   <meta property="og:image" content="https://yza-shop.com/assets/hero/la-sculpture-hero-desktop-poster.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#F7F4EE" />
   <link rel="icon" href="/favicon.ico?v=20260703c" sizes="any">
  <link rel="icon" type="image/png" href="/assets/brand/yza-favicon.png?v=20260703c">
  <link rel="apple-touch-icon" href="/assets/brand/yza-apple-touch.png?v=20260703c">
  <link rel="manifest" href="/site.webmanifest">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300..700;1,400..600&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/tokens.css?v=20260704g" />
-  <link rel="stylesheet" href="css/styles.css?v=20260706f" />
+  <link rel="stylesheet" href="css/tokens.css?v=20260711a" />
+  <link rel="stylesheet" href="css/styles.css?v=20260709i" />
+  <link rel="stylesheet" href="css/maison.css?v=20260711b" />
 </head>
-<body data-page="contact">
-<main>
+<body data-page="contact" class="maison-page">
+<a class="skip-link" href="#main" data-i18n="a.skip">Aller au contenu</a>
+<div class="site-chrome-skeleton" data-chrome-skeleton inert aria-hidden="true"><header class="header header--skeleton"><div class="container-wide header__inner"><span class="logo logo--wordmark"><img class="logo__img" src="assets/brand/yza-logo-real.webp?v=20260706c" alt="" width="600" height="177"></span><nav class="nav nav--skeleton"><span>Nouveautés</span><span>Sacs</span><span>Prêt-à-porter</span><span>Bijoux</span><span>Le Studio</span></nav><span class="header-skeleton__actions">⌕　♡　▢</span></div></header></div>
+<main id="main">
   <div class="container-wide">
     <header class="page-hero">
       <p class="eyebrow" data-i18n="nav.contact">Contact</p>
@@ -33,17 +33,18 @@
 
     <div class="contact-grid" style="padding-bottom:var(--space-8)">
       <form class="contact-form" data-contact-form novalidate data-reveal>
+        <input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;">
         <div class="field">
           <label for="cf-name"><span data-lang="fr">Nom</span><span data-lang="en" hidden>Name</span><span data-lang="es" hidden>Nombre</span><span data-lang="tr" hidden>Ad</span><span data-lang="ar" hidden>الاسم</span></label>
-          <input id="cf-name" name="name" autocomplete="name" required>
+          <input id="cf-name" name="name" autocomplete="name" minlength="2" maxlength="100" required>
         </div>
         <div class="field">
           <label for="cf-email">E-mail</label>
-          <input id="cf-email" name="email" type="email" autocomplete="email" required>
+          <input id="cf-email" name="email" type="email" autocomplete="email" maxlength="254" required>
         </div>
         <div class="field">
           <label for="cf-msg"><span data-lang="fr">Message</span><span data-lang="en" hidden>Message</span><span data-lang="es" hidden>Mensaje</span><span data-lang="tr" hidden>Mesaj</span><span data-lang="ar" hidden>الرسالة</span></label>
-          <textarea id="cf-msg" name="message" rows="5" required></textarea>
+          <textarea id="cf-msg" name="message" rows="5" minlength="5" maxlength="5000" required></textarea>
         </div>
         <button class="btn btn--solid btn--block" type="submit"><span data-lang="fr">Envoyer</span><span data-lang="en" hidden>Send</span><span data-lang="es" hidden>Enviar</span><span data-lang="tr" hidden>Gönder</span><span data-lang="ar" hidden>إرسال</span></button>
         <p class="form-msg" data-form-msg hidden role="status" aria-live="polite"><span data-lang="fr">Merci ✓ On te répond depuis l’atelier, très bientôt.</span><span data-lang="en" hidden>Thank you ✓ We’ll write back from the atelier, very soon.</span><span data-lang="es" hidden>Gracias ✓ Te respondemos desde el atelier muy pronto.</span><span data-lang="tr" hidden>Teşekkürler ✓ Atölyeden çok yakında size yazacağız.</span><span data-lang="ar" hidden>شكرًا ✓ سنردّ عليك من الأتيليه قريبًا جدًا.</span></p>
@@ -65,7 +66,7 @@
     <!-- Venez nous voir — third section per client (form → emails → visit + studio button) -->
     <section class="contact-visit" data-reveal style="max-width:640px;margin-inline:auto;text-align:center;padding-block:var(--space-8) var(--space-16)">
       <h2 style="font-family:var(--font-serif);font-weight:400"><span data-lang="fr">Venez nous voir</span><span data-lang="en" hidden>Come and see us</span><span data-lang="es" hidden>Ven a vernos</span><span data-lang="tr" hidden>Bizi ziyaret edin</span><span data-lang="ar" hidden>تعالي لزيارتنا</span></h2>
-      <p style="margin-top:var(--space-3)"><span data-lang="fr">Notre porte est ouverte — un thé à la menthe, les mains de La Fatima qui crochètent, le raffia frais entre les doigts. Le retrait studio se fait sur un simple message.</span><span data-lang="en" hidden>Our door is open — mint tea, La Fatima’s hands crocheting, cool raffia between your fingers. Studio pickup is just a message away.</span><span data-lang="es" hidden>Nuestra puerta está abierta — un té de menta, las manos de La Fatima tejiendo, la rafia fresca entre los dedos. La recogida en el studio se hace con un simple mensaje.</span><span data-lang="tr" hidden>Kapımız açık — naneli çay, La Fatima’nın tığ işleyen elleri, parmaklar arasında taze rafya. Stüdyodan teslim almak için tek bir mesaj yeter.</span><span data-lang="ar" hidden>بابنا مفتوح — شاي بالنعناع، يدا La Fatima تحوكان بالكروشيه، ورافيا طازجة بين الأصابع. الاستلام من الاستوديو برسالة واحدة.</span></p>
+      <p style="margin-top:var(--space-3)"><span data-lang="fr">Notre porte est ouverte — un thé à la menthe, les gestes de l’équipe autour du raffia et les pièces en cours sur la table. Le retrait studio se fait sur un simple message.</span><span data-lang="en" hidden>Our door is open — mint tea, the atelier team working with raffia, and pieces taking shape on the table. Studio pickup is just a message away.</span><span data-lang="es" hidden>Nuestra puerta está abierta — té de menta, el equipo del atelier trabajando la rafia y piezas tomando forma sobre la mesa. La recogida en el studio se hace con un simple mensaje.</span><span data-lang="tr" hidden>Kapımız açık — naneli çay, rafyayla çalışan atölye ekibi ve masada şekillenen parçalar. Stüdyodan teslim almak için tek bir mesaj yeter.</span><span data-lang="ar" hidden>بابنا مفتوح — شاي بالنعناع، وفريق المشغل يعمل بالرافيا، وقطع تتشكل فوق الطاولة. الاستلام من الاستوديو برسالة واحدة.</span></p>
       <p style="margin-top:var(--space-4)"><strong><span data-lang="fr">66 rue Yougoslavie, Guéliz, Marrakech</span><span data-lang="en" hidden>66 rue Yougoslavie, Guéliz, Marrakech</span><span data-lang="es" hidden>66 rue Yougoslavie, Guéliz, Marrakech</span><span data-lang="tr" hidden>66 rue Yougoslavie, Guéliz, Marakeş</span><span data-lang="ar" hidden>66 شارع يوغوسلافيا، Guéliz، مراكش</span></strong><br><span data-lang="fr">à côté de la Rôtisserie de la Paix</span><span data-lang="en" hidden>next to Rôtisserie de la Paix</span><span data-lang="es" hidden>junto a la Rôtisserie de la Paix</span><span data-lang="tr" hidden>Rôtisserie de la Paix’in yanında</span><span data-lang="ar" hidden>بجوار Rôtisserie de la Paix</span></p>
       <p style="margin-top:var(--space-2);color:var(--color-muted)"><span data-lang="fr">Mercredi–dimanche 12 h–20 h · lundi 12 h–16 h · mardi fermé.</span><span data-lang="en" hidden>Wednesday–Sunday 12–8pm · Monday 12–4pm · Tuesday closed.</span><span data-lang="es" hidden>Miércoles–domingo 12–20 h · lunes 12–16 h · martes cerrado.</span><span data-lang="tr" hidden>Çarşamba–pazar 12.00–20.00 · pazartesi 12.00–16.00 · salı kapalı.</span><span data-lang="ar" hidden>الأربعاء–الأحد 12–20 · الإثنين 12–16 · الثلاثاء مغلق.</span></p>
       <p style="margin-top:var(--space-3)"><a class="link-underline" href="https://www.google.com/maps/search/?api=1&amp;query=66%20rue%20Yougoslavie%20Gu%C3%A9liz%20Marrakech" target="_blank" rel="noopener"><span data-lang="fr">Voir l’itinéraire →</span><span data-lang="en" hidden>Get directions →</span><span data-lang="es" hidden>Cómo llegar →</span><span data-lang="tr" hidden>Yol tarifi al →</span><span data-lang="ar" hidden>الاتجاهات →</span></a></p>
@@ -83,12 +84,114 @@
   </div>
 </main>
 
-  <script defer src="js/products.js?v=20260707h"></script>
+  <div class="footer-skeleton" data-footer-skeleton inert aria-hidden="true"><div class="footer-skeleton__wordmark">YZA</div></div>
+
+  <script defer src="js/products.js?v=20260708a"></script>
   <script defer src="js/tracking.js?v=20260704g"></script>
   <script defer src="js/media.js?v=20260704g"></script>
-  <script defer src="js/i18n.js?v=20260704g"></script>
-  <script defer src="js/cart.js?v=20260707a"></script>
-  <script defer src="js/chrome.js?v=20260707h"></script>
-  <script defer src="js/main.js?v=20260706f"></script>
+  <script defer src="js/i18n.js?v=20260709a"></script>
+  <script defer src="js/cart.js?v=20260711b"></script>
+  <script defer src="js/chrome.js?v=20260711b"></script>
+  <script defer src="js/main.js?v=20260711b"></script>
+  <script>
+  /* Contact reliability layer. Registered before deferred main.js so this
+     capture listener owns this form and the legacy optimistic handler cannot
+     report success before /contact.php confirms delivery. */
+  (function () {
+    'use strict';
+    var form = document.querySelector('[data-contact-form]');
+    if (!form) return;
+    var message = form.querySelector('[data-form-msg]');
+    var submit = form.querySelector('[type="submit"]');
+    var successMarkup = message ? message.innerHTML : '';
+    var copy = {
+      fr: { required: 'Complétez les champs obligatoires.', failed: 'Envoi impossible pour le moment — votre message est conservé. Réessayez.', rate: 'Trop de tentatives. Patientez une minute puis réessayez.' },
+      en: { required: 'Complete the required fields.', failed: 'We could not send your message yet. Please retry.', rate: 'Too many attempts. Wait one minute, then retry.' },
+      es: { required: 'Completa los campos obligatorios.', failed: 'No pudimos enviar tu mensaje. Inténtalo de nuevo.', rate: 'Demasiados intentos. Espera un minuto y vuelve a intentarlo.' },
+      tr: { required: 'Zorunlu alanları doldurun.', failed: 'Mesajınız henüz gönderilemedi. Lütfen tekrar deneyin.', rate: 'Çok fazla deneme. Bir dakika bekleyip tekrar deneyin.' },
+      ar: { required: 'يرجى إكمال الحقول المطلوبة.', failed: 'تعذّر إرسال رسالتك الآن. يرجى المحاولة مجددًا.', rate: 'محاولات كثيرة. انتظري دقيقة ثم حاولي مجددًا.' }
+    };
+    function lang() {
+      var current = window.YZA && YZA.i18n && YZA.i18n.lang;
+      return copy[current] ? current : (copy[document.documentElement.lang] ? document.documentElement.lang : 'fr');
+    }
+    function value(name) {
+      var field = form.elements.namedItem(name);
+      return field ? String(field.value || '').trim() : '';
+    }
+    function setMessage(text, isError) {
+      if (!message) return;
+      message.textContent = text;
+      message.hidden = false;
+      message.setAttribute('role', isError ? 'alert' : 'status');
+    }
+    function setBusy(busy) {
+      if (!submit) return;
+      submit.disabled = busy;
+      submit.setAttribute('aria-busy', busy ? 'true' : 'false');
+    }
+    form.addEventListener('submit', function (event) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      if (submit && submit.disabled) return;
+
+      var fields = Array.prototype.slice.call(form.querySelectorAll('[required]'));
+      var invalid = fields.find(function (field) { return !field.checkValidity(); });
+      fields.forEach(function (field) {
+        var bad = field === invalid;
+        field.classList.toggle('is-invalid', bad);
+        field.setAttribute('aria-invalid', bad ? 'true' : 'false');
+      });
+      if (invalid) {
+        setMessage(copy[lang()].required, true);
+        invalid.focus({ preventScroll: false });
+        try { YZA.analytics && YZA.analytics.track('contact_form_invalid', { source: document.body.dataset.page || '', field: invalid.name || invalid.id || '' }); } catch (e) {}
+        return;
+      }
+
+      setBusy(true);
+      if (message) message.hidden = true;
+      var controller = window.AbortController ? new AbortController() : null;
+      var timer = controller ? setTimeout(function () { controller.abort(); }, 15000) : null;
+      fetch('/contact.php', {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+        signal: controller ? controller.signal : undefined,
+        body: JSON.stringify({
+          name: value('name'), email: value('email'), phone: value('phone'),
+          subject: value('subject'), message: value('message'), lang: lang(),
+          page: location.href, _hp: value('_hp')
+        })
+      }).then(function (response) {
+        return response.json().catch(function () { return {}; }).then(function (payload) {
+          if (!response.ok || payload.ok !== true || !payload.reference) {
+            var error = new Error(payload.error || 'delivery_failed');
+            error.code = payload.error || 'delivery_failed';
+            throw error;
+          }
+          return payload;
+        });
+      }).then(function (payload) {
+        form.reset();
+        if (message) {
+          message.innerHTML = successMarkup;
+          if (window.YZA && YZA.i18n && typeof YZA.i18n.apply === 'function') YZA.i18n.apply(message);
+          message.hidden = false;
+          message.setAttribute('role', 'status');
+          message.setAttribute('data-reference', payload.reference);
+        }
+        try { YZA.analytics && YZA.analytics.track('contact_form_submit', { source: document.body.dataset.page || '', reference: payload.reference }); } catch (e) {}
+      }).catch(function (error) {
+        var text = error && error.code === 'rate_limited' ? copy[lang()].rate : copy[lang()].failed;
+        setMessage(text, true);
+        try { YZA.analytics && YZA.analytics.track('contact_form_error', { source: document.body.dataset.page || '', error: (error && error.code) || 'network' }); } catch (e) {}
+      }).then(function () {
+        if (timer) clearTimeout(timer);
+        setBusy(false);
+      });
+    }, true);
+  }());
+  </script>
 </body>
 </html>

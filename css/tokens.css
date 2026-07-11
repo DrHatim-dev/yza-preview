@@ -1,157 +1,221 @@
 /* ============================================================
- YZA - DESIGN TOKENS · Pure-white palette (user override 2026-06-26)
- Backgrounds: pure white #ffffff (user removed all cream).
- Ink: Mine Shaft #1f1f1f (soft near-black, brand still avoids pure #000).
- Type: Jost as the single geometric sans, everywhere.
- ============================================================ */
+   YZA — Maison Marrakech design tokens
+   One source of truth for colour, type, spacing and motion.
+   Fonts are self-hosted OFL builds from Fontsource.
+   ============================================================ */
+
+/* Bodoni Moda — editorial display */
+@font-face {
+  font-family: "Bodoni Moda";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/bodoni-moda-latin-ext-400-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Bodoni Moda";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/bodoni-moda-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Bodoni Moda";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/bodoni-moda-latin-ext-500-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Bodoni Moda";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/bodoni-moda-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+
+/* Jost — interface and reading */
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../assets/fonts/jost-latin-ext-300-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url("../assets/fonts/jost-latin-300-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/jost-latin-ext-400-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../assets/fonts/jost-latin-400-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/jost-latin-ext-500-normal.woff2") format("woff2");
+  unicode-range: U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF;
+}
+@font-face {
+  font-family: "Jost";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("../assets/fonts/jost-latin-500-normal.woff2") format("woff2");
+  unicode-range: U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;
+}
 
 :root {
- /* ---- REAL JACQUEMUS PALETTE (extracted from jacquemus.com, 2026-06-26) ----
-    The 12 brand colours the user supplied, mapped to roles. Ink is the soft
-    #2E2E2E (Jacquemus never uses harsh pure black for running text); pure #000
-    is held in --true-black for overlays / ::selection only. Cream #FFFCED is
-    the REAL Jacquemus ground, parked in --jq-cream; --color-bg below decides
-    whether the site actually sits on cream or stays pure white (the user
-    earlier asked to remove all cream — flip one line to switch). */
- --jq-ink: #2e2e2e;        /* primary text — soft near-black */
- --jq-ink-2: #212529;      /* darker ink / dark-section ground */
- --jq-ink-hover: #000000;  /* hover-darkened to true black */
- --jq-link: #444444;       /* secondary link grey */
- --jq-muted: #a4a4a4;      /* light caption / meta grey */
- --jq-coral: #ff6666;      /* "new" / flag coral */
- --jq-pink: #edb2dd;       /* Jacquemus pink accent */
- --jq-gold: #d6a94f;       /* gold — premium + B2B accent */
- --jq-sale: #d90b0b;       /* reduced-price red */
- --jq-line: #dad7db;       /* hairline borders, soft card ground */
- --jq-cream: #fffced;      /* real Jacquemus warm ground */
- --true-black: #000000;    /* overlays / selection only */
- --jq-navy: #1c2a4d;       /* occasional logo-variant accent */
- --yza-orange: #c45e29;    /* YZA terracotta orange — used for accent bands (kept out of the monochrome ground) */
- --jq-bg: var(--color-bg);
+  color-scheme: light;
 
- /* ---- YZA BRAND ACCENTS (2026-06-27) — two warm accents on the pure-white base ----
-    terracotta = text / links / hover / borders / icons (#de733d on white ≈ 3.0:1 → OK
-      for large text + UI/graphics ≥3:1; below 4.5:1 for small body text, so only used
-      on hover/large/glyph/border here).
-    saffron = selection background / large display numbers / fills ONLY
-      (#fdc733 on white ≈ 1.3:1 → never use as text). */
- --accent:   #de733d;   /* terracotta — text / links / hover / eyebrows / badges */
- --accent-2: #fdc733;   /* saffron — selection / "new" badge fill / large numbers (never small text) */
- --accent-3: #b19f31;   /* olive — editorial link accent (~3.4:1 on white) */
- --blush:    #e8bec0;   /* blush — soft panels / fills only, never text */
+  /* Core palette */
+  --color-bg: #f7f4ee;
+  --color-surface: #f7f4ee;
+  --color-surface-2: #fffdfa;
+  --color-fg: #171512;
+  --color-muted: #68615a;
+  --color-border: #d8d0c5;
+  --color-border-strong: #afa69a;
+  --color-accent: #a84928;
+  --color-accent-text: #a84928;
+  --color-accent-fg: #ffffff;
+  --color-accent-2: #7f3a24;
+  --color-dark: #171512;
+  --color-dark-fg: #f7f4ee;
 
- --brand-pink: var(--jq-pink);
- --brand-orange: var(--accent);  /* PRIMARY ACCENT → terracotta */
- --brand-olive: var(--jq-ink);
- --brand-yellow: var(--accent-2);
- --black: var(--jq-ink);         /* ink (soft #2E2E2E, not pure #000) */
- --white: #ffffff;
+  /* Stable compatibility aliases used by existing modules */
+  --paper: var(--color-bg);
+  --sand: #ece4d9;
+  --paper-card: #f0ebe3;
+  --cream: var(--color-bg);
+  --ink: var(--color-fg);
+  --black: var(--color-fg);
+  --white: #ffffff;
+  --terracotta: var(--color-accent);
+  --terre-cuite: var(--color-accent);
+  --accent: var(--color-accent);
+  --accent-2: #c36a45;
+  --accent-3: #68615a;
+  --brand-orange: var(--color-accent);
+  --brand-yellow: #d9b36c;
+  --brand-olive: #5b5b43;
+  --brand-pink: #d8a3a0;
+  --brand-violet: #493267;
+  --blush: #ead6cf;
+  --n-lin: #fffdfa;
+  --n-sable: #f7f4ee;
+  --n-grege: #eee8df;
+  --n-argile: #d8d0c5;
+  --n-taupe: #9a9187;
+  --n-brun: #68615a;
+  --n-moka: #3d3934;
+  --n-encre: #171512;
 
- --terre-cuite: var(--jq-ink);   /* deep accent → ink */
- --brand-violet: var(--jq-pink); /* secondary accent → pink */
+  /* Typography */
+  --font-display: "Bodoni Moda", Didot, "Times New Roman", serif;
+  --font-title: var(--font-display);
+  --font-serif: var(--font-display);
+  --font-body: "Jost", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-body);
+  --font-hand: var(--font-display);
+  --font-hand-accent: var(--font-display);
+  --font-arabic: Tahoma, Arial, sans-serif;
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.5rem;
+  --fs-xl: 2rem;
+  --fs-2xl: clamp(2.5rem, 5vw, 4.75rem);
+  --fs-3xl: clamp(3rem, 6.5vw, 6rem);
+  --fs-hero: clamp(3.25rem, 6.8vw, 7.2rem);
+  --tracking-wide: 0.12em;
+  --tracking-wider: 0.18em;
+  --leading-tight: 0.98;
+  --leading-snug: 1.2;
+  --leading-body: 1.58;
 
- /* ---- LEGACY ALIASES ---- */
- --cream: var(--color-bg);       /* base ground (see --color-bg) */
- --ink: var(--black);
- --terracotta: var(--accent); /* → terracotta (links / hovers / nav underline / numbers) */
- --olive: var(--brand-olive);
- --violet: var(--jq-pink);
- --saffron: var(--accent-2);
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-7: 1.75rem;
+  --space-8: 2rem;
+  --space-9: 2.25rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
 
- /* ---- NEUTRAL GREY RAMP (warm-neutral, tuned to the Jacquemus line greys) ---- */
- --n-lin: #ffffff;
- --n-sable: #fffced;       /* faintest warm tint */
- --n-grege: #eeeeee;
- --n-argile: var(--jq-line);
- --n-taupe: var(--jq-muted);
- --n-brun: #767676;
- --n-moka: #444444;
- --n-encre: var(--jq-ink);
+  /* Layout */
+  --container: 1280px;
+  --container-wide: 1536px;
+  --gutter: clamp(2rem, 3.2vw, 3rem);
+  --radius: 0;
+  --radius-lg: 0;
+  --header-h: 72px;
+  --header-h-stuck: 64px;
+  --touch-target: 44px;
 
- /* ---- SEMANTIC TOKENS ---- */
- --color-bg: #ffffff;  /* GROUND — pure white (user preference 2026-06-26) */
- --color-surface: var(--color-bg);
- --color-surface-2: #ffffff;   /* cards / panels */
- --color-fg: var(--jq-ink);
- --color-muted: #767676;       /* readable secondary grey (AA on white); light --jq-muted reserved for decorative labels */
- --color-border: rgba(46, 46, 46, 0.10); /* light hairline */
- --color-border-strong: rgba(46, 46, 46, 0.18);
- --color-accent: var(--jq-ink); /* solid fills/buttons → ink */
- --color-accent-text: var(--jq-ink); /* accented text → ink */
- --color-accent-fg: #ffffff; /* white text on ink fills */
- --color-accent-2: var(--jq-muted);
- --color-dark: var(--jq-ink-2); /* #212529 dark-section ground */
- --color-dark-fg: #ffffff;
+  /* Motion: transform/opacity only */
+  --ease-reveal: cubic-bezier(.19, 1, .22, 1);
+  --ease-image: cubic-bezier(.445, .05, .55, .95);
+  --ease-out: var(--ease-reveal);
+  --transition: 700ms var(--ease-reveal);
+  --transition-fast: 300ms ease;
+  --transition-image: 450ms var(--ease-image);
+  --shadow: 0 24px 80px rgba(23, 21, 18, 0.12);
+  --shadow-sm: 0 8px 28px rgba(23, 21, 18, 0.1);
+  --shadow-soft: 0 12px 40px rgba(23, 21, 18, 0.08);
+}
 
- /* ---- EDITORIAL SURFACES ---- */
- --paper: var(--color-bg);
- --sand: var(--color-bg);
- --paper-card: #f1efe9;        /* soft warm light-grey product-card ground (Jacquemus thumbnails) */
+[dir="rtl"] {
+  --font-display: var(--font-arabic);
+  --font-title: var(--font-arabic);
+  --font-serif: var(--font-arabic);
+}
 
- /* ---- TYPOGRAPHY ----
- Hermès-inspired system (experiment): EB Garamond (italic display serif) for
- headlines & subheads · Overpass Mono for functional uppercase labels, CTAs
- and product titles · Manrope for body/UI. Loaded via Google Fonts <link> in
- each page <head>. Arabic falls back to a system Naskh/Kufi stack - see the
- [dir="rtl"] overrides in styles.css (EB Garamond/Overpass Mono lack Arabic). */
- /* JACQUEMUS TYPOGRAPHY — one warm geometric sans everywhere, no serif/mono mix.
-    Jacquemus's real face is a custom proprietary sans (geometric/Futura-like
-    warmth in the 2025 identity) that can't be redistributed. Jost — the
-    open-source Futura clone — is the substitute, set as the PRIMARY face so it
-    actually renders for every visitor, on body, UI, headlines, menus, the lot.
-    No exceptions. (Futura PT only kicks in for the rare visitor who licenses it.)
-    For a condensed wordmark contrast we could layer Bebas Neue / Anton on
-    headlines later; for now the unified Jost system keeps the whole site coherent. */
- --font-display: 'Jost', 'Futura PT', 'Helvetica Neue', Arial, sans-serif;
- --font-title: var(--font-display);
- --font-body: 'Jost', 'Futura PT', 'Helvetica Neue', Arial, sans-serif;
- --font-mono: 'Jost', 'Futura PT', 'Helvetica Neue', Arial, sans-serif;
- --font-hand: var(--font-display);
- /* Editorial display serif (2026-06-27) — big headings only; chrome stays on Jost.
-    Ogg-spirited; 'opsz' axis supplies the high-contrast display cut at large sizes. */
- --font-serif: 'Fraunces', 'Georgia', 'Times New Roman', serif;
- /* Handwritten accent (2026-06-27) — section kickers / eyebrows only, the brand's
-    "en-tête de section" role (Tlab Lemongrass → Caveat as the free web stand-in). */
- --font-hand-accent: 'Caveat', 'Segoe Script', 'Bradley Hand', cursive;
+@media (max-width: 860px) {
+  :root {
+    --gutter: 20px;
+    --header-h: 64px;
+    --header-h-stuck: 64px;
+    --fs-hero: clamp(3rem, 14vw, 4.75rem);
+  }
+}
 
- /* ---- TYPE SCALE ---- */
- --fs-xs: 0.75rem;
- --fs-sm: 0.875rem;
- --fs-base: 1rem;
- --fs-md: 1.125rem;
- --fs-lg: 1.5rem;
- --fs-xl: 2rem;
- --fs-2xl: clamp(2.25rem, 4vw, 3rem);
- --fs-3xl: clamp(2.75rem, 6vw, 4rem);
- --fs-hero: clamp(2.35rem, 4.6vw, 3rem);
-
- --tracking-wide: 0.18em;
- --tracking-wider: 0.24em;
- --leading-tight: 1.08;
- --leading-snug: 1.25;
- --leading-body: 1.62;
-
- /* ---- SPACING ---- */
- --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
- --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem;
- --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem;
- --space-16: 4rem; --space-20: 5rem; --space-24: 6rem;
- --space-32: 8rem;
-
- /* ---- LAYOUT ---- */
- --container: 1320px;
- --container-wide: 1560px;
- --gutter: clamp(1.25rem, 4vw, 3.5rem);
- --radius: 0px; /* Jacquemus is flat — sharp corners */
- --radius-lg: 0px;
- --header-h: 80px;
- --header-h-stuck: 56px;
-
- /* ---- MOTION / EFFECTS ---- */
- --transition: 0.35s cubic-bezier(0.22, 1, 0.36, 1);
- --transition-fast: 0.2s ease;
- --shadow: 0 20px 50px -28px rgba(0, 0, 0, 0.30); /* neutral, restrained */
- --shadow-sm: 0 6px 18px -12px rgba(0, 0, 0, 0.22);
- --shadow-soft: 0 12px 32px -24px rgba(0, 0, 0, 0.18);
- --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --transition: 1ms linear;
+    --transition-fast: 1ms linear;
+    --transition-image: 1ms linear;
+  }
 }

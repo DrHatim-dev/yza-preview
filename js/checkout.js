@@ -1,7 +1,7 @@
 /* ============================================================
    YZA — CHECKOUT (static, no account)
    3 steps: Cart → Shipping → Payment & Confirmation.
-   Order handoff = WhatsApp prefill + best-effort POST to order.php (email).
+   Order handoff = confirmed POST to order.php, with WhatsApp as fallback.
    Reuses YZA.cart, YZA.i18n.formatPrice/eurEstimate, YZA.payment config.
    ============================================================ */
 (function () {
@@ -24,6 +24,11 @@
     root.style.opacity = '1';
 
     YZA.cart.load();
+    var pendingContext = loadPendingOrderContext();
+    if (!YZA.cart.items.length && pendingContext.number) {
+      clearPendingOrderContext();
+      pendingContext = {};
+    }
 
     // Apply the URL/saved language before the first render (avoids a FR flash when the
     // page is opened directly with ?lang=xx, before chrome.js has set the language).
@@ -31,12 +36,19 @@
 
     var state = {
       step: 'cart',          // cart | shipping | payment | done
-      method: 'cod',         // cod | rib | iban | paypal
+      method: /^(cod|rib|iban|paypal)$/.test(pendingContext.method || '') ? pendingContext.method : 'cod',
+      orderNo: pendingContext.number || '',
       ship: loadShip(),
       wa: '',
       bumpHandle: undefined, // order-bump pick, frozen on first payment-step entry
       bumpOn: false,         // authoritative bump state (not the DOM)
       lastOrder: null,       // the placed order — feeds the done-screen add-on cards
+      pendingOrder: null,    // frozen snapshot reused verbatim by retry/idempotency
+      pendingOrderText: '',  // the exact server/WhatsApp text is part of that snapshot
+      placing: false,        // guards double submission while order.php is pending
+      orderError: '',        // localized, visible failure; cart/form stay untouched
+      orderFailureCode: '',
+      customerNotified: false,
     };
 
     var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); };
@@ -45,6 +57,17 @@
     var eur = function (c) { return YZA.i18n.eurEstimate(c); };
     var PAY = function () { return YZA.payment || {}; };
     var waDigits = function () { return String((YZA.brand && YZA.brand.whatsapp) || '').replace(/\D/g, ''); };
+    function orderUiText(key) {
+      var lang = (YZA.i18n && YZA.i18n.lang) || 'fr';
+      var copy = {
+        fr: { placing: 'Enregistrement…', retry: 'Réessayer', fallback: 'Continuer sur WhatsApp', failed: 'La commande n’a pas pu être enregistrée. Votre panier et vos coordonnées sont conservés.', conflict: 'Cette référence existe peut-être déjà avec un autre contenu. Votre panier est conservé — contactez l’atelier sur WhatsApp.' },
+        en: { placing: 'Recording order…', retry: 'Retry', fallback: 'Continue on WhatsApp', failed: 'We could not record the order. Your cart and details have been kept.', conflict: 'This reference may already exist with different contents. Your cart is safe — contact the atelier on WhatsApp.' },
+        es: { placing: 'Registrando pedido…', retry: 'Reintentar', fallback: 'Continuar por WhatsApp', failed: 'No pudimos registrar el pedido. Conservamos tu cesta y tus datos.', conflict: 'Esta referencia puede existir con otro contenido. Tu cesta está guardada — contacta al atelier por WhatsApp.' },
+        tr: { placing: 'Sipariş kaydediliyor…', retry: 'Tekrar dene', fallback: 'WhatsApp ile devam et', failed: 'Sipariş kaydedilemedi. Sepetiniz ve bilgileriniz korundu.', conflict: 'Bu referans farklı bir içerikle zaten mevcut olabilir. Sepetiniz korundu — WhatsApp’tan atölyeye yazın.' },
+        ar: { placing: 'جارٍ تسجيل الطلب…', retry: 'حاولي مجددًا', fallback: 'المتابعة عبر واتساب', failed: 'تعذّر تسجيل الطلب. احتفظنا بسلّتك وبياناتك.', conflict: 'قد يكون هذا المرجع موجودًا بمحتوى مختلف. سلّتك محفوظة — تواصلي مع الأتيليه عبر واتساب.' }
+      };
+      return (copy[lang] || copy.fr)[key] || copy.fr[key] || '';
+    }
 
     // ---- data helpers ----
     function lines() {
@@ -65,6 +88,18 @@
     // ---- persistence ----
     function loadShip() { try { return JSON.parse(sessionStorage.getItem('yza.checkout.ship')) || {}; } catch (e) { return {}; } }
     function saveShip() { try { sessionStorage.setItem('yza.checkout.ship', JSON.stringify(state.ship)); } catch (e) {} }
+    function loadPendingOrderContext() {
+      try {
+        var value = JSON.parse(sessionStorage.getItem('yza.checkout.pending') || '{}');
+        if (!value || !/^YZA-[A-Z0-9]{8,20}$/.test(String(value.number || ''))) return {};
+        return { number: String(value.number), method: String(value.method || '') };
+      } catch (e) { return {}; }
+    }
+    function savePendingOrderContext() {
+      if (!state.orderNo) return;
+      try { sessionStorage.setItem('yza.checkout.pending', JSON.stringify({ number: state.orderNo, method: state.method })); } catch (e) {}
+    }
+    function clearPendingOrderContext() { try { sessionStorage.removeItem('yza.checkout.pending'); } catch (e) {} }
 
     // ---- render ----
     function stepsBar() {
@@ -219,14 +254,19 @@
         var on = state.method === m.id;
         var logos = (m.logos || [m.logo]).map(function (src) { return '<img src="' + esc(src) + '" alt="" height="20">'; }).join('');
         return '<label class="pay-option' + (on ? ' is-selected' : '') + '">' +
-          '<input type="radio" name="pay" value="' + m.id + '"' + (on ? ' checked' : '') + '>' +
+          '<input type="radio" name="pay" value="' + m.id + '"' + (on ? ' checked' : '') + (state.placing ? ' disabled' : '') + '>' +
           '<span class="pay-option__logo">' + logos + '</span>' +
           '<span class="pay-option__body"><span class="pay-option__name">' + esc(m.name) + '</span><span class="pay-option__txt">' + esc(m.txt) + '</span></span>' +
           '</label>' + (on ? payDetails(m.id) : '');
       }).join('');
-      return '<h1 class="co-h1">' + esc(T('co.pay.title')) + '</h1><div class="co-pay">' + opts + '</div>' + bumpCard() + reassureStrip() +
-        '<div class="co-actions"><button type="button" class="btn btn--outline" data-back="shipping">' + esc(T('co.back')) + '</button>' +
-        '<button type="button" class="btn btn--solid" data-place>' + esc(T('co.pay.place')) + '</button></div>';
+      var failure = state.orderError
+        ? '<div class="co-order-error" role="alert" tabindex="-1"><p>' + esc(state.orderError) + '</p>' +
+          (state.wa ? '<a class="link-underline" data-order-wa-fallback href="' + esc(state.wa) + '" target="_blank" rel="noopener">' + esc(orderUiText('fallback')) + '</a>' : '') + '</div>'
+        : '';
+      var placeLabel = state.placing ? orderUiText('placing') : (state.orderError ? orderUiText('retry') : T('co.pay.place'));
+      return '<h1 class="co-h1">' + esc(T('co.pay.title')) + '</h1><div class="co-pay">' + opts + '</div>' + bumpCard() + reassureStrip() + failure +
+        '<div class="co-actions"><button type="button" class="btn btn--outline" data-back="shipping"' + (state.placing ? ' disabled' : '') + '>' + esc(T('co.back')) + '</button>' +
+        '<button type="button" class="btn btn--solid" data-place' + (state.placing ? ' disabled aria-busy="true"' : '') + '>' + esc(placeLabel) + '</button></div>';
     }
 
     // One unchecked low-friction add above the Place-order button. state.bumpOn is
@@ -238,7 +278,7 @@
       var st = (YZA.inventoryStatus && YZA.inventoryStatus(p)) || {};
       if (st.soldOut) return '';
       return '<label class="co-bump' + (state.bumpOn ? ' is-on' : '') + '">' +
-        '<input type="checkbox" data-bump' + (state.bumpOn ? ' checked' : '') + '>' +
+        '<input type="checkbox" data-bump' + (state.bumpOn ? ' checked' : '') + (state.placing ? ' disabled' : '') + '>' +
         '<img src="' + esc(p.img) + '" alt="" width="56" height="72" loading="lazy">' +
         '<span class="co-bump__body"><span class="co-bump__kicker">' + esc(T('co.bump.kicker')) + '</span>' +
         '<span class="co-bump__name">' + esc(YZA.i18n.pick(p.name)) + ' — ' + fmt(p.price) + '</span>' +
@@ -264,7 +304,7 @@
         ? '<a class="btn btn--outline" href="' + esc(paypalPayUrl()) + '" target="_blank" rel="noopener">' + esc(T('co.done.paypalBtn')) + '</a>' : '';
       var num = (state.lastOrder && state.lastOrder.number) || state.orderNo || '';
       var noLine = num ? '<p class="co-done__no">' + esc(T('co.done.orderNo')) + ' <strong>' + esc(num) + '</strong></p>' : '';
-      var emailed = (state.ship && state.ship.email) ? '<p class="co-done__emailed">' + esc(T('co.done.emailed')) + '</p>' : '';
+      var emailed = state.customerNotified ? '<p class="co-done__emailed">' + esc(T('co.done.emailed')) + '</p>' : '';
       return '<div class="co-done"><div class="co-done__check" aria-hidden="true">✓</div>' +
         '<h1 class="co-h1">' + esc(T('co.done.title')) + '</h1>' +
         noLine +
@@ -348,9 +388,10 @@
     }
     // GA4-shape ecommerce payload (also consumed by the Meta/TikTok mappers in tracking.js).
     function trackPayload(o) {
+      var frozenTotalCents = o && Number.isFinite(Number(o.totalDh)) ? Math.round(Number(o.totalDh) * 100) : pricing().totalCents;
       return {
         transaction_id: o.number || '',
-        value: pricing().totalCents / 100,   // net of discounts — what the customer pays
+        value: frozenTotalCents / 100,       // net of discounts — frozen with the recorded order
         currency: 'MAD',
         payment_type: o.method || state.method,
         items: (o.items || lines()).map(function (it) {
@@ -398,23 +439,82 @@
       return out.join('\n');
     }
 
-    function placeOrder() {
+    function invalidatePendingOrder() {
+      if (state.placing) return;
+      state.pendingOrder = null;
+      state.pendingOrderText = '';
+      state.orderError = '';
+      state.orderFailureCode = '';
+      state.wa = '';
+    }
+
+    async function placeOrder() {
+      if (state.placing) return;
       if (!YZA.cart.items.length) { state.step = 'cart'; render(); return; }
-      state.orderNo = orderNo();
-      var o = buildOrder();
-      // best-effort email + WooCommerce record (never blocks the WhatsApp handoff)
+      if (!state.orderNo) state.orderNo = orderNo();
+      savePendingOrderContext();
+      if (!state.pendingOrder) state.pendingOrder = buildOrder();
+      var o = state.pendingOrder;
+      if (!state.pendingOrderText) state.pendingOrderText = orderText(o);
+      var text = state.pendingOrderText;
+      state.wa = 'https://wa.me/' + waDigits() + '?text=' + encodeURIComponent(text);
+      state.placing = true;
+      state.orderError = '';
+      state.orderFailureCode = '';
+      render();
+
+      var controller = window.AbortController ? new AbortController() : null;
+      var timer = controller ? setTimeout(function () { controller.abort(); }, 15000) : null;
+      var result;
       try {
-        fetch((YZA.payment && YZA.payment.orderEndpoint) || 'order.php', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ order: o, text: orderText(o) }),
-        }).catch(function () {});
-      } catch (e) {}
-      state.wa = 'https://wa.me/' + waDigits() + '?text=' + encodeURIComponent(orderText(o));
+        var response = await fetch((YZA.payment && YZA.payment.orderEndpoint) || 'order.php', {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          signal: controller ? controller.signal : undefined,
+          body: JSON.stringify({ order: o, text: text }),
+        });
+        result = await response.json().catch(function () { return {}; });
+        if (!response.ok || result.ok !== true || result.recorded !== true) {
+          var serverError = new Error(result.error || ('http_' + response.status));
+          serverError.code = result.error || ('http_' + response.status);
+          throw serverError;
+        }
+        if (!result.orderNumber || result.orderNumber !== o.number) {
+          var contractError = new Error('invalid_order_response');
+          contractError.code = 'invalid_order_response';
+          throw contractError;
+        }
+      } catch (error) {
+        state.placing = false;
+        state.orderFailureCode = (error && error.code) || (error && error.name === 'AbortError' ? 'timeout' : 'network');
+        state.orderError = (state.orderFailureCode === 'idempotency_conflict' || state.orderFailureCode === 'recording_status_unknown')
+          ? orderUiText('conflict') : orderUiText('failed');
+        render();
+        setTimeout(function () {
+          var alert = root.querySelector('.co-order-error');
+          if (alert) alert.focus({ preventScroll: true });
+        }, 0);
+        try { if (YZA.analytics) YZA.analytics.track('order_record_error', { method: state.method, order_number: o.number, error: state.orderFailureCode }); } catch (e) {}
+        return;
+      } finally {
+        if (timer) clearTimeout(timer);
+      }
+
+      /* No purchase signal, cart mutation, confirmation or recovery suppression
+         happens until order.php has returned the verified contract above. */
+      state.placing = false;
+      state.customerNotified = result.customerNotified === true;
       try { if (YZA.analytics) YZA.analytics.track('order_placed', { method: state.method, items: YZA.cart.count(), subtotal_cents: subtotal(), total_cents: pricing().totalCents }); } catch (e) {}
       // Ad platforms: one purchase event per order, keyed by the order number.
       try { if (YZA.track) { YZA.track('add_payment_info', trackPayload(o)); YZA.track('purchase', trackPayload(o)); } } catch (e) {}
       try { sessionStorage.setItem('yza.order.sent', String(Date.now())); } catch (e) {}
       state.lastOrder = o;   // snapshot feeds the done-screen add-on suggestions
-      try { YZA.cart.clear(); } catch (e) {}   // empty the cart so a placed order never looks unpaid
+      var cartCleared = false;
+      try { YZA.cart.clear(); cartCleared = true; } catch (e) {}   // empty the cart so a placed order never looks unpaid
+      /* Keep the pending id if cart persistence failed. A reload can then ask
+         order.php for the same idempotent result instead of creating a duplicate. */
+      if (cartCleared) clearPendingOrderContext();
       state.step = 'done';
       render();
       window.open(state.wa, '_blank', 'noopener');
@@ -454,6 +554,11 @@
 
     // ---- events ----
     root.addEventListener('click', function (e) {
+      var fallback = e.target.closest('[data-order-wa-fallback]');
+      if (fallback) {
+        try { if (YZA.analytics) YZA.analytics.track('order_whatsapp_fallback', { method: state.method, order_number: state.orderNo || '', error: state.orderFailureCode || '' }); } catch (e0) {}
+        return;
+      }
       var next = e.target.closest('[data-next]');
       if (next) {
         var to = next.getAttribute('data-next');
@@ -481,6 +586,7 @@
         // (no validation errors: the shopper is adding an item, not submitting yet).
         var sf = root.querySelector('#coShipForm');
         if (sf) { Array.prototype.forEach.call(sf.elements, function (el) { if (el.name) state.ship[el.name] = el.value.trim(); }); saveShip(); }
+        invalidatePendingOrder();
         YZA.cart.add(up.getAttribute('data-upsell-add'), '', 1, { source: 'checkout_cross_sell' });
         try { YZA.analytics && YZA.analytics.track('cross_sell_add', { handle: up.getAttribute('data-upsell-add'), source: 'checkout' }); } catch (e2) {}
         render(); return;
@@ -512,12 +618,12 @@
       }
       // cart qty / remove
       var rm = e.target.closest('[data-remove]');
-      if (rm) { YZA.cart.remove(rm.getAttribute('data-handle'), rm.getAttribute('data-variant')); render(); return; }
+      if (rm) { invalidatePendingOrder(); YZA.cart.remove(rm.getAttribute('data-handle'), rm.getAttribute('data-variant')); render(); return; }
       var qb = e.target.closest('.qty__btn');
       if (qb) {
         var q = qb.closest('.qty');
         var line = YZA.cart.items.find(function (i) { return i.handle === q.dataset.handle && (i.variant || '') === (q.dataset.variant || ''); });
-        if (line) YZA.cart.setQty(q.dataset.handle, q.dataset.variant, line.qty + (qb.dataset.act === 'inc' ? 1 : -1));
+        if (line) { invalidatePendingOrder(); YZA.cart.setQty(q.dataset.handle, q.dataset.variant, line.qty + (qb.dataset.act === 'inc' ? 1 : -1)); }
         render(); return;
       }
       // copy bank detail
@@ -535,10 +641,11 @@
     });
     root.addEventListener('change', function (e) {
       var r = e.target.closest('input[name="pay"]');
-      if (r) { state.method = r.value; render(); return; }
+      if (r) { invalidatePendingOrder(); state.method = r.value; savePendingOrderContext(); render(); return; }
       // Order bump: check → add to cart; uncheck → decrement/remove. state.bumpOn is authoritative.
       var bump = e.target.closest('input[data-bump]');
       if (bump) {
+        invalidatePendingOrder();
         if (bump.checked && !state.bumpOn) {
           YZA.cart.add(state.bumpHandle, '', 1, { source: 'order_bump' });
           state.bumpOn = true;
@@ -554,6 +661,7 @@
     });
     root.addEventListener('input', function (e) {
       if (e.target.closest('#coShipForm') && e.target.name) {
+        invalidatePendingOrder();
         state.ship[e.target.name] = e.target.value; saveShip();
         if (e.target.name === 'email') scheduleCapture();
       }

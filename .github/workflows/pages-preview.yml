@@ -1,0 +1,71 @@
+name: YZA visual preview
+
+on:
+  pull_request:
+  push:
+    branches:
+      - codex/maison-marrakech-redesign
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yza-pages-preview-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-verify:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Check out the requested revision
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Scan every Git-tracked source file
+        run: python tools/security/scan_tracked.py
+
+      - name: Run preview builder unit tests
+        run: python tools/preview/test_preview.py
+
+      - name: Build repository-subpath preview
+        run: python tools/preview/build.py --base "/${{ github.event.repository.name }}/" --output dist-preview
+
+      - name: Verify routes and transactional guard
+        run: python tools/preview/verify.py dist-preview --base "/${{ github.event.repository.name }}/"
+
+      - name: Block secrets and server files
+        run: python tools/preview/secret_scan.py dist-preview
+
+      - name: Configure GitHub Pages
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/codex/maison-marrakech-redesign'
+        uses: actions/configure-pages@v5
+
+      - name: Upload verified Pages artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/codex/maison-marrakech-redesign'
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist-preview
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/codex/maison-marrakech-redesign'
+    needs: build-and-verify
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy verified visual preview
+        id: deployment
+        uses: actions/deploy-pages@v4

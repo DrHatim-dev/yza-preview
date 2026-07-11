@@ -31,7 +31,7 @@ const CAT_SLUGS_REV = { bags: 'sacs', accessories: 'bijoux', rtw: 'pret-a-porter
 const collectionUrl = (cat) => { const slug = CAT_SLUGS_REV[cat]; return slug ? `/collections/${slug}` : '/collections'; };
 const productUrl = (handle) => handle ? `/produits/${encodeURIComponent(handle)}` : 'produit.html';
 const WORDMARK = '<img class="logo__img" src="assets/brand/yza-logo-real.webp?v=20260706c" alt="YZA" width="600" height="177" decoding="async">';
-const FOOTER_CHEV = '<svg class="footer__col-chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.6 6 6.4 11 1.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const FOOTER_CHEV = '<svg class="footer__col-chev" viewBox="0 0 12 8" aria-hidden="true"><path d="M2 1.2 6 4 10 1.2 M2 4.2 6 7 10 4.2" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const CART_CHEV = '<svg viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1.6 6 6.4 11 1.6" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>';
 const LANG_CODES = ['fr', 'en', 'es', 'tr', 'ar'];
 const flagImg = (cc) => `<img aria-hidden="true" class="lang-flag" src="assets/flags/${cc}.svg" alt="" width="22" height="16" decoding="async">`;
@@ -46,7 +46,7 @@ const langSwitcher = () => {
  const current = YZA.i18n?.lang || 'fr';
  const meta = LANG_META_SAFE;
  return `<div class="lang-select" data-lang-menu>
- <button class="lang-select__button" type="button" data-lang-trigger aria-haspopup="listbox" aria-expanded="false" aria-label="${YZA.i18n.t('lang.label')}">
+ <button class="lang-select__button" type="button" data-lang-trigger aria-haspopup="listbox" aria-expanded="false" data-i18n-attr="aria-label:lang.label" aria-label="${YZA.i18n.t('lang.label')}">
  <span class="lang-select__flag" data-lang-flag>${meta[current]?.flag || meta.fr.flag}</span>
  <span class="lang-select__code" data-lang-current>${meta[current]?.label || meta.fr.label}</span>
  <span class="lang-select__chevron" aria-hidden="true"></span>
@@ -188,7 +188,13 @@ const navMega = (active) => {
 
  // "The House" mega replaced by a plain YZA Studio link → studio (no dropdown).
  const studioLink = `<div class="nav-item"><a href="studio"${(active === 'nav.studio' || active === 'footer.house') ? ' aria-current="page"' : ''}>YZA Studio</a></div>`;
- return navLink('badge.new', '/collections') + navLink('nav.charms', collectionUrl('charms')) + navLink('nav.bags', collectionUrl('bags')) + navLink('nav.rtw', collectionUrl('rtw')) + navLink('nav.accessories', collectionUrl('accessories')) + studioLink + navLink('nav.b2b', 'grossistes');
+ // Maison Marrakech keeps commerce legible without turning the header into a
+ // catalogue. Secondary routes remain available in the mobile menu and footer.
+ return navLink('badge.new', '/collections')
+   + navLink('nav.bags', collectionUrl('bags'))
+   + navLink('nav.rtw', collectionUrl('rtw'))
+   + navLink('nav.accessories', collectionUrl('accessories'))
+   + studioLink;
 };
 
 /* Mobile drawer - nested accordion (uppercase heads, thin +/- toggles,
@@ -394,14 +400,16 @@ YZA.chrome = {
  <div class="lang" role="group" aria-label="${t.t('lang.label')}">${langSwitcher()}</div>
  <a class="icon-btn wishlist-btn" href="/favoris" data-i18n-attr="aria-label:a.wishlist" aria-label="${t.t('a.wishlist')}">${ICON.heart}<span class="cart-count wishlist-count" data-wishlist-count aria-hidden="true">0</span></a>
  <button type="button" class="icon-btn cart-btn" data-cart-open data-i18n-attr="aria-label:a.cart" aria-label="${t.t('a.cart')}">${ICON.cart}<span class="cart-count" data-cart-count aria-hidden="true">0</span></button>
- <button type="button" class="icon-btn burger" id="burger" data-i18n-attr="aria-label:a.menu" aria-label="${t.t('a.menu')}">${ICON.burger}</button>
+ <button type="button" class="icon-btn burger" id="burger" aria-controls="drawer" aria-expanded="false" data-i18n-attr="aria-label:a.menu" aria-label="${t.t('a.menu')}">${ICON.burger}</button>
  </div>
  </div>
  </header>`;
  // Mount the announcement + header as DIRECT children of <body> (no wrapper div).
  // position: sticky only sticks within its parent's box, so a short wrapper would
  // clip the header and it would scroll away instead of staying pinned.
- document.body.prepend(...Array.from(head.children));
+ const chromeSkeleton = document.querySelector('[data-chrome-skeleton]');
+ if (chromeSkeleton) chromeSkeleton.replaceWith(...Array.from(head.children));
+ else document.body.prepend(...Array.from(head.children));
 
  // a11y: skip link as the first focusable element + a #main landmark target.
  (function () {
@@ -420,16 +428,16 @@ YZA.chrome = {
  const drawers = document.createElement('div');
  drawers.innerHTML = `
  <div class="overlay" id="navOverlay"></div>
- <nav class="drawer" id="drawer" aria-label="Menu">
+ <nav class="drawer" id="drawer" aria-label="Menu" aria-hidden="true" inert>
  <div class="drawer__bar">
  <span class="drawer__brand">Menu</span>
- <button type="button" class="icon-btn drawer__close" id="drawerClose" aria-label="${t.t('a.close')}">${ICON.close}</button>
+ <button type="button" class="icon-btn drawer__close" id="drawerClose" data-i18n-attr="aria-label:a.close" aria-label="${t.t('a.close')}">${ICON.close}</button>
  </div>
  ${drawerAccordion()}
  <div class="drawer__lang lang">${langSwitcher()}</div>
  </nav>
 
- <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="${t.t('a.search')}">
+ <div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="${t.t('a.search')}" aria-hidden="true" inert>
  <div class="search-mega">
  <div class="search-mega__top">
  <a class="logo logo--wordmark" href="/" aria-label="YZA">${WORDMARK}</a>
@@ -437,7 +445,7 @@ YZA.chrome = {
  <input type="search" id="searchInput" name="q" autocomplete="off" placeholder="${sc.placeholder}" aria-label="${sc.title}">
  <button type="submit" class="icon-btn" aria-label="${sc.title}">${ICON.search}</button>
  </form>
- <button type="button" class="icon-btn" id="searchClose" aria-label="${t.t('a.close')}">${ICON.close}</button>
+ <button type="button" class="icon-btn" id="searchClose" data-i18n-attr="aria-label:a.close" aria-label="${t.t('a.close')}">${ICON.close}</button>
  </div>
  <div class="search-mega__body">
  <aside class="search-mega__suggestions">
@@ -454,10 +462,10 @@ YZA.chrome = {
  </div>
 
  <div class="overlay" id="cartOverlay"></div>
- <aside class="cart-drawer" id="cartDrawer" aria-label="${t.t('cart.title')}">
+ <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-label="${t.t('cart.title')}" aria-hidden="true" inert>
  <div class="cart-drawer__head">
  <h2><span data-i18n="cart.count">${t.t('cart.count')}</span> <sup class="cart-drawer__count" data-cart-count></sup></h2>
- <button type="button" class="icon-btn" id="cartClose" aria-label="${t.t('a.close')}">${ICON.close}</button>
+ <button type="button" class="icon-btn" id="cartClose" data-i18n-attr="aria-label:a.close" aria-label="${t.t('a.close')}">${ICON.close}</button>
  </div>
  <div class="cart-drawer__body" id="cartBody"></div>
  <div class="cart-drawer__foot" id="cartFoot" hidden>
@@ -493,7 +501,8 @@ YZA.chrome = {
  <button type="button" class="footer__col-toggle footer__newsletter-head" aria-expanded="false"><span>${ns.newsTitle}</span>${FOOTER_CHEV}</button>
  <p class="footer__newsletter-desc">${ns.newsText}</p>
  <div class="footer__col-panel footer__newsletter-panel">
- <form class="newsletter__form footer-news__form" novalidate>
+ <form class="newsletter__form footer-news__form" novalidate data-news-source="footer">
+ <input type="text" name="company" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;">
  <div class="footer-field">
  <label for="footerNewsEmail">${L ? 'E-mail *' : 'Email *'}</label>
  <input id="footerNewsEmail" type="email" required placeholder="${ns.placeholder}" aria-label="${ns.placeholder}">
@@ -565,7 +574,9 @@ YZA.chrome = {
  <div class="footer__meta__country">${fc.country} · ${fc.lang} / <a href="mentions-legales" data-i18n="footer.legal">${t.t('footer.legal')}</a></div>
  </div>
  </div>`;
- document.body.append(footer);
+ const footerSkeleton = document.querySelector('[data-footer-skeleton]');
+ if (footerSkeleton) footerSkeleton.replaceWith(footer);
+ else document.body.append(footer);
 
  // Collapsible footer columns (Jacquemus dropdown style): open on desktop,
  // collapsed accordion on mobile, chevron toggles either way.
@@ -848,19 +859,44 @@ YZA.chrome = {
  const drawer = document.getElementById('drawer');
  const navOverlay = document.getElementById('navOverlay');
  const closeNav = () => {
+ const restoreFocus = !!(document.activeElement && drawer?.contains(document.activeElement));
  drawer.classList.remove('is-open');
  navOverlay.classList.remove('is-open');
+ drawer.setAttribute('aria-hidden', 'true');
+ drawer.setAttribute('inert', '');
+ document.body.classList.remove('has-drawer');
  document.body.style.overflow = '';
+ burger?.setAttribute('aria-expanded', 'false');
+ if (restoreFocus) burger?.focus({ preventScroll: true });
  };
  const openNav = () => {
+ drawer.removeAttribute('inert');
+ drawer.setAttribute('aria-hidden', 'false');
  drawer.classList.add('is-open');
  navOverlay.classList.add('is-open');
+ document.body.classList.add('has-drawer');
  document.body.style.overflow = 'hidden';
+ burger?.setAttribute('aria-expanded', 'true');
+ requestAnimationFrame(() => drawer?.querySelector('button, a[href]')?.focus({ preventScroll: true }));
  };
  burger?.addEventListener('click', openNav);
  navOverlay?.addEventListener('click', closeNav);
  document.getElementById('drawerClose')?.addEventListener('click', closeNav);
  drawer?.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+ // Shared keyboard trap for the three modal surfaces. The active surface is
+ // discovered at key time so cart.js can keep owning its open/close contract.
+ const focusableSelector = 'a[href],button:not([disabled]),input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])';
+ document.addEventListener('keydown', (event) => {
+ if (event.key !== 'Tab') return;
+ const activeSurface = document.querySelector('.search-overlay.is-open, .drawer.is-open, .cart-drawer.is-open');
+ if (!activeSurface) return;
+ const focusable = Array.from(activeSurface.querySelectorAll(focusableSelector)).filter((el) => !el.hidden && el.getClientRects().length);
+ if (!focusable.length) { event.preventDefault(); activeSurface.focus?.(); return; }
+ const first = focusable[0];
+ const last = focusable[focusable.length - 1];
+ if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+ else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
+ });
  drawer?.querySelectorAll('.acc__head').forEach((head) => {
  head.addEventListener('click', () => {
  const section = head.closest('.acc');
@@ -983,12 +1019,23 @@ YZA.chrome = {
  btn.dataset.searchSuggestion = term;
  });
  };
- const searchCard = (p, idx) => `<a class="search-result-card" href="${productUrl(p.handle)}" style="--i:${idx}">
+ const searchProof = () => ({
+ fr: 'Atelier YZA · Guéliz', en: 'YZA Atelier · Guéliz', es: 'Atelier YZA · Guéliz',
+ tr: 'YZA Atölyesi · Guéliz', ar: 'مشغل YZA · كليز',
+ })[YZA.i18n.lang || 'fr'] || 'Atelier YZA · Guéliz';
+ const searchCard = (p, idx) => {
+ const claims = p && p.verifiedClaims;
+ const editionVerified = claims === true || !!(claims && claims.edition === true);
+ const badge = p.badge && (p.badge !== 'limited' || editionVerified)
+ ? YZA.i18n.t('badge.' + p.badge)
+ : searchProof();
+ return `<a class="search-result-card" href="${productUrl(p.handle)}" style="--i:${idx}">
  <img src="${p.img}" alt="${YZA.i18n.pick(productDisplayName(p))} - YZA" loading="lazy" width="260" height="330" decoding="async">
- <span>${YZA.i18n.t('badge.' + (p.badge || 'limited'))}</span>
+ <span>${badge}</span>
  <strong>${YZA.i18n.pick(productDisplayName(p))}</strong>
  <em>${formatProductPrice(p)}</em>
  </a>`;
+ };
  const renderSearch = () => {
  const scNow = searchCopy();
  const query = searchInput?.value.trim() || '';
@@ -1003,17 +1050,31 @@ YZA.chrome = {
  YZA.analytics?.track('search', { query, resultCount: rows.length });
  }
  };
+ let searchReturnFocus = null;
  const openS = () => {
+ searchReturnFocus = document.activeElement;
  refreshSearchStatic();
+ so.removeAttribute('inert');
+ so.setAttribute('aria-hidden', 'false');
  so.classList.add('is-open');
  document.body.classList.add('has-search-overlay');
  renderSearch();
- searchInput?.focus();
+ const focusSearch = () => {
+ if (so.classList.contains('is-open')) searchInput?.focus({ preventScroll: true });
+ };
+ requestAnimationFrame(focusSearch);
+ // Some WebViews restore focus to the activating button after the click
+ // dispatch completes; focus once more after the overlay transition begins.
+ setTimeout(focusSearch, 180);
  YZA.analytics?.track('search_open', { source: 'header' });
  };
  const closeS = () => {
  so.classList.remove('is-open');
+ so.setAttribute('aria-hidden', 'true');
+ so.setAttribute('inert', '');
  document.body.classList.remove('has-search-overlay');
+ if (searchReturnFocus && typeof searchReturnFocus.focus === 'function') searchReturnFocus.focus({ preventScroll: true });
+ searchReturnFocus = null;
  };
  document.getElementById('searchOpen')?.addEventListener('click', openS);
  document.getElementById('searchClose')?.addEventListener('click', closeS);
@@ -1303,6 +1364,7 @@ YZA.chrome = {
  // link is hovered/touched (Chromium), and prefetch the document as a fallback
  // (Safari/Firefox). Both are progressive enhancements - no-ops where unsupported.
  setupInstantNav() {
+ if (navigator.connection && navigator.connection.saveData) return;
  const eligible = (a) =>
  a && a.tagName === 'A' && a.href &&
  a.origin === location.origin &&

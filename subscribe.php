@@ -14,6 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') { http_response_code(405); echo json_
 require_once __DIR__ . '/yza-throttle.php';
 if (!yza_throttle('subscribe', 12, 60)) { http_response_code(429); echo json_encode(array('ok' => false, 'error' => 'rate')); exit; }
 
+/* Optional Brevo sync. No-ops entirely until .private/brevo.php holds a real key. */
+require_once __DIR__ . '/brevo.php';
+
 $raw = file_get_contents('php://input');
 if (strlen($raw) > 4000) { http_response_code(413); echo json_encode(array('ok' => false)); exit; }
 $data = json_decode($raw, true);
@@ -55,79 +58,139 @@ if (!$already) {
   @file_put_contents($store, $ts . "\t" . $email . "\t" . $name . "\t" . $lang . "\t" . $page . "\t" . $ip . "\t" . $phone . "\t" . $source . "\n", FILE_APPEND | LOCK_EX);
 }
 
-/* ---- welcome email (first subscribe only), sent the same way order.php sends ---- */
-$sent = false;
-if (!$already) {
-  $code = in_array($source, array('popup10', 'newsletter10'), true) ? 'YZA10' : '';
-  list($subject, $html, $text) = yza_welcome_email($lang, $name, $host, $code);
-  $boundary = 'yza' . md5(uniqid('', true));
-  $headers  = 'From: YZA <no-reply@' . $host . ">\r\n";
-  $headers .= 'Reply-To: contact@' . $host . "\r\n";
-  $headers .= 'List-Unsubscribe: <mailto:contact@' . $host . '?subject=Desabonnement%20newsletter>' . "\r\n";
-  $headers .= "MIME-Version: 1.0\r\n";
-  $headers .= 'Content-Type: multipart/alternative; boundary="' . $boundary . "\"\r\n";
-  $body  = '--' . $boundary . "\r\nContent-Type: text/plain; charset=UTF-8\r\n\r\n" . $text . "\r\n\r\n";
-  $body .= '--' . $boundary . "\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $html . "\r\n\r\n";
-  $body .= '--' . $boundary . "--";
-  $sent = @mail($email, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, '-fno-reply@' . $host);
+$code = in_array($source, array('popup10', 'newsletter10'), true) ? 'YZA10' : '';
+
+/* ---- Brevo contact sync (every submit, create-or-update; fail-soft) ----
+   Runs on repeat submits too so the list stays current. Skipped when Brevo off.
+   Attributes used: FIRSTNAME (standard) + WHATSAPP, LANGUE, SOURCE (custom —
+   create them in Brevo → Contacts → Settings → Contact attributes). */
+$brevoSynced = false;
+if (yza_brevo_enabled()) {
+  $bcfg = yza_brevo_config();
+  $brevoSynced = yza_brevo_upsert_contact($email, array(
+    'FIRSTNAME' => $name,
+    'WHATSAPP'  => $phone,
+    'LANGUE'    => $lang,
+    'SOURCE'    => $source,
+  ), isset($bcfg['list_news']) ? $bcfg['list_news'] : 0);
 }
 
-echo json_encode(array('ok' => true, 'welcomed' => (bool) $sent, 'already' => $already));
+/* ---- welcome email (first subscribe only) ----
+   Preference order: (1) a per-language Brevo template if configured,
+   (2) the built-in multilingual HTML sent through Brevo, (3) the host's own
+   mail() — the original path, used whenever Brevo is off or a send fails. */
+$sent = false;
+if (!$already) {
+  list($subject, $html, $text) = yza_welcome_email($lang, $name, $host, $code);
+
+  if (yza_brevo_enabled()) {
+    $bcfg = yza_brevo_config();
+    $tpl = (isset($bcfg['tpl_welcome']) && isset($bcfg['tpl_welcome'][$lang])) ? (int) $bcfg['tpl_welcome'][$lang] : 0;
+    if ($tpl) {
+      $sent = yza_brevo_send_template($email, $name, $tpl, array('NAME' => $name, 'CODE' => $code, 'LANG' => $lang));
+    } else {
+      $sent = yza_brevo_send_email($email, $name, $subject, $html, $text);
+    }
+  }
+
+  if (!$sent) {
+    $boundary = 'yza' . md5(uniqid('', true));
+    $headers  = 'From: YZA <no-reply@' . $host . ">\r\n";
+    $headers .= 'Reply-To: contact@' . $host . "\r\n";
+    $headers .= 'List-Unsubscribe: <mailto:contact@' . $host . '?subject=Desabonnement%20newsletter>' . "\r\n";
+    $headers .= "MIME-Version: 1.0\r\n";
+    $headers .= 'Content-Type: multipart/alternative; boundary="' . $boundary . "\"\r\n";
+    $body  = '--' . $boundary . "\r\nContent-Type: text/plain; charset=UTF-8\r\n\r\n" . $text . "\r\n\r\n";
+    $body .= '--' . $boundary . "\r\nContent-Type: text/html; charset=UTF-8\r\n\r\n" . $html . "\r\n\r\n";
+    $body .= '--' . $boundary . "--";
+    $sent = @mail($email, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, $headers, '-fno-reply@' . $host);
+  }
+}
+
+echo json_encode(array('ok' => true, 'welcomed' => (bool) $sent, 'already' => $already, 'synced' => (bool) $brevoSynced));
 
 /* ---------------------------------------------------------------------- */
 function yza_welcome_email($lang, $name, $host, $code = '') {
-  $base = 'https://' . $host;
-  $hello = $name !== '' ? ($lang === 'fr' ? 'Bonjour ' . htmlspecialchars($name) : 'Hello ' . htmlspecialchars($name)) : ($lang === 'fr' ? 'Bonjour' : 'Hello');
+  $base   = 'https://' . $host;
+  $logo   = $base . '/assets/brand/yza-wordmark-upscaled.png';
+  $hero   = $base . '/assets/hero/popup-pink-scarf.jpg';
+  $ctaUrl = $base . '/collections/charms';
+  $fonts  = 'https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Fraunces:ital,opsz,wght@0,9..144,400..600;1,9..144,400..600&display=swap';
+  $sans   = "'Jost','Helvetica Neue',Arial,sans-serif";
+  $serif  = "'Fraunces','Georgia','Times New Roman',serif";
 
   if ($lang === 'en') {
-    $subject = 'Welcome to the wardrobe of Marrakesh';
-    $lede = "Welcome. You've just stepped into the wardrobe of Marrakesh.";
+    $subject   = 'Welcome to the wardrobe of Marrakesh';
+    $eyebrow   = 'The wardrobe of Marrakesh';
+    $greet     = 'Hello';
+    $lede      = "Welcome. You've just stepped into the wardrobe of Marrakesh.";
+    $codeLabel = 'Your 10% code on your first order';
+    $codeNote  = 'Mention it on WhatsApp and we apply it to your order.';
     $paras = array(
-      "YZA was born in Guéliz, inside a former 1940s bar that became our atelier &mdash; a few steps from the market. Today it's women who work here, from the first strand of raffia to the label sewn by hand. The whole house is female. A choice, not an accident.",
-      "Nothing here is rushed. A basket bag can take three weeks &mdash; and you can tell. Raffia, doum palm, banana leaf, crochet: local materials, gestures you don't pick up in one summer.",
-      "The gentlest way in is a hand-crocheted raffia fruit charm &mdash; a pocket-sized postcard from Marrakesh, from 100 DH. Handmade, guaranteed, repaired for life at the atelier.",
+      "YZA was born in Guéliz, inside a former 1940s bar that became our atelier, a few steps from the market. Today it's women who work here, from the first strand of raffia to the label sewn by hand. The whole house is female. A choice, not an accident.",
+      "Nothing here is rushed. A basket bag can take three weeks, and you can tell. Raffia, doum palm, banana leaf, crochet: local materials, gestures you don't pick up in one summer.",
+      "The gentlest way in is a hand-crocheted raffia fruit charm. A pocket-sized postcard from Marrakesh, from 100 DH. Handmade, guaranteed, repaired for life at the atelier.",
     );
-    $cta = 'Discover the pieces';
-    $ps = "A question, a colour in mind? We answer for real, on WhatsApp. That's how we work.";
+    $cta  = 'Discover the pieces';
+    $ps   = "A question, a colour in mind? We answer for real, on WhatsApp. That's how we work.";
+    $sig  = 'Founder of YZA';
     $foot = "You're receiving this because you subscribed at yza-shop.com. To unsubscribe, just reply with STOP.";
-    $ctaUrl = $base . '/collections/charms';
   } else {
-    $subject = 'Bienvenue dans le vestiaire de Marrakech';
-    $lede = "Bienvenue. Vous venez d'entrer dans le vestiaire de Marrakech.";
+    $subject   = 'Bienvenue dans le vestiaire de Marrakech';
+    $eyebrow   = 'Le vestiaire de Marrakech';
+    $greet     = 'Bonjour';
+    $lede      = "Bienvenue. Vous venez d'entrer dans le vestiaire de Marrakech.";
+    $codeLabel = 'Votre code -10 % sur la première commande';
+    $codeNote  = "Mentionnez-le sur WhatsApp, on l'applique à votre commande.";
     $paras = array(
-      "YZA est né au Guéliz, dans un ancien bar des années 1940 devenu notre atelier &mdash; à quelques pas du marché. Aujourd'hui, ce sont des femmes qui y travaillent, du premier brin de raphia jusqu'à l'étiquette cousue main. Toute la maison est féminine. Un choix, pas un hasard.",
-      "Ici, rien n'est pressé. Un sac panier peut prendre trois semaines &mdash; et ça se voit. Raphia, doum, feuille de bananier, crochet : des matières d'ici, des gestes qui ne s'apprennent pas en un été.",
-      "La façon la plus douce d'entrer dans la maison : un charm fruit en raphia, crocheté main &mdash; une carte postale de Marrakech en format poche, dès 100 DH. Fait main, garanti, réparé à vie à l'atelier.",
+      "YZA est né au Guéliz, dans un ancien bar des années 1940 devenu notre atelier, à quelques pas du marché. Aujourd'hui, ce sont des femmes qui y travaillent, du premier brin de raphia jusqu'à l'étiquette cousue main. Toute la maison est féminine. Un choix, pas un hasard.",
+      "Ici, rien n'est pressé. Un sac panier peut prendre trois semaines, et ça se voit. Raphia, doum, feuille de bananier, crochet : des matières d'ici, des gestes qui ne s'apprennent pas en un été.",
+      "La façon la plus douce d'entrer dans la maison : un charm fruit en raphia, crocheté main. Une carte postale de Marrakech en format poche, dès 100 DH. Fait main, garanti, réparé à vie à l'atelier.",
     );
-    $cta = 'Découvrir les pièces';
-    $ps = "Une question, une couleur en tête ? On répond en vrai, sur WhatsApp. C'est comme ça qu'on travaille.";
+    $cta  = 'Découvrir les pièces';
+    $ps   = "Une question, une couleur en tête ? On répond en vrai, sur WhatsApp. C'est comme ça qu'on travaille.";
+    $sig  = 'Fondatrice de YZA';
     $foot = "Vous recevez cet e-mail car vous vous êtes inscrite sur yza-shop.com. Pour vous désabonner, répondez simplement STOP.";
-    $ctaUrl = $base . '/collections/charms';
   }
 
-  $codeHtml = ''; $codeText = '';
+  $hello = $greet . ($name !== '' ? ' ' . htmlspecialchars($name) : '') . ',';
+
+  $codeHtml = '';
   if ($code !== '') {
-    $codeLabel = ($lang === 'fr') ? 'Votre code -10 % (première commande) :' : 'Your 10% welcome code (first order):';
-    $codeNote  = ($lang === 'fr') ? 'Mentionnez-le sur WhatsApp, on l\'applique à votre commande.' : 'Mention it on WhatsApp and we apply it to your order.';
-    $codeHtml = '<p style="margin:0 0 18px;font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#1a1917">' . $codeLabel . ' <strong style="letter-spacing:.12em;border:1px dashed #de733d;color:#c2551f;padding:2px 8px">' . htmlspecialchars($code) . '</strong><br><span style="font-size:12px;color:#77736a">' . $codeNote . '</span></p>';
-    $codeText = $codeLabel . ' ' . $code . ' — ' . $codeNote . "\n\n";
+    $codeHtml = '<tr><td class="yza-pad" style="padding:22px 40px 0;">'
+      . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr><td style="padding:16px 18px;border:1px dashed #de733d;background:#fdf6f1;">'
+      . '<div style="font-family:' . $sans . ';font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#767676;">' . $codeLabel . '</div>'
+      . '<div style="font-family:' . $sans . ';font-size:24px;font-weight:500;letter-spacing:.16em;color:#c2551f;margin-top:7px;">' . htmlspecialchars($code) . '</div>'
+      . '<div style="font-family:' . $sans . ';font-size:12px;line-height:1.5;color:#767676;margin-top:7px;">' . $codeNote . '</div>'
+      . '</td></tr></table></td></tr>';
   }
+
   $pblocks = '';
-  foreach ($paras as $p) { $pblocks .= '<p style="margin:0 0 16px;font-size:15px;line-height:1.65;color:#3a3833">' . $p . '</p>'; }
+  $last = count($paras) - 1;
+  foreach ($paras as $i => $p) {
+    $mb = ($i === $last) ? '0' : '0 0 16px';
+    $pblocks .= '<p style="margin:' . $mb . ';font-family:' . $sans . ';font-size:15px;line-height:1.72;color:#444444;">' . $p . '</p>';
+  }
 
-  $html = '<!doctype html><html><body style="margin:0;background:#efece6;font-family:Georgia,\'Times New Roman\',serif">'
-    . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#efece6"><tr><td align="center" style="padding:28px 14px">'
-    . '<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:560px;background:#ffffff;border:1px solid #e2ddd2">'
-    . '<tr><td style="padding:30px 34px 8px"><div style="font-family:Arial,Helvetica,sans-serif;letter-spacing:.28em;font-size:22px;color:#1a1917;font-weight:600">YZA</div></td></tr>'
-    . '<tr><td style="padding:8px 34px 6px"><p style="margin:0 0 18px;font-size:20px;line-height:1.3;color:#1a1917">' . $hello . ',</p>'
-    . '<p style="margin:0 0 16px;font-size:16px;line-height:1.6;color:#1a1917">' . $lede . '</p>' . $codeHtml . $pblocks
-    . '<p style="margin:22px 0 8px"><a href="' . $ctaUrl . '" style="display:inline-block;background:#1a1917;color:#ffffff;text-decoration:none;font-family:Arial,Helvetica,sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:13px 26px">' . $cta . '</a></p>'
-    . '<p style="margin:22px 0 0;font-size:13px;line-height:1.6;color:#77736a;font-style:italic">' . $ps . '</p>'
-    . '<p style="margin:20px 0 0;font-family:Arial,Helvetica,sans-serif;font-size:13px;color:#1a1917">Nawal &middot; <span style="color:#77736a">Fondatrice, YZA</span></p>'
-    . '</td></tr>'
-    . '<tr><td style="padding:22px 34px 26px;border-top:1px solid #eee7db"><p style="margin:0;font-family:Arial,Helvetica,sans-serif;font-size:11px;line-height:1.6;color:#9a958a">' . $foot . '<br>YZA &middot; 66 rue Yougoslavie, Guéliz, Marrakech</p></td></tr>'
-    . '</table></td></tr></table></body></html>';
+  $html = <<<HTML
+<!doctype html><html lang="$lang"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>@import url('$fonts');body{margin:0;padding:0;}img{border:0;outline:none;text-decoration:none;}@media(max-width:620px){.yza-card{width:100%!important;}.yza-pad{padding-left:24px!important;padding-right:24px!important;}}</style></head>
+<body style="margin:0;padding:0;background:#f2f1ee;"><div style="display:none;max-height:0;overflow:hidden;opacity:0;">$lede</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2f1ee;"><tr><td align="center" style="padding:32px 12px;">
+<table role="presentation" class="yza-card" width="600" cellpadding="0" cellspacing="0" style="width:600px;max-width:600px;background:#ffffff;border:1px solid rgba(46,46,46,0.10);">
+<tr><td align="center" class="yza-pad" style="padding:36px 40px 0;"><img src="$logo" alt="YZA" width="132" style="width:132px;height:auto;display:block;"></td></tr>
+<tr><td align="center" class="yza-pad" style="padding:16px 40px 0;"><div style="font-family:$sans;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#de733d;">$eyebrow</div></td></tr>
+<tr><td class="yza-pad" style="padding:22px 40px 0;"><h1 style="margin:0 0 12px;font-family:$serif;font-weight:400;font-size:30px;line-height:1.15;color:#2e2e2e;">$hello</h1><p style="margin:0;font-family:$sans;font-size:16px;line-height:1.6;color:#2e2e2e;">$lede</p></td></tr>
+$codeHtml
+<tr><td align="center" class="yza-pad" style="padding:28px 40px 0;"><img src="$hero" alt="YZA" width="300" style="width:300px;max-width:100%;height:auto;display:block;"></td></tr>
+<tr><td class="yza-pad" style="padding:26px 40px 0;">$pblocks</td></tr>
+<tr><td class="yza-pad" style="padding:28px 40px 0;"><table role="presentation" cellpadding="0" cellspacing="0"><tr><td style="background:#2e2e2e;"><a href="$ctaUrl" style="display:inline-block;padding:15px 34px;font-family:$sans;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#ffffff;text-decoration:none;">$cta</a></td></tr></table></td></tr>
+<tr><td class="yza-pad" style="padding:26px 40px 0;"><p style="margin:0;font-family:$serif;font-style:italic;font-size:15px;line-height:1.6;color:#767676;">$ps</p></td></tr>
+<tr><td class="yza-pad" style="padding:18px 40px 32px;"><p style="margin:0;font-family:$sans;font-size:14px;color:#2e2e2e;"><span style="font-weight:500;">Nawal</span>, <span style="color:#767676;">$sig</span></p></td></tr>
+<tr><td class="yza-pad" style="padding:20px 40px 32px;border-top:1px solid rgba(46,46,46,0.10);"><p style="margin:0;font-family:$sans;font-size:11px;line-height:1.7;color:#9a958a;">$foot<br>YZA &middot; 66 rue Yougoslavie, Gu&eacute;liz, Marrakech</p></td></tr>
+</table></td></tr></table></body></html>
+HTML;
 
-  $text = trim(strip_tags($lede . "\n\n" . $codeText . implode("\n\n", str_replace('&mdash;', '—', $paras)) . "\n\n" . $cta . ': ' . $ctaUrl . "\n\n" . $ps . "\n\nNawal — YZA\n\n" . $foot));
+  $codeText = ($code !== '') ? $codeLabel . ' : ' . $code . '. ' . $codeNote . "\n\n" : '';
+  $text = trim(strip_tags($lede . "\n\n" . $codeText . implode("\n\n", $paras) . "\n\n" . $cta . ': ' . $ctaUrl . "\n\n" . $ps . "\n\nNawal, " . $sig . "\n\n" . $foot));
   return array($subject, $html, $text);
 }

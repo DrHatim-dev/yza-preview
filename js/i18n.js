@@ -375,6 +375,9 @@ const STR = {
   'col.viewby':    { fr: 'Voir par', en: 'View by' },
   'col.colors':    { fr: 'couleurs', en: 'colors' },
   'col.quickadd':  { fr: 'Ajout rapide', en: 'Quick add' },
+  'col.addbag':    { fr: 'Ajouter au panier', en: 'Add to bag' },
+  'col.sort.az':   { fr: 'A – Z', en: 'A – Z' },
+  'col.sort.za':   { fr: 'Z – A', en: 'Z – A' },
 
   /* — Badges — */
   'badge.bestseller': { fr: 'Préféré', en: 'Bestseller' },
@@ -547,6 +550,7 @@ const EXTRA = {
   'col.viewby': { es: 'Ver por', tr: 'Görünüm', ar: 'عرض حسب' },
   'col.colors': { es: 'colores', tr: 'renk', ar: 'ألوان' },
   'col.quickadd': { es: 'Añadir', tr: 'Hızlı ekle', ar: 'إضافة سريعة' },
+  'col.addbag': { es: 'Añadir a la bolsa', tr: 'Sepete ekle', ar: 'أضف إلى الحقيبة' },
   'badge.bestseller': { es: 'Favorito', tr: 'Çok satan', ar: 'الأكثر طلبا' },
   'badge.new': { es: 'Nuevo', tr: 'Yeni', ar: 'جديد' },
   'badge.limited': { es: 'Edición limitada', tr: 'Sınırlı', ar: 'إصدار محدود' },

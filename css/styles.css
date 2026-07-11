@@ -753,6 +753,71 @@ body[data-page="collections"] .product-grid:not(.collection-grid--bag-families) 
   .product-card:hover .product-card__add { opacity: 1; }
 }
 
+/* ===================================================================
+   COLLECTION LISTING — reference (Talisman) layout, YZA brand kept.
+   Taller 2:3 cards, uppercase name/price, hover "Add to bag" button,
+   sold-out pill, airier 3-up grid. Page aesthetics scoped to
+   body[data-page="collections"]; the button itself is styled on its
+   class so it also renders cleanly on the wishlist grid.
+   =================================================================== */
+body[data-page="collections"] .product-card__media { aspect-ratio: 2 / 3; }
+
+/* Airier grid (base gap is 5px) */
+body[data-page="collections"] .product-grid:not(.collection-grid--bag-families) {
+  gap: clamp(2rem, 3vw, 3rem) clamp(0.75rem, 1.6vw, 1.5rem);
+}
+
+/* Name + price — uppercase, tracked, static BELOW the image (never an overlay).
+   Tile cards inherit their static/column reset from the .product-card--tile rules
+   above, but bag-variant cards don't — on wide hover screens the base rule turns
+   .product-card__info into an absolute image-bottom overlay, which then collides
+   with the "Ajouter au panier" button. Force BOTH card types to sit under the
+   product box, left-aligned (title, then price) to match the reference. */
+body[data-page="collections"] .product-card--tile .product-card__info,
+body[data-page="collections"] .product-card--bag-variant .product-card__info {
+  position: static; opacity: 1; pointer-events: auto; background: none;
+  flex-direction: column; align-items: flex-start; justify-content: flex-start;
+  padding: var(--space-4) 2px var(--space-8); gap: 4px;
+}
+body[data-page="collections"] .product-card__name {
+  text-transform: uppercase; letter-spacing: 0.13em; font-size: 12px; line-height: 1.45;
+}
+body[data-page="collections"] .product-card__price {
+  text-transform: uppercase; letter-spacing: 0.13em; font-size: 12px;
+}
+
+/* Hover "Add to bag" — bordered button revealed over the image bottom */
+.product-card__addbag {
+  position: absolute; left: 50%; bottom: 16px; z-index: 5;
+  transform: translate(-50%, 6px);
+  min-width: 62%; max-width: calc(100% - 24px); text-align: center;
+  padding: 0.62rem 1.1rem; line-height: 1;
+  font-family: var(--font-display); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--color-fg); background: rgba(255, 255, 255, 0.62);
+  border: 1px solid var(--color-fg); border-radius: 0;
+  -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.28s var(--ease-out), transform 0.28s var(--ease-out), background 0.2s ease, color 0.2s ease;
+}
+.product-card__addbag:hover { background: var(--color-fg); color: var(--color-bg); }
+@media (min-width: 861px) and (hover: hover) {
+  .product-card:hover .product-card__addbag { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
+}
+/* Touch: no hover reveal — show it statically */
+@media (hover: none) {
+  .product-card__addbag { opacity: 1; transform: translateX(-50%); pointer-events: auto; background: rgba(255, 255, 255, 0.85); }
+}
+
+/* Sold-out — small top-left pill instead of the full dark overlay */
+body[data-page="collections"] .product-card__sold {
+  inset: auto; top: 10px; left: 10px; right: auto; bottom: auto;
+  display: inline-block; place-items: initial;
+  background: var(--color-bg); color: var(--color-fg); border: 1px solid var(--color-border);
+  font-family: var(--font-display); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  padding: 0.3rem 0.55rem; -webkit-backdrop-filter: none; backdrop-filter: none;
+}
+
 /* The View-by control is a desktop affordance — tablet/phone keep their fixed columns */
 @media (max-width: 1024px) {
   .grid-density { display: none; }
@@ -771,30 +836,47 @@ body[data-page="collections"] .product-grid:not(.collection-grid--bag-families) 
  padding: 0;
 }
 .bag-family-section {
- border-top: 1px solid var(--color-border);
- padding-block: clamp(2.75rem, 6vw, var(--space-16));
+ border-top: 0;
+ padding-block: clamp(2rem, 5vw, var(--space-12));
 }
 .bag-family-section:first-child {
- padding-top: var(--space-8);
- border-top: 0;
+ padding-top: var(--space-6);
 }
+/* Collection section header — a big, stylized editorial headline on the plain
+   page ground (no tinted panel). Introduces each bag collection (La Sculpture,
+   La Nouvelle Vague…), centred; the headline itself is the section divider. */
 .bag-family-head {
- display: grid;
- grid-template-columns: minmax(15rem, 0.4fr) minmax(0, 0.6fr);
- gap: clamp(1rem, 4vw, var(--space-12));
- align-items: end;
- margin-bottom: var(--space-6);
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ text-align: center;
+ gap: var(--space-3);
+ margin-bottom: var(--space-10);
+ padding-block: clamp(1.5rem, 3.5vw, 3rem);
+}
+.bag-family-head > div {
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ gap: var(--space-2);
+}
+.bag-family-head .eyebrow::before {
+ content: "\25C6";
+ margin-right: 0.5em;
+ font-size: 0.72em;
+ vertical-align: 0.08em;
+ color: var(--accent);
 }
 .bag-family-head h2 {
- font-size: clamp(2.8rem, 6vw, 5.6rem);
- font-weight: 400;
- line-height: 0.94;
- margin-top: var(--space-2);
+ font-size: clamp(2.5rem, 5.4vw, 4.75rem);
+ font-weight: 450;
+ line-height: 0.98;
+ letter-spacing: -0.01em;
 }
 .bag-family-head p:not(.eyebrow) {
- max-width: 48ch;
+ max-width: 52ch;
+ margin-inline: auto;
  color: var(--color-muted);
- justify-self: end;
 }
 .bag-family-grid {
  display: grid;
@@ -1782,7 +1864,7 @@ body[data-page="home"] .girls-feed-section { margin-top: var(--space-7); }
 .footer-service__form .form-msg { grid-column: 1 / -1; margin-top: 0; }
 .footer-service--trust { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(1.5rem, 4vw, 3rem); }
 .footer-service__trust-item { text-align: center; justify-items: center; padding: 0; gap: var(--space-2); }
-.footer-service__trust-item .service-card__icon { display: none; }
+.footer-service__trust-item .service-card__icon { display: grid; place-items: center; min-height: 0; margin-bottom: var(--space-3); }
 .footer-service__trust-item h3 { font-size: var(--fs-sm); font-weight: 400; letter-spacing: 0.03em; text-transform: none; }
 .footer-service__trust-item p { max-width: 32ch; font-size: var(--fs-xs); color: var(--color-muted); }
 @media (max-width: 760px) { .footer-service--trust { grid-template-columns: 1fr; gap: var(--space-6); } }
@@ -2112,8 +2194,10 @@ body[data-page="faq"] .faq-contact a { color: var(--color-fg); border-bottom: 1p
 .accordion { border-top: 1px solid var(--color-border); margin-top: var(--space-10); }
 .accordion__item { border-bottom: 1px solid var(--color-border); }
 .accordion__btn { width: 100%; display: flex; justify-content: space-between; align-items: center; padding: var(--space-5) 0; font-size: var(--fs-sm); font-weight: 400; letter-spacing: 0.04em; text-transform: uppercase; }
-.accordion__btn .plus { font-size: var(--fs-lg); color: var(--color-muted); transition: transform var(--transition); }
-.accordion__item.is-open .plus { transform: rotate(45deg); }
+.accordion__btn .plus { color: var(--color-muted); line-height: 0; }
+.accordion__btn .acc-glyph { display: block; width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
+.accordion__btn .acc-glyph .acc-bar-v { transition: opacity var(--transition); }
+.accordion__item.is-open .acc-glyph .acc-bar-v { opacity: 0; }
 .accordion__panel { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
 .accordion__item.is-open .accordion__panel { max-height: 800px; }
 
@@ -2622,6 +2706,8 @@ body[data-page="faq"] .faq-contact a { color: var(--color-fg); border-bottom: 1p
 .reviews-nav__btn:hover { background: var(--color-fg); color: #fff; border-color: var(--color-fg); }
 .reviews-nav__btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .reviews-nav__count { font-family: var(--font-display); font-size: var(--fs-sm); letter-spacing: 0.14em; color: var(--color-muted); min-width: 6ch; text-align: center; font-variant-numeric: tabular-nums; }
+.reviews-nav__chev { width: 9px; height: 15px; display: block; }
+.reviews-nav__sep { display: inline-block; margin: 0 0.55em; font-size: 0.6em; color: var(--accent); vertical-align: 0.16em; }
 
 .reviews-more-wrap { margin-top: var(--space-12); }
 
@@ -3573,8 +3659,9 @@ body[data-page="home"] .girls-feed-section .section-head { display: block; paddi
 /* FAQ preview: two-line questions read left, with room — not cramped/centred. */
 .faq-item .accordion__btn { align-items: flex-start; text-align: left; line-height: 1.4; gap: var(--space-4); }
 .faq-item .accordion__btn .plus { flex: none; margin-top: 0.1em; }
-/* YZA Girls CTA pair: real breathing room around the two buttons. */
-body[data-page="home"] .girls-feed-section .section-cta--duo { margin-block: var(--space-7) var(--space-2); gap: var(--space-3) var(--space-4); }
+/* YZA Girls CTA pair: real breathing room around the two buttons — keep a clear
+   gap above so they never sit flush against the girls photos. */
+body[data-page="home"] .girls-feed-section .section-cta--duo { margin-block: clamp(2.75rem, 4.5vw, 4rem) var(--space-2); gap: var(--space-3) var(--space-4); }
 
 /* Everything full width on home — galleries and grids break out of the gutter. */
 body[data-page="home"] .container-wide { max-width: none; padding-inline: 0; }
@@ -3588,6 +3675,18 @@ body[data-page="home"] .girls-feed { gap: 5px; }
 /* Journal cards are text-heavy: keep a side gutter so copy doesn't touch the screen edge. */
 body[data-page="home"] .section--accented .container-wide { padding-inline: var(--gutter); }
 body[data-page="home"] .journal-grid { gap: clamp(1rem, 2.5vw, 2rem); }
+
+/* ===== Alignment (wide screens): keep text/content bands centred =====
+   home .container-wide is full-bleed; cap the values strip + YZA Girls to a
+   centred column, centre each icon+label pair, and flex the girls feed so an
+   incomplete last row centres instead of left-packing. Desktop-only. */
+@media (min-width: 1025px) {
+  body[data-page="home"] .icon-strip .icon-strip__inner,
+  body[data-page="home"] .girls-feed-section .container-wide { max-width: var(--container-wide); padding-inline: var(--gutter); }
+  body[data-page="home"] .icon-strip__item { grid-template-columns: 44px auto; justify-content: center; }
+  body[data-page="home"] .girls-feed { display: flex; flex-wrap: wrap; justify-content: center; gap: 5px; }
+  body[data-page="home"] .girls-feed > * { flex: 0 1 220px; max-width: 220px; }
+}
 /* drop the redundant shop-CTA blocks that sat as white space between sections */
 body[data-page="home"] #bestSellers [style*="margin-top"],
 body[data-page="home"] .girls-feed-section .section-cta { display: none; }
