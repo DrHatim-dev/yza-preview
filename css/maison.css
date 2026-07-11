@@ -222,7 +222,7 @@ body.has-cart-drawer .header { transform: none; }
 .header__actions svg { width: 22px !important; height: 22px !important; fill: none; stroke: currentColor; stroke-width: 1.35; }
 .header__actions .cart-svg { fill: currentColor; stroke: none; }
 .header__actions .lang { display: none !important; }
-.burger { display: none !important; }
+.header__actions .burger { display: none !important; }
 .cart-count { min-width: 16px; height: 16px; background: var(--color-accent) !important; color: #fff !important; font-size: 10px; }
 
 /* Drawer, search and cart */
@@ -685,7 +685,7 @@ body[data-page="checkout"] .checkout-section h2 { font-family: var(--font-displa
   .nav { display: none !important; }
   .header__actions { gap: 0 !important; }
   .header__actions .lang { display: none !important; }
-  .burger { display: inline-flex !important; }
+  .header__actions .burger { display: inline-flex !important; }
   .header-search,
   .header__actions .icon-btn { width: 44px !important; min-width: 44px !important; }
   .drawer { width: 100% !important; }
