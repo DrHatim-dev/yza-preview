@@ -381,7 +381,7 @@ YZA.chrome = {
  this.mountAnalyticsSnippet();
  this.mountSeoTags();
  YZA.analytics?.track('page_view', { title: document.title });
- const announcementKey = document.body.dataset.page === 'home' ? 'home.shipping' : 'announce.unique';
+ const announcementKey = 'announce.unique';
 
  const head = document.createElement('div');
  head.innerHTML = `
