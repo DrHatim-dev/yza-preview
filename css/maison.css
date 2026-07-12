@@ -986,7 +986,8 @@ body[data-page="home"] .ranaco-hero__media img {
 
 body[data-page="home"] .ranaco-hero__media img {
   object-fit: cover;
-  object-position: 50% 75%;
+  /* Keep the standing model's face in the desktop campaign frame. */
+  object-position: 50% 25%;
 }
 
 body[data-page="home"] .ranaco-image-cta {
