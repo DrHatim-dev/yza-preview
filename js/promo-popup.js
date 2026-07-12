@@ -194,15 +194,32 @@
     });
   });
 
-  // Trigger: whichever comes first — a short dwell so it reliably greets every visit,
-  // plus 45% scroll and desktop exit-intent as accelerators.
-  var t = setTimeout(open, 3200);
+  // Never interrupt the first viewport. The offer becomes eligible only after a
+  // meaningful dwell, then opens on clear engagement (scroll) or desktop exit intent.
+  // There is deliberately no timer-only fallback: an idle visitor keeps the campaign
+  // imagery and primary story unobstructed.
+  var eligible = false;
+  var engaged = false;
+  var t = setTimeout(function () {
+    eligible = true;
+    if (engaged) { cleanupTriggers(); open(); }
+  }, 12000);
+  function cleanupTriggers() {
+    clearTimeout(t);
+    window.removeEventListener('scroll', onScroll);
+    document.removeEventListener('mouseout', onExit);
+  }
   function onScroll() {
     var sc = window.scrollY || document.documentElement.scrollTop || 0;
     var h = (document.documentElement.scrollHeight - window.innerHeight) || 1;
-    if (sc / h > 0.45) { clearTimeout(t); window.removeEventListener('scroll', onScroll); open(); }
+    if (sc / h > 0.35) {
+      engaged = true;
+      if (eligible) { cleanupTriggers(); open(); }
+    }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
-  function onExit(e) { if (e.clientY <= 0) { clearTimeout(t); document.removeEventListener('mouseout', onExit); open(); } }
+  function onExit(e) {
+    if (eligible && e.clientY <= 0) { cleanupTriggers(); open(); }
+  }
   if (window.matchMedia && window.matchMedia('(pointer:fine)').matches) document.addEventListener('mouseout', onExit);
 })();

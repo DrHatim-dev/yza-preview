@@ -1,7 +1,7 @@
 /* ============================================================
    YZA — CHECKOUT (static, no account)
    3 steps: Cart → Shipping → Payment & Confirmation.
-   Order handoff = WhatsApp prefill + best-effort POST to order.php (email).
+   Order handoff = confirmed POST to order.php, with WhatsApp as fallback.
    Reuses YZA.cart, YZA.i18n.formatPrice/eurEstimate, YZA.payment config.
    ============================================================ */
 (function () {
@@ -24,6 +24,11 @@
     root.style.opacity = '1';
 
     YZA.cart.load();
+    var pendingContext = loadPendingOrderContext();
+    if (!YZA.cart.items.length && pendingContext.number) {
+      clearPendingOrderContext();
+      pendingContext = {};
+    }
 
     // Apply the URL/saved language before the first render (avoids a FR flash when the
     // page is opened directly with ?lang=xx, before chrome.js has set the language).
@@ -31,12 +36,19 @@
 
     var state = {
       step: 'cart',          // cart | shipping | payment | done
-      method: 'cod',         // cod | rib | iban | paypal
+      method: /^(cod|rib|iban|paypal)$/.test(pendingContext.method || '') ? pendingContext.method : 'cod',
+      orderNo: pendingContext.number || '',
       ship: loadShip(),
       wa: '',
       bumpHandle: undefined, // order-bump pick, frozen on first payment-step entry
       bumpOn: false,         // authoritative bump state (not the DOM)
       lastOrder: null,       // the placed order — feeds the done-screen add-on cards
+      pendingOrder: null,    // frozen snapshot reused verbatim by retry/idempotency
+      pendingOrderText: '',  // the exact server/WhatsApp text is part of that snapshot
+      placing: false,        // guards double submission while order.php is pending
+      orderError: '',        // localized, visible failure; cart/form stay untouched
+      orderFailureCode: '',
+      customerNotified: false,
     };
 
     var esc = function (s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]; }); };
@@ -45,6 +57,9 @@
     var eur = function (c) { return YZA.i18n.eurEstimate(c); };
     var PAY = function () { return YZA.payment || {}; };
     var waDigits = function () { return String((YZA.brand && YZA.brand.whatsapp) || '').replace(/\D/g, ''); };
+    function orderUiText(key) {
+      return T('co.order.' + key);
+    }
 
     // ---- data helpers ----
     function lines() {
@@ -65,6 +80,18 @@
     // ---- persistence ----
     function loadShip() { try { return JSON.parse(sessionStorage.getItem('yza.checkout.ship')) || {}; } catch (e) { return {}; } }
     function saveShip() { try { sessionStorage.setItem('yza.checkout.ship', JSON.stringify(state.ship)); } catch (e) {} }
+    function loadPendingOrderContext() {
+      try {
+        var value = JSON.parse(sessionStorage.getItem('yza.checkout.pending') || '{}');
+        if (!value || !/^YZA-[A-Z0-9]{8,20}$/.test(String(value.number || ''))) return {};
+        return { number: String(value.number), method: String(value.method || '') };
+      } catch (e) { return {}; }
+    }
+    function savePendingOrderContext() {
+      if (!state.orderNo) return;
+      try { sessionStorage.setItem('yza.checkout.pending', JSON.stringify({ number: state.orderNo, method: state.method })); } catch (e) {}
+    }
+    function clearPendingOrderContext() { try { sessionStorage.removeItem('yza.checkout.pending'); } catch (e) {} }
 
     // ---- render ----
     function stepsBar() {
@@ -74,7 +101,7 @@
       return '<ol class="checkout__steps">' + steps.map(function (s, i) {
         var idx = order.indexOf(s[0]);
         var cls = idx < cur ? ' is-done' : (idx === cur ? ' is-active' : '');
-        var clickable = idx < cur && state.step !== 'done';
+        var clickable = idx < cur && state.step !== 'done' && !state.placing;
         return '<li class="checkout__step' + cls + '"' + (clickable ? ' data-goto="' + s[0] + '" role="button" tabindex="0"' : '') + '><span class="checkout__step-n">' + (i + 1) + '</span><span class="checkout__step-t">' + esc(s[1]) + '</span></li>';
       }).join('') + '</ol>';
     }
@@ -162,6 +189,8 @@
           '<div class="co-form__two">' + field('city', 'co.ship.city', 'text', true, 'autocomplete="address-level2"') + field('zip', 'co.ship.zip', 'text', false, 'autocomplete="postal-code"') + '</div>' +
           field('country', 'co.ship.country', 'text', true, 'autocomplete="country-name"') +
           field('note', 'co.ship.note', 'textarea', false, T('co.ship.notePh')) +
+          '<label class="co-recovery-consent co-terms"><input type="checkbox" name="recoveryConsent" value="1"' +
+            (state.ship.recoveryConsent === true ? ' checked' : '') + '> <span>' + esc(T('co.ship.recoveryConsent')) + '</span></label>' +
         '</form>' +
         upsellBlock() +
         '<div class="co-actions"><button type="button" class="btn btn--outline" data-back="cart">' + esc(T('co.back')) + '</button>' +
@@ -219,14 +248,19 @@
         var on = state.method === m.id;
         var logos = (m.logos || [m.logo]).map(function (src) { return '<img src="' + esc(src) + '" alt="" height="20">'; }).join('');
         return '<label class="pay-option' + (on ? ' is-selected' : '') + '">' +
-          '<input type="radio" name="pay" value="' + m.id + '"' + (on ? ' checked' : '') + '>' +
+          '<input type="radio" name="pay" value="' + m.id + '"' + (on ? ' checked' : '') + (state.placing ? ' disabled' : '') + '>' +
           '<span class="pay-option__logo">' + logos + '</span>' +
           '<span class="pay-option__body"><span class="pay-option__name">' + esc(m.name) + '</span><span class="pay-option__txt">' + esc(m.txt) + '</span></span>' +
           '</label>' + (on ? payDetails(m.id) : '');
       }).join('');
-      return '<h1 class="co-h1">' + esc(T('co.pay.title')) + '</h1><div class="co-pay">' + opts + '</div>' + bumpCard() + reassureStrip() +
-        '<div class="co-actions"><button type="button" class="btn btn--outline" data-back="shipping">' + esc(T('co.back')) + '</button>' +
-        '<button type="button" class="btn btn--solid" data-place>' + esc(T('co.pay.place')) + '</button></div>';
+      var failure = state.orderError
+        ? '<div class="co-order-error" role="alert" tabindex="-1"><p>' + esc(state.orderError) + '</p>' +
+          (state.wa ? '<a class="link-underline" data-order-wa-fallback href="' + esc(state.wa) + '" target="_blank" rel="noopener">' + esc(orderUiText('fallback')) + '</a>' : '') + '</div>'
+        : '';
+      var placeLabel = state.placing ? orderUiText('placing') : (state.orderError ? orderUiText('retry') : T('co.pay.place'));
+      return '<h1 class="co-h1">' + esc(T('co.pay.title')) + '</h1><div class="co-pay">' + opts + '</div>' + bumpCard() + reassureStrip() + failure +
+        '<div class="co-actions"><button type="button" class="btn btn--outline" data-back="shipping"' + (state.placing ? ' disabled' : '') + '>' + esc(T('co.back')) + '</button>' +
+        '<button type="button" class="btn btn--solid" data-place' + (state.placing ? ' disabled aria-busy="true"' : '') + '>' + esc(placeLabel) + '</button></div>';
     }
 
     // One unchecked low-friction add above the Place-order button. state.bumpOn is
@@ -238,7 +272,7 @@
       var st = (YZA.inventoryStatus && YZA.inventoryStatus(p)) || {};
       if (st.soldOut) return '';
       return '<label class="co-bump' + (state.bumpOn ? ' is-on' : '') + '">' +
-        '<input type="checkbox" data-bump' + (state.bumpOn ? ' checked' : '') + '>' +
+        '<input type="checkbox" data-bump' + (state.bumpOn ? ' checked' : '') + (state.placing ? ' disabled' : '') + '>' +
         '<img src="' + esc(p.img) + '" alt="" width="56" height="72" loading="lazy">' +
         '<span class="co-bump__body"><span class="co-bump__kicker">' + esc(T('co.bump.kicker')) + '</span>' +
         '<span class="co-bump__name">' + esc(YZA.i18n.pick(p.name)) + ' — ' + fmt(p.price) + '</span>' +
@@ -264,7 +298,7 @@
         ? '<a class="btn btn--outline" href="' + esc(paypalPayUrl()) + '" target="_blank" rel="noopener">' + esc(T('co.done.paypalBtn')) + '</a>' : '';
       var num = (state.lastOrder && state.lastOrder.number) || state.orderNo || '';
       var noLine = num ? '<p class="co-done__no">' + esc(T('co.done.orderNo')) + ' <strong>' + esc(num) + '</strong></p>' : '';
-      var emailed = (state.ship && state.ship.email) ? '<p class="co-done__emailed">' + esc(T('co.done.emailed')) + '</p>' : '';
+      var emailed = state.customerNotified ? '<p class="co-done__emailed">' + esc(T('co.done.emailed')) + '</p>' : '';
       return '<div class="co-done"><div class="co-done__check" aria-hidden="true">✓</div>' +
         '<h1 class="co-h1">' + esc(T('co.done.title')) + '</h1>' +
         noLine +
@@ -303,6 +337,21 @@
       if (window.YZA && YZA.i18n && YZA.i18n.apply) YZA.i18n.apply(root);
     }
 
+    function setPlacementLock(locked) {
+      [root, document.querySelector('.header'), document.querySelector('.footer')].forEach(function (el) {
+        if (!el) return;
+        if (locked) {
+          if (!el.hasAttribute('inert')) {
+            el.setAttribute('inert', '');
+            el.setAttribute('data-yza-placement-inert', 'true');
+          }
+        } else if (el.getAttribute('data-yza-placement-inert') === 'true') {
+          el.removeAttribute('inert');
+          el.removeAttribute('data-yza-placement-inert');
+        }
+      });
+    }
+
     // ---- validation ----
     function collectShip() {
       var f = root.querySelector('#coShipForm');
@@ -311,7 +360,7 @@
       var need = ['name', 'phone', 'address', 'city', 'country'];
       Array.prototype.forEach.call(f.elements, function (el) {
         if (!el.name) return;
-        state.ship[el.name] = el.value.trim();
+        state.ship[el.name] = el.type === 'checkbox' ? el.checked : el.value.trim();
       });
       f.querySelectorAll('[data-err]').forEach(function (e) { e.textContent = ''; e.parentElement.classList.remove('is-err'); });
       need.forEach(function (n) {
@@ -348,9 +397,10 @@
     }
     // GA4-shape ecommerce payload (also consumed by the Meta/TikTok mappers in tracking.js).
     function trackPayload(o) {
+      var frozenTotalCents = o && Number.isFinite(Number(o.totalDh)) ? Math.round(Number(o.totalDh) * 100) : pricing().totalCents;
       return {
         transaction_id: o.number || '',
-        value: pricing().totalCents / 100,   // net of discounts — what the customer pays
+        value: frozenTotalCents / 100,       // net of discounts — frozen with the recorded order
         currency: 'MAD',
         payment_type: o.method || state.method,
         items: (o.items || lines()).map(function (it) {
@@ -398,26 +448,109 @@
       return out.join('\n');
     }
 
-    function placeOrder() {
+    function invalidatePendingOrder() {
+      if (state.placing) return;
+      state.pendingOrder = null;
+      state.pendingOrderText = '';
+      state.orderError = '';
+      state.orderFailureCode = '';
+      state.wa = '';
+    }
+
+    async function placeOrder() {
+      if (state.placing) return;
       if (!YZA.cart.items.length) { state.step = 'cart'; render(); return; }
-      state.orderNo = orderNo();
-      var o = buildOrder();
-      // best-effort email + WooCommerce record (never blocks the WhatsApp handoff)
+      if (!state.orderNo) state.orderNo = orderNo();
+      savePendingOrderContext();
+      if (!state.pendingOrder) state.pendingOrder = buildOrder();
+      var o = state.pendingOrder;
+      if (!state.pendingOrderText) state.pendingOrderText = orderText(o);
+      var text = state.pendingOrderText;
+      state.wa = 'https://wa.me/' + waDigits() + '?text=' + encodeURIComponent(text);
+
+      /* Open the WhatsApp tab during the trusted click event. Browsers commonly
+         block a window opened only after the order request has finished. The
+         blank tab is closed on failure; the done screen keeps a normal link as
+         a fallback when popups are disabled. */
+      var whatsappWindow = null;
       try {
-        fetch((YZA.payment && YZA.payment.orderEndpoint) || 'order.php', {
-          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ order: o, text: orderText(o) }),
-        }).catch(function () {});
-      } catch (e) {}
-      state.wa = 'https://wa.me/' + waDigits() + '?text=' + encodeURIComponent(orderText(o));
+        whatsappWindow = window.open('about:blank', '_blank');
+        if (whatsappWindow) whatsappWindow.opener = null;
+      } catch (e) { whatsappWindow = null; }
+
+      state.placing = true;
+      state.orderError = '';
+      state.orderFailureCode = '';
+      render();
+      setPlacementLock(true);
+
+      var controller = window.AbortController ? new AbortController() : null;
+      var timer = controller ? setTimeout(function () { controller.abort(); }, 15000) : null;
+      var result;
+      try {
+        var response = await fetch((YZA.payment && YZA.payment.orderEndpoint) || 'order.php', {
+          method: 'POST',
+          credentials: 'same-origin',
+          headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+          signal: controller ? controller.signal : undefined,
+          body: JSON.stringify({ order: o, text: text }),
+        });
+        result = await response.json().catch(function () { return {}; });
+        if (!response.ok || result.ok !== true || result.recorded !== true) {
+          var serverError = new Error(result.error || ('http_' + response.status));
+          serverError.code = result.error || ('http_' + response.status);
+          throw serverError;
+        }
+        if (!result.orderNumber || result.orderNumber !== o.number) {
+          var contractError = new Error('invalid_order_response');
+          contractError.code = 'invalid_order_response';
+          throw contractError;
+        }
+      } catch (error) {
+        try { if (whatsappWindow && !whatsappWindow.closed) whatsappWindow.close(); } catch (e0) {}
+        state.placing = false;
+        setPlacementLock(false);
+        state.orderFailureCode = (error && error.code) || (error && error.name === 'AbortError' ? 'timeout' : 'network');
+        state.orderError = state.orderFailureCode === 'recovery_suppression_pending'
+          ? orderUiText('pending')
+          : (state.orderFailureCode === 'idempotency_conflict' || state.orderFailureCode === 'recording_status_unknown')
+            ? orderUiText('conflict') : orderUiText('failed');
+        render();
+        setTimeout(function () {
+          var alert = root.querySelector('.co-order-error');
+          if (alert) alert.focus({ preventScroll: true });
+        }, 0);
+        try { if (YZA.analytics) YZA.analytics.track('order_record_error', { method: state.method, order_number: o.number, error: state.orderFailureCode }); } catch (e) {}
+        return;
+      } finally {
+        if (timer) clearTimeout(timer);
+      }
+
+      try {
+        if (whatsappWindow && !whatsappWindow.closed) whatsappWindow.location.replace(state.wa);
+      } catch (e) {
+        try { if (whatsappWindow && !whatsappWindow.closed) whatsappWindow.close(); } catch (e2) {}
+      }
+
+      /* No purchase signal, cart mutation, confirmation or recovery suppression
+         happens until order.php has returned the verified contract above. */
+      state.placing = false;
+      setPlacementLock(false);
+      state.customerNotified = result.customerNotified === true;
       try { if (YZA.analytics) YZA.analytics.track('order_placed', { method: state.method, items: YZA.cart.count(), subtotal_cents: subtotal(), total_cents: pricing().totalCents }); } catch (e) {}
       // Ad platforms: one purchase event per order, keyed by the order number.
       try { if (YZA.track) { YZA.track('add_payment_info', trackPayload(o)); YZA.track('purchase', trackPayload(o)); } } catch (e) {}
       try { sessionStorage.setItem('yza.order.sent', String(Date.now())); } catch (e) {}
       state.lastOrder = o;   // snapshot feeds the done-screen add-on suggestions
-      try { YZA.cart.clear(); } catch (e) {}   // empty the cart so a placed order never looks unpaid
+      var cartCleared = false;
+      try { YZA.cart.clear(); cartCleared = true; } catch (e) {}   // empty the cart so a placed order never looks unpaid
+      /* Keep the pending id if cart persistence failed. A reload can then ask
+         order.php for the same idempotent result instead of creating a duplicate. */
+      if (cartCleared) clearPendingOrderContext();
+      state.ship.recoveryConsent = false;
+      saveShip();
       state.step = 'done';
       render();
-      window.open(state.wa, '_blank', 'noopener');
     }
 
     // EUR amount (integer) from the DH total (net of discounts), for PayPal / IBAN.
@@ -454,6 +587,11 @@
 
     // ---- events ----
     root.addEventListener('click', function (e) {
+      var fallback = e.target.closest('[data-order-wa-fallback]');
+      if (fallback) {
+        try { if (YZA.analytics) YZA.analytics.track('order_whatsapp_fallback', { method: state.method, order_number: state.orderNo || '', error: state.orderFailureCode || '' }); } catch (e0) {}
+        return;
+      }
       var next = e.target.closest('[data-next]');
       if (next) {
         var to = next.getAttribute('data-next');
@@ -480,15 +618,21 @@
         // Preserve anything typed in the shipping form across the re-render — silently
         // (no validation errors: the shopper is adding an item, not submitting yet).
         var sf = root.querySelector('#coShipForm');
-        if (sf) { Array.prototype.forEach.call(sf.elements, function (el) { if (el.name) state.ship[el.name] = el.value.trim(); }); saveShip(); }
+        if (sf) {
+          Array.prototype.forEach.call(sf.elements, function (el) {
+            if (el.name) state.ship[el.name] = el.type === 'checkbox' ? el.checked : el.value.trim();
+          });
+          saveShip();
+        }
+        invalidatePendingOrder();
         YZA.cart.add(up.getAttribute('data-upsell-add'), '', 1, { source: 'checkout_cross_sell' });
         try { YZA.analytics && YZA.analytics.track('cross_sell_add', { handle: up.getAttribute('data-upsell-add'), source: 'checkout' }); } catch (e2) {}
         render(); return;
       }
       var back = e.target.closest('[data-back]');
-      if (back) { if (state.step === 'shipping') collectShip(); state.step = back.getAttribute('data-back'); render(); scrollTop(); return; }
+      if (back) { if (state.placing) return; if (state.step === 'shipping') collectShip(); state.step = back.getAttribute('data-back'); render(); scrollTop(); return; }
       var go = e.target.closest('[data-goto]');
-      if (go) { if (state.step === 'shipping') collectShip(); state.step = go.getAttribute('data-goto'); render(); scrollTop(); return; }
+      if (go) { if (state.placing) return; if (state.step === 'shipping') collectShip(); state.step = go.getAttribute('data-goto'); render(); scrollTop(); return; }
       var place = e.target.closest('[data-place]');
       if (place) { placeOrder(); scrollTop(); return; }
       // Post-order add-on → WhatsApp "add to my parcel" + best-effort record. Button locks after.
@@ -512,12 +656,12 @@
       }
       // cart qty / remove
       var rm = e.target.closest('[data-remove]');
-      if (rm) { YZA.cart.remove(rm.getAttribute('data-handle'), rm.getAttribute('data-variant')); render(); return; }
+      if (rm) { invalidatePendingOrder(); YZA.cart.remove(rm.getAttribute('data-handle'), rm.getAttribute('data-variant')); render(); return; }
       var qb = e.target.closest('.qty__btn');
       if (qb) {
         var q = qb.closest('.qty');
         var line = YZA.cart.items.find(function (i) { return i.handle === q.dataset.handle && (i.variant || '') === (q.dataset.variant || ''); });
-        if (line) YZA.cart.setQty(q.dataset.handle, q.dataset.variant, line.qty + (qb.dataset.act === 'inc' ? 1 : -1));
+        if (line) { invalidatePendingOrder(); YZA.cart.setQty(q.dataset.handle, q.dataset.variant, line.qty + (qb.dataset.act === 'inc' ? 1 : -1)); }
         render(); return;
       }
       // copy bank detail
@@ -534,11 +678,26 @@
       if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('[data-goto]')) { e.preventDefault(); e.target.click(); }
     });
     root.addEventListener('change', function (e) {
+      var recoveryConsent = e.target.closest('input[name="recoveryConsent"]');
+      if (recoveryConsent) {
+        state.ship.recoveryConsent = recoveryConsent.checked;
+        saveShip();
+        var consentEmail = (state.ship.email || '').trim();
+        if (recoveryConsent.checked) {
+          capturedEmail = '';
+          scheduleCapture();
+        } else if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(capturedAddress || consentEmail)) {
+          capturedEmail = '';
+          withdrawCartReminder(capturedAddress || consentEmail);
+        }
+        return;
+      }
       var r = e.target.closest('input[name="pay"]');
-      if (r) { state.method = r.value; render(); return; }
+      if (r) { invalidatePendingOrder(); state.method = r.value; savePendingOrderContext(); render(); return; }
       // Order bump: check → add to cart; uncheck → decrement/remove. state.bumpOn is authoritative.
       var bump = e.target.closest('input[data-bump]');
       if (bump) {
+        invalidatePendingOrder();
         if (bump.checked && !state.bumpOn) {
           YZA.cart.add(state.bumpHandle, '', 1, { source: 'order_bump' });
           state.bumpOn = true;
@@ -554,15 +713,23 @@
     });
     root.addEventListener('input', function (e) {
       if (e.target.closest('#coShipForm') && e.target.name) {
-        state.ship[e.target.name] = e.target.value; saveShip();
+        invalidatePendingOrder();
+        if (e.target.name === 'email') {
+          var nextCaptureEmail = e.target.value.trim().toLowerCase();
+          if (capturedAddress && nextCaptureEmail !== capturedAddress) {
+            withdrawCartReminder(capturedAddress);
+            capturedEmail = '';
+          }
+        }
+        state.ship[e.target.name] = e.target.type === 'checkbox' ? e.target.checked : e.target.value; saveShip();
         if (e.target.name === 'email') scheduleCapture();
       }
     });
 
-    // ---- abandoned-cart capture: once a valid email is typed at checkout we store
-    // the pending cart server-side (cart-capture.php) so the recovery emails can go
-    // out if the order isn't completed. order.php marks it purchased on checkout. ----
-    var captureTimer = null, capturedEmail = '';
+    // ---- consented cart reminders: only after the optional checkbox is enabled do
+    // we store the pending cart server-side. order.php suppresses it on purchase. ----
+    var captureTimer = null, capturedEmail = '', capturePending = '', capturedAddress = '';
+    var withdrawalState = Object.create(null);
     function scheduleCapture() {
       if (captureTimer) clearTimeout(captureTimer);
       captureTimer = setTimeout(captureCart, 900);
@@ -571,20 +738,116 @@
       try {
         var email = (state.ship.email || '').trim();
         if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return;
-        if (!YZA.cart.items.length) return;
-        var key = email.toLowerCase() + '|' + YZA.cart.count();
-        if (key === capturedEmail) return;   // don't re-post the same email+cart size
-        capturedEmail = key;
-        var items = lines().map(function (it) { return { name: it.name, qty: it.qty, variant: it.variant || '' }; });
+        if (!YZA.cart.items.length || state.ship.recoveryConsent !== true) return;
+        var liveLines = lines();
+        var key = email.toLowerCase() + '|' + liveLines.map(function (it) {
+          return [it.handle, it.variant || '', it.qty].join(':');
+        }).join('|') + '|' + pricing().totalCents;
+        if (key === capturedEmail || key === capturePending) return;
+        capturePending = key;
+        var items = liveLines.map(function (it) { return { name: it.name, qty: it.qty, variant: it.variant || '' }; });
         fetch('cart-capture.php', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             email: email, name: (state.ship.name || '').trim(), phone: (state.ship.phone || '').trim(),
-            lang: YZA.i18n.lang || 'fr', total: Math.round(pricing().totalCents / 100), items: items, _hp: ''
+            lang: YZA.i18n.lang || 'fr', total: Math.round(pricing().totalCents / 100), items: items,
+            recoveryConsent: true, consentVersion: 'cart-reminder-v1', _hp: ''
           }),
-        }).catch(function () {});
+        }).then(function (response) {
+          capturePending = '';
+          if (!response.ok) return;
+          var stillCurrent = state.ship.recoveryConsent === true
+            && YZA.cart.items.length > 0
+            && (state.ship.email || '').trim().toLowerCase() === email.toLowerCase();
+          if (stillCurrent) {
+            capturedEmail = key;
+            capturedAddress = email.toLowerCase();
+          } else {
+            withdrawCartReminder(email);
+          }
+        }).catch(function () { capturePending = ''; });
       } catch (e) {}
     }
+
+    function withdrawCartReminder(email) {
+      var address = String(email || '').trim().toLowerCase();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(address)) return null;
+      var pending = withdrawalState[address] || { attempts: 0, inflight: false, timer: null };
+      withdrawalState[address] = pending;
+      if (pending.inflight) return null;
+      if (pending.timer) { clearTimeout(pending.timer); pending.timer = null; }
+      pending.inflight = true;
+      pending.attempts += 1;
+
+      function retry(delay) {
+        pending.inflight = false;
+        if (pending.attempts >= 4) return;
+        pending.timer = setTimeout(function () {
+          pending.timer = null;
+          withdrawCartReminder(address);
+        }, Math.max(500, Math.min(delay || 1200, 10000)));
+      }
+
+      try {
+        return fetch('cart-capture.php', {
+          method: 'POST',
+          credentials: 'same-origin',
+          keepalive: true,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'withdraw', email: address, _hp: '' }),
+        }).then(function (response) {
+          var retryAfter = parseFloat(response.headers.get('Retry-After') || '0') * 1000;
+          return response.json().catch(function () { return {}; }).then(function (payload) {
+            if (!response.ok || payload.ok !== true || payload.withdrawn !== true) {
+              retry(retryAfter);
+              return;
+            }
+            pending.inflight = false;
+            if (pending.timer) clearTimeout(pending.timer);
+            delete withdrawalState[address];
+            if (capturedAddress === address) capturedAddress = '';
+          });
+        }).catch(function () { retry(1200); });
+      } catch (e) { retry(1200); return null; }
+    }
+
+    document.addEventListener('yza:cartchange', function () {
+      if (state.ship.recoveryConsent !== true) return;
+      if (YZA.cart.items.length) {
+        scheduleCapture();
+      } else {
+        if (captureTimer) { clearTimeout(captureTimer); captureTimer = null; }
+        capturedEmail = '';
+        if (capturedAddress) withdrawCartReminder(capturedAddress);
+      }
+    });
+
+    /* A consent withdrawal must not be forgotten just because the shopper was
+       briefly offline or closed the page during a retry. Retry pending removals
+       when connectivity returns and make one final same-origin keepalive send
+       while the document is being discarded. The server operation is idempotent. */
+    window.addEventListener('online', function () {
+      Object.keys(withdrawalState).forEach(function (address) {
+        withdrawalState[address].attempts = 0;
+        withdrawCartReminder(address);
+      });
+    });
+    window.addEventListener('pagehide', function () {
+      if (!navigator.sendBeacon) return;
+      Object.keys(withdrawalState).forEach(function (address) {
+        try {
+          navigator.sendBeacon('cart-capture.php', new Blob([
+            JSON.stringify({ action: 'withdraw', email: address, _hp: '' })
+          ], { type: 'application/json' }));
+        } catch (e) {}
+      });
+    });
+
+    window.addEventListener('beforeunload', function (event) {
+      if (!state.placing) return;
+      event.preventDefault();
+      event.returnValue = '';
+    });
 
     function scrollTop() { try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, 0); } }
 

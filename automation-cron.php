@@ -1,8 +1,9 @@
 <?php
 /* YZA — abandoned-cart recovery worker. Run by a Hostinger cron job every ~15 min:
      curl -s "https://yza-shop.com/automation-cron.php?key=YZACRONKEY"
-   Sends the recovery sequence to active pending carts (from cart-capture.php) that have not
-   been purchased: step 1 at ~1h, step 2 (scarcity) at ~24h, step 3 (gift) at ~72h. One step
+   Sends the recovery sequence only to explicitly consented active pending carts
+   (from cart-capture.php) that have not been purchased: step 1 at ~1h, step 2
+   (scarcity) at ~24h, step 3 (gift) at ~72h. One step
    per cart per run. order.php marks a cart 'purchased' so buyers are never chased.
    ?force=1 (with the key) ignores the delays and sends step 1 now — for testing only. */
 
@@ -17,6 +18,7 @@ if (!$CRON_KEY) {
 $key = isset($_GET['key']) ? (string) $_GET['key'] : '';
 if (!$CRON_KEY || !hash_equals((string) $CRON_KEY, $key)) { http_response_code(403); echo 'forbidden'; exit; }
 header('Content-Type: application/json; charset=utf-8');
+if (is_file(__DIR__ . '/brevo.php')) { require_once __DIR__ . '/brevo.php'; }
 
 $force  = isset($_GET['force']) && $_GET['force'] === '1';
 $host   = isset($_SERVER['HTTP_HOST']) ? preg_replace('/[^a-z0-9.\-]/i', '', $_SERVER['HTTP_HOST']) : 'yza-shop.com';
@@ -34,15 +36,37 @@ $guard = "<?php exit; /* YZA pending carts — one JSON object per line */\n";
 $lines = array_values(array_filter(explode("\n", $body), function ($l) { return trim($l) !== '' && strpos($l, '<?php') !== 0; }));
 
 $now = time();
-$sent = 0; $scanned = 0; $records = array();
+$sent = 0; $scanned = 0; $skippedNoConsent = 0; $pendingBrevoRemovals = 0; $records = array();
 foreach ($lines as $l) {
   $rec = json_decode($l, true);
   if (!is_array($rec) || !isset($rec['email'])) { continue; }
   $scanned++;
   $status = isset($rec['status']) ? $rec['status'] : 'active';
+  $hasRecoveryConsent = isset($rec['recoveryConsent']) && $rec['recoveryConsent'] === true;
+
+  if (!empty($rec['brevoRemovalPending'])) {
+    if (yza_cron_remove_brevo_cart_contact((string) $rec['email'])) {
+      $rec['brevoRemovalPending'] = false;
+      $rec['brevoRemovedAt'] = $now;
+    } else {
+      $pendingBrevoRemovals++;
+    }
+  }
+
+  /* Legacy records predate the explicit cart-reminder opt-in. Quarantine them
+     permanently instead of treating a missing field as consent. This check
+     deliberately happens before delay/step processing or any mail call. */
+  if ($status === 'active' && !$hasRecoveryConsent) {
+    $rec['status'] = 'consent_required';
+    $rec['updated'] = $now;
+    $skippedNoConsent++;
+    $records[] = $rec;
+    continue;
+  }
+
   $steps  = isset($rec['steps']) && is_array($rec['steps']) ? $rec['steps'] : array();
 
-  if ($status === 'active' && $sent < $MAX_SENDS) {
+  if ($status === 'active' && $hasRecoveryConsent && $sent < $MAX_SENDS) {
     $age = $now - (isset($rec['created']) ? intval($rec['created']) : $now);
     $due = 0;
     foreach (array(1, 2, 3) as $s) {
@@ -70,10 +94,28 @@ foreach ($records as $rec) { $out .= json_encode($rec, JSON_UNESCAPED_UNICODE | 
 @ftruncate($fp, 0); @rewind($fp); @fwrite($fp, $out);
 @flock($fp, LOCK_UN); @fclose($fp);
 
-echo json_encode(array('ok' => true, 'scanned' => $scanned, 'sent' => $sent, 'force' => $force));
+echo json_encode(array(
+  'ok' => true,
+  'scanned' => $scanned,
+  'sent' => $sent,
+  'skipped_no_consent' => $skippedNoConsent,
+  'pending_brevo_removals' => $pendingBrevoRemovals,
+  'force' => $force,
+));
 
 /* ---------------------------------------------------------------------- */
+function yza_cron_remove_brevo_cart_contact($email) {
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { return true; }
+  if (!function_exists('yza_brevo_enabled') || !yza_brevo_enabled()) { return true; }
+  $cfg = yza_brevo_config();
+  $listId = isset($cfg['list_cart']) ? (int) $cfg['list_cart'] : 0;
+  if ($listId <= 0 || !function_exists('yza_brevo_request')) { return true; }
+  $result = yza_brevo_request('POST', '/contacts/lists/' . $listId . '/contacts/remove', array('emails' => array($email)));
+  return is_array($result) && !empty($result['ok']);
+}
+
 function yza_send_recovery($step, $rec, $host) {
+  if (!isset($rec['recoveryConsent']) || $rec['recoveryConsent'] !== true) { return false; }
   $email = $rec['email'];
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { return false; }
   $lang  = isset($rec['lang']) ? $rec['lang'] : 'fr';

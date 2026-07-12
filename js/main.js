@@ -91,19 +91,26 @@
  function productCardCopy() {
  const lang = T().lang || 'fr';
  const copy = {
- fr: { hand: '~48h de travail main', atelier: 'Atelier femmes', limited: 'Édition limitée', bags: '15 pièces · numérotées', hours: 'h de crochet', bundle: 'Bundle facile' },
- en: { hand: '~48h hand-woven', atelier: 'Women atelier', limited: 'Limited edition', bags: '15 pieces · numbered', hours: 'h handwork', bundle: 'Easy bundle' },
- es: { hand: '~48h tejido a mano', atelier: 'Atelier de mujeres', limited: 'No se repite', bags: '15 piezas · numeradas', hours: 'h de trabajo', bundle: 'Pack facil' },
- tr: { hand: '~48s el işi', atelier: 'Kadin atolyeleri', limited: 'Tekrar uretilmez', bags: '15 parça · numaralı', hours: 'saat el isi', bundle: 'Kolay set' },
- ar: { hand: '\u0643\u0631\u0648\u0634\u064A\u0647 \u064A\u062F\u0648\u064A', atelier: '\u0648\u0631\u0634\u0629 \u0646\u0633\u0627\u0626\u064A\u0629', limited: '\u0644\u0646 \u064A\u0639\u0627\u062F \u0625\u0646\u062A\u0627\u062C\u0647', bags: '15 \u0644\u0643\u0644 \u0645\u0642\u0627\u0633/\u0644\u0648\u0646', hours: '\u0633\u0627\u0639\u0627\u062A \u0639\u0645\u0644', bundle: '\u0645\u062C\u0645\u0648\u0639\u0629 \u0633\u0647\u0644\u0629' },
+ fr: { bags: 'Raphia & feuille de bananier · fait main à Guéliz', rtw: 'Jawhara · fini à la main à Guéliz', charms: 'Raphia crocheté à la main à Guéliz', jewellery: 'Raphia façonné à la main à Guéliz', atelier: 'Atelier YZA · Guéliz' },
+ en: { bags: 'Raffia & banana leaf · handmade in Guéliz', rtw: 'Jawhara · hand-finished in Guéliz', charms: 'Hand-crocheted raffia in Guéliz', jewellery: 'Hand-shaped raffia in Guéliz', atelier: 'YZA Atelier · Guéliz' },
+ es: { bags: 'Rafia y hoja de banano · hecho a mano en Guéliz', rtw: 'Jawhara · acabado a mano en Guéliz', charms: 'Rafia tejida a mano en Guéliz', jewellery: 'Rafia moldeada a mano en Guéliz', atelier: 'Atelier YZA · Guéliz' },
+ tr: { bags: 'Rafya ve muz yaprağı · Guéliz’de el yapımı', rtw: 'Jawhara · Guéliz’de elle tamamlandı', charms: 'Guéliz’de el işi rafya', jewellery: 'Guéliz’de elle şekillenen rafya', atelier: 'YZA Atölyesi · Guéliz' },
+ ar: { bags: 'رافيا وأوراق الموز · صنع يدوي في كليز', rtw: 'جوهرة · تشطيب يدوي في كليز', charms: 'رافيا كروشيه يدوية في كليز', jewellery: 'رافيا مشغولة يدوياً في كليز', atelier: 'مشغل YZA · كليز' },
  };
  return copy[lang] || copy.fr;
  }
  function cardProofHTML(p) {
  const c = productCardCopy();
- const craft = p.hours ? `${String(p.hours).replace('.', ',')} ${c.hours}` : (p.category === 'bags' ? c.hand : c.atelier);
- const scarcity = p.category === 'bags' ? c.bags : (p.bundle ? c.bundle : c.limited);
- return `<div class="product-card__meta" aria-label="${esc(craft)}"><span>${esc(craft)}</span><span>${esc(scarcity)}</span></div>`;
+ const craft = p.category === 'bags'
+ ? c.bags
+ : (p.group === 'rtw' || ['tops', 'pareos', 'pants', 'bottoms', 'rtw'].includes(p.category))
+ ? c.rtw
+ : p.category === 'charms'
+ ? c.charms
+ : p.group === 'accessories'
+ ? c.jewellery
+ : c.atelier;
+ return `<div class="product-card__meta"><span>${esc(craft)}</span></div>`;
  }
   // Map a colour name (any of the 5 langs) to a representative hex for the
   // Jacquemus-style swatch dots on listing tiles. Distinct hexes per family so
@@ -175,9 +182,11 @@
       : '';
     const soldOverlay = status.soldOut ? `<span class="product-card__sold">${esc(stock.sold)}</span>` : '';
     const almostBadge = status.almostGone ? `<span class="product-card__stock">${esc(stock.almost)}</span>` : '';
-    const fewBadge = (p.fewLeft && !status.soldOut && !status.almostGone) ? `<span class="product-card__few">${esc(stock.few)}</span>` : '';
+    // Static `fewLeft` flags are not live stock. Only numeric inventory from
+    // inventoryStatus may create a scarcity message.
+    const fewBadge = '';
     const imgLoad = eager ? 'loading="eager" fetchpriority="high"' : 'loading="lazy"';
-    const wishBtn = `<button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(p.handle)}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${wished ? 'Remove from wishlist' : 'Add to wishlist'}">${heartIcon()}</button>`;
+    const wishBtn = `<button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(p.handle)}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${esc(t.t(wished ? 'wishlist.remove' : 'wishlist.add'))}">${heartIcon()}</button>`;
     const hoverVid = p.hoverVideo || '';
     const mediaLink = `<a class="product-card__media${hoverVid ? ' has-hover-video' : ''}" href="${href}" data-product-card-click="${esc(p.handle)}" aria-label="${esc(name)}">
         ${fewBadge}${almostBadge}${soldOverlay}
@@ -186,7 +195,7 @@
         ${hoverVid ? `<video class="product-card__vid" muted loop playsinline preload="none" poster="${esc(primaryImg)}" data-hover-video="${esc(hoverVid)}" width="461" height="615" aria-hidden="true"></video>` : ''}
       </a>`;
     const quickAdd = (tile && !status.soldOut)
-      ? `<button class="product-card__add" type="button" data-quickbuy="${esc(p.handle)}" aria-label="${esc(t.t('col.quickadd'))}">+</button>`
+      ? `<button class="product-card__addbag" type="button" data-quickbuy="${esc(p.handle)}">${esc(t.t('col.addbag'))}</button>`
       : '';
     // Tile mode wraps the heart + image + quick-add so the circular "+" anchors
     // to the image bottom-right even though name/price sit statically below it.
@@ -200,6 +209,7 @@
       <a class="product-card__info" href="${href}" data-product-card-click="${esc(p.handle)}">
         <span class="product-card__name" title="${esc(name)}">${esc(name)}</span>
         <span class="product-card__price">${formatCardPrice(p)}</span>
+        ${cardProofHTML(p)}
         ${limitedLine}
       </a>
     </article>`;
@@ -227,19 +237,25 @@
     const bagHover = hoverKey ? BAG_HOVER[hoverKey] : null;
     const hoverVid = bagHover && bagHover.video;
     const hoverImgSrc = (bagHover && bagHover.img) || ((item.gallery && item.gallery[1] && item.gallery[1] !== item.img) ? item.gallery[1] : '');
+    const addBag = !status.soldOut
+      ? `<button class="product-card__addbag" type="button" data-quickbuy="${esc(item.handle || '')}">${esc(t.t('col.addbag'))}</button>`
+      : '';
     return `<article class="product-card product-card--bag-variant${status.soldOut ? ' is-sold-out' : ''}" data-size="${esc(String(item.size || '').toUpperCase())}" style="--i:${index}" data-product-handle="${esc(item.handle || '')}">
-      <button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(item.handle || '')}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${wished ? 'Remove from wishlist' : 'Add to wishlist'}">${heartIcon()}</button>
+      <div class="product-card__media-wrap">
+      <button class="product-card__wish${wished ? ' is-active' : ''}" type="button" data-wishlist-toggle="${esc(item.handle || '')}" aria-pressed="${wished ? 'true' : 'false'}" aria-label="${esc(t.t(wished ? 'wishlist.remove' : 'wishlist.add'))}">${heartIcon()}</button>
       <a class="product-card__media${hoverVid ? ' has-hover-video' : ''}" href="${esc(item.url)}" data-product-card-click="${esc(item.handle || '')}" aria-label="${esc(fullName)}">
-        ${(product.fewLeft && !status.soldOut && !status.almostGone) ? `<span class="product-card__few">${esc(stock.few)}</span>` : ''}
         ${status.almostGone ? `<span class="product-card__stock">${esc(stock.almost)}</span>` : ''}
         ${status.soldOut ? `<span class="product-card__sold">${esc(stock.sold)}</span>` : ''}
         <img class="product-card__img" src="${esc(item.img)}" alt="${esc(fullName)} - YZA" ${imgLoad} width="461" height="615" decoding="async">
         ${hoverImgSrc ? `<img class="product-card__img product-card__img--hover" src="${esc(hoverImgSrc)}" alt="" aria-hidden="true" loading="lazy" width="461" height="615" decoding="async">` : ''}
         ${hoverVid ? `<video class="product-card__vid" muted loop playsinline preload="none" poster="${esc(item.img)}" data-hover-video="${esc(hoverVid)}" width="461" height="615" aria-hidden="true"></video>` : ''}
       </a>
+      ${addBag}
+      </div>
       <a class="product-card__info" href="${esc(item.url)}" data-product-card-click="${esc(item.handle || '')}">
         <span class="product-card__name">${esc(name)}</span>
         <span class="product-card__price">${formatCardPrice(item)}</span>
+        ${cardProofHTML(product)}
         ${status.almostGone ? `<span class="product-card__limited">${status.inventory} ${esc(stock.left)}</span>` : ''}
       </a>
     </article>`;
@@ -719,7 +735,8 @@
  // append any that didn't fit so no selling-point block is ever dropped.
  const catBreaks = activeEditorialBreaks();
  const breakCount = catBreaks.length || 3;
- const interval = breakCount > 3 ? 2 : 4;
+ // Place the first editorial interruption after one complete three-card row.
+ const interval = 3;
  let breakSeq = 0;
  let html = list.map((p, i) => {
  let story = '';
@@ -748,8 +765,8 @@
  return text.includes(q);
  };
  const rows = (YZA.bagRows || [])
- .map((row) => ({ ...row, items: q ? (row.items || []) : (row.items || []).filter((item) => allowedHandles.has(item.handle)) }))
- .filter((row) => row.items.length && rowMatches(row));
+ .map((row) => ({ ...row, items: (row.items || []).filter((item) => allowedHandles.has(item.handle)) }))
+ .filter((row) => row.items.length && rowMatches(row) && (!collState.color || row.colorSlug === collState.color));
  const groups = new Map();
  rows.forEach((row) => {
  const key = row.familyHandle || t.pick(row.familyTitle);
@@ -796,8 +813,23 @@
  }
 
  /* ================= ACCUEIL ================= */
+ let homeReviewTimer = null;
+ let homeReviewListeners = null;
+
+ function resetHomeReviewCarousel() {
+ if (homeReviewTimer) {
+ clearInterval(homeReviewTimer);
+ homeReviewTimer = null;
+ }
+ if (homeReviewListeners) {
+ homeReviewListeners.abort();
+ homeReviewListeners = null;
+ }
+ }
+
  function renderHome() {
  const t = T();
+ resetHomeReviewCarousel();
  // best-sellers : charms hors coffrets - carrousel landing
  const promoOk = typeof YZA.isLaunchPromoProduct === 'function' ? YZA.isLaunchPromoProduct : (p) => p && p.launchPromo !== false;
  // Page-wide image de-dup: seed with every static image already on the home page
@@ -808,10 +840,12 @@
  .filter((m) => !m.closest('#bestGrid, #offerGrid, #girlsPreviewGrid'))
  .map((m) => String(m.getAttribute('src') || '').replace(/\?.*$/, ''))
  );
- // Offer = 4 curated heroes; keep them OUT of best-sellers so no product/image repeats.
+ // One curated object from each house category keeps the first four-up edit balanced.
+ // These handles also remain compatible with the optional legacy #offerGrid surface.
  const offerHandles = ['la-sculpture-xs-basket-bag-ss26', 'yza-palazzo-pants-jawhara-ss26', 'raffia-orange-slice-charm-ss26', 'grapes-raffia-earrings-ss26'];
- // Fixed full-bleed product grid (Jacquemus "New In" style) instead of a carousel — 2 per category.
- const bestList = ['charms', 'bags', 'rtw', 'accessories'].flatMap(g => YZA.byCategory(g).filter(p => !p.bundle && promoOk(p) && !offerHandles.includes(p.handle)).slice(0, 2)).slice(0, 8);
+ const bestList = offerHandles
+ .map((handle) => YZA.getProduct ? YZA.getProduct(handle) : null)
+ .filter((product) => product && !product.bundle && promoOk(product));
  const bestGrid = $('#bestGrid');
  if (bestGrid) bestGrid.innerHTML = bestList.map((p, i) => cardHTML(p, i, false, { used: usedHomeImg })).join('');
 
@@ -857,22 +891,31 @@
  if (allReviews.length) draw();
  // prev · counter · next controls + auto-advance by page
  const wrap = $('.reviews-more-wrap');
- let timer = null;
+ homeReviewListeners = new AbortController();
+ const listenerOptions = { signal: homeReviewListeners.signal };
  const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
- const stop = () => { if (timer) { clearInterval(timer); timer = null; } };
- const start = () => { stop(); if (!reduce && pages > 1) timer = setInterval(() => go(1), 7000); };
+ const stop = () => { if (homeReviewTimer) { clearInterval(homeReviewTimer); homeReviewTimer = null; } };
+ const start = () => { stop(); if (!reduce && pages > 1) homeReviewTimer = setInterval(() => go(1), 7000); };
+ const reviewNavCopy = ({
+ fr: { prev: 'Avis précédents', next: 'Avis suivants' },
+ en: { prev: 'Previous reviews', next: 'Next reviews' },
+ es: { prev: 'Opiniones anteriores', next: 'Opiniones siguientes' },
+ tr: { prev: 'Önceki yorumlar', next: 'Sonraki yorumlar' },
+ ar: { prev: 'الآراء السابقة', next: 'الآراء التالية' },
+ })[t.lang] || { prev: 'Previous reviews', next: 'Next reviews' };
  if (wrap && pages > 1) {
- wrap.innerHTML = '<div class="reviews-nav"><button type="button" class="reviews-nav__btn" data-dir="-1" aria-label="Avis précédents">‹</button><span class="reviews-nav__count" aria-hidden="true"></span><button type="button" class="reviews-nav__btn" data-dir="1" aria-label="Avis suivants">›</button></div>';
+ wrap.hidden = false;
+ wrap.innerHTML = `<div class="reviews-nav"><button type="button" class="reviews-nav__btn" data-dir="-1" aria-label="${esc(reviewNavCopy.prev)}"><svg class="reviews-nav__chev" viewBox="0 0 10 16" aria-hidden="true"><path d="M7 2 2 8 7 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button><span class="reviews-nav__count" aria-hidden="true"></span><button type="button" class="reviews-nav__btn" data-dir="1" aria-label="${esc(reviewNavCopy.next)}"><svg class="reviews-nav__chev" viewBox="0 0 10 16" aria-hidden="true"><path d="M3 2 8 8 3 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>`;
  const counter = wrap.querySelector('.reviews-nav__count');
- updateCount = () => { counter.textContent = (page + 1) + ' / ' + pages; };
+ updateCount = () => { counter.innerHTML = (page + 1) + '<span class="reviews-nav__sep" aria-hidden="true">◆</span>' + pages; };
  updateCount();
- wrap.querySelectorAll('.reviews-nav__btn').forEach((b) => b.addEventListener('click', () => { go(parseInt(b.dataset.dir, 10)); start(); }));
+ wrap.querySelectorAll('.reviews-nav__btn').forEach((b) => b.addEventListener('click', () => { go(parseInt(b.dataset.dir, 10)); start(); }, listenerOptions));
  } else if (wrap) { wrap.hidden = true; }
  start();
- tg.addEventListener('mouseenter', stop);
- tg.addEventListener('mouseleave', start);
- tg.addEventListener('focusin', stop);
- tg.addEventListener('focusout', start);
+ tg.addEventListener('mouseenter', stop, listenerOptions);
+ tg.addEventListener('mouseleave', start, listenerOptions);
+ tg.addEventListener('focusin', stop, listenerOptions);
+ tg.addEventListener('focusout', start, listenerOptions);
  }
  const rs = $('#ratingSummary');
  if (rs) {
@@ -914,6 +957,11 @@
  function initBandVideos() {
  const vids = $$('.video-band__media');
  if (!vids.length || !('IntersectionObserver' in window)) return;
+ const saveData = !!(navigator.connection && navigator.connection.saveData);
+ if (saveData) {
+ vids.forEach((video) => { video.pause?.(); video.removeAttribute('autoplay'); video.preload = 'none'; });
+ return;
+ }
  if (bandVideoIO) bandVideoIO.disconnect();
  bandVideoIO = new IntersectionObserver((entries) => {
  entries.forEach((e) => {
@@ -1140,11 +1188,38 @@
 
  /* ================= COLLECTIONS ================= */
  const GRID_DENSITIES = ['3', '4', '6'];
- let savedDensity = '4';
+ let savedDensity = '3';
  try { const d = localStorage.getItem('yza_grid_density'); if (GRID_DENSITIES.includes(d)) savedDensity = d; } catch (e) {}
- const collState = { cat: params.get('cat') || 'all', q: params.get('q') || '', sort: 'feat', density: savedDensity };
+ const SORT_VALUES = ['feat', 'az', 'za', 'asc', 'desc'];
+ const initialSort = SORT_VALUES.includes(params.get('sort')) ? params.get('sort') : 'feat';
+ const collState = { cat: params.get('cat') || 'all', q: params.get('q') || '', sort: initialSort, size: params.get('size') || '', color: params.get('color') || '', density: savedDensity };
+ function collectionStateUrl() {
+ const url = new URL(collectionUrl(collState.cat), location.origin);
+ if (collState.q) url.searchParams.set('q', collState.q);
+ if (collState.sort !== 'feat') url.searchParams.set('sort', collState.sort);
+ if (collState.size) url.searchParams.set('size', collState.size);
+ if (collState.color) url.searchParams.set('color', collState.color);
+ return url.pathname + url.search;
+ }
+ function pushCollectionState(replace = false) {
+ history[replace ? 'replaceState' : 'pushState']({ yzaCollection: true }, '', collectionStateUrl());
+ }
+ function readCollectionStateFromLocation() {
+ const current = new URL(location.href);
+ const path = current.pathname.replace(/\/+$/, '');
+ const match = path.match(/^\/collections\/([a-z-]+)$/);
+ collState.cat = (match && CAT_SLUGS[match[1]]) || current.searchParams.get('cat') || 'all';
+ collState.q = current.searchParams.get('q') || '';
+ const sort = current.searchParams.get('sort') || 'feat';
+ collState.sort = SORT_VALUES.includes(sort) ? sort : 'feat';
+ collState.size = current.searchParams.get('size') || '';
+ collState.color = current.searchParams.get('color') || '';
+ }
  function collFiltered() {
  let list = YZA.byCategory(collState.cat);
+ if (collState.cat === 'bags' && collState.size) {
+ list = list.filter((product) => String(T().pick(product.size) || '').toUpperCase() === collState.size.toUpperCase());
+ }
  if (collState.q) {
  list = typeof YZA.searchProducts === 'function'
  ? YZA.searchProducts(collState.q, YZA.products.length, list).map((row) => row.product)
@@ -1152,6 +1227,11 @@
  }
  if (collState.sort === 'asc') list = [...list].sort((a, b) => a.price - b.price);
  if (collState.sort === 'desc') list = [...list].sort((a, b) => b.price - a.price);
+ if (collState.sort === 'az' || collState.sort === 'za') {
+ const tt = T();
+ list = [...list].sort((a, b) => (tt.pick(a.name) || '').localeCompare(tt.pick(b.name) || '', undefined, { sensitivity: 'base' }));
+ if (collState.sort === 'za') list.reverse();
+ }
  return list;
  }
  // Charms-only editorial: raffia fruit charms in YZA studio and basket context.
@@ -1252,6 +1332,8 @@
  });
  }
  const count = $('#resultCount'); if (count) count.textContent = list.length + ' ' + T().t('col.results');
+ const sortControl = $('#sortSelect');
+ if (sortControl && sortControl.value !== collState.sort) sortControl.value = collState.sort;
  const titleKey = ({
  charms: 'col.charms',
  earrings: 'col.earrings',
@@ -1276,19 +1358,42 @@
  b.hidden = false;
  b.setAttribute('aria-pressed', b.dataset.cat === activePill ? 'true' : 'false');
  });
+ $$('[data-size-filter]').forEach((button) => {
+ button.hidden = !isBags;
+ const active = isBags && button.dataset.sizeFilter === collState.size;
+ button.setAttribute('aria-pressed', active ? 'true' : 'false');
+ });
+ const colorControl = $('#colorFilter');
+ if (colorControl) {
+ colorControl.closest('.collection-color-filter').hidden = !isBags;
+ colorControl.value = isBags ? collState.color : '';
+ }
  if ($('#searchEcho')) $('#searchEcho').textContent = collState.q ? `"${collState.q}"` : '';
  }
  function wireCollections() {
  if (!$('#collectionGrid')) return;
  $$('[data-cat]').forEach(b => b.addEventListener('click', () => {
  collState.cat = b.dataset.cat;
- history.replaceState(null, '', collectionUrl(collState.cat));
  collState.q = ''; const si = $('#collSearch'); if (si) si.value = '';
+ if (collState.cat !== 'bags') { collState.size = ''; collState.color = ''; }
+ pushCollectionState();
  YZA.analytics?.track('category_filter', { category: collState.cat });
  renderCollections();
  }));
  const sort = $('#sortSelect');
- if (sort) sort.addEventListener('change', () => { collState.sort = sort.value; renderCollections(); });
+ if (sort) sort.addEventListener('change', () => {
+ collState.sort = SORT_VALUES.includes(sort.value) ? sort.value : 'feat';
+ pushCollectionState();
+ renderCollections();
+ });
+ $$('[data-size-filter]').forEach((button) => button.addEventListener('click', () => {
+ const next = button.dataset.sizeFilter || '';
+ collState.size = collState.size === next ? '' : next;
+ pushCollectionState();
+ renderCollections();
+ }));
+ const color = $('#colorFilter');
+ if (color) color.addEventListener('change', () => { collState.color = color.value || ''; pushCollectionState(); renderCollections(); });
  $$('#gridDensity .grid-density__btn').forEach((b) => b.addEventListener('click', () => {
  const d = b.dataset.density;
  if (!GRID_DENSITIES.includes(d) || d === collState.density) return;
@@ -1297,6 +1402,7 @@
  YZA.analytics?.track('grid_density', { density: d });
  renderCollections();
  }));
+ window.addEventListener('popstate', () => { readCollectionStateFromLocation(); renderCollections(); });
  }
 
  /* ================= PAGE PRODUIT ================= */
@@ -1465,8 +1571,8 @@
  <p>${esc(t.pick(story.collectionBody))}</p>
  </div>
  <div class="product-color-story__facts">
- <span>${p.hours ? `${String(p.hours).replace('.', ',')} h crochet` : t.t('pp.limited')}</span>
- <span>${p.dimensions ? esc(t.pick(p.dimensions)).split('(')[0].trim() : t.t('pp.limited')}</span>
+ <span>${productClaimVerified(p, 'duration') && p.hours ? `${String(p.hours).replace('.', ',')} h crochet` : esc(productCardCopy().atelier)}</span>
+ <span>${p.dimensions ? esc(t.pick(p.dimensions)).split('(')[0].trim() : esc(productCardCopy().atelier)}</span>
  </div>
  <a class="link-underline" href="${collectionUrl('charms')}">${esc(t.t('cta.shopCharms') || t.t('cta.shop'))}</a>
  </div>
@@ -1497,8 +1603,8 @@
  <h2>${esc(title)}</h2>
  <p>${esc(text)}</p>
  <div class="product-color-story__facts">
- <span>${p.hours ? `${String(p.hours).replace('.', ',')} h crochet` : t.t('pp.limited')}</span>
- <span>${p.edition ? esc(t.pick(p.edition)).split('.')[0] : t.t('pp.limited')}</span>
+ <span>${productClaimVerified(p, 'duration') && p.hours ? `${String(p.hours).replace('.', ',')} h crochet` : esc(productCardCopy().atelier)}</span>
+ <span>${verifiedEditionClaim(p) ? esc(verifiedEditionClaim(p)).split('.')[0] : esc(productCardCopy().atelier)}</span>
  </div>
  <a class="link-underline" href="${story.cta || '/collections'}">${esc(t.t('cta.shop'))}</a>
  </div>
@@ -1887,7 +1993,7 @@
  const t = T();
  const c = buyingProofCopy();
  const fields = [
- [c.handwork, product.handworkTime && t.pick(product.handworkTime)],
+ [c.handwork, safeHandworkClaim(product)],
  [c.material, product.material ? t.pick(product.material) : product.fabric && t.pick(product.fabric)],
  [c.scale, product.dimensions ? t.pick(product.dimensions) : product.size && t.pick(product.size)],
  [c.fits, product.whatFits && t.pick(product.whatFits)],
@@ -2031,16 +2137,73 @@
 
   function productBullets(product) {
     const t = T();
+    const handwork = safeHandworkClaim(product);
+    const edition = verifiedEditionClaim(product);
     const rows = [
       product.material && t.pick(product.material),
       product.fabric && t.pick(product.fabric),
-      product.handworkTime && t.pick(product.handworkTime),
+      handwork,
       product.dimensions && t.pick(product.dimensions),
-      product.edition && t.pick(product.edition),
+      edition,
       product.packaging && t.pick(product.packaging),
     ].filter(Boolean);
     if (!rows.length && product.features) rows.push(...product.features.map((x) => t.pick(x)).filter(Boolean));
     return rows.slice(0, 5);
+  }
+
+  // Product source data contains historical marketing claims that still need an
+  // owner-side fact check. Named artisans, production durations and numbered
+  // runs are rendered only after an explicit per-product verification flag.
+  function productClaimVerified(product, key) {
+    const claims = product && product.verifiedClaims;
+    return claims === true || !!(claims && claims[key] === true);
+  }
+  function hasProductionClaimMetadata(product) {
+    return !!(product && Object.prototype.hasOwnProperty.call(product, 'verifiedClaims'));
+  }
+  function productionClaimsVerified(product) {
+    if (!hasProductionClaimMetadata(product)) return null;
+    return productClaimVerified(product, 'artisan') && productClaimVerified(product, 'duration');
+  }
+  function atelierProofText() {
+    const lang = T().lang || 'fr';
+    const copy = {
+      fr: 'Atelier YZA · Guéliz.',
+      en: 'YZA Atelier · Guéliz.',
+      es: 'Atelier YZA · Guéliz.',
+      tr: 'YZA Atölyesi · Guéliz.',
+      ar: 'مشغل YZA · كليز.',
+    };
+    return copy[lang] || copy.fr;
+  }
+  function containsUnverifiedProductionClaim(value) {
+    return /(?:fatima|فاطمة|35\s*(?:à|a|to|ila|إلى)\s*85|s[ée]ries?\s+de\s+15|runs?\s+of\s+15|series?\s+de\s+15|15\s+adetlik|15\s+قطعة)/i.test(String(value || ''));
+  }
+  function safeHandworkClaim(product) {
+    const raw = product?.handworkTime && T().pick(product.handworkTime);
+    if (!raw) return product?.category === 'bags' ? atelierProofText() : '';
+    const explicitlyVerified = productionClaimsVerified(product);
+    if (explicitlyVerified === false
+      || (explicitlyVerified === null && containsUnverifiedProductionClaim(raw))) return atelierProofText();
+    return raw;
+  }
+  function verifiedEditionClaim(product) {
+    return productClaimVerified(product, 'edition') && product?.edition ? T().pick(product.edition) : '';
+  }
+  function safeProductDescription(product) {
+    const raw = product?.desc && T().pick(product.desc);
+    const explicitlyVerified = productionClaimsVerified(product);
+    if (explicitlyVerified === true
+      || (explicitlyVerified === null && !containsUnverifiedProductionClaim(raw))) return raw || '';
+    return [product.short && T().pick(product.short), product.material && T().pick(product.material), product.whatFits && T().pick(product.whatFits)]
+      .filter((value) => value && !containsUnverifiedProductionClaim(value)).join(' ');
+  }
+  function safeMakingClaim(product) {
+    const raw = product?.making && T().pick(product.making);
+    const explicitlyVerified = productionClaimsVerified(product);
+    if (!raw || explicitlyVerified === false
+      || (explicitlyVerified === null && containsUnverifiedProductionClaim(raw))) return atelierProofText();
+    return raw;
   }
 
   function swatchStyle(name) {
@@ -2433,10 +2596,13 @@
  : `<a class="pp-rating-note" href="/#reviews">${t.t('social.rating')}</a>`;
  }
  if ($('#pValue')) {
- const limited = `<span class="pp-limited">${p.edition ? esc(t.pick(p.edition)) : t.t('pp.limited')}</span>`;
- $('#pValue').innerHTML = (p.compareAt && p.compareAt > p.price)
+ const editionClaim = verifiedEditionClaim(p);
+ const limited = editionClaim ? `<span class="pp-limited">${esc(editionClaim)}</span>` : '';
+ const valueMarkup = (p.compareAt && p.compareAt > p.price)
  ? `<span class="pill-save">${t.t('offer.save')} ${t.formatPrice(p.compareAt - p.price)}</span>${limited}`
  : limited;
+ $('#pValue').innerHTML = valueMarkup;
+ $('#pValue').hidden = !valueMarkup;
  }
  // Honest scarcity above ADD TO CART: only when real inventory is 1-5 (YZA.inventoryStatus,
  // "éditions limitées" made concrete). Untracked inventory (null) shows nothing.
@@ -2504,6 +2670,7 @@
  };
  } else { finishWrap.hidden = true; }
 
+ let syncPurchaseAvailability = () => {};
  const variantWrap = ensureVariantWrap();
  const variantOpts = $('#pVariantOpts');
  if (members.length > 1 && variantWrap && variantOpts) {
@@ -2554,6 +2721,7 @@
  swapGalleryToVariant(selected, t.pick(displayName(selected)));
  renderValueRow(purchaseProduct);
  renderShipBar(purchaseProduct);
+ syncPurchaseAvailability(purchaseProduct);
  YZA.analytics?.track('product_variant_select', { handle: purchaseProduct.handle, familyHandle: purchaseProduct.familyHandle || '', category: purchaseProduct.category });
  };
  }
@@ -2577,7 +2745,7 @@
  if (p.dimensions) detailRows.push(`<strong>${t.t('pp.size.label')}:</strong> ${esc(t.pick(p.dimensions))}`);
  if (p.attachment) detailRows.push(`<strong>${buyingProofCopy().attachment}:</strong> ${esc(t.pick(p.attachment))}`);
  if (p.whatFits) detailRows.push(`<strong>${buyingProofCopy().fits}:</strong> ${esc(t.pick(p.whatFits))}`);
- if (p.edition) detailRows.push(`<strong>${t.t('pp.edition')}:</strong> ${esc(t.pick(p.edition))}`);
+ { const editionClaim = verifiedEditionClaim(p); if (editionClaim) detailRows.push(`<strong>${t.t('pp.edition')}:</strong> ${esc(editionClaim)}`); }
  const _ml = ({ fr: 'Mannequin', en: 'Model', es: 'Modelo', tr: 'Manken', ar: 'العارضة' })[t.lang] || 'Model';
  const _sl = ({ fr: 'Conseil style', en: 'Style tip', es: 'Consejo de estilo', tr: 'Stil ipucu', ar: 'نصيحة الإطلالة' })[t.lang] || 'Style tip';
  if (p.modelNote) detailRows.push(`<strong>${_ml}:</strong> ${esc(t.pick(p.modelNote))}`);
@@ -2586,7 +2754,7 @@
  const wear = p.howToWear;
  const wearItems = Array.isArray(wear.items) ? wear.items : [];
  $('#accDetails').innerHTML = `<div class="charm-wear">
- <p class="charm-wear__intro">${esc(t.pick(p.desc))}</p>
+ <p class="charm-wear__intro">${esc(safeProductDescription(p))}</p>
  <h3>${esc(t.pick(wear.title))}</h3>
  <p>${esc(t.pick(wear.intro))}</p>
  <ul>${wearItems.map((item) => `<li>${esc(t.pick(item))}</li>`).join('')}</ul>
@@ -2595,19 +2763,15 @@
  ${detailRows.length ? `<div class="charm-wear__specs">${detailRows.map((r) => `<span>${r}</span>`).join('')}</div>` : ''}
  </div>`;
  } else {
- $('#accDetails').innerHTML = `${esc(t.pick(p.desc))}${detailRows.length ? `<br><br>${detailRows.join('<br>')}` : ''}`;
+ $('#accDetails').innerHTML = `${esc(safeProductDescription(p))}${detailRows.length ? `<br><br>${detailRows.join('<br>')}` : ''}`;
  }
 
- const making = p.making || (p.group === 'rtw'
- ? { fr: 'Piece Jawhara SS26 pensee pour les ensembles coordonnes et les silhouettes resort.', en: 'SS26 Jawhara piece designed for coordinated sets and resort silhouettes.' }
- : p.category === 'bags'
- ? { fr: 'Sac assemble a partir de feuilles de bananier, raphia et perles, dans la ligne La Sculpture.', en: 'Bag assembled from banana leaves, raffia and beads in the La Sculpture line.' }
- : { fr: t.t('pp.making.txt'), en: t.t('pp.making.txt') });
+ const making = safeMakingClaim(p) || t.t('pp.making.txt');
  const specs = [];
  if (p.size) specs.push(`<strong>${t.t('pp.size.label')} :</strong> ${esc(t.pick(p.size))}`);
- if (p.handworkTime) specs.push(`<strong>${buyingProofCopy().handwork} :</strong> ${esc(t.pick(p.handworkTime))}`);
+ { const handwork = safeHandworkClaim(p); if (handwork && handwork !== making) specs.push(`<strong>${buyingProofCopy().handwork} :</strong> ${esc(handwork)}`); }
  const makingEl = $('#accMaking');
- if (makingEl) makingEl.innerHTML = `${esc(t.pick(making))}${specs.length ? `<br><br>${specs.join('<br>')}` : ''}`;
+ if (makingEl) makingEl.innerHTML = `${esc(making)}${specs.length ? `<br><br>${specs.join('<br>')}` : ''}`;
  $('#accShip').innerHTML = typeof YZA.serviceLongText === 'function'
  ? YZA.serviceLongText()
  : esc(t.t('pp.ship.txt'));
@@ -2615,9 +2779,56 @@
 
  const add = $('#pAdd');
  const addLabelEl = add.querySelector('.product-add-main__label') || add;
- const addStatus = YZA.inventoryStatus?.(purchaseProduct) || { soldOut: false };
+ // A sold-out product becomes an explicit atelier waitlist, using the existing
+ // subscribe.php contract. It never invents a restock date or fake inventory.
+ const addWrap = add.closest('.option--add');
+ let waitlist = $('#pWaitlist');
+ if (!waitlist && addWrap) {
+ waitlist = document.createElement('div');
+ waitlist.id = 'pWaitlist';
+ waitlist.className = 'pdp-waitlist';
+ addWrap.appendChild(waitlist);
+ }
+ const waitCopy = {
+ fr: { title: 'De retour à l’atelier', text: 'Laissez votre e-mail pour être prévenue si cette pièce revient.', email: 'Votre e-mail', submit: 'Me prévenir', ok: 'C’est noté. Nous vous écrirons uniquement si cette pièce revient.', error: 'Impossible d’enregistrer votre demande. Réessayez ou contactez-nous sur WhatsApp.' },
+ en: { title: 'Back at the atelier', text: 'Leave your email and we will tell you if this piece returns.', email: 'Your email', submit: 'Notify me', ok: 'You are on the list. We will write only if this piece returns.', error: 'We could not save your request. Please retry or contact us on WhatsApp.' },
+ es: { title: 'De vuelta al atelier', text: 'Deja tu email y te avisaremos si vuelve esta pieza.', email: 'Tu email', submit: 'Avisarme', ok: 'Anotado. Solo te escribiremos si vuelve esta pieza.', error: 'No pudimos guardar la solicitud. Inténtalo de nuevo o escríbenos por WhatsApp.' },
+ tr: { title: 'Atölyeye geri döndü', text: 'Bu parça geri gelirse haber almak için e-postanızı bırakın.', email: 'E-posta adresiniz', submit: 'Bana haber ver', ok: 'Listeye eklendiniz. Yalnızca parça geri gelirse yazacağız.', error: 'Talebiniz kaydedilemedi. Tekrar deneyin veya WhatsApp’tan ulaşın.' },
+ ar: { title: 'عادت إلى المشغل', text: 'اتركي بريدك لنخبرك إذا عادت هذه القطعة.', email: 'بريدك الإلكتروني', submit: 'أخبروني', ok: 'تم تسجيلك. سنراسلك فقط إذا عادت هذه القطعة.', error: 'تعذر تسجيل طلبك. حاولي مجدداً أو تواصلي معنا عبر واتساب.' },
+ };
+ const wc = waitCopy[t.lang] || waitCopy.fr;
+ syncPurchaseAvailability = (prod) => {
+ const addStatus = YZA.inventoryStatus?.(prod) || { soldOut: false };
  addLabelEl.textContent = addStatus.soldOut ? ui.sold : ui.add;
  add.disabled = !!addStatus.soldOut;
+ add.hidden = !!(addStatus.soldOut && waitlist);
+ if (waitlist) waitlist.hidden = !addStatus.soldOut;
+ renderScarcity(prod);
+ if (!addStatus.soldOut || !waitlist) {
+ if (waitlist) waitlist.replaceChildren();
+ return;
+ }
+ waitlist.innerHTML = `<h2>${esc(wc.title)}</h2><p>${esc(wc.text)}</p><form class="pdp-waitlist__form" novalidate><input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true"><label class="sr-only" for="pWaitlistEmail">${esc(wc.email)}</label><input id="pWaitlistEmail" name="email" type="email" autocomplete="email" required placeholder="${esc(wc.email)}"><button class="btn btn--solid" type="submit">${esc(wc.submit)}</button><p class="form-msg" role="status" aria-live="polite" hidden></p></form>`;
+ const form = waitlist.querySelector('form');
+ form.addEventListener('submit', async (event) => {
+ event.preventDefault();
+ const email = form.elements.email.value.trim();
+ const msg = form.querySelector('.form-msg');
+ const button = form.querySelector('button');
+ if (!email || !form.elements.email.checkValidity()) { form.elements.email.reportValidity(); return; }
+ button.disabled = true;
+ try {
+ const response = await fetch('/subscribe.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, name: '', lang: t.lang || 'fr', page: prod.handle, source: 'waitlist', _hp: form.elements._hp.value || '' }) });
+ const payload = await response.json().catch(() => ({}));
+ if (!response.ok || !payload.ok) throw new Error(payload.error || 'waitlist');
+ msg.textContent = wc.ok; msg.hidden = false; form.elements.email.disabled = true; button.hidden = true;
+ YZA.analytics?.track('waitlist_signup', { handle: prod.handle, source: 'pdp' });
+ } catch (error) {
+ msg.textContent = wc.error; msg.hidden = false; button.disabled = false;
+ }
+ });
+ };
+ syncPurchaseAvailability(purchaseProduct);
  const handleAdd = () => {
  if (add.disabled) return;
  let variant = '';
@@ -2648,7 +2859,7 @@
  const ld = {
  '@context': 'https://schema.org/', '@type': 'Product',
  name: pageName, image: new URL(p.img, location.href).href,
- description: t.pick(p.desc), brand: { '@type': 'Brand', name: 'YZA' },
+ description: safeProductDescription(p), brand: { '@type': 'Brand', name: 'YZA' },
  offers: { '@type': 'Offer', priceCurrency: 'MAD', price: (p.price / 100).toFixed(2), availability: 'https://schema.org/LimitedAvailability' }
  };
  let s = $('#productLd'); if (!s) { s = document.createElement('script'); s.type = 'application/ld+json'; s.id = 'productLd'; document.head.append(s); }
@@ -2657,7 +2868,7 @@
  // Per-product SEO: keep canonical + social tags + description in sync with the viewed product.
  // Only updates tags that already exist in the head (safe no-op otherwise).
  const absImg = new URL(p.img, location.href).href;
- const metaDesc = t.pick(p.desc);
+ const metaDesc = safeProductDescription(p);
  const ogTitle = `${pageName} - YZA`;
  const setMeta = (sel, val) => { const el = document.head.querySelector(sel); if (el && val) el.setAttribute('content', val); };
  const canonicalUrl = 'https://yza-shop.com' + productUrl(p.handle);
@@ -2721,9 +2932,10 @@
  if (nlBtn) nlBtn.disabled = true;
  if (msg) { msg.textContent = T().lang === 'fr' ? 'Un instant…' : 'One moment…'; msg.hidden = false; }
  const nlHp = form.querySelector('input[name="company"]');
+ const nlName = form.querySelector('input[autocomplete="name"]'); // footer form collects a name; pass it through
  fetch('/subscribe.php', {
  method: 'POST', headers: { 'Content-Type': 'application/json' },
- body: JSON.stringify({ email, lang: T().lang || 'fr', page: document.body.dataset.page || '', source: form.dataset.newsSource || '', _hp: nlHp ? nlHp.value : '' }),
+ body: JSON.stringify({ email, name: nlName ? (nlName.value || '').trim() : '', lang: T().lang || 'fr', page: document.body.dataset.page || '', source: form.dataset.newsSource || '', _hp: nlHp ? nlHp.value : '' }),
  }).then((r) => r.ok).catch(() => false).then((sent) => {
  if (nlBtn) nlBtn.disabled = false;
  if (sent) {
@@ -2736,10 +2948,14 @@
  }
  });
  }));
- $$('[data-contact-form]').forEach(form => form.addEventListener('submit', (e) => {
+ $$('[data-contact-form]').forEach((form) => {
+ if (form.dataset.reliable === 'true') return;
+ const successMarkup = form.querySelector('[data-form-msg]')?.innerHTML || '';
+ form.addEventListener('submit', async (e) => {
  e.preventDefault();
  const msg = form.querySelector('[data-form-msg]');
- const okHTML = msg ? msg.innerHTML : ''; // cache the multilingual success markup
+ const submit = form.querySelector('button[type="submit"], input[type="submit"]');
+ if (submit?.disabled) return;
  const fields = Array.from(form.querySelectorAll('[required]'));
  const invalid = fields.find((field) => {
  const value = (field.value || '').trim();
@@ -2754,10 +2970,52 @@
  YZA.analytics?.track('contact_form_invalid', { source: document.body.dataset.page || '', field: invalid.name || invalid.id || '' });
  return;
  }
- if (msg) { msg.innerHTML = okHTML; msg.hidden = false; } // restore success markup (error may have overwritten it)
+ // Preserve every field until contact.php confirms delivery; only then show
+ // success, reset the form, and emit the successful-submission event.
+ const cfVal = (n) => { const el = form.querySelector(`[name="${n}"]`); return el ? (el.value || '').trim() : ''; };
+ const contactCopy = {
+ fr: 'Envoi impossible pour le moment — réessayez ou contactez-nous sur WhatsApp.',
+ en: 'Could not send right now — please retry or contact us on WhatsApp.',
+ es: 'No se pudo enviar — inténtalo de nuevo o contáctanos por WhatsApp.',
+ tr: 'Mesaj gönderilemedi — tekrar deneyin veya WhatsApp üzerinden bize ulaşın.',
+ ar: 'تعذر إرسال الرسالة — حاولي مجدداً أو تواصلي معنا عبر واتساب.',
+ };
+ if (submit) { submit.disabled = true; submit.setAttribute('aria-busy', 'true'); }
+ if (msg) msg.hidden = true;
+ try {
+ const response = await fetch('/contact.php', {
+ method: 'POST',
+ credentials: 'same-origin',
+ headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+ body: JSON.stringify({
+ name: cfVal('name'), email: cfVal('email'), phone: cfVal('phone'), subject: cfVal('subject'),
+ message: cfVal('message'), lang: T().lang || 'fr', page: location.href,
+ _hp: cfVal('_hp') || cfVal('company'),
+ }),
+ });
+ const payload = await response.json().catch(() => ({}));
+ if (!response.ok || payload.ok !== true || !payload.reference) throw new Error(payload.error || 'delivery_failed');
  form.reset();
- YZA.analytics?.track('contact_form_submit', { source: document.body.dataset.page || '' });
-    }));
+ if (msg) {
+ msg.innerHTML = successMarkup;
+ T().apply?.(msg);
+ msg.hidden = false;
+ msg.setAttribute('role', 'status');
+ msg.setAttribute('data-reference', payload.reference);
+ }
+ YZA.analytics?.track('contact_form_submit', { source: document.body.dataset.page || '', reference: payload.reference });
+ } catch (error) {
+ if (msg) {
+ msg.textContent = contactCopy[T().lang] || contactCopy.fr;
+ msg.hidden = false;
+ msg.setAttribute('role', 'alert');
+ }
+ YZA.analytics?.track('contact_form_error', { source: document.body.dataset.page || '', error: error?.message || 'network' });
+ } finally {
+ if (submit) { submit.disabled = false; submit.removeAttribute('aria-busy'); }
+ }
+ });
+ });
   }
   function wireProductCards() {
     if (YZA._productCardsWired) return;
@@ -2785,10 +3043,11 @@
         const exists = list.includes(handle);
         const next = exists ? list.filter((item) => item !== handle) : [...list, handle];
         writeWishlist(next);
-        document.querySelectorAll(`[data-wishlist-toggle="${CSS.escape(handle)}"]`).forEach((btn) => {
-          btn.classList.toggle('is-active', !exists);
-          btn.setAttribute('aria-pressed', !exists ? 'true' : 'false');
-        });
+         document.querySelectorAll(`[data-wishlist-toggle="${CSS.escape(handle)}"]`).forEach((btn) => {
+           btn.classList.toggle('is-active', !exists);
+           btn.setAttribute('aria-pressed', !exists ? 'true' : 'false');
+           btn.setAttribute('aria-label', T().t(!exists ? 'wishlist.remove' : 'wishlist.add'));
+         });
         syncWishlistCount();
         if (document.getElementById('wishlistGrid')) renderWishlist();  // live-refresh the favourites page
         YZA.analytics?.track(exists ? 'wishlist_remove' : 'wishlist_add', { handle });

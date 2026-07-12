@@ -6846,8 +6846,7 @@ const PRODUCTS = [
  "assets/lookbook-ss26-27/embedded/p57_img04_xref1411_21775b2a985c.jpeg",
  "assets/lookbook-ss26-27/pages/yza-lookbook-page-58.jpg",
  "assets/lookbook-ss26-27/pages/yza-lookbook-page-59.jpg",
- "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg",
- "assets/lifestyle/charms/grapes-therow.webp"
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg"
  ],
  "familyHandle": null,
  "familyOrder": 50,
@@ -7201,8 +7200,7 @@ const PRODUCTS = [
  "assets/lookbook-ss26-27/embedded/p59_img01_xref1426_ab1030bf5e96.jpeg",
  "assets/lookbook-ss26-27/pages/yza-lookbook-page-58.jpg",
  "assets/lookbook-ss26-27/pages/yza-lookbook-page-59.jpg",
- "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg",
- "assets/lifestyle/charms/lemon-bottega.webp"
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg"
  ],
  "familyHandle": null,
  "familyOrder": 50,
@@ -8953,8 +8951,7 @@ const PRODUCTS = [
  "assets/products/accessories-clean/watermelon-slice-accessory-clean.webp",
  "assets/lookbook-ss26-27/pages/yza-lookbook-page-58.jpg",
  "assets/lookbook-ss26-27/pages/yza-lookbook-page-59.jpg",
- "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg",
- "assets/lifestyle/charms/kiwi-jacquemus.webp"
+ "assets/lookbook-ss26-27/pages/yza-lookbook-page-60.jpg"
  ],
  "familyHandle": null,
  "familyOrder": 50,

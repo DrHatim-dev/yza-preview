@@ -171,12 +171,28 @@ const cart = {
 
   /* — UI — */
   open() {
-    document.getElementById('cartDrawer')?.classList.add('is-open');
+    this._returnFocus = document.activeElement;
+    const drawer = document.getElementById('cartDrawer');
+    drawer?.removeAttribute('inert');
+    drawer?.setAttribute('aria-hidden', 'false');
+    drawer?.classList.add('is-open');
     document.getElementById('cartOverlay')?.classList.add('is-open');
+    document.body.classList.add('has-cart-drawer');
     document.body.style.overflow = 'hidden';
+    requestAnimationFrame(() => document.getElementById('cartClose')?.focus({ preventScroll: true }));
     YZA.analytics?.track('cart_open', { items: this.count(), subtotal_cents: this.subtotalCents(), total_cents: this.pricing().totalCents });
   },
-  close() { document.getElementById('cartDrawer')?.classList.remove('is-open'); document.getElementById('cartOverlay')?.classList.remove('is-open'); document.body.style.overflow = ''; },
+  close() {
+    const drawer = document.getElementById('cartDrawer');
+    drawer?.classList.remove('is-open');
+    drawer?.setAttribute('aria-hidden', 'true');
+    drawer?.setAttribute('inert', '');
+    document.getElementById('cartOverlay')?.classList.remove('is-open');
+    document.body.classList.remove('has-cart-drawer');
+    document.body.style.overflow = '';
+    if (this._returnFocus && typeof this._returnFocus.focus === 'function') this._returnFocus.focus({ preventScroll: true });
+    this._returnFocus = null;
+  },
 
   refresh() {
     const t = YZA.i18n;
