@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import re
+import stat
 import subprocess
 import sys
 from pathlib import Path
@@ -58,11 +59,31 @@ def scan(root: Path) -> list[str]:
         if path.name.lower() in FORBIDDEN_NAMES or lower_parts.intersection(FORBIDDEN_PARTS):
             findings.append(f"forbidden tracked path: {rel.as_posix()}")
             continue
+        try:
+            mode = path.lstat().st_mode
+        except OSError:
+            findings.append(f"unreadable candidate path: {rel.as_posix()}")
+            continue
+        if stat.S_ISLNK(mode):
+            findings.append(f"symlink candidate is not allowed: {rel.as_posix()}")
+            continue
+        if not stat.S_ISREG(mode):
+            findings.append(f"non-regular candidate is not allowed: {rel.as_posix()}")
+            continue
         if path.suffix.lower() not in TEXT_SUFFIXES:
+            try:
+                with path.open("rb") as stream:
+                    stream.read(1)
+            except OSError:
+                findings.append(f"unreadable candidate file: {rel.as_posix()}")
             continue
         try:
             text = path.read_text(encoding="utf-8")
-        except (OSError, UnicodeDecodeError):
+        except OSError:
+            findings.append(f"unreadable candidate file: {rel.as_posix()}")
+            continue
+        except UnicodeDecodeError:
+            findings.append(f"invalid UTF-8 candidate file: {rel.as_posix()}")
             continue
         for label, pattern in PATTERNS.items():
             match = pattern.search(text)

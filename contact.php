@@ -31,13 +31,29 @@ if (strlen($raw) > 16384) {
 }
 
 $contentType = isset($_SERVER['CONTENT_TYPE']) ? strtolower((string) $_SERVER['CONTENT_TYPE']) : '';
-if (strpos($contentType, 'application/json') !== false || trim($raw) !== '') {
+if (strpos($contentType, 'application/json') !== false) {
   $data = json_decode($raw, true);
   if (!is_array($data)) {
     yza_contact_json(400, array('ok' => false, 'error' => 'invalid_json'));
   }
-} else {
+} elseif (strpos($contentType, 'application/x-www-form-urlencoded') !== false) {
   $data = $_POST;
+  /* PHP normally populates $_POST for this media type. Parse the bounded raw
+     body as a defensive fallback for unusual FastCGI/proxy configurations. */
+  if (empty($data) && trim($raw) !== '') {
+    parse_str($raw, $data);
+  }
+  if (!is_array($data)) {
+    yza_contact_json(400, array('ok' => false, 'error' => 'invalid_form'));
+  }
+} elseif (strpos($contentType, 'multipart/form-data') !== false) {
+  $data = $_POST;
+} elseif ($contentType === '' && PHP_SAPI === 'cli') {
+  /* CLI-only fallback keeps local endpoint tests simple without weakening the
+     browser contract: web requests must declare a supported media type. */
+  $data = $_POST;
+} else {
+  yza_contact_json(415, array('ok' => false, 'error' => 'unsupported_media_type'));
 }
 
 /* A filled honeypot is an invalid request. Returning a fake success would break
@@ -105,6 +121,7 @@ $headers = "From: YZA Boutique <no-reply@yza-shop.com>\r\n"
   . 'Reply-To: ' . $email . "\r\n"
   . "MIME-Version: 1.0\r\n"
   . "Content-Type: text/plain; charset=UTF-8\r\n";
+if (function_exists('error_clear_last')) { error_clear_last(); }
 $accepted = @mail(
   'contact@yza-shop.com',
   '=?UTF-8?B?' . base64_encode($mailSubject) . '?=',
@@ -114,6 +131,13 @@ $accepted = @mail(
 );
 
 if (!$accepted) {
+  $mailError = error_get_last();
+  $mailErrorType = is_array($mailError) && isset($mailError['type']) ? (int) $mailError['type'] : 0;
+  $mailErrorMessage = is_array($mailError) && isset($mailError['message']) ? (string) $mailError['message'] : 'mail transport rejected the message';
+  $mailErrorMessage = preg_replace('/[\x00-\x1F\x7F]+/', ' ', $mailErrorMessage);
+  $mailErrorMessage = preg_replace('/[A-Z0-9._%+\-]+@[A-Z0-9.\-]+\.[A-Z]{2,}/i', '[redacted-email]', $mailErrorMessage);
+  $mailErrorMessage = substr(trim($mailErrorMessage), 0, 240);
+  error_log('YZA contact delivery failed; reference=' . $reference . '; php_type=' . $mailErrorType . '; detail=' . $mailErrorMessage);
   yza_contact_json(503, array('ok' => false, 'error' => 'delivery_failed'));
 }
 

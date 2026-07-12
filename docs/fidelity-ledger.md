@@ -15,20 +15,20 @@ Status legend:
 
 ## Approved concept references
 
-The concepts below are layout and art-direction specifications only. Product and atelier media in production must be real YZA photography.
+The concepts below are layout and art-direction specifications only. Product and atelier media in production must be real YZA photography. The filenames refer to the creative owner's private concept archive; the files are deliberately not committed to this public preview repository.
 
 | Surface | Concept file |
 |---|---|
-| Homepage desktop | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-c643f570-f5b8-421d-b405-3ab20c2233e2.png` |
-| Homepage Ranaco direction — hero and first edit | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-6dc64b96-e75d-49fc-8a0a-cc02fe5ddb93.png` |
-| Homepage Ranaco direction — editorial/community cadence | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-315bd873-80c9-46b8-bb7a-e786f60bab03.png` |
-| Homepage Ranaco direction — mobile | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-abf54e0d-148e-48e2-b59f-5bb64962ff57.png` |
-| Collection desktop | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-38bf7098-7e30-423d-9736-f4b55eebc093.png` |
-| PDP desktop | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-d622aab2-f8b0-4f71-9e2e-1637ebb58c6b.png` |
-| Story desktop | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-d1c9b902-8b07-432d-b0e0-765e4522ed38.png` |
-| Home/PDP mobile | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-02dab874-b73d-482d-a76b-856072cca93f.png` |
-| Cart and checkout | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-192b72dd-61a7-48d0-88f9-7e9eba0ed39b.png` |
-| Lower homepage/footer | `C:\Users\alexa\.codex\generated_images\019f493a-004a-7591-a083-8c6bafe2fb5d\exec-3fe6dbbe-ce47-4ebe-ae7e-b7c68f18abf6.png` |
+| Homepage desktop | `exec-c643f570-f5b8-421d-b405-3ab20c2233e2.png` |
+| Homepage Ranaco direction — hero and first edit | `exec-6dc64b96-e75d-49fc-8a0a-cc02fe5ddb93.png` |
+| Homepage Ranaco direction — editorial/community cadence | `exec-315bd873-80c9-46b8-bb7a-e786f60bab03.png` |
+| Homepage Ranaco direction — mobile | `exec-abf54e0d-148e-48e2-b59f-5bb64962ff57.png` |
+| Collection desktop | `exec-38bf7098-7e30-423d-9736-f4b55eebc093.png` |
+| PDP desktop | `exec-d622aab2-f8b0-4f71-9e2e-1637ebb58c6b.png` |
+| Story desktop | `exec-d1c9b902-8b07-432d-b0e0-765e4522ed38.png` |
+| Home/PDP mobile | `exec-02dab874-b73d-482d-a76b-856072cca93f.png` |
+| Cart and checkout | `exec-192b72dd-61a7-48d0-88f9-7e9eba0ed39b.png` |
+| Lower homepage/footer | `exec-3fe6dbbe-ce47-4ebe-ae7e-b7c68f18abf6.png` |
 
 ## Local integrated-browser QA — 11 July 2026
 
@@ -62,10 +62,10 @@ These results apply to the local worktree only. They do not validate live PHP, e
 
 | Comparison point | Concept target | Code hook | Status | Evidence/deviation |
 |---|---|---|---|---|
-| Above-fold composition | Quiet white utility/header → full-bleed YZA campaign photograph → one bottom-left line-arrow CTA | `.ranaco-hero` and `.ranaco-image-cta` in [`index.html`](../index.html), scoped rules in [`css/maison.css`](../css/maison.css) | CODE PRESENT | The split copy-led hero was removed. Public Pages screenshots at 1440×1000 and 390×844 remain required before visual PASS. |
-| Copy hierarchy | No visible hero headline or paragraph; the campaign image carries the first viewport and the H1 remains available to assistive technology | `#heroTitle.visually-hidden`, `.ranaco-hero__cta` | CODE PRESENT | CTA is localized in five languages; localized bottom scrim protects contrast without tinting the whole photograph. |
-| Scroll cadence | campaign hero → immediate four-up product edit → paired editorial band → four-up community wall → compact proof/reviews → manifesto → FAQ/footer | top-level sections in [`index.html`](../index.html) | CODE PRESENT | Structure now follows the approved Ranaco-inspired cadence; public screenshot and creative approval remain pending. |
-| Product presentation | large object image, quiet proof line, price secondary | cards via [`js/main.js`](../js/main.js) | NOT TESTED | Confirm craft line is visible rather than CSS-hidden |
+| Above-fold composition | Quiet white utility/header → full-bleed YZA campaign photograph → one bottom-left line-arrow CTA | `.ranaco-hero` and `.ranaco-image-cta` in [`index.html`](../index.html), scoped rules in [`css/maison.css`](../css/maison.css) | LOCAL PASS | Verified at 1280×720 and 390×844 with `home-ranaco-local-final-desktop-clean.png` and `home-ranaco-local-final-mobile-390-clean.png`: no overflow, one H1, desktop/mobile chrome correct. Public Pages must be rechecked after this commit. |
+| Copy hierarchy | No visible hero headline or paragraph; the campaign image carries the first viewport and the H1 remains available to assistive technology | `#heroTitle.visually-hidden`, `.ranaco-hero__cta` | LOCAL PASS | CTA is localized in five languages; localized bottom scrim protects contrast without tinting the whole photograph. |
+| Scroll cadence | campaign hero → immediate four-up product edit → paired editorial band → four-up community wall → compact proof/reviews → manifesto → FAQ/footer | top-level sections in [`index.html`](../index.html) | LOCAL PASS | Full-page desktop/mobile captures loaded every intended real-YZA image with no failed image or console error; public creative approval remains pending. |
+| Product presentation | large object image, quiet proof line, price secondary | cards via [`js/main.js`](../js/main.js) | LOCAL PASS | Four products rendered on desktop; the phone rail is `display:flex`, 320px cards in a 390px viewport, keyboard/touch controls retained. |
 | Footer close | editorial newsletter plus concise service/legal links | footer in [`js/chrome.js`](../js/chrome.js) | NOT TESTED | Compare lower-page concept, then test actual form behavior on staging |
 
 ### Above-fold copy comparison
@@ -123,7 +123,7 @@ These results apply to the local worktree only. They do not validate live PHP, e
 | Comparison point | Concept target | Code hook | Status | Evidence/deviation |
 |---|---|---|---|---|
 | Cart composition | full-width mobile, unclipped lines, quiet totals and CTA | `.cart-drawer` in [`js/chrome.js`](../js/chrome.js) | PARTIAL | Core open/close, state hiding/inertness, focus restoration, and representative no-overflow behavior passed; empty/one-line/multi-line visual comparison remains pending |
-| Checkout composition | editorial two-column desktop, readable single-column mobile | `.checkout` in [`checkout.html`](../checkout.html)/[`js/checkout.js`](../js/checkout.js) | PARTIAL | No horizontal overflow at the four requested viewports and local failure state exercised; payment/success/staging visuals remain pending |
+| Checkout composition | editorial two-column desktop, readable single-column mobile | `.checkout` in [`checkout.html`](../checkout.html)/[`js/checkout.js`](../js/checkout.js) | PARTIAL | Mobile 390px rechecked with no overflow, one focused checkout header, 74px consent target, and an explicit unchecked cart-reminder opt-in. Desktop payment/success and staging visuals remain pending. |
 | Reliability | confirmation only after recorder success | [`order.php`](../order.php), submit branch in [`js/checkout.js`](../js/checkout.js) | NOT TESTED | Hostinger staging only; Pages cannot prove this |
 | Failure state | cart/form retained; Retry and WhatsApp fallback | checkout failure renderer | LOCAL PASS | Local endpoint failure retained cart/fields, Retry kept one `orderNumber`, fallback remained present, and no false success appeared; staging recorder evidence still required |
 

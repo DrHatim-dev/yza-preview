@@ -2158,14 +2158,21 @@
     const claims = product && product.verifiedClaims;
     return claims === true || !!(claims && claims[key] === true);
   }
+  function hasProductionClaimMetadata(product) {
+    return !!(product && Object.prototype.hasOwnProperty.call(product, 'verifiedClaims'));
+  }
+  function productionClaimsVerified(product) {
+    if (!hasProductionClaimMetadata(product)) return null;
+    return productClaimVerified(product, 'artisan') && productClaimVerified(product, 'duration');
+  }
   function atelierProofText() {
     const lang = T().lang || 'fr';
     const copy = {
-      fr: 'Façonnée à la main à l’atelier YZA de Guéliz, du montage au contrôle final.',
-      en: 'Handmade at the YZA atelier in Guéliz, from assembly to final inspection.',
-      es: 'Hecha a mano en el atelier YZA de Guéliz, del montaje al control final.',
-      tr: 'Guéliz’deki YZA atölyesinde montajdan son kontrole kadar elde üretilir.',
-      ar: 'مصنوعة يدويًا في مشغل YZA بكليز، من التجميع إلى الفحص النهائي.',
+      fr: 'Atelier YZA · Guéliz.',
+      en: 'YZA Atelier · Guéliz.',
+      es: 'Atelier YZA · Guéliz.',
+      tr: 'YZA Atölyesi · Guéliz.',
+      ar: 'مشغل YZA · كليز.',
     };
     return copy[lang] || copy.fr;
   }
@@ -2175,8 +2182,9 @@
   function safeHandworkClaim(product) {
     const raw = product?.handworkTime && T().pick(product.handworkTime);
     if (!raw) return product?.category === 'bags' ? atelierProofText() : '';
-    if (containsUnverifiedProductionClaim(raw)
-      && !(productClaimVerified(product, 'artisan') && productClaimVerified(product, 'duration'))) return atelierProofText();
+    const explicitlyVerified = productionClaimsVerified(product);
+    if (explicitlyVerified === false
+      || (explicitlyVerified === null && containsUnverifiedProductionClaim(raw))) return atelierProofText();
     return raw;
   }
   function verifiedEditionClaim(product) {
@@ -2184,15 +2192,17 @@
   }
   function safeProductDescription(product) {
     const raw = product?.desc && T().pick(product.desc);
-    if (!containsUnverifiedProductionClaim(raw)
-      || (productClaimVerified(product, 'artisan') && productClaimVerified(product, 'duration'))) return raw || '';
+    const explicitlyVerified = productionClaimsVerified(product);
+    if (explicitlyVerified === true
+      || (explicitlyVerified === null && !containsUnverifiedProductionClaim(raw))) return raw || '';
     return [product.short && T().pick(product.short), product.material && T().pick(product.material), product.whatFits && T().pick(product.whatFits)]
-      .filter(Boolean).join(' ');
+      .filter((value) => value && !containsUnverifiedProductionClaim(value)).join(' ');
   }
   function safeMakingClaim(product) {
     const raw = product?.making && T().pick(product.making);
-    if (!raw || (containsUnverifiedProductionClaim(raw)
-      && !(productClaimVerified(product, 'artisan') && productClaimVerified(product, 'duration')))) return atelierProofText();
+    const explicitlyVerified = productionClaimsVerified(product);
+    if (!raw || explicitlyVerified === false
+      || (explicitlyVerified === null && containsUnverifiedProductionClaim(raw))) return atelierProofText();
     return raw;
   }
 
@@ -2660,6 +2670,7 @@
  };
  } else { finishWrap.hidden = true; }
 
+ let syncPurchaseAvailability = () => {};
  const variantWrap = ensureVariantWrap();
  const variantOpts = $('#pVariantOpts');
  if (members.length > 1 && variantWrap && variantOpts) {
@@ -2710,6 +2721,7 @@
  swapGalleryToVariant(selected, t.pick(displayName(selected)));
  renderValueRow(purchaseProduct);
  renderShipBar(purchaseProduct);
+ syncPurchaseAvailability(purchaseProduct);
  YZA.analytics?.track('product_variant_select', { handle: purchaseProduct.handle, familyHandle: purchaseProduct.familyHandle || '', category: purchaseProduct.category });
  };
  }
@@ -2767,9 +2779,6 @@
 
  const add = $('#pAdd');
  const addLabelEl = add.querySelector('.product-add-main__label') || add;
- const addStatus = YZA.inventoryStatus?.(purchaseProduct) || { soldOut: false };
- addLabelEl.textContent = addStatus.soldOut ? ui.sold : ui.add;
- add.disabled = !!addStatus.soldOut;
  // A sold-out product becomes an explicit atelier waitlist, using the existing
  // subscribe.php contract. It never invents a restock date or fake inventory.
  const addWrap = add.closest('.option--add');
@@ -2780,7 +2789,6 @@
  waitlist.className = 'pdp-waitlist';
  addWrap.appendChild(waitlist);
  }
- if (waitlist) {
  const waitCopy = {
  fr: { title: 'De retour à l’atelier', text: 'Laissez votre e-mail pour être prévenue si cette pièce revient.', email: 'Votre e-mail', submit: 'Me prévenir', ok: 'C’est noté. Nous vous écrirons uniquement si cette pièce revient.', error: 'Impossible d’enregistrer votre demande. Réessayez ou contactez-nous sur WhatsApp.' },
  en: { title: 'Back at the atelier', text: 'Leave your email and we will tell you if this piece returns.', email: 'Your email', submit: 'Notify me', ok: 'You are on the list. We will write only if this piece returns.', error: 'We could not save your request. Please retry or contact us on WhatsApp.' },
@@ -2789,9 +2797,17 @@
  ar: { title: 'عادت إلى المشغل', text: 'اتركي بريدك لنخبرك إذا عادت هذه القطعة.', email: 'بريدك الإلكتروني', submit: 'أخبروني', ok: 'تم تسجيلك. سنراسلك فقط إذا عادت هذه القطعة.', error: 'تعذر تسجيل طلبك. حاولي مجدداً أو تواصلي معنا عبر واتساب.' },
  };
  const wc = waitCopy[t.lang] || waitCopy.fr;
- waitlist.hidden = !addStatus.soldOut;
- add.hidden = !!addStatus.soldOut;
- if (addStatus.soldOut) {
+ syncPurchaseAvailability = (prod) => {
+ const addStatus = YZA.inventoryStatus?.(prod) || { soldOut: false };
+ addLabelEl.textContent = addStatus.soldOut ? ui.sold : ui.add;
+ add.disabled = !!addStatus.soldOut;
+ add.hidden = !!(addStatus.soldOut && waitlist);
+ if (waitlist) waitlist.hidden = !addStatus.soldOut;
+ renderScarcity(prod);
+ if (!addStatus.soldOut || !waitlist) {
+ if (waitlist) waitlist.replaceChildren();
+ return;
+ }
  waitlist.innerHTML = `<h2>${esc(wc.title)}</h2><p>${esc(wc.text)}</p><form class="pdp-waitlist__form" novalidate><input type="text" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true"><label class="sr-only" for="pWaitlistEmail">${esc(wc.email)}</label><input id="pWaitlistEmail" name="email" type="email" autocomplete="email" required placeholder="${esc(wc.email)}"><button class="btn btn--solid" type="submit">${esc(wc.submit)}</button><p class="form-msg" role="status" aria-live="polite" hidden></p></form>`;
  const form = waitlist.querySelector('form');
  form.addEventListener('submit', async (event) => {
@@ -2802,17 +2818,17 @@
  if (!email || !form.elements.email.checkValidity()) { form.elements.email.reportValidity(); return; }
  button.disabled = true;
  try {
- const response = await fetch('/subscribe.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, name: '', lang: t.lang || 'fr', page: purchaseProduct.handle, source: 'waitlist', _hp: form.elements._hp.value || '' }) });
+ const response = await fetch('/subscribe.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, name: '', lang: t.lang || 'fr', page: prod.handle, source: 'waitlist', _hp: form.elements._hp.value || '' }) });
  const payload = await response.json().catch(() => ({}));
  if (!response.ok || !payload.ok) throw new Error(payload.error || 'waitlist');
  msg.textContent = wc.ok; msg.hidden = false; form.elements.email.disabled = true; button.hidden = true;
- YZA.analytics?.track('waitlist_signup', { handle: purchaseProduct.handle, source: 'pdp' });
+ YZA.analytics?.track('waitlist_signup', { handle: prod.handle, source: 'pdp' });
  } catch (error) {
  msg.textContent = wc.error; msg.hidden = false; button.disabled = false;
  }
  });
- }
- }
+ };
+ syncPurchaseAvailability(purchaseProduct);
  const handleAdd = () => {
  if (add.disabled) return;
  let variant = '';
@@ -2932,10 +2948,14 @@
  }
  });
  }));
- $$('[data-contact-form]').forEach(form => form.addEventListener('submit', (e) => {
+ $$('[data-contact-form]').forEach((form) => {
+ if (form.dataset.reliable === 'true') return;
+ const successMarkup = form.querySelector('[data-form-msg]')?.innerHTML || '';
+ form.addEventListener('submit', async (e) => {
  e.preventDefault();
  const msg = form.querySelector('[data-form-msg]');
- const okHTML = msg ? msg.innerHTML : ''; // cache the multilingual success markup
+ const submit = form.querySelector('button[type="submit"], input[type="submit"]');
+ if (submit?.disabled) return;
  const fields = Array.from(form.querySelectorAll('[required]'));
  const invalid = fields.find((field) => {
  const value = (field.value || '').trim();
@@ -2950,17 +2970,52 @@
  YZA.analytics?.track('contact_form_invalid', { source: document.body.dataset.page || '', field: invalid.name || invalid.id || '' });
  return;
  }
- // Send to the server (e-mails the shop + syncs to Brevo). Best-effort: the UX
- // stays optimistic — read the values BEFORE reset(), then fire-and-forget.
+ // Preserve every field until contact.php confirms delivery; only then show
+ // success, reset the form, and emit the successful-submission event.
  const cfVal = (n) => { const el = form.querySelector(`[name="${n}"]`); return el ? (el.value || '').trim() : ''; };
- fetch('/contact.php', {
- method: 'POST', headers: { 'Content-Type': 'application/json' },
- body: JSON.stringify({ name: cfVal('name'), email: cfVal('email'), message: cfVal('message'), lang: T().lang || 'fr', _hp: cfVal('company') }),
- }).catch(() => {});
- if (msg) { msg.innerHTML = okHTML; msg.hidden = false; } // restore success markup (error may have overwritten it)
+ const contactCopy = {
+ fr: 'Envoi impossible pour le moment — réessayez ou contactez-nous sur WhatsApp.',
+ en: 'Could not send right now — please retry or contact us on WhatsApp.',
+ es: 'No se pudo enviar — inténtalo de nuevo o contáctanos por WhatsApp.',
+ tr: 'Mesaj gönderilemedi — tekrar deneyin veya WhatsApp üzerinden bize ulaşın.',
+ ar: 'تعذر إرسال الرسالة — حاولي مجدداً أو تواصلي معنا عبر واتساب.',
+ };
+ if (submit) { submit.disabled = true; submit.setAttribute('aria-busy', 'true'); }
+ if (msg) msg.hidden = true;
+ try {
+ const response = await fetch('/contact.php', {
+ method: 'POST',
+ credentials: 'same-origin',
+ headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
+ body: JSON.stringify({
+ name: cfVal('name'), email: cfVal('email'), phone: cfVal('phone'), subject: cfVal('subject'),
+ message: cfVal('message'), lang: T().lang || 'fr', page: location.href,
+ _hp: cfVal('_hp') || cfVal('company'),
+ }),
+ });
+ const payload = await response.json().catch(() => ({}));
+ if (!response.ok || payload.ok !== true || !payload.reference) throw new Error(payload.error || 'delivery_failed');
  form.reset();
- YZA.analytics?.track('contact_form_submit', { source: document.body.dataset.page || '' });
-    }));
+ if (msg) {
+ msg.innerHTML = successMarkup;
+ T().apply?.(msg);
+ msg.hidden = false;
+ msg.setAttribute('role', 'status');
+ msg.setAttribute('data-reference', payload.reference);
+ }
+ YZA.analytics?.track('contact_form_submit', { source: document.body.dataset.page || '', reference: payload.reference });
+ } catch (error) {
+ if (msg) {
+ msg.textContent = contactCopy[T().lang] || contactCopy.fr;
+ msg.hidden = false;
+ msg.setAttribute('role', 'alert');
+ }
+ YZA.analytics?.track('contact_form_error', { source: document.body.dataset.page || '', error: error?.message || 'network' });
+ } finally {
+ if (submit) { submit.disabled = false; submit.removeAttribute('aria-busy'); }
+ }
+ });
+ });
   }
   function wireProductCards() {
     if (YZA._productCardsWired) return;

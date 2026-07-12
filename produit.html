@@ -29,8 +29,8 @@
   <link rel="alternate" hreflang="fr" href="https://yza-shop.com/produit.html" />
   <link rel="alternate" hreflang="x-default" href="https://yza-shop.com/produit.html" />
   <link rel="stylesheet" href="css/tokens.css?v=20260711a" />
-  <link rel="stylesheet" href="css/styles.css?v=20260709i" />
-  <link rel="stylesheet" href="css/maison.css?v=20260711b" />
+  <link rel="stylesheet" href="css/styles.css?v=20260711j" />
+  <link rel="stylesheet" href="css/maison.css?v=20260711g" />
 </head>
 <body data-page="product" class="maison-page">
 <a class="skip-link" href="#main" data-i18n="a.skip">Aller au contenu</a>
@@ -84,20 +84,20 @@
 
         <div class="accordion product-accordions" id="accordion">
           <div class="accordion__item">
-            <button class="accordion__btn" aria-expanded="false"><span id="accSizeFitLabel">TAILLE & COUPE</span><span class="plus" aria-hidden="true"><svg class="acc-glyph" viewBox="0 0 24 24"><path class="acc-dia" d="M12 2.5 21.5 12 12 21.5 2.5 12Z"/><path class="acc-bar-h" d="M7.2 12h9.6"/><path class="acc-bar-v" d="M12 7.2v9.6"/></svg></span></button>
-            <div class="accordion__panel"><div class="accordion__panel-inner" id="accDetails"></div></div>
+            <button class="accordion__btn" id="accSizeFitButton" aria-expanded="false" aria-controls="accSizeFitPanel"><span id="accSizeFitLabel">TAILLE & COUPE</span><span class="plus" aria-hidden="true"><svg class="acc-glyph" viewBox="0 0 24 24"><path class="acc-dia" d="M12 2.5 21.5 12 12 21.5 2.5 12Z"/><path class="acc-bar-h" d="M7.2 12h9.6"/><path class="acc-bar-v" d="M12 7.2v9.6"/></svg></span></button>
+            <div class="accordion__panel" id="accSizeFitPanel" role="region" aria-labelledby="accSizeFitButton"><div class="accordion__panel-inner" id="accDetails"></div></div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__btn" aria-expanded="false"><span id="accMakingLabel">LA FABRICATION</span><span class="plus" aria-hidden="true"><svg class="acc-glyph" viewBox="0 0 24 24"><path class="acc-dia" d="M12 2.5 21.5 12 12 21.5 2.5 12Z"/><path class="acc-bar-h" d="M7.2 12h9.6"/><path class="acc-bar-v" d="M12 7.2v9.6"/></svg></span></button>
-            <div class="accordion__panel"><div class="accordion__panel-inner" id="accMaking"></div></div>
+            <button class="accordion__btn" id="accMakingButton" aria-expanded="false" aria-controls="accMakingPanel"><span id="accMakingLabel">LA FABRICATION</span><span class="plus" aria-hidden="true"><svg class="acc-glyph" viewBox="0 0 24 24"><path class="acc-dia" d="M12 2.5 21.5 12 12 21.5 2.5 12Z"/><path class="acc-bar-h" d="M7.2 12h9.6"/><path class="acc-bar-v" d="M12 7.2v9.6"/></svg></span></button>
+            <div class="accordion__panel" id="accMakingPanel" role="region" aria-labelledby="accMakingButton"><div class="accordion__panel-inner" id="accMaking"></div></div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__btn" aria-expanded="false"><span id="accCareLabel">COMPOSITION & ENTRETIEN</span><span class="plus" aria-hidden="true"><svg class="acc-glyph" viewBox="0 0 24 24"><path class="acc-dia" d="M12 2.5 21.5 12 12 21.5 2.5 12Z"/><path class="acc-bar-h" d="M7.2 12h9.6"/><path class="acc-bar-v" d="M12 7.2v9.6"/></svg></span></button>
-            <div class="accordion__panel"><div class="accordion__panel-inner" id="accCare"></div></div>
+            <button class="accordion__btn" id="accCareButton" aria-expanded="false" aria-controls="accCarePanel"><span id="accCareLabel">COMPOSITION & ENTRETIEN</span><span class="plus" aria-hidden="true"><svg class="acc-glyph" viewBox="0 0 24 24"><path class="acc-dia" d="M12 2.5 21.5 12 12 21.5 2.5 12Z"/><path class="acc-bar-h" d="M7.2 12h9.6"/><path class="acc-bar-v" d="M12 7.2v9.6"/></svg></span></button>
+            <div class="accordion__panel" id="accCarePanel" role="region" aria-labelledby="accCareButton"><div class="accordion__panel-inner" id="accCare"></div></div>
           </div>
           <div class="accordion__item">
-            <button class="accordion__btn" aria-expanded="false"><span id="accDeliveryLabel">LIVRAISON, ÉCHANGES & RETOURS</span><span class="plus" aria-hidden="true"><svg class="acc-glyph" viewBox="0 0 24 24"><path class="acc-dia" d="M12 2.5 21.5 12 12 21.5 2.5 12Z"/><path class="acc-bar-h" d="M7.2 12h9.6"/><path class="acc-bar-v" d="M12 7.2v9.6"/></svg></span></button>
-            <div class="accordion__panel"><div class="accordion__panel-inner" id="accShip"></div></div>
+            <button class="accordion__btn" id="accDeliveryButton" aria-expanded="false" aria-controls="accDeliveryPanel"><span id="accDeliveryLabel">LIVRAISON, ÉCHANGES & RETOURS</span><span class="plus" aria-hidden="true"><svg class="acc-glyph" viewBox="0 0 24 24"><path class="acc-dia" d="M12 2.5 21.5 12 12 21.5 2.5 12Z"/><path class="acc-bar-h" d="M7.2 12h9.6"/><path class="acc-bar-v" d="M12 7.2v9.6"/></svg></span></button>
+            <div class="accordion__panel" id="accDeliveryPanel" role="region" aria-labelledby="accDeliveryButton"><div class="accordion__panel-inner" id="accShip"></div></div>
           </div>
         </div>
       </section>
@@ -135,6 +135,6 @@
   <script defer src="js/cart.js?v=20260711b"></script>
   <script defer src="js/chrome.js?v=20260711b"></script>
   <script defer src="js/promo-popup.js?v=20260711c"></script>
-  <script defer src="js/main.js?v=20260711b"></script>
+  <script defer src="js/main.js?v=20260711d"></script>
 </body>
 </html>

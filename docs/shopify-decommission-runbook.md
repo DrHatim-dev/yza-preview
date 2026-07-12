@@ -23,7 +23,7 @@ Shopify states that a store can be deactivated only by the store owner and that 
 
 ## Protected production boundaries
 
-- Production truth is the Hostinger snapshot at `C:\Users\alexa\Documents\YZA-SAFETY-ARCHIVE-2026-07-10\hostinger-application-2026-07-10`.
+- Production truth is the verified Hostinger snapshot at `<PRIVATE_HOSTINGER_SNAPSHOT>`. Resolve this placeholder in an owner-only local checklist; never commit a personal absolute path.
 - Preserve Hostinger `/wp`. It is WooCommerce, not Shopify.
 - Preserve legacy Shopify URL redirects in the active `.htaccess`; they protect indexed links and bookmarks.
 - Do not alter production DNS, Hostinger files, or `/wp` while decommissioning Shopify.
@@ -207,8 +207,9 @@ Only after Phase G is signed:
 1. Compare the Shopify mirror’s asset hashes against the Hostinger production snapshot and active redesign worktree.
 2. Move any genuinely unique, lawful, still-needed YZA-owned asset into the private archive with provenance and licensing notes. Do not move customer data into the public project.
 3. Confirm the following are obsolete and contain no unique Hostinger runtime dependency:
-   - `C:\Users\alexa\OneDrive\Documents\YZA\yza` (legacy Shopify app, including its credential-bearing `.env`);
-   - `C:\Users\alexa\Documents\Codex\2026-06-18\files-mentioned-by-the-user-yza\YZA\yza-mirror` (legacy Shopify capture).
+   - `<LEGACY_SHOPIFY_APP_DIR>` (legacy Shopify app, including its credential-bearing `.env`);
+   - `<LEGACY_SHOPIFY_MIRROR_DIR>` (legacy Shopify capture).
+   Resolve both placeholders in an owner-only local checklist after the remote closure evidence is complete. Do not commit personal absolute paths.
 4. Obtain a final deletion confirmation naming both exact absolute paths.
 5. Delete only those literal paths—never a parent `YZA`, `Documents`, `OneDrive`, or computed wildcard path.
 6. Let OneDrive finish synchronizing the deletion, then inspect OneDrive Recycle Bin and Windows Recycle Bin.

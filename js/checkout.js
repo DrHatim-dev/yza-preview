@@ -58,15 +58,7 @@
     var PAY = function () { return YZA.payment || {}; };
     var waDigits = function () { return String((YZA.brand && YZA.brand.whatsapp) || '').replace(/\D/g, ''); };
     function orderUiText(key) {
-      var lang = (YZA.i18n && YZA.i18n.lang) || 'fr';
-      var copy = {
-        fr: { placing: 'Enregistrement…', retry: 'Réessayer', fallback: 'Continuer sur WhatsApp', failed: 'La commande n’a pas pu être enregistrée. Votre panier et vos coordonnées sont conservés.', conflict: 'Cette référence existe peut-être déjà avec un autre contenu. Votre panier est conservé — contactez l’atelier sur WhatsApp.' },
-        en: { placing: 'Recording order…', retry: 'Retry', fallback: 'Continue on WhatsApp', failed: 'We could not record the order. Your cart and details have been kept.', conflict: 'This reference may already exist with different contents. Your cart is safe — contact the atelier on WhatsApp.' },
-        es: { placing: 'Registrando pedido…', retry: 'Reintentar', fallback: 'Continuar por WhatsApp', failed: 'No pudimos registrar el pedido. Conservamos tu cesta y tus datos.', conflict: 'Esta referencia puede existir con otro contenido. Tu cesta está guardada — contacta al atelier por WhatsApp.' },
-        tr: { placing: 'Sipariş kaydediliyor…', retry: 'Tekrar dene', fallback: 'WhatsApp ile devam et', failed: 'Sipariş kaydedilemedi. Sepetiniz ve bilgileriniz korundu.', conflict: 'Bu referans farklı bir içerikle zaten mevcut olabilir. Sepetiniz korundu — WhatsApp’tan atölyeye yazın.' },
-        ar: { placing: 'جارٍ تسجيل الطلب…', retry: 'حاولي مجددًا', fallback: 'المتابعة عبر واتساب', failed: 'تعذّر تسجيل الطلب. احتفظنا بسلّتك وبياناتك.', conflict: 'قد يكون هذا المرجع موجودًا بمحتوى مختلف. سلّتك محفوظة — تواصلي مع الأتيليه عبر واتساب.' }
-      };
-      return (copy[lang] || copy.fr)[key] || copy.fr[key] || '';
+      return T('co.order.' + key);
     }
 
     // ---- data helpers ----
@@ -109,7 +101,7 @@
       return '<ol class="checkout__steps">' + steps.map(function (s, i) {
         var idx = order.indexOf(s[0]);
         var cls = idx < cur ? ' is-done' : (idx === cur ? ' is-active' : '');
-        var clickable = idx < cur && state.step !== 'done';
+        var clickable = idx < cur && state.step !== 'done' && !state.placing;
         return '<li class="checkout__step' + cls + '"' + (clickable ? ' data-goto="' + s[0] + '" role="button" tabindex="0"' : '') + '><span class="checkout__step-n">' + (i + 1) + '</span><span class="checkout__step-t">' + esc(s[1]) + '</span></li>';
       }).join('') + '</ol>';
     }
@@ -197,6 +189,8 @@
           '<div class="co-form__two">' + field('city', 'co.ship.city', 'text', true, 'autocomplete="address-level2"') + field('zip', 'co.ship.zip', 'text', false, 'autocomplete="postal-code"') + '</div>' +
           field('country', 'co.ship.country', 'text', true, 'autocomplete="country-name"') +
           field('note', 'co.ship.note', 'textarea', false, T('co.ship.notePh')) +
+          '<label class="co-recovery-consent co-terms"><input type="checkbox" name="recoveryConsent" value="1"' +
+            (state.ship.recoveryConsent === true ? ' checked' : '') + '> <span>' + esc(T('co.ship.recoveryConsent')) + '</span></label>' +
         '</form>' +
         upsellBlock() +
         '<div class="co-actions"><button type="button" class="btn btn--outline" data-back="cart">' + esc(T('co.back')) + '</button>' +
@@ -343,6 +337,21 @@
       if (window.YZA && YZA.i18n && YZA.i18n.apply) YZA.i18n.apply(root);
     }
 
+    function setPlacementLock(locked) {
+      [root, document.querySelector('.header'), document.querySelector('.footer')].forEach(function (el) {
+        if (!el) return;
+        if (locked) {
+          if (!el.hasAttribute('inert')) {
+            el.setAttribute('inert', '');
+            el.setAttribute('data-yza-placement-inert', 'true');
+          }
+        } else if (el.getAttribute('data-yza-placement-inert') === 'true') {
+          el.removeAttribute('inert');
+          el.removeAttribute('data-yza-placement-inert');
+        }
+      });
+    }
+
     // ---- validation ----
     function collectShip() {
       var f = root.querySelector('#coShipForm');
@@ -351,7 +360,7 @@
       var need = ['name', 'phone', 'address', 'city', 'country'];
       Array.prototype.forEach.call(f.elements, function (el) {
         if (!el.name) return;
-        state.ship[el.name] = el.value.trim();
+        state.ship[el.name] = el.type === 'checkbox' ? el.checked : el.value.trim();
       });
       f.querySelectorAll('[data-err]').forEach(function (e) { e.textContent = ''; e.parentElement.classList.remove('is-err'); });
       need.forEach(function (n) {
@@ -458,10 +467,22 @@
       if (!state.pendingOrderText) state.pendingOrderText = orderText(o);
       var text = state.pendingOrderText;
       state.wa = 'https://wa.me/' + waDigits() + '?text=' + encodeURIComponent(text);
+
+      /* Open the WhatsApp tab during the trusted click event. Browsers commonly
+         block a window opened only after the order request has finished. The
+         blank tab is closed on failure; the done screen keeps a normal link as
+         a fallback when popups are disabled. */
+      var whatsappWindow = null;
+      try {
+        whatsappWindow = window.open('about:blank', '_blank');
+        if (whatsappWindow) whatsappWindow.opener = null;
+      } catch (e) { whatsappWindow = null; }
+
       state.placing = true;
       state.orderError = '';
       state.orderFailureCode = '';
       render();
+      setPlacementLock(true);
 
       var controller = window.AbortController ? new AbortController() : null;
       var timer = controller ? setTimeout(function () { controller.abort(); }, 15000) : null;
@@ -486,10 +507,14 @@
           throw contractError;
         }
       } catch (error) {
+        try { if (whatsappWindow && !whatsappWindow.closed) whatsappWindow.close(); } catch (e0) {}
         state.placing = false;
+        setPlacementLock(false);
         state.orderFailureCode = (error && error.code) || (error && error.name === 'AbortError' ? 'timeout' : 'network');
-        state.orderError = (state.orderFailureCode === 'idempotency_conflict' || state.orderFailureCode === 'recording_status_unknown')
-          ? orderUiText('conflict') : orderUiText('failed');
+        state.orderError = state.orderFailureCode === 'recovery_suppression_pending'
+          ? orderUiText('pending')
+          : (state.orderFailureCode === 'idempotency_conflict' || state.orderFailureCode === 'recording_status_unknown')
+            ? orderUiText('conflict') : orderUiText('failed');
         render();
         setTimeout(function () {
           var alert = root.querySelector('.co-order-error');
@@ -501,9 +526,16 @@
         if (timer) clearTimeout(timer);
       }
 
+      try {
+        if (whatsappWindow && !whatsappWindow.closed) whatsappWindow.location.replace(state.wa);
+      } catch (e) {
+        try { if (whatsappWindow && !whatsappWindow.closed) whatsappWindow.close(); } catch (e2) {}
+      }
+
       /* No purchase signal, cart mutation, confirmation or recovery suppression
          happens until order.php has returned the verified contract above. */
       state.placing = false;
+      setPlacementLock(false);
       state.customerNotified = result.customerNotified === true;
       try { if (YZA.analytics) YZA.analytics.track('order_placed', { method: state.method, items: YZA.cart.count(), subtotal_cents: subtotal(), total_cents: pricing().totalCents }); } catch (e) {}
       // Ad platforms: one purchase event per order, keyed by the order number.
@@ -515,9 +547,10 @@
       /* Keep the pending id if cart persistence failed. A reload can then ask
          order.php for the same idempotent result instead of creating a duplicate. */
       if (cartCleared) clearPendingOrderContext();
+      state.ship.recoveryConsent = false;
+      saveShip();
       state.step = 'done';
       render();
-      window.open(state.wa, '_blank', 'noopener');
     }
 
     // EUR amount (integer) from the DH total (net of discounts), for PayPal / IBAN.
@@ -585,16 +618,21 @@
         // Preserve anything typed in the shipping form across the re-render — silently
         // (no validation errors: the shopper is adding an item, not submitting yet).
         var sf = root.querySelector('#coShipForm');
-        if (sf) { Array.prototype.forEach.call(sf.elements, function (el) { if (el.name) state.ship[el.name] = el.value.trim(); }); saveShip(); }
+        if (sf) {
+          Array.prototype.forEach.call(sf.elements, function (el) {
+            if (el.name) state.ship[el.name] = el.type === 'checkbox' ? el.checked : el.value.trim();
+          });
+          saveShip();
+        }
         invalidatePendingOrder();
         YZA.cart.add(up.getAttribute('data-upsell-add'), '', 1, { source: 'checkout_cross_sell' });
         try { YZA.analytics && YZA.analytics.track('cross_sell_add', { handle: up.getAttribute('data-upsell-add'), source: 'checkout' }); } catch (e2) {}
         render(); return;
       }
       var back = e.target.closest('[data-back]');
-      if (back) { if (state.step === 'shipping') collectShip(); state.step = back.getAttribute('data-back'); render(); scrollTop(); return; }
+      if (back) { if (state.placing) return; if (state.step === 'shipping') collectShip(); state.step = back.getAttribute('data-back'); render(); scrollTop(); return; }
       var go = e.target.closest('[data-goto]');
-      if (go) { if (state.step === 'shipping') collectShip(); state.step = go.getAttribute('data-goto'); render(); scrollTop(); return; }
+      if (go) { if (state.placing) return; if (state.step === 'shipping') collectShip(); state.step = go.getAttribute('data-goto'); render(); scrollTop(); return; }
       var place = e.target.closest('[data-place]');
       if (place) { placeOrder(); scrollTop(); return; }
       // Post-order add-on → WhatsApp "add to my parcel" + best-effort record. Button locks after.
@@ -640,6 +678,20 @@
       if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('[data-goto]')) { e.preventDefault(); e.target.click(); }
     });
     root.addEventListener('change', function (e) {
+      var recoveryConsent = e.target.closest('input[name="recoveryConsent"]');
+      if (recoveryConsent) {
+        state.ship.recoveryConsent = recoveryConsent.checked;
+        saveShip();
+        var consentEmail = (state.ship.email || '').trim();
+        if (recoveryConsent.checked) {
+          capturedEmail = '';
+          scheduleCapture();
+        } else if (/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(capturedAddress || consentEmail)) {
+          capturedEmail = '';
+          withdrawCartReminder(capturedAddress || consentEmail);
+        }
+        return;
+      }
       var r = e.target.closest('input[name="pay"]');
       if (r) { invalidatePendingOrder(); state.method = r.value; savePendingOrderContext(); render(); return; }
       // Order bump: check → add to cart; uncheck → decrement/remove. state.bumpOn is authoritative.
@@ -662,15 +714,22 @@
     root.addEventListener('input', function (e) {
       if (e.target.closest('#coShipForm') && e.target.name) {
         invalidatePendingOrder();
-        state.ship[e.target.name] = e.target.value; saveShip();
+        if (e.target.name === 'email') {
+          var nextCaptureEmail = e.target.value.trim().toLowerCase();
+          if (capturedAddress && nextCaptureEmail !== capturedAddress) {
+            withdrawCartReminder(capturedAddress);
+            capturedEmail = '';
+          }
+        }
+        state.ship[e.target.name] = e.target.type === 'checkbox' ? e.target.checked : e.target.value; saveShip();
         if (e.target.name === 'email') scheduleCapture();
       }
     });
 
-    // ---- abandoned-cart capture: once a valid email is typed at checkout we store
-    // the pending cart server-side (cart-capture.php) so the recovery emails can go
-    // out if the order isn't completed. order.php marks it purchased on checkout. ----
-    var captureTimer = null, capturedEmail = '';
+    // ---- consented cart reminders: only after the optional checkbox is enabled do
+    // we store the pending cart server-side. order.php suppresses it on purchase. ----
+    var captureTimer = null, capturedEmail = '', capturePending = '', capturedAddress = '';
+    var withdrawalState = Object.create(null);
     function scheduleCapture() {
       if (captureTimer) clearTimeout(captureTimer);
       captureTimer = setTimeout(captureCart, 900);
@@ -679,20 +738,116 @@
       try {
         var email = (state.ship.email || '').trim();
         if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return;
-        if (!YZA.cart.items.length) return;
-        var key = email.toLowerCase() + '|' + YZA.cart.count();
-        if (key === capturedEmail) return;   // don't re-post the same email+cart size
-        capturedEmail = key;
-        var items = lines().map(function (it) { return { name: it.name, qty: it.qty, variant: it.variant || '' }; });
+        if (!YZA.cart.items.length || state.ship.recoveryConsent !== true) return;
+        var liveLines = lines();
+        var key = email.toLowerCase() + '|' + liveLines.map(function (it) {
+          return [it.handle, it.variant || '', it.qty].join(':');
+        }).join('|') + '|' + pricing().totalCents;
+        if (key === capturedEmail || key === capturePending) return;
+        capturePending = key;
+        var items = liveLines.map(function (it) { return { name: it.name, qty: it.qty, variant: it.variant || '' }; });
         fetch('cart-capture.php', {
           method: 'POST', headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             email: email, name: (state.ship.name || '').trim(), phone: (state.ship.phone || '').trim(),
-            lang: YZA.i18n.lang || 'fr', total: Math.round(pricing().totalCents / 100), items: items, _hp: ''
+            lang: YZA.i18n.lang || 'fr', total: Math.round(pricing().totalCents / 100), items: items,
+            recoveryConsent: true, consentVersion: 'cart-reminder-v1', _hp: ''
           }),
-        }).catch(function () {});
+        }).then(function (response) {
+          capturePending = '';
+          if (!response.ok) return;
+          var stillCurrent = state.ship.recoveryConsent === true
+            && YZA.cart.items.length > 0
+            && (state.ship.email || '').trim().toLowerCase() === email.toLowerCase();
+          if (stillCurrent) {
+            capturedEmail = key;
+            capturedAddress = email.toLowerCase();
+          } else {
+            withdrawCartReminder(email);
+          }
+        }).catch(function () { capturePending = ''; });
       } catch (e) {}
     }
+
+    function withdrawCartReminder(email) {
+      var address = String(email || '').trim().toLowerCase();
+      if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(address)) return null;
+      var pending = withdrawalState[address] || { attempts: 0, inflight: false, timer: null };
+      withdrawalState[address] = pending;
+      if (pending.inflight) return null;
+      if (pending.timer) { clearTimeout(pending.timer); pending.timer = null; }
+      pending.inflight = true;
+      pending.attempts += 1;
+
+      function retry(delay) {
+        pending.inflight = false;
+        if (pending.attempts >= 4) return;
+        pending.timer = setTimeout(function () {
+          pending.timer = null;
+          withdrawCartReminder(address);
+        }, Math.max(500, Math.min(delay || 1200, 10000)));
+      }
+
+      try {
+        return fetch('cart-capture.php', {
+          method: 'POST',
+          credentials: 'same-origin',
+          keepalive: true,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'withdraw', email: address, _hp: '' }),
+        }).then(function (response) {
+          var retryAfter = parseFloat(response.headers.get('Retry-After') || '0') * 1000;
+          return response.json().catch(function () { return {}; }).then(function (payload) {
+            if (!response.ok || payload.ok !== true || payload.withdrawn !== true) {
+              retry(retryAfter);
+              return;
+            }
+            pending.inflight = false;
+            if (pending.timer) clearTimeout(pending.timer);
+            delete withdrawalState[address];
+            if (capturedAddress === address) capturedAddress = '';
+          });
+        }).catch(function () { retry(1200); });
+      } catch (e) { retry(1200); return null; }
+    }
+
+    document.addEventListener('yza:cartchange', function () {
+      if (state.ship.recoveryConsent !== true) return;
+      if (YZA.cart.items.length) {
+        scheduleCapture();
+      } else {
+        if (captureTimer) { clearTimeout(captureTimer); captureTimer = null; }
+        capturedEmail = '';
+        if (capturedAddress) withdrawCartReminder(capturedAddress);
+      }
+    });
+
+    /* A consent withdrawal must not be forgotten just because the shopper was
+       briefly offline or closed the page during a retry. Retry pending removals
+       when connectivity returns and make one final same-origin keepalive send
+       while the document is being discarded. The server operation is idempotent. */
+    window.addEventListener('online', function () {
+      Object.keys(withdrawalState).forEach(function (address) {
+        withdrawalState[address].attempts = 0;
+        withdrawCartReminder(address);
+      });
+    });
+    window.addEventListener('pagehide', function () {
+      if (!navigator.sendBeacon) return;
+      Object.keys(withdrawalState).forEach(function (address) {
+        try {
+          navigator.sendBeacon('cart-capture.php', new Blob([
+            JSON.stringify({ action: 'withdraw', email: address, _hp: '' })
+          ], { type: 'application/json' }));
+        } catch (e) {}
+      });
+    });
+
+    window.addEventListener('beforeunload', function (event) {
+      if (!state.placing) return;
+      event.preventDefault();
+      event.returnValue = '';
+    });
 
     function scrollTop() { try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) { window.scrollTo(0, 0); } }
 

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -71,11 +72,47 @@ def verify(root: Path, base: str) -> list[str]:
     if not manifest_path.is_file():
         errors.append("preview manifest missing")
     else:
-        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
-        if manifest.get("base") != expected_base:
-            errors.append("preview manifest base mismatch")
-        if manifest.get("fileCount") != len(manifest.get("files", {})):
-            errors.append("preview manifest file count mismatch")
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+        except (OSError, UnicodeDecodeError, json.JSONDecodeError):
+            errors.append("preview manifest is unreadable or invalid JSON")
+            manifest = None
+
+        if isinstance(manifest, dict):
+            if manifest.get("base") != expected_base:
+                errors.append("preview manifest base mismatch")
+
+            manifest_files = manifest.get("files")
+            if not isinstance(manifest_files, dict):
+                errors.append("preview manifest files must be an object")
+            else:
+                if manifest.get("fileCount") != len(manifest_files):
+                    errors.append("preview manifest file count mismatch")
+
+                actual_files: dict[str, str] = {}
+                for path in sorted(root.rglob("*"), key=lambda item: item.relative_to(root).as_posix()):
+                    if not path.is_file() or path == manifest_path:
+                        continue
+                    rel = path.relative_to(root).as_posix()
+                    try:
+                        actual_files[rel] = hashlib.sha256(path.read_bytes()).hexdigest()
+                    except OSError:
+                        errors.append(f"manifest verification could not read: {rel}")
+
+                declared_paths = set(manifest_files)
+                actual_paths = set(actual_files)
+                for rel in sorted(actual_paths - declared_paths):
+                    errors.append(f"preview manifest missing file: {rel}")
+                for rel in sorted(declared_paths - actual_paths):
+                    errors.append(f"preview manifest references absent file: {rel}")
+                for rel in sorted(declared_paths & actual_paths):
+                    declared_hash = manifest_files[rel]
+                    if not isinstance(declared_hash, str) or not re.fullmatch(r"[0-9a-f]{64}", declared_hash):
+                        errors.append(f"preview manifest has invalid SHA-256: {rel}")
+                    elif declared_hash != actual_files[rel]:
+                        errors.append(f"preview manifest hash mismatch: {rel}")
+        elif manifest is not None:
+            errors.append("preview manifest root must be an object")
 
     # Root-relative quoted URLs would escape to the account-level Pages root.
     escaped = re.compile(

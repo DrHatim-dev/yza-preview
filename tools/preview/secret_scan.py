@@ -49,7 +49,8 @@ def scan(root: Path) -> list[str]:
             continue
         try:
             text = path.read_text(encoding="utf-8")
-        except UnicodeDecodeError:
+        except (OSError, UnicodeDecodeError):
+            findings.append(f"unscannable text file: {rel.as_posix()}")
             continue
         for label, pattern in PATTERNS.items():
             match = pattern.search(text)

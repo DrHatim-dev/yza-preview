@@ -467,6 +467,8 @@ body.has-search-overlay { overflow: hidden; }
 .co-sum__eur { display: block; font-size: var(--fs-xs); font-weight: 400; color: var(--color-muted); }
 .co-terms { font-size: var(--fs-xs); color: var(--color-muted); margin-top: var(--space-5); line-height: 1.5; }
 .co-terms a { text-decoration: underline; text-underline-offset: 2px; }
+.co-recovery-consent { display: flex; min-height: 44px; padding-block: 10px; align-items: flex-start; gap: 10px; cursor: pointer; }
+.co-recovery-consent input { width: 20px; height: 20px; margin: 0; flex: 0 0 20px; accent-color: var(--color-fg); }
 
 /* Payment-step trust reassurance */
 .co-reassure { list-style: none; margin: var(--space-4) 0 var(--space-2); padding: var(--space-3) var(--space-4); display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-4); background: var(--color-bg-soft, #faf7f1); border: 1px solid var(--color-border); border-radius: 8px; }
@@ -762,11 +764,6 @@ body[data-page="collections"] .product-grid:not(.collection-grid--bag-families) 
    =================================================================== */
 body[data-page="collections"] .product-card__media { aspect-ratio: 2 / 3; }
 
-/* Airier grid (base gap is 5px) */
-body[data-page="collections"] .product-grid:not(.collection-grid--bag-families) {
-  gap: clamp(2rem, 3vw, 3rem) clamp(0.75rem, 1.6vw, 1.5rem);
-}
-
 /* Name + price — uppercase, tracked, static BELOW the image (never an overlay).
    Tile cards inherit their static/column reset from the .product-card--tile rules
    above, but bag-variant cards don't — on wide hover screens the base rule turns
@@ -784,29 +781,6 @@ body[data-page="collections"] .product-card__name {
 }
 body[data-page="collections"] .product-card__price {
   text-transform: uppercase; letter-spacing: 0.13em; font-size: 12px;
-}
-
-/* Hover "Add to bag" — bordered button revealed over the image bottom */
-.product-card__addbag {
-  position: absolute; left: 50%; bottom: 16px; z-index: 5;
-  transform: translate(-50%, 6px);
-  min-width: 62%; max-width: calc(100% - 24px); text-align: center;
-  padding: 0.62rem 1.1rem; line-height: 1;
-  font-family: var(--font-display); font-size: 11px; font-weight: 400;
-  letter-spacing: 0.14em; text-transform: uppercase;
-  color: var(--color-fg); background: rgba(255, 255, 255, 0.62);
-  border: 1px solid var(--color-fg); border-radius: 0;
-  -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
-  opacity: 0; pointer-events: none;
-  transition: opacity 0.28s var(--ease-out), transform 0.28s var(--ease-out), background 0.2s ease, color 0.2s ease;
-}
-.product-card__addbag:hover { background: var(--color-fg); color: var(--color-bg); }
-@media (min-width: 861px) and (hover: hover) {
-  .product-card:hover .product-card__addbag { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
-}
-/* Touch: no hover reveal — show it statically */
-@media (hover: none) {
-  .product-card__addbag { opacity: 1; transform: translateX(-50%); pointer-events: auto; background: rgba(255, 255, 255, 0.85); }
 }
 
 /* Sold-out — small top-left pill instead of the full dark overlay */
@@ -2322,7 +2296,8 @@ body[data-page="faq"] .faq-contact a { color: var(--color-fg); border-bottom: 1p
 .story-hero { padding-top: clamp(3.5rem, 7vw, var(--space-24)); overflow: hidden; }
 .story-hero__copy { text-align: center; max-width: 980px; margin-inline: auto; }
 .story-hero__copy .eyebrow { color: var(--color-fg); }
-.story-hero h1 {
+.story-hero h1,
+.story-hero__title {
  font-size: clamp(3rem, 8vw, 7rem);
  font-weight: 400;
  line-height: 0.92;
@@ -3240,7 +3215,8 @@ body.has-recovery-modal { overflow: hidden; }
  .b2b-hero { text-align: left; }
  .b2b-hero p { margin-inline: 0; }
  .b2b-hero__actions { justify-content: flex-start; }
- .story-hero h1 { font-size: clamp(3.1rem, 13vw, 5rem); }
+ .story-hero h1,
+ .story-hero__title { font-size: clamp(3.1rem, 13vw, 5rem); }
  .story-copy p { font-size: var(--fs-base); }
  .story-moodboard img { height: 68vw; min-height: 300px; }
  .manifesto-list li { grid-template-columns: 3.2rem 1fr; }
@@ -3353,7 +3329,8 @@ body.has-recovery-modal { overflow: hidden; }
  .lead-chat__thread { max-height: 160px; }
  .recovery-card { box-shadow: 8px 8px 0 var(--brand-orange); }
  .story-hero { padding-top: var(--space-12); }
- .story-hero h1 { font-size: clamp(2.6rem, 14vw, 3.6rem); }
+ .story-hero h1,
+ .story-hero__title { font-size: clamp(2.6rem, 14vw, 3.6rem); }
  .story-moodboard { margin-top: var(--space-12); }
  .story-moodboard img { height: 88vw; min-height: 280px; }
  .story-section { padding-block: var(--space-16); }

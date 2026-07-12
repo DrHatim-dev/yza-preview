@@ -2,7 +2,7 @@
 
 Release candidate: `codex/maison-marrakech-redesign`
 Runtime implementation commit: `98599eb`
-Production truth: `C:\Users\alexa\Documents\YZA-SAFETY-ARCHIVE-2026-07-10\hostinger-application-2026-07-10`
+Production truth: private Hostinger safety snapshot `hostinger-application-2026-07-10` (location intentionally excluded from this public repository)
 Rule: GitHub Pages proves visuals only; Hostinger staging proves PHP and integrations; neither authorizes production automatically
 
 Execution status (11 July 2026): **local candidate validated; external sign-off pending**. The final JavaScript/Python syntax checks, six preview tests, tracked-source scan, deterministic build, route/guard verification, artifact scan, and Git whitespace gate passed immediately before runtime commit `98599eb`. Two consecutive preview builds produced tree hash `95afc29ccc92241d4ce5925434d1bc051b74786b40dea797b44cb4b8de761c73`. Targeted integrated-browser QA also ran locally at 1440×1000, 1280×720, 390×844, and 360×800. These are local results only: GitHub Pages, staging PHP, Lighthouse, integrations, creative approval, and production remain unapproved. GitHub publication is waiting for an authenticated `gh` session.

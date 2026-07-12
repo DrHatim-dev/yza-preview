@@ -24,6 +24,8 @@ jobs:
     steps:
       - name: Check out the requested revision
         uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -37,10 +39,14 @@ jobs:
         run: python tools/preview/test_preview.py
 
       - name: Build repository-subpath preview
-        run: python tools/preview/build.py --base "/${{ github.event.repository.name }}/" --output dist-preview
+        env:
+          PREVIEW_BASE: /${{ github.event.repository.name }}/
+        run: python tools/preview/build.py --base "$PREVIEW_BASE" --output dist-preview
 
       - name: Verify routes and transactional guard
-        run: python tools/preview/verify.py dist-preview --base "/${{ github.event.repository.name }}/"
+        env:
+          PREVIEW_BASE: /${{ github.event.repository.name }}/
+        run: python tools/preview/verify.py dist-preview --base "$PREVIEW_BASE"
 
       - name: Block secrets and server files
         run: python tools/preview/secret_scan.py dist-preview

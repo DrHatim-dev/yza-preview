@@ -94,9 +94,16 @@ $requestHash = yza_order_idempotency_hash($order);
 if ($requestHash === '') {
   yza_order_json(422, array('ok' => false, 'orderNumber' => $number, 'recorded' => false, 'error' => 'invalid_order'));
 }
-$receiptLock = yza_order_receipt_lock($number);
+$receiptLockError = '';
+$receiptLock = yza_order_receipt_lock($number, $receiptLockError);
 if (!$receiptLock) {
-  yza_order_json(503, array('ok' => false, 'orderNumber' => $number, 'recorded' => false, 'error' => 'idempotency_unavailable'));
+  if ($receiptLockError === 'busy') { header('Retry-After: 2'); }
+  yza_order_json(503, array(
+    'ok' => false,
+    'orderNumber' => $number,
+    'recorded' => false,
+    'error' => 'idempotency_unavailable',
+  ));
 }
 $previousReceipt = yza_order_receipt_read($receiptLock);
 if (is_array($previousReceipt) && !empty($previousReceipt['recorded'])) {
@@ -104,8 +111,30 @@ if (is_array($previousReceipt) && !empty($previousReceipt['recorded'])) {
     yza_order_receipt_unlock($receiptLock);
     yza_order_json(409, array('ok' => false, 'orderNumber' => $number, 'recorded' => true, 'error' => 'idempotency_conflict'));
   }
+  $recoveryEmail = isset($previousReceipt['recoveryEmail']) ? strtolower(trim((string) $previousReceipt['recoveryEmail'])) : '';
+  if ($recoveryEmail !== '' && filter_var($recoveryEmail, FILTER_VALIDATE_EMAIL)) {
+    $cartSuppressed = yza_mark_cart_purchased($recoveryEmail);
+    $brevoCartSuppressed = yza_remove_brevo_cart_contact($recoveryEmail);
+    if (!$cartSuppressed) {
+      yza_order_receipt_unlock($receiptLock);
+      header('Retry-After: 2');
+      yza_order_json(503, array(
+        'ok' => false,
+        'orderNumber' => $number,
+        'recorded' => true,
+        'error' => 'recovery_suppression_pending',
+      ));
+    }
+  }
   yza_order_receipt_unlock($receiptLock);
-  yza_order_json(200, array('ok' => true, 'orderNumber' => $number, 'recorded' => true, 'idempotent' => true));
+  yza_order_json(200, array(
+    'ok' => true,
+    'orderNumber' => $number,
+    'recorded' => true,
+    'idempotent' => true,
+    'customerNotified' => !empty($previousReceipt['customerNotified']),
+    'brevoCartSuppressed' => isset($brevoCartSuppressed) ? (bool) $brevoCartSuppressed : true,
+  ));
 }
 if (is_array($previousReceipt) && isset($previousReceipt['state']) && $previousReceipt['state'] === 'processing') {
   $sameRequest = !empty($previousReceipt['requestHash'])
@@ -297,15 +326,18 @@ if (!$recorded) {
   ));
 }
 
-$receiptStored = yza_order_receipt_write($receiptLock, array(
+$recordedReceipt = array(
   'orderNumber' => $number,
   'requestHash' => $requestHash,
   'recorded' => true,
   'state' => 'recorded',
   'mailed' => (bool) $sent,
   'woocommerce' => (bool) $wc,
+  'recoveryEmail' => filter_var($buyer, FILTER_VALIDATE_EMAIL) ? strtolower(trim($buyer)) : '',
+  'customerNotified' => false,
   'recordedAt' => gmdate('c'),
-));
+);
+$receiptStored = yza_order_receipt_write($receiptLock, $recordedReceipt);
 if (!$receiptStored) {
   yza_order_receipt_unlock($receiptLock);
   yza_order_json(503, array(
@@ -316,6 +348,8 @@ if (!$receiptStored) {
   ));
 }
 
+$cartSuppressed = true;
+$brevoCartSuppressed = true;
 if ($buyer && filter_var($buyer, FILTER_VALIDATE_EMAIL)) {
   $firstName = trim(strtok((string) $name, ' '));
   $custSubject = ($firstName !== '' ? $firstName . ', ' : '') . 'votre commande YZA est confirmee' . ($number ? ' - ' . $number : '');
@@ -325,7 +359,25 @@ if ($buyer && filter_var($buyer, FILTER_VALIDATE_EMAIL)) {
   $chead .= "Reply-To: contact@yza-shop.com\r\n";
   $chead .= "MIME-Version: 1.0\r\nContent-Type: text/html; charset=UTF-8\r\n";
   $custSent = @mail($buyer, '=?UTF-8?B?' . base64_encode($custSubject) . '?=', $custHtml, $chead, '-fno-reply@yza-shop.com');
-  yza_mark_cart_purchased(strtolower(trim($buyer)));
+  $recoveryEmail = strtolower(trim($buyer));
+  $cartSuppressed = yza_mark_cart_purchased($recoveryEmail);
+  $brevoCartSuppressed = yza_remove_brevo_cart_contact($recoveryEmail);
+}
+
+$recordedReceipt['customerNotified'] = (bool) $custSent;
+$recordedReceipt['recoverySuppressed'] = (bool) $cartSuppressed;
+$recordedReceipt['brevoCartSuppressed'] = (bool) $brevoCartSuppressed;
+yza_order_receipt_write($receiptLock, $recordedReceipt);
+
+if (!$cartSuppressed) {
+  yza_order_receipt_unlock($receiptLock);
+  header('Retry-After: 2');
+  yza_order_json(503, array(
+    'ok' => false,
+    'orderNumber' => $number,
+    'recorded' => true,
+    'error' => 'recovery_suppression_pending',
+  ));
 }
 
 yza_order_receipt_unlock($receiptLock);
@@ -336,16 +388,24 @@ yza_order_json(200, array(
   'mailed' => (bool) $sent,
   'woocommerce' => (bool) $wc,
   'customerNotified' => (bool) $custSent,
+  'brevoCartSuppressed' => (bool) $brevoCartSuppressed,
   'idempotencyStored' => true,
 ));
 
 /* ---------------------------------------------------------------------- */
 function yza_mark_cart_purchased($email) {
+  $brevoRemovalPending = yza_brevo_cart_list_configured();
   $file = __DIR__ . '/.private/yza-carts.php';
-  if (!is_file($file)) { return; }
+  if (!is_file($file)) { return true; }
   $fp = @fopen($file, 'c+');
-  if (!$fp) { return; }
-  @flock($fp, LOCK_EX);
+  if (!$fp) { return false; }
+  $locked = false;
+  $deadline = microtime(true) + 2.0;
+  do {
+    $locked = @flock($fp, LOCK_EX | LOCK_NB);
+    if (!$locked) { usleep(25000); }
+  } while (!$locked && microtime(true) < $deadline);
+  if (!$locked) { @fclose($fp); return false; }
   $body  = stream_get_contents($fp);
   $guard = "<?php exit; /* YZA pending carts — one JSON object per line */\n";
   $lines = array_values(array_filter(explode("\n", $body), function ($l) { return trim($l) !== '' && strpos($l, '<?php') !== 0; }));
@@ -353,12 +413,51 @@ function yza_mark_cart_purchased($email) {
   foreach ($lines as $l) {
     $rec = json_decode($l, true);
     if (is_array($rec) && isset($rec['email']) && $rec['email'] === $email && (!isset($rec['status']) || $rec['status'] === 'active')) {
-      $rec['status'] = 'purchased'; $touched = true;
+      $rec['status'] = 'purchased';
+      $rec['recoveryConsent'] = false;
+      $rec['brevoRemovalPending'] = $brevoRemovalPending;
+      $rec['updated'] = time();
+      $touched = true;
     }
     if (is_array($rec)) { $out .= json_encode($rec, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) . "\n"; }
   }
-  if ($touched) { @ftruncate($fp, 0); @rewind($fp); @fwrite($fp, $out); }
+  $writeOk = true;
+  if ($touched) {
+    $writeOk = @ftruncate($fp, 0) && @rewind($fp);
+    $written = $writeOk ? @fwrite($fp, $out) : false;
+    $writeOk = $writeOk && $written === strlen($out) && @fflush($fp);
+  }
   @flock($fp, LOCK_UN); @fclose($fp);
+  return (bool) $writeOk;
+}
+
+/* Fail-soft remote suppression: the local status above is authoritative for
+   the built-in recovery worker. Removing the contact from Brevo prevents a
+   separately configured cart-list automation from sending after purchase. */
+function yza_brevo_cart_list_configured() {
+  $client = __DIR__ . '/brevo.php';
+  if (!is_file($client)) { return false; }
+  require_once $client;
+  if (!function_exists('yza_brevo_enabled') || !yza_brevo_enabled()) { return false; }
+  $cfg = yza_brevo_config();
+  return isset($cfg['list_cart']) && (int) $cfg['list_cart'] > 0;
+}
+
+function yza_remove_brevo_cart_contact($email) {
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { return true; }
+  $client = __DIR__ . '/brevo.php';
+  if (!is_file($client)) { return true; }
+  require_once $client;
+  if (!function_exists('yza_brevo_enabled') || !yza_brevo_enabled()) { return true; }
+  $cfg = yza_brevo_config();
+  $listId = isset($cfg['list_cart']) ? (int) $cfg['list_cart'] : 0;
+  if ($listId <= 0 || !function_exists('yza_brevo_request')) { return true; }
+  $result = yza_brevo_request('POST', '/contacts/lists/' . $listId . '/contacts/remove', array('emails' => array($email)));
+  $removed = is_array($result) && !empty($result['ok']);
+  if (!$removed) {
+    error_log('YZA Brevo cart suppression failed; email_hash=' . substr(hash('sha256', strtolower(trim($email))), 0, 12));
+  }
+  return $removed;
 }
 
 function yza_customer_confirmation($firstName, $number, $total, $itemRows, $method, $host) {
@@ -699,15 +798,30 @@ function yza_order_idempotency_hash($order) {
 }
 
 /* ------------------------------ idempotency ---------------------------- */
-function yza_order_receipt_lock($number) {
+function yza_order_receipt_lock($number, &$error = null) {
+  $error = 'unavailable';
   $dir = __DIR__ . '/.private/order-receipts';
   if (!is_dir($dir) && !@mkdir($dir, 0750, true) && !is_dir($dir)) { return false; }
   $stem = hash('sha256', (string) $number);
   $file = $dir . '/' . $stem . '.json';
   $fp = @fopen($dir . '/' . $stem . '.lock', 'c');
   if (!$fp) { return false; }
-  if (!@flock($fp, LOCK_EX)) { @fclose($fp); return false; }
-  return array('fp' => $fp, 'file' => $file, 'dir' => $dir);
+
+  /* A concurrent request may hold this lock while mail/WooCommerce finishes.
+     Never consume a PHP worker indefinitely: retry non-blocking for at most two
+     seconds, then ask the client to retry the same idempotency key. */
+  $deadline = microtime(true) + 2.0;
+  do {
+    if (@flock($fp, LOCK_EX | LOCK_NB)) {
+      $error = '';
+      return array('fp' => $fp, 'file' => $file, 'dir' => $dir);
+    }
+    usleep(25000);
+  } while (microtime(true) < $deadline);
+
+  $error = 'busy';
+  @fclose($fp);
+  return false;
 }
 
 function yza_order_receipt_read($lock) {
